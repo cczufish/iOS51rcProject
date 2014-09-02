@@ -4,6 +4,7 @@
 #import "JobSearch/SearchMainViewController.h"
 #import "GRListViewController.h"
 #import "EIListViewController.h"
+#import "EmploymentInformation/EIMainViewController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
 
@@ -63,11 +64,12 @@
     EIListViewController *eiCtrl = [search instantiateViewControllerWithIdentifier:@"GRListView"];
     [self.navigationController pushViewController:eiCtrl animated:YES];
 }
+
 //点击就业资讯
 - (IBAction)btnEIClick:(id)sender {
-    UIStoryboard *search = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
-    SearchMainViewController *searchCtrl = [search instantiateViewControllerWithIdentifier:@"SearchMain"];
-    [self.navigationController pushViewController:searchCtrl animated:YES];
+    UIStoryboard *eiStoryBoard = [UIStoryboard storyboardWithName:@"EmploymentInformation" bundle:nil];
+    EIMainViewController *eiMainCtrl = [eiStoryBoard instantiateViewControllerWithIdentifier:@"EIMainView"];
+    [self.navigationController pushViewController:eiMainCtrl animated:YES];
 }
 
 /*
