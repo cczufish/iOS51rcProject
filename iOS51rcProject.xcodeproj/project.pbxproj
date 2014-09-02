@@ -115,6 +115,7 @@
 		99B9823119B4C52100D5D77D /* EIItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9823019B4C52100D5D77D /* EIItemDetailsViewController.m */; };
 		99BD6FA119B54B5E00514807 /* GovernmentRecruitmentStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99BD6FA019B54B5E00514807 /* GovernmentRecruitmentStoryboard.storyboard */; };
 		99BD6FA319B5555800514807 /* gr_pic_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 99BD6FA219B5555800514807 /* gr_pic_head.png */; };
+		99BD6FA719B5983100514807 /* ico_jobnews_searchresult.png in Resources */ = {isa = PBXBuildFile; fileRef = 99BD6FA619B5983100514807 /* ico_jobnews_searchresult.png */; };
 		99BDC5A219A586A800B2BDB1 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BDC5A119A586A700B2BDB1 /* HomeViewController.m */; };
 		99BDC5AD19A5917200B2BDB1 /* CreateResumeAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BDC5AB19A5917200B2BDB1 /* CreateResumeAlertViewController.m */; };
 		99BDC5AE19A5917200B2BDB1 /* CreateResumeAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99BDC5AC19A5917200B2BDB1 /* CreateResumeAlertViewController.xib */; };
@@ -457,6 +458,7 @@
 		99BD6FA019B54B5E00514807 /* GovernmentRecruitmentStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GovernmentRecruitmentStoryboard.storyboard; sourceTree = "<group>"; };
 		99BD6FA219B5555800514807 /* gr_pic_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gr_pic_head.png; sourceTree = "<group>"; };
 		99BD6FA419B58BD900514807 /* FrontiaDemo.ipa */ = {isa = PBXFileReference; lastKnownFileType = file; name = FrontiaDemo.ipa; path = ../../../Downloads/FrontiaDemo.ipa; sourceTree = "<group>"; };
+		99BD6FA619B5983100514807 /* ico_jobnews_searchresult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_jobnews_searchresult.png; sourceTree = "<group>"; };
 		99BDC5A019A586A700B2BDB1 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		99BDC5A119A586A700B2BDB1 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		99BDC5AA19A5917200B2BDB1 /* CreateResumeAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateResumeAlertViewController.h; sourceTree = "<group>"; };
@@ -1136,6 +1138,7 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99BD6FA619B5983100514807 /* ico_jobnews_searchresult.png */,
 				99BD6FA219B5555800514807 /* gr_pic_head.png */,
 				99B4693319B2EB520034505D /* ico_mainsearch_mapsearch1.png */,
 				99B4693419B2EB520034505D /* ico_mainsearch_mapsearch2.png */,
@@ -1444,6 +1447,7 @@
 				991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */,
 				99B4693A19B2EB520034505D /* ico_mainsearch_normalsearch2.png in Resources */,
 				99BD6FA319B5555800514807 /* gr_pic_head.png in Resources */,
+				99BD6FA719B5983100514807 /* ico_jobnews_searchresult.png in Resources */,
 				990CCC8519A998620022B44B /* check.png in Resources */,
 				99CFD896199B60D8009A5ABA /* renren.png in Resources */,
 				99CFD880199B60D8009A5ABA /* ico_leftmenu_rm.png in Resources */,

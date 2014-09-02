@@ -129,6 +129,19 @@
     lbTime.textAlignment = NSTextAlignmentRight;
     [tmpView addSubview:(lbTime)];
     [lbTime release];
+    //New图片
+    NSDate *today = [NSDate date];
+    NSString *strToday = [CommonController stringFromDate:today formatType:@"yyyy-MM-dd"];
+    //today =[ CommonController dateFromString:strToday];
+    NSString *tmpDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd"];
+    //NSDate *dtEarly = [today earlierDate:dtBeginDate];
+    //if ([dtEarly isEqualToDate:today]) {
+    if ([strToday isEqualToString:tmpDate]) {
+        UIImageView *imgNew = [[UIImageView alloc] initWithFrame:CGRectMake(280, 0, 30, 30)];
+        imgNew.image = [UIImage imageNamed:@"ico_jobnews_searchresult.png"];
+        [tmpView addSubview:imgNew];
+        [imgNew release];
+    }
     
     [cell.contentView addSubview:tmpView];
     [tmpView autorelease];
