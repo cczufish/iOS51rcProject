@@ -442,8 +442,8 @@
 		99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmCpJobListViewController.h; path = Recruitment/RmCpJobListViewController.h; sourceTree = "<group>"; };
 		99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmCpJobListViewController.m; path = Recruitment/RmCpJobListViewController.m; sourceTree = "<group>"; };
 		99B7FF8419B3660900BD1345 /* SelectJobDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SelectJobDelegate.h; path = Recruitment/Delegate/SelectJobDelegate.h; sourceTree = "<group>"; };
-		99B9671B19B443D000E93CBD /* RmCpMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RmCpMain.h; sourceTree = "<group>"; };
-		99B9671C19B443D000E93CBD /* RmCpMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RmCpMain.m; sourceTree = "<group>"; };
+		99B9671B19B443D000E93CBD /* RmCpMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmCpMain.h; path = Entity/RmCpMain.h; sourceTree = "<group>"; };
+		99B9671C19B443D000E93CBD /* RmCpMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmCpMain.m; path = Entity/RmCpMain.m; sourceTree = "<group>"; };
 		99B9671E19B4550500E93CBD /* RmSearchJobForInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmSearchJobForInviteViewController.h; path = Recruitment/RmSearchJobForInviteViewController.h; sourceTree = "<group>"; };
 		99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmSearchJobForInviteViewController.m; path = Recruitment/RmSearchJobForInviteViewController.m; sourceTree = "<group>"; };
 		99B9672319B45B3600E93CBD /* CommonSearchJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonSearchJobViewController.h; path = Recruitment/CommonSearchJobViewController.h; sourceTree = "<group>"; };
@@ -930,21 +930,14 @@
 			path = "Release-iphonesimulator";
 			sourceTree = "<group>";
 		};
-		99B9671919B443D000E93CBD /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				99B9671A19B443D000E93CBD /* Entity */,
-			);
-			path = Framework;
-			sourceTree = "<group>";
-		};
-		99B9671A19B443D000E93CBD /* Entity */ = {
+		99B9671919B443D000E93CBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				99B9671B19B443D000E93CBD /* RmCpMain.h */,
 				99B9671C19B443D000E93CBD /* RmCpMain.m */,
 			);
-			path = Entity;
+			name = Model;
+			path = ../Framework;
 			sourceTree = "<group>";
 		};
 		99B9822119B4C39400D5D77D /* GovernmentRecruitment */ = {
@@ -1126,7 +1119,6 @@
 			children = (
 				99BDC59C19A57FAD00B2BDB1 /* CustomControl */,
 				99B9822819B4C46700D5D77D /* EmploymentInformation */,
-				99B9671919B443D000E93CBD /* Framework */,
 				99B9822119B4C39400D5D77D /* GovernmentRecruitment */,
 				9952A06A19AAF71000F6452C /* JobSearch */,
 				99AF855F19A188F100524B66 /* Login */,
@@ -1287,6 +1279,7 @@
 		99CFD89A199B6196009A5ABA /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				99B9671919B443D000E93CBD /* Model */,
 				99BD6FD619B5AFDF00514807 /* CircleView */,
 				99B4693D19B2F7BF0034505D /* BaiduMap */,
 				99F51F4619AEDDEE00C81A9B /* Popup */,
