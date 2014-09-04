@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4A846AFE-BD38-4DE9-84DD-572588BC5290</string>
+	<string>7395BD84-3D04-4AC5-B16F-692933D58F81</string>
 	<key>IDESourceControlProjectName</key>
 	<string>iOS51rcProject</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>7B648254-E504-47BC-88D3-64F42A026F95</key>
+		<key>62E0653A-64F1-4D14-AC09-B230DCF2897A</key>
 		<string>https://github.com/Andy-Yin/iOS51rcProject.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>iOS51rcProject.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>7B648254-E504-47BC-88D3-64F42A026F95</key>
+		<key>62E0653A-64F1-4D14-AC09-B230DCF2897A</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>7B648254-E504-47BC-88D3-64F42A026F95</string>
+	<string>62E0653A-64F1-4D14-AC09-B230DCF2897A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>7B648254-E504-47BC-88D3-64F42A026F95</string>
+			<string>62E0653A-64F1-4D14-AC09-B230DCF2897A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>iOS51rcProject</string>
 		</dict>
