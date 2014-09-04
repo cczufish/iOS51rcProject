@@ -108,18 +108,17 @@
     //地区
     NSString *strAge = rowData[@"Region"];
     //学历
-    NSString *strDegree = [CommonController GetEduByID:rowData[@"dcEducationID"]];
+    NSString *strDegree = [CommonController getDictionaryDesc:rowData[@"dcEducationID"] tableName:@"dcEducation"];
     NSString *strInfo = [NSString stringWithFormat:@"%@|%@", strAge, strDegree];
     UILabel *lbInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 200, labelSize.height)];
     lbInfo.text = strInfo;
     lbInfo.font = [UIFont systemFontOfSize:12];
     lbInfo.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbInfo)];
-    [lbInfo release];    
+    [lbInfo release];
     //工资
-    NSString *strdcSalaryID = rowData[@"dcSalaryID"];
     UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(220, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 80, labelSize.height)];
-    lbSalary.text = [CommonController GetSalary:strdcSalaryID];
+    lbSalary.text = [CommonController getDictionaryDesc:rowData[@"dcSalaryID"] tableName:@"dcSalary"];
     lbSalary.font = [UIFont systemFontOfSize:12];
     lbSalary.textAlignment = NSTextAlignmentRight;
     lbSalary.textColor = [UIColor redColor];
