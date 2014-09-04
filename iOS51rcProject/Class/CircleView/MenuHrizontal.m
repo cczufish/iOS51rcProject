@@ -62,7 +62,10 @@
         [vNewDic setObject:[NSNumber numberWithFloat:menuWidth] forKey:TOTALWIDTH];
         [mItemInfoArray addObject:vNewDic];
     }
-    
+    //添加下面横线
+    UILabel *lbLine = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-3, menuWidth, 0.5)];
+    lbLine.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [self addSubview:lbLine];
     [mScrollView setContentSize:CGSizeMake(menuWidth, self.frame.size.height)];
     [self addSubview:mScrollView];
     // 保存menu总长度，如果小于320则不需要移动，方便点击button时移动位置的判断
