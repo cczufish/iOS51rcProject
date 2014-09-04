@@ -1,29 +1,25 @@
 //
-//  ScrollPageView.h
-//  ShowProduct
+//  EIScrollPageView.h
+//  iOS51rcProject
 //
-//  Created by lin on 14-5-23.
-//  Copyright (c) 2014年 @"". All rights reserved.
+//  Created by qlrc on 14-9-4.
+//  Copyright (c) 2014年 Lucifer. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomTableView.h"
 #import "NetWebServiceRequest.h"
-#import "LoginViewController.h" 
-
 @protocol ScrollPageViewDelegate <NSObject>
 -(void)didScrollPageViewChangedPage:(NSInteger)aPage;
 @end
-
-@interface ScrollPageView : UIView<UIScrollViewDelegate,CustomTableViewDataSource,CustomTableViewDelegate,NetWebServiceRequestDelegate>
+@interface EIScrollPageView : UIView<UITableViewDataSource,UITableViewDelegate, NetWebServiceRequestDelegate>
 {
-    NSInteger page;  
     NSInteger mCurrentPage;
     BOOL mNeedUseDelegate;
-    NSMutableArray *newsListData;//获取的数据
 }
 @property (nonatomic,retain) UIScrollView *scrollView;
-@property (nonatomic,retain) NSMutableArray *contentItems;
+
+@property (nonatomic,retain) NSMutableArray *contentPages;
+
 @property (nonatomic,assign) id<ScrollPageViewDelegate> delegate;
 
 #pragma mark 添加ScrollowViewd的ContentView
