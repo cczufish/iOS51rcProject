@@ -359,7 +359,6 @@
 		99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x960.png"; sourceTree = "<group>"; };
 		99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x1136.png"; sourceTree = "<group>"; };
 		99B385D319A6EB6100B3C734 /* GoToHomeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToHomeDelegate.h; sourceTree = "<group>"; };
-		99B385D519A7407300B3C734 /* JobSearch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JobSearch.storyboard; sourceTree = "<group>"; };
 		99B385D719A744C600B3C734 /* SearchMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchMainViewController.h; path = JobSearch/SearchMainViewController.h; sourceTree = "<group>"; };
 		99B385D819A744C600B3C734 /* SearchMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchMainViewController.m; path = JobSearch/SearchMainViewController.m; sourceTree = "<group>"; };
 		99B4693119B2B71A0034505D /* ico_searchlog_log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_searchlog_log.png; sourceTree = "<group>"; };
@@ -1127,18 +1126,18 @@
 				99CFD81E199B5F80009A5ABA /* Supporting Files */,
 				99FA8B7E19A7132C00F8B1B9 /* UserCenter */,
 				99AF855E19A188D700524B66 /* WelCome */,
+				99CFD82F199B5F80009A5ABA /* Images.xcassets */,
+				99CFD84C199B6082009A5ABA /* Home.storyboard */,
+				9952A06E19AAF72B00F6452C /* JobSearch.storyboard */,
+				99B2F2FA199C43580066853D /* Login.storyboard */,
 				99CFD826199B5F80009A5ABA /* AppDelegate.h */,
 				99CFD827199B5F80009A5ABA /* AppDelegate.m */,
 				99AC903919AC395400165D88 /* CpMainViewController.h */,
 				99AC903A19AC395400165D88 /* CpMainViewController.m */,
-				99CFD84C199B6082009A5ABA /* Home.storyboard */,
 				99BDC5A019A586A700B2BDB1 /* HomeViewController.h */,
 				99BDC5A119A586A700B2BDB1 /* HomeViewController.m */,
-				99CFD82F199B5F80009A5ABA /* Images.xcassets */,
-				9952A06E19AAF72B00F6452C /* JobSearch.storyboard */,
 				99B4ED9019AB067C004C9068 /* JobViewController.h */,
 				99B4ED9119AB067C004C9068 /* JobViewController.m */,
-				99B2F2FA199C43580066853D /* Login.storyboard */,
 				99FA8B7319A6DBD500F8B1B9 /* MenuViewController.h */,
 				99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */,
 				9952A07019AB0E2200F6452C /* SearchListViewController.h */,
@@ -1147,7 +1146,6 @@
 				99B385D819A744C600B3C734 /* SearchMainViewController.m */,
 				9952A06519AACCED00F6452C /* SearchViewController.h */,
 				9952A06619AACCED00F6452C /* SearchViewController.m */,
-				99B385D519A7407300B3C734 /* JobSearch.storyboard */,
 			);
 			path = iOS51rcProject;
 			sourceTree = "<group>";
