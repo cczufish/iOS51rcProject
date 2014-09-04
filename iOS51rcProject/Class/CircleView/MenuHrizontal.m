@@ -41,11 +41,13 @@
         NSString *vTitleStr = [lDic objectForKey:TITLEKEY];
         float vButtonWidth = [[lDic objectForKey:TITLEWIDTH] floatValue];
         UIButton *vButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        //设置背景
         [vButton setBackgroundImage:[UIImage imageNamed:vNormalImageStr] forState:UIControlStateNormal];
         [vButton setBackgroundImage:[UIImage imageNamed:vHeligtImageStr] forState:UIControlStateSelected];
         [vButton setTitle:vTitleStr forState:UIControlStateNormal];
         [vButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [vButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+        [vButton setTitleColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1] forState:UIControlStateHighlighted];;
+        //[vButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];

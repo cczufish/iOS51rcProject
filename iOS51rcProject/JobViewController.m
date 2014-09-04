@@ -103,7 +103,7 @@
         [self didReceiveJobMain:requestData];
     }
     else if ([self.wsName isEqualToString:@"GetRecommendJobByJobID"]){
-        [self didReceiveRecommendJob:requestData];
+        [self didReceiveRecommendJob:(NSMutableArray *)requestData];
     }
 }
 
