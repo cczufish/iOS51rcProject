@@ -374,7 +374,7 @@
         return;
     }
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:placeid] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:placeid defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }

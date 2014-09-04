@@ -19,5 +19,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnIndustrySelect;
 @property (retain, nonatomic) IBOutlet UILabel *lbIndustrySelect;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollSearch;
+@property (retain, nonatomic) IBOutlet UIImageView *imgSearch;
+@property (retain, nonatomic) IBOutlet UILabel *lbSearch;
+@property (retain, nonatomic) IBOutlet UIImageView *imgMapSearch;
+@property (retain, nonatomic) IBOutlet UILabel *lbMapSearch;
+@property (retain, nonatomic) IBOutlet UILabel *lbUnderline;
 @property (retain, nonatomic) UIView *viewHistory;
 @end

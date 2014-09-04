@@ -182,88 +182,6 @@
     return strWeek;
 }
 
-//获得学历
-+(NSString*) GetEduByID:(NSString *) eduID{
-    NSString *strEdu = @" ";
-    switch ([eduID intValue]){
-        case 1:
-            strEdu = @"初中";
-            break;
-        case 2:
-            strEdu = @"高中";
-            break;
-        case 3:
-            strEdu = @"中技";
-            break;
-        case 4:
-            strEdu = @"中专";
-            break;
-        case 5:
-            strEdu = @"大专";
-            break;
-        case 6:
-            strEdu = @"本科";
-            break;
-        case 7:
-            strEdu = @"硕士";
-            break;
-        case 8:
-            strEdu = @"博士";
-            break;
-        default:
-            strEdu =@"未知";
-            break;
-    }
-    return strEdu;
-}
-
-//获得工资
-+(NSString*) GetSalary:(NSString *) dcSalaryID{
-    NSString *strSalary = @" ";
-    switch ([dcSalaryID intValue]){
-        case 1:
-            strSalary = @"500以上";
-            break;
-        case 2:
-            strSalary = @"1000以上";
-            break;
-        case 3:
-            strSalary = @"1500以上";
-            break;
-        case 4:
-            strSalary = @"2000以上";
-            break;
-        case 5:
-            strSalary = @"3000以上";
-            break;
-        case 6:
-            strSalary = @"4000以上";
-            break;
-        case 7:
-            strSalary = @"6000以上";
-            break;
-        case 8:
-            strSalary = @"8000以上";
-            break;
-        case 9:
-            strSalary = @"15000以上";
-            break;
-        case 10:
-            strSalary = @"20000以上";
-            break;
-        case 11:
-            strSalary = @"500以上";
-            break;
-        case 100:
-            strSalary = @"面议";
-            break;
-        default:
-            strSalary =@"未知";
-            break;
-    }
-    return strSalary;
-}
-
 +(NSString *)getDictionaryDesc:(NSString *)value
                tableName:(NSString *)tableName
 {
@@ -315,6 +233,25 @@
     
     FMResultSet *queryList = [db executeQuery:sql];
     return queryList;
+}
+
++(NSString*)GetCurrentNet
+{
+    NSString* result;
+    Reachability *r = [Reachability reachabilityWithHostName:@"www.apple.com"];
+    switch ([r currentReachabilityStatus]) {
+        case NotReachable:// 没有网络连接
+            result=nil;
+            break;
+        case ReachableViaWWAN:// 使用3G网络
+            result=@"3g";
+            break;
+        case ReachableViaWiFi:// 使用WiFi网络
+            result=@"wifi";
+            break;
+    }
+    return result;
+    
 }
 
 @end

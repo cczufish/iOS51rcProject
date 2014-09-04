@@ -7,7 +7,6 @@
 #import "Toast+UIView.h"
 #import "DictionaryPickerView.h"
 #import "LoginViewController.h"
-#import "Popup+UIView.h"
 #import "CustomPopup.h"
 #import "JobViewController.h"
 
@@ -151,7 +150,6 @@
     [dicParam setObject:self.education forKey:@"education"];
     [dicParam setObject:self.employType forKey:@"employType"];
     [dicParam setObject:self.keyWord forKey:@"keyWord"];
-    [dicParam setObject:self.education forKey:@"education"];
     [dicParam setObject:self.rsType forKey:@"rsType"];
     [dicParam setObject:[NSString stringWithFormat:@"%d",self.pageNumber] forKey:@"pageNumber"];
     [dicParam setObject:self.companySize forKey:@"companySize"];
@@ -192,13 +190,13 @@
             [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
         }
         else {
-            self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData view:self.view] autorelease];
+            self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
             [self.cPopup setDelegate:self];
             [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
         }
     }
     else if (request.tag == 3) { //默认投递完之后，显示弹层
-        [self.cPopup showJobApplyCvSelect:result];
+        [self.cPopup showJobApplyCvSelect:result view:self.view];
     }
     else if (request.tag == 4) { //重新申请职位成功
         [self.view makeToast:@"重新申请简历成功"];
@@ -392,7 +390,7 @@
 
 - (void)otherFilter
 {
-    self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defalutValue:self.selectOther defaultName:self.selectOtherName] autorelease];
+    self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defalutValue:self.selectOther defaultName:self.selectOtherName otherType:SearchPickerOtherAll] autorelease];
     self.searchPicker.tag = 3;
     [self.searchPicker showInView:self.view];
 }
@@ -562,18 +560,18 @@
     [_lbSalaryFilter release];
     [_btnOtherFilter release];
     [_runningRequest release];
-    [_jobType retain];
-    [_workPlace retain];
-    [_industry retain];
-    [_salary retain];
-    [_experience retain];
-    [_education retain];
-    [_employType retain];
-    [_keyWord retain];
-    [_rsType retain];
-    [_companySize retain];
-    [_welfare retain];
-    [_isOnline retain];
+    [_jobType release];
+    [_workPlace release];
+    [_industry release];
+    [_salary release];
+    [_experience release];
+    [_education release];
+    [_employType release];
+    [_keyWord release];
+    [_rsType release];
+    [_companySize release];
+    [_welfare release];
+    [_isOnline release];
     [_tvJobList release];
     [_searchKeyword release];
     [_searchRegion release];

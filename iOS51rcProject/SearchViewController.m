@@ -5,12 +5,16 @@
 #import "SearchListViewController.h"
 #import "FMDatabase.h"
 #import "CommonController.h"
+#import "CustomPopup.h"
+#import "MapSearchViewController.h"
 
-@interface SearchViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate>
+@interface SearchViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate,UIGestureRecognizerDelegate,CustomPopupDelegate>
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @property (retain, nonatomic) NSString *regionSelect;
 @property (retain, nonatomic) NSString *jobTypeSelect;
 @property (retain, nonatomic) NSString *industrySelect;
+@property (retain, nonatomic) UISwipeGestureRecognizer *swipeGesture;
+@property (nonatomic, retain) CustomPopup *cPopup;
 -(void)cancelDicPicker;
 @end
 
@@ -35,6 +39,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchToMapSearch)];
+    [self.swipeGesture setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.view addGestureRecognizer:self.swipeGesture];
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.viewSearchSelect.layer.cornerRadius = 5;
     self.viewSearchSelect.layer.borderWidth = 1;
@@ -49,6 +57,46 @@
     [self.lbRegionSelect setText:@"山东省"];
     self.regionSelect = @"32";
     [self showSearchHistory];
+}
+
+-(void)switchToMapSearch
+{
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self.lbSearch setTextColor:[UIColor blackColor]];
+                         [self.lbMapSearch setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+                         [self.imgSearch setImage:[UIImage imageNamed:@"ico_mainsearch_normalsearch2.png"]];
+                         [self.imgMapSearch setImage:[UIImage imageNamed:@"ico_mainsearch_mapsearch1.png"]];
+                         [self.lbUnderline setFrame:CGRectMake(160, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+                     } completion:^(BOOL finished) {
+                         
+                     }];
+    if ([[CommonController GetCurrentNet] isEqualToString:@"wifi"]) {
+        //添加温馨提示
+        NSString *strNoWifi = @"系统检测到您没有接入wifi网络，使用地图搜索可能会耗费大量流量，您确定继续这么做么？";
+        CGSize labelSize = [CommonController CalculateFrame:strNoWifi fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(240, 5000)];
+        UILabel *lbNoWifi = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, labelSize.width, labelSize.height)];
+        [lbNoWifi setBackgroundColor:[UIColor blueColor]];
+        [lbNoWifi setText: strNoWifi];
+        [lbNoWifi setFont:[UIFont systemFontOfSize:14]];
+        lbNoWifi.numberOfLines = 0;
+        lbNoWifi.lineBreakMode = NSLineBreakByCharWrapping;
+        
+        UIView *viewPopup = [[UIView alloc] initWithFrame:CGRectMake(0, 0, labelSize.width+20, labelSize.height+10)];
+        [viewPopup addSubview:lbNoWifi];
+        
+        self.cPopup = [[[CustomPopup alloc] popupCommon:viewPopup buttonType:PopupButtonTypeConfirmAndCancel] autorelease];
+        self.cPopup.delegate = self;
+        [self.cPopup showPopup:self.view];
+        [lbNoWifi release];
+        [viewPopup release];
+    }
+}
+
+- (IBAction)switchToMapSearch:(id)sender {
+    [self switchToMapSearch];
 }
 
 -(void)showSearchHistory
@@ -253,6 +301,29 @@
     [self.navigationController pushViewController:destinationController animated:true];
 }
 
+- (void) closePopupNext
+{
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self.lbMapSearch setTextColor:[UIColor blackColor]];
+                         [self.lbSearch setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+                         [self.imgSearch setImage:[UIImage imageNamed:@"ico_mainsearch_normalsearch1.png"]];
+                         [self.imgMapSearch setImage:[UIImage imageNamed:@"ico_mainsearch_mapsearch2.png"]];
+                         [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+                     } completion:^(BOOL finished) {
+                         
+                     }];
+}
+
+- (void) confirmAndCancelPopupNext
+{
+    MapSearchViewController *mapSearchC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapSearchView"];
+    [mapSearchC.navigationItem setTitle:@"地图搜索"];
+    [self.navigationController pushViewController:mapSearchC animated:false];
+}
+
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
     return YES;
@@ -261,6 +332,11 @@
 - (int)slideMenuItem
 {
     return 2;
+}
+
+- (UIGestureRecognizer *)haveAnotherGesture
+{
+    return self.swipeGesture;
 }
 
 - (void)didReceiveMemoryWarning
@@ -284,6 +360,13 @@
     [_industrySelect release];
     [_DictionaryPicker release];
     [_scrollSearch release];
+    [_swipeGesture release];
+    [_imgSearch release];
+    [_lbSearch release];
+    [_imgMapSearch release];
+    [_lbMapSearch release];
+    [_lbUnderline release];
+    [_cPopup release];
     [super dealloc];
 }
 @end

@@ -402,6 +402,16 @@ static SlideNavigationController *singletonInstance;
     {
         self.selectMenuItem = [(UIViewController<SlideNavigationControllerDelegate> *)vc slideMenuItem];
     }
+    if ([vc respondsToSelector:@selector(haveAnotherGesture)])
+    {
+        [self.panRecognizer requireGestureRecognizerToFail: [(UIViewController<SlideNavigationControllerDelegate> *)vc haveAnotherGesture]];
+    }
+    if ([vc respondsToSelector:@selector(removeSlideGesture)])
+    {
+        if ([(UIViewController<SlideNavigationControllerDelegate> *)vc removeSlideGesture]) {
+            [self.view removeGestureRecognizer:self.panRecognizer];
+        }
+    }
 	if (menu == MenuRight)
 	{
 		if ([vc respondsToSelector:@selector(slideNavigationControllerShouldDisplayRightMenu)] &&

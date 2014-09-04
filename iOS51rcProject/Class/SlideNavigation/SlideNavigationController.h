@@ -5,6 +5,8 @@
 @required
 - (int)slideMenuItem;
 @optional
+- (UIGestureRecognizer *)haveAnotherGesture;
+- (BOOL)removeSlideGesture;
 - (BOOL)slideNavigationControllerShouldDisplayRightMenu;
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu;
 @end
