@@ -1,11 +1,3 @@
-//
-//  ScrollPageView.m
-//  ShowProduct
-//
-//  Created by lin on 14-5-23.
-//  Copyright (c) 2014年 @"". All rights reserved.
-//
-
 #import "ScrollPageView.h"
 #import "HomeViewCell.h"
 
@@ -158,8 +150,6 @@
         for (int i = 0; i < 4; i++) {
             [aView.tableInfoArray addObject:@"0"];
         }
-        //改变header显示图片
-        //[self changeHeaderContentWithCustomTable:aView];
         if (complete) {
             complete();
         }

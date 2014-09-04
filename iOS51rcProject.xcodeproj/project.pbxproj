@@ -121,7 +121,6 @@
 		99BD6FF319B5AFDF00514807 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD6FE519B5AFDF00514807 /* CircleView.m */; };
 		99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD6FE719B5AFDF00514807 /* EGORefreshTableHeaderView.m */; };
 		99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD6FE919B5AFDF00514807 /* ScrollPageView.m */; };
-		99BD700119B5B23B00514807 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD6FFA19B5B23B00514807 /* HomeView.m */; };
 		99BD700219B5B23B00514807 /* HomeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD6FFC19B5B23B00514807 /* HomeViewCell.m */; };
 		99BD700319B5B23B00514807 /* HomeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99BD6FFD19B5B23B00514807 /* HomeViewCell.xib */; };
 		99BD700419B5B23B00514807 /* LoadMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BD6FFF19B5B23B00514807 /* LoadMoreCell.m */; };
@@ -479,8 +478,6 @@
 		99BD6FE719B5AFDF00514807 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		99BD6FE819B5AFDF00514807 /* ScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPageView.h; sourceTree = "<group>"; };
 		99BD6FE919B5AFDF00514807 /* ScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPageView.m; sourceTree = "<group>"; };
-		99BD6FF919B5B23B00514807 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
-		99BD6FFA19B5B23B00514807 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
 		99BD6FFB19B5B23B00514807 /* HomeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewCell.h; sourceTree = "<group>"; };
 		99BD6FFC19B5B23B00514807 /* HomeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewCell.m; sourceTree = "<group>"; };
 		99BD6FFD19B5B23B00514807 /* HomeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewCell.xib; sourceTree = "<group>"; };
@@ -1005,8 +1002,6 @@
 		99BD6FF819B5B23B00514807 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				99BD6FF919B5B23B00514807 /* HomeView.h */,
-				99BD6FFA19B5B23B00514807 /* HomeView.m */,
 				99BD6FFB19B5B23B00514807 /* HomeViewCell.h */,
 				99BD6FFC19B5B23B00514807 /* HomeViewCell.m */,
 				99BD6FFD19B5B23B00514807 /* HomeViewCell.xib */,
@@ -1585,7 +1580,6 @@
 				99908A5619A34DD300137FDE /* FMDatabase.m in Sources */,
 				999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */,
 				99908A5A19A34DD300137FDE /* FMResultSet.m in Sources */,
-				99BD700119B5B23B00514807 /* HomeView.m in Sources */,
 				99F51F4F19AF0D4B00C81A9B /* CustomPopup.m in Sources */,
 				997BF0EA199DB33C00FD0B12 /* ASINetworkQueue.m in Sources */,
 				99BDC5EB19A5F10D00B2BDB1 /* SVProgressHUD.m in Sources */,
