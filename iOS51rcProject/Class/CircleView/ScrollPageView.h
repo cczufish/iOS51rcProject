@@ -8,22 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomTableView.h"
-#import "NetWebServiceRequest.h"
-#import "LoginViewController.h" 
 
 @protocol ScrollPageViewDelegate <NSObject>
 -(void)didScrollPageViewChangedPage:(NSInteger)aPage;
 @end
 
-@interface ScrollPageView : UIView<UIScrollViewDelegate,CustomTableViewDataSource,CustomTableViewDelegate,NetWebServiceRequestDelegate>
+@interface ScrollPageView : UIView<UIScrollViewDelegate,CustomTableViewDataSource,CustomTableViewDelegate>
 {
-    NSInteger page;  
     NSInteger mCurrentPage;
     BOOL mNeedUseDelegate;
-    NSMutableArray *newsListData;//获取的数据
 }
 @property (nonatomic,retain) UIScrollView *scrollView;
+
 @property (nonatomic,retain) NSMutableArray *contentItems;
+
 @property (nonatomic,assign) id<ScrollPageViewDelegate> delegate;
 
 #pragma mark 添加ScrollowViewd的ContentView

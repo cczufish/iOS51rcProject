@@ -46,57 +46,57 @@
 //#pragma mark UI初始化
 -(void)commInit{
     NSArray *vButtonItemArray = @[@{NOMALKEY: @"normal.png",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight.png",
                                     TITLEKEY:@"最新热点",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal.png",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight.png",
                                     TITLEKEY:@"才市速递",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"招聘现场",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"培训进修",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"薪酬福利",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"社会保险",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"职场江湖",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"简历指导",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"面试宝典",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"职业规划",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background.png",
+                                    HEIGHTKEY:@"helight",
                                     TITLEKEY:@"求职攻略",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
