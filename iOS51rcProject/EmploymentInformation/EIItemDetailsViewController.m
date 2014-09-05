@@ -28,14 +28,14 @@
 {
     [super viewDidLoad];
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    [button setTitle: @"政府招考详情" forState: UIControlStateNormal];
+    [button setTitle: @"就业资讯详情" forState: UIControlStateNormal];
     [button sizeToFit];
     self.navigationItem.titleView = button;
     //返回按钮
     UIButton *leftBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
     [leftBtn addTarget:self action:@selector(btnBackClick:) forControlEvents:UIControlEventTouchUpInside];
     UILabel *lbLeft = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
-    lbLeft.text = @"政府招考";
+    lbLeft.text = @"就业资讯";
     lbLeft.font = [UIFont systemFontOfSize:13];
     //lbLeft.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     lbLeft.textColor = [UIColor whiteColor];

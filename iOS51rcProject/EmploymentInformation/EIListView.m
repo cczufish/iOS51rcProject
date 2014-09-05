@@ -1,7 +1,7 @@
 #import "EIListView.h"
 #import "CommonController.h"
 @implementation EIListView
-
+@synthesize goToEIItemDetailsViewDelegate;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -174,10 +174,14 @@
 
 //选择某一行
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *eiStoryboard = [UIStoryboard storyboardWithName:@"EmploymentInformation" bundle:nil];
-    EIItemDetailsViewController *detailCtrl = (EIItemDetailsViewController*)[eiStoryboard
-                                                                             instantiateViewControllerWithIdentifier: @"EIItemDetailsView"];
-    detailCtrl.strNewsID = eiListData[indexPath.row][@"ID"];
+    NSString *newsID;
+    if ([self.newsType isEqualToString:@"0"]) {
+        newsID = eiListData[indexPath.row][@"Id"] ;
+    }else
+    {
+        newsID = eiListData[indexPath.row][@"ID"] ;
+    }
+    [goToEIItemDetailsViewDelegate GoToEIItemDetailsView:newsID];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

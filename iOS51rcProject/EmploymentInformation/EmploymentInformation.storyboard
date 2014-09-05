@@ -22,6 +22,33 @@
             </objects>
             <point key="canvasLocation" x="411" y="43"/>
         </scene>
+        <!--Item Details View Controller-->
+        <scene sceneID="Xb3-Ca-FnK">
+            <objects>
+                <viewController storyboardIdentifier="EIItemDetailsView" id="qbr-IK-FiK" customClass="EIItemDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rqj-rj-cM3"/>
+                        <viewControllerLayoutGuide type="bottom" id="L5r-qa-Oo4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ipe-x1-ByI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hru-Ob-7eo">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="newsScroll" destination="hru-Ob-7eo" id="vee-1E-npJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8S-q8-DRg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1105" y="43"/>
+        </scene>
         <!--List View Controller-->
         <scene sceneID="7PZ-GP-bnm">
             <objects>

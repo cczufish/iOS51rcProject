@@ -3,6 +3,7 @@
 #import "EIListView.h"
 
 @implementation EiScrollPageView
+@synthesize gotoDetailsView;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -36,6 +37,10 @@
     [self addSubview:_scrollView];
 }
 
+-(void) GoToEIItemDetailsView:(NSString *)newsID{
+    [gotoDetailsView GoToEiItemDetailsViewFromScrollView:newsID];
+}
+
 -(void)dealloc{
     [_contentItems removeAllObjects],[_contentItems release],_contentItems= nil;
     [_scrollView release];
@@ -47,6 +52,7 @@
 -(void)setContentOfTables:(NSInteger)aNumerOfTables{
     for (int i = 0; i < aNumerOfTables; i++) {
         EIListView *eiListView = [[EIListView alloc] initWithFrame:CGRectMake(320 * i, 0, 320, self.frame.size.height)];
+        eiListView.goToEIItemDetailsViewDelegate = self;
         [_scrollView addSubview:eiListView];
         [_contentItems addObject:eiListView];
         [eiListView release];

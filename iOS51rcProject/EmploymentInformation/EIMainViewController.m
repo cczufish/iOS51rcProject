@@ -1,5 +1,6 @@
 #import "EIMainViewController.h"
 #import "SlideNavigationController.h"
+#import "EIItemDetailsViewController.h"
 #define MENUHEIHT 40
 
 @interface EIMainViewController ()<SlideNavigationControllerDelegate>
@@ -37,6 +38,14 @@
      [self commInit];
 }
 
+//点击到达详细页面
+-(void) GoToEiItemDetailsViewFromScrollView:(NSString *)newsID{
+    UIStoryboard *eiStoryboard = [UIStoryboard storyboardWithName:@"EmploymentInformation" bundle:nil];
+    EIItemDetailsViewController *detailCtrl = (EIItemDetailsViewController*)[eiStoryboard
+                                                                             instantiateViewControllerWithIdentifier: @"EIItemDetailsView"];
+    detailCtrl.strNewsID = newsID;
+    [self.navigationController pushViewController:detailCtrl animated:YES];
+}
 -(void) btnMyRecruitmentClick:(UIBarButtonItem *)sender
 {
     //MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
@@ -113,6 +122,7 @@
     }
     //初始化多个页面，添加入滚动的列表里
     [mScrollPageView setContentOfTables:vButtonItemArray.count];
+    mScrollPageView.gotoDetailsView = self;
     //默认选中第一个button
     [mMenuHriZontal clickButtonAtIndex:0];
     //-------
