@@ -49,6 +49,8 @@
 		9942F37F19B94E4400191C74 /* ico_map_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37C19B94E4300191C74 /* ico_map_back.png */; };
 		9942F38019B94E4400191C74 /* ico_mapsearch_pointer_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */; };
 		9942F38119B94E4400191C74 /* ico_mapsearch_pointer_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */; };
+		9942F38319B954D200191C74 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9942F38219B954D200191C74 /* More.storyboard */; };
+		9942F38D19B9599000191C74 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9942F38C19B9599000191C74 /* MoreViewController.m */; };
 		9945C30B19A1A4890027E931 /* ico_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30A19A1A4890027E931 /* ico_clock.png */; };
 		9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30C19A1AB370027E931 /* ico_rm_group.png */; };
 		9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9945C32A19A1E8FA0027E931 /* DatePicker.m */; };
@@ -349,6 +351,9 @@
 		9942F37C19B94E4300191C74 /* ico_map_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_back.png; sourceTree = "<group>"; };
 		9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_pointer_blue.png; sourceTree = "<group>"; };
 		9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_pointer_red.png; sourceTree = "<group>"; };
+		9942F38219B954D200191C74 /* More.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		9942F38B19B9599000191C74 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
+		9942F38C19B9599000191C74 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		9945C30A19A1A4890027E931 /* ico_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_clock.png; sourceTree = "<group>"; };
 		9945C30C19A1AB370027E931 /* ico_rm_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_group.png; sourceTree = "<group>"; };
 		9945C32919A1E8FA0027E931 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
@@ -812,6 +817,16 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		9942F38419B954D700191C74 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				9942F38219B954D200191C74 /* More.storyboard */,
+				9942F38B19B9599000191C74 /* MoreViewController.h */,
+				9942F38C19B9599000191C74 /* MoreViewController.m */,
+			);
+			name = More;
+			sourceTree = "<group>";
+		};
 		9952A06A19AAF71000F6452C /* JobSearch */ = {
 			isa = PBXGroup;
 			children = (
@@ -1190,6 +1205,7 @@
 				99CFD81E199B5F80009A5ABA /* Supporting Files */,
 				99FA8B7E19A7132C00F8B1B9 /* UserCenter */,
 				99AF855E19A188D700524B66 /* WelCome */,
+				9942F38419B954D700191C74 /* More */,
 				99CFD82F199B5F80009A5ABA /* Images.xcassets */,
 				99CFD84C199B6082009A5ABA /* Home.storyboard */,
 				9952A06E19AAF72B00F6452C /* JobSearch.storyboard */,
@@ -1569,6 +1585,7 @@
 				99B4693219B2B71A0034505D /* ico_searchlog_log.png in Resources */,
 				99CFD88F199B60D8009A5ABA /* loginWeiBo.png in Resources */,
 				9925BEFC19B80E02002DBFE0 /* menu-button@2x.png in Resources */,
+				9942F38319B954D200191C74 /* More.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1620,6 +1637,7 @@
 				99AC903B19AC395400165D88 /* CpMainViewController.m in Sources */,
 				998025CF19A23528001A7E84 /* AnimatedGif.m in Sources */,
 				99B9822719B4C3DA00D5D77D /* GRItemDetailsViewController.m in Sources */,
+				9942F38D19B9599000191C74 /* MoreViewController.m in Sources */,
 				9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */,
 				99B4ED9219AB067C004C9068 /* JobViewController.m in Sources */,
 				997BF0EC199DB33C00FD0B12 /* GDataXMLNode.m in Sources */,
