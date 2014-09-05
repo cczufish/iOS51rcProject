@@ -1,11 +1,3 @@
-//
-//  MenuHrizontal.m
-//  ShowProduct
-//
-//  Created by lin on 14-5-22.
-//  Copyright (c) 2014年 @"". All rights reserved.
-//
-
 #import "MenuHrizontal.h"
 
 #define BUTTONITEMWIDTH   70
@@ -51,6 +43,10 @@
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
+        //添加下方黑线北京
+        UILabel *lbBg = [[[UILabel alloc] initWithFrame:CGRectMake(0, vButton.frame.size.height - 2.5, vButtonWidth, 0.5)] autorelease];
+        lbBg.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+        [vButton addSubview:lbBg];
         [mScrollView addSubview:vButton];
         [mButtonArray addObject:vButton];
         
@@ -64,6 +60,7 @@
     }
     
     [mScrollView setContentSize:CGSizeMake(menuWidth, self.frame.size.height)];
+    
     [self addSubview:mScrollView];
     // 保存menu总长度，如果小于320则不需要移动，方便点击button时移动位置的判断
     mTotalWidth = menuWidth;

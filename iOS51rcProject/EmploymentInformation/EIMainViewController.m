@@ -46,57 +46,57 @@
 //#pragma mark UI初始化
 -(void)commInit{
     NSArray *vButtonItemArray = @[@{NOMALKEY: @"normal.png",
-                                    HEIGHTKEY:@"helight.png",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"最新热点",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal.png",
-                                    HEIGHTKEY:@"helight.png",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"才市速递",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"招聘现场",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"培训进修",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"薪酬福利",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"社会保险",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"职场江湖",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"简历指导",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"面试宝典",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"职业规划",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
                                   @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
+                                    HEIGHTKEY:@"ico_EI_Background.png",
                                     TITLEKEY:@"求职攻略",
                                     TITLEWIDTH:[NSNumber numberWithFloat:80]
                                     },
@@ -141,10 +141,8 @@
 -(void)didScrollPageViewChangedPage:(NSInteger)aPage{
     NSLog(@"CurrentPage:%d",aPage);
     [mMenuHriZontal changeButtonStateAtIndex:aPage];
-    //    if (aPage == 3) {
     //刷新当页数据
     [mScrollPageView freshContentTableAtIndex:aPage];
-    //    }
 }
 /*
 #pragma mark - Navigation

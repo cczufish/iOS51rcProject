@@ -103,6 +103,8 @@
 		99908A5919A34DD300137FDE /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5319A34DD300137FDE /* FMDatabaseQueue.m */; };
 		99908A5A19A34DD300137FDE /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5519A34DD300137FDE /* FMResultSet.m */; };
 		99908A5C19A37D2000137FDE /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */; };
+		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
+		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
 		999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */; };
 		99A5D671199CB8D100466B0C /* RecruitmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A5D670199CB8D100466B0C /* RecruitmentListViewController.m */; };
 		99AC903B19AC395400165D88 /* CpMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AC903A19AC395400165D88 /* CpMainViewController.m */; };
@@ -451,6 +453,8 @@
 		99908A5419A34DD300137FDE /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		99908A5519A34DD300137FDE /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
+		999B5B0319B980510067B3E7 /* ico_EI_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background.png; sourceTree = "<group>"; };
 		999DF62E19AECC5600C05F20 /* GoToRmViewDetailDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToRmViewDetailDelegate.h; sourceTree = "<group>"; };
 		999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoToMyInvitedCpViewDelegate.h; path = Recruitment/Delegate/GoToMyInvitedCpViewDelegate.h; sourceTree = "<group>"; };
 		999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmInviteCpListViewController.h; path = Recruitment/MyRmInviteCpListViewController.h; sourceTree = "<group>"; };
@@ -1292,6 +1296,8 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */,
+				999B5B0319B980510067B3E7 /* ico_EI_Background.png */,
 				9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */,
 				9922970919B95FF7008E8646 /* ico_onlinechat_online.png */,
 				9942F38E19B95C2100191C74 /* ico_mainmore_about.png */,
@@ -1592,6 +1598,7 @@
 				9942F39619B95C2100191C74 /* ico_mainmore_logout.png in Resources */,
 				9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */,
 				9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */,
+				999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */,
 				991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */,
 				99B4693A19B2EB520034505D /* ico_mainsearch_normalsearch2.png in Resources */,
 				99BD6FA319B5555800514807 /* gr_pic_head.png in Resources */,
@@ -1618,6 +1625,7 @@
 				99CFD88F199B60D8009A5ABA /* loginWeiBo.png in Resources */,
 				9925BEFC19B80E02002DBFE0 /* menu-button@2x.png in Resources */,
 				9942F38319B954D200191C74 /* More.storyboard in Resources */,
+				999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
