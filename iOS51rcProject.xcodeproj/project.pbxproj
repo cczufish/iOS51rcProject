@@ -133,6 +133,8 @@
 		99908A5C19A37D2000137FDE /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */; };
 		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
 		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
+		999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */; };
+		999B5B0E19B996FB0067B3E7 /* EIListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0D19B996FB0067B3E7 /* EIListView.m */; };
 		999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */; };
 		99A5D671199CB8D100466B0C /* RecruitmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A5D670199CB8D100466B0C /* RecruitmentListViewController.m */; };
 		99AC903B19AC395400165D88 /* CpMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AC903A19AC395400165D88 /* CpMainViewController.m */; };
@@ -518,6 +520,12 @@
 		99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
 		999B5B0319B980510067B3E7 /* ico_EI_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background.png; sourceTree = "<group>"; };
+		999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiScrollPageView.h; sourceTree = "<group>"; };
+		999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EiScrollPageView.m; sourceTree = "<group>"; };
+		999B5B0919B987820067B3E7 /* ScrollPageViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollPageViewDelegate.h; sourceTree = "<group>"; };
+		999B5B0B19B994050067B3E7 /* SearchViewByTypeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewByTypeDelegate.h; sourceTree = "<group>"; };
+		999B5B0C19B996FB0067B3E7 /* EIListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIListView.h; sourceTree = "<group>"; };
+		999B5B0D19B996FB0067B3E7 /* EIListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIListView.m; sourceTree = "<group>"; };
 		999DF62E19AECC5600C05F20 /* GoToRmViewDetailDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToRmViewDetailDelegate.h; sourceTree = "<group>"; };
 		999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoToMyInvitedCpViewDelegate.h; path = Recruitment/Delegate/GoToMyInvitedCpViewDelegate.h; sourceTree = "<group>"; };
 		999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmInviteCpListViewController.h; path = Recruitment/MyRmInviteCpListViewController.h; sourceTree = "<group>"; };
@@ -1158,6 +1166,14 @@
 			path = FMDB;
 			sourceTree = "<group>";
 		};
+		999B5B0A19B993E10067B3E7 /* Degelate */ = {
+			isa = PBXGroup;
+			children = (
+				999B5B0B19B994050067B3E7 /* SearchViewByTypeDelegate.h */,
+			);
+			path = Degelate;
+			sourceTree = "<group>";
+		};
 		999DF62F19AECEE700C05F20 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1236,13 +1252,18 @@
 		99B9822819B4C46700D5D77D /* EmploymentInformation */ = {
 			isa = PBXGroup;
 			children = (
+				999B5B0A19B993E10067B3E7 /* Degelate */,
 				99B9822919B4C49600D5D77D /* EIMainViewController.h */,
 				99B9822A19B4C49600D5D77D /* EIMainViewController.m */,
+				999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */,
+				999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */,
 				99B9822C19B4C4B000D5D77D /* EIListViewController.h */,
 				99B9822D19B4C4B000D5D77D /* EIListViewController.m */,
 				99B9822F19B4C52100D5D77D /* EIItemDetailsViewController.h */,
 				99B9823019B4C52100D5D77D /* EIItemDetailsViewController.m */,
 				99BD6FB219B5A4F300514807 /* EmploymentInformation.storyboard */,
+				999B5B0C19B996FB0067B3E7 /* EIListView.h */,
+				999B5B0D19B996FB0067B3E7 /* EIListView.m */,
 			);
 			path = EmploymentInformation;
 			sourceTree = "<group>";
@@ -1258,6 +1279,7 @@
 				99BD6FE319B5AFDF00514807 /* RefreshTableHeaderView */,
 				99BD6FE819B5AFDF00514807 /* ScrollPageView.h */,
 				99BD6FE919B5AFDF00514807 /* ScrollPageView.m */,
+				999B5B0919B987820067B3E7 /* ScrollPageViewDelegate.h */,
 			);
 			path = CircleView;
 			sourceTree = "<group>";
@@ -1889,6 +1911,7 @@
 				9925BEF819B80E02002DBFE0 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				99AF855919A1883400524B66 /* LoginDetailsViewController.m in Sources */,
 				9925BF0519B80E1F002DBFE0 /* MapSearchViewController.mm in Sources */,
+				999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */,
 				99908A5819A34DD300137FDE /* FMDatabasePool.m in Sources */,
 				9925BF0619B80E1F002DBFE0 /* SearchListViewController.m in Sources */,
 				991125A119A49DCE00C98173 /* Toast+UIView.m in Sources */,
@@ -1911,6 +1934,7 @@
 				99AF855619A1883400524B66 /* FindPsdStep1ViewController.m in Sources */,
 				99B385D919A744C600B3C734 /* SearchMainViewController.m in Sources */,
 				99B4ED8C19AB0458004C9068 /* JobDetailsController.m in Sources */,
+				999B5B0E19B996FB0067B3E7 /* EIListView.m in Sources */,
 				9925BEFD19B80E02002DBFE0 /* SlideNavigationController.m in Sources */,
 				99BDC5A219A586A800B2BDB1 /* HomeViewController.m in Sources */,
 				99B9672519B45B3600E93CBD /* CommonSearchJobViewController.m in Sources */,

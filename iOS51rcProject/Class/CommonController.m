@@ -201,6 +201,9 @@
     else if ([tableName isEqualToString:@"Experience"]) {
         dictionaryList = [db executeQuery:[NSString stringWithFormat:@"select * from dcOthers where Category='职位要求工作经验' and DetailID=%@",value]];
     }
+    else if([tableName isEqualToString:@"dcNewsType"]){
+        dictionaryList = [db executeQuery:[NSString stringWithFormat:@"select * from dcNewsType where OrderNo=%@",value]];
+    }
     else {
         dictionaryList = [db executeQuery:[NSString stringWithFormat:@"select * from %@ where _id=%@",tableName,value]];
     }
@@ -209,6 +212,26 @@
     }
     [db close];
     return strDesc;
+}
+
+//获取新闻类别
++(NSMutableArray *)getNewsType:(NSMutableArray *)newsTypeArray
+{
+    //NSMutableArray *newsTypeArray = [[NSMutableArray alloc] init];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dbPath = [documentsDirectory stringByAppendingPathComponent:@"dictionary.db"];
+    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
+    [db open];
+    FMResultSet *dictionaryList;
+    //dictionaryList = [db executeQuery:@"select * from dcNewsType"];
+    dictionaryList = [db executeQuery:@"select * from dcNewsType where _id not in (2, 15) order by orderno"];
+    [newsTypeArray addObject:@"0"];
+    while ([dictionaryList next]) {
+        [newsTypeArray addObject:[dictionaryList stringForColumn:@"_id"]];
+    }
+    [db close];
+    return newsTypeArray;
 }
 
 +(BOOL)hasParentOfRegion:(NSString *)regionId
@@ -247,6 +270,20 @@
     return queryList;
 }
 
+//过滤Html标签
++ (NSString *) FilterHtml :(NSString*) content
+{
+    content =[content stringByReplacingOccurrencesOfString:@"<br> <br>" withString:@"\n"];
+    content =[content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+    content =[content stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
+    content =[content stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
+    content =[content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+    content =[content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+    content =[content stringByReplacingOccurrencesOfString:@"<p" withString:@""];
+    content =[content stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
+    content =[content stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
+    return content;
+}
 +(NSString*)GetCurrentNet
 {
     NSString* result;

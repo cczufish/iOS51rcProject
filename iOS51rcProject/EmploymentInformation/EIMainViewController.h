@@ -1,11 +1,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MenuHrizontal.h"
-#import "ScrollPageView.h"
-//
+//#import "ScrollPageView.h"
+#import "EiScrollPageView.h"
 @interface EIMainViewController : UIViewController <MenuHrizontalDelegate,ScrollPageViewDelegate>
 {
     MenuHrizontal *mMenuHriZontal;
-    ScrollPageView *mScrollPageView;
+    EiScrollPageView *mScrollPageView;
 }
 @end

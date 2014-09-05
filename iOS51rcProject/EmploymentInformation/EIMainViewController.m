@@ -108,9 +108,10 @@
     }
     //初始化滑动列表
     if (mScrollPageView == nil) {
-        mScrollPageView = [[ScrollPageView alloc] initWithFrame:CGRectMake(0, 60 + MENUHEIHT, self.view.frame.size.width, self.view.frame.size.height - MENUHEIHT)];
+        mScrollPageView = [[EiScrollPageView alloc] initWithFrame:CGRectMake(0, 60 + MENUHEIHT, self.view.frame.size.width, self.view.frame.size.height - MENUHEIHT)];
         mScrollPageView.delegate = self;
     }
+    //初始化多个页面，添加入滚动的列表里
     [mScrollPageView setContentOfTables:vButtonItemArray.count];
     //默认选中第一个button
     [mMenuHriZontal clickButtonAtIndex:0];
