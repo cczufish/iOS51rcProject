@@ -124,6 +124,11 @@
     [dicParam release];
 }
 
+//点击申请职位按钮
+- (IBAction)btnJobApply:(id)sender {
+    [self jobApply];
+}
+
 - (void)jobApply
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -145,6 +150,10 @@
         LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
         [self.navigationController pushViewController:loginC animated:true];
     }
+}
+//点击收藏按钮
+- (IBAction)btnFavoriteClick:(id)sender {
+    [self jobFavorite];
 }
 
 - (void)jobFavorite
@@ -169,6 +178,11 @@
         LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
         [self.navigationController pushViewController:loginC animated:true];
     }
+}
+
+//点击留言按钮
+- (IBAction)btnChatClick:(id)sender {
+    NSLog(@"留言");
 }
 
 - (void) getPopupValue:(NSString *)value
