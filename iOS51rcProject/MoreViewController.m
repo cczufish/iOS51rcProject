@@ -1,5 +1,6 @@
 #import "MoreViewController.h"
 #import <ShareSDK/ShareSDK.h>
+#import "AboutUsViewController.h"
 #import "SlideNavigationController.h"
 
 @interface MoreViewController () <UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate>
@@ -102,12 +103,12 @@
         {
             NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
             //构造分享内容
-            id<ISSContent> publishContent = [ShareSDK content:@"分享内容"
+            id<ISSContent> publishContent = [ShareSDK content:@"我正在使用齐鲁人才网手机客户端找工作，随时随地，方便实用！你也来试试...http://m.qlrc.com\n来自：齐鲁人才网"
                                                defaultContent:@"默认分享内容，没内容时显示"
                                                         image:[ShareSDK imageWithPath:imagePath]
-                                                        title:@"ShareSDK"
-                                                          url:@"http://www.sharesdk.cn"
-                                                  description:@"这是一条测试信息"
+                                                        title:@"分享APP"
+                                                          url:@"http://www.51rc.com"
+                                                  description:@""
                                                     mediaType:SSPublishContentMediaTypeNews];
             
             [ShareSDK showShareActionSheet:nil
@@ -126,6 +127,13 @@
                                             NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
                                         }
                                     }];
+            break;
+        }
+        case 4:
+        {
+            AboutUsViewController *aboutUsC = [self.storyboard instantiateViewControllerWithIdentifier:@"AboutUsView"];
+            aboutUsC.navigationItem.title = @"关于我们";
+            [self.navigationController pushViewController:aboutUsC animated:true];
             break;
         }
         default:

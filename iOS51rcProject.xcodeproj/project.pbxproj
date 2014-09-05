@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9901836019AC58F900CA1CB2 /* ico_joblist_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9901835E19AC58F900CA1CB2 /* ico_joblist_favorite.png */; };
 		9901836119AC58F900CA1CB2 /* ico_joblist_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9901835F19AC58F900CA1CB2 /* ico_joblist_online.png */; };
+		990C8D3519B99A2B00B81AFB /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */; };
 		990CCC8519A998620022B44B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 990CCC8419A998620022B44B /* check.png */; };
 		991125A119A49DCE00C98173 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991125A019A49DCE00C98173 /* Toast+UIView.m */; };
 		991125A319A4D24F00C98173 /* ico_expire.png in Resources */ = {isa = PBXBuildFile; fileRef = 991125A219A4D24F00C98173 /* ico_expire.png */; };
@@ -276,6 +277,8 @@
 /* Begin PBXFileReference section */
 		9901835E19AC58F900CA1CB2 /* ico_joblist_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_joblist_favorite.png; sourceTree = "<group>"; };
 		9901835F19AC58F900CA1CB2 /* ico_joblist_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_joblist_online.png; sourceTree = "<group>"; };
+		990C8D3319B99A2B00B81AFB /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		990CCC8419A998620022B44B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		9911259F19A49DCE00C98173 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
 		991125A019A49DCE00C98173 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
@@ -923,6 +926,8 @@
 				9942F38219B954D200191C74 /* More.storyboard */,
 				9942F38B19B9599000191C74 /* MoreViewController.h */,
 				9942F38C19B9599000191C74 /* MoreViewController.m */,
+				990C8D3319B99A2B00B81AFB /* AboutUsViewController.h */,
+				990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -1914,6 +1919,7 @@
 				99B9823119B4C52100D5D77D /* EIItemDetailsViewController.m in Sources */,
 				997BF0EE199DB33C00FD0B12 /* SoapXmlParseHelper.m in Sources */,
 				99B9822B19B4C49600D5D77D /* EIMainViewController.m in Sources */,
+				990C8D3519B99A2B00B81AFB /* AboutUsViewController.m in Sources */,
 				998025C019A23024001A7E84 /* MJRefreshConst.m in Sources */,
 				998025D019A23528001A7E84 /* LoadingAnimationView.m in Sources */,
 				99B9672919B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m in Sources */,
