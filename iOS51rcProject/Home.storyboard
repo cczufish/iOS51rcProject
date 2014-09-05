@@ -114,6 +114,91 @@
                                 <rect key="frame" x="147" y="304" width="26" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" id="ght-9a-Cff">
+                                <rect key="frame" x="20" y="150" width="280" height="80"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="l1V-6L-cGT">
+                                        <rect key="frame" x="50" y="0.0" width="202" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HAo-Fq-fbT">
+                                        <rect key="frame" x="50" y="0.0" width="1" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uOZ-3h-21A">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="jobNext:" destination="kqb-nM-Cv1" eventType="touchUpInside" id="U5V-Ne-tz1"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_mapsearch_jobpre.png" id="Zao-VB-taA">
+                                        <rect key="frame" x="14" y="8" width="20" height="13"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_mapsearch_jobnext.png" id="0M7-K5-sTy">
+                                        <rect key="frame" x="14" y="59" width="20" height="13"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JG3-ap-shA">
+                                        <rect key="frame" x="0.0" y="50" width="50" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="jobPrev:" destination="kqb-nM-Cv1" eventType="touchUpInside" id="Jd7-ZH-08m"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E5G-6t-Bwu">
+                                        <rect key="frame" x="0.0" y="31" width="50" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BKP-jI-U1U">
+                                        <rect key="frame" x="260" y="5" width="14" height="14"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="ico_mapsearch_jobclose.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="closeJobShow:" destination="kqb-nM-Cv1" eventType="touchUpInside" id="8db-HT-7v9"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="市场兼职" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aSj-iN-kYq">
+                                        <rect key="frame" x="58" y="5" width="193" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="齐鲁人才网" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3gc-kU-4H2">
+                                        <rect key="frame" x="58" y="24" width="193" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3～5人|高中|18岁到25岁|工作经验不限|月薪2000元以上|09-04 08:49" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VpB-w9-fzJ">
+                                        <rect key="frame" x="58" y="44" width="193" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" id="9sB-hZ-fLz">
                                 <rect key="frame" x="0.0" y="522" width="320" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -228,11 +313,17 @@
                     </view>
                     <navigationItem key="navigationItem" title="地图搜索" id="7jG-Ii-knh"/>
                     <connections>
+                        <outlet property="btnJobShow" destination="l1V-6L-cGT" id="2XV-qE-bGS"/>
                         <outlet property="imgPageNext" destination="jh5-L7-Ncz" id="mNH-RJ-TOl"/>
                         <outlet property="imgPagePrev" destination="xTz-72-W8h" id="FlS-gi-ogd"/>
+                        <outlet property="lbCpName" destination="3gc-kU-4H2" id="5pZ-B2-5GB"/>
+                        <outlet property="lbJobCount" destination="E5G-6t-Bwu" id="L6a-Hn-MC8"/>
+                        <outlet property="lbJobDetail" destination="VpB-w9-fzJ" id="Tb8-sJ-6nO"/>
+                        <outlet property="lbJobName" destination="aSj-iN-kYq" id="Rv3-EN-m1T"/>
                         <outlet property="lbLocation" destination="HoW-v1-uOo" id="Sey-Vv-NgN"/>
                         <outlet property="lbPageCount" destination="fdy-v1-ZoX" id="Hye-Da-WNT"/>
                         <outlet property="lbRadius" destination="EU3-2k-6B5" id="Fy1-HN-Hag"/>
+                        <outlet property="viewJobShow" destination="ght-9a-Cff" id="bTV-3I-8U6"/>
                         <outlet property="viewMap" destination="nFf-UT-E6g" id="F2H-kv-MUS"/>
                     </connections>
                 </viewController>
@@ -1685,7 +1776,10 @@
         <image name="ico_mainsearch_normalsearch1.png" width="56" height="56"/>
         <image name="ico_mainsearch_normalsearch2.png" width="56" height="56"/>
         <image name="ico_map_centerpoint.png" width="70" height="70"/>
+        <image name="ico_mapsearch_jobclose.png" width="28" height="28"/>
         <image name="ico_mapsearch_joblist.png" width="58" height="42"/>
+        <image name="ico_mapsearch_jobnext.png" width="48" height="31"/>
+        <image name="ico_mapsearch_jobpre.png" width="48" height="31"/>
         <image name="ico_mapsearch_next.png" width="27" height="54"/>
         <image name="ico_mapsearch_pre_unable.png" width="27" height="54"/>
         <image name="ico_mapsearch_search.png" width="62" height="62"/>

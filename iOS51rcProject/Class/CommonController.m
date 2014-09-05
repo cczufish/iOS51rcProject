@@ -191,7 +191,19 @@
     NSString *strDesc = @"";
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     [db open];
-    FMResultSet *dictionaryList = [db executeQuery:[NSString stringWithFormat:@"select * from %@ where _id=%@",tableName,value]];
+    FMResultSet *dictionaryList;
+    if ([tableName isEqualToString:@"EmployType"]) {
+        dictionaryList = [db executeQuery:[NSString stringWithFormat:@"select * from dcOthers where Category='工作性质' and DetailID=%@",value]];
+    }
+    else if ([tableName isEqualToString:@"NeedNumber"]) {
+        dictionaryList = [db executeQuery:[NSString stringWithFormat:@"select * from dcOthers where Category='招聘人数' and DetailID=%@",value]];
+    }
+    else if ([tableName isEqualToString:@"Experience"]) {
+        dictionaryList = [db executeQuery:[NSString stringWithFormat:@"select * from dcOthers where Category='职位要求工作经验' and DetailID=%@",value]];
+    }
+    else {
+        dictionaryList = [db executeQuery:[NSString stringWithFormat:@"select * from %@ where _id=%@",tableName,value]];
+    }
     while ([dictionaryList next]) {
         strDesc = [dictionaryList stringForColumn:@"description"];
     }

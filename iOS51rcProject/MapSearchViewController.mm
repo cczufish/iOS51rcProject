@@ -2,16 +2,22 @@
 #import "NetWebServiceRequest.h"
 #import "MapSearchListViewController.h"
 #import "SlideNavigationController.h"
+#import "CommonController.h"
+#import "CustomPopup.h"
 
-@interface MapSearchViewController () <BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,NetWebServiceRequestDelegate,SlideNavigationControllerDelegate>
+@interface MapSearchViewController () <BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,NetWebServiceRequestDelegate,SlideNavigationControllerDelegate,CustomPopupDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property int pageNumber;
+@property int jobNumber;
 @property float lat;
 @property float lng;
 @property float distance;
 @property int maxPageNumber;
 @property (retain, nonatomic) NSString *rsType;
 @property (nonatomic, retain) NSMutableArray *jobAnnotations;
+@property (nonatomic, retain) NSMutableDictionary *jobDetails;
+@property (nonatomic, retain) CustomPopup *cPopup;
+
 @end
 
 @implementation MapSearchViewController
@@ -28,18 +34,49 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //初始化
     self.jobAnnotations = [NSMutableArray arrayWithCapacity:30];
-    [self.viewMap setZoomLevel:14.07];
-    _geocodesearch = [[BMKGeoCodeSearch alloc] init];
-    self.viewMap.showMapScaleBar = YES;
-    self.locService = [[BMKLocationService alloc] init];
-    self.locService.delegate = self;
-    
+    self.jobDetails = [NSMutableDictionary dictionaryWithCapacity:30];
     self.pageNumber = 1;
     self.rsType = @"";
     self.distance = 5000;
-    //开始定位
-    [self.locService startUserLocationService];
+    [self.viewMap setHidden:true];
+    //设置职位显示框的边框
+    self.viewJobShow.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewJobShow.layer.borderWidth = 1;
+    self.viewJobShow.layer.cornerRadius = 5;
+    if ([[CommonController GetCurrentNet] isEqualToString:@"wifi"]) {
+        //添加温馨提示说明
+        NSString *strNoWifi = @"系统检测到您没有接入wifi网络，使用地图搜索可能会耗费大量流量，您确定继续这么做么？";
+        CGSize labelSize = [CommonController CalculateFrame:strNoWifi fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(240, 5000)];
+        UILabel *lbNoWifi = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, labelSize.width, labelSize.height)];
+        [lbNoWifi setText: strNoWifi];
+        [lbNoWifi setFont:[UIFont systemFontOfSize:14]];
+        lbNoWifi.numberOfLines = 0;
+        lbNoWifi.lineBreakMode = NSLineBreakByCharWrapping;
+        //添加view
+        UIView *viewPopup = [[UIView alloc] initWithFrame:CGRectMake(0, 0, labelSize.width+20, labelSize.height+50)];
+        [viewPopup addSubview:lbNoWifi];
+        //添加“温馨提示”
+        UILabel *lbNoWifiTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelSize.width+10, 20)];
+        [lbNoWifiTitle setText:@"温馨提示"];
+        [lbNoWifiTitle setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [lbNoWifiTitle setTextAlignment:NSTextAlignmentCenter];
+        //添加分割线
+        UILabel *lbSeperate = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, labelSize.width, 1)];
+        [lbSeperate setBackgroundColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        
+        [viewPopup addSubview:lbNoWifiTitle];
+        [viewPopup addSubview:lbSeperate];
+        //显示
+        self.cPopup = [[[CustomPopup alloc] popupCommon:viewPopup buttonType:PopupButtonTypeConfirmAndCancel] autorelease];
+        self.cPopup.delegate = self;
+        [self.cPopup showPopup:self.view];
+        [lbNoWifi release];
+        [lbNoWifiTitle release];
+        [lbSeperate release];
+        [viewPopup release];
+    }
 }
 
 //定位完成后执行此方法，将定位的位置添加到地图上
@@ -58,19 +95,47 @@
 //添加位置时执行此方法
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
-    self.newAnnotation = [[[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:self.annotationViewID] autorelease];
+    BMKPinAnnotationView *newAnnotation = [[[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:self.annotationViewID] autorelease];
     // 从天上掉下效果
-    ((BMKPinAnnotationView*)self.newAnnotation).animatesDrop = YES;
+    newAnnotation.animatesDrop = YES;
     // 设置颜色
-    ((BMKPinAnnotationView*)self.newAnnotation).pinColor = BMKPinAnnotationColorRed;
-    self.newAnnotation.canShowCallout = YES;
-    return self.newAnnotation;
+    newAnnotation.pinColor = BMKPinAnnotationColorRed;
+    newAnnotation.canShowCallout = NO;
+    
+    [self.jobAnnotations addObject:newAnnotation];
+    return newAnnotation;
 }
 
 //点击位置时执行此方法
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
-    NSLog(@"%@",view.reuseIdentifier);
+    //将标注点颜色改为默认
+    for (BMKPinAnnotationView *annotation in self.jobAnnotations) {
+        [annotation setPinColor:BMKPinAnnotationColorRed];
+    }
+    //将选中的标注点变色，并居中显示
+    ((BMKPinAnnotationView*)view).pinColor = BMKPinAnnotationColorGreen;
+    [self.viewMap setCenterCoordinate:[view.annotation coordinate] animated:true];
+    
+    [self.viewJobShow setHidden:false];
+    [self.btnJobShow setTag:[view.reuseIdentifier intValue]];
+    NSArray *arrJobDetail = [self.jobDetails objectForKey:view.reuseIdentifier];
+    
+    [self.lbJobName setText:arrJobDetail[0]];
+    [self.lbCpName setText:arrJobDetail[1]];
+    [self.lbJobDetail setText:arrJobDetail[2]];
+    
+    self.jobNumber = 1;
+    for (id key in self.jobDetails) {
+        if ([key isEqualToString:view.reuseIdentifier]) {
+            break;
+        }
+        self.jobNumber++;
+    }
+    [self.lbJobCount setText:[NSString stringWithFormat:@"%d/%d",self.jobNumber,self.jobAnnotations.count]];
+    if ([self.viewJobShow isHidden]) {
+        [self.viewJobShow setHidden:true];
+    }
 }
 
 //地图位置改变时，触发此方法
@@ -148,6 +213,26 @@
     mapSearchListC.searchDistance = self.distance;
     [self.navigationController pushViewController:mapSearchListC animated:true];
 }
+- (IBAction)jobNext:(id)sender {
+    if (self.jobNumber == self.jobAnnotations.count) {
+        return;
+    }
+    self.jobNumber++;
+    int i=1;
+    for (id key in self.jobDetails) {
+        if (i == self.jobNumber) {
+            
+        }
+    }
+}
+
+- (IBAction)jobPrev:(id)sender {
+    
+}
+
+- (IBAction)closeJobShow:(id)sender {
+    [self.viewJobShow setHidden:true];
+}
 
 - (void)onSearch
 {
@@ -179,10 +264,13 @@
               responseData:(NSMutableArray *)requestData
 {
     //将所有标注点删除
-    [self.viewMap removeAnnotations:self.jobAnnotations];
+    NSArray *currentAnnotations = [[self.viewMap annotations] copy];
+    [self.viewMap removeAnnotations:currentAnnotations];
+    [currentAnnotations release];
     //将数组清除
     [self.jobAnnotations removeAllObjects];
     self.maxPageNumber = 0;
+    self.jobNumber = 1;
     for (NSDictionary* rowData in requestData) {
         if (self.maxPageNumber == 0) {
             self.maxPageNumber = (int)ceilf([rowData[@"JobNumber"] floatValue]/30);
@@ -207,11 +295,56 @@
         jobLocation.latitude = [rowData[@"Lat"] doubleValue];
         jobLocation.longitude = [rowData[@"Lng"] doubleValue];
         jobPoint.coordinate = jobLocation;
-        jobPoint.title = rowData[@"JobName"];
-        jobPoint.subtitle = rowData[@"cpName"];
         [self.viewMap addAnnotation:jobPoint];
-        [self.jobAnnotations addObject:jobPoint];
+        
+        NSMutableString *jobDetail = [[NSMutableString alloc] initWithCapacity:10];
+        //招聘人数
+        [jobDetail appendString:[CommonController getDictionaryDesc:rowData[@"NeedNumber"] tableName:@"NeedNumber"]];
+        [jobDetail appendString:@"|"];
+        //学历
+        if ([rowData[@"dcEducationID"] isEqualToString:@"100"]) {
+            [jobDetail appendString:@"学历不限"];
+        }
+        else {
+            [jobDetail appendString:[CommonController getDictionaryDesc:rowData[@"dcEducationID"] tableName:@"dcEducation"]];
+        }
+        [jobDetail appendString:@"|"];
+        //年龄
+        if ([rowData[@"MinAge"] isEqualToString:@"99"] && [rowData[@"MaxAge"] isEqualToString:@"99"]) {
+            [jobDetail appendString:@"年龄不限"];
+        }
+        else if ([rowData[@"MinAge"] isEqualToString:@"99"]) {
+            [jobDetail appendFormat:@"%@岁以下",rowData[@"MaxAge"]];
+        }
+        else if ([rowData[@"MaxAge"] isEqualToString:@"99"]) {
+            [jobDetail appendFormat:@"%@岁以上",rowData[@"MinAge"]];
+        }
+        else {
+            [jobDetail appendFormat:@"%@岁~%@岁",rowData[@"MinAge"],rowData[@"MaxAge"]];
+        }
+        [jobDetail appendString:@"|"];
+        //工作经验
+        if ([rowData[@"MinExperience"] isEqualToString:@"0"]) {
+            [jobDetail appendString:@"工作经验不限"];
+        }
+        else {
+            [jobDetail appendString:[CommonController getDictionaryDesc:rowData[@"MinExperience"] tableName:@"Experience"]];
+        }
+        [jobDetail appendString:@"|"];
+        //月薪
+        if ([rowData[@"dcSalaryID"] isEqualToString:@"100"]) {
+            [jobDetail appendString:@"月薪面议"];
+        }
+        else {
+            [jobDetail appendString:[CommonController getDictionaryDesc:rowData[@"dcSalaryID"] tableName:@"dcSalary"]];
+        }
+        [jobDetail appendString:@"|"];
+        //刷新时间
+        [jobDetail appendString:[CommonController stringFromDate:[CommonController dateFromString:rowData[@"RefreshDate"]] formatType:@"MM-dd HH:mm"]];
+        [self.jobDetails setObject:[NSArray arrayWithObjects:rowData[@"JobName"], rowData[@"cpName"], jobDetail, nil] forKey:rowData[@"ID"]];
+        [jobDetail release];
     }
+    [self.lbJobCount setText:[NSString stringWithFormat:@"%d|%d",self.jobNumber,self.jobAnnotations.count]];
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
@@ -227,6 +360,23 @@
 - (BOOL)removeSlideGesture
 {
     return YES;
+}
+
+- (void) closePopupNext
+{
+    [self.navigationController popViewControllerAnimated:false];
+}
+
+- (void) confirmAndCancelPopupNext
+{
+    [self.viewMap setHidden:false];
+    [self.viewMap setZoomLevel:14.07];
+    _geocodesearch = [[BMKGeoCodeSearch alloc] init];
+    self.viewMap.showMapScaleBar = YES;
+    self.locService = [[BMKLocationService alloc] init];
+    self.locService.delegate = self;
+    //开始定位
+    [self.locService startUserLocationService];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -266,16 +416,23 @@
     [_viewMap release];
     [_locService release];
     [_locPoint release];
-    [_newAnnotation release];
     [_annotationViewID release];
     [_geocodesearch release];
     [_lbLocation release];
     [_lbRadius release];
     [_rsType release];
     [_jobAnnotations release];
+    [_jobDetails release];
     [_lbPageCount release];
     [_imgPagePrev release];
     [_imgPageNext release];
+    [_cPopup release];
+    [_viewJobShow release];
+    [_lbJobCount release];
+    [_lbJobName release];
+    [_lbCpName release];
+    [_lbJobDetail release];
+    [_btnJobShow release];
     [super dealloc];
 }
 @end

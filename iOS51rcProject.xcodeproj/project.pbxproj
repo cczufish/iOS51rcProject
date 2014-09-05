@@ -43,6 +43,9 @@
 		9925BF0519B80E1F002DBFE0 /* MapSearchViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9925BF0019B80E1F002DBFE0 /* MapSearchViewController.mm */; };
 		9925BF0619B80E1F002DBFE0 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9925BF0119B80E1F002DBFE0 /* SearchListViewController.m */; };
 		9925BF0719B80E1F002DBFE0 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9925BF0319B80E1F002DBFE0 /* SearchViewController.m */; };
+		9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */; };
+		9925BF0E19B83835002DBFE0 /* ico_mapsearch_jobnext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */; };
+		9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */; };
 		9945C30B19A1A4890027E931 /* ico_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30A19A1A4890027E931 /* ico_clock.png */; };
 		9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30C19A1AB370027E931 /* ico_rm_group.png */; };
 		9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9945C32A19A1E8FA0027E931 /* DatePicker.m */; };
@@ -337,6 +340,9 @@
 		9925BF0319B80E1F002DBFE0 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		9925BF0819B80E67002DBFE0 /* MapSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapSearchViewController.h; sourceTree = "<group>"; };
 		9925BF0919B80F0D002DBFE0 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
+		9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobclose.png; sourceTree = "<group>"; };
+		9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobnext.png; sourceTree = "<group>"; };
+		9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobpre.png; sourceTree = "<group>"; };
 		9945C30A19A1A4890027E931 /* ico_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_clock.png; sourceTree = "<group>"; };
 		9945C30C19A1AB370027E931 /* ico_rm_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_group.png; sourceTree = "<group>"; };
 		9945C32919A1E8FA0027E931 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
@@ -1194,14 +1200,14 @@
 				99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */,
 				99B385D719A744C600B3C734 /* SearchMainViewController.h */,
 				99B385D819A744C600B3C734 /* SearchMainViewController.m */,
+				9925BF0219B80E1F002DBFE0 /* SearchViewController.h */,
+				9925BF0319B80E1F002DBFE0 /* SearchViewController.m */,
+				9925BF0919B80F0D002DBFE0 /* SearchListViewController.h */,
+				9925BF0119B80E1F002DBFE0 /* SearchListViewController.m */,
 				9925BF0819B80E67002DBFE0 /* MapSearchViewController.h */,
 				9925BF0019B80E1F002DBFE0 /* MapSearchViewController.mm */,
 				9925BEFE19B80E1F002DBFE0 /* MapSearchListViewController.h */,
 				9925BEFF19B80E1F002DBFE0 /* MapSearchListViewController.m */,
-				9925BF0919B80F0D002DBFE0 /* SearchListViewController.h */,
-				9925BF0119B80E1F002DBFE0 /* SearchListViewController.m */,
-				9925BF0219B80E1F002DBFE0 /* SearchViewController.h */,
-				9925BF0319B80E1F002DBFE0 /* SearchViewController.m */,
 			);
 			path = iOS51rcProject;
 			sourceTree = "<group>";
@@ -1248,6 +1254,9 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */,
+				9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */,
+				9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */,
 				9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */,
 				9925BE8419B807F4002DBFE0 /* ico_mapsearch_joblist.png */,
 				9925BE8519B807F4002DBFE0 /* ico_mapsearch_next_unable.png */,
@@ -1453,6 +1462,7 @@
 				99B4693819B2EB520034505D /* ico_mainsearch_mapsearch2.png in Resources */,
 				99FA8B7D19A7132700F8B1B9 /* UserCenter.storyboard in Resources */,
 				99B350B7199CB1F100CAEC71 /* index640x960.png in Resources */,
+				9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */,
 				99CFD87B199B60D8009A5ABA /* ico_leftmenu_head.png in Resources */,
 				99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */,
 				99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */,
@@ -1507,6 +1517,7 @@
 				9925BE8A19B807F4002DBFE0 /* ico_map_centerpoint.png in Resources */,
 				9925BECE19B80C94002DBFE0 /* mapapi.bundle in Resources */,
 				99BD700519B5B23B00514807 /* LoadMoreCell.xib in Resources */,
+				9925BF0E19B83835002DBFE0 /* ico_mapsearch_jobnext.png in Resources */,
 				99CFD88B199B60D8009A5ABA /* ico_select_down.png in Resources */,
 				991125A319A4D24F00C98173 /* ico_expire.png in Resources */,
 				99F3F84919B00CEB00B5AB88 /* ico_jobright.png in Resources */,
@@ -1536,6 +1547,7 @@
 				99CFD88C199B60D8009A5ABA /* loading.gif in Resources */,
 				99CFD87F199B60D8009A5ABA /* ico_leftmenu_more.png in Resources */,
 				9901836019AC58F900CA1CB2 /* ico_joblist_favorite.png in Resources */,
+				9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */,
 				99CFD888199B60D8009A5ABA /* ico_main_rm.png in Resources */,
 				99CFD88D199B60D8009A5ABA /* loginQQ.png in Resources */,
 				991125B019A4EE9800C98173 /* ico_rm_cp.png in Resources */,

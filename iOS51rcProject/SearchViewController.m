@@ -4,17 +4,15 @@
 #import "Toast+UIView.h"
 #import "SearchListViewController.h"
 #import "FMDatabase.h"
-#import "CommonController.h"
-#import "CustomPopup.h"
 #import "MapSearchViewController.h"
+#import "CommonController.h"
 
-@interface SearchViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate,UIGestureRecognizerDelegate,CustomPopupDelegate>
+@interface SearchViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @property (retain, nonatomic) NSString *regionSelect;
 @property (retain, nonatomic) NSString *jobTypeSelect;
 @property (retain, nonatomic) NSString *industrySelect;
 @property (retain, nonatomic) UISwipeGestureRecognizer *swipeGesture;
-@property (nonatomic, retain) CustomPopup *cPopup;
 -(void)cancelDicPicker;
 @end
 
@@ -71,40 +69,10 @@
                          [self.imgMapSearch setImage:[UIImage imageNamed:@"ico_mainsearch_mapsearch1.png"]];
                          [self.lbUnderline setFrame:CGRectMake(160, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
                      } completion:^(BOOL finished) {
-                         
+                         MapSearchViewController *mapSearchC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapSearchView"];
+                         [mapSearchC.navigationItem setTitle:@"地图搜索"];
+                         [self.navigationController pushViewController:mapSearchC animated:false];
                      }];
-    if ([[CommonController GetCurrentNet] isEqualToString:@"wifi"]) {
-        //添加温馨提示说明
-        NSString *strNoWifi = @"系统检测到您没有接入wifi网络，使用地图搜索可能会耗费大量流量，您确定继续这么做么？";
-        CGSize labelSize = [CommonController CalculateFrame:strNoWifi fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(240, 5000)];
-        UILabel *lbNoWifi = [[UILabel alloc] initWithFrame:CGRectMake(10, 50, labelSize.width, labelSize.height)];
-        [lbNoWifi setText: strNoWifi];
-        [lbNoWifi setFont:[UIFont systemFontOfSize:14]];
-        lbNoWifi.numberOfLines = 0;
-        lbNoWifi.lineBreakMode = NSLineBreakByCharWrapping;
-        //添加view
-        UIView *viewPopup = [[UIView alloc] initWithFrame:CGRectMake(0, 0, labelSize.width+10, labelSize.height+50)];
-        [viewPopup addSubview:lbNoWifi];
-        //添加“温馨提示”
-        UILabel *lbNoWifiTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelSize.width+20, 20)];
-        [lbNoWifiTitle setText:@"温馨提示"];
-        [lbNoWifiTitle setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-        [lbNoWifiTitle setTextAlignment:NSTextAlignmentCenter];
-        //添加分割线
-        UILabel *lbSeperate = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, labelSize.width, 1)];
-        [lbSeperate setBackgroundColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-        
-        [viewPopup addSubview:lbNoWifiTitle];
-        [viewPopup addSubview:lbSeperate];
-        //显示
-        self.cPopup = [[[CustomPopup alloc] popupCommon:viewPopup buttonType:PopupButtonTypeConfirmAndCancel] autorelease];
-        self.cPopup.delegate = self;
-        [self.cPopup showPopup:self.view];
-        [lbNoWifi release];
-        [lbNoWifiTitle release];
-        [lbSeperate release];
-        [viewPopup release];
-    }
 }
 
 - (IBAction)switchToMapSearch:(id)sender {
@@ -313,7 +281,7 @@
     [self.navigationController pushViewController:destinationController animated:true];
 }
 
-- (void) closePopupNext
+- (void) switchToSearch
 {
     [UIView animateWithDuration:0.2
                           delay:0.0
@@ -329,13 +297,6 @@
                      }];
 }
 
-- (void) confirmAndCancelPopupNext
-{
-    MapSearchViewController *mapSearchC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapSearchView"];
-    [mapSearchC.navigationItem setTitle:@"地图搜索"];
-    [self.navigationController pushViewController:mapSearchC animated:false];
-}
-
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
     return YES;
@@ -349,6 +310,12 @@
 - (UIGestureRecognizer *)haveAnotherGesture
 {
     return self.swipeGesture;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self switchToSearch];
 }
 
 - (void)didReceiveMemoryWarning
@@ -378,7 +345,6 @@
     [_imgMapSearch release];
     [_lbMapSearch release];
     [_lbUnderline release];
-    [_cPopup release];
     [super dealloc];
 }
 @end
