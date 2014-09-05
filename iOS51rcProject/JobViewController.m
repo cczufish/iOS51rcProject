@@ -49,7 +49,6 @@
 {
     [super viewDidLoad];
     self.jobMainScroll.delegate = self;
-    self.JobID = @"4509150";
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.JobID forKey:@"JobID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetJobInfo" Params:dicParam];
