@@ -1,14 +1,7 @@
-//
-//  MoreViewController.m
-//  iOS51rcProject
-//
-//  Created by Lucifer on 14-9-5.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import "MoreViewController.h"
+#import "SlideNavigationController.h"
 
-@interface MoreViewController ()
+@interface MoreViewController () <UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate>
 
 @end
 
@@ -27,6 +20,28 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 6;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"more"] autorelease];
+    [cell.textLabel setText:@"123"];
+    return cell;
+}
+
+- (int)slideMenuItem
+{
+    return 9;
+}
+
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+{
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

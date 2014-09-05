@@ -1365,6 +1365,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="kqb-nM-Cv1" kind="push" id="98w-gU-53z"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_main_near.png" id="gbt-MS-Eag">
                                 <rect key="frame" x="100" y="181" width="50" height="50"/>
@@ -1479,6 +1482,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnMoreClick:" destination="g2E-hT-ZB9" eventType="touchUpInside" id="O0N-j9-stl"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_main_more.png" id="d7b-xL-eTF">
                                 <rect key="frame" x="240" y="288" width="50" height="50"/>

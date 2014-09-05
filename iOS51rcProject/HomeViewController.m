@@ -5,6 +5,7 @@
 #import "GRListViewController.h"
 #import "EIListViewController.h"
 #import "EmploymentInformation/EIMainViewController.h"
+#import "MoreViewController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
 
@@ -47,6 +48,14 @@
     [self.navigationController pushViewController:loginCtrl animated:YES];
     //[loginCtrl release];//加release会报错
 }
+
+- (IBAction)btnMoreClick:(id)sender {
+    UIStoryboard *storyMore = [UIStoryboard storyboardWithName:@"More" bundle:nil];
+    MoreViewController *moreC = [storyMore instantiateViewControllerWithIdentifier:@"MoreView"];
+    moreC.navigationItem.title = @"更多";
+    [self.navigationController pushViewController:moreC animated:true];
+}
+
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
