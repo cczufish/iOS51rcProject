@@ -15,6 +15,8 @@
 		991125AC19A4DB7C00C98173 /* RecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991125AB19A4DB7C00C98173 /* RecruitmentViewController.m */; };
 		991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */ = {isa = PBXBuildFile; fileRef = 991125AD19A4EE9800C98173 /* ico_rm_pa.png */; };
 		991125B019A4EE9800C98173 /* ico_rm_cp.png in Resources */ = {isa = PBXBuildFile; fileRef = 991125AE19A4EE9800C98173 /* ico_rm_cp.png */; };
+		9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */ = {isa = PBXBuildFile; fileRef = 9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */; };
+		9922970B19B95FF7008E8646 /* ico_onlinechat_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9922970919B95FF7008E8646 /* ico_onlinechat_online.png */; };
 		9925BE8A19B807F4002DBFE0 /* ico_map_centerpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */; };
 		9925BE8B19B807F4002DBFE0 /* ico_mapsearch_joblist.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8419B807F4002DBFE0 /* ico_mapsearch_joblist.png */; };
 		9925BE8C19B807F4002DBFE0 /* ico_mapsearch_next_unable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8519B807F4002DBFE0 /* ico_mapsearch_next_unable.png */; };
@@ -253,6 +255,8 @@
 		991125AB19A4DB7C00C98173 /* RecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitmentViewController.m; sourceTree = "<group>"; };
 		991125AD19A4EE9800C98173 /* ico_rm_pa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_pa.png; sourceTree = "<group>"; };
 		991125AE19A4EE9800C98173 /* ico_rm_cp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_cp.png; sourceTree = "<group>"; };
+		9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_onlinechat_offline.png; sourceTree = "<group>"; };
+		9922970919B95FF7008E8646 /* ico_onlinechat_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_onlinechat_online.png; sourceTree = "<group>"; };
 		9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_centerpoint.png; sourceTree = "<group>"; };
 		9925BE8419B807F4002DBFE0 /* ico_mapsearch_joblist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_joblist.png; sourceTree = "<group>"; };
 		9925BE8519B807F4002DBFE0 /* ico_mapsearch_next_unable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_next_unable.png; sourceTree = "<group>"; };
@@ -1288,6 +1292,8 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */,
+				9922970919B95FF7008E8646 /* ico_onlinechat_online.png */,
 				9942F38E19B95C2100191C74 /* ico_mainmore_about.png */,
 				9942F38F19B95C2100191C74 /* ico_mainmore_help.png */,
 				9942F39019B95C2100191C74 /* ico_mainmore_logout.png */,
@@ -1527,6 +1533,7 @@
 				99CFD893199B60D8009A5ABA /* main_pic_jobnews.png in Resources */,
 				99F3F84819B00CEB00B5AB88 /* ico_jobapply_no.png in Resources */,
 				99CFD822199B5F80009A5ABA /* InfoPlist.strings in Resources */,
+				9922970B19B95FF7008E8646 /* ico_onlinechat_online.png in Resources */,
 				99B350C0199CB1F100CAEC71 /* welcom4-320x1136.png in Resources */,
 				99CFD87D199B60D8009A5ABA /* ico_leftmenu_jobnews.png in Resources */,
 				99CFD895199B60D8009A5ABA /* qq.png in Resources */,
@@ -1583,6 +1590,7 @@
 				99CFD87A199B60D8009A5ABA /* ico_leftmenu_govnews.png in Resources */,
 				9925BEF219B80E02002DBFE0 /* DictionaryPickerView.xib in Resources */,
 				9942F39619B95C2100191C74 /* ico_mainmore_logout.png in Resources */,
+				9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */,
 				9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */,
 				991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */,
 				99B4693A19B2EB520034505D /* ico_mainsearch_normalsearch2.png in Resources */,
