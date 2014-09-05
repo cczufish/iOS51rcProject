@@ -3,8 +3,11 @@
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
 #import "MJRefresh.h"
+#import "CustomPopup.h"
+#import "Toast+UIView.h"
+#import "LoginViewController.h"
 
-@interface JobViewController ()<NetWebServiceRequestDelegate,UIScrollViewDelegate>
+@interface JobViewController ()<NetWebServiceRequestDelegate,UIScrollViewDelegate,CustomPopupDelegate>
 @property (retain, nonatomic) IBOutlet UIScrollView *jobMainScroll;
 @property (retain, nonatomic) IBOutlet UILabel *lbJobName;
 @property (retain, nonatomic) IBOutlet UILabel *lbFereashTime;
@@ -19,19 +22,15 @@
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) LoadingAnimationView *loading;
-@property (retain, nonatomic) NSString *wsName;//当前调用的webservice名称
 @property (retain, nonatomic) IBOutlet UITableView *tvRecommentJobList;
 @property (retain, nonatomic) IBOutlet UIView *subView;
-
+@property (nonatomic, retain) CustomPopup *cPopup;
 
 @property (retain, nonatomic) IBOutlet UILabel *lbChat;
 @property (retain, nonatomic) IBOutlet UIImageView *imgChat;
-
-
 @end
 
 @implementation JobViewController
-
 @synthesize runningRequest = _runningRequest;
 @synthesize loading = _loading;
 @synthesize JobID;
@@ -56,10 +55,10 @@
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.JobID forKey:@"JobID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetJobInfo" Params:dicParam];
+    request.tag = 1;
     [request setDelegate:self];
     [request startAsynchronous];
     self.runningRequest = request;
-    self.wsName = @"GetJobInfo";//当前调用的函数名称
     self.loading = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     
     [self.loading startAnimating];
@@ -72,14 +71,109 @@
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
-              responseData:(NSArray *)requestData
+              responseData:(NSMutableArray *)requestData
 {
-    if ([self.wsName isEqualToString:@"GetJobInfo"]) {
+    if (request.tag == 1) { //职位搜索
         [self didReceiveJobMain:requestData];
     }
-    else if ([self.wsName isEqualToString:@"GetRecommendJobByJobID"]){
-        [self didReceiveRecommendJob:(NSMutableArray *)requestData];
+     else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
+     }
+    else if (request.tag == 3) { //获取可投递的简历，默认投递第一份简历
+        if (requestData.count == 0) {
+            [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
+        }
+        else {
+            self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
+            [self.cPopup setDelegate:self];
+            [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
+        }
     }
+    else if (request.tag == 4) { //默认投递完之后，显示弹层
+        [self.cPopup showJobApplyCvSelect:result view:self.view];
+    }
+    else if (request.tag == 5) { //重新申请职位成功
+        [self.view makeToast:@"重新申请简历成功"];
+    }
+    else if (request.tag == 6) {
+        [self.view makeToast:@"收藏职位成功"];
+    }
+    //结束等待动画
+    [self.loading stopAnimating];
+}
+
+//申请职位，插入数据库
+- (void)insertJobApply:(NSString *)cvMainID
+               isFirst:(BOOL)isFirst
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.JobID forKey:@"JobID"];
+    [dicParam setObject:cvMainID forKey:@"cvMainID"];
+    [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertJobApply" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    if (isFirst) {
+        request.tag = 4;
+    }
+    else {
+        request.tag = 5;
+    }
+    self.runningRequest = request;
+    [dicParam release];
+}
+
+- (void)jobApply
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        //连接数据库，读取有效简历
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+        [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCvListByApply" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 3;
+        self.runningRequest = request;
+        [dicParam release];
+        [self.loading startAnimating];
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
+}
+
+- (void)jobFavorite
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        //连接数据库，读取有效简历
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+        [dicParam setObject:self.JobID forKey:@"jobID"];
+        [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertPaFavorate" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 6;
+        self.runningRequest = request;
+        [dicParam release];
+        [self.loading startAnimating];
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
+}
+
+- (void) getPopupValue:(NSString *)value
+{
+    [self insertJobApply:value isFirst:NO];
 }
 
 //第一个消息完成了以后再调用第二个消息(其他职位)
@@ -165,7 +259,6 @@
     return [recommentJobsData count];
 }
 
-
 //生成福利的小图片
 -(void) CreateFuliView:(UIView *) view icoName:(NSString *) icoName title:(NSString *) title{
     //图片+label
@@ -237,7 +330,7 @@
     //招聘条件
     self.lbJobRequest.textColor = [UIColor grayColor];
     self.lbJobRequestValue.text = [NSString stringWithFormat:@"%@|%@|%@-%@|%@|%@", num, education, minAge, maxAge, experience, employType];
-    //========================福利小图标=============================
+    //===========================福利小图标=============================
     NSMutableArray *fuliArray = [[NSMutableArray alloc] init];
     //获取所有的福利，并判断是否包含。如果包含则创建view
     for (int i= 1; i<19; i++) {
@@ -508,8 +601,8 @@
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetRecommendJobByJobID" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
+    request.tag = 2;
     self.runningRequest = request;
-    self.wsName = @"GetRecommendJobByJobID";//当前调用的函数名称
 }
 
 - (void)call:(UIButton *)sender {
@@ -643,9 +736,8 @@
 }
 
 - (void)dealloc {
-    //[_nibName release];
     [_lbFereashTime release];
-    [_wsName release];
+    [_cPopup release];
     [_lbWorkPlaceValue release];
     [_lbJobRequestValue release];
     [_lbSalary release];
@@ -655,7 +747,6 @@
     [_lbWorkPlace release];
     [_lbJobRequest release];
     [_contentView release];
-    
     [_tvRecommentJobList release];
     [_subView release];
     [_lbChat release];
