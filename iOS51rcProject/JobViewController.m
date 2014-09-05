@@ -16,13 +16,17 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbJobRequestValue;
 @property (retain, nonatomic) IBOutlet UILabel *lbSalary;
 @property (retain, nonatomic) IBOutlet UILabel *lbSpitLine2;//招聘条件后面
-@property (retain, nonatomic) IBOutlet UILabel *lbSpitLine3;//岗位要求后面
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) LoadingAnimationView *loading;
 @property (retain, nonatomic) NSString *wsName;//当前调用的webservice名称
 @property (retain, nonatomic) IBOutlet UITableView *tvRecommentJobList;
 @property (retain, nonatomic) IBOutlet UIView *subView;
+
+
+@property (retain, nonatomic) IBOutlet UILabel *lbChat;
+@property (retain, nonatomic) IBOutlet UIImageView *imgChat;
+
 
 @end
 
@@ -469,19 +473,28 @@
     
     //第四个分割线
     y = lbCaTel.frame.origin.y + lbCaTel.frame.size.height + 3;
-    self.lbSpitLine3.frame = CGRectMake(8, y, 304, 1);
-    [self.subView addSubview:self.lbSpitLine3];
+    UILabel *lbLine4 = [[UILabel alloc] initWithFrame:CGRectMake(8, y, 304, 1)];
+    lbLine4.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [self.subView addSubview:lbLine4];
+    [lbLine4 release];
+
     //浏览了该职位的还查看了
     NSString *strOther = @"浏览了该职位的还查看了以下职位：";
     //[self.loading stopAnimating];
     labelSize = [CommonController CalculateFrame:strOther fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
-    UILabel *lbOther = [[UILabel alloc] initWithFrame:CGRectMake(20, self.lbSpitLine3.frame.origin.y+self.lbSpitLine3.frame.size.height  + 5, labelSize.width, 15)];
+    UILabel *lbOther = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine4.frame.origin.y+lbLine4.frame.size.height  + 5, labelSize.width, 15)];
     lbOther.textColor = [UIColor grayColor];
     lbOther.text = strOther;
     lbOther.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbOther];
     [lbOther release];
     
+    //在线
+    BOOL isOnline = [dicJob[@"IsOnline"] boolValue];
+    if(isOnline){
+        self.lbChat.text = @"交谈";
+        self.imgChat.image = [UIImage imageNamed:@"ico_onlinechat_online.png"];
+    }
     self.subView.frame = CGRectMake(self.jobMainScroll.frame.origin.x, self.jobMainScroll.frame.origin.y, 320, lbOther.frame.origin.y + lbOther.frame.size.height);
     //===================其他职位----调用Webservice=======================
     [self callOhters];
@@ -637,8 +650,6 @@
     [_lbJobRequestValue release];
     [_lbSalary release];
     [_lbSpitLine2 release];
-    [_lbSpitLine3 release];
-    
     [_jobMainScroll release];
     [_lbCpName release];
     [_lbWorkPlace release];
@@ -647,6 +658,8 @@
     
     [_tvRecommentJobList release];
     [_subView release];
+    [_lbChat release];
+    [_imgChat release];
     [super dealloc];
 }
 @end

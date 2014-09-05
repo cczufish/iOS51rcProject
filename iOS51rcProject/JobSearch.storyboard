@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="VqT-UH-xDE">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eRc-DU-IL2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -221,11 +221,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wD7-Ao-X5B">
-                                <rect key="frame" x="0.0" y="30" width="320" height="461"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="472"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQn-of-he0">
-                                        <rect key="frame" x="0.0" y="-10" width="320" height="528"/>
+                                        <rect key="frame" x="0.0" y="1" width="320" height="528"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="地点" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWJ-Vd-TIX">
@@ -292,20 +292,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPg-vm-L4i">
-                                                <rect key="frame" x="7" y="501" width="304" height="1"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2vI-oz-gZj">
-                                                <rect key="frame" x="8" y="92" width="304" height="1"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                     </view>
                                 </subviews>
@@ -354,7 +340,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ico_onlinechat_offline.png" translatesAutoresizingMaskIntoConstraints="NO" id="47A-w1-Uvq">
-                                <rect key="frame" x="228" y="513" width="17" height="19"/>
+                                <rect key="frame" x="227" y="513" width="17" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -362,7 +348,9 @@
                     </view>
                     <connections>
                         <outlet property="contentView" destination="nQn-of-he0" id="hVZ-Zt-pwb"/>
+                        <outlet property="imgChat" destination="47A-w1-Uvq" id="AOH-KR-79J"/>
                         <outlet property="jobMainScroll" destination="wD7-Ao-X5B" id="nww-9C-sRZ"/>
+                        <outlet property="lbChat" destination="Jay-gR-nQx" id="uV9-ME-9Oh"/>
                         <outlet property="lbCpName" destination="k8k-RW-aOZ" id="hln-D7-MNI"/>
                         <outlet property="lbCpNameValue" destination="bAG-Lr-uDN" id="FIW-Wv-vnl"/>
                         <outlet property="lbFereashTime" destination="uiv-jc-Ywa" id="B40-jF-Ioy"/>
@@ -370,8 +358,6 @@
                         <outlet property="lbJobRequest" destination="f9f-CA-eLT" id="3ja-FU-K5Q"/>
                         <outlet property="lbJobRequestValue" destination="EZn-i1-IdI" id="enO-2D-ROn"/>
                         <outlet property="lbSalary" destination="7xk-rw-HK7" id="0Qw-cV-Wfx"/>
-                        <outlet property="lbSpitLine2" destination="2vI-oz-gZj" id="0W0-gb-wD8"/>
-                        <outlet property="lbSpitLine3" destination="WPg-vm-L4i" id="Ik4-vV-xCV"/>
                         <outlet property="lbWorkPlace" destination="WE8-5f-cty" id="kUf-4H-WVP"/>
                         <outlet property="lbWorkPlaceValue" destination="DWJ-Vd-TIX" id="7Ii-kU-RFE"/>
                         <outlet property="subView" destination="nQn-of-he0" id="d9J-2N-K7O"/>
