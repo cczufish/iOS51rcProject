@@ -1136,9 +1136,9 @@
 		99BEE43E19ADB0130090C9E1 /* Recruitment */ = {
 			isa = PBXGroup;
 			children = (
+				999DF62F19AECEE700C05F20 /* Delegate */,
 				99B9672319B45B3600E93CBD /* CommonSearchJobViewController.h */,
 				99B9672419B45B3600E93CBD /* CommonSearchJobViewController.m */,
-				999DF62F19AECEE700C05F20 /* Delegate */,
 				99BEE43B19ADAEDE0090C9E1 /* MyRecruitmentViewController.h */,
 				99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */,
 				99BEE43F19ADBE380090C9E1 /* MyRmCpListViewController.h */,

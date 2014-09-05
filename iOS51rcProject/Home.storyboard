@@ -1510,6 +1510,9 @@
                                 <state key="normal" title="Button" image="main_pic_govnews.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnGRClick:" destination="g2E-hT-ZB9" eventType="touchUpInside" id="xC2-fK-EFe"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="p21-9R-bVo">
                                 <rect key="frame" x="206" y="399" width="91" height="141"/>
@@ -1517,6 +1520,9 @@
                                 <state key="normal" title="Button" image="main_pic_jobnews.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnEIClick:" destination="g2E-hT-ZB9" eventType="touchUpInside" id="cXY-XB-cyK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
