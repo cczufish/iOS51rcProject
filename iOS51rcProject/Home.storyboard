@@ -124,6 +124,9 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="goToJob:" destination="kqb-nM-Cv1" eventType="touchUpInside" id="qlx-3I-7Yd"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HAo-Fq-fbT">
                                         <rect key="frame" x="50" y="0.0" width="1" height="100"/>
@@ -308,6 +311,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="AXl-6E-dy7">
+                                <rect key="frame" x="10" y="480" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="ico_map_back.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetLocation:" destination="kqb-nM-Cv1" eventType="touchUpInside" id="3td-fS-CVM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1775,6 +1788,7 @@
         <image name="ico_mainsearch_mapsearch2.png" width="47" height="64"/>
         <image name="ico_mainsearch_normalsearch1.png" width="56" height="56"/>
         <image name="ico_mainsearch_normalsearch2.png" width="56" height="56"/>
+        <image name="ico_map_back.png" width="96" height="96"/>
         <image name="ico_map_centerpoint.png" width="70" height="70"/>
         <image name="ico_mapsearch_jobclose.png" width="28" height="28"/>
         <image name="ico_mapsearch_joblist.png" width="58" height="42"/>

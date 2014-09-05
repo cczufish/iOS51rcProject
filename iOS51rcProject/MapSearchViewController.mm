@@ -4,6 +4,7 @@
 #import "SlideNavigationController.h"
 #import "CommonController.h"
 #import "CustomPopup.h"
+#import "JobViewController.h"
 
 @interface MapSearchViewController () <BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,NetWebServiceRequestDelegate,SlideNavigationControllerDelegate,CustomPopupDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -15,7 +16,7 @@
 @property int maxPageNumber;
 @property (retain, nonatomic) NSString *rsType;
 @property (nonatomic, retain) NSMutableArray *jobAnnotations;
-@property (nonatomic, retain) NSMutableDictionary *jobDetails;
+@property (nonatomic, retain) NSMutableArray *jobDetails;
 @property (nonatomic, retain) CustomPopup *cPopup;
 
 @end
@@ -36,7 +37,7 @@
     [super viewDidLoad];
     //初始化
     self.jobAnnotations = [NSMutableArray arrayWithCapacity:30];
-    self.jobDetails = [NSMutableDictionary dictionaryWithCapacity:30];
+    self.jobDetails = [NSMutableArray arrayWithCapacity:30];
     self.pageNumber = 1;
     self.rsType = @"";
     self.distance = 5000;
@@ -99,7 +100,7 @@
     // 从天上掉下效果
     newAnnotation.animatesDrop = YES;
     // 设置颜色
-    newAnnotation.pinColor = BMKPinAnnotationColorRed;
+    [newAnnotation setImage:[UIImage imageNamed:@"ico_mapsearch_pointer_red.png"]];
     newAnnotation.canShowCallout = NO;
     
     [self.jobAnnotations addObject:newAnnotation];
@@ -109,33 +110,18 @@
 //点击位置时执行此方法
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
-    //将标注点颜色改为默认
-    for (BMKPinAnnotationView *annotation in self.jobAnnotations) {
-        [annotation setPinColor:BMKPinAnnotationColorRed];
-    }
-    //将选中的标注点变色，并居中显示
-    ((BMKPinAnnotationView*)view).pinColor = BMKPinAnnotationColorGreen;
-    [self.viewMap setCenterCoordinate:[view.annotation coordinate] animated:true];
-    
-    [self.viewJobShow setHidden:false];
     [self.btnJobShow setTag:[view.reuseIdentifier intValue]];
-    NSArray *arrJobDetail = [self.jobDetails objectForKey:view.reuseIdentifier];
-    
-    [self.lbJobName setText:arrJobDetail[0]];
-    [self.lbCpName setText:arrJobDetail[1]];
-    [self.lbJobDetail setText:arrJobDetail[2]];
-    
-    self.jobNumber = 1;
-    for (id key in self.jobDetails) {
-        if ([key isEqualToString:view.reuseIdentifier]) {
-            break;
+    NSArray *arrJobDetail = [[NSArray alloc] init];
+    for (NSArray *arr in self.jobDetails) {
+        if ([arr[3] isEqualToString:view.reuseIdentifier]) {
+            arrJobDetail = arr;
         }
-        self.jobNumber++;
     }
-    [self.lbJobCount setText:[NSString stringWithFormat:@"%d/%d",self.jobNumber,self.jobAnnotations.count]];
-    if ([self.viewJobShow isHidden]) {
-        [self.viewJobShow setHidden:true];
+    if (arrJobDetail == nil) {
+        return;
     }
+    self.jobNumber = (int)[self.jobDetails indexOfObject:arrJobDetail]+1;
+    [self changeJob:arrJobDetail annotationView:view];
 }
 
 //地图位置改变时，触发此方法
@@ -213,25 +199,57 @@
     mapSearchListC.searchDistance = self.distance;
     [self.navigationController pushViewController:mapSearchListC animated:true];
 }
+
 - (IBAction)jobNext:(id)sender {
     if (self.jobNumber == self.jobAnnotations.count) {
         return;
     }
     self.jobNumber++;
-    int i=1;
-    for (id key in self.jobDetails) {
-        if (i == self.jobNumber) {
-            
-        }
-    }
+    [self changeJob:[self.jobDetails objectAtIndex:self.jobNumber-1] annotationView:[self.jobAnnotations objectAtIndex:self.jobNumber-1]];
 }
 
 - (IBAction)jobPrev:(id)sender {
-    
+    if (self.jobNumber == 1) {
+        return;
+    }
+    self.jobNumber--;
+    [self changeJob:[self.jobDetails objectAtIndex:self.jobNumber-1] annotationView:[self.jobAnnotations objectAtIndex:self.jobNumber-1]];
 }
 
 - (IBAction)closeJobShow:(id)sender {
-    [self.viewJobShow setHidden:true];
+    if (![self.viewJobShow isHidden]) {
+        [self.viewJobShow setHidden:true];
+    }
+}
+
+- (IBAction)resetLocation:(id)sender {
+    [self.locService startUserLocationService];
+}
+
+- (IBAction)goToJob:(id)sender {
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
+    JobViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"JobView"];
+    jobC.JobID = [NSString stringWithFormat:@"%d",self.btnJobShow.tag];
+    [self.navigationController pushViewController:jobC animated:YES];
+}
+
+- (void)changeJob:(NSArray *)jobdetail
+   annotationView:(BMKAnnotationView *)annotationView
+{
+    //将标注点颜色改为默认
+    for (BMKPinAnnotationView *annotation in self.jobAnnotations) {
+        [annotation setImage:[UIImage imageNamed:@"ico_mapsearch_pointer_red.png"]];
+    }
+    //将选中的标注点变色，并居中显示
+    [annotationView setImage:[UIImage imageNamed:@"ico_mapsearch_pointer_blue.png"]];
+    [self.viewMap setCenterCoordinate:[annotationView.annotation coordinate] animated:true];
+    [self.lbJobName setText:jobdetail[0]];
+    [self.lbCpName setText:jobdetail[1]];
+    [self.lbJobDetail setText:jobdetail[2]];
+    [self.lbJobCount setText:[NSString stringWithFormat:@"%d/%d",self.jobNumber,(int)self.jobAnnotations.count]];
+    if ([self.viewJobShow isHidden]) {
+        [self.viewJobShow setHidden:false];
+    }
 }
 
 - (void)onSearch
@@ -263,6 +281,15 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
+    //隐藏职位弹层
+    if (![self.viewJobShow isHidden]) {
+        [self.viewJobShow setHidden:true];
+    }
+    //重新回到中心点
+    CLLocationCoordinate2D centerLocation;
+    centerLocation.latitude = self.lat;
+    centerLocation.longitude = self.lng;
+    [self.viewMap setCenterCoordinate:centerLocation animated:true];
     //将所有标注点删除
     NSArray *currentAnnotations = [[self.viewMap annotations] copy];
     [self.viewMap removeAnnotations:currentAnnotations];
@@ -341,10 +368,10 @@
         [jobDetail appendString:@"|"];
         //刷新时间
         [jobDetail appendString:[CommonController stringFromDate:[CommonController dateFromString:rowData[@"RefreshDate"]] formatType:@"MM-dd HH:mm"]];
-        [self.jobDetails setObject:[NSArray arrayWithObjects:rowData[@"JobName"], rowData[@"cpName"], jobDetail, nil] forKey:rowData[@"ID"]];
+        [self.jobDetails addObject:[NSArray arrayWithObjects:rowData[@"JobName"], rowData[@"cpName"], jobDetail, rowData[@"ID"], nil]];
         [jobDetail release];
     }
-    [self.lbJobCount setText:[NSString stringWithFormat:@"%d|%d",self.jobNumber,self.jobAnnotations.count]];
+    [self.lbJobCount setText:[NSString stringWithFormat:@"%d|%d",self.jobNumber,(int)self.jobAnnotations.count]];
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
