@@ -2,7 +2,15 @@
 #import "EIListViewController.h"
 
 @interface EiSearchViewController ()
-
+@property (retain, nonatomic) IBOutlet UITextField *txtKeyWord;
+@property (retain, nonatomic) IBOutlet UIButton *btnSearch;
+@property (retain, nonatomic) IBOutlet UIButton *btn1;
+@property (retain, nonatomic) IBOutlet UIButton *btn2;
+@property (retain, nonatomic) IBOutlet UIButton *btn3;
+@property (retain, nonatomic) IBOutlet UIButton *btn4;
+@property (retain, nonatomic) IBOutlet UIButton *btn5;
+@property (retain, nonatomic) IBOutlet UIButton *btn6;
+@property (retain, nonatomic) IBOutlet UIButton *btn7;
 @end
 
 @implementation EiSearchViewController
@@ -36,94 +44,55 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem=backButton;
     
-    [self initCommon];
+    //搜索按钮样式
+    self.btnSearch.layer.cornerRadius = 0;
+    self.btnSearch.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.btnSearch.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    //文本框样式
+    self.txtKeyWord.layer.cornerRadius = 1;
+    self.txtKeyWord.layer.borderColor = [UIColor lightGrayColor].CGColor;
 }
 
 - (void) btnBackClick:(UIButton*) sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-//初始化控件
--(void) initCommon{
-    //添加7个button
-    UIButton *btn1l = [[[UIButton alloc] initWithFrame:CGRectMake(20, 60, 140, 60)] autorelease];
-    [btn1l addTarget:self action:@selector(clickKeyWord:) forControlEvents:UIControlEventTouchUpInside];
-    btn1l.tag = 1;
-    UILabel *lb1l = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 60)] autorelease];
-    lb1l.text = @"大学生";
-    lb1l.font = [UIFont systemFontOfSize:12];
-    lb1l.layer.backgroundColor = [UIColor greenColor].CGColor;
-    [btn1l addSubview:lb1l];
-    [self.view addSubview:btn1l];
-    
-    
-    UIButton *btn1r = [[[UIButton alloc] initWithFrame:CGRectMake(200, 60, 140, 60)] autorelease];
-    [btn1r addTarget:self action:@selector(clickKeyWord:) forControlEvents:UIControlEventTouchUpInside];
-    btn1r.tag = 2;
-    UILabel *lb12 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 60)] autorelease];
-    lb1l.text = @"简历";
-    lb1l.font = [UIFont systemFontOfSize:12];
-    lb1l.layer.backgroundColor = [UIColor purpleColor].CGColor;
-    [btn1r addSubview:lb12];
-    [self.view addSubview:btn1r];
-    
-    UIButton *btn2l = [[[UIButton alloc] initWithFrame:CGRectMake(20, 120, 140, 60)] autorelease];
-    [btn1l addTarget:self action:@selector(clickKeyWord:) forControlEvents:UIControlEventTouchUpInside];
-    btn1l.tag = 3;
-    UILabel *lb2l = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 60)] autorelease];
-    lb2l.text = @"面试";
-    lb2l.font = [UIFont systemFontOfSize:12];
-    lb2l.layer.backgroundColor = [UIColor greenColor].CGColor;
-    [btn2l addSubview:lb2l];
-    [self.view addSubview:btn2l];
-    
-    UIButton *btn2r = [[[UIButton alloc] initWithFrame:CGRectMake(200, 120, 140, 60)] autorelease];
-    [btn2r addTarget:self action:@selector(clickKeyWord:) forControlEvents:UIControlEventTouchUpInside];
-    btn2r.tag = 4;
-    UILabel *lb2r = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 60)] autorelease];
-    lb2r.text = @"公务员";
-    lb2r.font = [UIFont systemFontOfSize:12];
-    lb2r.layer.backgroundColor = [UIColor greenColor].CGColor;
-    [btn2r addSubview:lb2r];
-    [self.view addSubview:btn2r];
-    
-    UIButton *btn3 = [[[UIButton alloc] initWithFrame:CGRectMake(20, 320, 300, 60)] autorelease];
-    [btn3 addTarget:self action:@selector(clickKeyWord:) forControlEvents:UIControlEventTouchUpInside];
-    btn3.tag = 5;
-    UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 60)] autorelease];
-    lb3.text = @"事业单位";
-    lb3.font = [UIFont systemFontOfSize:12];
-    lb3.layer.backgroundColor = [UIColor greenColor].CGColor;
-    [btn3 addSubview:lb3];
-    
-    UIButton *btn4l = [[[UIButton alloc] initWithFrame:CGRectMake(20, 400, 140, 60)] autorelease];
-    [btn4l addTarget:self action:@selector(clickKeyWord:) forControlEvents:UIControlEventTouchUpInside];
-    btn4l.tag = 6;
-    UILabel *lb4l = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 60)] autorelease];
-    lb4l.text = @"求职";
-    lb4l.font = [UIFont systemFontOfSize:12];
-    lb4l.layer.backgroundColor = [UIColor greenColor].CGColor;
-    [btn4l addSubview:lb4l];
-    [self.view addSubview:btn4l];
-    
-    UIButton *btn4r = [[[UIButton alloc] initWithFrame:CGRectMake(200, 400, 140, 60)] autorelease];
-    [btn4r addTarget:self action:@selector(clickKeyWord:) forControlEvents:UIControlEventTouchUpInside];
-    btn4r.tag = 7;
-    UILabel *lb4r = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 60)] autorelease];
-    lb4r.text = @"工资";
-    lb4r.font = [UIFont systemFontOfSize:12];
-    lb4r.layer.backgroundColor = [UIColor greenColor].CGColor;
-    [btn4r addSubview:lb4r];
-    [self.view addSubview:btn4r];
+- (IBAction)btn1Click:(id)sender {
+    [self searchKeyWord:@"大学生"];
+}
+- (IBAction)btn2Click:(id)sender {
+     [self searchKeyWord:@"简历"];
+}
+- (IBAction)btn3Click:(id)sender {
+     [self searchKeyWord:@"面试"];
+}
+- (IBAction)btn4Click:(id)sender {
+     [self searchKeyWord:@"公务员"];
+}
+- (IBAction)btn5Click:(id)sender {
+     [self searchKeyWord:@"事业单位"];
+}
+- (IBAction)btn6Click:(id)sender {
+     [self searchKeyWord:@"求职"];
+}
+- (IBAction)btn7Click:(id)sender {
+     [self searchKeyWord:@"工资"];
 }
 
 //点击搜索按钮
--(void) clickKeyWord:(UIButton *) sender{
-    NSString *strKeyWord = @"公务员";
+- (IBAction)btnSearchClick:(id)sender {
+    NSString *strKeyWord = self.txtKeyWord.text;
+    if (![strKeyWord isEqualToString:@""]) {
+        [self searchKeyWord:strKeyWord];
+    }
+}
+
+//通用搜索
+-(void) searchKeyWord:(NSString *) strKeyWord{
     EIListViewController *listCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"EIListView"];
     listCtrl.strKeyWord = strKeyWord;
     [self.navigationController pushViewController:listCtrl animated:YES];
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -142,4 +111,16 @@
 }
 */
 
+- (void)dealloc {
+    [_txtKeyWord release];
+    [_btnSearch release];
+    [_btn1 release];
+    [_btn2 release];
+    [_btn3 release];
+    [_btn4 release];
+    [_btn5 release];
+    [_btn6 release];
+    [_btn7 release];
+    [super dealloc];
+}
 @end
