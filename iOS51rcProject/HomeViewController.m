@@ -70,7 +70,7 @@
 //点击政府招考
 - (IBAction)btnGRClick:(id)sender {
     UIStoryboard *search = [UIStoryboard storyboardWithName:@"GovernmentRecruitmentStoryboard" bundle:nil];
-    EIListViewController *eiCtrl = [search instantiateViewControllerWithIdentifier:@"GRListView"];
+     GRListViewController *eiCtrl = [search instantiateViewControllerWithIdentifier:@"GRListView"];
     [self.navigationController pushViewController:eiCtrl animated:YES];
 }
 

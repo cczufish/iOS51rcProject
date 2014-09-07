@@ -1,6 +1,7 @@
 #import "EIMainViewController.h"
 #import "SlideNavigationController.h"
 #import "EIItemDetailsViewController.h"
+#import "EiSearchViewController.h"
 #define MENUHEIHT 40
 
 @interface EIMainViewController ()<SlideNavigationControllerDelegate>
@@ -40,8 +41,8 @@
 //关键字搜索资讯
 -(void) btnKeyWordSearchClick:(UIButton *)sender
 {
-    //MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
-    //[self.navigationController pushViewController:myRmCtrl animated:YES];
+    EiSearchViewController *searchCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"EiSearchView"];
+    [self.navigationController pushViewController:searchCtrl animated:YES];
 }
 
 //点击到达详细页面
