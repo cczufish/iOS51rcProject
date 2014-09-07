@@ -879,10 +879,10 @@
             </objects>
             <point key="canvasLocation" x="758" y="-280"/>
         </scene>
-        <!--Recruitment Cp List View Controller-->
+        <!--Rm Attend Cp List View Controller-->
         <scene sceneID="Qd3-od-8nt">
             <objects>
-                <viewController storyboardIdentifier="RmCpListView" id="REW-qE-DFZ" customClass="RecruitmentCpListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RmCpListView" id="REW-qE-DFZ" customClass="RmAttendCpListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NSo-8h-0l5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -929,10 +929,10 @@
             </objects>
             <point key="canvasLocation" x="1098" y="-281"/>
         </scene>
-        <!--Recruitment Pa List View Controller-->
+        <!--Rm Attend Pa List View Controller-->
         <scene sceneID="nrZ-fh-Pt4">
             <objects>
-                <viewController storyboardIdentifier="RmPaListView" id="4ZF-xt-yWI" customClass="RecruitmentPaListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RmPaListView" id="4ZF-xt-yWI" customClass="RmAttendPaListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="A1v-zx-MKi">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1183,7 +1183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixu-fU-Slo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2162" y="-884"/>
+            <point key="canvasLocation" x="2130" y="-924"/>
         </scene>
         <!--Rm Cp Job List View Controller-->
         <scene sceneID="wYe-ib-Q1l">

@@ -133,6 +133,7 @@
 		99908A5C19A37D2000137FDE /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */; };
 		99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */; };
 		99938FD119BC2D55008F986A /* EiSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD019BC2D55008F986A /* EiSearchViewController.m */; };
+		99938FD319BCAFFB008F986A /* Recruitment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99938FD219BCAFFB008F986A /* Recruitment.storyboard */; };
 		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
 		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
 		999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */; };
@@ -526,6 +527,7 @@
 		99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIKeyWordSearchViewController.m; sourceTree = "<group>"; };
 		99938FCF19BC2D55008F986A /* EiSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiSearchViewController.h; sourceTree = "<group>"; };
 		99938FD019BC2D55008F986A /* EiSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EiSearchViewController.m; sourceTree = "<group>"; };
+		99938FD219BCAFFB008F986A /* Recruitment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recruitment.storyboard; path = Recruitment/Recruitment.storyboard; sourceTree = "<group>"; };
 		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
 		999B5B0319B980510067B3E7 /* ico_EI_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background.png; sourceTree = "<group>"; };
 		999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiScrollPageView.h; sourceTree = "<group>"; };
@@ -1359,6 +1361,7 @@
 		99BEE43E19ADB0130090C9E1 /* Recruitment */ = {
 			isa = PBXGroup;
 			children = (
+				99938FD219BCAFFB008F986A /* Recruitment.storyboard */,
 				999DF62F19AECEE700C05F20 /* Delegate */,
 				99B9672319B45B3600E93CBD /* CommonSearchJobViewController.h */,
 				99B9672419B45B3600E93CBD /* CommonSearchJobViewController.m */,
@@ -1840,6 +1843,7 @@
 				99CFD899199B60D8009A5ABA /* weibo.png in Resources */,
 				99CFD88C199B60D8009A5ABA /* loading.gif in Resources */,
 				99CFD87F199B60D8009A5ABA /* ico_leftmenu_more.png in Resources */,
+				99938FD319BCAFFB008F986A /* Recruitment.storyboard in Resources */,
 				9901836019AC58F900CA1CB2 /* ico_joblist_favorite.png in Resources */,
 				9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */,
 				99CFD888199B60D8009A5ABA /* ico_main_rm.png in Resources */,
