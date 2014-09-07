@@ -24,7 +24,7 @@
     self.navigationItem.title = @"就业资讯";
     //右侧搜索按钮
     UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
+    [myRmBtn addTarget:self action:@selector(btnKeyWordSearchClick:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imgSearch =  [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     imgSearch.image = [UIImage imageNamed:@"ico_jobnews_search.png"];
     [myRmBtn addSubview:imgSearch];
@@ -36,6 +36,12 @@
     [myRmBtn release];
     [imgSearch release];
      [self commInit];
+}
+//关键字搜索资讯
+-(void) btnKeyWordSearchClick:(UIButton *)sender
+{
+    //MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
+    //[self.navigationController pushViewController:myRmCtrl animated:YES];
 }
 
 //点击到达详细页面

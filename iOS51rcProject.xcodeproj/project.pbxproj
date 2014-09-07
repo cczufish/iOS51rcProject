@@ -131,6 +131,7 @@
 		99908A5919A34DD300137FDE /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5319A34DD300137FDE /* FMDatabaseQueue.m */; };
 		99908A5A19A34DD300137FDE /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5519A34DD300137FDE /* FMResultSet.m */; };
 		99908A5C19A37D2000137FDE /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */; };
+		99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */; };
 		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
 		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
 		999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */; };
@@ -520,6 +521,8 @@
 		99908A5419A34DD300137FDE /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		99908A5519A34DD300137FDE /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		99938FCC19BA179F008F986A /* EIKeyWordSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIKeyWordSearchViewController.h; sourceTree = "<group>"; };
+		99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIKeyWordSearchViewController.m; sourceTree = "<group>"; };
 		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
 		999B5B0319B980510067B3E7 /* ico_EI_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background.png; sourceTree = "<group>"; };
 		999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiScrollPageView.h; sourceTree = "<group>"; };
@@ -1265,9 +1268,11 @@
 				99B9822D19B4C4B000D5D77D /* EIListViewController.m */,
 				99B9822F19B4C52100D5D77D /* EIItemDetailsViewController.h */,
 				99B9823019B4C52100D5D77D /* EIItemDetailsViewController.m */,
-				99BD6FB219B5A4F300514807 /* EmploymentInformation.storyboard */,
 				999B5B0C19B996FB0067B3E7 /* EIListView.h */,
 				999B5B0D19B996FB0067B3E7 /* EIListView.m */,
+				99938FCC19BA179F008F986A /* EIKeyWordSearchViewController.h */,
+				99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */,
+				99BD6FB219B5A4F300514807 /* EmploymentInformation.storyboard */,
 			);
 			path = EmploymentInformation;
 			sourceTree = "<group>";
@@ -1954,6 +1959,7 @@
 				99BD6FF219B5AFDF00514807 /* MenuHrizontal.m in Sources */,
 				99BD6FF319B5AFDF00514807 /* CircleView.m in Sources */,
 				99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */,
+				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
 				997BF0E5199DB33C00FD0B12 /* ASIDataDecompressor.m in Sources */,
 				99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */,
 				99AF855819A1883400524B66 /* FindPsdStep3ViewController.m in Sources */,
