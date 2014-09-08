@@ -134,6 +134,7 @@
 		99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */; };
 		99938FD119BC2D55008F986A /* EiSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD019BC2D55008F986A /* EiSearchViewController.m */; };
 		99938FD319BCAFFB008F986A /* Recruitment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99938FD219BCAFFB008F986A /* Recruitment.storyboard */; };
+		99938FD619BD4051008F986A /* AttendRMPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD519BD4051008F986A /* AttendRMPopUp.m */; };
 		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
 		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
 		999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */; };
@@ -528,6 +529,8 @@
 		99938FCF19BC2D55008F986A /* EiSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiSearchViewController.h; sourceTree = "<group>"; };
 		99938FD019BC2D55008F986A /* EiSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EiSearchViewController.m; sourceTree = "<group>"; };
 		99938FD219BCAFFB008F986A /* Recruitment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recruitment.storyboard; path = Recruitment/Recruitment.storyboard; sourceTree = "<group>"; };
+		99938FD419BD4051008F986A /* AttendRMPopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendRMPopUp.h; sourceTree = "<group>"; };
+		99938FD519BD4051008F986A /* AttendRMPopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendRMPopUp.m; sourceTree = "<group>"; };
 		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
 		999B5B0319B980510067B3E7 /* ico_EI_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background.png; sourceTree = "<group>"; };
 		999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiScrollPageView.h; sourceTree = "<group>"; };
@@ -896,6 +899,8 @@
 				9925BEDB19B80E02002DBFE0 /* CustomPopup.m */,
 				9925BEDC19B80E02002DBFE0 /* Popup+UIView.h */,
 				9925BEDD19B80E02002DBFE0 /* Popup+UIView.m */,
+				99938FD419BD4051008F986A /* AttendRMPopUp.h */,
+				99938FD519BD4051008F986A /* AttendRMPopUp.m */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -1930,6 +1935,7 @@
 				9925BEF819B80E02002DBFE0 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				99AF855919A1883400524B66 /* LoginDetailsViewController.m in Sources */,
 				9925BF0519B80E1F002DBFE0 /* MapSearchViewController.mm in Sources */,
+				99938FD619BD4051008F986A /* AttendRMPopUp.m in Sources */,
 				999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */,
 				99908A5819A34DD300137FDE /* FMDatabasePool.m in Sources */,
 				9925BF0619B80E1F002DBFE0 /* SearchListViewController.m in Sources */,

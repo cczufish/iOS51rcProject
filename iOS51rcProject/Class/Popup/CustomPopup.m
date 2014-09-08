@@ -60,6 +60,10 @@
     return self;
 }
 
+-(void) popUpRMAttend{
+    
+}
+
 -(void) showJobApplyCvSelect:(NSString *)applyResult
                         view:(UIView *)view
 {
