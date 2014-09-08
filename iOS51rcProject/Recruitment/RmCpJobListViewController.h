@@ -1,15 +1,9 @@
-//
-//  RmCpJobListViewController.h
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-8-31.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 #import "LoadingAnimationView.h"
 #import "Delegate/SelectJobDelegate.h"
 
+//上一个页面，点击多个企业后，这个页面显示职位，并可以选择企业的职位。
 @interface RmCpJobListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *JobListData;
