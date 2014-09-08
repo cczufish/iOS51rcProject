@@ -1,7 +1,7 @@
 #import "RmSearchJobForInviteViewController.h"
 #import "CommonSearchJobViewController.h"
 #import "RmInviteCpListFromSearchViewController.h"
-
+#define MENUHEIHT 40
 @interface RmSearchJobForInviteViewController ()
 @property (retain, nonatomic) CommonSearchJobViewController  *searchViewCtrl;
 @end
@@ -20,11 +20,69 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self commInit];
     //加载搜索页面
-    self.searchViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonSearchJobView"];
-    self.searchViewCtrl.view.frame = CGRectMake(0, 30, 320, self.searchViewCtrl.view.frame.size.height - 30);
-    self.searchViewCtrl.searchDelegate = self;
-    [self.view addSubview:self.searchViewCtrl.view];
+//    self.searchViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonSearchJobView"];
+//    self.searchViewCtrl.view.frame = CGRectMake(0, 30, 320, self.searchViewCtrl.view.frame.size.height - 30);
+//    self.searchViewCtrl.searchDelegate = self;
+//    [self.view addSubview:self.searchViewCtrl.view];
+}
+
+-(void)commInit{
+    NSArray *vButtonItemArray = @[@{NOMALKEY: @"normal.png",
+                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
+                                    TITLEKEY:@"搜索的职位",
+                                    TITLEWIDTH:[NSNumber numberWithFloat:107]
+                                    },
+                                  @{NOMALKEY: @"normal.png",
+                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
+                                    TITLEKEY:@"申请的职位",
+                                    TITLEWIDTH:[NSNumber numberWithFloat:106]
+                                    },
+                                  @{NOMALKEY: @"normal",
+                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
+                                    TITLEKEY:@"收藏的职位",
+                                    TITLEWIDTH:[NSNumber numberWithFloat:107]
+                                    },
+                                  ];
+    
+    if (mMenuHriZontal == nil) {
+        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, MENUHEIHT) ButtonItems:vButtonItemArray];
+        mMenuHriZontal.delegate = self;
+    }
+    //初始化滑动列表
+    if (mScrollPageView == nil) {
+        mScrollPageView = [[RMScrollPageView alloc] initWithFrame:CGRectMake(0, 60 + MENUHEIHT, self.view.frame.size.width, self.view.frame.size.height - MENUHEIHT)];
+        mScrollPageView.delegate = self;
+    }
+    //初始化多个页面，添加入滚动的列表里
+    [mScrollPageView setContentOfTables:vButtonItemArray.count];
+    //mScrollPageView.gotoDetailsView = self;
+    //默认选中第一个button
+    [mMenuHriZontal clickButtonAtIndex:0];
+    //-------
+    [self.view addSubview:mScrollPageView];
+    [self.view addSubview:mMenuHriZontal];
+}
+#pragma mark MenuHrizontalDelegate
+-(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
+    NSLog(@"第%d个Button点击了",aIndex);
+    [mScrollPageView moveScrollowViewAthIndex:aIndex];
+}
+
+#pragma mark ScrollPageViewDelegate
+-(void)didScrollPageViewChangedPage:(NSInteger)aPage{
+    NSLog(@"CurrentPage:%d",aPage);
+    [mMenuHriZontal changeButtonStateAtIndex:aPage];
+    //刷新当页数据
+    [mScrollPageView freshContentTableAtIndex:aPage];
+}
+
+//#pragma mark 内存相关
+-(void)dealloc{
+    [mMenuHriZontal release],mMenuHriZontal = nil;
+    [mScrollPageView release],mScrollPageView = nil;
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning

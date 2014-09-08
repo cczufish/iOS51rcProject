@@ -1,10 +1,12 @@
 #import <UIKit/UIKit.h>
 #import "SearchViewController.h"
 #import "GoJobSearchResultListViewDelegate.h"
+#import "MenuHrizontal.h"
+#import "RMScrollPageView.h"
 
-@interface RmSearchJobForInviteViewController : UIViewController<GoJobSearchResultListViewDelegate>
+@interface RmSearchJobForInviteViewController: UIViewController <MenuHrizontalDelegate,ScrollPageViewDelegate,GoJobSearchResultListViewDelegate>
 {
-    //id<GoJobSearchResultListViewDelegate> searchDelegate;
+    MenuHrizontal *mMenuHriZontal;
+    RMScrollPageView *mScrollPageView;
 }
-//@property (retain, nonatomic) id<GoJobSearchResultListViewDelegate> searchDelegate;
 @end
