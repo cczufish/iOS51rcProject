@@ -138,6 +138,7 @@
 		99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */; };
 		99938FDC19BD84F0008F986A /* CommonFavorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */; };
 		99938FDF19BD85A9008F986A /* RMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FDE19BD85A9008F986A /* RMScrollPageView.m */; };
+		99938FE319BD9821008F986A /* RMSearchJobListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FE219BD9821008F986A /* RMSearchJobListViewController.m */; };
 		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
 		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
 		999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */; };
@@ -540,6 +541,9 @@
 		99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonFavorityViewController.m; path = Recruitment/CommonFavorityViewController.m; sourceTree = "<group>"; };
 		99938FDD19BD85A9008F986A /* RMScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMScrollPageView.h; path = Recruitment/RMScrollPageView.h; sourceTree = "<group>"; };
 		99938FDE19BD85A9008F986A /* RMScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMScrollPageView.m; path = Recruitment/RMScrollPageView.m; sourceTree = "<group>"; };
+		99938FE119BD9821008F986A /* RMSearchJobListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMSearchJobListViewController.h; path = Recruitment/RMSearchJobListViewController.h; sourceTree = "<group>"; };
+		99938FE219BD9821008F986A /* RMSearchJobListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMSearchJobListViewController.m; path = Recruitment/RMSearchJobListViewController.m; sourceTree = "<group>"; };
+		99938FE419BD9CCC008F986A /* GoJobSearchResultListFromScrollPageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoJobSearchResultListFromScrollPageDelegate.h; path = Recruitment/GoJobSearchResultListFromScrollPageDelegate.h; sourceTree = "<group>"; };
 		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
 		999B5B0319B980510067B3E7 /* ico_EI_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background.png; sourceTree = "<group>"; };
 		999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiScrollPageView.h; sourceTree = "<group>"; };
@@ -1201,6 +1205,8 @@
 				99B9672419B45B3600E93CBD /* CommonSearchJobViewController.m */,
 				99938FD719BD84C1008F986A /* CommonApplyJobViewController.h */,
 				99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */,
+				99938FE119BD9821008F986A /* RMSearchJobListViewController.h */,
+				99938FE219BD9821008F986A /* RMSearchJobListViewController.m */,
 			);
 			name = Invite;
 			sourceTree = "<group>";
@@ -1222,6 +1228,7 @@
 				999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */,
 				99B7FF8419B3660900BD1345 /* SelectJobDelegate.h */,
 				99B9672619B4614F00E93CBD /* GoJobSearchResultListViewDelegate.h */,
+				99938FE419BD9CCC008F986A /* GoJobSearchResultListFromScrollPageDelegate.h */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -1942,6 +1949,7 @@
 				998025CF19A23528001A7E84 /* AnimatedGif.m in Sources */,
 				99B9822719B4C3DA00D5D77D /* GRItemDetailsViewController.m in Sources */,
 				9942F38D19B9599000191C74 /* MoreViewController.m in Sources */,
+				99938FE319BD9821008F986A /* RMSearchJobListViewController.m in Sources */,
 				9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */,
 				99B4ED9219AB067C004C9068 /* JobViewController.m in Sources */,
 				997BF0EC199DB33C00FD0B12 /* GDataXMLNode.m in Sources */,

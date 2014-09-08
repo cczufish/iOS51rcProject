@@ -1,8 +1,8 @@
-
+#import "RmInviteCpListFromSearchViewController.h"
 #import "RMScrollPageView.h"
 
 @implementation RMScrollPageView
-
+@synthesize gotoSearchResultViewDelegate;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -54,6 +54,7 @@
     [applyCtrl retain];
     
     CommonSearchJobViewController *searchCtrl = [rmStoryBoard instantiateViewControllerWithIdentifier:@"CommonSearchJobView"];
+    searchCtrl.searchDelegate = self;
     [_scrollView addSubview:searchCtrl.view];
     [_contentItems addObject:searchCtrl.view];
     [searchCtrl retain];
@@ -111,6 +112,44 @@
     }
 }
 
+//搜索职位的代理(直接在本页面会报错，所以跳转到父View再Navagation)
+-(void) gotoJobSearchResultListView:(NSString*) strSearchRegion SearchJobType:(NSString*) strSearchJobType SearchIndustry:(NSString *) strSearchIndustry SearchKeyword:(NSString *) strSearchKeyword SearchRegionName:(NSString *) strSearchRegionName SearchJobTypeName:(NSString *) strSearchJobTypeName SearchCondition:(NSString *) strSearchCondition{
+    
+    if (strSearchJobType == nil) {
+        strSearchJobType = @"";
+    }
+    if (strSearchIndustry == nil) {
+        strSearchIndustry = @"";
+    }
+    NSLog(@"%@，%@，%@，%@，%@，%@，%@", strSearchRegion, strSearchJobType, strSearchIndustry, strSearchKeyword, strSearchRegionName, strSearchJobTypeName, strSearchCondition);
+    [self.gotoSearchResultViewDelegate GoJobSearchResultListFromScrollPage: strSearchRegion SearchJobType:strSearchJobType SearchIndustry:strSearchIndustry SearchKeyword:strSearchKeyword SearchRegionName:strSearchRegionName SearchJobTypeName:strSearchJobTypeName SearchCondition:strSearchCondition];
+    //以下方法报错
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
+//    RMSearchJobListViewController *jobList = [mainStoryboard                                                                                  instantiateViewControllerWithIdentifier: @"RmSearchJobListView"];
+//    //RmInviteCpListFromSearchViewController *jobList = [mainStoryboard                                                                                  instantiateViewControllerWithIdentifier: @"RmInviteCpListFromSearchView"];
+//    
+////    jobList.searchRegion = strSearchRegion;
+////    jobList.searchJobType = strSearchJobType;
+////    jobList.searchIndustry = strSearchIndustry;
+////    jobList.searchKeyword = strSearchKeyword;
+////    jobList.searchRegionName = strSearchRegionName;
+////    jobList.searchJobTypeName = strSearchJobTypeName;
+////    jobList.searchCondition = strSearchCondition;
+//    UIViewController *fatherCtrl = [self getFatherController];
+//     [fatherCtrl.navigationController pushViewController: jobList animated:YES];
+}
 
+//得到父View
+- (UIViewController *)getFatherController
+{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    
+    return nil;
+}
 @end
 

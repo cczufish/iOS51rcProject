@@ -1,6 +1,7 @@
 #import "RmSearchJobForInviteViewController.h"
 #import "CommonSearchJobViewController.h"
 #import "RmInviteCpListFromSearchViewController.h"
+#import "RMSearchJobListViewController.h"
 #define MENUHEIHT 40
 @interface RmSearchJobForInviteViewController ()
 @property (retain, nonatomic) CommonSearchJobViewController  *searchViewCtrl;
@@ -21,11 +22,6 @@
 {
     [super viewDidLoad];
     [self commInit];
-    //加载搜索页面
-//    self.searchViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonSearchJobView"];
-//    self.searchViewCtrl.view.frame = CGRectMake(0, 30, 320, self.searchViewCtrl.view.frame.size.height - 30);
-//    self.searchViewCtrl.searchDelegate = self;
-//    [self.view addSubview:self.searchViewCtrl.view];
 }
 
 -(void)commInit{
@@ -57,7 +53,7 @@
     }
     //初始化多个页面，添加入滚动的列表里
     [mScrollPageView setContentOfTables:vButtonItemArray.count];
-    //mScrollPageView.gotoDetailsView = self;
+    mScrollPageView.gotoSearchResultViewDelegate = self;
     //默认选中第一个button
     [mMenuHriZontal clickButtonAtIndex:0];
     //-------
@@ -91,19 +87,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-//搜索职位的代理
--(void) gotoJobSearchResultListView:(NSString*) strSearchRegion SearchJobType:(NSString*) strSearchJobType SearchIndustry:(NSString *) strSearchIndustry SearchKeyword:(NSString *) strSearchKeyword SearchRegionName:(NSString *) strSearchRegionName SearchJobTypeName:(NSString *) strSearchJobTypeName SearchCondition:(NSString *) strSearchCondition{    
-      UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
-      RmInviteCpListFromSearchViewController *rmInviteCpListFromSearchViewCtrl = [mainStoryboard                                                                                  instantiateViewControllerWithIdentifier: @"RmInviteCpListFromSearchView"];
+-(void) GoJobSearchResultListFromScrollPage:(NSString *)strSearchRegion SearchJobType:(NSString *)strSearchJobType SearchIndustry:(NSString *)strSearchIndustry SearchKeyword:(NSString *)strSearchKeyword SearchRegionName:(NSString *)strSearchRegionName SearchJobTypeName:(NSString *)strSearchJobTypeName SearchCondition:(NSString *)strSearchCondition{
+    RMSearchJobListViewController *jobList = [self.storyboard instantiateViewControllerWithIdentifier: @"RMSearchJobListView"];
+    jobList.searchRegion = strSearchRegion;
+    jobList.searchJobType = strSearchJobType;
+    jobList.searchIndustry = strSearchIndustry;
+    jobList.searchKeyword = strSearchKeyword;
+    jobList.searchRegionName = strSearchRegionName;
+    jobList.searchJobTypeName = strSearchJobTypeName;
+    jobList.searchCondition = strSearchCondition;
+    [self.navigationController pushViewController:jobList animated:true];
     
-      rmInviteCpListFromSearchViewCtrl.searchRegion = strSearchRegion;
-      rmInviteCpListFromSearchViewCtrl.searchJobType = strSearchJobType;
-      rmInviteCpListFromSearchViewCtrl.searchIndustry = strSearchIndustry;
-      rmInviteCpListFromSearchViewCtrl.searchKeyword = strSearchKeyword;
-      rmInviteCpListFromSearchViewCtrl.searchRegionName = strSearchRegionName;
-      rmInviteCpListFromSearchViewCtrl.searchJobTypeName = strSearchJobTypeName;
-      rmInviteCpListFromSearchViewCtrl.searchCondition = strSearchCondition;
-      [self.navigationController pushViewController:rmInviteCpListFromSearchViewCtrl animated:true];
+}
+//搜索职位的代理
+-(void) gotoJobSearchResultListView:(NSString*) strSearchRegion SearchJobType:(NSString*) strSearchJobType SearchIndustry:(NSString *) strSearchIndustry SearchKeyword:(NSString *) strSearchKeyword SearchRegionName:(NSString *) strSearchRegionName SearchJobTypeName:(NSString *) strSearchJobTypeName SearchCondition:(NSString *) strSearchCondition{
+    RMSearchJobListViewController *jobList = [self.storyboard instantiateViewControllerWithIdentifier: @"RMSearchJobListView"];
+      jobList.searchRegion = strSearchRegion;
+      jobList.searchJobType = strSearchJobType;
+      jobList.searchIndustry = strSearchIndustry;
+      jobList.searchKeyword = strSearchKeyword;
+      jobList.searchRegionName = strSearchRegionName;
+      jobList.searchJobTypeName = strSearchJobTypeName;
+      jobList.searchCondition = strSearchCondition;
+      [self.navigationController pushViewController:jobList animated:true];
 }
 
 /*

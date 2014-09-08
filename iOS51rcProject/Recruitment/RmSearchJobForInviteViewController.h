@@ -3,10 +3,11 @@
 #import "GoJobSearchResultListViewDelegate.h"
 #import "MenuHrizontal.h"
 #import "RMScrollPageView.h"
+#import "GoJobSearchResultListFromScrollPageDelegate.h"
 
-@interface RmSearchJobForInviteViewController: UIViewController <MenuHrizontalDelegate,ScrollPageViewDelegate,GoJobSearchResultListViewDelegate>
+@interface RmSearchJobForInviteViewController: UIViewController <MenuHrizontalDelegate,ScrollPageViewDelegate, GoJobSearchResultListFromScrollPageDelegate>
 {
     MenuHrizontal *mMenuHriZontal;
-    RMScrollPageView *mScrollPageView;
+    RMScrollPageView *mScrollPageView;    
 }
 @end

@@ -3,21 +3,22 @@
 #import "CommonSearchJobViewController.h"
 #import "CommonFavorityViewController.h"
 #import "CommonApplyJobViewController.h"
+#import "GoJobSearchResultListFromScrollPageDelegate.h"//
+#import "GoJobSearchResultListViewDelegate.h"//从搜索界面到scroll界面
+#import "RMSearchJobListViewController.h"
 
-@interface RMScrollPageView : UIView<UIScrollViewDelegate>
+@interface RMScrollPageView : UIView<UIScrollViewDelegate, GoJobSearchResultListViewDelegate>
 {
     NSInteger mCurrentPage;
     BOOL mNeedUseDelegate;
     NSMutableArray *newsTypeArray;
-    //id<GoToEiItemDetailsViewFromScrollViewDelegate> gotoDetailsView;
+    id<GoJobSearchResultListFromScrollPageDelegate> gotoSearchResultViewDelegate;
 }
 @property (nonatomic,retain) UIScrollView *scrollView;
-//@property (retain, nonatomic) CommonFavorityViewController *favorityCtrl;
-//@property (retain, nonatomic) CommonApplyJobViewController *applyCtrl;
-//@property (retain, nonatomic)  CommonSearchJobViewController *searchCtrl;
 @property (nonatomic,retain) NSMutableArray *contentItems;//外部传入所包含的多个页面
 @property (nonatomic,assign) id<ScrollPageViewDelegate> delegate;
-//@property (retain,nonatomic) id<GoToEiItemDetailsViewFromScrollViewDelegate> gotoDetailsView;
+
+@property (retain,nonatomic) id<GoJobSearchResultListFromScrollPageDelegate> gotoSearchResultViewDelegate;
 #pragma mark 添加ScrollowViewd的ContentView
 -(void)setContentOfTables:(NSInteger)aNumerOfTables;
 #pragma mark 滑动到某个页面
