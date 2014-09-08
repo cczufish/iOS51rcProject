@@ -9,6 +9,9 @@
 #import "LoginViewController.h"
 #import "CustomPopup.h"
 #import "JobViewController.h"
+#import <objc/runtime.h> 
+#import "RmInviteCpViewController.h"
+
 @interface RMSearchJobListViewController () <NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,SearchPickerDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
     LoadingAnimationView *loadView;
@@ -48,7 +51,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.arrCheckJobID = [[NSMutableArray alloc] init];
+    checkedCpArray = [[NSMutableArray alloc] init];//选择的企业
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
@@ -183,50 +186,10 @@
         //重新加载列表
         [self.tvJobList reloadData];
     }
-    else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
-        if (requestData.count == 0) {
-            [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
-        }
-        else {
-            self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
-            [self.cPopup setDelegate:self];
-            [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
-        }
-    }
-    else if (request.tag == 3) { //默认投递完之后，显示弹层
-        [self.cPopup showJobApplyCvSelect:result view:self.view];
-    }
-    else if (request.tag == 4) { //重新申请职位成功
-        [self.view makeToast:@"重新申请简历成功"];
-    }
-    else if (request.tag == 5) {
-        [self.view makeToast:@"收藏职位成功"];
-    }
     //结束等待动画
     [loadView stopAnimating];
 }
 
-- (void)insertJobApply:(NSString *)cvMainID
-               isFirst:(BOOL)isFirst
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:[self.arrCheckJobID componentsJoinedByString:@","] forKey:@"JobID"];
-    [dicParam setObject:cvMainID forKey:@"cvMainID"];
-    [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
-    [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertJobApply" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    if (isFirst) {
-        request.tag = 3;
-    }
-    else {
-        request.tag = 4;
-    }
-    self.runningRequest = request;
-    [dicParam release];
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -239,6 +202,8 @@
     UIColor *colorText = [UIColor colorWithRed:120.f/255.f green:120.f/255.f blue:120.f/255.f alpha:1];
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.jobListData[indexPath.row];
+    
+    //显示上方的搜索结果
     if (indexPath.row == 1) {
         [self.lbSearchResult setText:[NSString stringWithFormat:@"[找到%@个职位]",rowData[@"JobNumber"]]];
         if (self.pageNumber == 1) {
@@ -250,6 +215,22 @@
             [CommonController execSql:strSql];
         }
     }
+    RmCpMain *cpMain = [[RmCpMain alloc] init];
+    [cpMain retain];
+    
+    int isBooked = 0;
+    //用于选择时，传入邀请企业参会页面
+    cpMain.IsBooked = isBooked;
+    cpMain.ID = rowData[@"cpMainID"];
+    cpMain.Name = rowData[@"cpName"];
+    //cpMain.Address = rowData[@"Address"];
+    //cpMain.OrderDate = rowData[@"AddDate"];
+    //cpMain.Lat = rowData[@"Lat"];
+    //cpMain.Lng = rowData[@"Lng"];
+    cpMain.jobID = rowData[@"EnJobID"];
+    cpMain.caMainID = rowData[@"caMainID"];
+    cpMain.JobName = rowData[@"JobName"];
+    
     //职位名称
     UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 20)];
     [lbJobName setText:rowData[@"JobName"]];
@@ -311,6 +292,7 @@
     [btnCheck setTitle:rowData[@"ID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
+    objc_setAssociatedObject(btnCheck, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
@@ -338,19 +320,18 @@
 
 - (void)rowChecked:(UIButton *)sender
 {
+    RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
     if (sender.tag == 1) {
-        if (![self.arrCheckJobID containsObject:sender.titleLabel.text]) {
-            [self.arrCheckJobID addObject:sender.titleLabel.text];
-        }
+        [checkedCpArray addObject:(selectCp)];
         [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
         [sender setTag:2];
     }
-    else {
-        [self.arrCheckJobID removeObject:sender.titleLabel.text];
+    else {      
+        [checkedCpArray removeObject:(selectCp)];
         [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
         [sender setTag:1];
     }
-    NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
+    //NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
 }
 
 - (void)regionFilter
@@ -474,33 +455,20 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
-        //判断是否有选中的职位
-        if (self.arrCheckJobID.count == 0) {
-            [self.view makeToast:@"您还没有选择职位"];
-            return;
-        }
-        //连接数据库，读取有效简历
-        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-        [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
-        [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
-        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCvListByApply" Params:dicParam];
-        [request setDelegate:self];
-        [request startAsynchronous];
-        request.tag = 2;
-        self.runningRequest = request;
-        [dicParam release];
-        [loadView startAnimating];
+        RmInviteCpViewController *rmInviteCpViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+        rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
+        rmInviteCpViewCtrl.strAddress = self.strAddress;
+        rmInviteCpViewCtrl.strPlace = self.strPlace;
+        rmInviteCpViewCtrl.strRmID = self.rmID;
+        rmInviteCpViewCtrl.selectRmCps = checkedCpArray;
+        [checkedCpArray retain];
+        [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
         LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
         [self.navigationController pushViewController:loginC animated:true];
     }
-}
-
-- (void) getPopupValue:(NSString *)value
-{
-    [self insertJobApply:value isFirst:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -552,7 +520,6 @@
     [_viewBottom release];
     [_searchPicker release];
     [_dictionaryPicker release];
-    [_arrCheckJobID release];
     [_cPopup release];
     [super dealloc];
 }

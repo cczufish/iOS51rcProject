@@ -122,9 +122,14 @@
     }
 }
 
-//预约成功，打开邀请界面
+//预约成功，打开搜索、申请、收藏界面
 -(void) attendRM{
     RmSearchJobForInviteViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"RmSearchJobForInviteView"];
+    NSString *strTime = [NSString stringWithFormat:@"%@",[CommonController stringFromDate:self.dtBeginTime formatType:@"yyyy-MM-dd HH:mm"]];
+    searchView.strBeginTime = strTime;
+    searchView.strAddress = self.strAddress;
+    searchView.strPlace = self.strPlace;
+    searchView.rmID = self.recruitmentID;
     [self.navigationController pushViewController:searchView animated:YES];
 }
 

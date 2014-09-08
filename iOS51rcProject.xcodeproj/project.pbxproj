@@ -1197,6 +1197,8 @@
 		99938FE019BD85DE008F986A /* Invite */ = {
 			isa = PBXGroup;
 			children = (
+				99B9671E19B4550500E93CBD /* RmSearchJobForInviteViewController.h */,
+				99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */,
 				99938FDD19BD85A9008F986A /* RMScrollPageView.h */,
 				99938FDE19BD85A9008F986A /* RMScrollPageView.m */,
 				99938FDA19BD84F0008F986A /* CommonFavorityViewController.h */,
@@ -1416,14 +1418,12 @@
 				995575C219AC64EA00B73E4A /* RmAttendCpListViewController.m */,
 				995575BE19AC64CE00B73E4A /* RmAttendPaListViewController.h */,
 				995575BF19AC64CE00B73E4A /* RmAttendPaListViewController.m */,
-				99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */,
-				99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */,
 				99B9672719B462CF00E93CBD /* RmInviteCpListFromSearchViewController.h */,
 				99B9672819B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m */,
 				99B96B0B19B0286C0069C1FA /* RmInviteCpViewController.h */,
 				99B96B0C19B0286C0069C1FA /* RmInviteCpViewController.m */,
-				99B9671E19B4550500E93CBD /* RmSearchJobForInviteViewController.h */,
-				99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */,
+				99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */,
+				99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */,
 			);
 			name = Recruitment;
 			sourceTree = "<group>";

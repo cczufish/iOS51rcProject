@@ -26,6 +26,7 @@
 //绑定工作用的Table
 @property (retain, nonatomic) UIView *cpListView;
 @property (retain, nonatomic) IBOutlet UIScrollView *svCpList;//全局的滚动条
+@property (retain, nonatomic) IBOutlet UIButton *btnApply;
 
 @end
 
@@ -43,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.btnApply.layer.cornerRadius = 5;
     settedCpID = @"";
     settedJobID = @"";
     settedJobName = @"";
@@ -359,6 +361,7 @@
     [_ViewRmInfo release];
     [_cpListView release];
     [_svCpList release];
+    [_btnApply release];
     [super dealloc];
 }
 @end

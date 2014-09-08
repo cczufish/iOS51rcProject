@@ -1,6 +1,11 @@
 #import <UIKit/UIKit.h>
+#import "RmCpMain.h"
 
+//搜索职位的结果
 @interface RMSearchJobListViewController : UIViewController
+{
+    NSMutableArray *checkedCpArray;
+}
 @property (retain, nonatomic) IBOutlet UIButton *btnRegionFilter;
 @property (retain, nonatomic) IBOutlet UILabel *lbRegionFilter;
 @property (retain, nonatomic) IBOutlet UIButton *btnJobTypeFilter;
@@ -22,5 +27,9 @@
 @property (retain,nonatomic) NSString* selectOther;
 @property (retain,nonatomic) NSString* selectOtherName;
 
-@property (retain,nonatomic) NSMutableArray* arrCheckJobID;
+//招聘会的信息
+@property (retain,nonatomic) NSString* strBeginTime;
+@property (retain,nonatomic) NSString* strAddress;
+@property (retain,nonatomic) NSString* strPlace;
+@property (retain,nonatomic) NSString* rmID;
 @end

@@ -87,6 +87,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+//搜索职位的代理
 -(void) GoJobSearchResultListFromScrollPage:(NSString *)strSearchRegion SearchJobType:(NSString *)strSearchJobType SearchIndustry:(NSString *)strSearchIndustry SearchKeyword:(NSString *)strSearchKeyword SearchRegionName:(NSString *)strSearchRegionName SearchJobTypeName:(NSString *)strSearchJobTypeName SearchCondition:(NSString *)strSearchCondition{
     RMSearchJobListViewController *jobList = [self.storyboard instantiateViewControllerWithIdentifier: @"RMSearchJobListView"];
     jobList.searchRegion = strSearchRegion;
@@ -96,10 +97,15 @@
     jobList.searchRegionName = strSearchRegionName;
     jobList.searchJobTypeName = strSearchJobTypeName;
     jobList.searchCondition = strSearchCondition;
+    //招聘会的基本信息
+    jobList.strPlace = self.strPlace;
+    jobList.strAddress = self.strAddress;
+    jobList.strBeginTime = self.strBeginTime;
+    jobList.rmID = self.rmID;
     [self.navigationController pushViewController:jobList animated:true];
     
 }
-//搜索职位的代理
+
 -(void) gotoJobSearchResultListView:(NSString*) strSearchRegion SearchJobType:(NSString*) strSearchJobType SearchIndustry:(NSString *) strSearchIndustry SearchKeyword:(NSString *) strSearchKeyword SearchRegionName:(NSString *) strSearchRegionName SearchJobTypeName:(NSString *) strSearchJobTypeName SearchCondition:(NSString *) strSearchCondition{
     RMSearchJobListViewController *jobList = [self.storyboard instantiateViewControllerWithIdentifier: @"RMSearchJobListView"];
       jobList.searchRegion = strSearchRegion;
