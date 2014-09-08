@@ -6,6 +6,7 @@
 #import "EIListViewController.h"
 #import "EmploymentInformation/EIMainViewController.h"
 #import "MoreViewController.h"
+#import "RecruitmentListViewController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
 
@@ -39,6 +40,13 @@
     UIStoryboard *search = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
     SearchMainViewController *searchCtrl = [search instantiateViewControllerWithIdentifier:@"SearchMain"];
     [self.navigationController pushViewController:searchCtrl animated:YES];
+}
+//点击招聘会
+- (IBAction)btnRMClick:(id)sender {
+    UIStoryboard *storyMore = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
+    RecruitmentListViewController *rmList = [storyMore instantiateViewControllerWithIdentifier:@"RecruitmentListView"];
+    rmList.navigationItem.title = @"招聘会";
+    [self.navigationController pushViewController:rmList animated:true];
 }
 
 //点击我的简历按钮
