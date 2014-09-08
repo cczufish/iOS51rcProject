@@ -1,5 +1,6 @@
 #import "RmInviteCpListFromSearchViewController.h"
 #import "RMScrollPageView.h"
+#import "RmSearchJobForInviteViewController.h"
 
 @implementation RMScrollPageView
 @synthesize gotoSearchResultViewDelegate;
@@ -40,14 +41,24 @@
 #pragma mark - 其他辅助功能
 #pragma mark 添加包含的子View,3个页面，搜索的职位页面，申请的职位页面，收藏的职位页面
 -(void)setContentOfTables:(NSInteger)aNumerOfTables{
+    RmSearchJobForInviteViewController *fatherCtrl = (RmSearchJobForInviteViewController*) [self getFatherController];
+    
      UIStoryboard *rmStoryBoard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
     CommonFavorityViewController *favorityCtrl = [rmStoryBoard instantiateViewControllerWithIdentifier:@"CommonFavorityView"];
+    favorityCtrl.strBeginTime = fatherCtrl.strBeginTime;
+    favorityCtrl.strAddress = fatherCtrl.strAddress;
+    favorityCtrl.strPlace = fatherCtrl.strPlace;
+    favorityCtrl.rmID = fatherCtrl.rmID;
     favorityCtrl.view.frame = CGRectMake(640, 0, 320, favorityCtrl.view.frame.size.height);
     [_scrollView addSubview:favorityCtrl.view];
     [_contentItems addObject:favorityCtrl.view];
     [favorityCtrl retain];
-    
+   
     CommonApplyJobViewController *applyCtrl = [rmStoryBoard instantiateViewControllerWithIdentifier:@"CommonApplyJobView"];
+    applyCtrl.strBeginTime = fatherCtrl.strBeginTime;
+    applyCtrl.strAddress = fatherCtrl.strAddress;
+    applyCtrl.strPlace = fatherCtrl.strPlace;
+    applyCtrl.rmID = fatherCtrl.rmID;
     applyCtrl.view.frame = CGRectMake(320, 0, 320, applyCtrl.view.frame.size.height) ;
     [_scrollView addSubview:applyCtrl.view];
     [_contentItems addObject:applyCtrl.view];
