@@ -172,7 +172,6 @@
 		99B350C0199CB1F100CAEC71 /* welcom4-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350B6199CB1F100CAEC71 /* welcom4-320x1136.png */; };
 		99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */; };
 		99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */; };
-		99B385D919A744C600B3C734 /* SearchMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B385D819A744C600B3C734 /* SearchMainViewController.m */; };
 		99B4693219B2B71A0034505D /* ico_searchlog_log.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693119B2B71A0034505D /* ico_searchlog_log.png */; };
 		99B4693719B2EB520034505D /* ico_mainsearch_mapsearch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693319B2EB520034505D /* ico_mainsearch_mapsearch1.png */; };
 		99B4693819B2EB520034505D /* ico_mainsearch_mapsearch2.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693419B2EB520034505D /* ico_mainsearch_mapsearch2.png */; };
@@ -611,8 +610,6 @@
 		99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x960.png"; sourceTree = "<group>"; };
 		99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x1136.png"; sourceTree = "<group>"; };
 		99B385D319A6EB6100B3C734 /* GoToHomeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToHomeDelegate.h; sourceTree = "<group>"; };
-		99B385D719A744C600B3C734 /* SearchMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchMainViewController.h; path = JobSearch/SearchMainViewController.h; sourceTree = "<group>"; };
-		99B385D819A744C600B3C734 /* SearchMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchMainViewController.m; path = JobSearch/SearchMainViewController.m; sourceTree = "<group>"; };
 		99B4693119B2B71A0034505D /* ico_searchlog_log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_searchlog_log.png; sourceTree = "<group>"; };
 		99B4693319B2EB520034505D /* ico_mainsearch_mapsearch1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mainsearch_mapsearch1.png; sourceTree = "<group>"; };
 		99B4693419B2EB520034505D /* ico_mainsearch_mapsearch2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mainsearch_mapsearch2.png; sourceTree = "<group>"; };
@@ -1542,8 +1539,6 @@
 				99BDC5A119A586A700B2BDB1 /* HomeViewController.m */,
 				99FA8B7319A6DBD500F8B1B9 /* MenuViewController.h */,
 				99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */,
-				99B385D719A744C600B3C734 /* SearchMainViewController.h */,
-				99B385D819A744C600B3C734 /* SearchMainViewController.m */,
 				9925BF0219B80E1F002DBFE0 /* SearchViewController.h */,
 				9925BF0319B80E1F002DBFE0 /* SearchViewController.m */,
 				9925BF0919B80F0D002DBFE0 /* SearchListViewController.h */,
@@ -2043,7 +2038,6 @@
 				99B9822419B4C3B600D5D77D /* GRListViewController.m in Sources */,
 				997BF0ED199DB33C00FD0B12 /* NetWebServiceRequest.m in Sources */,
 				99AF855619A1883400524B66 /* FindPsdStep1ViewController.m in Sources */,
-				99B385D919A744C600B3C734 /* SearchMainViewController.m in Sources */,
 				99B4ED8C19AB0458004C9068 /* JobDetailsController.m in Sources */,
 				999B5B0E19B996FB0067B3E7 /* EIListView.m in Sources */,
 				9925BEFD19B80E02002DBFE0 /* SlideNavigationController.m in Sources */,

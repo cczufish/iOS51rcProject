@@ -200,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bvv-EA-ER8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1210" y="-1964"/>
+            <point key="canvasLocation" x="1126" y="-1952"/>
         </scene>
         <!--Common Apply Job View Controller-->
         <scene sceneID="L1d-aG-gk5">
