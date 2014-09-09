@@ -264,6 +264,8 @@
 		99CFD896199B60D8009A5ABA /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = 99CFD871199B60D8009A5ABA /* renren.png */; };
 		99CFD898199B60D8009A5ABA /* userName.png in Resources */ = {isa = PBXBuildFile; fileRef = 99CFD873199B60D8009A5ABA /* userName.png */; };
 		99CFD899199B60D8009A5ABA /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 99CFD874199B60D8009A5ABA /* weibo.png */; };
+		99E76D6319BE8724004DD65F /* bg_lasttiem_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E76D6119BE8724004DD65F /* bg_lasttiem_green.png */; };
+		99E76D6419BE8724004DD65F /* bg_lasttime_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E76D6219BE8724004DD65F /* bg_lasttime_red.png */; };
 		99F3F84519B007C100B5AB88 /* ico_shen.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F3F84419B007C100B5AB88 /* ico_shen.png */; };
 		99F3F84819B00CEB00B5AB88 /* ico_jobapply_no.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F3F84619B00CEB00B5AB88 /* ico_jobapply_no.png */; };
 		99F3F84919B00CEB00B5AB88 /* ico_jobright.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F3F84719B00CEB00B5AB88 /* ico_jobright.png */; };
@@ -733,6 +735,8 @@
 		99CFD871199B60D8009A5ABA /* renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renren.png; sourceTree = "<group>"; };
 		99CFD873199B60D8009A5ABA /* userName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userName.png; sourceTree = "<group>"; };
 		99CFD874199B60D8009A5ABA /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
+		99E76D6119BE8724004DD65F /* bg_lasttiem_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_lasttiem_green.png; sourceTree = "<group>"; };
+		99E76D6219BE8724004DD65F /* bg_lasttime_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_lasttime_red.png; sourceTree = "<group>"; };
 		99F3F84419B007C100B5AB88 /* ico_shen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_shen.png; sourceTree = "<group>"; };
 		99F3F84619B00CEB00B5AB88 /* ico_jobapply_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_jobapply_no.png; sourceTree = "<group>"; };
 		99F3F84719B00CEB00B5AB88 /* ico_jobright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_jobright.png; sourceTree = "<group>"; };
@@ -1577,6 +1581,8 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99E76D6119BE8724004DD65F /* bg_lasttiem_green.png */,
+				99E76D6219BE8724004DD65F /* bg_lasttime_red.png */,
 				999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */,
 				999B5B0319B980510067B3E7 /* ico_EI_Background.png */,
 				9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */,
@@ -1802,6 +1808,7 @@
 				9942F44319B987D900191C74 /* ShareSDKLocalizable.strings in Resources */,
 				99B350B7199CB1F100CAEC71 /* index640x960.png in Resources */,
 				9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */,
+				99E76D6419BE8724004DD65F /* bg_lasttime_red.png in Resources */,
 				99CFD87B199B60D8009A5ABA /* ico_leftmenu_head.png in Resources */,
 				99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */,
 				99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */,
@@ -1905,6 +1912,7 @@
 				99CFD888199B60D8009A5ABA /* ico_main_rm.png in Resources */,
 				9942F39519B95C2100191C74 /* ico_mainmore_help.png in Resources */,
 				99CFD88D199B60D8009A5ABA /* loginQQ.png in Resources */,
+				99E76D6319BE8724004DD65F /* bg_lasttiem_green.png in Resources */,
 				991125B019A4EE9800C98173 /* ico_rm_cp.png in Resources */,
 				99B2F2FB199C43580066853D /* Login.storyboard in Resources */,
 				99BD6FB319B5A4F300514807 /* EmploymentInformation.storyboard in Resources */,
