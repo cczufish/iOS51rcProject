@@ -6,4 +6,5 @@
     NSMutableArray *recommentJobsData;
 }
 @property (retain, nonatomic) NSString *JobID;
+@property int height;
 @end

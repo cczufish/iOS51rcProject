@@ -63,6 +63,7 @@
     
     JobViewController *jobCtrl = [CpAndJobStoryBoard instantiateViewControllerWithIdentifier:@"JobView"];    
     jobCtrl.JobID = self.JobID;
+    jobCtrl.height = h;
     jobCtrl.view.frame = CGRectMake(0, 0, 320, jobCtrl.view.frame.size.height) ;
     [_scrollView addSubview:jobCtrl.view];
     [_contentItems addObject:jobCtrl.view];

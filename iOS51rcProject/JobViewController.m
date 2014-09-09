@@ -26,6 +26,7 @@
 @property (retain, nonatomic) IBOutlet UIView *subView;
 @property (nonatomic, retain) CustomPopup *cPopup;
 
+@property (retain, nonatomic) IBOutlet UIView *ViewBottom;
 @property (retain, nonatomic) IBOutlet UILabel *lbChat;
 @property (retain, nonatomic) IBOutlet UIImageView *imgChat;
 @end
@@ -75,10 +76,8 @@
 {
     if (request.tag == 1) { //职位搜索
         [self didReceiveJobMain:requestData];
-    }
-     else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
-     }
-    else if (request.tag == 3) { //获取可投递的简历，默认投递第一份简历
+    } else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
+    }else if (request.tag == 3) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
             [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
         }
@@ -87,16 +86,16 @@
             [self.cPopup setDelegate:self];
             [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
         }
-    }
-    else if (request.tag == 4) { //默认投递完之后，显示弹层
+    }else if (request.tag == 4) { //默认投递完之后，显示弹层
         [self.cPopup showJobApplyCvSelect:result view:self.view];
-    }
-    else if (request.tag == 5) { //重新申请职位成功
+    }else if (request.tag == 5) { //重新申请职位成功
         [self.view makeToast:@"重新申请简历成功"];
-    }
-    else if (request.tag == 6) {
+    }else if (request.tag == 6) {
         [self.view makeToast:@"收藏职位成功"];
+    }else if(request.tag == 9){//其他建议的职位
+        [self didReceiveRecommendJob:requestData];
     }
+    
     //结束等待动画
     [self.loading stopAnimating];
 }
@@ -223,7 +222,11 @@
     }
     [self.subView addSubview:tmpView];
     self.subView.frame = CGRectMake(tmpView.frame.origin.x, tmpView.frame.origin.y, 320, 400);
-    [self.jobMainScroll setContentSize:CGSizeMake(320, tmpView.frame.origin.y + tmpView.frame.size.height)];
+    int originY = tmpView.frame.origin.y;
+    int originHeight = tmpView.frame.size.height;
+    [self.jobMainScroll setContentSize:CGSizeMake(320, originY + originHeight + 300) ];
+    self.ViewBottom.frame = CGRectMake(0, self.height - 80, 320, 50);
+    self.jobMainScroll.frame = CGRectMake(0, 0, 320, self.height - 80);
 }
 
 //点击其他企业
@@ -602,7 +605,8 @@
         self.lbChat.text = @"交谈";
         self.imgChat.image = [UIImage imageNamed:@"ico_onlinechat_online.png"];
     }
-    self.subView.frame = CGRectMake(self.jobMainScroll.frame.origin.x, self.jobMainScroll.frame.origin.y, 320, lbOther.frame.origin.y + lbOther.frame.size.height);
+    self.subView.frame = CGRectMake(self.jobMainScroll.frame.origin.x, self.jobMainScroll.frame.origin.y, 320, self.height - 50);
+    
     //===================其他职位----调用Webservice=======================
     [self callOhters];
     
@@ -615,7 +619,7 @@
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetRecommendJobByJobID" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
-    request.tag = 2;
+    request.tag = 9;
     self.runningRequest = request;
 }
 
@@ -765,6 +769,7 @@
     [_subView release];
     [_lbChat release];
     [_imgChat release];
+    [_ViewBottom release];
     [super dealloc];
 }
 @end
