@@ -124,7 +124,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle: nil];
 	UIViewController *vc;
 	
 	switch (indexPath.row)
@@ -134,10 +133,13 @@
 			return;
 			break;
         case 2:
-			vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"SearchView"];
+			vc = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"SearchView"];
 			break;
 		case 5:
-			vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"RecruitmentListView"];
+			vc = [[UIStoryboard storyboardWithName:@"Recruitment" bundle: nil] instantiateViewControllerWithIdentifier: @"RecruitmentListView"];
+			break;
+        case 6:
+			vc = [[UIStoryboard storyboardWithName:@"Campus" bundle: nil] instantiateViewControllerWithIdentifier: @"CampusView"];
 			break;
         default:
             [[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];

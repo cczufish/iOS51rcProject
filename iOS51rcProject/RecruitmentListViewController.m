@@ -59,8 +59,8 @@
     [myRmBtn release];
     [btnMyRecruitment release];
     
-    recruitmentData = [[NSMutableArray alloc] init];
-    placeData = [[NSMutableArray alloc] init];
+    self.recruitmentData = [NSMutableArray arrayWithCapacity:10];
+    self.placeData = [NSMutableArray arrayWithCapacity:10];
     //添加检索边框
     self.btnDateSet.layer.masksToBounds = YES;
     self.btnDateSet.layer.borderWidth = 1.0;
@@ -75,8 +75,8 @@
     self.btnPlaceSel.layer.borderColor = [[UIColor grayColor] CGColor];
     
     //时间选择控件
-    pickDate = [[DatePicker alloc] init];
-    pickDate.delegate = self;
+    self.pickDate = [[DatePicker alloc] init];
+    self.pickDate.delegate = self;
     [self.btnDateSet addTarget:self action:@selector(showDateSelect) forControlEvents:UIControlEventTouchUpInside];
     [self.btnProvinceSel addTarget:self action:@selector(showRegionSelect) forControlEvents:UIControlEventTouchUpInside];
     [self.btnPlaceSel addTarget:self action:@selector(showPlaceSelect) forControlEvents:UIControlEventTouchUpInside];
@@ -91,10 +91,10 @@
     self.tvRecruitmentList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     //搜索初始化
-    begindate = @"";
-    page = 1;
-    placeid = @"";
-    regionid = @"32";
+    self.begindate = @"";
+    self.page = 1;
+    self.placeid = @"";
+    self.regionid = @"32";
     [self onSearch];
     
     //场馆初始化
@@ -114,16 +114,16 @@
 
 - (void)onSearch
 {
-    if (page == 1) {
-        [recruitmentData removeAllObjects];
+    if (self.page == 1) {
+        [self.recruitmentData removeAllObjects];
         [self.tvRecruitmentList reloadData];
     }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:@"0" forKey:@"paMainID"];
-    [dicParam setObject:begindate forKey:@"strBeginDate"];
-    [dicParam setObject:placeid forKey:@"strPlaceID"];
-    [dicParam setObject:regionid forKey:@"strRegionID"];
-    [dicParam setObject:[NSString stringWithFormat:@"%d",page] forKey:@"page"];
+    [dicParam setObject:self.begindate forKey:@"strBeginDate"];
+    [dicParam setObject:self.placeid forKey:@"strPlaceID"];
+    [dicParam setObject:self.regionid forKey:@"strRegionID"];
+    [dicParam setObject:[NSString stringWithFormat:@"%d",self.page] forKey:@"page"];
     [dicParam setObject:@"0" forKey:@"code"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetRecruitMentList" Params:dicParam];
     [request setDelegate:self];
@@ -154,7 +154,7 @@
     UITableViewCell *cell =
         [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"rmList"] autorelease];
     
-    NSDictionary *rowData = recruitmentData[indexPath.row];
+    NSDictionary *rowData = self.recruitmentData[indexPath.row];
     //显示标题
     NSString *strRecruitmentName = rowData[@"RecruitmentName"];
     UIFont *titleFont = [UIFont systemFontOfSize:15];
@@ -265,7 +265,7 @@
     //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
     RecruitmentViewController *detailC = (RecruitmentViewController*)[self.storyboard
                                                                       instantiateViewControllerWithIdentifier: @"RecruitmentView"];
-    detailC.recruitmentID = recruitmentData[indexPath.row][@"ID"];
+    detailC.recruitmentID = self.recruitmentData[indexPath.row][@"ID"];
     [self.navigationController pushViewController:detailC animated:true];
 }
 
@@ -274,7 +274,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [recruitmentData count];
+    return [self.recruitmentData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -282,7 +282,7 @@
 }
 
 - (void)footerRereshing{
-    page++;
+    self.page++;
     [self onSearch];
 }
 
@@ -292,12 +292,12 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) {
-        if(page == 1){
-            [recruitmentData removeAllObjects];
-            recruitmentData = requestData;
+        if(self.page == 1){
+            [self.recruitmentData removeAllObjects];
+            self.recruitmentData = requestData;
         }
         else{
-            [recruitmentData addObjectsFromArray:requestData];
+            [self.recruitmentData addObjectsFromArray:requestData];
         }
         [self.tvRecruitmentList reloadData];
         [self.tvRecruitmentList footerEndRefreshing];
@@ -314,15 +314,15 @@
                                         ,nil] autorelease];
             [arrPlace addObject:dicPlace];
         }
-        placeData = arrPlace;
+        self.placeData = arrPlace;
         [arrPlace release];
     }
 }
 
 - (void)dealloc {
-    [recruitmentData release];
-    [placeData release];
-    [pickDate release];
+    [_recruitmentData release];
+    [_placeData release];
+    [_pickDate release];
     [loadView release];
     [_tvRecruitmentList release];
     [_btnDateSet release];
@@ -333,49 +333,52 @@
     [_lbPlace release];
     [_runningRequest release];
     [_runningRequest2 release];
+    [_begindate release];
+    [_placeid release];
+    [_regionid release];
     [super dealloc];
 }
 
 -(void)showDateSelect{
-    [pickDate showDatePicker:self dateTitle:@"请选择举办日期"];
+    [self.pickDate showDatePicker:self dateTitle:@"请选择举办日期"];
 }
 
 -(void)saveDate:(NSDate *)selectDate{
     NSString *strSelDate = [CommonController stringFromDate:selectDate formatType:@"MM-dd"];
     self.lbDateSet.text = strSelDate;
-    begindate = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
-    page = 1;
+    self.begindate = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
+    self.page = 1;
     [self onSearch];
-    [pickDate removeDatePicker];
+    [self.pickDate removeDatePicker];
     //开始等待动画
     [loadView startAnimating];
 }
 
 -(void)resetDate{
     self.lbDateSet.text = @"日期";
-    begindate = @"";
-    page = 1;
+    self.begindate = @"";
+    self.page = 1;
     [self onSearch];
-    [pickDate removeDatePicker];
+    [self.pickDate removeDatePicker];
     //开始等待动画
     [loadView startAnimating];
 }
 
 -(void)showRegionSelect {
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:regionid defaultName:@"山东省"] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.regionid defaultName:@"山东省"] autorelease];
 
     self.DictionaryPicker.tag = 1;
     [self.DictionaryPicker showInView:self.view];
 }
 
 - (void)showPlaceSelect {
-    if ([placeData count] == 0) {
+    if ([self.placeData count] == 0) {
         [self.view makeToast:@"没有该地区的场馆信息"];
         return;
     }
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:placeid defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.placeData defalutValue:self.placeid defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }
@@ -385,19 +388,19 @@
                    selectedName:(NSString *)selectedName {
     [self cancelDicPicker];
     if (picker.tag == 1) { //地区选择
-        regionid = selectedValue;
-        placeid = @"";
+        self.regionid = selectedValue;
+        self.placeid = @"";
         [self.lbPlace setText:@"全部场馆"];
         [self.lbProvince setText:selectedName];
         //加载场馆
         [self reloadPlace];
     }
     else { //场馆选择
-        placeid = selectedValue;
+        self.placeid = selectedValue;
         [self.lbPlace setText:selectedName];
     }
     //重新加载列表
-    page = 1;
+    self.page = 1;
     [self onSearch];
     //开始等待动画
     [loadView startAnimating];
@@ -406,8 +409,8 @@
 - (void)reloadPlace {
     //加载场馆
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:begindate forKey:@"strBeginDate"];
-    [dicParam setObject:regionid forKey:@"RegionID"];
+    [dicParam setObject:self.begindate forKey:@"strBeginDate"];
+    [dicParam setObject:self.regionid forKey:@"RegionID"];
     [dicParam setObject:@"1" forKey:@"isDistinct"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPlaceListByBeginDate" Params:dicParam];
     [request setDelegate:self];

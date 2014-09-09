@@ -56,6 +56,8 @@
 		992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4919BE982D0042F2EB /* ico_triangle.png */; };
 		992D270219BED5AC005F3CD6 /* CpInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992D270119BED5AC005F3CD6 /* CpInfoViewController.m */; };
 		992D270519BED635005F3CD6 /* JobMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992D270419BED635005F3CD6 /* JobMainViewController.m */; };
+		9935EFBE19BEF50000F581AC /* ico_news_hot.png in Resources */ = {isa = PBXBuildFile; fileRef = 9935EFBD19BEF50000F581AC /* ico_news_hot.png */; };
+		9935EFC119BEFD8000F581AC /* CampusCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9935EFC019BEFD8000F581AC /* CampusCompanyViewController.m */; };
 		9942F37F19B94E4400191C74 /* ico_map_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37C19B94E4300191C74 /* ico_map_back.png */; };
 		9942F38019B94E4400191C74 /* ico_mapsearch_pointer_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */; };
 		9942F38119B94E4400191C74 /* ico_mapsearch_pointer_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */; };
@@ -422,6 +424,9 @@
 		992D270419BED635005F3CD6 /* JobMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobMainViewController.m; sourceTree = "<group>"; };
 		9930AA5919BA0E6000B6C70D /* GoToEIItemDetailsViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToEIItemDetailsViewDelegate.h; sourceTree = "<group>"; };
 		9930AA5A19BA137C00B6C70D /* GoToEiItemDetailsViewFromScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToEiItemDetailsViewFromScrollViewDelegate.h; sourceTree = "<group>"; };
+		9935EFBD19BEF50000F581AC /* ico_news_hot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_news_hot.png; sourceTree = "<group>"; };
+		9935EFBF19BEFD8000F581AC /* CampusCompanyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusCompanyViewController.h; sourceTree = "<group>"; };
+		9935EFC019BEFD8000F581AC /* CampusCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusCompanyViewController.m; sourceTree = "<group>"; };
 		9942F37C19B94E4300191C74 /* ico_map_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_back.png; sourceTree = "<group>"; };
 		9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_pointer_blue.png; sourceTree = "<group>"; };
 		9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_pointer_red.png; sourceTree = "<group>"; };
@@ -822,6 +827,8 @@
 				990C8D3A19B9A41300B81AFB /* Campus.storyboard */,
 				990C8D3C19B9A4DC00B81AFB /* CampusViewController.h */,
 				990C8D3D19B9A4DC00B81AFB /* CampusViewController.m */,
+				9935EFBF19BEFD8000F581AC /* CampusCompanyViewController.h */,
+				9935EFC019BEFD8000F581AC /* CampusCompanyViewController.m */,
 			);
 			name = Campus;
 			sourceTree = "<group>";
@@ -1593,6 +1600,7 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9935EFBD19BEF50000F581AC /* ico_news_hot.png */,
 				992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */,
 				992A5B4919BE982D0042F2EB /* ico_triangle.png */,
 				992A5B4619BE94D80042F2EB /* ico_rm_head.png */,
@@ -1912,6 +1920,7 @@
 				9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */,
 				999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */,
 				991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */,
+				9935EFBE19BEF50000F581AC /* ico_news_hot.png in Resources */,
 				99B4693A19B2EB520034505D /* ico_mainsearch_normalsearch2.png in Resources */,
 				99BD6FA319B5555800514807 /* gr_pic_head.png in Resources */,
 				99BD6FA719B5983100514807 /* ico_jobnews_searchresult.png in Resources */,
@@ -2056,6 +2065,7 @@
 				99BD6FF219B5AFDF00514807 /* MenuHrizontal.m in Sources */,
 				99BD6FF319B5AFDF00514807 /* CircleView.m in Sources */,
 				99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */,
+				9935EFC119BEFD8000F581AC /* CampusCompanyViewController.m in Sources */,
 				990C8D3E19B9A4DC00B81AFB /* CampusViewController.m in Sources */,
 				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
 				997BF0E5199DB33C00FD0B12 /* ASIDataDecompressor.m in Sources */,

@@ -30,9 +30,6 @@
 
 @implementation RecruitmentViewController
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{    
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

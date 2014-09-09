@@ -10,5 +10,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbCampus;
 @property (retain, nonatomic) IBOutlet UILabel *lbEmploy;
 @property (retain, nonatomic) IBOutlet UILabel *lbUnderline;
+@property (retain, nonatomic) IBOutlet UICollectionView *collectViewEmploy;
 
 @end
