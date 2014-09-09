@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "ScrollPageViewDelegate.h"
 
 @interface JobViewController : UIViewController<UIScrollViewDelegate>
 {

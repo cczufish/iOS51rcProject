@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "CustomPopup.h"
 #import "JobViewController.h"
+#import "SuperJobMainViewController.h"
 
 @interface SearchListViewController () <NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,SearchPickerDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
@@ -332,9 +333,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *rowData = self.jobListData[indexPath.row];
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
-    JobViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"JobView"];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
+    jobC.cpMainID = rowData[@"cpMainID"];
     [self.navigationController pushViewController:jobC animated:YES];
 }
 

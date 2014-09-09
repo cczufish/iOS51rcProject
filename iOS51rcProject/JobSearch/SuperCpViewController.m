@@ -1,18 +1,11 @@
-//
-//  CpInfoViewController.m
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-9-9.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
-#import "CpInfoViewController.h"
-
-@interface CpInfoViewController ()
-
+#import "SuperCpViewController.h"
+//企业信息父页面
+@interface SuperCpViewController ()
+@property (retain, nonatomic) CpJobsViewController *jobsCtrl;
+@property (retain, nonatomic) CpMainViewController *cpInfoCtrl;
 @end
 
-@implementation CpInfoViewController
+@implementation SuperCpViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
