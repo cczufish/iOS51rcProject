@@ -125,7 +125,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UIViewController *vc;
-	
 	switch (indexPath.row)
 	{
 		case 1:
@@ -138,7 +137,7 @@
 		case 5:
 			vc = [[UIStoryboard storyboardWithName:@"Recruitment" bundle: nil] instantiateViewControllerWithIdentifier: @"RecruitmentListView"];
 			break;
-        case 6:
+        case 7:
 			vc = [[UIStoryboard storyboardWithName:@"Campus" bundle: nil] instantiateViewControllerWithIdentifier: @"CampusView"];
 			break;
         default:

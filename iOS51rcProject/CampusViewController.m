@@ -6,6 +6,7 @@
 #import "DictionaryPickerView.h"
 #import "Toast+UIView.h"
 #import "SlideNavigationController.h"
+#import "CampusCompanyViewController.h"
 
 @interface CampusViewController () <UICollectionViewDataSource,UICollectionViewDelegate,NetWebServiceRequestDelegate,DictionaryPickerDelegate,UIScrollViewDelegate,SlideNavigationControllerDelegate>
 {
@@ -293,12 +294,16 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    CampusCompanyViewController *campusCompanyC = [self.storyboard instantiateViewControllerWithIdentifier:@"CampusCompanyView"];
     if (collectionView.tag == 1) {
         NSLog(@"%@",[self.campusListData objectAtIndex:indexPath.row][@"id"]);
+        campusCompanyC.tabIndex = 2;
     }
     else {
         NSLog(@"%@",[self.employListData objectAtIndex:indexPath.row][@"id"]);
+        campusCompanyC.tabIndex = 3;
     }
+    [self.navigationController pushViewController:campusCompanyC animated:true];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

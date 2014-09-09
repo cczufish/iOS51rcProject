@@ -54,7 +54,6 @@
     
     [self.lbRegionSelect setText:@"山东省"];
     self.regionSelect = @"32";
-    [self showSearchHistory];
 }
 
 -(void)switchToMapSearch
@@ -167,6 +166,7 @@
 
 -(void)searchFromHistory:(UIButton *)sender
 {
+    NSLog(@"%d",sender.tag);
     FMResultSet *oneHistory = [CommonController querySql:[NSString stringWithFormat:@"SELECT * FROM paSearchHistory WHERE _id=%d",sender.tag]];
     if ([oneHistory next]) {
         self.regionSelect = [oneHistory stringForColumn:@"dcRegionID"];
@@ -316,6 +316,7 @@
 {
     [super viewWillAppear:animated];
     [self switchToSearch];
+    [self showSearchHistory];
 }
 
 - (void)didReceiveMemoryWarning

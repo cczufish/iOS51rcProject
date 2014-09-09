@@ -54,17 +54,12 @@
 		992A5B4719BE94D80042F2EB /* ico_rm_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4619BE94D80042F2EB /* ico_rm_head.png */; };
 		992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */; };
 		992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4919BE982D0042F2EB /* ico_triangle.png */; };
-<<<<<<< HEAD
-		992D270219BED5AC005F3CD6 /* CpInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992D270119BED5AC005F3CD6 /* CpInfoViewController.m */; };
-		992D270519BED635005F3CD6 /* JobMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992D270419BED635005F3CD6 /* JobMainViewController.m */; };
-		9935EFBE19BEF50000F581AC /* ico_news_hot.png in Resources */ = {isa = PBXBuildFile; fileRef = 9935EFBD19BEF50000F581AC /* ico_news_hot.png */; };
-		9935EFC119BEFD8000F581AC /* CampusCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9935EFC019BEFD8000F581AC /* CampusCompanyViewController.m */; };
-=======
 		992D270219BED5AC005F3CD6 /* SuperCpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992D270119BED5AC005F3CD6 /* SuperCpViewController.m */; };
 		992D270519BED635005F3CD6 /* SuperJobMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992D270419BED635005F3CD6 /* SuperJobMainViewController.m */; };
 		992D270819BEDB86005F3CD6 /* CpJobsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992D270719BEDB86005F3CD6 /* CpJobsViewController.m */; };
 		992D270B19BEE74A005F3CD6 /* JobMainScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 992D270A19BEE74A005F3CD6 /* JobMainScrollViewController.m */; };
->>>>>>> FETCH_HEAD
+		9935EFBE19BEF50000F581AC /* ico_news_hot.png in Resources */ = {isa = PBXBuildFile; fileRef = 9935EFBD19BEF50000F581AC /* ico_news_hot.png */; };
+		9935EFC119BEFD8000F581AC /* CampusCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9935EFC019BEFD8000F581AC /* CampusCompanyViewController.m */; };
 		9942F37F19B94E4400191C74 /* ico_map_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37C19B94E4300191C74 /* ico_map_back.png */; };
 		9942F38019B94E4400191C74 /* ico_mapsearch_pointer_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */; };
 		9942F38119B94E4400191C74 /* ico_mapsearch_pointer_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */; };
@@ -2253,8 +2248,10 @@
 					/Users/lucifer/Downloads/ShareSDK/Extend/TencentWeiboSDK,
 					/Users/lucifer/Downloads/ShareSDK/Extend/WeChatSDK,
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2303,6 +2300,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -27,6 +27,7 @@
         self.center = CGPointMake(_viewBack.center.x, _viewBack.center.y-55);
         [_viewBack addSubview:self];
         [target.view addSubview:_viewBack];
+        [_viewBack setHidden:true];
     }
     return self;
 }

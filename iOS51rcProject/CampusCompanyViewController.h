@@ -3,11 +3,22 @@
 //  iOS51rcProject
 //
 //  Created by Lucifer on 14-9-9.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface CampusCompanyViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UILabel *lbCompanyName;
+@property (retain, nonatomic) IBOutlet UILabel *lbCity;
+@property (retain, nonatomic) IBOutlet UILabel *lbIndustry;
+@property (retain, nonatomic) IBOutlet UILabel *lbHomepage;
+@property (retain, nonatomic) IBOutlet UILabel *lbUnderline;
+@property (retain, nonatomic) IBOutlet UILabel *lbBrief;
+@property (retain, nonatomic) IBOutlet UILabel *lbCampus;
+@property (retain, nonatomic) IBOutlet UILabel *lbEmploy;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UICollectionView *collectView;
+
+@property int tabIndex;
 
 @end
