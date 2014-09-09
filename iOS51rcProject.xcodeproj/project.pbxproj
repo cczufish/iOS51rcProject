@@ -1587,14 +1587,11 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */,
 				992A5B4919BE982D0042F2EB /* ico_triangle.png */,
 				992A5B4619BE94D80042F2EB /* ico_rm_head.png */,
-=======
 				99E76D6119BE8724004DD65F /* bg_lasttiem_green.png */,
 				99E76D6219BE8724004DD65F /* bg_lasttime_red.png */,
->>>>>>> FETCH_HEAD
 				999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */,
 				999B5B0319B980510067B3E7 /* ico_EI_Background.png */,
 				9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */,
@@ -1820,11 +1817,8 @@
 				9942F44319B987D900191C74 /* ShareSDKLocalizable.strings in Resources */,
 				99B350B7199CB1F100CAEC71 /* index640x960.png in Resources */,
 				9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */,
-<<<<<<< HEAD
 				992A5B4719BE94D80042F2EB /* ico_rm_head.png in Resources */,
-=======
 				99E76D6419BE8724004DD65F /* bg_lasttime_red.png in Resources */,
->>>>>>> FETCH_HEAD
 				99CFD87B199B60D8009A5ABA /* ico_leftmenu_head.png in Resources */,
 				99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */,
 				99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */,
