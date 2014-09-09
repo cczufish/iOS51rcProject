@@ -31,7 +31,6 @@
 @implementation CpMainViewController
 @synthesize runningRequest = _runningRequest;
 @synthesize loading = _loading;
-@synthesize cpMainID;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
