@@ -5,8 +5,9 @@
 #import "MJRefresh.h"
 #import "DictionaryPickerView.h"
 #import "Toast+UIView.h"
+#import "SlideNavigationController.h"
 
-@interface CampusViewController () <UICollectionViewDataSource,UICollectionViewDelegate,NetWebServiceRequestDelegate,DictionaryPickerDelegate>
+@interface CampusViewController () <UICollectionViewDataSource,UICollectionViewDelegate,NetWebServiceRequestDelegate,DictionaryPickerDelegate,UIScrollViewDelegate,SlideNavigationControllerDelegate>
 {
     LoadingAnimationView *loadView;
 }
@@ -35,6 +36,8 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.scrollCampus setContentSize:CGSizeMake(640, self.scrollCampus.frame.size.height)];
+    self.scrollCampus.delegate = self;
     //按钮加边框
     self.btnRegionSelect.layer.borderWidth = 1;
     self.btnRegionSelect.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
@@ -217,6 +220,31 @@
     NSLog(@"%@",[self.campusListData objectAtIndex:indexPath.row][@"id"]);
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+//    NSLog(@"%f",scrollView.contentOffset.x);
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"%f",scrollView.contentOffset.x);
+    if (scrollView.contentOffset.x > 160) {
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.lbCampus setTextColor:[UIColor blackColor]];
+            [self.lbEmploy setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+            [self.lbUnderline setFrame:CGRectMake(160, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+        }];
+    }
+    else {
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.lbEmploy setTextColor:[UIColor blackColor]];
+            [self.lbCampus setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+            [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+        }];
+    }
+}
+
 - (IBAction)regionSelect:(UIButton *)sender {
     self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.regionId defaultName:@""] autorelease];
     [self.dictionaryPicker setTag:1];
@@ -264,6 +292,16 @@
     self.dictionaryPicker = nil;
 }
 
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+{
+    return YES;
+}
+
+- (int)slideMenuItem
+{
+    return 7;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -291,10 +329,13 @@
     [_dictionaryPicker release];
     [_collectView release];
     [_btnRegionSelect release];
-    [_btnRegionSelect release];
     [_btnCampusSelect release];
     [_lbRegionSelect release];
     [_lbCampusSelect release];
+    [_scrollCampus release];
+    [_lbCampus release];
+    [_lbEmploy release];
+    [_lbUnderline release];
     [super dealloc];
 }
 @end
