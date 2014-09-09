@@ -28,6 +28,7 @@
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         NSLog(@"ScrollViewFrame:(%f,%f)",self.frame.size.width,self.frame.size.height);
         _scrollView.pagingEnabled = YES;
+        
         _scrollView.delegate = self;
     }
     [self addSubview:_scrollView];
@@ -51,7 +52,8 @@
     favorityCtrl.strPlace = fatherCtrl.strPlace;
     favorityCtrl.rmID = fatherCtrl.rmID;
     favorityCtrl.InviteJobsFromFavorityViewDelegate = self;
-    favorityCtrl.view.frame = CGRectMake(640, 0, 320, favorityCtrl.view.frame.size.height);
+    int h = favorityCtrl.view.frame.size.height;
+    favorityCtrl.view.frame = CGRectMake(640, 0, 320, h);
     [_scrollView addSubview:favorityCtrl.view];
     [_contentItems addObject:favorityCtrl.view];
     [favorityCtrl retain];
@@ -68,12 +70,14 @@
     [applyCtrl retain];
     
     CommonSearchJobViewController *searchCtrl = [rmStoryBoard instantiateViewControllerWithIdentifier:@"CommonSearchJobView"];
+    searchCtrl.view.frame = CGRectMake(0, 0, 320, searchCtrl.view.frame.size.height) ;
     searchCtrl.searchDelegate = self;
     [_scrollView addSubview:searchCtrl.view];
     [_contentItems addObject:searchCtrl.view];
     [searchCtrl retain];
-    
-    [_scrollView setContentSize:CGSizeMake(320 * 3, self.frame.size.height)];
+    //_scrollView.showsVerticalScrollIndicator = false;
+    int frameHeight = self.frame.size.height;
+    [_scrollView setContentSize:CGSizeMake(320 * 3, h)];
 }
 
 #pragma mark 移动ScrollView到某个页面

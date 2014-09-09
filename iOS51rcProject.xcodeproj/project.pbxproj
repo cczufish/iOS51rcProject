@@ -51,6 +51,9 @@
 		9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */; };
 		9925BF0E19B83835002DBFE0 /* ico_mapsearch_jobnext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */; };
 		9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */; };
+		992A5B4719BE94D80042F2EB /* ico_rm_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4619BE94D80042F2EB /* ico_rm_head.png */; };
+		992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */; };
+		992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4919BE982D0042F2EB /* ico_triangle.png */; };
 		9942F37F19B94E4400191C74 /* ico_map_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37C19B94E4300191C74 /* ico_map_back.png */; };
 		9942F38019B94E4400191C74 /* ico_mapsearch_pointer_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */; };
 		9942F38119B94E4400191C74 /* ico_mapsearch_pointer_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */; };
@@ -407,6 +410,9 @@
 		9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobpre.png; sourceTree = "<group>"; };
 		992A5B4419BE7ED30042F2EB /* InviteJobsFromApplyViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InviteJobsFromApplyViewDelegate.h; path = Recruitment/InviteJobsFromApplyViewDelegate.h; sourceTree = "<group>"; };
 		992A5B4519BE8B700042F2EB /* InviteJobsFromFavorityViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InviteJobsFromFavorityViewDelegate.h; path = Recruitment/Delegate/InviteJobsFromFavorityViewDelegate.h; sourceTree = "<group>"; };
+		992A5B4619BE94D80042F2EB /* ico_rm_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_head.png; sourceTree = "<group>"; };
+		992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_triangle_orange.png; sourceTree = "<group>"; };
+		992A5B4919BE982D0042F2EB /* ico_triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_triangle.png; sourceTree = "<group>"; };
 		9930AA5919BA0E6000B6C70D /* GoToEIItemDetailsViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToEIItemDetailsViewDelegate.h; sourceTree = "<group>"; };
 		9930AA5A19BA137C00B6C70D /* GoToEiItemDetailsViewFromScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToEiItemDetailsViewFromScrollViewDelegate.h; sourceTree = "<group>"; };
 		9942F37C19B94E4300191C74 /* ico_map_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_back.png; sourceTree = "<group>"; };
@@ -1577,6 +1583,9 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */,
+				992A5B4919BE982D0042F2EB /* ico_triangle.png */,
+				992A5B4619BE94D80042F2EB /* ico_rm_head.png */,
 				999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */,
 				999B5B0319B980510067B3E7 /* ico_EI_Background.png */,
 				9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */,
@@ -1802,6 +1811,7 @@
 				9942F44319B987D900191C74 /* ShareSDKLocalizable.strings in Resources */,
 				99B350B7199CB1F100CAEC71 /* index640x960.png in Resources */,
 				9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */,
+				992A5B4719BE94D80042F2EB /* ico_rm_head.png in Resources */,
 				99CFD87B199B60D8009A5ABA /* ico_leftmenu_head.png in Resources */,
 				99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */,
 				99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */,
@@ -1811,6 +1821,7 @@
 				99CFD889199B60D8009A5ABA /* ico_main_salary.png in Resources */,
 				9942F44819B987D900191C74 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				995575BA19AC56A800B73E4A /* ico_coordinate_blue.png in Resources */,
+				992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */,
 				99CFD830199B5F80009A5ABA /* Images.xcassets in Resources */,
 				99B350B8199CB1F100CAEC71 /* index640x1136.png in Resources */,
 				9942F38119B94E4400191C74 /* ico_mapsearch_pointer_red.png in Resources */,
@@ -1864,6 +1875,7 @@
 				99CFD876199B60D8009A5ABA /* btn_leftmenu.png in Resources */,
 				9925BE8A19B807F4002DBFE0 /* ico_map_centerpoint.png in Resources */,
 				9925BECE19B80C94002DBFE0 /* mapapi.bundle in Resources */,
+				992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */,
 				99BD700519B5B23B00514807 /* LoadMoreCell.xib in Resources */,
 				9925BF0E19B83835002DBFE0 /* ico_mapsearch_jobnext.png in Resources */,
 				99CFD88B199B60D8009A5ABA /* ico_select_down.png in Resources */,

@@ -4,10 +4,11 @@
 #import "SearchPickerView.h"
 #import "Toast+UIView.h"
 #import "InviteJobsFromApplyViewDelegate.h"
-@interface CommonApplyJobViewController : UIViewController<InviteJobsFromApplyViewDelegate>
+@interface CommonApplyJobViewController : UIViewController
 {
-     NSMutableArray *checkedCpArray;
+    NSMutableArray *checkedCpArray;
     id<InviteJobsFromApplyViewDelegate> inviteFromApplyViewDelegate;
+    NSString *selectCV;
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *tvJobList;

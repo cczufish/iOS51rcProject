@@ -8,12 +8,14 @@
 #import "JobViewController.h"
 #import "LoginViewController.h"
 #import "RmSearchJobForInviteViewController.h"
+#import "DictionaryPickerView.h"
 
-@interface CommonApplyJobViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,CustomPopupDelegate>
+@interface CommonApplyJobViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,CustomPopupDelegate, DictionaryPickerDelegate>
 {
     LoadingAnimationView *loadView;
 }
 @property (nonatomic, retain) NSMutableArray *jobListData;
+@property (nonatomic, retain) NSMutableArray *cvList;
 @property int pageNumber;
 @property (nonatomic, retain) NSString *jobType;
 @property (nonatomic, retain) NSString *workPlace;
@@ -28,9 +30,14 @@
 @property (nonatomic, retain) NSString *welfare;
 @property (nonatomic, retain) NSString *isOnline;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequestGetCvList;
 @property (nonatomic, retain) UILabel *lbSearchResult;
+@property (retain, nonatomic) IBOutlet UILabel *lbApplyInfo;
+@property (retain, nonatomic) IBOutlet UIButton *btnTop;//选择简历按钮
 
+@property (retain, nonatomic) IBOutlet UIView *viewTop;
 @property (nonatomic, retain) CustomPopup *cPopup;
+@property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @end
 
 @implementation CommonApplyJobViewController
@@ -43,11 +50,35 @@
     }
     return self;
 }
+-(void)cancelDicPicker
+{
+    [self.DictionaryPicker cancelPicker];
+    self.DictionaryPicker.delegate = nil;
+    self.DictionaryPicker = nil;
+    
+    //切换背景图片
+    UIImageView *imgCornor = self.btnTop.subviews[1];
+    imgCornor.image = [UIImage imageNamed:@"ico_triangle.png"];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //self.automaticallyAdjustsScrollViewInsets = NO;
     self.pageNumber = 1;
+    //最上面提示信息的边框
+    self.viewTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewTop.layer.borderWidth = 1;
+    self.btnTop.titleLabel.text = @"相关简历";
+    self.btnTop.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.btnTop.layer.borderWidth = 0.5;
+    self.btnTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    [self.btnTop addTarget:self action:@selector(selectCV:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imgCornor = [[[UIImageView alloc] initWithFrame:CGRectMake(65, 20, 10, 10)] autorelease];
+    imgCornor.image = [UIImage imageNamed:@"ico_triangle.png"];
+    [self.btnTop addSubview:imgCornor];
+    
     checkedCpArray = [[NSMutableArray alloc] init];//选择的企业
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
@@ -76,11 +107,68 @@
     [self.tvJobList addFooterWithTarget:self action:@selector(footerRereshing)];
     //不显示列表分隔线
     self.tvJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self onSearch];
+    //获取简历列表
+    [self GetBasicCvList];
+    selectCV = @"";
+    [self onSearch:selectCV];//默认选择全部
 }
 
-- (void)onSearch
+//获得简历列表
+-(void) GetBasicCvList{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
+   
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetBasicCvListByPaMainID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequestGetCvList = request;
+    [dicParam release];
+
+}
+
+//选择简历
+-(void) selectCV:(UIButton*) sender{
+    UIImageView *imgCornor = sender.subviews[1];
+    imgCornor.image = [UIImage imageNamed:@"ico_triangle_orange.png"];
+    [self cancelDicPicker];
+    
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defalutValue:@"0" defalutName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
+    self.DictionaryPicker.frame = CGRectMake(self.DictionaryPicker.frame.origin.x, self.DictionaryPicker.frame.origin.y-50, self.DictionaryPicker.frame.size.width, self.DictionaryPicker.frame.size.height);
+    [self.DictionaryPicker setTag:1];
+    [self.DictionaryPicker showInView:self.view];
+}
+
+- (void)pickerDidChangeStatus:(DictionaryPickerView *)picker
+                selectedValue:(NSString *)selectedValue
+                 selectedName:(NSString *)selectedName
+{
+    switch (picker.tag) {
+        case 1:
+            if (selectedValue.length == 0) {
+                [self.btnTop setTitle:@"相关简历" forState:UIControlStateNormal];
+                selectCV = @"";
+                //[self.view makeToast:@"工作地点不能为空"];
+                return;
+            }else{
+                [self.btnTop setTitle:selectedName forState:UIControlStateNormal];
+                selectCV = selectedValue;
+            }
+            
+            [self onSearch:selectCV];
+            break;
+        default:
+            break;
+    }
+    [self cancelDicPicker];
+}
+
+- (void)onSearch:(NSString *)cvMainID
 {
     if (self.pageNumber == 1) {
         [self.jobListData removeAllObjects];
@@ -92,7 +180,6 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
-    NSString *cvMainID = @"";
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:@"20" forKey:@"pageSize"];
     [dicParam setObject:[NSString stringWithFormat:@"%d",self.pageNumber] forKey:@"pageNum"];
@@ -110,7 +197,7 @@
 
 - (void)footerRereshing{
     self.pageNumber++;
-    [self onSearch];
+    [self onSearch:selectCV];
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
@@ -128,6 +215,22 @@
         [self.tvJobList footerEndRefreshing];
         //重新加载列表
         [self.tvJobList reloadData];
+    }else if(request.tag == 2){
+        NSMutableArray *arrCv = [[NSMutableArray alloc] init];
+        NSDictionary *defalult = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                   @"0",@"id",
+                                   @"相关简历",@"value"
+                                   ,nil] autorelease];
+        [arrCv addObject:defalult];
+        for (int i = 0; i < requestData.count; i++) {
+            NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                       requestData[i][@"ID"],@"id",
+                                       requestData[i][@"Name"],@"value"
+                                       ,nil] autorelease];
+            [arrCv addObject:dicCv];
+        }
+        
+        self.cvList = arrCv;
     }
     //结束等待动画
     [loadView stopAnimating];
@@ -154,10 +257,6 @@
     cpMain.IsBooked = isBooked;
     cpMain.ID = rowData[@"EnCpMainID"];
     cpMain.Name = rowData[@"cpName"];
-    //cpMain.Address = rowData[@"Address"];
-    //cpMain.OrderDate = rowData[@"AddDate"];
-    //cpMain.Lat = rowData[@"Lat"];
-    //cpMain.Lng = rowData[@"Lng"];
     cpMain.jobID = rowData[@"JobID"];
     cpMain.caMainID = rowData[@"caMainID"];
     cpMain.JobName = rowData[@"JobName"];
@@ -171,7 +270,7 @@
     
     //是否在线
     if ([rowData[@"IsOnline"] isEqualToString:@"true"]) {
-        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(275, 5, 40, 20)];
+        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(260, 5, 40, 20)];
         [imgOnline setImage:[UIImage imageNamed:@"ico_joblist_online.png"]];
         [cell.contentView addSubview:imgOnline];
         [imgOnline release];
@@ -195,6 +294,21 @@
     [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
+    
+    //右侧的邀请按钮和图片
+    UIButton *btnInvite = [[[UIButton alloc] initWithFrame:CGRectMake(255, 30, 40, 60)] autorelease];
+    objc_setAssociatedObject(btnInvite, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
+    [btnInvite addTarget:self action:@selector(inviteOneCp:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] autorelease];
+    imgInvite.image = [UIImage imageNamed:@"ico_rm_head.png"];
+    [btnInvite addSubview:imgInvite];
+    
+    UILabel *lbInvite = [[[UILabel alloc] initWithFrame:CGRectMake(10, 22, 40, 20)] autorelease];
+    lbInvite.font = [UIFont systemFontOfSize:12];
+    lbInvite.text = @"邀请";
+    lbInvite.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+    [btnInvite addSubview:lbInvite];
+    [cell.contentView addSubview:btnInvite];
     
     //复选框
     UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
@@ -241,9 +355,25 @@
         [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
         [sender setTag:1];
     }
-    //NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
 }
 
+//邀请一个企业
+-(void) inviteOneCp:(UIButton*)sender{
+    RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        [checkedCpArray removeAllObjects];
+        [checkedCpArray addObject:selectCp];
+        [inviteFromApplyViewDelegate InviteJobsFromApplyView:checkedCpArray];
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
+}
+
+//批量邀请
 - (void)jobApply
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -260,19 +390,9 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
 //得到父View
 - (UIViewController *)getFatherController
 {
@@ -304,6 +424,9 @@
     [_btnApply release];
     [_viewBottom release];
     [_cPopup release];
+    [_lbApplyInfo release];
+    [_viewTop release];
+    [_btnTop release];
     [super dealloc];
 }
 @end
