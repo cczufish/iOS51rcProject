@@ -1,16 +1,9 @@
-//
-//  CpMainViewController.m
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-8-26.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import "CpMainViewController.h"
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
 
+//企业页面
 @interface CpMainViewController ()<NetWebServiceRequestDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *lbCpName;
 @property (retain, nonatomic) IBOutlet UIImageView *imgCpType;

@@ -166,7 +166,7 @@
     [cell.contentView addSubview:(lbBegin)];
     
     //预约面试按钮
-    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 22, 30, 45)];
+    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(270, 22, 30, 45)];
     UILabel *lbWillRun;
     UIImageView *imgWillRun = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     if (isBooked == 1) {

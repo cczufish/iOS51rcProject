@@ -19,7 +19,6 @@
     [self freshContentTableAtIndex:0];
 }
 
-
 -(void)commInit{
     if (_contentItems == nil) {
         _contentItems = [[NSMutableArray alloc] init];
@@ -54,6 +53,7 @@
     favorityCtrl.InviteJobsFromFavorityViewDelegate = self;
     int h = favorityCtrl.view.frame.size.height;
     favorityCtrl.view.frame = CGRectMake(640, 0, 320, h);
+    _scrollView.alwaysBounceVertical = NO;
     [_scrollView addSubview:favorityCtrl.view];
     [_contentItems addObject:favorityCtrl.view];
     [favorityCtrl retain];
@@ -75,8 +75,8 @@
     [_scrollView addSubview:searchCtrl.view];
     [_contentItems addObject:searchCtrl.view];
     [searchCtrl retain];
-    //_scrollView.showsVerticalScrollIndicator = false;
-    int frameHeight = self.frame.size.height;
+    _scrollView.showsVerticalScrollIndicator = NO;
+    //int frameHeight = self.frame.size.height;
     [_scrollView setContentSize:CGSizeMake(320 * 3, h)];
 }
 
