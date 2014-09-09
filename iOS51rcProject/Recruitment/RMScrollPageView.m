@@ -50,6 +50,7 @@
     favorityCtrl.strAddress = fatherCtrl.strAddress;
     favorityCtrl.strPlace = fatherCtrl.strPlace;
     favorityCtrl.rmID = fatherCtrl.rmID;
+    favorityCtrl.InviteJobsFromFavorityViewDelegate = self;
     favorityCtrl.view.frame = CGRectMake(640, 0, 320, favorityCtrl.view.frame.size.height);
     [_scrollView addSubview:favorityCtrl.view];
     [_contentItems addObject:favorityCtrl.view];
@@ -91,13 +92,6 @@
     if (_contentItems.count < aIndex) {
         return;
     }
-    if (aIndex == 0) {
-        //CommonSearchJobViewController *searchCtrl = (CommonSearchJobViewController*)[_contentItems objectAtIndex:aIndex];
-    }else if(aIndex == 1){
-         //CommonApplyJobViewController *applyCtrl = (CommonApplyJobViewController*)[_contentItems objectAtIndex:aIndex];
-    }else if(aIndex == 2){
-         //CommonFavorityViewController *favorityCtrl = (CommonFavorityViewController*)[_contentItems objectAtIndex:aIndex];
-    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -124,6 +118,20 @@
         
     }
 }
+//收藏职位页面的代理
+-(void) InviteJobsFromFavorityView:(NSMutableArray *)checkedCps{
+    //得到父View
+    RmSearchJobForInviteViewController *fatherCtrl = (RmSearchJobForInviteViewController*)[self getFatherController];
+    UIStoryboard *rmStoryboard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
+    RmInviteCpViewController *rmInviteCpViewCtrl = [rmStoryboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+    rmInviteCpViewCtrl.strBeginTime = fatherCtrl.strBeginTime;
+    rmInviteCpViewCtrl.strAddress = fatherCtrl.strAddress;
+    rmInviteCpViewCtrl.strPlace = fatherCtrl.strPlace;
+    rmInviteCpViewCtrl.strRmID = fatherCtrl.rmID;
+    rmInviteCpViewCtrl.selectRmCps = checkedCps;
+    
+    [fatherCtrl.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
+}
 
 //搜索职位的代理(直接在本页面会报错，所以跳转到父View再Navagation)
 -(void) gotoJobSearchResultListView:(NSString*) strSearchRegion SearchJobType:(NSString*) strSearchJobType SearchIndustry:(NSString *) strSearchIndustry SearchKeyword:(NSString *) strSearchKeyword SearchRegionName:(NSString *) strSearchRegionName SearchJobTypeName:(NSString *) strSearchJobTypeName SearchCondition:(NSString *) strSearchCondition{
@@ -136,22 +144,9 @@
     }
     NSLog(@"%@，%@，%@，%@，%@，%@，%@", strSearchRegion, strSearchJobType, strSearchIndustry, strSearchKeyword, strSearchRegionName, strSearchJobTypeName, strSearchCondition);
     [self.gotoSearchResultViewDelegate GoJobSearchResultListFromScrollPage: strSearchRegion SearchJobType:strSearchJobType SearchIndustry:strSearchIndustry SearchKeyword:strSearchKeyword SearchRegionName:strSearchRegionName SearchJobTypeName:strSearchJobTypeName SearchCondition:strSearchCondition];
-    //以下方法报错
-//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
-//    RMSearchJobListViewController *jobList = [mainStoryboard                                                                                  instantiateViewControllerWithIdentifier: @"RmSearchJobListView"];
-//    //RmInviteCpListFromSearchViewController *jobList = [mainStoryboard                                                                                  instantiateViewControllerWithIdentifier: @"RmInviteCpListFromSearchView"];
-//    
-////    jobList.searchRegion = strSearchRegion;
-////    jobList.searchJobType = strSearchJobType;
-////    jobList.searchIndustry = strSearchIndustry;
-////    jobList.searchKeyword = strSearchKeyword;
-////    jobList.searchRegionName = strSearchRegionName;
-////    jobList.searchJobTypeName = strSearchJobTypeName;
-////    jobList.searchCondition = strSearchCondition;
-//    UIViewController *fatherCtrl = [self getFatherController];
-//     [fatherCtrl.navigationController pushViewController: jobList animated:YES];
 }
 
+//申请职位页面的代理代理
 -(void) InviteJobsFromApplyView:(NSMutableArray *)checkedCps{
     //得到父View
     RmSearchJobForInviteViewController *fatherCtrl = (RmSearchJobForInviteViewController*)[self getFatherController];

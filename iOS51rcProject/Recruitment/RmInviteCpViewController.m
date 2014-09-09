@@ -1,4 +1,3 @@
-
 #import "RmInviteCpViewController.h"
 #import "../Class/CommonController.h"
 #import "DictionaryPickerView.h"

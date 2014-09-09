@@ -7,8 +7,9 @@
 #import "GoJobSearchResultListViewDelegate.h"//从搜索界面到scroll界面
 #import "RMSearchJobListViewController.h"
 #import "InviteJobsFromApplyViewDelegate.h"
+#import "InviteJobsFromFavorityViewDelegate.h"
 
-@interface RMScrollPageView : UIView<UIScrollViewDelegate, GoJobSearchResultListViewDelegate, InviteJobsFromApplyViewDelegate>
+@interface RMScrollPageView : UIView<UIScrollViewDelegate, GoJobSearchResultListViewDelegate, InviteJobsFromApplyViewDelegate, InviteJobsFromFavorityViewDelegate>
 {
     NSInteger mCurrentPage;
     BOOL mNeedUseDelegate;

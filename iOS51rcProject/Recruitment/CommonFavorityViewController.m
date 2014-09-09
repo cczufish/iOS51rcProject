@@ -32,7 +32,7 @@
 @end
 
 @implementation CommonFavorityViewController
-
+@synthesize InviteJobsFromFavorityViewDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,13 +45,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.pageNumber = 1;
     checkedCpArray = [[NSMutableArray alloc] init];//选择的企业
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
     [lbTitle setFont:[UIFont systemFontOfSize:12]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
-    //    [viewTitle setBackgroundColor:[UIColor blueColor]];
+   
     [viewTitle addSubview:lbTitle];
     //设置导航标题(搜索结果)
     self.lbSearchResult = [[[UILabel alloc] initWithFrame:CGRectMake(0, 22, viewTitle.frame.size.width, 20)] autorelease];
@@ -93,11 +94,10 @@
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:@"20" forKey:@"pageSize"];
     [dicParam setObject:[NSString stringWithFormat:@"%d",self.pageNumber] forKey:@"pageNum"];
-    [dicParam setObject:@"0" forKey:@"cvMainID"];
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
     
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetExJobApply" Params:dicParam];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaFavorateListByPaMainID" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
     request.tag = 1;
@@ -149,13 +149,13 @@
     int isBooked = 0;
     //用于选择时，传入邀请企业参会页面
     cpMain.IsBooked = isBooked;
-    cpMain.ID = rowData[@"cpMainID"];
+    cpMain.ID = rowData[@"cpID"];
     cpMain.Name = rowData[@"cpName"];
     //cpMain.Address = rowData[@"Address"];
     //cpMain.OrderDate = rowData[@"AddDate"];
     //cpMain.Lat = rowData[@"Lat"];
     //cpMain.Lng = rowData[@"Lng"];
-    cpMain.jobID = rowData[@"EnJobID"];
+    cpMain.jobID = rowData[@"JobID"];
     cpMain.caMainID = rowData[@"caMainID"];
     cpMain.JobName = rowData[@"JobName"];
     
@@ -183,37 +183,30 @@
     [cell.contentView addSubview:lbCompanyName];
     [lbCompanyName release];
     
-    //刷新时间
-    UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(240, 28, 75, 20)];
-    [lbRefreshDate setText:[CommonController stringFromDate:[CommonController dateFromString:rowData[@"RefreshDate"]] formatType:@"MM-dd HH:mm"]];
-    [lbRefreshDate setFont:fontCell];
-    [lbRefreshDate setTextColor:colorText];
-    [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
-    [cell.contentView addSubview:lbRefreshDate];
-    [lbRefreshDate release];
-    
-    //地区|学历
-    NSString *strRegionAndEducation = [NSString stringWithFormat:@"%@|%@",[CommonController getDictionaryDesc:rowData[@"dcRegionID"] tableName:@"dcRegion"],[CommonController getDictionaryDesc:rowData[@"dcEducationID"] tableName:@"dcEducation"]];
-    UILabel *lbRegionAndEducation = [[UILabel alloc] initWithFrame:CGRectMake(40, 51, 200, 20)];
-    [lbRegionAndEducation setText:strRegionAndEducation];
-    [lbRegionAndEducation setFont:fontCell];
-    [lbRegionAndEducation setTextColor:colorText];
-    [cell.contentView addSubview:lbRegionAndEducation];
-    [lbRegionAndEducation release];
-    
     //月薪
     NSString *strSalary = [CommonController getDictionaryDesc:rowData[@"dcSalaryID"] tableName:@"dcSalary"];
     if (strSalary.length == 0) {
         strSalary = @"面议";
     }
-    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(240, 51, 75, 20)];
+    strSalary = [NSString stringWithFormat:@"月薪：%@", strSalary];
+    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(40, 48, 160, 20)];
     [lbSalary setText:strSalary];
     [lbSalary setFont:fontCell];
     [lbSalary setTextColor:[UIColor redColor]];
-    [lbSalary setTextAlignment:NSTextAlignmentRight];
+    [lbSalary setTextAlignment:NSTextAlignmentLeft];
     [cell.contentView addSubview:lbSalary];
     [lbSalary release];
     
+    //刷新时间
+    UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 68, 160, 20)];
+    NSString *strTime = [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"];
+    strTime = [NSString stringWithFormat:@"收藏时间%@：", strTime];
+    [lbRefreshDate setText:strTime];
+    [lbRefreshDate setFont:fontCell];
+    [lbRefreshDate setTextColor:colorText];
+    [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
+    [cell.contentView addSubview:lbRefreshDate];
+    [lbRefreshDate release];
     //复选框
     UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
     [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
@@ -226,7 +219,7 @@
     [btnCheck release];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 90, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
@@ -234,7 +227,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 77;
+    return 90;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -259,21 +252,13 @@
         [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
         [sender setTag:1];
     }
-    //NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
 }
 
 - (void)jobApply
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
-        RmInviteCpViewController *rmInviteCpViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
-        rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
-        rmInviteCpViewCtrl.strAddress = self.strAddress;
-        rmInviteCpViewCtrl.strPlace = self.strPlace;
-        rmInviteCpViewCtrl.strRmID = self.rmID;
-        rmInviteCpViewCtrl.selectRmCps = checkedCpArray;
-        [checkedCpArray retain];
-        [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
+         [InviteJobsFromFavorityViewDelegate InviteJobsFromFavorityView:checkedCpArray];
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
