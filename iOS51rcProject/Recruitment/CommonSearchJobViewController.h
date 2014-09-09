@@ -1,6 +1,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Delegate/GoJobSearchResultListViewDelegate.h"
+
+//招聘会搜索企业页面
 @interface CommonSearchJobViewController : UIViewController
 {
     id<GoJobSearchResultListViewDelegate> searchDelegate;

@@ -1,5 +1,7 @@
 #import "EIMainViewController.h"
 #import "SlideNavigationController.h"
+#import "EIItemDetailsViewController.h"
+#import "EiSearchViewController.h"
 #define MENUHEIHT 40
 
 @interface EIMainViewController ()<SlideNavigationControllerDelegate>
@@ -23,7 +25,7 @@
     self.navigationItem.title = @"就业资讯";
     //右侧搜索按钮
     UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
+    [myRmBtn addTarget:self action:@selector(btnKeyWordSearchClick:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imgSearch =  [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     imgSearch.image = [UIImage imageNamed:@"ico_jobnews_search.png"];
     [myRmBtn addSubview:imgSearch];
@@ -36,7 +38,21 @@
     [imgSearch release];
      [self commInit];
 }
+//关键字搜索资讯
+-(void) btnKeyWordSearchClick:(UIButton *)sender
+{
+    EiSearchViewController *searchCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"EiSearchView"];
+    [self.navigationController pushViewController:searchCtrl animated:YES];
+}
 
+//点击到达详细页面
+-(void) GoToEiItemDetailsViewFromScrollView:(NSString *)newsID{
+    UIStoryboard *eiStoryboard = [UIStoryboard storyboardWithName:@"EmploymentInformation" bundle:nil];
+    EIItemDetailsViewController *detailCtrl = (EIItemDetailsViewController*)[eiStoryboard
+                                                                             instantiateViewControllerWithIdentifier: @"EIItemDetailsView"];
+    detailCtrl.strNewsID = newsID;
+    [self.navigationController pushViewController:detailCtrl animated:YES];
+}
 -(void) btnMyRecruitmentClick:(UIBarButtonItem *)sender
 {
     //MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
@@ -108,10 +124,12 @@
     }
     //初始化滑动列表
     if (mScrollPageView == nil) {
-        mScrollPageView = [[ScrollPageView alloc] initWithFrame:CGRectMake(0, 60 + MENUHEIHT, self.view.frame.size.width, self.view.frame.size.height - MENUHEIHT)];
+        mScrollPageView = [[EiScrollPageView alloc] initWithFrame:CGRectMake(0, 60 + MENUHEIHT, self.view.frame.size.width, self.view.frame.size.height - MENUHEIHT)];
         mScrollPageView.delegate = self;
     }
+    //初始化多个页面，添加入滚动的列表里
     [mScrollPageView setContentOfTables:vButtonItemArray.count];
+    mScrollPageView.gotoDetailsView = self;
     //默认选中第一个button
     [mMenuHriZontal clickButtonAtIndex:0];
     //-------

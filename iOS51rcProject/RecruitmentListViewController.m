@@ -262,8 +262,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
-    RecruitmentViewController *detailC = (RecruitmentViewController*)[mainStoryboard
+    //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    RecruitmentViewController *detailC = (RecruitmentViewController*)[self.storyboard
                                                                       instantiateViewControllerWithIdentifier: @"RecruitmentView"];
     detailC.recruitmentID = recruitmentData[indexPath.row][@"ID"];
     [self.navigationController pushViewController:detailC animated:true];

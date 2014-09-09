@@ -1,6 +1,8 @@
 #import <UIKit/UIKit.h>
-
-@interface RecruitmentViewController : UIViewController
+#import "AttendRMPopUp.h"
+#import "CustomPopup.h"
+#import "AttendRMPopUp.h"
+@interface RecruitmentViewController : UIViewController<AttendRMPopupDelegate>
 {
 //    NSString *strAddress;
 //    NSString *strPlace;

@@ -133,8 +133,18 @@
 		99908A5919A34DD300137FDE /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5319A34DD300137FDE /* FMDatabaseQueue.m */; };
 		99908A5A19A34DD300137FDE /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5519A34DD300137FDE /* FMResultSet.m */; };
 		99908A5C19A37D2000137FDE /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */; };
+		99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */; };
+		99938FD119BC2D55008F986A /* EiSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD019BC2D55008F986A /* EiSearchViewController.m */; };
+		99938FD319BCAFFB008F986A /* Recruitment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99938FD219BCAFFB008F986A /* Recruitment.storyboard */; };
+		99938FD619BD4051008F986A /* AttendRMPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD519BD4051008F986A /* AttendRMPopUp.m */; };
+		99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */; };
+		99938FDC19BD84F0008F986A /* CommonFavorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */; };
+		99938FDF19BD85A9008F986A /* RMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FDE19BD85A9008F986A /* RMScrollPageView.m */; };
+		99938FE319BD9821008F986A /* RMSearchJobListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FE219BD9821008F986A /* RMSearchJobListViewController.m */; };
 		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
 		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
+		999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */; };
+		999B5B0E19B996FB0067B3E7 /* EIListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0D19B996FB0067B3E7 /* EIListView.m */; };
 		999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */; };
 		99A5D671199CB8D100466B0C /* RecruitmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A5D670199CB8D100466B0C /* RecruitmentListViewController.m */; };
 		99AC903B19AC395400165D88 /* CpMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AC903A19AC395400165D88 /* CpMainViewController.m */; };
@@ -395,6 +405,8 @@
 		9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobclose.png; sourceTree = "<group>"; };
 		9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobnext.png; sourceTree = "<group>"; };
 		9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobpre.png; sourceTree = "<group>"; };
+		9930AA5919BA0E6000B6C70D /* GoToEIItemDetailsViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToEIItemDetailsViewDelegate.h; sourceTree = "<group>"; };
+		9930AA5A19BA137C00B6C70D /* GoToEiItemDetailsViewFromScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToEiItemDetailsViewFromScrollViewDelegate.h; sourceTree = "<group>"; };
 		9942F37C19B94E4300191C74 /* ico_map_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_back.png; sourceTree = "<group>"; };
 		9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_pointer_blue.png; sourceTree = "<group>"; };
 		9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_pointer_red.png; sourceTree = "<group>"; };
@@ -521,8 +533,30 @@
 		99908A5419A34DD300137FDE /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		99908A5519A34DD300137FDE /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		99938FCC19BA179F008F986A /* EIKeyWordSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIKeyWordSearchViewController.h; sourceTree = "<group>"; };
+		99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIKeyWordSearchViewController.m; sourceTree = "<group>"; };
+		99938FCF19BC2D55008F986A /* EiSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiSearchViewController.h; sourceTree = "<group>"; };
+		99938FD019BC2D55008F986A /* EiSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EiSearchViewController.m; sourceTree = "<group>"; };
+		99938FD219BCAFFB008F986A /* Recruitment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recruitment.storyboard; path = Recruitment/Recruitment.storyboard; sourceTree = "<group>"; };
+		99938FD419BD4051008F986A /* AttendRMPopUp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendRMPopUp.h; sourceTree = "<group>"; };
+		99938FD519BD4051008F986A /* AttendRMPopUp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendRMPopUp.m; sourceTree = "<group>"; };
+		99938FD719BD84C1008F986A /* CommonApplyJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonApplyJobViewController.h; path = Recruitment/CommonApplyJobViewController.h; sourceTree = "<group>"; };
+		99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonApplyJobViewController.m; path = Recruitment/CommonApplyJobViewController.m; sourceTree = "<group>"; };
+		99938FDA19BD84F0008F986A /* CommonFavorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonFavorityViewController.h; path = Recruitment/CommonFavorityViewController.h; sourceTree = "<group>"; };
+		99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonFavorityViewController.m; path = Recruitment/CommonFavorityViewController.m; sourceTree = "<group>"; };
+		99938FDD19BD85A9008F986A /* RMScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMScrollPageView.h; path = Recruitment/RMScrollPageView.h; sourceTree = "<group>"; };
+		99938FDE19BD85A9008F986A /* RMScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMScrollPageView.m; path = Recruitment/RMScrollPageView.m; sourceTree = "<group>"; };
+		99938FE119BD9821008F986A /* RMSearchJobListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMSearchJobListViewController.h; path = Recruitment/RMSearchJobListViewController.h; sourceTree = "<group>"; };
+		99938FE219BD9821008F986A /* RMSearchJobListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMSearchJobListViewController.m; path = Recruitment/RMSearchJobListViewController.m; sourceTree = "<group>"; };
+		99938FE419BD9CCC008F986A /* GoJobSearchResultListFromScrollPageDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoJobSearchResultListFromScrollPageDelegate.h; path = Recruitment/GoJobSearchResultListFromScrollPageDelegate.h; sourceTree = "<group>"; };
 		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
 		999B5B0319B980510067B3E7 /* ico_EI_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background.png; sourceTree = "<group>"; };
+		999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiScrollPageView.h; sourceTree = "<group>"; };
+		999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EiScrollPageView.m; sourceTree = "<group>"; };
+		999B5B0919B987820067B3E7 /* ScrollPageViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollPageViewDelegate.h; sourceTree = "<group>"; };
+		999B5B0B19B994050067B3E7 /* SearchViewByTypeDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewByTypeDelegate.h; sourceTree = "<group>"; };
+		999B5B0C19B996FB0067B3E7 /* EIListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIListView.h; sourceTree = "<group>"; };
+		999B5B0D19B996FB0067B3E7 /* EIListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIListView.m; sourceTree = "<group>"; };
 		999DF62E19AECC5600C05F20 /* GoToRmViewDetailDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToRmViewDetailDelegate.h; sourceTree = "<group>"; };
 		999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoToMyInvitedCpViewDelegate.h; path = Recruitment/Delegate/GoToMyInvitedCpViewDelegate.h; sourceTree = "<group>"; };
 		999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmInviteCpListViewController.h; path = Recruitment/MyRmInviteCpListViewController.h; sourceTree = "<group>"; };
@@ -893,6 +927,8 @@
 				9925BEDB19B80E02002DBFE0 /* CustomPopup.m */,
 				9925BEDC19B80E02002DBFE0 /* Popup+UIView.h */,
 				9925BEDD19B80E02002DBFE0 /* Popup+UIView.m */,
+				99938FD419BD4051008F986A /* AttendRMPopUp.h */,
+				99938FD519BD4051008F986A /* AttendRMPopUp.m */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -1173,6 +1209,35 @@
 			path = FMDB;
 			sourceTree = "<group>";
 		};
+		99938FE019BD85DE008F986A /* Invite */ = {
+			isa = PBXGroup;
+			children = (
+				99B9671E19B4550500E93CBD /* RmSearchJobForInviteViewController.h */,
+				99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */,
+				99938FDD19BD85A9008F986A /* RMScrollPageView.h */,
+				99938FDE19BD85A9008F986A /* RMScrollPageView.m */,
+				99938FDA19BD84F0008F986A /* CommonFavorityViewController.h */,
+				99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */,
+				99B9672319B45B3600E93CBD /* CommonSearchJobViewController.h */,
+				99B9672419B45B3600E93CBD /* CommonSearchJobViewController.m */,
+				99938FD719BD84C1008F986A /* CommonApplyJobViewController.h */,
+				99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */,
+				99938FE119BD9821008F986A /* RMSearchJobListViewController.h */,
+				99938FE219BD9821008F986A /* RMSearchJobListViewController.m */,
+			);
+			name = Invite;
+			sourceTree = "<group>";
+		};
+		999B5B0A19B993E10067B3E7 /* Degelate */ = {
+			isa = PBXGroup;
+			children = (
+				999B5B0B19B994050067B3E7 /* SearchViewByTypeDelegate.h */,
+				9930AA5919BA0E6000B6C70D /* GoToEIItemDetailsViewDelegate.h */,
+				9930AA5A19BA137C00B6C70D /* GoToEiItemDetailsViewFromScrollViewDelegate.h */,
+			);
+			path = Degelate;
+			sourceTree = "<group>";
+		};
 		999DF62F19AECEE700C05F20 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -1180,6 +1245,7 @@
 				999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */,
 				99B7FF8419B3660900BD1345 /* SelectJobDelegate.h */,
 				99B9672619B4614F00E93CBD /* GoJobSearchResultListViewDelegate.h */,
+				99938FE419BD9CCC008F986A /* GoJobSearchResultListFromScrollPageDelegate.h */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -1200,6 +1266,7 @@
 			isa = PBXGroup;
 			children = (
 				99B385D419A6F1A000B3C734 /* Delegate */,
+				99B2F2FA199C43580066853D /* Login.storyboard */,
 				99AF854619A1883400524B66 /* FindPsdStep1ViewController.h */,
 				99AF854719A1883400524B66 /* FindPsdStep1ViewController.m */,
 				99AF854819A1883400524B66 /* FindPsdStep2ViewController.h */,
@@ -1250,13 +1317,22 @@
 		99B9822819B4C46700D5D77D /* EmploymentInformation */ = {
 			isa = PBXGroup;
 			children = (
+				999B5B0A19B993E10067B3E7 /* Degelate */,
 				99B9822919B4C49600D5D77D /* EIMainViewController.h */,
 				99B9822A19B4C49600D5D77D /* EIMainViewController.m */,
+				999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */,
+				999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */,
 				99B9822C19B4C4B000D5D77D /* EIListViewController.h */,
 				99B9822D19B4C4B000D5D77D /* EIListViewController.m */,
 				99B9822F19B4C52100D5D77D /* EIItemDetailsViewController.h */,
 				99B9823019B4C52100D5D77D /* EIItemDetailsViewController.m */,
+				999B5B0C19B996FB0067B3E7 /* EIListView.h */,
+				999B5B0D19B996FB0067B3E7 /* EIListView.m */,
+				99938FCC19BA179F008F986A /* EIKeyWordSearchViewController.h */,
+				99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */,
 				99BD6FB219B5A4F300514807 /* EmploymentInformation.storyboard */,
+				99938FCF19BC2D55008F986A /* EiSearchViewController.h */,
+				99938FD019BC2D55008F986A /* EiSearchViewController.m */,
 			);
 			path = EmploymentInformation;
 			sourceTree = "<group>";
@@ -1272,6 +1348,7 @@
 				99BD6FE319B5AFDF00514807 /* RefreshTableHeaderView */,
 				99BD6FE819B5AFDF00514807 /* ScrollPageView.h */,
 				99BD6FE919B5AFDF00514807 /* ScrollPageView.m */,
+				999B5B0919B987820067B3E7 /* ScrollPageViewDelegate.h */,
 			);
 			path = CircleView;
 			sourceTree = "<group>";
@@ -1337,9 +1414,9 @@
 		99BEE43E19ADB0130090C9E1 /* Recruitment */ = {
 			isa = PBXGroup;
 			children = (
+				99938FE019BD85DE008F986A /* Invite */,
+				99938FD219BCAFFB008F986A /* Recruitment.storyboard */,
 				999DF62F19AECEE700C05F20 /* Delegate */,
-				99B9672319B45B3600E93CBD /* CommonSearchJobViewController.h */,
-				99B9672419B45B3600E93CBD /* CommonSearchJobViewController.m */,
 				99BEE43B19ADAEDE0090C9E1 /* MyRecruitmentViewController.h */,
 				99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */,
 				99BEE43F19ADBE380090C9E1 /* MyRmCpListViewController.h */,
@@ -1356,14 +1433,12 @@
 				995575C219AC64EA00B73E4A /* RmAttendCpListViewController.m */,
 				995575BE19AC64CE00B73E4A /* RmAttendPaListViewController.h */,
 				995575BF19AC64CE00B73E4A /* RmAttendPaListViewController.m */,
-				99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */,
-				99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */,
 				99B9672719B462CF00E93CBD /* RmInviteCpListFromSearchViewController.h */,
 				99B9672819B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m */,
 				99B96B0B19B0286C0069C1FA /* RmInviteCpViewController.h */,
 				99B96B0C19B0286C0069C1FA /* RmInviteCpViewController.m */,
-				99B9671E19B4550500E93CBD /* RmSearchJobForInviteViewController.h */,
-				99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */,
+				99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */,
+				99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */,
 			);
 			name = Recruitment;
 			sourceTree = "<group>";
@@ -1432,7 +1507,6 @@
 				99CFD82F199B5F80009A5ABA /* Images.xcassets */,
 				99CFD84C199B6082009A5ABA /* Home.storyboard */,
 				9952A06E19AAF72B00F6452C /* JobSearch.storyboard */,
-				99B2F2FA199C43580066853D /* Login.storyboard */,
 				99CFD826199B5F80009A5ABA /* AppDelegate.h */,
 				99CFD827199B5F80009A5ABA /* AppDelegate.m */,
 				99AC903919AC395400165D88 /* CpMainViewController.h */,
@@ -1821,6 +1895,7 @@
 				99CFD899199B60D8009A5ABA /* weibo.png in Resources */,
 				99CFD88C199B60D8009A5ABA /* loading.gif in Resources */,
 				99CFD87F199B60D8009A5ABA /* ico_leftmenu_more.png in Resources */,
+				99938FD319BCAFFB008F986A /* Recruitment.storyboard in Resources */,
 				9901836019AC58F900CA1CB2 /* ico_joblist_favorite.png in Resources */,
 				9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */,
 				99CFD888199B60D8009A5ABA /* ico_main_rm.png in Resources */,
@@ -1878,6 +1953,7 @@
 				995575C019AC64CE00B73E4A /* RmAttendPaListViewController.m in Sources */,
 				99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */,
 				9925BEF919B80E02002DBFE0 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
+				99938FD119BC2D55008F986A /* EiSearchViewController.m in Sources */,
 				9925BF0719B80E1F002DBFE0 /* SearchViewController.m in Sources */,
 				99B7FF8319B353C700BD1345 /* RmCpJobListViewController.m in Sources */,
 				99908A5619A34DD300137FDE /* FMDatabase.m in Sources */,
@@ -1890,6 +1966,7 @@
 				998025CF19A23528001A7E84 /* AnimatedGif.m in Sources */,
 				99B9822719B4C3DA00D5D77D /* GRItemDetailsViewController.m in Sources */,
 				9942F38D19B9599000191C74 /* MoreViewController.m in Sources */,
+				99938FE319BD9821008F986A /* RMSearchJobListViewController.m in Sources */,
 				9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */,
 				99B4ED9219AB067C004C9068 /* JobViewController.m in Sources */,
 				997BF0EC199DB33C00FD0B12 /* GDataXMLNode.m in Sources */,
@@ -1906,18 +1983,22 @@
 				9925BEF819B80E02002DBFE0 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				99AF855919A1883400524B66 /* LoginDetailsViewController.m in Sources */,
 				9925BF0519B80E1F002DBFE0 /* MapSearchViewController.mm in Sources */,
+				99938FD619BD4051008F986A /* AttendRMPopUp.m in Sources */,
+				999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */,
 				99908A5819A34DD300137FDE /* FMDatabasePool.m in Sources */,
 				9925BF0619B80E1F002DBFE0 /* SearchListViewController.m in Sources */,
 				991125A119A49DCE00C98173 /* Toast+UIView.m in Sources */,
 				9925BEF619B80E02002DBFE0 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
 				998025C519A23024001A7E84 /* UIView+Extension.m in Sources */,
 				997BF0EB199DB33C00FD0B12 /* Reachability.m in Sources */,
+				99938FDF19BD85A9008F986A /* RMScrollPageView.m in Sources */,
 				99CFD828199B5F80009A5ABA /* AppDelegate.m in Sources */,
 				99BD6FEE19B5AFDF00514807 /* CustomTableView.m in Sources */,
 				997BF0E3199DB33C00FD0B12 /* ASIAuthenticationDialog.m in Sources */,
 				99A5D671199CB8D100466B0C /* RecruitmentListViewController.m in Sources */,
 				997BF0E8199DB33C00FD0B12 /* ASIHTTPRequest.m in Sources */,
 				99CFD824199B5F80009A5ABA /* main.mm in Sources */,
+				99938FDC19BD84F0008F986A /* CommonFavorityViewController.m in Sources */,
 				9925BEF119B80E02002DBFE0 /* DictionaryPickerView.m in Sources */,
 				998025C419A23024001A7E84 /* UIScrollView+MJRefresh.m in Sources */,
 				99AF855B19A1883400524B66 /* RegisterViewController.m in Sources */,
@@ -1928,6 +2009,7 @@
 				99AF855619A1883400524B66 /* FindPsdStep1ViewController.m in Sources */,
 				99B385D919A744C600B3C734 /* SearchMainViewController.m in Sources */,
 				99B4ED8C19AB0458004C9068 /* JobDetailsController.m in Sources */,
+				999B5B0E19B996FB0067B3E7 /* EIListView.m in Sources */,
 				9925BEFD19B80E02002DBFE0 /* SlideNavigationController.m in Sources */,
 				99BDC5A219A586A800B2BDB1 /* HomeViewController.m in Sources */,
 				99B9672519B45B3600E93CBD /* CommonSearchJobViewController.m in Sources */,
@@ -1943,11 +2025,16 @@
 				99BD6FF219B5AFDF00514807 /* MenuHrizontal.m in Sources */,
 				99BD6FF319B5AFDF00514807 /* CircleView.m in Sources */,
 				99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */,
+<<<<<<< HEAD
 				990C8D3E19B9A4DC00B81AFB /* CampusTalkViewController.m in Sources */,
+=======
+				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
+>>>>>>> FETCH_HEAD
 				997BF0E5199DB33C00FD0B12 /* ASIDataDecompressor.m in Sources */,
 				99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */,
 				99AF855819A1883400524B66 /* FindPsdStep3ViewController.m in Sources */,
 				9925BEFA19B80E02002DBFE0 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
+				99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */,
 				99AF855A19A1883400524B66 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

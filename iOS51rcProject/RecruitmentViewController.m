@@ -6,6 +6,8 @@
 #import "RmAttendCpListViewController.h"
 #import "MyRecruitmentViewController.h"
 #import "RmSearchJobForInviteViewController.h"
+#import "LoginViewController.h"
+
 
 @interface RecruitmentViewController () <NetWebServiceRequestDelegate,UIScrollViewDelegate>
 
@@ -23,12 +25,12 @@
 @property (retain, nonatomic) NetWebServiceRequest *runningRequestJoinRm;
 @property (nonatomic, retain) LoadingAnimationView *loading;
 @property (retain, nonatomic) NSString *attentCpCount;
+@property (nonatomic, retain) AttendRMPopUp *cPopup;
 @end
 
 @implementation RecruitmentViewController
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"123");
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -113,9 +115,22 @@
         [self bindRm:requestData];
     }else if(request.tag == 2){
         [self.loading stopAnimating];
-        RmSearchJobForInviteViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"RmSearchJobForInviteView"];
-        [self.navigationController pushViewController:searchView animated:YES];
+        self.cPopup = [[[AttendRMPopUp alloc] initPopup] autorelease];
+        //self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
+        [self.cPopup setDelegate:self];
+        [self.cPopup showPopup:self.view];
     }
+}
+
+//预约成功，打开搜索、申请、收藏界面
+-(void) attendRM{
+    RmSearchJobForInviteViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"RmSearchJobForInviteView"];
+    NSString *strTime = [NSString stringWithFormat:@"%@",[CommonController stringFromDate:self.dtBeginTime formatType:@"yyyy-MM-dd HH:mm"]];
+    searchView.strBeginTime = strTime;
+    searchView.strAddress = self.strAddress;
+    searchView.strPlace = self.strPlace;
+    searchView.rmID = self.recruitmentID;
+    [self.navigationController pushViewController:searchView animated:YES];
 }
 
 //绑定招聘会的基本信息
@@ -330,24 +345,33 @@
 }
 
 //点击我要参会
--(IBAction)btnJoinClick:(id)sender{
+-(void)btnJoinClick:(id)sender{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *code = [userDefaults objectForKey:@"code"];
-    NSString *userID = [userDefaults objectForKey:@"UserID"];
-    
-    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:self.recruitmentID forKey:@"RmID"];
-    [dicParam setObject:userID forKey:@"paMainID"];
-    [dicParam setObject:code forKey:@"code"];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"AddPaRmAppointment" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    request.tag = 2;
-    self.runningRequestJoinRm = request;
-    
-    self.loading = [[[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self] autorelease];
-    [self.loading startAnimating];
-    [dicParam release];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *code = [userDefaults objectForKey:@"code"];
+        NSString *userID = [userDefaults objectForKey:@"UserID"];
+        
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:self.recruitmentID forKey:@"RmID"];
+        [dicParam setObject:userID forKey:@"paMainID"];
+        [dicParam setObject:code forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"AddPaRmAppointment" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 2;
+        self.runningRequestJoinRm = request;
+        
+        self.loading = [[[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self] autorelease];
+        [self.loading startAnimating];
+        [dicParam release];
+
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
 }
 
 //点击参会企业

@@ -24,4 +24,6 @@
 +(void) execSql:(NSString *)sql;
 +(FMResultSet *) querySql:(NSString *)sql;
 +(NSString*)GetCurrentNet;
++(NSMutableArray *)getNewsType:(NSMutableArray *)newsTypeArray;
++ (NSString *) FilterHtml :(NSString*) content;
 @end

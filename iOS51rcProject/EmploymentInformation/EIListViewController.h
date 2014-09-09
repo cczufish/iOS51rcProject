@@ -1,13 +1,14 @@
-//
-//  EIListViewController.h
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-9-1.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
+#import "LoadingAnimationView.h"
 
-@interface EIListViewController : UIViewController
-
+//关键字搜索结果
+@interface EIListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+{
+    NSMutableArray *eiListData;//新闻列表
+    NSMutableArray *placeData;
+    NSInteger page;
+    NSString *regionid;
+    LoadingAnimationView *loadView;
+}
+@property (retain, nonatomic) NSString *strKeyWord;
 @end

@@ -1,5 +1,5 @@
 #import "ScrollPageView.h"
-#import "HomeViewCell.h"
+//#import "HomeViewCell.h"
 
 @implementation ScrollPageView
 
@@ -39,17 +39,17 @@
 }
 
 #pragma mark - 其他辅助功能
-#pragma mark 添加ScrollowViewd的ContentView
+#pragma mark 添加包含的子View
 -(void)setContentOfTables:(NSInteger)aNumerOfTables{
     for (int i = 0; i < aNumerOfTables; i++) {
-        CustomTableView *vCustomTableView = [[CustomTableView alloc] initWithFrame:CGRectMake(320 * i, 0, 320, self.frame.size.height)];
-        vCustomTableView.delegate = self;
-        vCustomTableView.dataSource = self;
+        //CustomTableView *vCustomTableView = [[CustomTableView alloc] initWithFrame:CGRectMake(320 * i, 0, 320, self.frame.size.height)];
+        //vCustomTableView.delegate = self;
+        //vCustomTableView.dataSource = self;
         //为table添加嵌套HeadderView
         //[self addLoopScrollowView:vCustomTableView];
-        [_scrollView addSubview:vCustomTableView];
-        [_contentItems addObject:vCustomTableView];
-        [vCustomTableView release];
+        //[_scrollView addSubview:vCustomTableView];
+        //[_contentItems addObject:vCustomTableView];
+        //[vCustomTableView release];
     }
     [_scrollView setContentSize:CGSizeMake(320 * aNumerOfTables, self.frame.size.height)];
 }
@@ -70,8 +70,8 @@
     if (_contentItems.count < aIndex) {
         return;
     }
-    CustomTableView *vTableContentView =(CustomTableView *)[_contentItems objectAtIndex:aIndex];
-    [vTableContentView forceToFreshData];
+    //CustomTableView *vTableContentView =(CustomTableView *)[_contentItems objectAtIndex:aIndex];
+    //[vTableContentView forceToFreshData];
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -104,61 +104,61 @@
 }
 
 #pragma mark - CustomTableViewDataSource
--(NSInteger)numberOfRowsInTableView:(UITableView *)aTableView InSection:(NSInteger)section FromView:(CustomTableView *)aView{
-    return aView.tableInfoArray.count;
-}
+//-(NSInteger)numberOfRowsInTableView:(UITableView *)aTableView InSection:(NSInteger)section FromView:(CustomTableView *)aView{
+//    return aView.tableInfoArray.count;
+//}
+//
+//-(UITableViewCell *)cellForRowInTableView:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(CustomTableView *)aView{
+//    static NSString *vCellIdentify = @"homeCell";
+//    HomeViewCell *vCell = [aTableView dequeueReusableCellWithIdentifier:vCellIdentify];
+//    if (vCell == nil) {
+//        vCell = [[[NSBundle mainBundle] loadNibNamed:@"HomeViewCell" owner:self options:nil] lastObject];
+//    }
+//    
+//    NSInteger vNewIndex = aIndexPath.row % 4 + 1;
+//    vCell.headerImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"new%d",vNewIndex]];
+//    return vCell;
+//}
+//
+//#pragma mark CustomTableViewDelegate
+//-(float)heightForRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(CustomTableView *)aView{
+//    HomeViewCell *vCell = [[[NSBundle mainBundle] loadNibNamed:@"HomeViewCell" owner:self options:nil] lastObject];
+//    return vCell.frame.size.height;
+//}
+//
+//-(void)didSelectedRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(CustomTableView *)aView{
+//}
 
--(UITableViewCell *)cellForRowInTableView:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(CustomTableView *)aView{
-    static NSString *vCellIdentify = @"homeCell";
-    HomeViewCell *vCell = [aTableView dequeueReusableCellWithIdentifier:vCellIdentify];
-    if (vCell == nil) {
-        vCell = [[[NSBundle mainBundle] loadNibNamed:@"HomeViewCell" owner:self options:nil] lastObject];
-    }
-    
-    NSInteger vNewIndex = aIndexPath.row % 4 + 1;
-    vCell.headerImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"new%d",vNewIndex]];
-    return vCell;
-}
+//-(void)loadData:(void(^)(int aAddedRowCount))complete FromView:(CustomTableView *)aView{
+//    //    double delayInSeconds = 1.0;
+//    //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//    //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//    for (int i = 0; i < 4; i++) {
+//        [aView.tableInfoArray  addObject:@"0"];
+//    }
+//    if (complete) {
+//        complete(4);
+//    }
+//    //    });
+//}
 
-#pragma mark CustomTableViewDelegate
--(float)heightForRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(CustomTableView *)aView{
-    HomeViewCell *vCell = [[[NSBundle mainBundle] loadNibNamed:@"HomeViewCell" owner:self options:nil] lastObject];
-    return vCell.frame.size.height;
-}
+//-(void)refreshData:(void(^)())complete FromView:(CustomTableView *)aView{
+//    double delayInSeconds = 1.0;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        [aView.tableInfoArray removeAllObjects];
+//        for (int i = 0; i < 4; i++) {
+//            [aView.tableInfoArray addObject:@"0"];
+//        }
+//        if (complete) {
+//            complete();
+//        }
+//    });
+//}
 
--(void)didSelectedRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(CustomTableView *)aView{
-}
-
--(void)loadData:(void(^)(int aAddedRowCount))complete FromView:(CustomTableView *)aView{
-    //    double delayInSeconds = 1.0;
-    //    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    //    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-    for (int i = 0; i < 4; i++) {
-        [aView.tableInfoArray  addObject:@"0"];
-    }
-    if (complete) {
-        complete(4);
-    }
-    //    });
-}
-
--(void)refreshData:(void(^)())complete FromView:(CustomTableView *)aView{
-    double delayInSeconds = 1.0;
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [aView.tableInfoArray removeAllObjects];
-        for (int i = 0; i < 4; i++) {
-            [aView.tableInfoArray addObject:@"0"];
-        }
-        if (complete) {
-            complete();
-        }
-    });
-}
-
-- (BOOL)tableViewEgoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view FromView:(CustomTableView *)aView{
-   return  aView.reloading;
-}
+//- (BOOL)tableViewEgoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view FromView:(CustomTableView *)aView{
+//   return  aView.reloading;
+//}
 
 
 @end
