@@ -14,6 +14,11 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbCpName;
 @property (retain, nonatomic) IBOutlet UILabel *lbJobDetail;
 @property (retain, nonatomic) IBOutlet UIButton *btnJobShow;
+@property (retain, nonatomic) IBOutlet UIImageView *imgSearch;
+@property (retain, nonatomic) IBOutlet UILabel *lbSearch;
+@property (retain, nonatomic) IBOutlet UIImageView *imgMapSearch;
+@property (retain, nonatomic) IBOutlet UILabel *lbMapSearch;
+@property (retain, nonatomic) IBOutlet UILabel *lbUnderline;
 @property (retain, nonatomic) BMKLocationService *locService;
 @property (retain, nonatomic) BMKPointAnnotation *locPoint;
 @property (retain, nonatomic) BMKGeoCodeSearch *geocodesearch;

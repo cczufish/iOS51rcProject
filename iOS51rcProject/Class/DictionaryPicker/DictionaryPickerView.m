@@ -218,7 +218,7 @@
 - (void)setRegionDictionary:(NSString *)parentid
 {
     if ([parentid length] == 0) {
-        FMResultSet *provinceList = [db executeQuery:@"select * from dcregion where parentid=''"];
+        FMResultSet *provinceList = [db executeQuery:@"select * from dcregion where parentid='' order by case _id when 32 then 0 else 1 end"];
         int i = 0;
         while ([provinceList next]) {
             NSDictionary *dicRegion = [[NSDictionary alloc] initWithObjectsAndKeys:

@@ -5,6 +5,7 @@
 #import "CommonController.h"
 #import "CustomPopup.h"
 #import "JobViewController.h"
+#import "SearchViewController.h"
 
 @interface MapSearchViewController () <BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,NetWebServiceRequestDelegate,SlideNavigationControllerDelegate,CustomPopupDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -231,6 +232,22 @@
     JobViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"JobView"];
     jobC.JobID = [NSString stringWithFormat:@"%d",self.btnJobShow.tag];
     [self.navigationController pushViewController:jobC animated:YES];
+}
+
+- (IBAction)switchToSearch:(id)sender {
+    [UIView animateWithDuration:0.2
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         [self.lbMapSearch setTextColor:[UIColor blackColor]];
+                         [self.lbSearch setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+                         [self.imgSearch setImage:[UIImage imageNamed:@"ico_mainsearch_normalsearch1.png"]];
+                         [self.imgMapSearch setImage:[UIImage imageNamed:@"ico_mainsearch_mapsearch2.png"]];
+                         [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+                     } completion:^(BOOL finished) {
+                         SearchViewController *searchC = [self.storyboard instantiateViewControllerWithIdentifier:@"SearchView"];
+                         [self.navigationController pushViewController:searchC animated:false];
+                     }];
 }
 
 - (void)changeJob:(NSArray *)jobdetail

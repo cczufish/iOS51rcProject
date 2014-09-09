@@ -315,6 +315,7 @@
             [arrPlace addObject:dicPlace];
         }
         placeData = arrPlace;
+        [arrPlace release];
     }
 }
 

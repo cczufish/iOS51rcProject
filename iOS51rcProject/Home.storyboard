@@ -51,6 +51,9 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="switchToSearch:" destination="kqb-nM-Cv1" eventType="touchUpInside" id="B3N-lS-kzP"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mq7-yR-zIY">
                                         <rect key="frame" x="160" y="47" width="160" height="2"/>
@@ -327,15 +330,20 @@
                     <navigationItem key="navigationItem" title="地图搜索" id="7jG-Ii-knh"/>
                     <connections>
                         <outlet property="btnJobShow" destination="l1V-6L-cGT" id="2XV-qE-bGS"/>
+                        <outlet property="imgMapSearch" destination="Bmt-B9-10y" id="JmC-cg-pYF"/>
                         <outlet property="imgPageNext" destination="jh5-L7-Ncz" id="mNH-RJ-TOl"/>
                         <outlet property="imgPagePrev" destination="xTz-72-W8h" id="FlS-gi-ogd"/>
+                        <outlet property="imgSearch" destination="xan-Bf-Cpt" id="c5v-Pf-nHK"/>
                         <outlet property="lbCpName" destination="3gc-kU-4H2" id="5pZ-B2-5GB"/>
                         <outlet property="lbJobCount" destination="E5G-6t-Bwu" id="L6a-Hn-MC8"/>
                         <outlet property="lbJobDetail" destination="VpB-w9-fzJ" id="Tb8-sJ-6nO"/>
                         <outlet property="lbJobName" destination="aSj-iN-kYq" id="Rv3-EN-m1T"/>
                         <outlet property="lbLocation" destination="HoW-v1-uOo" id="Sey-Vv-NgN"/>
+                        <outlet property="lbMapSearch" destination="eJ3-Nm-s77" id="T8K-db-bLN"/>
                         <outlet property="lbPageCount" destination="fdy-v1-ZoX" id="Hye-Da-WNT"/>
                         <outlet property="lbRadius" destination="EU3-2k-6B5" id="Fy1-HN-Hag"/>
+                        <outlet property="lbSearch" destination="cpi-XD-lV6" id="UGA-4J-D8u"/>
+                        <outlet property="lbUnderline" destination="Mq7-yR-zIY" id="KgH-cu-Rz1"/>
                         <outlet property="viewJobShow" destination="ght-9a-Cff" id="bTV-3I-8U6"/>
                         <outlet property="viewMap" destination="nFf-UT-E6g" id="F2H-kv-MUS"/>
                     </connections>
