@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchMainViewController : UIViewController
+@interface CpOtherJobsMainViewController : UIViewController
 
 @end

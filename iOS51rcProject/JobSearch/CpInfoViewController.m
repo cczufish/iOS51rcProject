@@ -1,18 +1,18 @@
 //
-//  SearchMainViewController.m
+//  CpInfoViewController.m
 //  iOS51rcProject
 //
-//  Created by qlrc on 14-8-22.
+//  Created by qlrc on 14-9-9.
 //  Copyright (c) 2014年 Lucifer. All rights reserved.
 //
 
-#import "SearchMainViewController.h"
+#import "CpInfoViewController.h"
 
-@interface SearchMainViewController ()
+@interface CpInfoViewController ()
 
 @end
 
-@implementation SearchMainViewController
+@implementation CpInfoViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,9 +33,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)btnSearch:(id)sender {
 }
 
 /*
