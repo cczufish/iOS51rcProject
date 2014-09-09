@@ -3,15 +3,18 @@
 #import "MJRefresh.h"
 #import "SearchPickerView.h"
 #import "Toast+UIView.h"
-@interface CommonApplyJobViewController : UIViewController
+#import "InviteJobsFromApplyViewDelegate.h"
+@interface CommonApplyJobViewController : UIViewController<InviteJobsFromApplyViewDelegate>
 {
      NSMutableArray *checkedCpArray;
+    id<InviteJobsFromApplyViewDelegate> inviteFromApplyViewDelegate;
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *tvJobList;
 @property (retain, nonatomic) IBOutlet UIButton *btnApply;
 @property (retain, nonatomic) IBOutlet UIView *viewBottom;
 
+@property (retain, nonatomic) id<InviteJobsFromApplyViewDelegate> inviteFromApplyViewDelegate;
 //招聘会的信息
 @property (retain,nonatomic) NSString* strBeginTime;
 @property (retain,nonatomic) NSString* strAddress;

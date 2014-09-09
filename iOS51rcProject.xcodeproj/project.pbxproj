@@ -405,6 +405,7 @@
 		9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobclose.png; sourceTree = "<group>"; };
 		9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobnext.png; sourceTree = "<group>"; };
 		9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobpre.png; sourceTree = "<group>"; };
+		992A5B4419BE7ED30042F2EB /* InviteJobsFromApplyViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InviteJobsFromApplyViewDelegate.h; path = Recruitment/InviteJobsFromApplyViewDelegate.h; sourceTree = "<group>"; };
 		9930AA5919BA0E6000B6C70D /* GoToEIItemDetailsViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToEIItemDetailsViewDelegate.h; sourceTree = "<group>"; };
 		9930AA5A19BA137C00B6C70D /* GoToEiItemDetailsViewFromScrollViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToEiItemDetailsViewFromScrollViewDelegate.h; sourceTree = "<group>"; };
 		9942F37C19B94E4300191C74 /* ico_map_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_back.png; sourceTree = "<group>"; };
@@ -1246,6 +1247,7 @@
 				99B7FF8419B3660900BD1345 /* SelectJobDelegate.h */,
 				99B9672619B4614F00E93CBD /* GoJobSearchResultListViewDelegate.h */,
 				99938FE419BD9CCC008F986A /* GoJobSearchResultListFromScrollPageDelegate.h */,
+				992A5B4419BE7ED30042F2EB /* InviteJobsFromApplyViewDelegate.h */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";

@@ -34,7 +34,7 @@
 @end
 
 @implementation CommonApplyJobViewController
-
+@synthesize inviteFromApplyViewDelegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -256,8 +256,7 @@
         rmInviteCpViewCtrl.selectRmCps = checkedCpArray;
         [checkedCpArray retain];
         
-        //RmSearchJobForInviteViewController *searchView = (RmSearchJobForInviteViewController *) [self getFatherController]
-        [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
+        [inviteFromApplyViewDelegate InviteJobsFromApplyView:checkedCpArray];        
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
