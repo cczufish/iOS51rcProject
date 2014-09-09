@@ -56,6 +56,12 @@
     [self.navigationController pushViewController:moreC animated:true];
 }
 
+- (IBAction)btnCampusClick:(id)sender {
+    UIStoryboard *storyMore = [UIStoryboard storyboardWithName:@"Campus" bundle:nil];
+    MoreViewController *moreC = [storyMore instantiateViewControllerWithIdentifier:@"CampusTalkView"];
+    moreC.navigationItem.title = @"校园招聘";
+    [self.navigationController pushViewController:moreC animated:true];
+}
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {

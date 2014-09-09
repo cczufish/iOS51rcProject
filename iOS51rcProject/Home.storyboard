@@ -1503,6 +1503,9 @@
                                 <state key="normal" title="Button" image="main_pic_campus.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnCampusClick:" destination="g2E-hT-ZB9" eventType="touchUpInside" id="epx-9K-l4h"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nmo-Xt-Re9">
                                 <rect key="frame" x="115" y="399" width="91" height="141"/>

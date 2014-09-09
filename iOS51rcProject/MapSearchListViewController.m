@@ -560,6 +560,7 @@
     [_dictionaryPicker release];
     [_arrCheckJobID release];
     [_cPopup release];
+    [_jobListData release];
     [super dealloc];
 }
 @end
