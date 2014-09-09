@@ -1,4 +1,4 @@
-#import "CampusTalkViewController.h"
+#import "CampusViewController.h"
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
@@ -6,7 +6,7 @@
 #import "DictionaryPickerView.h"
 #import "Toast+UIView.h"
 
-@interface CampusTalkViewController () <UICollectionViewDataSource,UICollectionViewDelegate,NetWebServiceRequestDelegate,DictionaryPickerDelegate>
+@interface CampusViewController () <UICollectionViewDataSource,UICollectionViewDelegate,NetWebServiceRequestDelegate,DictionaryPickerDelegate>
 {
     LoadingAnimationView *loadView;
 }
@@ -20,7 +20,7 @@
 @property (nonatomic, retain) DictionaryPickerView *dictionaryPicker;
 @end
 
-@implementation CampusTalkViewController
+@implementation CampusViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

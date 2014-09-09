@@ -11,7 +11,7 @@
 		9901836119AC58F900CA1CB2 /* ico_joblist_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9901835F19AC58F900CA1CB2 /* ico_joblist_online.png */; };
 		990C8D3519B99A2B00B81AFB /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */; };
 		990C8D3B19B9A41300B81AFB /* Campus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990C8D3A19B9A41300B81AFB /* Campus.storyboard */; };
-		990C8D3E19B9A4DC00B81AFB /* CampusTalkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C8D3D19B9A4DC00B81AFB /* CampusTalkViewController.m */; };
+		990C8D3E19B9A4DC00B81AFB /* CampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C8D3D19B9A4DC00B81AFB /* CampusViewController.m */; };
 		990CCC8519A998620022B44B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 990CCC8419A998620022B44B /* check.png */; };
 		991125A119A49DCE00C98173 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991125A019A49DCE00C98173 /* Toast+UIView.m */; };
 		991125A319A4D24F00C98173 /* ico_expire.png in Resources */ = {isa = PBXBuildFile; fileRef = 991125A219A4D24F00C98173 /* ico_expire.png */; };
@@ -294,8 +294,8 @@
 		990C8D3319B99A2B00B81AFB /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		990C8D3A19B9A41300B81AFB /* Campus.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Campus.storyboard; sourceTree = "<group>"; };
-		990C8D3C19B9A4DC00B81AFB /* CampusTalkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusTalkViewController.h; sourceTree = "<group>"; };
-		990C8D3D19B9A4DC00B81AFB /* CampusTalkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusTalkViewController.m; sourceTree = "<group>"; };
+		990C8D3C19B9A4DC00B81AFB /* CampusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusViewController.h; sourceTree = "<group>"; };
+		990C8D3D19B9A4DC00B81AFB /* CampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusViewController.m; sourceTree = "<group>"; };
 		990CCC8419A998620022B44B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		9911259F19A49DCE00C98173 /* Toast+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Toast+UIView.h"; sourceTree = "<group>"; };
 		991125A019A49DCE00C98173 /* Toast+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Toast+UIView.m"; sourceTree = "<group>"; };
@@ -811,8 +811,8 @@
 			isa = PBXGroup;
 			children = (
 				990C8D3A19B9A41300B81AFB /* Campus.storyboard */,
-				990C8D3C19B9A4DC00B81AFB /* CampusTalkViewController.h */,
-				990C8D3D19B9A4DC00B81AFB /* CampusTalkViewController.m */,
+				990C8D3C19B9A4DC00B81AFB /* CampusViewController.h */,
+				990C8D3D19B9A4DC00B81AFB /* CampusViewController.m */,
 			);
 			name = Campus;
 			sourceTree = "<group>";
@@ -2037,7 +2037,7 @@
 				99BD6FF219B5AFDF00514807 /* MenuHrizontal.m in Sources */,
 				99BD6FF319B5AFDF00514807 /* CircleView.m in Sources */,
 				99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */,
-				990C8D3E19B9A4DC00B81AFB /* CampusTalkViewController.m in Sources */,
+				990C8D3E19B9A4DC00B81AFB /* CampusViewController.m in Sources */,
 				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
 				997BF0E5199DB33C00FD0B12 /* ASIDataDecompressor.m in Sources */,
 				99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */,

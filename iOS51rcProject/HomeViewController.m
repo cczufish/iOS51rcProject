@@ -7,6 +7,7 @@
 #import "EmploymentInformation/EIMainViewController.h"
 #import "MoreViewController.h"
 #import "RecruitmentListViewController.h"
+#import "CampusViewController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
 
@@ -66,9 +67,9 @@
 
 - (IBAction)btnCampusClick:(id)sender {
     UIStoryboard *storyMore = [UIStoryboard storyboardWithName:@"Campus" bundle:nil];
-    MoreViewController *moreC = [storyMore instantiateViewControllerWithIdentifier:@"CampusTalkView"];
-    moreC.navigationItem.title = @"校园招聘";
-    [self.navigationController pushViewController:moreC animated:true];
+    CampusViewController *campusC = [storyMore instantiateViewControllerWithIdentifier:@"CampusView"];
+    campusC.navigationItem.title = @"校园招聘";
+    [self.navigationController pushViewController:campusC animated:true];
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
