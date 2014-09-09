@@ -2025,11 +2025,8 @@
 				99BD6FF219B5AFDF00514807 /* MenuHrizontal.m in Sources */,
 				99BD6FF319B5AFDF00514807 /* CircleView.m in Sources */,
 				99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */,
-<<<<<<< HEAD
 				990C8D3E19B9A4DC00B81AFB /* CampusTalkViewController.m in Sources */,
-=======
 				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
->>>>>>> FETCH_HEAD
 				997BF0E5199DB33C00FD0B12 /* ASIDataDecompressor.m in Sources */,
 				99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */,
 				99AF855819A1883400524B66 /* FindPsdStep3ViewController.m in Sources */,
