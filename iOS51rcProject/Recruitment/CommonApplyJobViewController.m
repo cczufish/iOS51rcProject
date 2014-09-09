@@ -247,15 +247,7 @@
 - (void)jobApply
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ([userDefaults objectForKey:@"UserID"]) {
-        RmInviteCpViewController *rmInviteCpViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
-        rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
-        rmInviteCpViewCtrl.strAddress = self.strAddress;
-        rmInviteCpViewCtrl.strPlace = self.strPlace;
-        rmInviteCpViewCtrl.strRmID = self.rmID;
-        rmInviteCpViewCtrl.selectRmCps = checkedCpArray;
-        [checkedCpArray retain];
-        
+    if ([userDefaults objectForKey:@"UserID"]) {          
         [inviteFromApplyViewDelegate InviteJobsFromApplyView:checkedCpArray];        
     }
     else {

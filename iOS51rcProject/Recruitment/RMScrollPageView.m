@@ -1,6 +1,7 @@
 #import "RmInviteCpListFromSearchViewController.h"
 #import "RMScrollPageView.h"
 #import "RmSearchJobForInviteViewController.h"
+#import "RmInviteCpViewController.h"
 
 @implementation RMScrollPageView
 @synthesize gotoSearchResultViewDelegate;
@@ -59,6 +60,7 @@
     applyCtrl.strAddress = fatherCtrl.strAddress;
     applyCtrl.strPlace = fatherCtrl.strPlace;
     applyCtrl.rmID = fatherCtrl.rmID;
+    applyCtrl.inviteFromApplyViewDelegate = self;
     applyCtrl.view.frame = CGRectMake(320, 0, 320, applyCtrl.view.frame.size.height) ;
     [_scrollView addSubview:applyCtrl.view];
     [_contentItems addObject:applyCtrl.view];
@@ -148,6 +150,20 @@
 ////    jobList.searchCondition = strSearchCondition;
 //    UIViewController *fatherCtrl = [self getFatherController];
 //     [fatherCtrl.navigationController pushViewController: jobList animated:YES];
+}
+
+-(void) InviteJobsFromApplyView:(NSMutableArray *)checkedCps{
+    //得到父View
+    RmSearchJobForInviteViewController *fatherCtrl = (RmSearchJobForInviteViewController*)[self getFatherController];
+    UIStoryboard *rmStoryboard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
+    RmInviteCpViewController *rmInviteCpViewCtrl = [rmStoryboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+    rmInviteCpViewCtrl.strBeginTime = fatherCtrl.strBeginTime;
+    rmInviteCpViewCtrl.strAddress = fatherCtrl.strAddress;
+    rmInviteCpViewCtrl.strPlace = fatherCtrl.strPlace;
+    rmInviteCpViewCtrl.strRmID = fatherCtrl.rmID;
+    rmInviteCpViewCtrl.selectRmCps = checkedCps;
+    
+    [fatherCtrl.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
 
 //得到父View
