@@ -277,6 +277,15 @@
     //公司名称
     self.lbCpName.textColor = [UIColor grayColor];
     [self.lbCpNameValue setText:dicJob[@"cpName"]];
+    //＝＝＝＝＝＝＝＝＝＝＝＝设置当前View标题＝＝＝＝＝＝＝＝＝＝＝
+    UIView *viewTitle = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)] autorelease];
+    UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 5, 125, 20)] autorelease];
+    [lbTitle setText:dicJob[@"cpName"]];
+    [lbTitle setFont:[UIFont systemFontOfSize:10]];
+    [lbTitle setTextAlignment:NSTextAlignmentCenter];
+    [viewTitle addSubview:lbTitle];
+    [self.navigationItem setTitleView:viewTitle];
+    
     //工作地点
     NSString *strJobRegion = dicJob[@"JobRegion"];
     labelSize = [CommonController CalculateFrame:strJobRegion fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];

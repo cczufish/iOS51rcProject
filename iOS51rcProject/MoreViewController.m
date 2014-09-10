@@ -2,6 +2,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import "AboutUsViewController.h"
 #import "SlideNavigationController.h"
+#import "FeedbackViewController.h"
 
 @interface MoreViewController () <UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate>
 
@@ -22,7 +23,23 @@
 {
     [super viewDidLoad];
     [self.tvMore setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(registerCompletion:)
+                                                 name:@"More"
+                                               object:nil];
 }
+
+-(void)registerCompletion:(NSNotification*)notification {
+    NSDictionary *theData = [notification userInfo];
+    NSString *value = [theData objectForKey:@"operation"];
+    
+    //从反馈页面返回
+    if([value isEqualToString:@"FeedbackFinished"]){
+        [self.view makeToast:@"反馈成功"];
+    }
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -99,6 +116,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
+        case 0:
+        {
+            //推送设置
+            break;
+        }
         case 1:
         {
             NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
@@ -129,6 +151,21 @@
                                     }];
             break;
         }
+        case 2:
+        {
+            FeedbackViewController *feedBackCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbackView"];
+            [self.navigationController pushViewController:feedBackCtrl animated:YES];
+            feedBackCtrl.navigationItem.title = @"意见反馈";
+            break;
+        }
+        case 3:
+        {
+            //意见反馈
+            FeedbackViewController *feedBackCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbackView"];
+            [self.navigationController pushViewController:feedBackCtrl animated:YES];
+            feedBackCtrl.navigationItem.title = @"意见反馈";
+            break;
+        }
         case 4:
         {
             AboutUsViewController *aboutUsC = [self.storyboard instantiateViewControllerWithIdentifier:@"AboutUsView"];
@@ -154,6 +191,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     // Dispose of any resources that can be recreated.
 }
 

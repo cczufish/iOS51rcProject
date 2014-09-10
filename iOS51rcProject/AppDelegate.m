@@ -89,7 +89,7 @@
     //判断当前设备屏幕尺寸
     CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
     UIStoryboard *mainStoryboard = nil;
-    if (iOSDeviceScreenSize.height == 568) {
+    if (iOSDeviceScreenSize.height == 568) {//IPhone 5
         mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
     }
     else{

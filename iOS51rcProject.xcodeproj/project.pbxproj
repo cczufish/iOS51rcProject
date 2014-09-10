@@ -98,6 +98,7 @@
 		9942F44E19B987D900191C74 /* ShareSDKFlatShareViewUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9942F43819B987D900191C74 /* ShareSDKFlatShareViewUI.bundle */; };
 		9942F44F19B987D900191C74 /* ShareSDKFlatShareViewUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9942F43919B987D900191C74 /* ShareSDKFlatShareViewUI.framework */; };
 		9942F45019B987D900191C74 /* ShareSDKShareActionSheet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9942F43A19B987D900191C74 /* ShareSDKShareActionSheet.framework */; };
+		99442A6819BFE9AD00667CE1 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99442A6719BFE9AD00667CE1 /* FeedbackViewController.m */; };
 		9945C30B19A1A4890027E931 /* ico_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30A19A1A4890027E931 /* ico_clock.png */; };
 		9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30C19A1AB370027E931 /* ico_rm_group.png */; };
 		9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9945C32A19A1E8FA0027E931 /* DatePicker.m */; };
@@ -478,6 +479,8 @@
 		9942F43819B987D900191C74 /* ShareSDKFlatShareViewUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKFlatShareViewUI.bundle; sourceTree = "<group>"; };
 		9942F43919B987D900191C74 /* ShareSDKFlatShareViewUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKFlatShareViewUI.framework; sourceTree = "<group>"; };
 		9942F43A19B987D900191C74 /* ShareSDKShareActionSheet.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKShareActionSheet.framework; sourceTree = "<group>"; };
+		99442A6619BFE9AD00667CE1 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = More/FeedbackViewController.h; sourceTree = "<group>"; };
+		99442A6719BFE9AD00667CE1 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = More/FeedbackViewController.m; sourceTree = "<group>"; };
 		9945C30A19A1A4890027E931 /* ico_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_clock.png; sourceTree = "<group>"; };
 		9945C30C19A1AB370027E931 /* ico_rm_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_group.png; sourceTree = "<group>"; };
 		9945C32919A1E8FA0027E931 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
@@ -1007,6 +1010,8 @@
 				9942F38C19B9599000191C74 /* MoreViewController.m */,
 				990C8D3319B99A2B00B81AFB /* AboutUsViewController.h */,
 				990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */,
+				99442A6619BFE9AD00667CE1 /* FeedbackViewController.h */,
+				99442A6719BFE9AD00667CE1 /* FeedbackViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -2002,6 +2007,7 @@
 				995575C019AC64CE00B73E4A /* RmAttendPaListViewController.m in Sources */,
 				99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */,
 				9925BEF919B80E02002DBFE0 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
+				99442A6819BFE9AD00667CE1 /* FeedbackViewController.m in Sources */,
 				99938FD119BC2D55008F986A /* EiSearchViewController.m in Sources */,
 				9925BF0719B80E1F002DBFE0 /* SearchViewController.m in Sources */,
 				99B7FF8319B353C700BD1345 /* RmCpJobListViewController.m in Sources */,
