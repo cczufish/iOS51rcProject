@@ -97,7 +97,7 @@
     }
     
     //结束等待动画
-    [self.loading stopAnimating];
+    //[self.loading stopAnimating];
 }
 
 //申请职位，插入数据库
@@ -228,6 +228,8 @@
     [self.jobMainScroll setContentSize:CGSizeMake(320, scrolHeight) ];
     self.ViewBottom.frame = CGRectMake(0, self.height - 80, 320, 50);
     self.jobMainScroll.frame = CGRectMake(0, 0, 320, self.height - 80);
+    
+    [self.loading stopAnimating];
 }
 
 //点击其他企业
@@ -410,11 +412,14 @@
     }else{
         mainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 60)];
     }
+    //遍历所有的福利图标
     for (int i=0; i<fuliArray.count; i++) {
         UIView *tmpView = fuliArray[i];
-        if (i == 0 || i==4 || i==8 || i==12) {
+        //如果是每一行的第一个图标
+        if (i == 0 || i==4 || i==8 || i==12|| i==16) {
             tmpView.frame = CGRectMake(0, (i/3)*15 + 2, tmpView.frame.size.width, 15);
         }else{
+            //找到上一个图标
             UIView *beforeView = fuliArray[i-1];
             tmpView.frame = CGRectMake(beforeView.frame.origin.x + beforeView.frame.size.width, beforeView.frame.origin.y, tmpView.frame.size.width, 15) ;
         }
