@@ -4,6 +4,8 @@
 @interface JobViewController : UIViewController<UIScrollViewDelegate>
 {
     NSMutableArray *recommentJobsData;
+    int tmpHeight;
+    int scrolHeight;
 }
 @property (retain, nonatomic) NSString *JobID;
 @property int height;

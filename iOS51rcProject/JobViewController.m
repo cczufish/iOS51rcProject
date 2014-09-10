@@ -189,11 +189,11 @@
     [self insertJobApply:value isFirst:NO];
 }
 
-//第一个消息完成了以后再调用第二个消息(其他职位)
+//第一个消息完成了以后再调用第二个消息(绑定其他职位)
 -(void) didReceiveRecommendJob:(NSMutableArray *) requestData{
     //结束等待动画
     [self.loading stopAnimating];
-    UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, self.subView.frame.origin.y + self.subView.frame.size.height - 20, 280, requestData.count*27)] autorelease];
+    UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, tmpHeight - 20, 280, requestData.count*27)] autorelease];
     for (int i=0; i<requestData.count; i++) {
         NSDictionary *rowData = requestData[i];
         UIButton *btnOhter = [[[UIButton alloc] initWithFrame:CGRectMake(0, 27*i, 280, 20)] autorelease];
@@ -224,7 +224,8 @@
     self.subView.frame = CGRectMake(tmpView.frame.origin.x, tmpView.frame.origin.y, 320, 400);
     int originY = tmpView.frame.origin.y;
     int originHeight = tmpView.frame.size.height;
-    [self.jobMainScroll setContentSize:CGSizeMake(320, originY + originHeight + 300) ];
+    scrolHeight = originHeight + originY;
+    [self.jobMainScroll setContentSize:CGSizeMake(320, scrolHeight) ];
     self.ViewBottom.frame = CGRectMake(0, self.height - 80, 320, 50);
     self.jobMainScroll.frame = CGRectMake(0, 0, 320, self.height - 80);
 }
@@ -234,46 +235,6 @@
     JobViewController *jobCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@""];
     jobCtrl.JobID = [NSString stringWithFormat:@"%d", sender.tag];
     [self.navigationController pushViewController:jobCtrl animated:YES];
-}
-
-//绑定浏览的其他职位
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell =
-    [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"JobList"] autorelease];
-    
-    NSDictionary *rowData = recommentJobsData[indexPath.row];
-    //职位名称
-    NSString *strRecruitmentName = rowData[@"JobName"];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 60, 15)];
-    lbTitle.text = strRecruitmentName;
-    lbTitle.font = [UIFont systemFontOfSize:12];
-    lbTitle.textColor = [UIColor blackColor];
-    [cell.contentView addSubview:(lbTitle)];
-    [lbTitle release];
-    //待遇
-    UILabel *lbSalaryID = [[UILabel alloc] initWithFrame:CGRectMake(20, self.tvRecommentJobList.frame.origin.x + self.tvRecommentJobList.frame.size.width - 200, 180, 15)];
-    NSString *strSalaryID = rowData[@"dcSalaryID"];
-    lbSalaryID.font = [UIFont systemFontOfSize:12];
-    lbSalaryID.textColor = [UIColor redColor];
-    lbSalaryID.text = strSalaryID;
-    lbSalaryID.textAlignment = NSTextAlignmentRight;
-    [cell.contentView addSubview:(lbSalaryID)];
-    [lbSalaryID release];
-    return cell;
-}
-
-//点击某一行,到达企业页面--调用代理
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //[gotoRmViewDelegate gotoRmView:recruitmentCpData[indexPath.row][@"id"]];
-}
-
-//每一行的高度
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 20;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [recommentJobsData count];
 }
 
 //生成福利的小图片
@@ -321,7 +282,7 @@
     self.lbWorkPlaceValue.frame = CGRectMake(76, 122, labelSize.width, 15);
     [self.lbWorkPlaceValue setText:strJobRegion];
     //坐标
-    UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(self.lbWorkPlaceValue.frame.size.width + self.lbWorkPlaceValue.frame.origin.x, self.lbWorkPlaceValue.frame.origin.y + self.lbWorkPlaceValue.frame.size.height - 15, 15, 15)];
+    UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 76 + 5, self.lbWorkPlaceValue.frame.origin.y + self.lbWorkPlaceValue.frame.size.height - 15, 15, 15)];
     //NSString *lng = rowData[@"lng"];
     //NSString *lat = rowData[@"lat"];
     UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
@@ -608,6 +569,7 @@
     self.subView.frame = CGRectMake(self.jobMainScroll.frame.origin.x, self.jobMainScroll.frame.origin.y, 320, self.height - 50);
     
     //===================其他职位----调用Webservice=======================
+    tmpHeight = lbOther.frame.origin.y + lbOther.frame.size.height + 20;
     [self callOhters];
     
 }

@@ -35,7 +35,7 @@
                                     },
                                   @{NOMALKEY: @"normal",
                                     HEIGHTKEY:@"ico_EI_Background_width107.png",
-                                    TITLEKEY:@"本公司其他职位",
+                                    TITLEKEY:@"其他职位",
                                     TITLEWIDTH:[NSNumber numberWithFloat:107]
                                     },
                                   ];
