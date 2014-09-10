@@ -296,11 +296,11 @@
 {
     CampusCompanyViewController *campusCompanyC = [self.storyboard instantiateViewControllerWithIdentifier:@"CampusCompanyView"];
     if (collectionView.tag == 1) {
-        NSLog(@"%@",[self.campusListData objectAtIndex:indexPath.row][@"id"]);
+        campusCompanyC.companyId = [self.campusListData objectAtIndex:indexPath.row][@"CompanyID"];
         campusCompanyC.tabIndex = 2;
     }
     else {
-        NSLog(@"%@",[self.employListData objectAtIndex:indexPath.row][@"id"]);
+        campusCompanyC.employId = [self.employListData objectAtIndex:indexPath.row][@"id"];
         campusCompanyC.tabIndex = 3;
     }
     [self.navigationController pushViewController:campusCompanyC animated:true];

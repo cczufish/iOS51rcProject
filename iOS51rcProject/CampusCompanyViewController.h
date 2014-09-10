@@ -18,7 +18,12 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbEmploy;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UICollectionView *collectView;
+@property (retain, nonatomic) IBOutlet UIView *viewHomepage;
+@property (retain, nonatomic) IBOutlet UILabel *lbDescription;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollCpInfo;
 
+@property (retain, nonatomic) NSString *employId;
+@property (retain, nonatomic) NSString *companyId;
 @property int tabIndex;
 
 @end

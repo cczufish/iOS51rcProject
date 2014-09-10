@@ -273,18 +273,30 @@
 //过滤Html标签
 + (NSString *) FilterHtml :(NSString*) content
 {
-    content =[content stringByReplacingOccurrencesOfString:@"<br> <br>" withString:@"\n"];
-    content =[content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-    content =[content stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"<p" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
+//    content =[content stringByReplacingOccurrencesOfString:@"<br> <br>" withString:@"\n"];
+//    content =[content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+//    content =[content stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
+//    content =[content stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
+//    content =[content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
+//    content =[content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+//    content =[content stringByReplacingOccurrencesOfString:@"<p" withString:@""];
+//    content =[content stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
+//    content =[content stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
+//    return content;
+    NSScanner *scanner = [NSScanner scannerWithString:content];
+    NSString *text = nil;
+    while([scanner isAtEnd] == NO)
+    {
+        //找到标签的起始位置
+        [scanner scanUpToString:@"<" intoString:nil];
+        //找到标签的结束位置
+        [scanner scanUpToString:@">" intoString:&text];
+        //替换字符
+        content = [content stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
     return content;
 }
-+(NSString*)GetCurrentNet
++ (NSString*)GetCurrentNet
 {
     NSString* result;
     Reachability *r = [Reachability reachabilityWithHostName:@"www.apple.com"];

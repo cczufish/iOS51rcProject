@@ -9,7 +9,6 @@
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
-#import "MJRefresh.h"
 #import "Toast+UIView.h"
 
 @interface CampusCompanyViewController () <UICollectionViewDataSource,UICollectionViewDelegate,NetWebServiceRequestDelegate,UIScrollViewDelegate>
@@ -18,10 +17,6 @@
 }
 @property (nonatomic, retain) NSMutableArray *campusListData;
 @property (nonatomic, retain) NSMutableArray *employData;
-@property (nonatomic, retain) NSMutableArray *companyData;
-@property (nonatomic, retain) NSString *regionId;
-@property (nonatomic, retain) NSString *companyId;
-@property int pageNumber;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 
 @end
@@ -58,85 +53,144 @@
     
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    //添加上拉加载更多
-    [self.collectView addFooterWithTarget:self action:@selector(footerRereshing)];
-}
-
-- (void)onSearch
-{
-//    if (self.pageNumber == 1) {
-//        [self.campusListData removeAllObjects];
-//        [self.collectView reloadData];
-//        //开始等待动画
-//        [loadView startAnimating];
-//    }
-//    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-//    [dicParam setObject:[NSString stringWithFormat:@"%d",self.pageNumber] forKey:@"pageNum"];
-//    [dicParam setObject:@"30" forKey:@"pageSize"];
-//    [dicParam setObject:self.regionId forKey:@"dcRegionID"];
-//    [dicParam setObject:@"32" forKey:@"strProvinceID"];
-//    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCampusListByRegionAndSchool" Params:dicParam];
-//    [request setDelegate:self];
-//    [request startAsynchronous];
-//    request.tag = 1;
-//    self.runningRequest = request;
-//    [dicParam release];
-}
-
-- (void)onEmploySearch
-{
-    
 }
 
 - (void)onCampusSearch
 {
-    
+    //开始等待动画
+    [loadView startAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:@"32" forKey:@"ProvinceID"];
+    [dicParam setObject:self.companyId forKey:@"CompanyID"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCampusTalkByProvinceIDCompanyID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 1;
+    self.runningRequest = request;
+    [dicParam release];
+}
+
+- (void)onEmploySearch
+{
+    //开始等待动画
+    [loadView startAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.employId forKey:@"ID"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCampusCpInfoByCampusID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequest = request;
+    [dicParam release];
+}
+
+- (void)onEmploySearchByCpID
+{
+    //开始等待动画
+    [loadView startAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.companyId forKey:@"ID"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCampusCpInfoByCpID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 3;
+    self.runningRequest = request;
+    [dicParam release];
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
-    if (request.tag == 1) { //获取企业信息
-        self.companyData = requestData;
-    }
-    else if (request.tag == 2) { //获取宣讲会
-        [self.collectView footerEndRefreshing];
+    if (request.tag == 1) { //获取宣讲会
         if (requestData.count == 0) {
             [self.view makeToast:@"没有更多数据了"];
         }
-        if(self.pageNumber == 1){
-            [self.campusListData removeAllObjects];
-            self.campusListData = requestData;
-        }
-        else{
-            [self.campusListData addObjectsFromArray:requestData];
-        }
+        [self.campusListData removeAllObjects];
+        self.campusListData = requestData;
         //重新加载列表
         [self.collectView reloadData];
     }
-    else if (request.tag == 3) { //获取校园简章
+    else { //获取校园简章
         self.employData = requestData;
+        self.companyId = requestData[0][@"CompanyID1"];
+        [self fillCpInfo];
     }
     //结束等待动画
     [loadView stopAnimating];
 }
 
 - (IBAction)switchToBrief:(id)sender {
-    
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+    if (self.employData.count == 0) {
+        [self onEmploySearchByCpID];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbEmploy setTextColor:[UIColor blackColor]];
+        [self.lbCampus setTextColor:[UIColor blackColor]];
+        [self.lbBrief setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    }];
 }
 
 - (IBAction)switchToCampus:(id)sender {
-    
+    [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
+    if (self.campusListData.count == 0) {
+        [self onCampusSearch];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbEmploy setTextColor:[UIColor blackColor]];
+        [self.lbBrief setTextColor:[UIColor blackColor]];
+        [self.lbCampus setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(106, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    }];
 }
 
 - (IBAction)switchToEmploy:(id)sender {
-    
+    [self.scrollView setContentOffset:CGPointMake(640, 0) animated:true];
+    if (self.employData.count == 0) {
+        if (self.companyId.length == 0) {
+            [self onEmploySearch];
+        }
+        else {
+            [self onEmploySearchByCpID];
+        }
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbCampus setTextColor:[UIColor blackColor]];
+        [self.lbBrief setTextColor:[UIColor blackColor]];
+        [self.lbEmploy setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(214, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    }];
 }
 
-- (void)footerRereshing{
-    self.pageNumber++;
-    [self onSearch];
+- (void)fillCpInfo
+{
+    NSDictionary *dicCpInfo = self.employData[0];
+    //显示公司名称、行业、工作地点
+    [self.lbCompanyName setText:dicCpInfo[@"CompanyName"]];
+    [self.lbIndustry setText:dicCpInfo[@"Industry"]];
+    [self.lbCity setText:dicCpInfo[@"RegionName"]];
+    //显示主页
+    if (dicCpInfo[@"HomePage"]) {
+        [self.lbHomepage setText:dicCpInfo[@"HomePage"]];
+    }
+    else { //没有主页的时候，隐藏，并且将公司详情的label上提
+        [self.viewHomepage setHidden:true];
+        [self.lbDescription setFrame:CGRectMake(self.lbDescription.frame.origin.x, 121, self.lbDescription.frame.size.width, self.lbDescription.frame.size.width)];
+    }
+    //显示公司详情，去除html标签
+    NSString *companyDescription = dicCpInfo[@"CompanyDescription"];
+    companyDescription = [companyDescription stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    companyDescription = [companyDescription stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    companyDescription = [CommonController FilterHtml:companyDescription];
+    CGSize labelSize = [CommonController CalculateFrame:companyDescription fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(self.lbDescription.frame.size.width, 5000)];
+    [self.lbDescription setText:companyDescription];
+    [self.lbDescription setFrame:CGRectMake(self.lbDescription.frame.origin.x, self.lbDescription.frame.origin.y, self.lbDescription.frame.size.width, labelSize.height)];
+    self.lbDescription.lineBreakMode = NSLineBreakByCharWrapping;
+    self.lbDescription.numberOfLines = 0;
+    //设置scrollview的高度
+    [self.scrollCpInfo setContentSize:CGSizeMake(self.scrollCpInfo.contentSize.width, self.lbDescription.frame.origin.y+labelSize.height+20)];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -225,47 +279,44 @@
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"%@",[self.campusListData objectAtIndex:indexPath.row][@"id"]);
-}
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if (self.scrollView.contentOffset.x > 480) {
+        if (self.employData.count == 0) {
+            [self onEmploySearchByCpID];
+        }
         [UIView animateWithDuration:0.2 animations:^{
             [self.lbCampus setTextColor:[UIColor blackColor]];
             [self.lbBrief setTextColor:[UIColor blackColor]];
             [self.lbEmploy setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
             [self.lbUnderline setFrame:CGRectMake(214, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-        } completion:^(BOOL finished) {
-            if (self.employData.count == 0) {
-                [self onEmploySearch];
-            }
         }];
     }
     else if (self.scrollView.contentOffset.x > 160) {
+        if (self.campusListData.count == 0) {
+            [self onCampusSearch];
+        }
         [UIView animateWithDuration:0.2 animations:^{
             [self.lbEmploy setTextColor:[UIColor blackColor]];
             [self.lbBrief setTextColor:[UIColor blackColor]];
             [self.lbCampus setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
             [self.lbUnderline setFrame:CGRectMake(106, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-        } completion:^(BOOL finished) {
-            if (self.campusListData.count == 0) {
-                [self onCampusSearch];
-            }
         }];
     }
     else {
+        if (self.employData.count == 0) {
+            if (self.companyId.length == 0) {
+                [self onEmploySearch];
+            }
+            else {
+                [self onEmploySearchByCpID];
+            }
+        }
         [UIView animateWithDuration:0.2 animations:^{
             [self.lbEmploy setTextColor:[UIColor blackColor]];
             [self.lbCampus setTextColor:[UIColor blackColor]];
             [self.lbBrief setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
             [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-        } completion:^(BOOL finished) {
-            if (self.companyData.count == 0) {
-                [self onSearch];
-            }
         }];
     }
 }
@@ -300,9 +351,12 @@
     [_collectView release];
     [_campusListData release];
     [_employData release];
-    [_companyData release];
-    [_companyId release];
     [_runningRequest release];
+    [_employId release];
+    [_companyId release];
+    [_viewHomepage release];
+    [_lbDescription release];
+    [_scrollCpInfo release];
     [super dealloc];
 }
 @end
