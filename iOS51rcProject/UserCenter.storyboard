@@ -26,6 +26,9 @@
                                         <state key="normal" image="pic_pahead_default.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="changePhoto:" destination="QNE-Zz-bsU" eventType="touchUpInside" id="B1O-nu-6Sq"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camara.png" id="gW2-7S-jFD">
                                         <rect key="frame" x="80" y="88" width="20" height="20"/>
@@ -65,6 +68,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="btnPhoto" destination="1HC-EW-bft" id="RiF-9S-US3"/>
                         <outlet property="viewProfile" destination="L12-hG-G8H" id="Oqj-OR-Mha"/>
                     </connections>
                 </viewController>

@@ -29,6 +29,10 @@
     
 }
 
+- (IBAction)changePhoto:(UIButton *)sender {
+    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 5;
@@ -129,6 +133,7 @@
 
 - (void)dealloc {
     [_viewProfile release];
+    [_btnPhoto release];
     [super dealloc];
 }
 @end

@@ -300,6 +300,7 @@
 		99F51F5319AF296A00C81A9B /* radio_unsel.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F51F5119AF296A00C81A9B /* radio_unsel.png */; };
 		99FA8B7519A6DBD500F8B1B9 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */; };
 		99FA8B7D19A7132700F8B1B9 /* UserCenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99FA8B7C19A7132700F8B1B9 /* UserCenter.storyboard */; };
+		99FC0AEA19C175A400B7EC74 /* MLImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0AE919C175A400B7EC74 /* MLImageCrop.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -804,6 +805,8 @@
 		99FA8B7319A6DBD500F8B1B9 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		99FA8B7C19A7132700F8B1B9 /* UserCenter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserCenter.storyboard; sourceTree = "<group>"; };
+		99FC0AE819C175A300B7EC74 /* MLImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLImageCrop.h; sourceTree = "<group>"; };
+		99FC0AE919C175A400B7EC74 /* MLImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLImageCrop.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1778,6 +1781,7 @@
 		99CFD89A199B6196009A5ABA /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				99FC0AE719C175A300B7EC74 /* MLImageCrop */,
 				9942F41619B987D900191C74 /* ShareSDK */,
 				9925BED319B80E02002DBFE0 /* DictionaryPicker */,
 				9925BED919B80E02002DBFE0 /* Popup */,
@@ -1809,6 +1813,15 @@
 				99AF5B7719C127B300BE73F2 /* IndexViewController.m */,
 			);
 			name = UserCenter;
+			sourceTree = "<group>";
+		};
+		99FC0AE719C175A300B7EC74 /* MLImageCrop */ = {
+			isa = PBXGroup;
+			children = (
+				99FC0AE819C175A300B7EC74 /* MLImageCrop.h */,
+				99FC0AE919C175A400B7EC74 /* MLImageCrop.m */,
+			);
+			path = MLImageCrop;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2128,6 +2141,7 @@
 				99B9822419B4C3B600D5D77D /* GRListViewController.m in Sources */,
 				99C581D219C1414A009985C5 /* RM.m in Sources */,
 				992D270B19BEE74A005F3CD6 /* JobMainScrollViewController.m in Sources */,
+				99FC0AEA19C175A400B7EC74 /* MLImageCrop.m in Sources */,
 				997BF0ED199DB33C00FD0B12 /* NetWebServiceRequest.m in Sources */,
 				99AF855619A1883400524B66 /* FindPsdStep1ViewController.m in Sources */,
 				99B4ED8C19AB0458004C9068 /* JobDetailsController.m in Sources */,

@@ -10,5 +10,6 @@
 
 @interface IndexViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIView *viewProfile;
+@property (retain, nonatomic) IBOutlet UIButton *btnPhoto;
 
 @end
