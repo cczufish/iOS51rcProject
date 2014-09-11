@@ -18,10 +18,7 @@
 #import "CpInviteViewController.h"
 #import "UserInfo.h"
 #import "LoginViewController.h"
-<<<<<<< HEAD
-=======
 
->>>>>>> FETCH_HEAD
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
     LoadingAnimationView *loadView;
