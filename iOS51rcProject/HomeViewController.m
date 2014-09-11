@@ -7,6 +7,7 @@
 #import "MoreViewController.h"
 #import "RecruitmentListViewController.h"
 #import "CampusViewController.h"
+#import "Toast+UIView.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
 
@@ -26,7 +27,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    //接收其他页面的消息（返回时）
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(popBackCompletion:)
+                                                 name:@"Home"
+                                               object:nil];
+}
+
+//处理其他页面返回的事件
+-(void)popBackCompletion:(NSNotification*)notification {
+    NSDictionary *theData = [notification userInfo];
+    NSString *value = [theData objectForKey:@"operation"];    
+    
+    if([value isEqualToString:@"logout"]){
+        //从“更多”页面退出后返回
+        [self.view makeToast:@"退出成功"];
+    }
 }
 
 - (void)didReceiveMemoryWarning

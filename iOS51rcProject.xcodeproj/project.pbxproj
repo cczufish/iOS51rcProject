@@ -227,6 +227,7 @@
 		99BEE43D19ADAEDE0090C9E1 /* MyRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */; };
 		99BEE44119ADBE380090C9E1 /* MyRmCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE44019ADBE380090C9E1 /* MyRmCpListViewController.m */; };
 		99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */; };
+		99C581CF19C12972009985C5 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581CE19C12972009985C5 /* UserInfo.m */; };
 		99CFD818199B5F80009A5ABA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD817199B5F80009A5ABA /* Foundation.framework */; };
 		99CFD81A199B5F80009A5ABA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD819199B5F80009A5ABA /* CoreGraphics.framework */; };
 		99CFD81C199B5F80009A5ABA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD81B199B5F80009A5ABA /* UIKit.framework */; };
@@ -710,6 +711,8 @@
 		99BEE44019ADBE380090C9E1 /* MyRmCpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRmCpListViewController.m; sourceTree = "<group>"; };
 		99BEE44219ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmReceivedInvitationViewController.h; path = Recruitment/MyRmReceivedInvitationViewController.h; sourceTree = "<group>"; };
 		99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmReceivedInvitationViewController.m; path = Recruitment/MyRmReceivedInvitationViewController.m; sourceTree = "<group>"; };
+		99C581CD19C12972009985C5 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = Entity/UserInfo.h; sourceTree = "<group>"; };
+		99C581CE19C12972009985C5 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = Entity/UserInfo.m; sourceTree = "<group>"; };
 		99CFD814199B5F80009A5ABA /* iOS51rcProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS51rcProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99CFD817199B5F80009A5ABA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		99CFD819199B5F80009A5ABA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1350,6 +1353,8 @@
 			children = (
 				99B9671B19B443D000E93CBD /* RmCpMain.h */,
 				99B9671C19B443D000E93CBD /* RmCpMain.m */,
+				99C581CD19C12972009985C5 /* UserInfo.h */,
+				99C581CE19C12972009985C5 /* UserInfo.m */,
 			);
 			name = Model;
 			path = ../Framework;
@@ -2093,6 +2098,7 @@
 				99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */,
 				9935EFC119BEFD8000F581AC /* CampusCompanyViewController.m in Sources */,
 				990C8D3E19B9A4DC00B81AFB /* CampusViewController.m in Sources */,
+				99C581CF19C12972009985C5 /* UserInfo.m in Sources */,
 				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
 				997BF0E5199DB33C00FD0B12 /* ASIDataDecompressor.m in Sources */,
 				99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */,
