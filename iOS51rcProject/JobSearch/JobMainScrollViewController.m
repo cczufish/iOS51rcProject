@@ -30,6 +30,8 @@
         
         _scrollView.delegate = self;
     }
+    //self.autoresizesSubviews = true;
+    //.automaticallyAdjustsScrollViewInsets = NO;
     [self addSubview:_scrollView];
 }
 
