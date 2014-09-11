@@ -13,5 +13,10 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnPhoto;
 @property (retain, nonatomic) IBOutlet UIView *viewPhotoSelect;
 @property (retain, nonatomic) IBOutlet UIButton *btnPhotoCancel;
+@property (retain, nonatomic) IBOutlet UILabel *lbPaName;
+@property (retain, nonatomic) IBOutlet UILabel *lbEmail;
+@property (retain, nonatomic) IBOutlet UILabel *lbMobile;
+@property (retain, nonatomic) IBOutlet UIImageView *imgMobileCer;
+@property (retain, nonatomic) IBOutlet UILabel *lbMobileCer;
 
 @end
