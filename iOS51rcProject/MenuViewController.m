@@ -23,10 +23,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tvMenu = [[[UITableView alloc] initWithFrame:CGRectMake(0, 40, 320, 600)] autorelease];
-    self.tvMenu.delegate = self;
-    self.tvMenu.dataSource = self;
-    [self.tvMenu setBackgroundColor:[UIColor clearColor]];
     [self.tvMenu setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     [self.view addSubview:self.tvMenu];
     [self changeMenuItem:1];
@@ -112,7 +108,13 @@
     else {
         UIView *viewBackground = [[[UIView alloc] init] autorelease];
         [viewBackground setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.3]];
-        UIView *viewSelect = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 7, 48)] autorelease];
+        UIView *viewSelect;
+        if ([[UIScreen mainScreen] bounds].size.height == 480) {
+            viewSelect = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 7, 43)] autorelease];
+        }
+        else {
+            viewSelect = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 7, 48)] autorelease];
+        }
         [viewSelect setBackgroundColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
         [viewBackground addSubview:viewSelect];
         [cell setSelectedBackgroundView:viewBackground];
@@ -132,7 +134,10 @@
 			return;
 			break;
         case 2:
-			vc = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"SearchView"];
+            vc = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"SearchView"];
+			break;
+        case 3:
+			vc = [[UIStoryboard storyboardWithName:@"UserCenter" bundle: nil] instantiateViewControllerWithIdentifier: @"IndexView"];
 			break;
 		case 5:
 			vc = [[UIStoryboard storyboardWithName:@"Recruitment" bundle: nil] instantiateViewControllerWithIdentifier: @"RecruitmentListView"];
@@ -154,7 +159,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 47;
+    if ([[UIScreen mainScreen] bounds].size.height == 480) {
+        return 43;
+    }
+    else {
+        return 47;
+    }
 }
 
 -(void)changeMenuItem:(int)item
@@ -173,6 +183,7 @@
 }
 */
 - (void)dealloc {
+    [_tvMenu release];
     [_tvMenu release];
     [super dealloc];
 }

@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuViewController : UIViewController
-@property (nonatomic, assign) UITableView *tvMenu;
+@property (retain, nonatomic) IBOutlet UITableView *tvMenu;
 
 -(void)changeMenuItem:(int)item;
 @end

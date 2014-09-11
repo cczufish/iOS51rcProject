@@ -160,6 +160,17 @@
 		999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */; };
 		99A5D671199CB8D100466B0C /* RecruitmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A5D670199CB8D100466B0C /* RecruitmentListViewController.m */; };
 		99AC903B19AC395400165D88 /* CpMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AC903A19AC395400165D88 /* CpMainViewController.m */; };
+		99AF5B7819C127B300BE73F2 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AF5B7719C127B300BE73F2 /* IndexViewController.m */; };
+		99AF5B7B19C1292900BE73F2 /* bg_membercenter_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B7919C1292900BE73F2 /* bg_membercenter_head.png */; };
+		99AF5B7C19C1292900BE73F2 /* pic_pahead_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B7A19C1292900BE73F2 /* pic_pahead_default.png */; };
+		99AF5B8519C1317E00BE73F2 /* camara.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B7D19C1317E00BE73F2 /* camara.png */; };
+		99AF5B8619C1317E00BE73F2 /* ico_member_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B7E19C1317E00BE73F2 /* ico_member_connect.png */; };
+		99AF5B8719C1317E00BE73F2 /* ico_member_cpinvite.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B7F19C1317E00BE73F2 /* ico_member_cpinvite.png */; };
+		99AF5B8819C1317E00BE73F2 /* ico_member_jobapply.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B8019C1317E00BE73F2 /* ico_member_jobapply.png */; };
+		99AF5B8919C1317E00BE73F2 /* ico_member_jobrecommend.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B8119C1317E00BE73F2 /* ico_member_jobrecommend.png */; };
+		99AF5B8A19C1317E00BE73F2 /* ico_member_mobileuncer.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B8219C1317E00BE73F2 /* ico_member_mobileuncer.png */; };
+		99AF5B8B19C1317E00BE73F2 /* ico_member_moblecer.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B8319C1317E00BE73F2 /* ico_member_moblecer.png */; };
+		99AF5B8C19C1317E00BE73F2 /* ico_member_mycv.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B8419C1317E00BE73F2 /* ico_member_mycv.png */; };
 		99AF855619A1883400524B66 /* FindPsdStep1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AF854719A1883400524B66 /* FindPsdStep1ViewController.m */; };
 		99AF855719A1883400524B66 /* FindPsdStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AF854919A1883400524B66 /* FindPsdStep2ViewController.m */; };
 		99AF855819A1883400524B66 /* FindPsdStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AF854B19A1883400524B66 /* FindPsdStep3ViewController.m */; };
@@ -600,6 +611,18 @@
 		99A5D670199CB8D100466B0C /* RecruitmentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecruitmentListViewController.m; sourceTree = "<group>"; };
 		99AC903919AC395400165D88 /* CpMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CpMainViewController.h; path = ../CpMainViewController.h; sourceTree = "<group>"; };
 		99AC903A19AC395400165D88 /* CpMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CpMainViewController.m; path = ../CpMainViewController.m; sourceTree = "<group>"; };
+		99AF5B7619C127B300BE73F2 /* IndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexViewController.h; sourceTree = "<group>"; };
+		99AF5B7719C127B300BE73F2 /* IndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexViewController.m; sourceTree = "<group>"; };
+		99AF5B7919C1292900BE73F2 /* bg_membercenter_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_membercenter_head.png; sourceTree = "<group>"; };
+		99AF5B7A19C1292900BE73F2 /* pic_pahead_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_pahead_default.png; sourceTree = "<group>"; };
+		99AF5B7D19C1317E00BE73F2 /* camara.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camara.png; sourceTree = "<group>"; };
+		99AF5B7E19C1317E00BE73F2 /* ico_member_connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_connect.png; sourceTree = "<group>"; };
+		99AF5B7F19C1317E00BE73F2 /* ico_member_cpinvite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_cpinvite.png; sourceTree = "<group>"; };
+		99AF5B8019C1317E00BE73F2 /* ico_member_jobapply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_jobapply.png; sourceTree = "<group>"; };
+		99AF5B8119C1317E00BE73F2 /* ico_member_jobrecommend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_jobrecommend.png; sourceTree = "<group>"; };
+		99AF5B8219C1317E00BE73F2 /* ico_member_mobileuncer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_mobileuncer.png; sourceTree = "<group>"; };
+		99AF5B8319C1317E00BE73F2 /* ico_member_moblecer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_moblecer.png; sourceTree = "<group>"; };
+		99AF5B8419C1317E00BE73F2 /* ico_member_mycv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_mycv.png; sourceTree = "<group>"; };
 		99AF854619A1883400524B66 /* FindPsdStep1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPsdStep1ViewController.h; sourceTree = "<group>"; };
 		99AF854719A1883400524B66 /* FindPsdStep1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindPsdStep1ViewController.m; sourceTree = "<group>"; };
 		99AF854819A1883400524B66 /* FindPsdStep2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindPsdStep2ViewController.h; sourceTree = "<group>"; };
@@ -1629,6 +1652,16 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99AF5B7D19C1317E00BE73F2 /* camara.png */,
+				99AF5B7E19C1317E00BE73F2 /* ico_member_connect.png */,
+				99AF5B7F19C1317E00BE73F2 /* ico_member_cpinvite.png */,
+				99AF5B8019C1317E00BE73F2 /* ico_member_jobapply.png */,
+				99AF5B8119C1317E00BE73F2 /* ico_member_jobrecommend.png */,
+				99AF5B8219C1317E00BE73F2 /* ico_member_mobileuncer.png */,
+				99AF5B8319C1317E00BE73F2 /* ico_member_moblecer.png */,
+				99AF5B8419C1317E00BE73F2 /* ico_member_mycv.png */,
+				99AF5B7919C1292900BE73F2 /* bg_membercenter_head.png */,
+				99AF5B7A19C1292900BE73F2 /* pic_pahead_default.png */,
 				994C507219C0335600E27017 /* ico_time_notice.png */,
 				994C507019C02B8000E27017 /* pic_noinfo.png */,
 				9935EFBD19BEF50000F581AC /* ico_news_hot.png */,
@@ -1772,6 +1805,8 @@
 			isa = PBXGroup;
 			children = (
 				99FA8B7C19A7132700F8B1B9 /* UserCenter.storyboard */,
+				99AF5B7619C127B300BE73F2 /* IndexViewController.h */,
+				99AF5B7719C127B300BE73F2 /* IndexViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -1866,6 +1901,7 @@
 				99E76D6419BE8724004DD65F /* bg_lasttime_red.png in Resources */,
 				99CFD87B199B60D8009A5ABA /* ico_leftmenu_head.png in Resources */,
 				99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */,
+				99AF5B8719C1317E00BE73F2 /* ico_member_cpinvite.png in Resources */,
 				99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */,
 				99CFD892199B60D8009A5ABA /* main_pic_head.png in Resources */,
 				99CFD882199B60D8009A5ABA /* ico_leftmenu_search.png in Resources */,
@@ -1880,6 +1916,7 @@
 				99CFD87C199B60D8009A5ABA /* ico_leftmenu_index.png in Resources */,
 				99B4693919B2EB520034505D /* ico_mainsearch_normalsearch1.png in Resources */,
 				9942F37F19B94E4400191C74 /* ico_map_back.png in Resources */,
+				99AF5B8C19C1317E00BE73F2 /* ico_member_mycv.png in Resources */,
 				9925BE8F19B807F4002DBFE0 /* ico_mapsearch_pre.png in Resources */,
 				9952A06919AAD5F200F6452C /* ico_select_right.png in Resources */,
 				99F51F5219AF296A00C81A9B /* radio_sel.png in Resources */,
@@ -1893,6 +1930,7 @@
 				99CFD895199B60D8009A5ABA /* qq.png in Resources */,
 				99CFD879199B60D8009A5ABA /* ico_leftmenu_campus.png in Resources */,
 				99F51F4319AEB30300C81A9B /* chk_check.png in Resources */,
+				99AF5B8B19C1317E00BE73F2 /* ico_member_moblecer.png in Resources */,
 				99B350BF199CB1F100CAEC71 /* welcom4-320x960.png in Resources */,
 				9901836119AC58F900CA1CB2 /* ico_joblist_online.png in Resources */,
 				99B350BE199CB1F100CAEC71 /* welcom3-320x1136.png in Resources */,
@@ -1902,6 +1940,7 @@
 				9942F39719B95C2100191C74 /* ico_mainmore_opinion.png in Resources */,
 				99CFD87E199B60D8009A5ABA /* ico_leftmenu_mebercenter.png in Resources */,
 				99CFD878199B60D8009A5ABA /* color-orange.png in Resources */,
+				99AF5B8519C1317E00BE73F2 /* camara.png in Resources */,
 				9925BE9019B807F4002DBFE0 /* ico_mapsearch_search.png in Resources */,
 				99CFD875199B60D8009A5ABA /* bg_leftmenu.png in Resources */,
 				9942F39919B95C2100191C74 /* ico_mainmore_share.png in Resources */,
@@ -1914,6 +1953,7 @@
 				9925BE8E19B807F4002DBFE0 /* ico_mapsearch_pre_unable.png in Resources */,
 				9925BE8D19B807F4002DBFE0 /* ico_mapsearch_next.png in Resources */,
 				9945C30B19A1A4890027E931 /* ico_clock.png in Resources */,
+				99AF5B8A19C1317E00BE73F2 /* ico_member_mobileuncer.png in Resources */,
 				99CFD890199B60D8009A5ABA /* main_pic_campus.png in Resources */,
 				998025BE19A23024001A7E84 /* MJRefresh.bundle in Resources */,
 				9925BE8C19B807F4002DBFE0 /* ico_mapsearch_next_unable.png in Resources */,
@@ -1936,6 +1976,7 @@
 				99F3F84919B00CEB00B5AB88 /* ico_jobright.png in Resources */,
 				99CFD88A199B60D8009A5ABA /* ico_main_search.png in Resources */,
 				99CFD887199B60D8009A5ABA /* ico_main_near.png in Resources */,
+				99AF5B8619C1317E00BE73F2 /* ico_member_connect.png in Resources */,
 				9925BE8B19B807F4002DBFE0 /* ico_mapsearch_joblist.png in Resources */,
 				99CFD88E199B60D8009A5ABA /* loginRenRen.png in Resources */,
 				99F51F5319AF296A00C81A9B /* radio_unsel.png in Resources */,
@@ -1950,6 +1991,7 @@
 				9942F39619B95C2100191C74 /* ico_mainmore_logout.png in Resources */,
 				9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */,
 				994C507319C0335600E27017 /* ico_time_notice.png in Resources */,
+				99AF5B8919C1317E00BE73F2 /* ico_member_jobrecommend.png in Resources */,
 				9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */,
 				999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */,
 				991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */,
@@ -1974,8 +2016,10 @@
 				99CFD88D199B60D8009A5ABA /* loginQQ.png in Resources */,
 				99E76D6319BE8724004DD65F /* bg_lasttiem_green.png in Resources */,
 				991125B019A4EE9800C98173 /* ico_rm_cp.png in Resources */,
+				99AF5B8819C1317E00BE73F2 /* ico_member_jobapply.png in Resources */,
 				99B2F2FB199C43580066853D /* Login.storyboard in Resources */,
 				99BD6FB319B5A4F300514807 /* EmploymentInformation.storyboard in Resources */,
+				99AF5B7B19C1292900BE73F2 /* bg_membercenter_head.png in Resources */,
 				9942F44619B987D900191C74 /* ShareSDKCoreService.framework.zip in Resources */,
 				9952A06F19AAF72B00F6452C /* CpAndJob.storyboard in Resources */,
 				99B4693219B2B71A0034505D /* ico_searchlog_log.png in Resources */,
@@ -1985,6 +2029,7 @@
 				9925BEFC19B80E02002DBFE0 /* menu-button@2x.png in Resources */,
 				9942F38319B954D200191C74 /* More.storyboard in Resources */,
 				999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */,
+				99AF5B7C19C1292900BE73F2 /* pic_pahead_default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2014,6 +2059,7 @@
 				9925BF0419B80E1F002DBFE0 /* MapSearchListViewController.m in Sources */,
 				99BDC5AD19A5917200B2BDB1 /* CreateResumeAlertViewController.m in Sources */,
 				997BF0E4199DB33C00FD0B12 /* ASIDataCompressor.m in Sources */,
+				99AF5B7819C127B300BE73F2 /* IndexViewController.m in Sources */,
 				99FA8B7519A6DBD500F8B1B9 /* MenuViewController.m in Sources */,
 				99908A5719A34DD300137FDE /* FMDatabaseAdditions.m in Sources */,
 				99B9671D19B443D000E93CBD /* RmCpMain.m in Sources */,
