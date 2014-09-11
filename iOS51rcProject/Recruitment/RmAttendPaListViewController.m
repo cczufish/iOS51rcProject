@@ -118,9 +118,9 @@
     [cell.contentView addSubview:(lbTitle)];
     
     //性别
-    NSString *boolSex = rowData[@"Gender"];
+    BOOL sex = [rowData[@"Gender"] boolValue];
     NSString *strSex;
-    if ([boolSex isEqualToString:@"1"]) {
+    if (!sex) {
         strSex = @"男";
     }else{
         strSex = @"女";
