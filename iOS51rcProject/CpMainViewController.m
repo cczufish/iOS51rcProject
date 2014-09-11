@@ -4,7 +4,7 @@
 #import "CommonController.h"
 
 //企业页面
-@interface CpMainViewController ()<NetWebServiceRequestDelegate>
+@interface CpMainViewController ()<NetWebServiceRequestDelegate, UIScrollViewDelegate>
 @property (retain, nonatomic) IBOutlet UILabel *lbCpName;
 @property (retain, nonatomic) IBOutlet UIImageView *imgCpType;
 @property (retain, nonatomic) IBOutlet UILabel *lbIndustry;
@@ -44,12 +44,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.cpMainScroll setContentSize:CGSizeMake(320, self.cpMainScroll.frame.size.height)];
+    self.cpMainScroll.delegate = self;
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     [button setTitle: @"企业信息" forState: UIControlStateNormal];
     [button sizeToFit];
     self.navigationItem.titleView = button;
-    //UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"后退" style:UIBarButtonItemStyleDone target:nil action:nil];
-    //self.navigationItem.leftBarButtonItem=backButton;
     
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.cpMainID forKey:@"CpMainID"];
@@ -123,7 +123,7 @@
     self.lbBriefValue.text = strResponsibility;
   
     //屏幕滚动
-    self.cpMainScroll.frame = CGRectMake(self.cpMainScroll.frame.origin.x, self.cpMainScroll.frame.origin.y, self.cpMainScroll.frame.size.width, self.cpMainScroll.frame.size.height-5);
+    self.cpMainScroll.frame = CGRectMake(0, 0, self.cpMainScroll.frame.size.width, self.cpMainScroll.frame.size.height-5);
     [self.cpMainScroll setContentSize:CGSizeMake(320, self.lbBriefValue.frame.size.height + 200)];
     [self.loading stopAnimating];
 }

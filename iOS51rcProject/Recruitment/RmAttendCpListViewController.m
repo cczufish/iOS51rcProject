@@ -9,6 +9,7 @@
 #import "RmInviteCpViewController.h"
 #import "RmCpMain.h"
 #import <objc/runtime.h> 
+#import "SuperCpViewController.h"
 
 @interface RmAttendCpListViewController ()<NetWebServiceRequestDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -205,10 +206,12 @@
 
 //点击某一行,到达企业页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
-    CpMainViewController *cpMainCtrl = (CpMainViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"CpMainView"];
+    UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperCpViewController *cpMainCtrl = (SuperCpViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"SuperCpView"];
     cpMainCtrl.cpMainID = recruitmentCpData[indexPath.row][@"cpMainID"];
     [self.navigationController pushViewController:cpMainCtrl animated:true];
+    cpMainCtrl.navigationItem.title = recruitmentCpData[indexPath.row][@"Name"];
+    self.navigationItem.title = @"参会企业";
 }
 
 //点击下方预约面试(批量预约)
