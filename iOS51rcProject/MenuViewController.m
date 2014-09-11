@@ -137,8 +137,16 @@
             vc = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"SearchView"];
 			break;
         case 3:
-			vc = [[UIStoryboard storyboardWithName:@"UserCenter" bundle: nil] instantiateViewControllerWithIdentifier: @"IndexView"];
+        {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            if ([userDefaults objectForKey:@"UserID"]) {
+                vc = [[UIStoryboard storyboardWithName:@"UserCenter" bundle: nil] instantiateViewControllerWithIdentifier: @"IndexView"];
+            }
+            else {
+                vc = [[UIStoryboard storyboardWithName:@"Login" bundle: nil] instantiateViewControllerWithIdentifier: @"LoginView"];
+            }
 			break;
+        }
 		case 5:
 			vc = [[UIStoryboard storyboardWithName:@"Recruitment" bundle: nil] instantiateViewControllerWithIdentifier: @"RecruitmentListView"];
 			break;

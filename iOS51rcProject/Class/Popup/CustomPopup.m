@@ -192,6 +192,7 @@
 {
     if (self = [super init]) {
         //加按钮
+        [contentView setHidden:false];
         if (buttonType == PopupButtonTypeOK) {
             UIButton *btnOK = [[UIButton alloc] initWithFrame:CGRectMake(contentView.frame.size.width/2-contentView.frame.size.width/6, contentView.frame.size.height+15, contentView.frame.size.width/3, 30)];
             [btnOK setBackgroundColor:[UIColor colorWithRed:248.f/255.f green:248.f/255.f blue:248.f/255.f alpha:1]];

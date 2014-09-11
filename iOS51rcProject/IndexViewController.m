@@ -7,8 +7,21 @@
 
 #import "IndexViewController.h"
 #import "SlideNavigationController.h"
+#import "CustomPopup.h"
+#import <QuartzCore/QuartzCore.h>
+#import <QuartzCore/CoreAnimation.h>
+#import <MobileCoreServices/UTCoreTypes.h>
+#import "MLImageCrop.h"
+#import "NetWebServiceRequest.h"
+#import "LoadingAnimationView.h"
 
-@interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate>
+@interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
+{
+    LoadingAnimationView *loadView;
+}
+@property (retain, nonatomic) CustomPopup *cPopup;
+@property (retain, nonatomic) NSUserDefaults *userDefaults;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 
 @end
 
@@ -26,10 +39,94 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.btnPhotoCancel.layer.cornerRadius = 5;
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
 }
 
 - (IBAction)changePhoto:(UIButton *)sender {
+    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewPhotoSelect buttonType:PopupButtonTypeNone] autorelease];
+    [self.cPopup showPopup:self.view];
+}
+
+- (IBAction)selectPhotoFromCamera:(id)sender {
+    [self getMediaFromSource:UIImagePickerControllerSourceTypeCamera];
+}
+
+- (IBAction)selectPhotoFromAlbum:(id)sender {
+    [self getMediaFromSource:UIImagePickerControllerSourceTypePhotoLibrary];
+}
+
+- (IBAction)clostPopup:(id)sender {
+    [self.cPopup closePopup];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    if([[info objectForKey:UIImagePickerControllerMediaType] isEqual:(NSString *) kUTTypeImage])
+    {
+        UIImage *chosenImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        MLImageCrop *imgCrop = [[MLImageCrop alloc] init];
+        imgCrop.delegate = self;
+        imgCrop.image = chosenImage;
+        imgCrop.ratioOfWidthAndHeight = 3.0f/4.0f;
+        [imgCrop showWithAnimation:true];
+    }
+    if([[info objectForKey:UIImagePickerControllerMediaType] isEqual:(NSString *) kUTTypeMovie])
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示信息!" message:@"系统只支持图片格式" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alert show];
+        
+    }
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)getMediaFromSource:(UIImagePickerControllerSourceType)sourceType
+{
+    NSArray *mediatypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+    if([UIImagePickerController isSourceTypeAvailable:sourceType] &&[mediatypes count]>0){
+        NSArray *mediatypes = [UIImagePickerController availableMediaTypesForSourceType:sourceType];
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.mediaTypes = mediatypes;
+        picker.delegate = self;
+        picker.sourceType = sourceType;
+        NSString *requiredmediatype = (NSString *)kUTTypeImage;
+        NSArray *arrmediatypes = [NSArray arrayWithObject:requiredmediatype];
+        [picker setMediaTypes:arrmediatypes];
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+    else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误信息!" message:@"当前设备不支持拍摄功能" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+- (void)cropImage:(UIImage*)cropImage forOriginalImage:(UIImage*)originalImage
+{
+    [self.btnPhoto setImage:cropImage forState:UIControlStateNormal];
+    [self.cPopup closePopup];
+    NSData *dataPhoto = UIImageJPEGRepresentation(cropImage, 1);
+    [self uploadPhoto:dataPhoto];
+}
+
+- (void)uploadPhoto:(NSData *)dataPhoto
+{
+    [loadView startAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:dataPhoto forKey:@"stream"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"UploadPhoto" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequest = request;
+    [dicParam release];
+}
+
+- (void)netRequestFinished:(NetWebServiceRequest *)request
+      finishedInfoToResult:(NSString *)result
+              responseData:(NSArray *)requestData
+{
     
 }
 
@@ -134,6 +231,10 @@
 - (void)dealloc {
     [_viewProfile release];
     [_btnPhoto release];
+    [_viewPhotoSelect release];
+    [_cPopup release];
+    [_btnPhotoCancel release];
+    [_userDefaults release];
     [super dealloc];
 }
 @end

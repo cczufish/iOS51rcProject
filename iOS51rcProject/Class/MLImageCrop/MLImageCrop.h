@@ -21,7 +21,7 @@
 //下面俩哪个后面设置，即是哪个有效
 @property(nonatomic,strong) UIImage *image;
 
-@property(nonatomic,weak) id<MLImageCropDelegate> delegate;
+@property(nonatomic,assign) id<MLImageCropDelegate> delegate;
 @property(nonatomic,assign) CGFloat ratioOfWidthAndHeight; //截取比例，宽高比
 
 - (void)showWithAnimation:(BOOL)animation;

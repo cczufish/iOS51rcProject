@@ -427,6 +427,7 @@
     [_lbEmployDescription release];
     [_viewEmployTips release];
     [_viewEmployBefore release];
+    [loadView release];
     [super dealloc];
 }
 @end
