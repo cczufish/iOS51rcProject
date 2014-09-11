@@ -25,8 +25,10 @@
     [super viewDidLoad];
     //设置滚动条的大小
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.svSuper.frame = CGRectMake(0, 115, 640, self.svSuper.frame.size.height);//必须重写位置，否则，子页面的x＝0.。。
+    self.svSuper.frame = CGRectMake(0, 115, 320, self.svSuper.frame.size.height);//必须重写位置，否则，子页面的x＝0.。。
+    
     self.svSuper.delegate = self;
+    [self.svSuper setScrollEnabled:YES];
    
     //加载子View
     self.cpInfoCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CpMainView"];
@@ -38,6 +40,8 @@
     self.cpInfoCtrl.view.frame = CGRectMake(0, 0, 640, self.svSuper.frame.size.height);
     [self.svSuper addSubview:self.cpInfoCtrl.view];
     [self.svSuper addSubview:self.jobsCtrl.view];
+    
+    [self.svSuper setContentSize:CGSizeMake(640, self.svSuper.frame.size.height)];//这一行必须放到后面。。否则不滑动
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,6 +96,11 @@
             isJobListLoadFinished = !isJobListLoadFinished;
         }
     }];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //
 }
 - (void)dealloc {
     [_cpMainID release];
