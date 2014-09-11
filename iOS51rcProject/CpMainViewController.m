@@ -124,7 +124,7 @@
   
     //屏幕滚动
     self.cpMainScroll.frame = CGRectMake(0, 0, self.cpMainScroll.frame.size.width, self.cpMainScroll.frame.size.height-5);
-    [self.cpMainScroll setContentSize:CGSizeMake(320, self.lbBriefValue.frame.size.height + 200)];
+    [self.cpMainScroll setContentSize:CGSizeMake(320, self.lbBriefValue.frame.size.height + 310)];
     [self.loading stopAnimating];
 }
 - (void)didReceiveMemoryWarning

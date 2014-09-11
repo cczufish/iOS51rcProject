@@ -358,7 +358,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="lYF-3x-JWx">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="lYF-3x-JWx">
                                 <rect key="frame" x="0.0" y="117" width="320" height="451"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
@@ -380,6 +380,9 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="swithToCpInfo:" destination="Cnr-6L-2XM" eventType="touchUpInside" id="nbR-BJ-6uW"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lb7-zj-K8Y">
                                         <rect key="frame" x="0.0" y="47" width="160" height="2"/>
@@ -401,6 +404,9 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="switchToJobList:" destination="Cnr-6L-2XM" eventType="touchUpInside" id="END-cb-nRF"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本公司招聘职位" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6ua-08-CHq">
                                         <rect key="frame" x="184" y="14" width="112" height="21"/>
@@ -415,6 +421,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="公司信息" id="SkC-T1-rY7"/>
                     <connections>
+                        <outlet property="lbCpTopTitle" destination="GaO-AG-eZ6" id="lfd-sY-kVX"/>
+                        <outlet property="lbJobListTopTitle" destination="6ua-08-CHq" id="sQQ-t1-onl"/>
+                        <outlet property="lbTopBg" destination="lb7-zj-K8Y" id="5dC-vM-W58"/>
                         <outlet property="svSuper" destination="lYF-3x-JWx" id="UNc-B1-x7i"/>
                     </connections>
                 </viewController>
