@@ -41,7 +41,7 @@
     //lbLeft.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     lbLeft.textColor = [UIColor whiteColor];
     [leftBtn addSubview:lbLeft];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+    UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] initWithCustomView:leftBtn] autorelease];
     self.navigationItem.leftBarButtonItem=backButton;
     
     //搜索按钮样式

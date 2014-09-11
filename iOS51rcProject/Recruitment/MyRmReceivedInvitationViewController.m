@@ -274,7 +274,7 @@
             [btnAccept addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
             btnAccept.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
             btnAccept.layer.cornerRadius = 5;
-            UILabel *lbAccept = [[UILabel alloc] initWithFrame:CGRectMake(33, 0, 99, 30)];
+            UILabel *lbAccept = [[[UILabel alloc] initWithFrame:CGRectMake(33, 0, 99, 30)] autorelease];
             lbAccept.text = @"赴约";
             lbAccept.textColor = [UIColor whiteColor];
             lbAccept.font = [UIFont systemFontOfSize:12];
@@ -287,7 +287,7 @@
             [btnReject addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
             btnReject.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1].CGColor;
             btnReject.layer.cornerRadius = 5;
-            UILabel *lbReject = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)];
+            UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
             lbReject.text = @"不赴约";
             lbReject.textColor = [UIColor whiteColor];
             lbReject.font = [UIFont systemFontOfSize:12];

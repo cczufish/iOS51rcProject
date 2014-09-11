@@ -14,14 +14,10 @@
 #import "MLImageCrop.h"
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
-<<<<<<< HEAD
 #import "Toast+UIView.h"
-=======
 #import "CpInviteViewController.h"
 #import "UserInfo.h"
 #import "LoginViewController.h"
->>>>>>> FETCH_HEAD
-
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
     LoadingAnimationView *loadView;

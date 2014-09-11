@@ -94,7 +94,6 @@
     
     NSDictionary *rowData = recruitmentCpData[indexPath.row];
     RmCpMain *cpMain = [[RmCpMain alloc] init];
-    [cpMain retain];
     
     int isBooked = [rowData[@"isBooked"] integerValue];
     cpMain.IsBooked = isBooked;
@@ -111,7 +110,7 @@
     //选择图标
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 22, 30, 45)];
     leftButton.tag = [rowData[@"cpMainID"] integerValue];
-    UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(7, 15, 15, 15)];
+    UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(7, 15, 15, 15)] autorelease];
     imgCheck.tag = isBooked;
     if (isBooked == 1) {
         //已经预约
@@ -127,7 +126,6 @@
    
     [cell.contentView addSubview:leftButton];
     [leftButton release];
-    [imgCheck release];
     
     //企业名称
     NSString *strCpName = rowData[@"Name"];

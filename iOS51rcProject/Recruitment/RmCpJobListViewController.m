@@ -134,7 +134,7 @@
 //点击某一行,选择一个职位
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //NSArray *arr = JobListData[indexPath.row];
-    NSString *cpMainID = JobListData[indexPath.row][@"cpMainID"];
+    NSString *cpMainID = JobListData[indexPath.row][@"cpMainID"] ;
     NSString *jobID = JobListData[indexPath.row][@"ID"];
     NSString *name = JobListData[indexPath.row][@"Name"];
     [cpMainID retain];

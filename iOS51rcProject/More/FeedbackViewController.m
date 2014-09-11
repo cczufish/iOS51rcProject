@@ -69,7 +69,7 @@
     }
     
     //为TextView设置键盘隐藏
-    UIToolbar * topView = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 30)];
+    UIToolbar * topView = [[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 30)] autorelease];
     [topView setBarStyle:UIBarStyleBlack];
     UIBarButtonItem * btnSpace = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     UIBarButtonItem * doneButton = [[UIBarButtonItem alloc]initWithTitle:@"输入完成" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyBoard)];
@@ -119,7 +119,7 @@
     }
     
 
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] autorelease];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:strInput forKey:@"Content"];
@@ -220,6 +220,7 @@
     [_UserInfoView release];
     [_txtPhone release];
     [_lbInfo release];
+    [_loading release];
     [super dealloc];
 }
 @end

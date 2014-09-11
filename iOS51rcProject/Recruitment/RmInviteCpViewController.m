@@ -60,9 +60,7 @@
     //自定义从下一个视图左上角，“返回”本视图的按钮
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"后退" style:UIBarButtonItemStyleDone target:nil action:nil];
     self.navigationItem.backBarButtonItem=backButton;
-    //NSString *strWeek = [CommonController getWeek:self.dtBeginTime];
-    //NSString *strBeginDate = [CommonController stringFromDate:self.dtBeginTime formatType:@"MM-dd"];
-    //self.lbTime.text = [NSString stringWithFormat:@"%@ (%@)",strBeginDate,strWeek];
+    [backButton release];
     //上一个页面传入的值
     self.lbTime.text = self.strBeginTime;
     self.lbAddress.text = self.strAddress;
@@ -299,7 +297,7 @@
         return;
     }
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:placeID] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:placeID defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }
