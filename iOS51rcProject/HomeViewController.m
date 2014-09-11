@@ -8,6 +8,8 @@
 #import "RecruitmentListViewController.h"
 #import "CampusViewController.h"
 #import "Toast+UIView.h"
+#import "UserInfo.h"
+#import "CpInviteViewController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
 
@@ -49,6 +51,21 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//点击企业邀约
+- (IBAction)btnCpInvitationClick:(id)sender {
+    if ([UserInfo isLogin]) {
+        UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
+        CpInviteViewController *CpInviteViewCtrl = [userCenter instantiateViewControllerWithIdentifier:@"CpInviteView"];
+        CpInviteViewCtrl.navigationItem.title = @"企业邀约";
+        self.navigationItem.title = @" ";
+        [self.navigationController pushViewController:CpInviteViewCtrl animated:true];
+    }else{
+        UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginCtrl animated:YES];
+    }
 }
 
 //点击招聘会
