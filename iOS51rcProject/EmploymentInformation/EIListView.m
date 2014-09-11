@@ -75,7 +75,7 @@
     tmpView.layer.borderColor = [UIColor grayColor].CGColor;
     
     UIFont *titleFont = [UIFont systemFontOfSize:12];
-    CGFloat titleWidth = 245;
+    CGFloat titleWidth = 300;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:titleFont sizeDemand:titleSize];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, labelSize.width, labelSize.height)];
