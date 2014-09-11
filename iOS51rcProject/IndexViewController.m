@@ -14,13 +14,10 @@
 #import "MLImageCrop.h"
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
-<<<<<<< HEAD
 #import "Toast+UIView.h"
-=======
 #import "CpInviteViewController.h"
 #import "UserInfo.h"
 #import "LoginViewController.h"
->>>>>>> FETCH_HEAD
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
@@ -55,7 +52,7 @@
 }
 
 - (IBAction)changePhoto:(UIButton *)sender {
-    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewPhotoSelect buttonType:PopupButtonTypeNone] autorelease];
+    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewPhotoSelect buttonType:PopupButtonTypeNone];
     [self.cPopup showPopup:self.view];
 }
 
@@ -165,6 +162,10 @@
         [self.view makeToast:@"头像上传成功"];
     }
     [loadView stopAnimating];
+}
+- (IBAction)certificateMobile:(id)sender {
+}
+- (IBAction)changeMobile:(id)sender {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -312,6 +313,11 @@
     [_cPopup release];
     [_btnPhotoCancel release];
     [_userDefaults release];
+    [_lbPaName release];
+    [_lbEmail release];
+    [_lbMobile release];
+    [_lbMobileCer release];
+    [_lbMobileCer release];
     [super dealloc];
 }
 @end
