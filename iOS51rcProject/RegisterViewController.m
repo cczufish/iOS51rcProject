@@ -123,7 +123,7 @@
 {
     if ([wsName isEqual: @"Register"])
     {
-        [self didReceiveRegisterData:result];
+        [self didReceiveRegisterData:result];        
     }
     else if ([wsName isEqualToString:@"GetPaAddDate"])
     {
@@ -132,6 +132,7 @@
     }
     
     [result retain];
+    [self.loadingView stopAnimating];
 }
 
 -(void) didReceiveRegisterData:(NSString *) result
@@ -260,12 +261,12 @@
             [Dialog alert:@"重复密码不能为空"];
             result = false;
         }else{
-            [Dialog alert:@"两次密码输入不一致"];
+            [Dialog alert:@"两次输入密码不一致"];
             result = false;
         }
     }
     else if([_passWord length]<6|| [_passWord length]>20){
-        [Dialog alert:@"密码长度为6-20！"];
+        [Dialog alert:@"密码长度为6-20位！"];
         result = false;
     }
     else if (![CommonController checkPassword:_passWord]) {
@@ -275,16 +276,6 @@
     return result;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc {
     [_txtUserName release];

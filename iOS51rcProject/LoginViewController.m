@@ -44,8 +44,8 @@
     self.navigationItem.backBarButtonItem = btnBack;
     
     CGRect frame = [[UIScreen mainScreen] bounds];
-    frame.origin.y = 106;//状态栏和切换栏的高度
-    frame.size.height = frame.size.height - 106;
+    frame.origin.y = 107;//状态栏和切换栏的高度
+    frame.size.height = frame.size.height - 107;
     //获得子View
     self.loginDetailsView = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginDetailsView"];
     self.registerView = [self.storyboard instantiateViewControllerWithIdentifier:@"RegisterView"];
@@ -110,19 +110,18 @@
     }
 }
 
+//找回密码
 - (void) pushParentsFromLoginDetails
 {
     FindPsdStep1ViewController *findPsd1View =[self.storyboard instantiateViewControllerWithIdentifier: @"findPsd1View"];
-    //FindPsdStep3ViewController *findPsd1View =[self.storyboard instantiateViewControllerWithIdentifier: @"findPsd3View"];
-    //findPsd1View.userName = @"qlrctest3@163.com";
-    //findPsd1View.paMainID = @"21142013";
     [self.navigationController pushViewController:findPsd1View animated:YES];
+    findPsd1View.navigationItem.title = @"重置密码";
+    self.navigationItem.title = @"";
 }
 
 - (void) gotoHome
 {
     [self.navigationController popViewControllerAnimated:YES];
-//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

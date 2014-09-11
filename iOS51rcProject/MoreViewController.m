@@ -214,7 +214,8 @@
             else {
                 [self.view makeToast:@"您当前没有登录，无需退出"];
             }
-
+            
+            break;
         }
         default:
             break;

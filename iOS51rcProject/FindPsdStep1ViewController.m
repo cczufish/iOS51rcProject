@@ -39,10 +39,6 @@
     
     self.btnOK.layer.cornerRadius = 5;
     self.btnOK.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
-    UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    [button setTitle: @"找回密码" forState: UIControlStateNormal];
-    [button sizeToFit];
-    self.navigationItem.titleView = button;
    
     //自定义从下一个视图左上角，“返回”本视图的按钮
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"后退" style:UIBarButtonItemStyleDone target:nil action:nil];
@@ -126,7 +122,7 @@
     }
     else if([result isEqualToString:@"4"])
     {
-        [Dialog alert:@"机号一天取回超过3次"];
+        [Dialog alert:@"手机号一天取回超过3次"];
         return;
     }
     else if([result isEqualToString:@""])
@@ -184,20 +180,8 @@
 }
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super didReceiveMemoryWarning];    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc {
     [_txtName release];

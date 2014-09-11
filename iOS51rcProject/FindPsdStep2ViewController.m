@@ -115,7 +115,7 @@
 {
     [self.loadingView stopAnimating];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *Array = requestData;
+    NSMutableArray *Array = (NSMutableArray* ) requestData;
     NSDictionary *rowData = Array[0];
     NSString *strTmp = rowData[@"ActivateCode"];
     if (![verifyCode isEqualToString:strTmp]) {

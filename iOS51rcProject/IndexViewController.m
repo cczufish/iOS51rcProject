@@ -14,7 +14,13 @@
 #import "MLImageCrop.h"
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
+<<<<<<< HEAD
 #import "Toast+UIView.h"
+=======
+#import "CpInviteViewController.h"
+#import "UserInfo.h"
+#import "LoginViewController.h"
+>>>>>>> FETCH_HEAD
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
@@ -229,7 +235,47 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    switch (indexPath.row) {
+        case 0:
+        {
+            break;
+        }
+        case 1:
+        {
+            break;
+        }
+        case 2:
+        {
+            break;
+        }
+        case 3:
+        {
+            if ([UserInfo isLogin]) {
+                UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
+                CpInviteViewController *CpInviteViewCtrl = [userCenter instantiateViewControllerWithIdentifier:@"CpInviteView"];
+                CpInviteViewCtrl.navigationItem.title = @"企业邀约";
+                self.navigationItem.title = @" ";
+                [self.navigationController pushViewController:CpInviteViewCtrl animated:true];
+            }else{
+                UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+                LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
+                [self.navigationController pushViewController:loginCtrl animated:YES];
+            }
+
+            break;
+        }
+        case 4:
+        {
+             break;
+        }
+        case 5:
+        {
+            break;
+        }
+        default:
+            break;
+    }
+
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
