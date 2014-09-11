@@ -21,6 +21,12 @@
 @property (retain, nonatomic) IBOutlet UIView *viewHomepage;
 @property (retain, nonatomic) IBOutlet UILabel *lbDescription;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollCpInfo;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollEmploy;
+@property (retain, nonatomic) IBOutlet UILabel *lbEmployCompany;
+@property (retain, nonatomic) IBOutlet UILabel *lbEmployDescription;
+@property (retain, nonatomic) IBOutlet UIView *viewCampusTips;
+@property (retain, nonatomic) IBOutlet UIView *viewEmployTips;
+@property (retain, nonatomic) IBOutlet UIView *viewEmployBefore;
 
 @property (retain, nonatomic) NSString *employId;
 @property (retain, nonatomic) NSString *companyId;

@@ -102,6 +102,8 @@
 		9945C30B19A1A4890027E931 /* ico_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30A19A1A4890027E931 /* ico_clock.png */; };
 		9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30C19A1AB370027E931 /* ico_rm_group.png */; };
 		9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9945C32A19A1E8FA0027E931 /* DatePicker.m */; };
+		994C507119C02B8000E27017 /* pic_noinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C507019C02B8000E27017 /* pic_noinfo.png */; };
+		994C507319C0335600E27017 /* ico_time_notice.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C507219C0335600E27017 /* ico_time_notice.png */; };
 		99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 99512F5F19A5C64800E56EF4 /* ico_calltelphone.png */; };
 		9952A06919AAD5F200F6452C /* ico_select_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 9952A06819AAD5F200F6452C /* ico_select_right.png */; };
 		9952A06F19AAF72B00F6452C /* CpAndJob.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9952A06E19AAF72B00F6452C /* CpAndJob.storyboard */; };
@@ -485,6 +487,8 @@
 		9945C30C19A1AB370027E931 /* ico_rm_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_group.png; sourceTree = "<group>"; };
 		9945C32919A1E8FA0027E931 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
 		9945C32A19A1E8FA0027E931 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
+		994C507019C02B8000E27017 /* pic_noinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_noinfo.png; sourceTree = "<group>"; };
+		994C507219C0335600E27017 /* ico_time_notice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_time_notice.png; sourceTree = "<group>"; };
 		99512F5F19A5C64800E56EF4 /* ico_calltelphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_calltelphone.png; sourceTree = "<group>"; };
 		9952A06819AAD5F200F6452C /* ico_select_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_select_right.png; sourceTree = "<group>"; };
 		9952A06B19AAF71000F6452C /* CpOtherJobsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CpOtherJobsMainViewController.h; sourceTree = "<group>"; };
@@ -1615,6 +1619,8 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				994C507219C0335600E27017 /* ico_time_notice.png */,
+				994C507019C02B8000E27017 /* pic_noinfo.png */,
 				9935EFBD19BEF50000F581AC /* ico_news_hot.png */,
 				992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */,
 				992A5B4919BE982D0042F2EB /* ico_triangle.png */,
@@ -1913,6 +1919,7 @@
 				9925BECE19B80C94002DBFE0 /* mapapi.bundle in Resources */,
 				992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */,
 				99BD700519B5B23B00514807 /* LoadMoreCell.xib in Resources */,
+				994C507119C02B8000E27017 /* pic_noinfo.png in Resources */,
 				9925BF0E19B83835002DBFE0 /* ico_mapsearch_jobnext.png in Resources */,
 				99CFD88B199B60D8009A5ABA /* ico_select_down.png in Resources */,
 				991125A319A4D24F00C98173 /* ico_expire.png in Resources */,
@@ -1932,6 +1939,7 @@
 				9925BEF219B80E02002DBFE0 /* DictionaryPickerView.xib in Resources */,
 				9942F39619B95C2100191C74 /* ico_mainmore_logout.png in Resources */,
 				9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */,
+				994C507319C0335600E27017 /* ico_time_notice.png in Resources */,
 				9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */,
 				999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */,
 				991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */,

@@ -297,6 +297,7 @@
     CampusCompanyViewController *campusCompanyC = [self.storyboard instantiateViewControllerWithIdentifier:@"CampusCompanyView"];
     if (collectionView.tag == 1) {
         campusCompanyC.companyId = [self.campusListData objectAtIndex:indexPath.row][@"CompanyID"];
+        [campusCompanyC.navigationItem setTitle:[self.campusListData objectAtIndex:indexPath.row][@"CompanyName"]];
         campusCompanyC.tabIndex = 2;
     }
     else {

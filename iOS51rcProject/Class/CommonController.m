@@ -283,6 +283,13 @@
 //    content =[content stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
 //    content =[content stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
 //    return content;
+    content = [content stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
+    content = [content stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
+    content = [content stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n\n"];
+    content = [content stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n\n"];
+    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@"\n\n"];
+    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n\n"];
+    content = [content stringByReplacingOccurrencesOfString:@"&#8226;" withString:@"·"];
     NSScanner *scanner = [NSScanner scannerWithString:content];
     NSString *text = nil;
     while([scanner isAtEnd] == NO)

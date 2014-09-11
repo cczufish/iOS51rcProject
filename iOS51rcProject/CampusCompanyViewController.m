@@ -9,7 +9,6 @@
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
-#import "Toast+UIView.h"
 
 @interface CampusCompanyViewController () <UICollectionViewDataSource,UICollectionViewDelegate,NetWebServiceRequestDelegate,UIScrollViewDelegate>
 {
@@ -17,8 +16,8 @@
 }
 @property (nonatomic, retain) NSMutableArray *campusListData;
 @property (nonatomic, retain) NSMutableArray *employData;
+@property (nonatomic, retain) NSMutableArray *employListData;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
-
 @end
 
 @implementation CampusCompanyViewController
@@ -55,6 +54,7 @@
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
 }
 
+//获取宣讲会列表
 - (void)onCampusSearch
 {
     //开始等待动画
@@ -70,6 +70,7 @@
     [dicParam release];
 }
 
+//获取招聘简章，根据招聘简章ID
 - (void)onEmploySearch
 {
     //开始等待动画
@@ -84,6 +85,7 @@
     [dicParam release];
 }
 
+//获取招聘简章，根据企业ID
 - (void)onEmploySearchByCpID
 {
     //开始等待动画
@@ -98,22 +100,43 @@
     [dicParam release];
 }
 
+//获取往期招聘简章
+- (void)onEmploySearchBefore
+{
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.companyId forKey:@"CompanyID"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetOtherCpRmByID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 4;
+    self.runningRequest = request;
+    [dicParam release];
+}
+
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) { //获取宣讲会
         if (requestData.count == 0) {
-            [self.view makeToast:@"没有更多数据了"];
+            [self.viewCampusTips setHidden:false];
+            self.campusListData = [NSMutableArray arrayWithObject:@"null"];
         }
-        [self.campusListData removeAllObjects];
-        self.campusListData = requestData;
-        //重新加载列表
-        [self.collectView reloadData];
+        else {
+            [self.campusListData removeAllObjects];
+            self.campusListData = requestData;
+            //重新加载列表
+            [self.collectView reloadData];
+        }
+    }
+    else if (request.tag == 4) { //获取往期招聘简章
+        self.employListData = requestData;
+        [self fillEmployBefore];
     }
     else { //获取校园简章
         self.employData = requestData;
         self.companyId = requestData[0][@"CompanyID1"];
+        [self.navigationItem setTitle:requestData[0][@"CompanyName"]];
         [self fillCpInfo];
     }
     //结束等待动画
@@ -122,45 +145,48 @@
 
 - (IBAction)switchToBrief:(id)sender {
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
-    if (self.employData.count == 0) {
-        [self onEmploySearchByCpID];
-    }
     [UIView animateWithDuration:0.2 animations:^{
         [self.lbEmploy setTextColor:[UIColor blackColor]];
         [self.lbCampus setTextColor:[UIColor blackColor]];
         [self.lbBrief setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
         [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        if (self.employData.count == 0) {
+            [self onEmploySearchByCpID];
+        }
     }];
 }
 
 - (IBAction)switchToCampus:(id)sender {
     [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
-    if (self.campusListData.count == 0) {
-        [self onCampusSearch];
-    }
     [UIView animateWithDuration:0.2 animations:^{
         [self.lbEmploy setTextColor:[UIColor blackColor]];
         [self.lbBrief setTextColor:[UIColor blackColor]];
         [self.lbCampus setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
         [self.lbUnderline setFrame:CGRectMake(106, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        if (self.campusListData.count == 0) {
+            [self onCampusSearch];
+        }
     }];
 }
 
 - (IBAction)switchToEmploy:(id)sender {
     [self.scrollView setContentOffset:CGPointMake(640, 0) animated:true];
-    if (self.employData.count == 0) {
-        if (self.companyId.length == 0) {
-            [self onEmploySearch];
-        }
-        else {
-            [self onEmploySearchByCpID];
-        }
-    }
     [UIView animateWithDuration:0.2 animations:^{
         [self.lbCampus setTextColor:[UIColor blackColor]];
         [self.lbBrief setTextColor:[UIColor blackColor]];
         [self.lbEmploy setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
         [self.lbUnderline setFrame:CGRectMake(214, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        if (self.employData.count == 0) {
+            if (self.companyId.length == 0) {
+                [self onEmploySearch];
+            }
+            else {
+                [self onEmploySearchByCpID];
+            }
+        }
     }];
 }
 
@@ -181,8 +207,6 @@
     }
     //显示公司详情，去除html标签
     NSString *companyDescription = dicCpInfo[@"CompanyDescription"];
-    companyDescription = [companyDescription stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
-    companyDescription = [companyDescription stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
     companyDescription = [CommonController FilterHtml:companyDescription];
     CGSize labelSize = [CommonController CalculateFrame:companyDescription fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(self.lbDescription.frame.size.width, 5000)];
     [self.lbDescription setText:companyDescription];
@@ -191,6 +215,75 @@
     self.lbDescription.numberOfLines = 0;
     //设置scrollview的高度
     [self.scrollCpInfo setContentSize:CGSizeMake(self.scrollCpInfo.contentSize.width, self.lbDescription.frame.origin.y+labelSize.height+20)];
+    
+    //没有招聘简章
+    if (dicCpInfo[@"Title"] == nil) {
+        [self.viewEmployTips setHidden:false];
+        return;
+    }
+    //招聘简章相关内容填充
+    [self.lbEmployCompany setText:dicCpInfo[@"Title"]];
+    NSString *description = dicCpInfo[@"Description"];
+    description = [CommonController FilterHtml:description];
+    labelSize = [CommonController CalculateFrame:description fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(self.lbEmployDescription.frame.size.width, 5000)];
+    [self.lbEmployDescription setText:description];
+    [self.lbEmployDescription setFrame:CGRectMake(self.lbEmployDescription.frame.origin.x, self.lbEmployDescription.frame.origin.y, self.lbEmployDescription.frame.size.width, labelSize.height)];
+    self.lbEmployDescription.lineBreakMode = NSLineBreakByCharWrapping;
+    self.lbEmployDescription.numberOfLines = 0;
+    //设置scrollview的高度
+    [self.scrollEmploy setContentSize:CGSizeMake(self.scrollEmploy.contentSize.width, self.lbEmployDescription.frame.origin.y+labelSize.height+20)];
+    
+    [self onEmploySearchBefore];
+}
+
+- (void)fillEmployBefore
+{
+    if (self.employListData.count == 1) {
+        return;
+    }
+    [self.viewEmployBefore setHidden:false];
+    NSArray *arrBeforeList = self.viewEmployBefore.subviews;
+    for (int i=0; i<arrBeforeList.count; i++) {
+        if (i>1) {
+            [arrBeforeList[i] removeFromSuperview];
+        }
+    }
+    CGRect frameEmployBefore = self.viewEmployBefore.frame;
+    frameEmployBefore.origin.y = self.scrollEmploy.contentSize.height+10;
+    [self.viewEmployBefore setFrame:frameEmployBefore];
+    float employBeforeHeight = 40;
+    for (NSDictionary *dicEmploy in self.employListData) {
+        if ([self.employData[0][@"ID"] isEqualToString:dicEmploy[@"ID"]]) {
+            continue;
+        }
+        //添加往期简章
+        UIButton *buttonTitle = [[UIButton alloc] initWithFrame:CGRectMake(5, employBeforeHeight, 280, 20)];
+        [buttonTitle setTitle:dicEmploy[@"Title"] forState:UIControlStateNormal];
+        [buttonTitle setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [buttonTitle.titleLabel setFont:[UIFont systemFontOfSize:13]];
+        [buttonTitle setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        [self.viewEmployBefore addSubview:buttonTitle];
+        //添加点击事件
+        [buttonTitle setTag:[dicEmploy[@"ID"] intValue]];
+        [buttonTitle addTarget:self action:@selector(changeEmploy:) forControlEvents:UIControlEventTouchUpInside];
+        [buttonTitle release];
+        //添加分割线
+        UILabel *lbSeparate = [[UILabel alloc] initWithFrame:CGRectMake(5, employBeforeHeight+22, 300, 1)];
+        [lbSeparate setText:@"-----------------------------------------------------------------------------------------"];
+        [lbSeparate setTextColor:[UIColor lightGrayColor]];
+        [self.viewEmployBefore addSubview:lbSeparate];
+        [lbSeparate release];
+        employBeforeHeight+=30;
+    }
+    [self.scrollEmploy setContentSize:CGSizeMake(self.scrollEmploy.contentSize.width, self.scrollEmploy.contentSize.height+employBeforeHeight+30)];
+    [self.scrollEmploy setContentOffset:CGPointMake(self.scrollEmploy.contentOffset.x, 0) animated:true];
+}
+
+- (void)changeEmploy:(UIButton *)sender
+{
+    self.employId = [NSString stringWithFormat:@"%d",sender.tag];
+    [self.viewEmployBefore setHidden:true];
+    [self onEmploySearch];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -282,42 +375,13 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if (self.scrollView.contentOffset.x > 480) {
-        if (self.employData.count == 0) {
-            [self onEmploySearchByCpID];
-        }
-        [UIView animateWithDuration:0.2 animations:^{
-            [self.lbCampus setTextColor:[UIColor blackColor]];
-            [self.lbBrief setTextColor:[UIColor blackColor]];
-            [self.lbEmploy setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-            [self.lbUnderline setFrame:CGRectMake(214, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-        }];
+        [self switchToEmploy:nil];
     }
     else if (self.scrollView.contentOffset.x > 160) {
-        if (self.campusListData.count == 0) {
-            [self onCampusSearch];
-        }
-        [UIView animateWithDuration:0.2 animations:^{
-            [self.lbEmploy setTextColor:[UIColor blackColor]];
-            [self.lbBrief setTextColor:[UIColor blackColor]];
-            [self.lbCampus setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-            [self.lbUnderline setFrame:CGRectMake(106, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-        }];
+        [self switchToCampus:nil];
     }
     else {
-        if (self.employData.count == 0) {
-            if (self.companyId.length == 0) {
-                [self onEmploySearch];
-            }
-            else {
-                [self onEmploySearchByCpID];
-            }
-        }
-        [UIView animateWithDuration:0.2 animations:^{
-            [self.lbEmploy setTextColor:[UIColor blackColor]];
-            [self.lbCampus setTextColor:[UIColor blackColor]];
-            [self.lbBrief setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-            [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-        }];
+        [self switchToBrief:nil];
     }
 }
 
@@ -350,6 +414,7 @@
     [_scrollView release];
     [_collectView release];
     [_campusListData release];
+    [_employListData release];
     [_employData release];
     [_runningRequest release];
     [_employId release];
@@ -357,6 +422,11 @@
     [_viewHomepage release];
     [_lbDescription release];
     [_scrollCpInfo release];
+    [_scrollEmploy release];
+    [_lbEmployCompany release];
+    [_lbEmployDescription release];
+    [_viewEmployTips release];
+    [_viewEmployBefore release];
     [super dealloc];
 }
 @end
