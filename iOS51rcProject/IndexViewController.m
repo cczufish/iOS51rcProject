@@ -14,6 +14,7 @@
 #import "MLImageCrop.h"
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
+#import "Toast+UIView.h"
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
@@ -41,6 +42,10 @@
     [super viewDidLoad];
     self.btnPhotoCancel.layer.cornerRadius = 5;
     self.userDefaults = [NSUserDefaults standardUserDefaults];
+    //加载等待动画
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    
+    [self getPaData];
 }
 
 - (IBAction)changePhoto:(UIButton *)sender {
@@ -104,11 +109,25 @@
 {
     [self.btnPhoto setImage:cropImage forState:UIControlStateNormal];
     [self.cPopup closePopup];
-    NSData *dataPhoto = UIImageJPEGRepresentation(cropImage, 1);
-    [self uploadPhoto:dataPhoto];
+    NSData *dataPhoto = UIImageJPEGRepresentation(cropImage, 0);
+    NSLog(@"%d",dataPhoto.length);
+    [self uploadPhoto:[dataPhoto base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength]];
 }
 
-- (void)uploadPhoto:(NSData *)dataPhoto
+- (void)getPaData
+{
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaMainInfoByID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 1;
+    self.runningRequest = request;
+    [dicParam release];
+}
+
+- (void)uploadPhoto:(NSString *)dataPhoto
 {
     [loadView startAnimating];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -127,7 +146,19 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSArray *)requestData
 {
-    
+    if (request.tag == 1) {
+        NSString *path = [NSString stringWithFormat:@"%d",([[self.userDefaults objectForKey:@"UserID"] intValue] / 100000 + 1) * 100000];
+        for (int i=0; i<9-path.length; i++) {
+            path = [NSString stringWithFormat:@"0%@",path];
+        }
+        path = [NSString stringWithFormat:@"L%@",path];
+        path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,requestData[0][@"PhotoProcess"]];
+        [self.btnPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]] forState:UIControlStateNormal];
+    }
+    else if (request.tag == 2) {
+        [self.view makeToast:@"头像上传成功"];
+    }
+    [loadView stopAnimating];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
