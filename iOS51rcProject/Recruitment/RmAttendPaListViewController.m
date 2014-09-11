@@ -93,6 +93,10 @@
     NSDictionary *rowData = recruitmentPaData[indexPath.row];
     //标题：现职位
     NSString *strJobName = rowData[@"JobName"];
+    if (strJobName == nil) {
+        strJobName = @"应届毕业生";
+    }
+    
     UIFont *titleFont = [UIFont systemFontOfSize:14];
     CGFloat titleWidth = 235;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
@@ -104,6 +108,7 @@
     lbPreTitle.font = [UIFont systemFontOfSize:14];
     //职位名称
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(lbPreTitle.frame.origin.x+lbPreTitle.frame.size.width + 1, lbPreTitle.frame.origin.y, labelSize.width, 20)];
+    
     lbTitle.text = strJobName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
@@ -122,13 +127,16 @@
     }
     //年龄
     NSString *strAge = rowData[@"BirthDay"];
+    NSDate *nowDate =  [NSDate date];
+    NSString *strNow = [CommonController stringFromDate:nowDate formatType:@"yyyy-MM-dd"];
+    int age = [[strNow substringToIndex:4] intValue] - [[strAge substringToIndex:4] intValue];
     //学历
     NSString *strDegree = rowData[@"Degree"];
     //经验
     NSString *strRelatedWorkYears = rowData[@"RelatedWorkYears"];
     //所在地
     NSString *strLivePlace = rowData[@"LivePlace"];
-    NSString *strPaInfo = [NSString stringWithFormat:@"%@ %@ %@ %@  %@ ", strSex, strAge, strDegree, strRelatedWorkYears, strLivePlace];
+    NSString *strPaInfo = [NSString stringWithFormat:@"%@/%d岁/%@/%@年  %@ ", strSex, age, strDegree, strRelatedWorkYears, strLivePlace];
     labelSize = [CommonController CalculateFrame:strPaInfo fontDemond:[UIFont systemFontOfSize:12] sizeDemand:titleSize];
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPaInfo.text = strPaInfo;
