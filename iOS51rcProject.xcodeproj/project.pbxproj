@@ -228,6 +228,7 @@
 		99BEE44119ADBE380090C9E1 /* MyRmCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE44019ADBE380090C9E1 /* MyRmCpListViewController.m */; };
 		99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */; };
 		99C581CF19C12972009985C5 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581CE19C12972009985C5 /* UserInfo.m */; };
+		99C581D219C1414A009985C5 /* RM.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581D119C1414A009985C5 /* RM.m */; };
 		99CFD818199B5F80009A5ABA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD817199B5F80009A5ABA /* Foundation.framework */; };
 		99CFD81A199B5F80009A5ABA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD819199B5F80009A5ABA /* CoreGraphics.framework */; };
 		99CFD81C199B5F80009A5ABA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD81B199B5F80009A5ABA /* UIKit.framework */; };
@@ -713,6 +714,8 @@
 		99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmReceivedInvitationViewController.m; path = Recruitment/MyRmReceivedInvitationViewController.m; sourceTree = "<group>"; };
 		99C581CD19C12972009985C5 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = Entity/UserInfo.h; sourceTree = "<group>"; };
 		99C581CE19C12972009985C5 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = Entity/UserInfo.m; sourceTree = "<group>"; };
+		99C581D019C1414A009985C5 /* RM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RM.h; path = Entity/RM.h; sourceTree = "<group>"; };
+		99C581D119C1414A009985C5 /* RM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RM.m; path = Entity/RM.m; sourceTree = "<group>"; };
 		99CFD814199B5F80009A5ABA /* iOS51rcProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS51rcProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99CFD817199B5F80009A5ABA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		99CFD819199B5F80009A5ABA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1355,6 +1358,8 @@
 				99B9671C19B443D000E93CBD /* RmCpMain.m */,
 				99C581CD19C12972009985C5 /* UserInfo.h */,
 				99C581CE19C12972009985C5 /* UserInfo.m */,
+				99C581D019C1414A009985C5 /* RM.h */,
+				99C581D119C1414A009985C5 /* RM.m */,
 			);
 			name = Model;
 			path = ../Framework;
@@ -2075,6 +2080,7 @@
 				99908A5919A34DD300137FDE /* FMDatabaseQueue.m in Sources */,
 				99BDC5E719A5F10D00B2BDB1 /* Dialog.m in Sources */,
 				99B9822419B4C3B600D5D77D /* GRListViewController.m in Sources */,
+				99C581D219C1414A009985C5 /* RM.m in Sources */,
 				992D270B19BEE74A005F3CD6 /* JobMainScrollViewController.m in Sources */,
 				997BF0ED199DB33C00FD0B12 /* NetWebServiceRequest.m in Sources */,
 				99AF855619A1883400524B66 /* FindPsdStep1ViewController.m in Sources */,

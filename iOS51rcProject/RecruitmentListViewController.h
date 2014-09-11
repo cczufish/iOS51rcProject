@@ -1,10 +1,13 @@
 #import <UIKit/UIKit.h>
 #import "DatePicker.h"
 #import "LoadingAnimationView.h"
+#import "AttendRMPopUp.h"
+#import "RM.h"
 
-@interface RecruitmentListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface RecruitmentListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, AttendRMPopupDelegate>
 {
     LoadingAnimationView *loadView;
+    RM *selectedRM;
 }
 @property int page;
 @property (nonatomic, retain) NSMutableArray *recruitmentData;

@@ -15,4 +15,14 @@
 
     return true;
 }
+
+//是否已经登录
++(BOOL) isLogin{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"])
+        return true;
+    else
+        return false;
+}
+
 @end

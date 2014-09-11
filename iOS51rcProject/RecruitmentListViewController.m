@@ -7,6 +7,10 @@
 #import "RecruitmentViewController.h"
 #import "SlideNavigationController.h"
 #import "MyRecruitmentViewController.h"
+#import "UserInfo.h"
+#import "LoginViewController.h"
+#import "RmSearchJobForInviteViewController.h"
+#import <objc/runtime.h> 
 
 @interface RecruitmentListViewController ()<NetWebServiceRequestDelegate,DatePickerDelegate,DictionaryPickerDelegate,SlideNavigationControllerDelegate>
 @property (retain, nonatomic) IBOutlet UITableView *tvRecruitmentList;
@@ -18,7 +22,9 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnDateSet;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest2;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequestJoinRm;//预约
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
+@property (nonatomic, retain) AttendRMPopUp *cPopup;
 -(void)cancelDicPicker;
 @end
 
@@ -43,6 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     //右侧导航按钮
     UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 22)];
     //myRmBtn.titleLabel.text = @"我的招聘会";//这样无法赋值
@@ -138,23 +145,21 @@
     [super didReceiveMemoryWarning];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell =
         [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"rmList"] autorelease];
     
     NSDictionary *rowData = self.recruitmentData[indexPath.row];
+    
+    //初始化对象，用以选择时使用
+    RM *rmInfo = [[RM alloc ]init];
+    rmInfo.ID = rowData[@"ID"];
+    rmInfo.Name = rowData[@"RecruitmentName"];
+    rmInfo.Address = rowData[@"Address"];
+    rmInfo.Place = rowData[@"PlaceName"];
+    rmInfo.BeginDate = rowData[@"BeginDate"];   
+    
     //显示标题
     NSString *strRecruitmentName = rowData[@"RecruitmentName"];
     UIFont *titleFont = [UIFont systemFontOfSize:15];
@@ -239,38 +244,78 @@
         [imgExpired release];
     }
     else if (runStatus == 3){
-        UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 35, 30, 45)];
-        UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(-5, 35, 40, 10)];
-        lbWillRun.text = @"我要参会";
-        lbWillRun.font = [UIFont systemFontOfSize:10];
-        lbWillRun.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:40.f/255.f alpha:1];
-        lbWillRun.textAlignment = NSTextAlignmentCenter;
-        [rightButton addSubview:lbWillRun];
-        
-        UIImageView *imgWillRun = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        imgWillRun.image = [UIImage imageNamed:@"ico_rm_group.png"];
-        rightButton.tag = (NSInteger)rowData[@"ID"];
-        [rightButton addSubview:imgWillRun];
-        [rightButton addTarget:self action:@selector(joinRecruitment:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:rightButton];
-        [rightButton release];
-        [lbWillRun release];
-        [imgWillRun release];
-        
+        BOOL canBook = [rowData[@"CanBooking"] boolValue];
+        if (canBook) {
+            UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 35, 30, 45)];
+            UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(-5, 35, 40, 10)];
+            lbWillRun.text = @"我要参会";
+            lbWillRun.font = [UIFont systemFontOfSize:10];
+            lbWillRun.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:40.f/255.f alpha:1];
+            lbWillRun.textAlignment = NSTextAlignmentCenter;
+            [rightButton addSubview:lbWillRun];
+            
+            UIImageView *imgWillRun = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+            imgWillRun.image = [UIImage imageNamed:@"ico_rm_group.png"];
+            rightButton.tag = (NSInteger)rowData[@"ID"];
+            [rightButton addSubview:imgWillRun];
+            //传值
+            objc_setAssociatedObject(rightButton, @"RM", rmInfo, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            [rightButton addTarget:self action:@selector(joinRecruitment:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:rightButton];
+            [rightButton release];
+            [lbWillRun release];
+            [imgWillRun release];
+        }else{
+            UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 35, 30, 45)];
+            UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(-5, 31, 40, 10)];
+            lbWillRun.text = @"已预约";
+            lbWillRun.font = [UIFont systemFontOfSize:10];
+            lbWillRun.textColor = [UIColor grayColor];
+            lbWillRun.textAlignment = NSTextAlignmentCenter;
+            [rightButton addSubview:lbWillRun];
+            [cell.contentView addSubview:rightButton];
+        }        
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
     RecruitmentViewController *detailC = (RecruitmentViewController*)[self.storyboard
                                                                       instantiateViewControllerWithIdentifier: @"RecruitmentView"];
     detailC.recruitmentID = self.recruitmentData[indexPath.row][@"ID"];
     [self.navigationController pushViewController:detailC animated:true];
 }
 
+
+//点击我要参会
 -(void) joinRecruitment:(UIButton *)sender{
-    NSLog(@"点击我要参会：%d",sender.tag);
+    if ([UserInfo isLogin]) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *code = [userDefaults objectForKey:@"code"];
+        NSString *userID = [userDefaults objectForKey:@"UserID"];
+        
+        RM *rmInfo = objc_getAssociatedObject(sender, @"RM");
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:rmInfo.ID forKey:@"RmID"];
+        [dicParam setObject:userID forKey:@"paMainID"];
+        [dicParam setObject:code forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"AddPaRmAppointment" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 2;
+        self.runningRequestJoinRm = request;
+        loadView = [[[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self] autorelease];
+        [loadView startAnimating];
+        [dicParam release];
+        //选择的招聘会
+        selectedRM = rmInfo;
+
+    }else{
+        //转到登录界面
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -301,11 +346,11 @@
         }
         [self.tvRecruitmentList reloadData];
         [self.tvRecruitmentList footerEndRefreshing];
-        
-        //结束等待动画
-        [loadView stopAnimating];
-    }
-    else {
+    }else if(request.tag == 2){
+        self.cPopup = [[[AttendRMPopUp alloc] initPopup] autorelease];
+        [self.cPopup setDelegate:self];
+        [self.cPopup showPopup:self.view];
+    }else {
         NSMutableArray *arrPlace = [[NSMutableArray alloc] init];
         for (int i = 0; i < requestData.count; i++) {
             NSDictionary *dicPlace = [[[NSDictionary alloc] initWithObjectsAndKeys:
@@ -317,6 +362,23 @@
         self.placeData = arrPlace;
         [arrPlace release];
     }
+    //结束等待动画
+    [loadView stopAnimating];
+}
+
+
+//预约成功，打开搜索、申请、收藏界面
+-(void) attendRM{
+    RmSearchJobForInviteViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"RmSearchJobForInviteView"];
+    NSString *strBeginDate = selectedRM.BeginDate;
+    NSDate *tmpDtBeginDate = [CommonController dateFromString:strBeginDate];
+    
+    NSString *strTime = [NSString stringWithFormat:@"%@",[CommonController stringFromDate:tmpDtBeginDate formatType:@"yyyy-MM-dd HH:mm"]];
+    searchView.strBeginTime = strTime;
+    searchView.strAddress = selectedRM.Address;
+    searchView.strPlace = selectedRM.Place;
+    searchView.rmID = selectedRM.ID;
+    [self.navigationController pushViewController:searchView animated:YES];
 }
 
 - (void)dealloc {
@@ -333,6 +395,7 @@
     [_lbPlace release];
     [_runningRequest release];
     [_runningRequest2 release];
+    [_runningRequestJoinRm release];
     [_begindate release];
     [_placeid release];
     [_regionid release];
