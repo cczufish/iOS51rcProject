@@ -13,7 +13,7 @@
 #import "CommonController.h"
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "Class/CommonController.h"
+#import "CommonController.h"
 #import "LoadingAnimationView.h"
 #import "Toast+UIView.h"
 

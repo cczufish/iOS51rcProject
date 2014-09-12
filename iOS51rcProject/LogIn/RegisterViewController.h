@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CustomControl/CreateResumeAlertViewController.h"
+#import "CreateResumeAlertViewController.h"
 #import "GoToHomeDelegate.h"
 
 @interface RegisterViewController : UIViewController
