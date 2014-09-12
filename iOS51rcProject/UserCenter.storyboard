@@ -170,8 +170,8 @@
         <!--Mobile Certificate View Controller-->
         <scene sceneID="QVO-07-0MX">
             <objects>
-                <viewController id="6Vb-nd-gxF" customClass="MobileCertificateViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="68z-ek-yse">
+                <viewController storyboardIdentifier="MobileCertificateView" id="6Vb-nd-gxF" customClass="MobileCertificateViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="68z-ek-yse" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -180,7 +180,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Uic-Dw-dpv">
-                                        <rect key="frame" x="40" y="14" width="53" height="21"/>
+                                        <rect key="frame" x="40" y="13" width="53" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <nil key="highlightedColor"/>
@@ -192,16 +192,22 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="5Sl-aU-JcQ">
-                                        <rect key="frame" x="100" y="10" width="159" height="30"/>
+                                        <rect key="frame" x="100" y="9" width="159" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textFiledReturnEditing:" destination="6Vb-nd-gxF" eventType="editingDidEndOnExit" id="mTs-Ah-phJ"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="KEy-lc-Kv0">
                                         <rect key="frame" x="100" y="55" width="96" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textFiledReturnEditing:" destination="6Vb-nd-gxF" eventType="editingDidEndOnExit" id="QcM-nc-Z7Z"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ajJ-9E-j7S">
                                         <rect key="frame" x="0.0" y="45" width="320" height="1"/>
@@ -210,7 +216,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eNl-2T-Izz">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eNl-2T-Izz">
                                         <rect key="frame" x="204" y="56" width="68" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="deviceRGB"/>
@@ -255,8 +261,12 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
+                        <connections>
+                            <action selector="backgroundTap:" destination="6Vb-nd-gxF" eventType="touchDown" id="ziQ-ru-R1c"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="btnMobileCer" destination="2mX-1D-URD" id="wdD-Pn-MNG"/>
                         <outlet property="btnSendSms" destination="eNl-2T-Izz" id="mtX-Al-j6s"/>
                         <outlet property="txtMobile" destination="5Sl-aU-JcQ" id="SdZ-l4-jZx"/>
                         <outlet property="txtVerify" destination="KEy-lc-Kv0" id="teg-ao-Iwn"/>
@@ -270,8 +280,8 @@
         <!--Mobile Modify View Controller-->
         <scene sceneID="4Gt-Rs-4QJ">
             <objects>
-                <viewController id="JfE-Fu-16u" customClass="MobileModifyViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="y39-4d-I8F" customClass="Mobil">
+                <viewController storyboardIdentifier="MobileModifyView" id="JfE-Fu-16u" customClass="MobileModifyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="y39-4d-I8F" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -280,16 +290,19 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LNo-st-Btr">
-                                        <rect key="frame" x="40" y="14" width="53" height="21"/>
+                                        <rect key="frame" x="40" y="13" width="53" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="eKz-MI-Ya1">
-                                        <rect key="frame" x="100" y="10" width="159" height="30"/>
+                                        <rect key="frame" x="100" y="9" width="159" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="textFiledReturnEditing:" destination="JfE-Fu-16u" eventType="editingDidEndOnExit" id="8oM-zN-DLP"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -308,9 +321,13 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
+                        <connections>
+                            <action selector="backgroundTap:" destination="JfE-Fu-16u" eventType="touchDown" id="Ts2-Zk-VCD"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="1Mx-6t-sjn"/>
                     <connections>
+                        <outlet property="btnModify" destination="EQJ-Pl-9mN" id="Bqd-VS-0nW"/>
                         <outlet property="txtMobile" destination="eKz-MI-Ya1" id="5GA-5s-Vb5"/>
                         <outlet property="viewMobile" destination="z0u-gm-sPy" id="EJ4-Tc-CvQ"/>
                     </connections>
@@ -335,7 +352,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <view contentMode="scaleToFill" id="rwN-G3-PLM">
+                                    <view hidden="YES" contentMode="scaleToFill" id="rwN-G3-PLM">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="116"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -357,6 +374,7 @@
                                                 <rect key="frame" x="113" y="20" width="148" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.68430656934306555" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BEL-Po-FD5">
@@ -366,31 +384,31 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FM1-DS-K5v">
-                                                <rect key="frame" x="113" y="75" width="75" height="21"/>
+                                                <rect key="frame" x="113" y="76" width="80" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TZ4-XI-rRA">
-                                                <rect key="frame" x="191" y="73" width="57" height="20"/>
+                                                <rect key="frame" x="195" y="76" width="57" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="1" green="0.83679288321167888" blue="0.6544822080291971" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <inset key="contentEdgeInsets" minX="16" minY="3" maxX="0.0" maxY="0.0"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="2" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="未认证">
                                                     <color key="titleColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="certificateMobile:" destination="QNE-Zz-bsU" eventType="touchUpInside" id="BEp-Ri-onc"/>
+                                                    <action selector="certificateMobile:" destination="QNE-Zz-bsU" eventType="touchUpInside" id="3aM-SQ-vZX"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zc8-hH-X4n">
-                                                <rect key="frame" x="254" y="73" width="57" height="20"/>
+                                                <rect key="frame" x="260" y="76" width="50" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="1" green="0.8367928832" blue="0.65448220800000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <inset key="contentEdgeInsets" minX="0.0" minY="3" maxX="0.0" maxY="0.0"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="2" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="修改">
                                                     <color key="titleColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -400,7 +418,7 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_member_mobileuncer.png" id="2te-z6-Kcd">
-                                                <rect key="frame" x="196" y="75" width="10" height="16"/>
+                                                <rect key="frame" x="200" y="78" width="10" height="16"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                         </subviews>
@@ -508,7 +526,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="btnMobileCertificate" destination="TZ4-XI-rRA" id="KPH-R4-bd0"/>
+                        <outlet property="btnMobileCer" destination="TZ4-XI-rRA" id="jVU-g9-Ka8"/>
                         <outlet property="btnMobileModify" destination="Zc8-hH-X4n" id="OkF-6O-keh"/>
                         <outlet property="btnPhoto" destination="1HC-EW-bft" id="RiF-9S-US3"/>
                         <outlet property="btnPhotoCancel" destination="BEU-h9-JOs" id="A7X-wd-cSm"/>

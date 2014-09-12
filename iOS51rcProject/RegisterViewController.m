@@ -252,7 +252,7 @@
         result = false;
     }
     
-    else if (![[CommonController alloc] checkEmail:_userName]) {
+    else if (![CommonController checkEmail:_userName]) {
         [Dialog alert:@"邮箱格式不正确"];
         result = false;
     }

@@ -116,7 +116,7 @@
         [self.view makeToast:@"邮箱长度不能超过50位"];
         return;
     }
-    if (![[CommonController alloc] checkEmail:strEmail]) {
+    if (![CommonController checkEmail:strEmail]) {
         [self.view makeToast:@"邮箱格式不正确"];
         return;
     }

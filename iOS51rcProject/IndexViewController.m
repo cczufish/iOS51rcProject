@@ -18,6 +18,7 @@
 #import "CpInviteViewController.h"
 #import "LoginViewController.h"
 #import "CommonController.h"
+#import "MobileCertificateViewController.h"
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
@@ -26,6 +27,7 @@
 @property (retain, nonatomic) CustomPopup *cPopup;
 @property (retain, nonatomic) NSUserDefaults *userDefaults;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
+@property (nonatomic, retain) UIActivityIndicatorView *viewWait;
 
 @end
 
@@ -47,8 +49,33 @@
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    self.viewWait = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.viewWait setCenter:CGPointMake(160, 125)];//指定进度轮中心点
+    [self.view addSubview:self.viewWait];
+    //添加边框
+    self.btnMobileCer.layer.borderWidth = 1;
+    self.btnMobileCer.layer.borderColor = [[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1] CGColor];
+    self.btnMobileCer.layer.cornerRadius = 5;
     
+    self.btnMobileModify.layer.borderWidth = 1;
+    self.btnMobileModify.layer.borderColor = [[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1] CGColor];
+    self.btnMobileModify.layer.cornerRadius = 5;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.viewProfile setHidden:true];
+    [self.viewWait startAnimating];
     [self getPaData];
+    if (self.toastType == 1) {
+        [self.view makeToast:@"手机号修改成功"];
+    }
+    else if (self.toastType == 2)
+    {
+        [self.view makeToast:@"手机号认证成功"];
+    }
+    self.toastType = 0;
 }
 
 - (IBAction)changePhoto:(UIButton *)sender {
@@ -150,13 +177,36 @@
               responseData:(NSArray *)requestData
 {
     if (request.tag == 1) {
-        NSString *path = [NSString stringWithFormat:@"%d",([[self.userDefaults objectForKey:@"UserID"] intValue] / 100000 + 1) * 100000];
-        for (int i=0; i<9-path.length; i++) {
-            path = [NSString stringWithFormat:@"0%@",path];
+        //头像处理
+        if (requestData[0][@"PhotoProcess"])
+        {
+            if (![requestData[0][@"HasPhoto"] isEqualToString:@"2"]) {
+                NSString *path = [NSString stringWithFormat:@"%d",([[self.userDefaults objectForKey:@"UserID"] intValue] / 100000 + 1) * 100000];
+                for (int i=0; i<9-path.length; i++) {
+                    path = [NSString stringWithFormat:@"0%@",path];
+                }
+                path = [NSString stringWithFormat:@"L%@",path];
+                path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,requestData[0][@"PhotoProcess"]];
+                [self.btnPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]] forState:UIControlStateNormal];
+            }
         }
-        path = [NSString stringWithFormat:@"L%@",path];
-        path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,requestData[0][@"PhotoProcess"]];
-        [self.btnPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]] forState:UIControlStateNormal];
+        //设置文字
+        self.lbPaName.text = requestData[0][@"Name"];
+        self.lbMobile.text = requestData[0][@"Mobile"];
+        self.lbEmail.text = requestData[0][@"Email"];
+        //设置手机认证
+        if (requestData[0][@"MobileVerifyDate"]) {
+            [self.imgMobileCer setImage:[UIImage imageNamed:@"ico_member_moblecer.png"]];
+            [self.imgMobileCer setFrame:CGRectMake(198, 78, 14, 16)];
+            [self.btnMobileCer setTitle:@"已认证" forState:UIControlStateNormal];
+            [self.btnMobileCer setTag:1];
+        }
+        else {
+            [self.imgMobileCer setFrame:CGRectMake(200, 78, 10, 16)];
+            [self.btnMobileCer setTag:0];
+        }
+        [self.viewProfile setHidden:false];
+        [self.viewWait stopAnimating];
     }
     else if (request.tag == 2) {
         [self.view makeToast:@"头像上传成功"];
@@ -164,8 +214,17 @@
     [loadView stopAnimating];
 }
 
-- (IBAction)certificateMobile:(id)sender {
-    
+- (IBAction)certificateMobile:(UIButton *)sender {
+    if (sender.tag == 1) {
+        return;
+    }
+    else {
+        MobileCertificateViewController *mobileCerC = [self.storyboard instantiateViewControllerWithIdentifier:@"MobileCertificateView"];
+        [mobileCerC.navigationItem setTitle:@"手机认证"];
+        mobileCerC.mobile = self.lbMobile.text;
+        [self.navigationController pushViewController:mobileCerC animated:true];
+        
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -309,6 +368,7 @@
 
 - (void)dealloc {
     [_viewProfile release];
+    [_viewWait release];
     [_btnPhoto release];
     [_viewPhotoSelect release];
     [_cPopup release];
@@ -318,7 +378,7 @@
     [_lbEmail release];
     [_lbMobile release];
     [_btnMobileModify release];
-    [_btnMobileCertificate release];
+    [_btnMobileCer release];
     [super dealloc];
 }
 @end
