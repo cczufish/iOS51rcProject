@@ -158,6 +158,15 @@
 		999BDD4B19C2E60B000A152A /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 999BDD3C19C2E60B000A152A /* GDataXMLNode.m */; };
 		999BDD4C19C2E60B000A152A /* NetWebServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 999BDD3E19C2E60B000A152A /* NetWebServiceRequest.m */; };
 		999BDD4D19C2E60B000A152A /* SoapXmlParseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 999BDD4119C2E60B000A152A /* SoapXmlParseHelper.m */; };
+		999BDD4F19C2E6F2000A152A /* UserCenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD4E19C2E6F2000A152A /* UserCenter.storyboard */; };
+		999BDD5819C2E89C000A152A /* ico_cvlist_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD5019C2E89C000A152A /* ico_cvlist_del.png */; };
+		999BDD5919C2E89C000A152A /* ico_cvlist_modify.png in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD5119C2E89C000A152A /* ico_cvlist_modify.png */; };
+		999BDD5A19C2E89C000A152A /* ico_cvlist_point_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD5219C2E89C000A152A /* ico_cvlist_point_gray.png */; };
+		999BDD5B19C2E89C000A152A /* ico_cvlist_point_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD5319C2E89C000A152A /* ico_cvlist_point_red.png */; };
+		999BDD5C19C2E89C000A152A /* ico_cvlist_preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD5419C2E89C000A152A /* ico_cvlist_preview.png */; };
+		999BDD5D19C2E89C000A152A /* ico_cvlist_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD5519C2E89C000A152A /* ico_cvlist_refresh.png */; };
+		999BDD5E19C2E89C000A152A /* ico_setting_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD5619C2E89C000A152A /* ico_setting_off.png */; };
+		999BDD5F19C2E89C000A152A /* ico_setting_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD5719C2E89C000A152A /* ico_setting_on.png */; };
 		999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */; };
 		99A5D671199CB8D100466B0C /* RecruitmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A5D670199CB8D100466B0C /* RecruitmentListViewController.m */; };
 		99AC903B19AC395400165D88 /* CpMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99AC903A19AC395400165D88 /* CpMainViewController.m */; };
@@ -297,7 +306,6 @@
 		99F51F5219AF296A00C81A9B /* radio_sel.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F51F5019AF296A00C81A9B /* radio_sel.png */; };
 		99F51F5319AF296A00C81A9B /* radio_unsel.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F51F5119AF296A00C81A9B /* radio_unsel.png */; };
 		99FA8B7519A6DBD500F8B1B9 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */; };
-		99FA8B7D19A7132700F8B1B9 /* UserCenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99FA8B7C19A7132700F8B1B9 /* UserCenter.storyboard */; };
 		99FC0AEA19C175A400B7EC74 /* MLImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0AE919C175A400B7EC74 /* MLImageCrop.m */; };
 		99FC0B5E19C2E26100B7EC74 /* MDRadialProgressLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0B5919C2E26100B7EC74 /* MDRadialProgressLabel.m */; };
 		99FC0B5F19C2E26100B7EC74 /* MDRadialProgressTheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0B5B19C2E26100B7EC74 /* MDRadialProgressTheme.m */; };
@@ -611,6 +619,15 @@
 		999BDD3E19C2E60B000A152A /* NetWebServiceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWebServiceRequest.m; sourceTree = "<group>"; };
 		999BDD4019C2E60B000A152A /* SoapXmlParseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoapXmlParseHelper.h; sourceTree = "<group>"; };
 		999BDD4119C2E60B000A152A /* SoapXmlParseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoapXmlParseHelper.m; sourceTree = "<group>"; };
+		999BDD4E19C2E6F2000A152A /* UserCenter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = UserCenter.storyboard; path = UserCenter/UserCenter.storyboard; sourceTree = "<group>"; };
+		999BDD5019C2E89C000A152A /* ico_cvlist_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvlist_del.png; sourceTree = "<group>"; };
+		999BDD5119C2E89C000A152A /* ico_cvlist_modify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvlist_modify.png; sourceTree = "<group>"; };
+		999BDD5219C2E89C000A152A /* ico_cvlist_point_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvlist_point_gray.png; sourceTree = "<group>"; };
+		999BDD5319C2E89C000A152A /* ico_cvlist_point_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvlist_point_red.png; sourceTree = "<group>"; };
+		999BDD5419C2E89C000A152A /* ico_cvlist_preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvlist_preview.png; sourceTree = "<group>"; };
+		999BDD5519C2E89C000A152A /* ico_cvlist_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvlist_refresh.png; sourceTree = "<group>"; };
+		999BDD5619C2E89C000A152A /* ico_setting_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_setting_off.png; sourceTree = "<group>"; };
+		999BDD5719C2E89C000A152A /* ico_setting_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_setting_on.png; sourceTree = "<group>"; };
 		999DF62E19AECC5600C05F20 /* GoToRmViewDetailDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GoToRmViewDetailDelegate.h; sourceTree = "<group>"; };
 		999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoToMyInvitedCpViewDelegate.h; path = Recruitment/Delegate/GoToMyInvitedCpViewDelegate.h; sourceTree = "<group>"; };
 		999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmInviteCpListViewController.h; path = Recruitment/MyRmInviteCpListViewController.h; sourceTree = "<group>"; };
@@ -806,7 +823,6 @@
 		99F51F5119AF296A00C81A9B /* radio_unsel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radio_unsel.png; sourceTree = "<group>"; };
 		99FA8B7319A6DBD500F8B1B9 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
-		99FA8B7C19A7132700F8B1B9 /* UserCenter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserCenter.storyboard; sourceTree = "<group>"; };
 		99FC0AE819C175A300B7EC74 /* MLImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLImageCrop.h; sourceTree = "<group>"; };
 		99FC0AE919C175A400B7EC74 /* MLImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLImageCrop.m; sourceTree = "<group>"; };
 		99FC0B5819C2E26100B7EC74 /* MDRadialProgressLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDRadialProgressLabel.h; sourceTree = "<group>"; };
@@ -1661,6 +1677,14 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				999BDD5019C2E89C000A152A /* ico_cvlist_del.png */,
+				999BDD5119C2E89C000A152A /* ico_cvlist_modify.png */,
+				999BDD5219C2E89C000A152A /* ico_cvlist_point_gray.png */,
+				999BDD5319C2E89C000A152A /* ico_cvlist_point_red.png */,
+				999BDD5419C2E89C000A152A /* ico_cvlist_preview.png */,
+				999BDD5519C2E89C000A152A /* ico_cvlist_refresh.png */,
+				999BDD5619C2E89C000A152A /* ico_setting_off.png */,
+				999BDD5719C2E89C000A152A /* ico_setting_on.png */,
 				99AF5B7D19C1317E00BE73F2 /* camara.png */,
 				99AF5B7E19C1317E00BE73F2 /* ico_member_connect.png */,
 				99AF5B7F19C1317E00BE73F2 /* ico_member_cpinvite.png */,
@@ -1815,13 +1839,13 @@
 		99FA8B7E19A7132C00F8B1B9 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				999BDD4E19C2E6F2000A152A /* UserCenter.storyboard */,
 				99FC0B6719C2E36900B7EC74 /* IndexViewController.h */,
 				99FC0B6819C2E36900B7EC74 /* IndexViewController.m */,
 				99FC0B6919C2E36900B7EC74 /* MobileCertificateViewController.h */,
 				99FC0B6A19C2E36900B7EC74 /* MobileCertificateViewController.m */,
 				99FC0B6B19C2E36900B7EC74 /* MobileModifyViewController.h */,
 				99FC0B6C19C2E36900B7EC74 /* MobileModifyViewController.m */,
-				99FA8B7C19A7132700F8B1B9 /* UserCenter.storyboard */,
 				99C581D319C193C7009985C5 /* CpInviteViewController.h */,
 				99C581D419C193C7009985C5 /* CpInviteViewController.m */,
 				99C581D619C196B7009985C5 /* InterviewNoticeViewController.h */,
@@ -1940,7 +1964,6 @@
 				99F51F4419AEB30300C81A9B /* chk_default.png in Resources */,
 				99BDC5F519A5F4A900B2BDB1 /* radioUnChecked.png in Resources */,
 				99B4693819B2EB520034505D /* ico_mainsearch_mapsearch2.png in Resources */,
-				99FA8B7D19A7132700F8B1B9 /* UserCenter.storyboard in Resources */,
 				9942F44319B987D900191C74 /* ShareSDKLocalizable.strings in Resources */,
 				99B350B7199CB1F100CAEC71 /* index640x960.png in Resources */,
 				9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */,
@@ -1976,6 +1999,7 @@
 				99CFD87D199B60D8009A5ABA /* ico_leftmenu_jobnews.png in Resources */,
 				99CFD895199B60D8009A5ABA /* qq.png in Resources */,
 				99CFD879199B60D8009A5ABA /* ico_leftmenu_campus.png in Resources */,
+				999BDD4F19C2E6F2000A152A /* UserCenter.storyboard in Resources */,
 				99F51F4319AEB30300C81A9B /* chk_check.png in Resources */,
 				99AF5B8B19C1317E00BE73F2 /* ico_member_moblecer.png in Resources */,
 				99B350BF199CB1F100CAEC71 /* welcom4-320x960.png in Resources */,
@@ -1985,6 +2009,7 @@
 				99CFD891199B60D8009A5ABA /* main_pic_govnews.png in Resources */,
 				99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */,
 				9942F39719B95C2100191C74 /* ico_mainmore_opinion.png in Resources */,
+				999BDD5A19C2E89C000A152A /* ico_cvlist_point_gray.png in Resources */,
 				99CFD87E199B60D8009A5ABA /* ico_leftmenu_mebercenter.png in Resources */,
 				99CFD878199B60D8009A5ABA /* color-orange.png in Resources */,
 				99AF5B8519C1317E00BE73F2 /* camara.png in Resources */,
@@ -2011,23 +2036,28 @@
 				99CFD886199B60D8009A5ABA /* ico_main_mycv.png in Resources */,
 				99CFD898199B60D8009A5ABA /* userName.png in Resources */,
 				990C8D3B19B9A41300B81AFB /* Campus.storyboard in Resources */,
+				999BDD5B19C2E89C000A152A /* ico_cvlist_point_red.png in Resources */,
 				99CFD876199B60D8009A5ABA /* btn_leftmenu.png in Resources */,
 				9925BE8A19B807F4002DBFE0 /* ico_map_centerpoint.png in Resources */,
 				9925BECE19B80C94002DBFE0 /* mapapi.bundle in Resources */,
 				992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */,
 				994C507119C02B8000E27017 /* pic_noinfo.png in Resources */,
+				999BDD5E19C2E89C000A152A /* ico_setting_off.png in Resources */,
 				9925BF0E19B83835002DBFE0 /* ico_mapsearch_jobnext.png in Resources */,
 				99CFD88B199B60D8009A5ABA /* ico_select_down.png in Resources */,
 				991125A319A4D24F00C98173 /* ico_expire.png in Resources */,
 				99F3F84919B00CEB00B5AB88 /* ico_jobright.png in Resources */,
 				99CFD88A199B60D8009A5ABA /* ico_main_search.png in Resources */,
+				999BDD5F19C2E89C000A152A /* ico_setting_on.png in Resources */,
 				99CFD887199B60D8009A5ABA /* ico_main_near.png in Resources */,
 				99AF5B8619C1317E00BE73F2 /* ico_member_connect.png in Resources */,
+				999BDD5919C2E89C000A152A /* ico_cvlist_modify.png in Resources */,
 				9925BE8B19B807F4002DBFE0 /* ico_mapsearch_joblist.png in Resources */,
 				99CFD88E199B60D8009A5ABA /* loginRenRen.png in Resources */,
 				99F51F5319AF296A00C81A9B /* radio_unsel.png in Resources */,
 				99CFD84D199B6082009A5ABA /* Home.storyboard in Resources */,
 				99CFD881199B60D8009A5ABA /* ico_leftmenu_salary.png in Resources */,
+				999BDD5D19C2E89C000A152A /* ico_cvlist_refresh.png in Resources */,
 				99BD700719B5BBF400514807 /* ico_jobnews_search.png in Resources */,
 				99B4693719B2EB520034505D /* ico_mainsearch_mapsearch1.png in Resources */,
 				99F3F84519B007C100B5AB88 /* ico_shen.png in Resources */,
@@ -2059,6 +2089,7 @@
 				999BDD1219C2E41E000A152A /* More.storyboard in Resources */,
 				99CFD888199B60D8009A5ABA /* ico_main_rm.png in Resources */,
 				9942F39519B95C2100191C74 /* ico_mainmore_help.png in Resources */,
+				999BDD5819C2E89C000A152A /* ico_cvlist_del.png in Resources */,
 				99CFD88D199B60D8009A5ABA /* loginQQ.png in Resources */,
 				99E76D6319BE8724004DD65F /* bg_lasttiem_green.png in Resources */,
 				991125B019A4EE9800C98173 /* ico_rm_cp.png in Resources */,
@@ -2075,6 +2106,7 @@
 				9925BEFC19B80E02002DBFE0 /* menu-button@2x.png in Resources */,
 				999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */,
 				99AF5B7C19C1292900BE73F2 /* pic_pahead_default.png in Resources */,
+				999BDD5C19C2E89C000A152A /* ico_cvlist_preview.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
