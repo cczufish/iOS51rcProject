@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="151" y="62"/>
         </scene>
-        <!--View Controller-->
+        <!--Job Invite List View Controller-->
         <scene sceneID="8o9-Zo-7xY">
             <objects>
-                <viewController id="g8v-cg-HLh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="JobInviteListView" id="g8v-cg-HLh" customClass="JobInviteListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RZg-ZF-4tE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -115,24 +115,48 @@
             </objects>
             <point key="canvasLocation" x="488" y="62"/>
         </scene>
-        <!--View Controller-->
+        <!--Interview Notice View Controller-->
         <scene sceneID="n2G-cP-JWi">
             <objects>
-                <viewController id="3w4-YS-Eeu" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InterviewNoticeView" id="3w4-YS-Eeu" customClass="InterviewNoticeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x4Z-k0-swU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Tkc-xd-Amu">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="kl4-mK-drD">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kl4-mK-drD" id="Fws-GX-DdN">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="3w4-YS-Eeu" id="YDV-eX-s4B"/>
+                                    <outlet property="delegate" destination="3w4-YS-Eeu" id="Cnp-or-Who"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="tvReceivedInvitationList" destination="Tkc-xd-Amu" id="ENv-hJ-uZD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vha-R8-MeV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="156" y="735"/>
         </scene>
-        <!--View Controller-->
+        <!--Cp Attention View Controller-->
         <scene sceneID="a4b-Ec-8SS">
             <objects>
-                <viewController id="lg5-aT-2dU" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CpAttentionView" id="lg5-aT-2dU" customClass="CpAttentionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tFN-JJ-caH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

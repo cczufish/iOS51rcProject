@@ -30,7 +30,7 @@
     selectRowHeight = 110;//选择行的高度
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    [self onSearch];
+    //[self onSearch];
 }
 
 - (void)onSearch
@@ -212,11 +212,18 @@
         [cell.contentView addSubview:(lbRemark)];
         
         //不赴约的原因
-        UITextView *txtViewReason = [[[UITextView alloc] initWithFrame:CGRectMake(0, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 280, 30)] autorelease];
+        UITextView *txtViewReason = [[[UITextView alloc] initWithFrame:CGRectMake(20, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 280, 30)] autorelease];
         [cell.contentView addSubview:txtViewReason];
         
         //赴约、不赴约
-        //UIButton *btnAccept = [UIButton alloc] initWithFrame:CGRect
+        UIButton *btnAccept = [[[UIButton alloc] initWithFrame:CGRectMake(60, lbRemark.frame.origin.y+lbRemark.frame.size.height, 60, 40 )] autorelease];
+        btnAccept.layer.backgroundColor = [UIColor greenColor].CGColor;
+        [btnAccept setTitle:@"赴约" forState:UIControlStateNormal];
+        
+        UIButton *btnReject = [[[UIButton alloc] initWithFrame:CGRectMake(180, lbRemark.frame.origin.y+lbRemark.frame.size.height, 60, 40 )] autorelease];
+        btnReject.layer.backgroundColor = [UIColor greenColor].CGColor;
+        [btnReject setTitle:@"赴约" forState:UIControlStateNormal];
+        
         //判断是否已经结束，如果没有结束，则可以赴约参会
         if (!isPassed && [strStatus isEqualToString:@"0"]) {
             //赴约参会

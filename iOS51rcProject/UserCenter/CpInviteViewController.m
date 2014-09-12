@@ -23,14 +23,11 @@
 @property (retain, nonatomic) NSString *employId;
 @property (retain, nonatomic) NSString *companyId;
 @property int tabIndex;
-@property (nonatomic, retain) NSMutableArray *campusListData;
-@property (nonatomic, retain) NSMutableArray *employData;
-@property (nonatomic, retain) NSMutableArray *employListData;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @end
 
 @implementation CpInviteViewController
-
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -43,7 +40,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    firstPageLoad = false;
+    secondPageLoad = false;
+    thriePageLoad = false;
+    
+    //初始化三个子View
+    self.interviewNoticeCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"InterviewNoticeView"];
+    self.interviewNoticeCtrl.view.frame = CGRectMake(0, 0, 320, HEIGHT);
+    self.jobInviteListCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"JobInviteListView"];
+    self.jobInviteListCtrl.view.frame = CGRectMake(320, 0, 320, HEIGHT);
+    self.cpAttentionCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CpAttentionView"];
+    self.cpAttentionCtrl.view.frame = CGRectMake(640, 0, 320, HEIGHT);
+    //把三个子View加到Scrollview中
+    [self.scrollView addSubview:self.interviewNoticeCtrl.view];
+    [self.scrollView addSubview:self.jobInviteListCtrl.view];
+    [self.scrollView addSubview:self.cpAttentionCtrl.view];
+
     self.automaticallyAdjustsScrollViewInsets = NO;
+    //self.scrollView.frame =  CGRectMake(0, 0, 320, HEIGHT);
     [self.scrollView setContentSize:CGSizeMake(960, self.scrollView.frame.size.height)];
     switch (self.tabIndex) {
         case 1:
@@ -56,61 +70,57 @@
             [self switchToThirdView:nil];
             break;
         default:
+            //默认在第一个页面
+             [self switchToFirstView:nil];
             break;
     }
 }
 
 - (IBAction)switchToFirstView:(id)sender {
-//    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
-//    [UIView animateWithDuration:0.2 animations:^{
-//        [self.lbEmploy setTextColor:[UIColor blackColor]];
-//        [self.lbCampus setTextColor:[UIColor blackColor]];
-//        [self.lbBrief setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-//        [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-//    } completion:^(BOOL finished) {
-//        if (self.employData.count == 0) {
-//            [self onEmploySearchByCpID];
-//        }
-//    }];
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+    
+    if (!firstPageLoad) {
+        [self.interviewNoticeCtrl onSearch];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbCpAttention setTextColor:[UIColor blackColor]];
+        [self.lbJobInvite setTextColor:[UIColor blackColor]];
+        [self.lbInterviewNotice setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        firstPageLoad = true;
+    }];
 }
 
 - (IBAction)switchToSecondView:(id)sender {
-//    [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
-//    [UIView animateWithDuration:0.2 animations:^{
-//        [self.lbEmploy setTextColor:[UIColor blackColor]];
-//        [self.lbBrief setTextColor:[UIColor blackColor]];
-//        [self.lbCampus setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-//        [self.lbUnderline setFrame:CGRectMake(106, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-//    } completion:^(BOOL finished) {
-//        if (self.campusListData.count == 0) {
-//            [self onCampusSearch];
-//        }
-//    }];
+    [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
+   
+    if (!secondPageLoad) {
+        //
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbCpAttention setTextColor:[UIColor blackColor]];
+        [self.lbInterviewNotice setTextColor:[UIColor blackColor]];
+        [self.lbJobInvite setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(106, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        secondPageLoad = true;
+    }];
 }
 
 - (IBAction)switchToThirdView:(id)sender {
-//    [self.scrollView setContentOffset:CGPointMake(640, 0) animated:true];
-//    [UIView animateWithDuration:0.2 animations:^{
-//        [self.lbCampus setTextColor:[UIColor blackColor]];
-//        [self.lbBrief setTextColor:[UIColor blackColor]];
-//        [self.lbEmploy setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-//        [self.lbUnderline setFrame:CGRectMake(214, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
-//    } completion:^(BOOL finished) {
-//        if (self.employData.count == 0) {
-//            if (self.companyId.length == 0) {
-//                [self onEmploySearch];
-//            }
-//            else {
-//                [self onEmploySearchByCpID];
-//            }
-//        }
-//    }];
+    [self.scrollView setContentOffset:CGPointMake(640, 0) animated:true];
+   
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbInterviewNotice setTextColor:[UIColor blackColor]];
+        [self.lbJobInvite setTextColor:[UIColor blackColor]];
+        [self.lbCpAttention setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(214, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        thriePageLoad = true;
+    }];
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return self.campusListData.count;
-}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
@@ -148,9 +158,6 @@
     [_cpAttentionCtrl release];
     [_lbUnderline release];
     [_scrollView release];
-    [_campusListData release];
-    [_employListData release];
-    [_employData release];
     [_runningRequest release];
     [_employId release];
     [_companyId release];
