@@ -316,8 +316,6 @@
     [_lbPaName release];
     [_lbEmail release];
     [_lbMobile release];
-    [_lbMobileCer release];
-    [_lbMobileCer release];
     [_btnMobileModify release];
     [_btnMobileCertificate release];
     [super dealloc];
