@@ -118,25 +118,8 @@
     [cell.contentView addSubview:btnChat];
     [btnChat release];
     [imgOnline release];
-    //右侧的参会不参会标记
-    UILabel *lbStatus = [[UILabel alloc] initWithFrame:CGRectMake(260, 6, 50, 18)];
-    lbStatus.layer.cornerRadius = 7;
-    lbStatus.textColor = [UIColor whiteColor];
-    lbStatus.font = [UIFont systemFontOfSize:12];
-    lbStatus.textAlignment = NSTextAlignmentCenter;
-    if (!isPassed) {
-        if ([strStatus isEqualToString:@"1"]) {//参会
-            lbStatus.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
-            lbStatus.text = @"参会";
-        }else{
-            lbStatus.layer.backgroundColor = [UIColor grayColor].CGColor;
-            lbStatus.text = @"不参会";
-        }
-    }
-    [cell.contentView addSubview:lbStatus];
-    [lbStatus release];
     //公司名称
-    NSString *strCpName = rowData[@"companyName"];
+    NSString *strCpName = rowData[@"cpName"];
     labelSize = [CommonController CalculateFrame:strCpName fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
     UILabel *lbCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y + lbTitle.frame.size.height + 5, labelSize.width, 15)];
     lbCpName.text = strCpName;
@@ -159,17 +142,28 @@
     //当前选择行，显示详细信息
     if (selectRowIndex == indexPath.row) {
         //面试时间
-        UILabel *lbInterviewTime = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbInviteTime.frame.origin.y + lbInviteTime.frame.size.height + 5, titleWidth, 15)] autorelease];
+        UILabel *lbPreViewTime = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbInviteTime.frame.origin.y + lbInviteTime.frame.size.height + 5, 40, 15)] autorelease];
+        lbPreViewTime.text = @"面试时间：";
+        lbPreViewTime.font  = [UIFont systemFontOfSize:11];
+        lbPreViewTime.textColor = [UIColor lightGrayColor];
+        
+        UILabel *lbInterviewTime = [[[UILabel alloc] initWithFrame:CGRectMake(60, lbInviteTime.frame.origin.y + lbInviteTime.frame.size.height + 5, titleWidth, 15)] autorelease];
         NSString *strInterviewTime = rowData[@"InterviewDate"];
         NSDate *dtViewDate = [CommonController dateFromString:strInterviewTime];
         strBeginDate = [CommonController stringFromDate:dtViewDate formatType:@"yyyy-MM-dd HH:mm"];
-        lbInterviewTime.text = [NSString stringWithFormat:@"面试时间：%@ %@",strBeginDate,strWeek];
+        lbInterviewTime.text = [NSString stringWithFormat:@"%@",strBeginDate];
         lbInterviewTime.font = [UIFont systemFontOfSize:11];
         lbInterviewTime.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+        
         [cell.contentView addSubview:(lbInterviewTime)];
 
         //面试地点
-        NSString *strPlace = [NSString stringWithFormat:@"面试地点：%@",rowData[@"InterViewPlace"]];
+        UILabel *lbPrePlace = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbInterviewTime.frame.origin.y + lbInterviewTime.frame.size.height + 5, 40, 15)] autorelease];
+        lbPrePlace.text = @"面试地点";
+        lbPrePlace.font  = [UIFont systemFontOfSize:11];
+        lbPrePlace.textColor = [UIColor lightGrayColor];
+        
+        NSString *strPlace = rowData[@"InterViewPlace"];
         labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbInterviewTime.frame.origin.y + lbInterviewTime.frame.size.height + 5, labelSize.width, 15)];
         lbPlace.text = strPlace;
