@@ -66,6 +66,9 @@
         [self.svContent setContentSize:CGSizeMake(320, 590) ];
         self.svContent.frame = CGRectMake(0, 0, 320, 490);
         //self.txtInput.frame = CGRectMake(self.lbInfo.frame.origin.x, self.lbInfo.frame.origin.y + self.lbInfo.frame.size.height + 10, 320, self.txtInput.frame.size.height - 100);
+    }else{
+        [self.svContent setContentSize:CGSizeMake(320, self.svContent.frame.size.height) ];
+        self.svContent.frame = CGRectMake(0, 0, 320, self.svContent.frame.size.height);
     }
     
     //为TextView设置键盘隐藏
