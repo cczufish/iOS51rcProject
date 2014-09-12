@@ -299,6 +299,8 @@
 		99FA8B7519A6DBD500F8B1B9 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */; };
 		99FA8B7D19A7132700F8B1B9 /* UserCenter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99FA8B7C19A7132700F8B1B9 /* UserCenter.storyboard */; };
 		99FC0AEA19C175A400B7EC74 /* MLImageCrop.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0AE919C175A400B7EC74 /* MLImageCrop.m */; };
+		99FC0AED19C28A0900B7EC74 /* MobileModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0AEC19C28A0900B7EC74 /* MobileModifyViewController.m */; };
+		99FC0AF019C28A1800B7EC74 /* MobileCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0AEF19C28A1800B7EC74 /* MobileCertificateViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -802,6 +804,10 @@
 		99FA8B7C19A7132700F8B1B9 /* UserCenter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserCenter.storyboard; sourceTree = "<group>"; };
 		99FC0AE819C175A300B7EC74 /* MLImageCrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLImageCrop.h; sourceTree = "<group>"; };
 		99FC0AE919C175A400B7EC74 /* MLImageCrop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLImageCrop.m; sourceTree = "<group>"; };
+		99FC0AEB19C28A0900B7EC74 /* MobileModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileModifyViewController.h; sourceTree = "<group>"; };
+		99FC0AEC19C28A0900B7EC74 /* MobileModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileModifyViewController.m; sourceTree = "<group>"; };
+		99FC0AEE19C28A1800B7EC74 /* MobileCertificateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobileCertificateViewController.h; sourceTree = "<group>"; };
+		99FC0AEF19C28A1800B7EC74 /* MobileCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileCertificateViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1795,6 +1801,10 @@
 				99C581DA19C19709009985C5 /* JobInviteListViewController.m */,
 				99C581DC19C19756009985C5 /* CpAttentionViewController.h */,
 				99C581DD19C19756009985C5 /* CpAttentionViewController.m */,
+				99FC0AEB19C28A0900B7EC74 /* MobileModifyViewController.h */,
+				99FC0AEC19C28A0900B7EC74 /* MobileModifyViewController.m */,
+				99FC0AEE19C28A1800B7EC74 /* MobileCertificateViewController.h */,
+				99FC0AEF19C28A1800B7EC74 /* MobileCertificateViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -2065,6 +2075,7 @@
 				99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */,
 				9925BEF919B80E02002DBFE0 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
 				99442A6819BFE9AD00667CE1 /* FeedbackViewController.m in Sources */,
+				99FC0AF019C28A1800B7EC74 /* MobileCertificateViewController.m in Sources */,
 				99938FD119BC2D55008F986A /* EiSearchViewController.m in Sources */,
 				9925BF0719B80E1F002DBFE0 /* SearchViewController.m in Sources */,
 				99B7FF8319B353C700BD1345 /* RmCpJobListViewController.m in Sources */,
@@ -2153,6 +2164,7 @@
 				9925BEFA19B80E02002DBFE0 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */,
 				99C581E019C1A0D6009985C5 /* RM.m in Sources */,
+				99FC0AED19C28A0900B7EC74 /* MobileModifyViewController.m in Sources */,
 				99AF855A19A1883400524B66 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

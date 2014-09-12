@@ -18,5 +18,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbMobile;
 @property (retain, nonatomic) IBOutlet UIImageView *imgMobileCer;
 @property (retain, nonatomic) IBOutlet UILabel *lbMobileCer;
+@property (retain, nonatomic) IBOutlet UIButton *btnMobileModify;
+@property (retain, nonatomic) IBOutlet UIButton *btnMobileCertificate;
 
 @end

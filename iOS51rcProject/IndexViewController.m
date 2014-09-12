@@ -163,9 +163,9 @@
     }
     [loadView stopAnimating];
 }
+
 - (IBAction)certificateMobile:(id)sender {
-}
-- (IBAction)changeMobile:(id)sender {
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -318,6 +318,8 @@
     [_lbMobile release];
     [_lbMobileCer release];
     [_lbMobileCer release];
+    [_btnMobileModify release];
+    [_btnMobileCertificate release];
     [super dealloc];
 }
 @end
