@@ -169,6 +169,36 @@
             </objects>
             <point key="canvasLocation" x="1045" y="-228"/>
         </scene>
+        <!--News Help View Controller-->
+        <scene sceneID="quG-hQ-oh2">
+            <objects>
+                <viewController storyboardIdentifier="NewsHelpView" id="TX1-No-P5t" customClass="NewsHelpViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hro-iR-flE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="IUr-uX-ppn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" id="UQ6-es-qdS">
+                                        <rect key="frame" x="141" y="400" width="39" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </pageControl>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="pageScroll" destination="IUr-uX-ppn" id="vOf-p0-do3"/>
+                        <outlet property="pager" destination="UQ6-es-qdS" id="Xdf-hv-EBx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lrT-v8-0jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1388" y="-228"/>
+        </scene>
         <!--About Us View Controller-->
         <scene sceneID="MG7-fR-aO6">
             <objects>

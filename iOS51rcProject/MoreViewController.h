@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "WelcomeViewController.h"
 
 @interface MoreViewController : UIViewController
 

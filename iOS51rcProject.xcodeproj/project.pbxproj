@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9901836019AC58F900CA1CB2 /* ico_joblist_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9901835E19AC58F900CA1CB2 /* ico_joblist_favorite.png */; };
 		9901836119AC58F900CA1CB2 /* ico_joblist_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9901835F19AC58F900CA1CB2 /* ico_joblist_online.png */; };
+		990512FB19C27F4400B9C096 /* NewsHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990512FA19C27F4400B9C096 /* NewsHelpViewController.m */; };
 		990C8D3519B99A2B00B81AFB /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */; };
 		990C8D3B19B9A41300B81AFB /* Campus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990C8D3A19B9A41300B81AFB /* Campus.storyboard */; };
 		990C8D3E19B9A4DC00B81AFB /* CampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C8D3D19B9A4DC00B81AFB /* CampusViewController.m */; };
@@ -316,6 +317,8 @@
 /* Begin PBXFileReference section */
 		9901835E19AC58F900CA1CB2 /* ico_joblist_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_joblist_favorite.png; sourceTree = "<group>"; };
 		9901835F19AC58F900CA1CB2 /* ico_joblist_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_joblist_online.png; sourceTree = "<group>"; };
+		990512F919C27F4400B9C096 /* NewsHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsHelpViewController.h; path = More/NewsHelpViewController.h; sourceTree = "<group>"; };
+		990512FA19C27F4400B9C096 /* NewsHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsHelpViewController.m; path = More/NewsHelpViewController.m; sourceTree = "<group>"; };
 		990C8D3319B99A2B00B81AFB /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		990C8D3A19B9A41300B81AFB /* Campus.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Campus.storyboard; sourceTree = "<group>"; };
@@ -1049,6 +1052,8 @@
 				990C8D3419B99A2B00B81AFB /* AboutUsViewController.m */,
 				99442A6619BFE9AD00667CE1 /* FeedbackViewController.h */,
 				99442A6719BFE9AD00667CE1 /* FeedbackViewController.m */,
+				990512F919C27F4400B9C096 /* NewsHelpViewController.h */,
+				990512FA19C27F4400B9C096 /* NewsHelpViewController.m */,
 			);
 			name = More;
 			sourceTree = "<group>";
@@ -2158,6 +2163,7 @@
 				9935EFC119BEFD8000F581AC /* CampusCompanyViewController.m in Sources */,
 				990C8D3E19B9A4DC00B81AFB /* CampusViewController.m in Sources */,
 				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
+				990512FB19C27F4400B9C096 /* NewsHelpViewController.m in Sources */,
 				997BF0E5199DB33C00FD0B12 /* ASIDataDecompressor.m in Sources */,
 				99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */,
 				99AF855819A1883400524B66 /* FindPsdStep3ViewController.m in Sources */,

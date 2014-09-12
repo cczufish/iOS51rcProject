@@ -4,6 +4,7 @@
 #import "SlideNavigationController.h"
 #import "FeedbackViewController.h"
 #import "CustomPopup.h"
+#import "NewsHelpViewController.h"
 
 @interface MoreViewController () <UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate, CustomPopupDelegate>
 @property (retain, nonatomic) CustomPopup *cPopup;
@@ -154,9 +155,9 @@
         }
         case 2:
         {
-            FeedbackViewController *feedBackCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbackView"];
-            [self.navigationController pushViewController:feedBackCtrl animated:YES];
-            feedBackCtrl.navigationItem.title = @"意见反馈";
+            NewsHelpViewController * helpview = [self.storyboard instantiateViewControllerWithIdentifier:@"NewsHelpView"];
+            [self.navigationController pushViewController:helpview animated:true];
+            //[self.navigationController setNavigationBarHidden:YES animated:YES];
             break;
         }
         case 3:
