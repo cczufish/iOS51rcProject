@@ -16,8 +16,8 @@
 #import "LoadingAnimationView.h"
 #import "Toast+UIView.h"
 #import "CpInviteViewController.h"
-#import "UserInfo.h"
 #import "LoginViewController.h"
+#import "CommonController.h"
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
@@ -251,7 +251,7 @@
         }
         case 3:
         {
-            if ([UserInfo isLogin]) {
+            if ([CommonController isLogin]) {
                 UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
                 CpInviteViewController *CpInviteViewCtrl = [userCenter instantiateViewControllerWithIdentifier:@"CpInviteView"];
                 CpInviteViewCtrl.navigationItem.title = @"企业邀约";

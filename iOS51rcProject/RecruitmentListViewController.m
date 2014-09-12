@@ -7,7 +7,6 @@
 #import "RecruitmentViewController.h"
 #import "SlideNavigationController.h"
 #import "MyRecruitmentViewController.h"
-#import "UserInfo.h"
 #import "LoginViewController.h"
 #import "RmSearchJobForInviteViewController.h"
 #import <objc/runtime.h> 
@@ -289,7 +288,7 @@
 
 //点击我要参会
 -(void) joinRecruitment:(UIButton *)sender{
-    if ([UserInfo isLogin]) {
+    if ([CommonController isLogin]) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSString *code = [userDefaults objectForKey:@"code"];
         NSString *userID = [userDefaults objectForKey:@"UserID"];

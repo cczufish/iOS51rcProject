@@ -8,8 +8,8 @@
 #import "RecruitmentListViewController.h"
 #import "CampusViewController.h"
 #import "Toast+UIView.h"
-#import "UserInfo.h"
 #import "CpInviteViewController.h"
+#import "CommonController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
 
@@ -55,7 +55,7 @@
 
 //点击企业邀约
 - (IBAction)btnCpInvitationClick:(id)sender {
-    if ([UserInfo isLogin]) {
+    if ([CommonController isLogin]) {
         UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
         CpInviteViewController *CpInviteViewCtrl = [userCenter instantiateViewControllerWithIdentifier:@"CpInviteView"];
         CpInviteViewCtrl.navigationItem.title = @"企业邀约";

@@ -4,7 +4,6 @@
 #import "SlideNavigationController.h"
 #import "FeedbackViewController.h"
 #import "CustomPopup.h"
-#import "UserInfo.h"
 
 @interface MoreViewController () <UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate, CustomPopupDelegate>
 @property (retain, nonatomic) CustomPopup *cPopup;
@@ -225,7 +224,7 @@
 //点击退出帐号，清楚UserDefault里边的数据
 - (void) confirmAndCancelPopupNext
 {
-    [UserInfo logout];
+    [CommonController logout];
     //设置返回,传递给home页面
     NSDictionary *dataDict = [NSDictionary dictionaryWithObject:@"logout"
                                                          forKey:@"operation"];
