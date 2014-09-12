@@ -122,8 +122,11 @@
     }
     
 
-    NSUserDefaults *userDefaults = [[NSUserDefaults standardUserDefaults] autorelease];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults] ;
     NSString *userID = [userDefaults objectForKey:@"UserID"];
+    if (userID == nil) {
+        userID = @"";
+    }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:strInput forKey:@"Content"];
     [dicParam setObject:@"1.0" forKey:@"strVersion"];
@@ -173,30 +176,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 //开始编辑输入框的时候，软键盘出现，执行此事件
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    CGRect frame = textField.frame;
-    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
-    
+    //CGRect frame = textField.frame;
+    //int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
+    int offset = -216;
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
     [UIView setAnimationDuration:animationDuration];
     
     //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
-    //if(offset > 0)
-        self.view.frame = CGRectMake(0.0f, offset, self.view.frame.size.width, self.view.frame.size.height);
+    self.view.frame = CGRectMake(0.0f, offset, self.view.frame.size.width, self.view.frame.size.height);
     
     [UIView commitAnimations];
 }

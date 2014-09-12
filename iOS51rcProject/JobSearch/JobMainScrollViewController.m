@@ -1,5 +1,4 @@
 #import "JobMainScrollViewController.h"
-//#import "JobDetailsController.h"
 #import "JobViewController.h"
 #import "CpMainViewController.h"
 #import "CpJobsViewController.h"
@@ -30,8 +29,8 @@
         
         _scrollView.delegate = self;
     }
-    //self.autoresizesSubviews = true;
-    //.automaticallyAdjustsScrollViewInsets = NO;
+    self.autoresizesSubviews = true;
+    //self.automaticallyAdjustsScrollViewInsets = NO;
     [self addSubview:_scrollView];
 }
 
@@ -47,6 +46,7 @@
     //RmSearchJobForInviteViewController *fatherCtrl = (RmSearchJobForInviteViewController*) [self getFatherController];
     
     UIStoryboard *CpAndJobStoryBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    //职位列表
     CpJobsViewController *otherJobsCtrl = [CpAndJobStoryBoard instantiateViewControllerWithIdentifier:@"CpJobsView"];
     otherJobsCtrl.cpMainID = self.cpMainID;
     int h = otherJobsCtrl.view.frame.size.height;
@@ -56,6 +56,7 @@
     [_contentItems addObject:otherJobsCtrl.view];
     [otherJobsCtrl retain];
     
+    //公司页面
     CpMainViewController *cpMainCtrl = [CpAndJobStoryBoard instantiateViewControllerWithIdentifier:@"CpMainView"];
     cpMainCtrl.cpMainID = self.cpMainID;
     cpMainCtrl.view.frame = CGRectMake(320, 0, 320, cpMainCtrl.view.frame.size.height) ;
@@ -63,6 +64,7 @@
     [_contentItems addObject:cpMainCtrl.view];
     [cpMainCtrl retain];
     
+    //职位详情
     JobViewController *jobCtrl = [CpAndJobStoryBoard instantiateViewControllerWithIdentifier:@"JobView"];    
     jobCtrl.JobID = self.JobID;
     jobCtrl.height = h;

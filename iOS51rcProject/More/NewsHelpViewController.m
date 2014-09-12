@@ -63,6 +63,7 @@
 {
     NSLog(@"返回");
     [self.navigationController popViewControllerAnimated:true];
+    [self.navigationController setNavigationBarHidden:false];
 }
 
 
