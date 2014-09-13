@@ -109,7 +109,9 @@
 
 - (IBAction)switchToThirdView:(id)sender {
     [self.scrollView setContentOffset:CGPointMake(640, 0) animated:true];
-   
+    if (!thriePageLoad) {
+        [self.cpAttentionCtrl onSearch];
+    }
     [UIView animateWithDuration:0.2 animations:^{
         [self.lbInterviewNotice setTextColor:[UIColor blackColor]];
         [self.lbJobInvite setTextColor:[UIColor blackColor]];
