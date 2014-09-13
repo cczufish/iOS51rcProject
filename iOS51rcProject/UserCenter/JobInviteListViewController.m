@@ -24,7 +24,7 @@
 @end
 
 @implementation JobInviteListViewController
-
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
@@ -55,6 +56,8 @@
     [viewTitle release];
     [lbTitle release];
     //设置底部功能栏
+    self.tvJobList.frame = CGRectMake(0, 0, 320, HEIGHT-self.viewBottom.frame.size.height-110);
+    self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 320, self.view.frame.size.height);
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
@@ -63,7 +66,7 @@
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //添加上拉加载更多
-    [self.tvJobList addFooterWithTarget:self action:@selector(footerRereshing)];
+    //[self.tvJobList addFooterWithTarget:self action:@selector(footerRereshing)];
     //不显示列表分隔线
     self.tvJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -82,7 +85,7 @@
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:userID forKey:@"paMainID"];//21142013
     [dicParam setObject:code forKey:@"code"];//152014391908
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetMyReceivedInvitationList" Params:dicParam];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetJobInvitationList" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
     request.tag = 1;
@@ -90,10 +93,10 @@
     [dicParam release];
 }
 
-- (void)footerRereshing{
-    self.pageNumber++;
-    [self onSearch];
-}
+//- (void)footerRereshing{
+//    self.pageNumber++;
+//    [self onSearch];
+//}
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
@@ -168,9 +171,9 @@
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.jobListData[indexPath.row];
     if (indexPath.row == 1) {
-        [self.lbSearchResult setText:[NSString stringWithFormat:@"[找到%@个职位]",rowData[@"JobNumber"]]];
-        if (self.pageNumber == 1) {
-        }
+        //[self.lbSearchResult setText:[NSString stringWithFormat:@"[找到%@个职位]",rowData[@"JobNumber"]]];
+        //if (self.pageNumber == 1) {
+        //}
     }
     //职位名称
     UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 20)];
@@ -178,15 +181,6 @@
     [lbJobName setFont:[UIFont systemFontOfSize:14]];
     [cell.contentView addSubview:lbJobName];
     [lbJobName release];
-    
-    //是否在线
-    if ([rowData[@"IsOnline"] isEqualToString:@"true"]) {
-        
-        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(275, 5, 40, 20)];
-        [imgOnline setImage:[UIImage imageNamed:@"ico_joblist_online.png"]];
-        [cell.contentView addSubview:imgOnline];
-        [imgOnline release];
-    }
     
     //公司名称
     UILabel *lbCompanyName = [[UILabel alloc] initWithFrame:CGRectMake(40, 28, 200, 20)];
@@ -196,26 +190,19 @@
     [cell.contentView addSubview:lbCompanyName];
     [lbCompanyName release];
     
-    //刷新时间
-    UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(240, 28, 75, 20)];
-    [lbRefreshDate setText:[CommonController stringFromDate:[CommonController dateFromString:rowData[@"RefreshDate"]] formatType:@"MM-dd HH:mm"]];
+    //邀请时间
+    UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 51, 200, 20)];
+    NSString *strDate = [NSString stringWithFormat:@"邀请时间：%@", [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"]];
+    [lbRefreshDate setText:strDate];
     [lbRefreshDate setFont:fontCell];
     [lbRefreshDate setTextColor:colorText];
-    [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
+    //[lbRefreshDate setTextAlignment:NSTextAlignmentRight];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
-    
-    //地区|学历
-    NSString *strRegionAndEducation = [NSString stringWithFormat:@"%@|%@",[CommonController getDictionaryDesc:rowData[@"dcRegionID"] tableName:@"dcRegion"],[CommonController getDictionaryDesc:rowData[@"dcEducationID"] tableName:@"dcEducation"]];
-    UILabel *lbRegionAndEducation = [[UILabel alloc] initWithFrame:CGRectMake(40, 51, 200, 20)];
-    [lbRegionAndEducation setText:strRegionAndEducation];
-    [lbRegionAndEducation setFont:fontCell];
-    [lbRegionAndEducation setTextColor:colorText];
-    [cell.contentView addSubview:lbRegionAndEducation];
-    [lbRegionAndEducation release];
-    
+
     //月薪
-    NSString *strSalary = [CommonController getDictionaryDesc:rowData[@"dcSalaryID"] tableName:@"dcSalary"];
+    NSString *strdcSalaryId = rowData[@"dcSalaryId"] ;
+    NSString *strSalary = [CommonController getDictionaryDesc:strdcSalaryId tableName:@"dcSalary"];
     if (strSalary.length == 0) {
         strSalary = @"面议";
     }
@@ -365,6 +352,7 @@
     [_viewBottom release];
     [_arrCheckJobID release];
     [_cPopup release];
+    [_btnDelete release];
     [super dealloc];
 }
 @end
