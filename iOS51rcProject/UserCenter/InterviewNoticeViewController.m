@@ -71,6 +71,10 @@
         [self.tvReceivedInvitationList reloadData];
         [self.tvReceivedInvitationList footerEndRefreshing];
     }
+    else if(request.tag == 2)
+    {
+        [self onSearch];//加载完后重新刷新
+    }
     
     //结束等待动画
     [loadView stopAnimating];

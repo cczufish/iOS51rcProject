@@ -15,12 +15,18 @@
 @interface CpAttentionViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
     LoadingAnimationView *loadView;
+    NSString *selectCV;
 }
+@property (nonatomic, retain) NSMutableArray *cvList;
 @property (nonatomic, retain) NSMutableArray *jobListData;
 @property int pageNumber;
 @property (nonatomic, retain) NSString *isOnline;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequestGetCvList;
 @property (nonatomic, retain) CustomPopup *cPopup;
+@property (retain, nonatomic) IBOutlet UILabel *lbTop;
+@property (retain, nonatomic) IBOutlet UIButton *btnTop;
+@property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @end
 
 @implementation CpAttentionViewController
@@ -34,11 +40,35 @@
     return self;
 }
 
+-(void)cancelDicPicker
+{
+    [self.DictionaryPicker cancelPicker];
+    self.DictionaryPicker.delegate = nil;
+    self.DictionaryPicker = nil;
+    
+    //切换背景图片
+    UIImageView *imgCornor = self.btnTop.subviews[1];
+    imgCornor.image = [UIImage imageNamed:@"ico_triangle.png"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.frame = CGRectMake(0, 0, 320, HEIGHT-110);
+    //self.tvJobList.frame = CGRectMake(0, 40, 320, HEIGHT-150);
+    self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.lbTop.layer.borderWidth = 0.5;
+    self.btnTop.titleLabel.text = @"相关简历";
+    self.btnTop.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.btnTop.layer.borderWidth = 0.5;
+    self.btnTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    [self.btnTop addTarget:self action:@selector(selectCV:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imgCornor = [[[UIImageView alloc] initWithFrame:CGRectMake(65, 20, 10, 10)] autorelease];
+    imgCornor.image = [UIImage imageNamed:@"ico_triangle.png"];
+    [self.btnTop addSubview:imgCornor];
+    
     self.pageNumber = 1;
-    cvMainID = @" ";
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
@@ -54,10 +84,11 @@
 
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    //添加上拉加载更多
-    //[self.tvJobList addFooterWithTarget:self action:@selector(footerRereshing)];
     //不显示列表分隔线
     self.tvJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self GetBasicCvList];
+    selectCV = @"";
 }
 
 - (void)onSearch
@@ -74,7 +105,7 @@
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:userID forKey:@"paMainID"];//21142013
     [dicParam setObject:code forKey:@"code"];//152014391908
-    [dicParam setObject:cvMainID forKey:@"cvMainID"];
+    [dicParam setObject:selectCV forKey:@"cvMainID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCvViewLog" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
@@ -82,11 +113,6 @@
     self.runningRequest = request;
     [dicParam release];
 }
-
-//- (void)footerRereshing{
-//    self.pageNumber++;
-//    [self onSearch];
-//}
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
@@ -97,6 +123,24 @@
             [self.jobListData removeAllObjects];
             self.jobListData = requestData;
         }
+        else if(request.tag == 2){
+            NSMutableArray *arrCv = [[NSMutableArray alloc] init];
+            NSDictionary *defalult = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                       @"0",@"id",
+                                       @"相关简历",@"value"
+                                       ,nil] autorelease];
+            [arrCv addObject:defalult];
+            for (int i = 0; i < requestData.count; i++) {
+                NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                        requestData[i][@"ID"],@"id",
+                                        requestData[i][@"Name"],@"value"
+                                        ,nil] autorelease];
+                [arrCv addObject:dicCv];
+            }
+            
+            self.cvList = arrCv;
+        }
+
         else{
             [self.jobListData addObjectsFromArray:requestData];
         }
@@ -185,6 +229,63 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+//选择简历
+-(void) selectCV:(UIButton*) sender{
+    UIImageView *imgCornor = sender.subviews[1];
+    imgCornor.image = [UIImage imageNamed:@"ico_triangle_orange.png"];
+    [self cancelDicPicker];
+    
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defalutValue:@"0" defalutName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
+    self.DictionaryPicker.frame = CGRectMake(self.DictionaryPicker.frame.origin.x, self.DictionaryPicker.frame.origin.y-50, self.DictionaryPicker.frame.size.width, self.DictionaryPicker.frame.size.height);
+    [self.DictionaryPicker setTag:1];
+    [self.DictionaryPicker showInView:self.view];
+}
+
+//获得简历列表
+-(void) GetBasicCvList{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
+    
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetBasicCvListByPaMainID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequestGetCvList = request;
+    [dicParam release];
+}
+
+
+- (void)pickerDidChangeStatus:(DictionaryPickerView *)picker
+                selectedValue:(NSString *)selectedValue
+                 selectedName:(NSString *)selectedName
+{
+    switch (picker.tag) {
+        case 1:
+            if (selectedValue.length == 0) {
+                [self.btnTop setTitle:@"相关简历" forState:UIControlStateNormal];
+                selectCV = @"";
+                //[self.view makeToast:@"工作地点不能为空"];
+                return;
+            }else{
+                [self.btnTop setTitle:selectedName forState:UIControlStateNormal];
+                selectCV = selectedValue;
+            }
+            
+            [self onSearch];
+            break;
+        default:
+            break;
+    }
+    [self cancelDicPicker];
+}
+
 //得到父View
 - (UIViewController *)getFatherController
 {
@@ -203,6 +304,8 @@
     [_tvJobList release];
     [_arrCheckJobID release];
     [_cPopup release];
+    [_lbTop release];
+    [_btnTop release];
     [super dealloc];
 }
 @end
