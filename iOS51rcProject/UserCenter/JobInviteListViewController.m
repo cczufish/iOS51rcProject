@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) UILabel *lbSearchResult;
 @property (nonatomic, retain) CustomPopup *cPopup;
+@property (retain, nonatomic) IBOutlet UILabel *lbTop;
 @end
 
 @implementation JobInviteListViewController
@@ -37,6 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.lbTop.layer.borderWidth = 0.5;
+    self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置导航标题(搜索条件)
@@ -56,13 +59,14 @@
     [viewTitle release];
     [lbTitle release];
     //设置底部功能栏
-    self.tvJobList.frame = CGRectMake(0, 0, 320, HEIGHT-self.viewBottom.frame.size.height-110);
+    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-170);
     self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 320, self.view.frame.size.height);
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     [self.btnFavorite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnDelete addTarget:self action:@selector(jobDelete) forControlEvents:UIControlEventTouchUpInside];
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //添加上拉加载更多
@@ -102,6 +106,7 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
+    UIViewController *pCtrl = [self getFatherController];
     if (request.tag == 1) { //职位搜索
         if(self.pageNumber == 1){
             [self.jobListData removeAllObjects];
@@ -125,18 +130,35 @@
         }
     }
     else if (request.tag == 3) { //默认投递完之后，显示弹层
-        [self.cPopup showJobApplyCvSelect:result view:self.view];
+        [self.cPopup showJobApplyCvSelect:result view:pCtrl.view];
     }
     else if (request.tag == 4) { //重新申请职位成功
         [self.view makeToast:@"重新申请简历成功"];
     }
     else if (request.tag == 5) {
-        [self.view makeToast:@"收藏职位成功"];
+        
+        [pCtrl.view makeToast:@"收藏职位成功"];
+    }
+    else if (request.tag == 6) {
+        [pCtrl.view makeToast:@"删除职位成功"];
+        [self onSearch];
     }
     //结束等待动画
     [loadView stopAnimating];
 }
 
+//得到父View
+- (UIViewController *)getFatherController
+{
+    for (UIView* next = [self.view superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    
+    return nil;
+}
 - (void)insertJobApply:(NSString *)cvMainID
                isFirst:(BOOL)isFirst
 {
@@ -291,6 +313,7 @@
     }
 }
 
+//收藏职位
 - (void)jobFavorite
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -320,6 +343,36 @@
     }
 }
 
+//删除职位
+- (void)jobDelete
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        //判断是否有选中的职位
+        if (self.arrCheckJobID.count == 0) {
+            [self.view makeToast:@"您还没有选择职位"];
+            return;
+        }
+        //连接数据库，读取有效简历
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+        [dicParam setObject:[self.arrCheckJobID componentsJoinedByString:@","] forKey:@"jobID"];
+        [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"DeleteJobInvitation" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 6;
+        self.runningRequest = request;
+        [dicParam release];
+        [loadView startAnimating];
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
+}
+
 - (void) getPopupValue:(NSString *)value
 {
     [self insertJobApply:value isFirst:NO];
@@ -328,19 +381,8 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 - (void)dealloc {
     [_runningRequest release];
@@ -353,6 +395,7 @@
     [_arrCheckJobID release];
     [_cPopup release];
     [_btnDelete release];
+    [_lbTop release];
     [super dealloc];
 }
 @end
