@@ -5,10 +5,13 @@
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
 #import <objc/runtime.h>
+#import "RmCpMain.h"
 
 @interface InterviewNoticeViewController ()<NetWebServiceRequestDelegate, UITextViewDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequestForRejectOrAccept;
 @property (retain, nonatomic) IBOutlet UITableView *tvReceivedInvitationList;
+@property (retain, nonatomic) IBOutlet UILabel *lbMessage;
 @end
 
 @implementation InterviewNoticeViewController
@@ -27,6 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.lbMessage.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.lbMessage.layer.borderWidth = 0.5;
     selectRowIndex = 0;
     selectRowHeight = 110;//选择行的高度
     //数据加载等待控件初始化
@@ -36,7 +41,6 @@
 
 - (void)onSearch
 {
- 
     [loadView startAnimating];
     [recruitmentCpData removeAllObjects];
     [self.tvReceivedInvitationList reloadData];
@@ -60,11 +64,13 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
-    [recruitmentCpData removeAllObjects];
-    recruitmentCpData = requestData;
-    
-    [self.tvReceivedInvitationList reloadData];
-    [self.tvReceivedInvitationList footerEndRefreshing];
+    if (request.tag == 1) {
+        [recruitmentCpData removeAllObjects];
+        recruitmentCpData = requestData;
+        
+        [self.tvReceivedInvitationList reloadData];
+        [self.tvReceivedInvitationList footerEndRefreshing];
+    }
     
     //结束等待动画
     [loadView stopAnimating];
@@ -244,6 +250,7 @@
             //赴约参会
             UIButton *btnAccept = [[UIButton alloc] initWithFrame:CGRectMake(50, txtViewReason.frame.origin.y + txtViewReason.frame.size.height+ 5, 90, 30)];
             btnAccept.tag = (NSInteger)rowData[@"ID"];
+            objc_setAssociatedObject(btnAccept, @"message", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnAccept addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
             btnAccept.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
             btnAccept.layer.cornerRadius = 5;
@@ -318,31 +325,60 @@
     [txtView resignFirstResponder];
 }
 
-//点击招聘会
-- (IBAction)btnInviteCp:(id)sender {
-    NSLog(@"");
-}
 
 //点击坐标
 -(void)btnLngLatClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
 }
 
-//点击参会
+//点击赴约
 -(void)btnAcceptClick:(UIButton *) sender{
-    NSLog(@"%d", sender.tag);
+    NSString *msg = objc_getAssociatedObject(sender, @"message");
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
+    NSString *userName = [userDefaults objectForKey:@"UserName"];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userName forKey:@"paName"];
+    [dicParam setObject:@"32" forKey:@"dcRegionId"];
+    [dicParam setObject: [NSString stringWithFormat:@"%d", sender.tag] forKey:@"cpMainID"];
+    [dicParam setObject:msg forKey:@"message"];
+    [dicParam setObject:userID forKey:@"id"];
+    [dicParam setObject:@"1" forKey:@"reply"];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"ReplyInterview" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequestForRejectOrAccept = request;
+    [dicParam release];
 }
 
-//点击不参会
+//点击不赴约
 -(void)btnRejectClick:(UIButton *) sender{
-    NSLog(@"%d", sender.tag);
+    NSString *msg = objc_getAssociatedObject(sender, @"message");
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
+    NSString *userName = [userDefaults objectForKey:@"UserName"];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userName forKey:@"paName"];
+    [dicParam setObject:@"32" forKey:@"dcRegionId"];
+    [dicParam setObject: [NSString stringWithFormat:@"%d", sender.tag] forKey:@"cpMainID"];
+    [dicParam setObject:msg forKey:@"message"];
+    [dicParam setObject:userID forKey:@"id"];
+    [dicParam setObject:@"2" forKey:@"reply"];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"ReplyInterview" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequestForRejectOrAccept = request;
+    [dicParam release];
 }
 
-//点击我参会的企业
--(void)joinRecruitment:(UIButton *) sender{
-    NSLog(@"%d", sender.tag);
-    [gotoMyInvitedCpViewDelegate GoToMyInvitedCpView:[@(sender.tag) stringValue]];
-}
 
 //点击某一行,到达企业页面--调用代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -375,7 +411,7 @@
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
     CGRect frame = textView.frame;
-    int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
+    int offset = frame.origin.y - (self.view.frame.size.height - 216.0);//键盘高度216
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
     [UIView setAnimationDuration:animationDuration];
@@ -412,6 +448,7 @@
 
 - (void)dealloc {
     [_tvReceivedInvitationList release];
+    [_lbMessage release];
     [super dealloc];
 }
 @end
