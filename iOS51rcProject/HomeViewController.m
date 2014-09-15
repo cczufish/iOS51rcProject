@@ -9,6 +9,7 @@
 #import "CampusViewController.h"
 #import "Toast+UIView.h"
 #import "CpInviteViewController.h"
+#import "JmMainViewController.h"
 #import "CommonController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
@@ -51,6 +52,22 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+//点击职位申请
+- (IBAction)btnJobApplication:(id)sender {
+    if ([CommonController isLogin]) {
+        UIStoryboard *jm = [UIStoryboard storyboardWithName:@"JobApplication" bundle:nil];
+        JmMainViewController *jmMainCtrl = [jm instantiateViewControllerWithIdentifier:@"JmMainView"];
+        jmMainCtrl.navigationItem.title = @"职位申请";
+        self.navigationItem.title = @" ";
+        [self.navigationController pushViewController:jmMainCtrl animated:true];
+    }else{
+        UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginCtrl animated:YES];
+        self.navigationItem.title = @" ";
+    }
 }
 
 //点击企业邀约
