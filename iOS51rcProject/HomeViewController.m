@@ -96,10 +96,15 @@
 
 //点击我的简历按钮
 - (IBAction)btnMyResultClick:(id)sender {
-    UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
-    [self.navigationController pushViewController:loginCtrl animated:YES];
-    //[loginCtrl release];//加release会报错
+    if([CommonController isLogin]) {
+        UIViewController *viewC = [[UIStoryboard storyboardWithName:@"UserCenter" bundle:nil] instantiateViewControllerWithIdentifier:@"MyCvView"];
+        [self.navigationController pushViewController:viewC animated:YES];
+    }
+    else {
+        UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginCtrl animated:YES];
+    }
 }
 
 - (IBAction)btnMoreClick:(id)sender {

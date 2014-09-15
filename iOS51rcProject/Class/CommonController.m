@@ -39,6 +39,13 @@
     return thisDate;
 }
 
++(NSString *)stringFromDateString:(NSString *)date
+                       formatType:(NSString *)formatType
+{
+    NSDate *newDate = [self dateFromString:date];
+    return [self stringFromDate:newDate formatType:formatType];
+}
+
 //是否是空字符串
 + (BOOL) isBlankString:(NSString *)string {
     if (string == nil || string == NULL) {

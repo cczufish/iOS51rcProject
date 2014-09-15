@@ -51,6 +51,7 @@
 
 - (void)dealloc {
     [self removeObserver:self.label forKeyPath:keyThickness];
+    [super dealloc];
 }
 
 - (void)internalInitWithTheme:(MDRadialProgressTheme *)theme
@@ -91,11 +92,25 @@
 	[self setNeedsDisplay];
 }
 
+- (void)setProgressCount:(NSUInteger)progressCount
+{
+	_progressCount = progressCount;
+	[self notifyProgressChange];
+	[self setNeedsDisplay];
+}
+
 - (void)setProgressTotal:(NSUInteger)progressTotal
 {
 	_progressTotal = progressTotal;
 	[self notifyProgressChange];
 	[self setNeedsDisplay];
+}
+
+- (void)setUnit:(NSString *)unit
+{
+    _unit = unit;
+    [self notifyProgressChange];
+    [self setNeedsDisplay];
 }
 
 #pragma mark - Drawing
@@ -247,7 +262,7 @@
 	
 	CGContextSetLineWidth(contextRef, self.theme.thickness);
 	CGRect innerCircle = CGRectMake(center.x - innerRadius, center.y - innerRadius,
-									innerDiameter, innerDiameter);
+									innerDiameter-0.6, innerDiameter-0.6);
 	CGContextAddEllipseInRect(contextRef, innerCircle);
 	CGContextClip(contextRef);
 	CGContextClearRect(contextRef, innerCircle);
@@ -267,15 +282,24 @@
 - (void)notifyProgressChange
 {
 	// Update the accessibilityValue and the progressSummaryView text.
-	float percentageCompleted = (100.0f / self.progressTotal) * self.progressCounter;
-	
-	self.accessibilityValue = [NSString stringWithFormat:@"%.2f", percentageCompleted];
-	self.label.text = [NSString stringWithFormat:@"%.0f", percentageCompleted];
-	
-	NSString *notificationText = [NSString stringWithFormat:@"%@ %@",
-								  NSLocalizedString(@"Progress changed to:", nil),
-								  self.accessibilityValue];
-	UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, notificationText);
+    if (!_unit)
+    {
+        _unit = @"";
+    }
+    if (_progressCount) {
+        self.label.text = [NSString stringWithFormat:@"%d", _progressCount];
+        self.label.font = [UIFont systemFontOfSize:14];
+    }
+    else {
+        float percentageCompleted = (100.0f / self.progressTotal) * self.progressCounter;
+        self.accessibilityValue = [NSString stringWithFormat:@"%.2f", percentageCompleted];
+        self.label.text = [NSString stringWithFormat:@"%.0f%@", percentageCompleted, _unit];
+        self.label.font = [UIFont systemFontOfSize:14];
+        NSString *notificationText = [NSString stringWithFormat:@"%@ %@",
+                                      NSLocalizedString(@"Progress changed to:", nil),
+                                      self.accessibilityValue];
+        UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, notificationText);
+    }
 }
 
 @end

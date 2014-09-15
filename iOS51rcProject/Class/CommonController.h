@@ -12,6 +12,8 @@
 +(NSString *)getWeek:(NSDate *)date;
 +(NSString *)stringFromDate:(NSDate *)date
                  formatType:(NSString *)formatType;
++(NSString *)stringFromDateString:(NSString *)date
+                 formatType:(NSString *)formatType;
 +(BOOL)checkPassword:(NSString *) strPsd;
 //+(BOOL) checkPassword:(NSString *) strPsd;
 +(BOOL)isBlankString:(NSString *)string;

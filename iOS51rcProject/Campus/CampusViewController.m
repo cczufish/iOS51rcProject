@@ -39,6 +39,7 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.navigationItem setTitle:@"校园招聘"];
     [self.scrollCampus setContentSize:CGSizeMake(640, self.scrollCampus.frame.size.height)];
     self.scrollCampus.delegate = self;
     //按钮加边框

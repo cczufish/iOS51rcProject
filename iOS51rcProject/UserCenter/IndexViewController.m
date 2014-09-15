@@ -298,6 +298,8 @@
     switch (indexPath.row) {
         case 0:
         {
+            UIViewController *viewC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyCvView"];
+            [self.navigationController pushViewController:viewC animated:true];
             break;
         }
         case 1:
@@ -379,6 +381,8 @@
     [_lbMobile release];
     [_btnMobileModify release];
     [_btnMobileCer release];
+    [_runningRequest release];
+    [loadView release];
     [super dealloc];
 }
 @end

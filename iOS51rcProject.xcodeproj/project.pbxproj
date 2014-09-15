@@ -1556,15 +1556,15 @@
 		99BEE43E19ADB0130090C9E1 /* Recruitment */ = {
 			isa = PBXGroup;
 			children = (
+				99938FE019BD85DE008F986A /* Invite */,
+				999DF62F19AECEE700C05F20 /* Delegate */,
+				99938FD219BCAFFB008F986A /* Recruitment.storyboard */,
 				9905132719C2EF8200B9C096 /* RecruitmentListViewController.h */,
 				9905132819C2EF8200B9C096 /* RecruitmentListViewController.m */,
 				9905132919C2EF8200B9C096 /* RecruitmentViewController.h */,
 				9905132A19C2EF8200B9C096 /* RecruitmentViewController.m */,
 				9905135119C2F4EE00B9C096 /* MyRmCpListViewController.h */,
 				9905135219C2F4EE00B9C096 /* MyRmCpListViewController.m */,
-				99938FE019BD85DE008F986A /* Invite */,
-				99938FD219BCAFFB008F986A /* Recruitment.storyboard */,
-				999DF62F19AECEE700C05F20 /* Delegate */,
 				99BEE43B19ADAEDE0090C9E1 /* MyRecruitmentViewController.h */,
 				99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */,
 				999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */,

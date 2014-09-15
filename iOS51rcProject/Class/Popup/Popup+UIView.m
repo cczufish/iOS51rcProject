@@ -7,7 +7,9 @@
     //加背景
     UIView *viewBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [viewBackground setBackgroundColor:[UIColor colorWithWhite:0.5 alpha:0.5]];
-    
+    UIButton *btnClose = [[UIButton alloc] initWithFrame:viewBackground.frame];
+    [btnClose addTarget:self action:@selector(closePopup) forControlEvents:UIControlEventTouchUpInside];
+    [viewBackground addSubview:btnClose];
     //加内容
     UIView *viewInner = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentView.frame.size.width+20, contentView.frame.size.height+20)];
     [viewInner setBackgroundColor:[UIColor whiteColor]];
@@ -18,7 +20,6 @@
     contentFrame.origin = CGPointMake(10, 10);
     [contentView setFrame:contentFrame];
     [viewInner addSubview:contentView];
-    
     //将内容放到背景上
     [viewBackground addSubview:viewInner];
     [self addSubview:viewBackground];

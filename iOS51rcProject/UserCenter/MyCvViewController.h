@@ -3,11 +3,17 @@
 //  iOS51rcProject
 //
 //  Created by Lucifer on 14-9-12.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface MyCvViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollCv;
+@property (retain, nonatomic) IBOutlet UIView *viewNoCv;
+@property (retain, nonatomic) IBOutlet UIView *viewCvEdit;
+@property (retain, nonatomic) IBOutlet UILabel *lbCvCount;
+@property (retain, nonatomic) IBOutlet UIView *viewCreate;
+@property (retain, nonatomic) IBOutlet UIButton *btnCreateCv;
 
 @end

@@ -25,6 +25,7 @@ static NSString *keyThickness = @"theme.thickness";
 // The number of steps currently completed.
 @property (assign, nonatomic) NSUInteger progressCounter;
 
+@property (assign, nonatomic) NSUInteger progressCount;
 // Whether the progress is drawn clockwise (YES) or anticlockwise (NO)
 @property (assign, nonatomic) BOOL clockwise;
 
@@ -36,5 +37,6 @@ static NSString *keyThickness = @"theme.thickness";
 
 // The label shown in the view's center.
 @property (strong, nonatomic) MDRadialProgressLabel *label;
+@property (strong, nonatomic) NSString *unit;
 
 @end

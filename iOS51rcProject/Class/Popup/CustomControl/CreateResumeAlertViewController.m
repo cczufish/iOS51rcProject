@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.btnOK.backgroundColor = [UIColor orangeColor];
+    self.btnOK.layer.cornerRadius = 5;
     //[self createHasExpBtnGroupWithImage];
     // Do any additional setup after loading the view from its nib.
 }
