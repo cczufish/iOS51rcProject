@@ -184,6 +184,11 @@
 		999BDD6719C2F6AF000A152A /* CampusCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999BDD6319C2F6AF000A152A /* CampusCompanyViewController.m */; };
 		999BDD6819C2F6AF000A152A /* CampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999BDD6519C2F6AF000A152A /* CampusViewController.m */; };
 		999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */; };
+		99A16D1419C6B6180053C6E9 /* JobApplication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99A16D1319C6B6180053C6E9 /* JobApplication.storyboard */; };
+		99A16D1719C6B6460053C6E9 /* JmMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A16D1619C6B6460053C6E9 /* JmMainViewController.m */; };
+		99A16D1A19C6B6600053C6E9 /* JmJobApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A16D1919C6B6600053C6E9 /* JmJobApplyViewController.m */; };
+		99A16D1D19C6B6790053C6E9 /* JmFavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A16D1C19C6B6790053C6E9 /* JmFavouriteViewController.m */; };
+		99A16D2019C6B6990053C6E9 /* JmJobScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A16D1F19C6B6990053C6E9 /* JmJobScanViewController.m */; };
 		99AF5B7B19C1292900BE73F2 /* bg_membercenter_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B7919C1292900BE73F2 /* bg_membercenter_head.png */; };
 		99AF5B7C19C1292900BE73F2 /* pic_pahead_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B7A19C1292900BE73F2 /* pic_pahead_default.png */; };
 		99AF5B8519C1317E00BE73F2 /* camara.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B7D19C1317E00BE73F2 /* camara.png */; };
@@ -663,6 +668,15 @@
 		999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoToMyInvitedCpViewDelegate.h; path = Recruitment/Delegate/GoToMyInvitedCpViewDelegate.h; sourceTree = "<group>"; };
 		999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmInviteCpListViewController.h; path = Recruitment/MyRmInviteCpListViewController.h; sourceTree = "<group>"; };
 		999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmInviteCpListViewController.m; path = Recruitment/MyRmInviteCpListViewController.m; sourceTree = "<group>"; };
+		99A16D1319C6B6180053C6E9 /* JobApplication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JobApplication.storyboard; sourceTree = "<group>"; };
+		99A16D1519C6B6460053C6E9 /* JmMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JmMainViewController.h; sourceTree = "<group>"; };
+		99A16D1619C6B6460053C6E9 /* JmMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JmMainViewController.m; sourceTree = "<group>"; };
+		99A16D1819C6B6600053C6E9 /* JmJobApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JmJobApplyViewController.h; sourceTree = "<group>"; };
+		99A16D1919C6B6600053C6E9 /* JmJobApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JmJobApplyViewController.m; sourceTree = "<group>"; };
+		99A16D1B19C6B6790053C6E9 /* JmFavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JmFavouriteViewController.h; sourceTree = "<group>"; };
+		99A16D1C19C6B6790053C6E9 /* JmFavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JmFavouriteViewController.m; sourceTree = "<group>"; };
+		99A16D1E19C6B6990053C6E9 /* JmJobScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JmJobScanViewController.h; sourceTree = "<group>"; };
+		99A16D1F19C6B6990053C6E9 /* JmJobScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JmJobScanViewController.m; sourceTree = "<group>"; };
 		99AF5B7919C1292900BE73F2 /* bg_membercenter_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_membercenter_head.png; sourceTree = "<group>"; };
 		99AF5B7A19C1292900BE73F2 /* pic_pahead_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_pahead_default.png; sourceTree = "<group>"; };
 		99AF5B7D19C1317E00BE73F2 /* camara.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camara.png; sourceTree = "<group>"; };
@@ -1395,6 +1409,22 @@
 			name = Delegate;
 			sourceTree = "<group>";
 		};
+		99A16D1219C6B5FA0053C6E9 /* JobApplication */ = {
+			isa = PBXGroup;
+			children = (
+				99A16D1319C6B6180053C6E9 /* JobApplication.storyboard */,
+				99A16D1519C6B6460053C6E9 /* JmMainViewController.h */,
+				99A16D1619C6B6460053C6E9 /* JmMainViewController.m */,
+				99A16D1819C6B6600053C6E9 /* JmJobApplyViewController.h */,
+				99A16D1919C6B6600053C6E9 /* JmJobApplyViewController.m */,
+				99A16D1B19C6B6790053C6E9 /* JmFavouriteViewController.h */,
+				99A16D1C19C6B6790053C6E9 /* JmFavouriteViewController.m */,
+				99A16D1E19C6B6990053C6E9 /* JmJobScanViewController.h */,
+				99A16D1F19C6B6990053C6E9 /* JmJobScanViewController.m */,
+			);
+			path = JobApplication;
+			sourceTree = "<group>";
+		};
 		99AF855E19A188D700524B66 /* WelCome */ = {
 			isa = PBXGroup;
 			children = (
@@ -1604,6 +1634,7 @@
 		99CFD81D199B5F80009A5ABA /* iOS51rcProject */ = {
 			isa = PBXGroup;
 			children = (
+				99A16D1219C6B5FA0053C6E9 /* JobApplication */,
 				999BDD6019C2F6AF000A152A /* Campus */,
 				99B9822819B4C46700D5D77D /* EmploymentInformation */,
 				99B9822119B4C39400D5D77D /* GovernmentRecruitment */,
@@ -1979,6 +2010,7 @@
 				99CFD87C199B60D8009A5ABA /* ico_leftmenu_index.png in Resources */,
 				99B4693919B2EB520034505D /* ico_mainsearch_normalsearch1.png in Resources */,
 				9942F37F19B94E4400191C74 /* ico_map_back.png in Resources */,
+				99A16D1419C6B6180053C6E9 /* JobApplication.storyboard in Resources */,
 				99AF5B8C19C1317E00BE73F2 /* ico_member_mycv.png in Resources */,
 				9925BE8F19B807F4002DBFE0 /* ico_mapsearch_pre.png in Resources */,
 				999BDD6619C2F6AF000A152A /* Campus.storyboard in Resources */,
@@ -2123,6 +2155,7 @@
 				99BDC5E919A5F10D00B2BDB1 /* MLTableAlert.m in Sources */,
 				99FC0B5F19C2E26100B7EC74 /* MDRadialProgressTheme.m in Sources */,
 				99B9672019B4550500E93CBD /* RmSearchJobForInviteViewController.m in Sources */,
+				99A16D1D19C6B6790053C6E9 /* JmFavouriteViewController.m in Sources */,
 				995575C319AC64EA00B73E4A /* RmAttendCpListViewController.m in Sources */,
 				998025BF19A23024001A7E84 /* MJRefreshBaseView.m in Sources */,
 				999BDD1F19C2E4FC000A152A /* SearchListViewController.m in Sources */,
@@ -2222,10 +2255,13 @@
 				99BD6FF219B5AFDF00514807 /* MenuHrizontal.m in Sources */,
 				9905134619C2F3D500B9C096 /* CpOtherJobsMainViewController.m in Sources */,
 				99BD6FF319B5AFDF00514807 /* CircleView.m in Sources */,
+				99A16D2019C6B6990053C6E9 /* JmJobScanViewController.m in Sources */,
 				99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */,
+				99A16D1A19C6B6600053C6E9 /* JmJobApplyViewController.m in Sources */,
 				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
 				990512FB19C27F4400B9C096 /* NewsHelpViewController.m in Sources */,
 				99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */,
+				99A16D1719C6B6460053C6E9 /* JmMainViewController.m in Sources */,
 				9925BEFA19B80E02002DBFE0 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */,
 				99FC0B6D19C2E36900B7EC74 /* IndexViewController.m in Sources */,
