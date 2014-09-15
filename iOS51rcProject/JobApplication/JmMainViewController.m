@@ -78,7 +78,7 @@
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
     
     if (!firstPageLoad) {
-        //[self.ijobApplyCtrl onSearch];
+        [self.jobApplyCtrl onSearch];
     }
     [UIView animateWithDuration:0.2 animations:^{
         [self.lbJobScan setTextColor:[UIColor blackColor]];
