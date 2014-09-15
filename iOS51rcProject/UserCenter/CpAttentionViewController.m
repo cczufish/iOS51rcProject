@@ -54,8 +54,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.frame = CGRectMake(0, 0, 320, HEIGHT-110);
-    //self.tvJobList.frame = CGRectMake(0, 40, 320, HEIGHT-150);
+    //self.view.frame = CGRectMake(0, 0, 320, HEIGHT-210);
+    //self.tvJobList.frame = CGRectMake(0, 40, 320, HEIGHT-250);
     self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.lbTop.layer.borderWidth = 0.5;
     self.btnTop.titleLabel.text = @"相关简历";
@@ -123,24 +123,7 @@
             [self.jobListData removeAllObjects];
             self.jobListData = requestData;
         }
-        else if(request.tag == 2){
-            NSMutableArray *arrCv = [[NSMutableArray alloc] init];
-            NSDictionary *defalult = [[[NSDictionary alloc] initWithObjectsAndKeys:
-                                       @"0",@"id",
-                                       @"相关简历",@"value"
-                                       ,nil] autorelease];
-            [arrCv addObject:defalult];
-            for (int i = 0; i < requestData.count; i++) {
-                NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
-                                        requestData[i][@"ID"],@"id",
-                                        requestData[i][@"Name"],@"value"
-                                        ,nil] autorelease];
-                [arrCv addObject:dicCv];
-            }
-            
-            self.cvList = arrCv;
-        }
-
+        
         else{
             [self.jobListData addObjectsFromArray:requestData];
         }
@@ -148,6 +131,24 @@
         //重新加载列表
         [self.tvJobList reloadData];
     }
+    else if(request.tag == 2){
+        NSMutableArray *arrCv = [[NSMutableArray alloc] init];
+        NSDictionary *defalult = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                   @"0",@"id",
+                                   @"相关简历",@"value"
+                                   ,nil] autorelease];
+        [arrCv addObject:defalult];
+        for (int i = 0; i < requestData.count; i++) {
+            NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                    requestData[i][@"ID"],@"id",
+                                    requestData[i][@"Name"],@"value"
+                                    ,nil] autorelease];
+            [arrCv addObject:dicCv];
+        }
+        
+        self.cvList = arrCv;
+    }
+
     //结束等待动画
     [loadView stopAnimating];
 }
@@ -234,13 +235,14 @@
 //选择简历
 -(void) selectCV:(UIButton*) sender{
     UIImageView *imgCornor = sender.subviews[1];
-    imgCornor.image = [UIImage imageNamed:@"ico_triangle_orange.png"];
     [self cancelDicPicker];
+    imgCornor.image = [UIImage imageNamed:@"ico_triangle_orange.png"];
     
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defalutValue:@"0" defalutName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.frame = CGRectMake(self.DictionaryPicker.frame.origin.x, self.DictionaryPicker.frame.origin.y-50, self.DictionaryPicker.frame.size.width, self.DictionaryPicker.frame.size.height);
     [self.DictionaryPicker setTag:1];
-    [self.DictionaryPicker showInView:self.view];
+    UIViewController *pCtrl = [self getFatherController];
+    [self.DictionaryPicker showInView:pCtrl.view];
 }
 
 //获得简历列表
@@ -268,11 +270,9 @@
 {
     switch (picker.tag) {
         case 1:
-            if (selectedValue.length == 0) {
+            if ([selectedValue isEqualToString:@"0"]) {
                 [self.btnTop setTitle:@"相关简历" forState:UIControlStateNormal];
                 selectCV = @"";
-                //[self.view makeToast:@"工作地点不能为空"];
-                return;
             }else{
                 [self.btnTop setTitle:selectedName forState:UIControlStateNormal];
                 selectCV = selectedValue;
