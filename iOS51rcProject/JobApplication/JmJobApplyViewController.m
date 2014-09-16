@@ -191,6 +191,14 @@
     [cell.contentView addSubview:lbJobName];
     [lbJobName release];
     
+    //在线按钮
+    BOOL isOnline = [rowData[@"IsOnline"] boolValue];
+    if (isOnline) {
+        UIButton *btnChat = [[[UIButton alloc] initWithFrame:CGRectMake(210, 5, 30, 15)] autorelease];
+        [btnChat setImage:[UIImage imageNamed:@"ico_joblist_online.png"] forState:UIControlStateNormal];
+        [cell.contentView addSubview:btnChat];
+    }
+    
     //匹配度
     UILabel *lbCvMatch = [[UILabel alloc] initWithFrame:CGRectMake(245, 5, 55, 15)];
     [lbCvMatch setText: [NSString stringWithFormat:@"匹配度%@%@", rowData[@"cvMatch"], @"%"]];
