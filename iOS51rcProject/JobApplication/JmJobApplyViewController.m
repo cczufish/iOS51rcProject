@@ -71,10 +71,14 @@
     
     //设置底部功能栏
     //self.view.frame = CGRectMake(0, 0, 320, HEIGHT-170);
-    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-self.lbTop.frame.size.height);
-    self.viewBottom.frame = CGRectMake(0, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 320, self.viewBottom.frame.size.height);
+    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-170);
+    self.viewBottom.frame = CGRectMake(0, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height+20, 320, self.viewBottom.frame.size.height);
     self.viewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.viewBottom.layer.borderWidth = 0.5;
+    self.btnDelete.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    self.btnDelete.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.btnDelete.layer.borderWidth = 0.5;
+    self.btnDelete.layer.cornerRadius = 5;
     [self.btnDelete addTarget:self action:@selector(jobDelete) forControlEvents:UIControlEventTouchUpInside];
     
     //加载等待动画
@@ -145,6 +149,24 @@
         
         self.cvList = arrCv;
     }
+    else if(request.tag == 6){
+        UIViewController *pCtrl = [self getFatherController];
+        [pCtrl.view makeToast:@"删除成功"];
+        //更新视图，删除全局对象内改数据，并重新绑定
+        for (int i = 0; i<self.jobListData.count; i++) {
+            NSDictionary *rowData = self.jobListData[i];
+            NSString *jobID = rowData[@"JobID"];
+            //如果包含在被删除的列表内，则删除
+            for (int j=0; j<self.arrCheckJobID.count; j++) {
+                if ([self.arrCheckJobID[j] isEqualToString:jobID]) {
+                    [self.jobListData removeObjectAtIndex:i];
+                    break;
+                }
+            }
+        }
+        [self.tvJobList reloadData];
+        self.arrCheckJobID = [[NSMutableArray alloc] init];
+    }
     
     //结束等待动画
     [loadView stopAnimating];
@@ -170,12 +192,12 @@
     [lbJobName release];
     
     //匹配度
-    UILabel *lbCvMatch = [[UILabel alloc] initWithFrame:CGRectMake(260, 5, 40, 20)];
-    [lbCvMatch setText: [NSString stringWithFormat:@"匹配度%@", rowData[@"cvMatch"]]];
+    UILabel *lbCvMatch = [[UILabel alloc] initWithFrame:CGRectMake(245, 5, 55, 15)];
+    [lbCvMatch setText: [NSString stringWithFormat:@"匹配度%@%@", rowData[@"cvMatch"], @"%"]];
     lbCvMatch.font = [UIFont systemFontOfSize:10];
     [lbCvMatch setTextColor:[UIColor whiteColor]];
-    lbCvMatch.textAlignment = NSTextAlignmentRight;
-    lbCvMatch.layer.cornerRadius = 8;
+    lbCvMatch.textAlignment = NSTextAlignmentCenter;
+    lbCvMatch.layer.cornerRadius = 5;
     lbCvMatch.layer.backgroundColor = [UIColor colorWithRed:9.f/255.f green:197.f/255.f blue:39.f/255.f alpha:1].CGColor;
     [cell.contentView addSubview:lbCvMatch];
     [lbCvMatch release];
@@ -207,7 +229,7 @@
     [btnCheck release];
     
     //查看状态
-    UILabel *lbReply = [[UILabel alloc] initWithFrame:CGRectMake(240,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 40, 20)];
+    UILabel *lbReply = [[UILabel alloc] initWithFrame:CGRectMake(220,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 80, 20)];
     [lbReply setText:strDate];
     [lbReply setFont:[UIFont systemFontOfSize:11]];
     [lbReply setTextColor:[UIColor lightGrayColor]];
@@ -290,6 +312,23 @@
     }
 }
 
+
+//点击确定删除
+- (void) confirmAndCancelPopupNext
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[self.arrCheckJobID componentsJoinedByString:@","] forKey:@"allIDs"];
+    [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"DeleteExJobApplyBatch" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 6;
+    self.runningRequest = request;
+    [dicParam release];
+    [loadView startAnimating];
+}
 
 - (void)rowChecked:(UIButton *)sender
 {

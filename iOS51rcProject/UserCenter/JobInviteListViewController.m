@@ -43,8 +43,8 @@
     self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置底部功能栏
-    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-170);
-    self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 320, self.view.frame.size.height);
+    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-160);
+    self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height+self.lbTop.frame.size.height, 320, self.viewBottom.frame.size.height);
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
