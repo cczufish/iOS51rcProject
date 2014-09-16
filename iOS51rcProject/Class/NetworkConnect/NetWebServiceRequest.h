@@ -3,12 +3,12 @@
 //  HttpRequest
 //
 //  Created by Richard Liu on 13-3-18.
-//  Copyright (c) 2013年 Richard Liu. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
+#import "SoapXmlParseHelper.h"
 
 
 typedef enum _NetworkRequestErrorType {
@@ -63,6 +63,9 @@ extern NSString* const NetWebServiceRequestErrorDomain;
 - (void)netRequestStarted:(NetWebServiceRequest *)request;
 //失败
 - (void)netRequestFailed:(NetWebServiceRequest *)request didRequestError:(int *)error;
+//简历信息
+- (void)netRequestFinishedFromCvInfo:(NetWebServiceRequest *)request
+                          xmlContent:(GDataXMLDocument *)xmlContent;
 
 @required
 //成功

@@ -183,6 +183,7 @@
 		999BDD6619C2F6AF000A152A /* Campus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 999BDD6119C2F6AF000A152A /* Campus.storyboard */; };
 		999BDD6719C2F6AF000A152A /* CampusCompanyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999BDD6319C2F6AF000A152A /* CampusCompanyViewController.m */; };
 		999BDD6819C2F6AF000A152A /* CampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999BDD6519C2F6AF000A152A /* CampusViewController.m */; };
+		999CE42D19C7031600A8842B /* CvModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999CE42C19C7031600A8842B /* CvModifyViewController.m */; };
 		999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */; };
 		99A16D1419C6B6180053C6E9 /* JobApplication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99A16D1319C6B6180053C6E9 /* JobApplication.storyboard */; };
 		99A16D1719C6B6460053C6E9 /* JmMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A16D1619C6B6460053C6E9 /* JmMainViewController.m */; };
@@ -665,6 +666,8 @@
 		999BDD6319C2F6AF000A152A /* CampusCompanyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusCompanyViewController.m; sourceTree = "<group>"; };
 		999BDD6419C2F6AF000A152A /* CampusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusViewController.h; sourceTree = "<group>"; };
 		999BDD6519C2F6AF000A152A /* CampusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusViewController.m; sourceTree = "<group>"; };
+		999CE42B19C7031600A8842B /* CvModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CvModifyViewController.h; path = UserCenter/CvModifyViewController.h; sourceTree = "<group>"; };
+		999CE42C19C7031600A8842B /* CvModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CvModifyViewController.m; path = UserCenter/CvModifyViewController.m; sourceTree = "<group>"; };
 		999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoToMyInvitedCpViewDelegate.h; path = Recruitment/Delegate/GoToMyInvitedCpViewDelegate.h; sourceTree = "<group>"; };
 		999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmInviteCpListViewController.h; path = Recruitment/MyRmInviteCpListViewController.h; sourceTree = "<group>"; };
 		999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmInviteCpListViewController.m; path = Recruitment/MyRmInviteCpListViewController.m; sourceTree = "<group>"; };
@@ -1880,6 +1883,8 @@
 				99C581DD19C19756009985C5 /* CpAttentionViewController.m */,
 				99FC0B6419C2E33500B7EC74 /* MyCvViewController.h */,
 				99FC0B6519C2E33500B7EC74 /* MyCvViewController.m */,
+				999CE42B19C7031600A8842B /* CvModifyViewController.h */,
+				999CE42C19C7031600A8842B /* CvModifyViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -2273,6 +2278,7 @@
 				9905132119C2EF2E00B9C096 /* FindPsdStep2ViewController.m in Sources */,
 				99FC0B6619C2E33500B7EC74 /* MyCvViewController.m in Sources */,
 				99FC0B6E19C2E36900B7EC74 /* MobileCertificateViewController.m in Sources */,
+				999CE42D19C7031600A8842B /* CvModifyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

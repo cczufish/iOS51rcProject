@@ -3,24 +3,16 @@
 //  HttpRequest
 //
 //  Created by Richard Liu on 13-3-18.
-//  Copyright (c) 2013年 Richard Liu. All rights reserved.
 //
 
 #import "NetWebServiceRequest.h"
-#import "SoapXmlParseHelper.h"
-
-
 
 NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDomain";
-
-
 @interface NetWebServiceRequest ()<ASIHTTPRequestDelegate>
-
 @property (nonatomic, retain) __block ASIHTTPRequest* runningRequest;
 @property (nonatomic, retain) NSRecursiveLock *cancelLock;
 
 @end
-
 
 @implementation NetWebServiceRequest
 @synthesize runningRequest = _runningRequest;
@@ -52,12 +44,10 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     return [[[self alloc] initWithUrl:WebURL SOAPActionURL:soapActionURL ServiceMethodName:strMethod SoapMessage:soapMsg] autorelease];
 }
 
-
 //创建请求对象
 - (id)initWithUrl:(NSString *)WebURL SOAPActionURL:(NSString *)soapActionURL
                                  ServiceMethodName:(NSString *)strMethod
                                        SoapMessage:(NSString *)soapMsg
-
 {
 	//请求发送到的路径
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", WebURL]];
@@ -86,21 +76,16 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
 #else
         [self.runningRequest setValidatesSecureCertificate:YES];
 #endif
-        
-        
         self.cancelLock = [[NSRecursiveLock alloc]  init];
     }
 	return self;
 }
-
 
 -(void)dealloc{
     [self cancel];
 
     [super dealloc];
 }
-
-
 
 - (BOOL)isCancelled
 {
@@ -117,7 +102,6 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     return [self.runningRequest isFinished];
 }
 
-
 - (void) setDelegate:(id)delegate
 {
     [self.cancelLock lock];
@@ -126,8 +110,6 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     
     [self.cancelLock unlock];
 }
-
-
 
 - (void)startAsynchronous
 {
@@ -154,7 +136,6 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     [self.cancelLock unlock];
 }
 
-
 - (void)NetWebServiceRequestStarted
 {
     if (_delegate && [_delegate respondsToSelector:@selector(netRequestStarted:)]) {
@@ -162,13 +143,18 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     }
 }
 
-
-
 - (void)FinisheddidRecvedInfoToResult:(NSString *)result responseData:(NSMutableArray*)requestData
 {
     if (_delegate && [_delegate respondsToSelector:@selector(netRequestFinished: finishedInfoToResult: responseData:)]) {
 		[_delegate netRequestFinished:self finishedInfoToResult:result responseData:requestData];
 	}
+}
+
+- (void)FinishedReceiveCvInfoResult:(GDataXMLDocument *)xmlContent
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(netRequestFinishedFromCvInfo:xmlContent:)]) {
+        [_delegate netRequestFinishedFromCvInfo:self xmlContent:xmlContent];
+    }
 }
 
 - (void) FaileddidRequestError:(int *)error
@@ -189,9 +175,6 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     }
 }
 
-
-
-
 #pragma mark -
 #pragma mark - ASIHTTPRequestDelegate Methods
 - (void)requestStarted:(ASIHTTPRequest *)request
@@ -199,7 +182,6 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [self NetWebServiceRequestStarted];
 }
-
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
@@ -219,6 +201,11 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
         //表示正常请求
         result = [SoapXmlParseHelper SoapMessageResultXml:responseString ServiceMethodName:methodName];
         GDataXMLDocument *xmlContent = [[GDataXMLDocument alloc] initWithXMLString:responseString options:0 error:nil];
+        //GetCvInfo为多表联合，单独判断
+        if ([[xmlContent nodesForXPath:@"//paData" error:nil] count] > 0) {
+            [self FinishedReceiveCvInfoResult:xmlContent];
+            return;
+        }
         NSArray *xmlTable = [xmlContent nodesForXPath:@"//Table1" error:nil];
         if ([xmlTable count] == 0) {
             xmlTable = [xmlContent nodesForXPath:@"//ds" error:nil];
@@ -240,7 +227,7 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     }
     else{
         [self FaileddidRequestError:&statusCode];
-        NSLog(responseString);
+        NSLog(@"%@",responseString);
     }
 }
 
@@ -252,5 +239,4 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     [self FaileddidRequestError:&errCode];
 	
 }
-
 @end

@@ -15,6 +15,7 @@
 #import "Toast+UIView.h"
 #import "CustomPopup.h"
 #import "CreateResumeAlertViewController.h"
+#import "CvModifyViewController.h"
 
 @interface MyCvViewController ()<NetWebServiceRequestDelegate,UIScrollViewDelegate,CreateResumeDelegate>
 {
@@ -78,6 +79,9 @@
     if (request.tag == 1) {
         self.lbCvCount.text = [NSString stringWithFormat:@"已创建%d份简历，还可再创建%d份简历",requestData.count,(3-requestData.count)];
         self.cvListData = requestData;
+        for (UIView *view in self.scrollCv.subviews) {
+            [view removeFromSuperview];
+        }
         if (requestData.count == 0) { //没有简历
             [self.scrollCv setContentSize:CGSizeMake(320, self.scrollCv.frame.size.height)];
             //显示提醒
@@ -90,6 +94,22 @@
         }
         else { //有简历
             [self.scrollCv setContentSize:CGSizeMake(320*requestData.count, self.scrollCv.frame.size.height)];
+            [self.scrollCv setContentOffset:CGPointMake(0, 0)];
+            [self.pageControl setNumberOfPages:0];
+            //显示提醒
+            [self.pageControl setHidden:false];
+            [self.viewNoCv setHidden:true];
+            [self.viewCvEdit setHidden:false];
+            CGRect frameCreate = self.viewCreate.frame;
+            frameCreate.origin.y = 100;
+            [self.viewCreate setFrame:frameCreate];
+            if (requestData.count > 2) {
+                [self.btnCreateCv setEnabled:false];
+            }
+            else {
+                [self.btnCreateCv setEnabled:true];
+            }
+            
             [self.pageControl setNumberOfPages:requestData.count];
             for (int i=0; i<requestData.count; i++)
             {
@@ -97,8 +117,26 @@
             }
         }
     }
-    else if (request.tag == 2 || request.tag == 3) {
+    else if (request.tag == 2) {
         [self.view makeToast:@"已设置成功"];
+    }
+    else if (request.tag == 3) {
+        [loadView stopAnimating];
+        if ([result isEqualToString:@"0"]) {
+            [self.view makeToast:@"已经创建了3份简历了"];
+            return;
+        }
+        CvModifyViewController *cvModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"CvModifyView"];
+        cvModifyC.cvId = result;
+        [self.navigationController pushViewController:cvModifyC animated:true];
+    }
+    else if (request.tag == 4) {
+        [self.view makeToast:@"简历刷新成功"];
+        [self getCvList];
+    }
+    else if (request.tag == 5) {
+        [self.view makeToast:@"简历删除成功"];
+        [self getCvList];
     }
     [loadView stopAnimating];
 }
@@ -376,11 +414,28 @@
 
 -(void) CreateResume:(BOOL) hasExp
 {
+    int cvType = 1;
+    if (hasExp) {
+        cvType = 0;
+    }
+    [loadView startAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
+    [dicParam setObject:[NSString stringWithFormat:@"%d",cvType] forKey:@"type"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"CreateResume" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 3;
+    self.runningRequest = request;
+    [dicParam release];
     [self.cPopup closePopup];
 }
 
 - (IBAction)swichToCvModify:(id)sender {
-    
+    CvModifyViewController *cvModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"CvModifyView"];
+    cvModifyC.cvId = self.cvId;
+    [self.navigationController pushViewController:cvModifyC animated:true];
 }
 
 - (IBAction)switchToCvView:(id)sender {
@@ -388,11 +443,34 @@
 }
 
 - (IBAction)refreshCv:(id)sender {
-    
+    [loadView startAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.cvId forKey:@"ID"];
+    [dicParam setObject:self.cvListData[0][@"Mobile"] forKey:@"mobile"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"UpdateCvRefreshDate" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 4;
+    self.runningRequest = request;
+    [dicParam release];
+    [self.cPopup closePopup];
 }
 
 - (IBAction)deleteCv:(id)sender {
-    
+    [loadView startAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.cvId forKey:@"cvMainID"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"ResumeDelete" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 5;
+    self.runningRequest = request;
+    [dicParam release];
+    [self.cPopup closePopup];
 }
 
 - (void)didReceiveMemoryWarning
