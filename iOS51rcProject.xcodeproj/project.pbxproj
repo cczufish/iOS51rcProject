@@ -66,6 +66,8 @@
 		9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */; };
 		9925BF0E19B83835002DBFE0 /* ico_mapsearch_jobnext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */; };
 		9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */; };
+		9927AC5F19C7E37F0037E3F9 /* SalaryAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9927AC5E19C7E37F0037E3F9 /* SalaryAnalysis.storyboard */; };
+		9927AC6219C7E3AC0037E3F9 /* SalaryAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927AC6119C7E3AC0037E3F9 /* SalaryAnalysisViewController.m */; };
 		992A5B4719BE94D80042F2EB /* ico_rm_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4619BE94D80042F2EB /* ico_rm_head.png */; };
 		992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */; };
 		992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4919BE982D0042F2EB /* ico_triangle.png */; };
@@ -485,6 +487,9 @@
 		9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobclose.png; sourceTree = "<group>"; };
 		9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobnext.png; sourceTree = "<group>"; };
 		9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobpre.png; sourceTree = "<group>"; };
+		9927AC5E19C7E37F0037E3F9 /* SalaryAnalysis.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SalaryAnalysis.storyboard; sourceTree = "<group>"; };
+		9927AC6019C7E3AC0037E3F9 /* SalaryAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryAnalysisViewController.h; sourceTree = "<group>"; };
+		9927AC6119C7E3AC0037E3F9 /* SalaryAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalaryAnalysisViewController.m; sourceTree = "<group>"; };
 		992A5B4519BE8B700042F2EB /* InviteJobsFromFavorityViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InviteJobsFromFavorityViewDelegate.h; path = Recruitment/Delegate/InviteJobsFromFavorityViewDelegate.h; sourceTree = "<group>"; };
 		992A5B4619BE94D80042F2EB /* ico_rm_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_head.png; sourceTree = "<group>"; };
 		992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_triangle_orange.png; sourceTree = "<group>"; };
@@ -1087,6 +1092,16 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		9927AC5D19C7E35D0037E3F9 /* SalaryAnalysis */ = {
+			isa = PBXGroup;
+			children = (
+				9927AC5E19C7E37F0037E3F9 /* SalaryAnalysis.storyboard */,
+				9927AC6019C7E3AC0037E3F9 /* SalaryAnalysisViewController.h */,
+				9927AC6119C7E3AC0037E3F9 /* SalaryAnalysisViewController.m */,
+			);
+			path = SalaryAnalysis;
+			sourceTree = "<group>";
+		};
 		9942F38419B954D700191C74 /* More */ = {
 			isa = PBXGroup;
 			children = (
@@ -1637,6 +1652,7 @@
 		99CFD81D199B5F80009A5ABA /* iOS51rcProject */ = {
 			isa = PBXGroup;
 			children = (
+				9927AC5D19C7E35D0037E3F9 /* SalaryAnalysis */,
 				99A16D1219C6B5FA0053C6E9 /* JobApplication */,
 				999BDD6019C2F6AF000A152A /* Campus */,
 				99B9822819B4C46700D5D77D /* EmploymentInformation */,
@@ -2040,6 +2056,7 @@
 				99CFD891199B60D8009A5ABA /* main_pic_govnews.png in Resources */,
 				99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */,
 				9942F39719B95C2100191C74 /* ico_mainmore_opinion.png in Resources */,
+				9927AC5F19C7E37F0037E3F9 /* SalaryAnalysis.storyboard in Resources */,
 				999BDD5A19C2E89C000A152A /* ico_cvlist_point_gray.png in Resources */,
 				99CFD87E199B60D8009A5ABA /* ico_leftmenu_mebercenter.png in Resources */,
 				99CFD878199B60D8009A5ABA /* color-orange.png in Resources */,
@@ -2218,6 +2235,7 @@
 				99C581DE19C19756009985C5 /* CpAttentionViewController.m in Sources */,
 				9925BEF619B80E02002DBFE0 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
 				999BDD4D19C2E60B000A152A /* SoapXmlParseHelper.m in Sources */,
+				9927AC6219C7E3AC0037E3F9 /* SalaryAnalysisViewController.m in Sources */,
 				998025C519A23024001A7E84 /* UIView+Extension.m in Sources */,
 				9905134719C2F3D500B9C096 /* JobMainScrollViewController.m in Sources */,
 				9905134A19C2F3D500B9C096 /* SuperJobMainViewController.m in Sources */,

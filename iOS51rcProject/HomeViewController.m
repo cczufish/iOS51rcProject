@@ -11,6 +11,7 @@
 #import "CpInviteViewController.h"
 #import "JmMainViewController.h"
 #import "CommonController.h"
+#import "SalaryAnalysisViewController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate>
 
@@ -107,6 +108,15 @@
     }
 }
 
+//点击查工资
+- (IBAction)btnSalaryAnalysisClick:(id)sender {
+    UIStoryboard *storyMore = [UIStoryboard storyboardWithName:@"SalaryAnalysis" bundle:nil];
+    SalaryAnalysisViewController *saCtrl = [storyMore instantiateViewControllerWithIdentifier:@"SalaryAnalysisView"];
+    saCtrl.navigationItem.title = @"查工资";
+    [self.navigationController pushViewController:saCtrl animated:true];
+}
+
+//点击更多
 - (IBAction)btnMoreClick:(id)sender {
     UIStoryboard *storyMore = [UIStoryboard storyboardWithName:@"More" bundle:nil];
     MoreViewController *moreC = [storyMore instantiateViewControllerWithIdentifier:@"MoreView"];

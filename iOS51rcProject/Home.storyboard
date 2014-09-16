@@ -1065,6 +1065,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnSalaryAnalysisClick:" destination="g2E-hT-ZB9" eventType="touchUpInside" id="LmD-Bp-sOb"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_main_salary.png" id="ome-qE-0Dp">
                                 <rect key="frame" x="170" y="288" width="50" height="50"/>
