@@ -1,13 +1,10 @@
-//
-//  JmFavouriteViewController.h
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-9-15.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 
 @interface JmFavouriteViewController : UIViewController
-
+@property (retain, nonatomic) IBOutlet UITableView *tvJobList;
+@property (retain, nonatomic) IBOutlet UIButton *btnApply;
+@property (retain, nonatomic) IBOutlet UIView *viewBottom;
+@property (retain, nonatomic) IBOutlet UIButton *btnDelete;
+@property (retain,nonatomic) NSMutableArray* arrCheckJobID;
+-(void) onSearch;
 @end

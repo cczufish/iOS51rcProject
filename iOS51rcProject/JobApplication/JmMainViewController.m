@@ -93,7 +93,7 @@
 - (IBAction)switchToSecondView:(id)sender {
     [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
     if (!secondPageLoad) {
-        //[self.jobInviteListCtrl onSearch];
+        [self.jobFavoriteCtrl onSearch];
     }
     [UIView animateWithDuration:0.2 animations:^{
         [self.lbJobScan setTextColor:[UIColor blackColor]];
