@@ -211,6 +211,14 @@
     [cell.contentView addSubview:lbJobName];
     [lbJobName release];
     
+    //在线按钮
+    BOOL isOnline = [rowData[@"IsOnline"] boolValue];
+    if (isOnline) {
+        UIButton *btnChat = [[[UIButton alloc] initWithFrame:CGRectMake(260, 5, 30, 15)] autorelease];
+        [btnChat setImage:[UIImage imageNamed:@"ico_joblist_online.png"] forState:UIControlStateNormal];
+        [cell.contentView addSubview:btnChat];
+    }
+    
     //公司名称
     UILabel *lbCompanyName = [[UILabel alloc] initWithFrame:CGRectMake(40, 28, 200, 20)];
     [lbCompanyName setText:rowData[@"cpName"]];
@@ -284,8 +292,9 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
-    jobC.cpMainID = rowData[@"cpMainID"];
-    [self.navigationController pushViewController:jobC animated:YES];
+    jobC.cpMainID = rowData[@"cpID"];
+    UIViewController *pCtrl = [self getFatherController];
+    [pCtrl.navigationController pushViewController:jobC animated:YES];
 }
 
 - (void)rowChecked:(UIButton *)sender
