@@ -68,6 +68,14 @@
 		9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */; };
 		9927AC5F19C7E37F0037E3F9 /* SalaryAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9927AC5E19C7E37F0037E3F9 /* SalaryAnalysis.storyboard */; };
 		9927AC6219C7E3AC0037E3F9 /* SalaryAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927AC6119C7E3AC0037E3F9 /* SalaryAnalysisViewController.m */; };
+		9927ACC619C82F450037E3F9 /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACAF19C82F450037E3F9 /* EColor.m */; };
+		9927ACC719C82F450037E3F9 /* EColumn.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACB119C82F450037E3F9 /* EColumn.m */; };
+		9927ACC819C82F450037E3F9 /* EColumnChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACB319C82F450037E3F9 /* EColumnChart.m */; };
+		9927ACC919C82F450037E3F9 /* EColumnChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACB519C82F450037E3F9 /* EColumnChartLabel.m */; };
+		9927ACCA19C82F450037E3F9 /* EColumnDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACB719C82F450037E3F9 /* EColumnDataModel.m */; };
+		9927ACCB19C82F450037E3F9 /* EFloatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACB919C82F450037E3F9 /* EFloatBox.m */; };
+		9927ACD019C82F450037E3F9 /* EViewSwitcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACC319C82F450037E3F9 /* EViewSwitcher.m */; };
+		9927ACD119C82F450037E3F9 /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACC519C82F450037E3F9 /* UICountingLabel.m */; };
 		992A5B4719BE94D80042F2EB /* ico_rm_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4619BE94D80042F2EB /* ico_rm_head.png */; };
 		992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */; };
 		992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 992A5B4919BE982D0042F2EB /* ico_triangle.png */; };
@@ -490,6 +498,22 @@
 		9927AC5E19C7E37F0037E3F9 /* SalaryAnalysis.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SalaryAnalysis.storyboard; sourceTree = "<group>"; };
 		9927AC6019C7E3AC0037E3F9 /* SalaryAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryAnalysisViewController.h; sourceTree = "<group>"; };
 		9927AC6119C7E3AC0037E3F9 /* SalaryAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalaryAnalysisViewController.m; sourceTree = "<group>"; };
+		9927ACAE19C82F450037E3F9 /* EColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColor.h; sourceTree = "<group>"; };
+		9927ACAF19C82F450037E3F9 /* EColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColor.m; sourceTree = "<group>"; };
+		9927ACB019C82F450037E3F9 /* EColumn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumn.h; sourceTree = "<group>"; };
+		9927ACB119C82F450037E3F9 /* EColumn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumn.m; sourceTree = "<group>"; };
+		9927ACB219C82F450037E3F9 /* EColumnChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChart.h; sourceTree = "<group>"; };
+		9927ACB319C82F450037E3F9 /* EColumnChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChart.m; sourceTree = "<group>"; };
+		9927ACB419C82F450037E3F9 /* EColumnChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnChartLabel.h; sourceTree = "<group>"; };
+		9927ACB519C82F450037E3F9 /* EColumnChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnChartLabel.m; sourceTree = "<group>"; };
+		9927ACB619C82F450037E3F9 /* EColumnDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EColumnDataModel.h; sourceTree = "<group>"; };
+		9927ACB719C82F450037E3F9 /* EColumnDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EColumnDataModel.m; sourceTree = "<group>"; };
+		9927ACB819C82F450037E3F9 /* EFloatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EFloatBox.h; sourceTree = "<group>"; };
+		9927ACB919C82F450037E3F9 /* EFloatBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EFloatBox.m; sourceTree = "<group>"; };
+		9927ACC219C82F450037E3F9 /* EViewSwitcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EViewSwitcher.h; sourceTree = "<group>"; };
+		9927ACC319C82F450037E3F9 /* EViewSwitcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EViewSwitcher.m; sourceTree = "<group>"; };
+		9927ACC419C82F450037E3F9 /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		9927ACC519C82F450037E3F9 /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		992A5B4519BE8B700042F2EB /* InviteJobsFromFavorityViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InviteJobsFromFavorityViewDelegate.h; path = Recruitment/Delegate/InviteJobsFromFavorityViewDelegate.h; sourceTree = "<group>"; };
 		992A5B4619BE94D80042F2EB /* ico_rm_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_head.png; sourceTree = "<group>"; };
 		992A5B4819BE982D0042F2EB /* ico_triangle_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_triangle_orange.png; sourceTree = "<group>"; };
@@ -1100,6 +1124,29 @@
 				9927AC6119C7E3AC0037E3F9 /* SalaryAnalysisViewController.m */,
 			);
 			path = SalaryAnalysis;
+			sourceTree = "<group>";
+		};
+		9927ACAD19C82F450037E3F9 /* EChart */ = {
+			isa = PBXGroup;
+			children = (
+				9927ACAE19C82F450037E3F9 /* EColor.h */,
+				9927ACAF19C82F450037E3F9 /* EColor.m */,
+				9927ACB019C82F450037E3F9 /* EColumn.h */,
+				9927ACB119C82F450037E3F9 /* EColumn.m */,
+				9927ACB219C82F450037E3F9 /* EColumnChart.h */,
+				9927ACB319C82F450037E3F9 /* EColumnChart.m */,
+				9927ACB419C82F450037E3F9 /* EColumnChartLabel.h */,
+				9927ACB519C82F450037E3F9 /* EColumnChartLabel.m */,
+				9927ACB619C82F450037E3F9 /* EColumnDataModel.h */,
+				9927ACB719C82F450037E3F9 /* EColumnDataModel.m */,
+				9927ACB819C82F450037E3F9 /* EFloatBox.h */,
+				9927ACB919C82F450037E3F9 /* EFloatBox.m */,
+				9927ACC219C82F450037E3F9 /* EViewSwitcher.h */,
+				9927ACC319C82F450037E3F9 /* EViewSwitcher.m */,
+				9927ACC419C82F450037E3F9 /* UICountingLabel.h */,
+				9927ACC519C82F450037E3F9 /* UICountingLabel.m */,
+			);
+			path = EChart;
 			sourceTree = "<group>";
 		};
 		9942F38419B954D700191C74 /* More */ = {
@@ -1854,6 +1901,7 @@
 		99CFD89A199B6196009A5ABA /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				9927ACAD19C82F450037E3F9 /* EChart */,
 				999BDD2119C2E60B000A152A /* NetworkConnect */,
 				99FC0B5719C2E26100B7EC74 /* MDRadialProgress */,
 				99FC0AE719C175A300B7EC74 /* MLImageCrop */,
@@ -2199,12 +2247,14 @@
 				999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */,
 				999BDD4819C2E60B000A152A /* ASIInputStream.m in Sources */,
 				9905132C19C2EF8200B9C096 /* RecruitmentViewController.m in Sources */,
+				9927ACD019C82F450037E3F9 /* EViewSwitcher.m in Sources */,
 				9925BEF319B80E02002DBFE0 /* SearchPickerView.m in Sources */,
 				9905134919C2F3D500B9C096 /* SuperCpViewController.m in Sources */,
 				99908A5A19A34DD300137FDE /* FMResultSet.m in Sources */,
 				99BDC5EB19A5F10D00B2BDB1 /* SVProgressHUD.m in Sources */,
 				9905134519C2F3D500B9C096 /* CpMainViewController.m in Sources */,
 				99C581D519C193C7009985C5 /* CpInviteViewController.m in Sources */,
+				9927ACCB19C82F450037E3F9 /* EFloatBox.m in Sources */,
 				99C581D819C196B7009985C5 /* InterviewNoticeViewController.m in Sources */,
 				9905132419C2EF2E00B9C096 /* LoginDetailsViewController.m in Sources */,
 				998025CF19A23528001A7E84 /* AnimatedGif.m in Sources */,
@@ -2219,6 +2269,8 @@
 				999BDD4419C2E60B000A152A /* ASIDataDecompressor.m in Sources */,
 				99BDC5E819A5F10D00B2BDB1 /* MBProgressHUD.m in Sources */,
 				9925BEF419B80E02002DBFE0 /* CustomPopup.m in Sources */,
+				9927ACC619C82F450037E3F9 /* EColor.m in Sources */,
+				9927ACD119C82F450037E3F9 /* UICountingLabel.m in Sources */,
 				99B9822E19B4C4B000D5D77D /* EIListViewController.m in Sources */,
 				999BDD1E19C2E4FC000A152A /* MapSearchViewController.mm in Sources */,
 				998025C319A23024001A7E84 /* UIScrollView+Extension.m in Sources */,
@@ -2230,6 +2282,7 @@
 				999BDD4619C2E60B000A152A /* ASIFormDataRequest.m in Sources */,
 				99908A5819A34DD300137FDE /* FMDatabasePool.m in Sources */,
 				991125A119A49DCE00C98173 /* Toast+UIView.m in Sources */,
+				9927ACC919C82F450037E3F9 /* EColumnChartLabel.m in Sources */,
 				99FC0B5E19C2E26100B7EC74 /* MDRadialProgressLabel.m in Sources */,
 				9905133119C2F29E00B9C096 /* WelcomeUIImage.m in Sources */,
 				99C581DE19C19756009985C5 /* CpAttentionViewController.m in Sources */,
@@ -2249,6 +2302,7 @@
 				9905132619C2EF2E00B9C096 /* RegisterViewController.m in Sources */,
 				9905133219C2F29E00B9C096 /* WelcomeViewController.m in Sources */,
 				998025C419A23024001A7E84 /* UIScrollView+MJRefresh.m in Sources */,
+				9927ACC819C82F450037E3F9 /* EColumnChart.m in Sources */,
 				99C581DB19C19709009985C5 /* JobInviteListViewController.m in Sources */,
 				99908A5919A34DD300137FDE /* FMDatabaseQueue.m in Sources */,
 				99BDC5E719A5F10D00B2BDB1 /* Dialog.m in Sources */,
@@ -2272,6 +2326,7 @@
 				99B9822B19B4C49600D5D77D /* EIMainViewController.m in Sources */,
 				998025C019A23024001A7E84 /* MJRefreshConst.m in Sources */,
 				9905134819C2F3D500B9C096 /* JobViewController.m in Sources */,
+				9927ACC719C82F450037E3F9 /* EColumn.m in Sources */,
 				998025D019A23528001A7E84 /* LoadingAnimationView.m in Sources */,
 				9905132519C2EF2E00B9C096 /* LoginViewController.m in Sources */,
 				99B9672919B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m in Sources */,
@@ -2291,6 +2346,7 @@
 				999BDD4319C2E60B000A152A /* ASIDataCompressor.m in Sources */,
 				9905132B19C2EF8200B9C096 /* RecruitmentListViewController.m in Sources */,
 				999BDD4A19C2E60B000A152A /* Reachability.m in Sources */,
+				9927ACCA19C82F450037E3F9 /* EColumnDataModel.m in Sources */,
 				99FC0B6019C2E26100B7EC74 /* MDRadialProgressView.m in Sources */,
 				99C581E019C1A0D6009985C5 /* RM.m in Sources */,
 				9905132119C2EF2E00B9C096 /* FindPsdStep2ViewController.m in Sources */,
