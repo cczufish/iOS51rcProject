@@ -13,6 +13,8 @@
 @interface SalaryAnalysisViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate,UIGestureRecognizerDelegate, NetWebServiceRequestDelegate, UIScrollViewDelegate>
 {
     LoadingAnimationView *loadView;
+    BOOL loadingColumnExp;//正在加载经验柱状图
+    BOOL loadingColumnEdu;//正在加载学历柱状图
 }
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @property (retain, nonatomic) NSString *regionSelect;//工作地点
@@ -219,6 +221,8 @@
 
 //生成工作经验和学历的柱状图
 -(void) GenerateExperienceAndEducationAnalysis:(NSMutableArray *) resultData{
+    loadingColumnExp = false;
+    loadingColumnEdu = false;
     NSDictionary *tmpData = resultData[0];
     UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
@@ -227,6 +231,7 @@
     [self.viewDistribution addSubview:title];
 
     //======================工作经验的柱状图======================
+    loadingColumnExp = true;
     NSMutableArray *temp = [NSMutableArray array];
     for (int i = 4; i >= 0; i--)
     {
@@ -251,50 +256,62 @@
             default:
                 break;
         }
-        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:strExpName value:value index:i unit:@"(元)"];
+        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:strExpName value:value index:i unit:@""];
         [temp addObject:eColumnDataModel];
     }
     _dataExperience = [NSArray arrayWithArray:temp];
     self.colExperience = [[EColumnChart alloc] initWithFrame:CGRectMake(60, 40, 220, 160)];
+    //设置颜色
+    self.colExperience.maxColumnColor =  [UIColor colorWithRed:0/255.f green:109/255.f blue:191/255.f alpha:1];
+    self.colExperience.minColumnColor =[UIColor colorWithRed:0/255.f green:109/255.f blue:191/255.f alpha:1];
+    self.colExperience.normalColumnColor = [UIColor colorWithRed:0/255.f green:109/255.f blue:191/255.f alpha:1];
     [self.colExperience setColumnsIndexStartFromLeft:YES];
 	[self.colExperience setDelegate:self];
     [self.colExperience setDataSource:self];
     
     [self.viewDistribution addSubview:self.colExperience];
     //======================学历柱状图======================
+    loadingColumnExp = false;
+    loadingColumnEdu = true;
     NSMutableArray *tmpArrayForEducation = [NSMutableArray array];
-    for (int i = 7; i >= 4; i--)
+    for (int i = 8; i >= 4; i--)
     {
         int value = [tmpData[[NSString stringWithFormat:@"EducationSalary%d", i]] intValue];
         NSString *strEduName = @" ";
         switch (i) {
-            case 0:
+            case 4:
                 strEduName = @"大专以下";
                 break;
-            case 1:
+            case 5:
                 strEduName = @"大专";
                 break;
-            case 2:
+            case 6:
                 strEduName = @"本科";
                 break;
-            case 3:
+            case 7:
                 strEduName = @"硕士";
                 break;
-            case 4:
+            case 8:
                 strEduName = @"硕士以上";
                 break;
             default:
                 break;
         }
-        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:strEduName value:value index:i unit:@"(元)"];
+        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:strEduName value:value index:i unit:@""];
         [tmpArrayForEducation addObject:eColumnDataModel];
     }
     _dataEducation = [NSArray arrayWithArray:tmpArrayForEducation];
     self.colEducation = [[EColumnChart alloc] initWithFrame:CGRectMake(60, self.colExperience.frame.origin.y+self.colExperience.frame.size.height + 40, 220, 160)];
     [self.colEducation setColumnsIndexStartFromLeft:YES];
+    //设置颜色
+    self.colEducation.maxColumnColor =  [UIColor colorWithRed:211/255.f green:0/255.f blue:32/255.f alpha:1];
+    self.colEducation.minColumnColor =[UIColor colorWithRed:211/255.f green:0/255.f blue:32/255.f alpha:1];
+    self.colEducation.normalColumnColor = [UIColor colorWithRed:211/255.f green:0/255.f blue:32/255.f alpha:1];
 	[self.colEducation setDelegate:self];
     [self.colEducation setDataSource:self];
+    //loadingColumnEdu = false;
     
+    //重新计算View大小
     [self.viewDistribution addSubview:self.colEducation];
     self.viewDistribution.frame = CGRectMake(10, self.viewAvg.frame.origin.y+self.viewAvg.frame.size.height + 15, 300, self.colEducation.frame.size.height + self.colExperience.frame.size.height + 100);
     self.viewDistribution.layer.borderWidth = 0.5;
@@ -318,7 +335,7 @@
         //CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色
         //地区名称
         UILabel *lbRegionName = [[[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 15)]autorelease];
-        lbRegionName.text = @"111";
+        lbRegionName.text = @"济南";
         lbRegionName.font = [UIFont systemFontOfSize:13];
         [tmpView addSubview:lbRegionName];
         //薪酬
@@ -371,76 +388,41 @@
 }
 
 - (EColumnDataModel *)eColumnChart:(EColumnChart *)eColumnChart valueForIndex:(NSInteger)index
-{
-    if (index >= [_dataExperience count] || index < 0) return nil;
-    return [_dataExperience objectAtIndex:index];
+{    
+    if (loadingColumnEdu) {
+        if (index >= [_dataEducation count] || index < 0) return nil;
+        return [_dataEducation objectAtIndex:index];
+    }else
+    {
+        if (index >= [_dataExperience count] || index < 0) return nil;
+        return [_dataExperience objectAtIndex:index];
+    }    
 }
 
 #pragma -mark- EColumnChartDelegate
+//touchMove
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //不做任何事情
+}
 - (void)eColumnChart:(EColumnChart *)eColumnChart didSelectColumn:(EColumn *)eColumn
 {
-    NSLog(@"Index: %d  Value: %f", eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
-    
-    if (_eColumnSelected)
-    {
-        _eColumnSelected.barColor = _tempColor;
-    }
-    _eColumnSelected = eColumn;
-    _tempColor = eColumn.barColor;
-    eColumn.barColor = [UIColor blackColor];
-    
-    //_valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
+
 }
 
 - (void)eColumnChart:(EColumnChart *)eColumnChart fingerDidEnterColumn:(EColumn *)eColumn
 {
-    /**The EFloatBox here, is just to show an example of
-     taking adventage of the event handling system of the Echart.
-     You can do even better effects here, according to your needs.*/
-    NSLog(@"Finger did enter %d", eColumn.eColumnDataModel.index);
-    CGFloat eFloatBoxX = eColumn.frame.origin.x + eColumn.frame.size.width * 1.25;
-    CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade);
-    if (_eFloatBox)
-    {
-        [_eFloatBox removeFromSuperview];
-        _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
-        [_eFloatBox setValue:eColumn.eColumnDataModel.value];
-        [eColumnChart addSubview:_eFloatBox];
-    }
-    else
-    {
-        _eFloatBox = [[EFloatBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:eColumn.eColumnDataModel.value unit:@"kWh" title:@"Title"];
-        _eFloatBox.alpha = 0.0;
-        [eColumnChart addSubview:_eFloatBox];
-        
-    }
-    eFloatBoxY -= (_eFloatBox.frame.size.height + eColumn.frame.size.width * 0.25);
-    _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
-    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-        _eFloatBox.alpha = 1.0;
-        
-    } completion:^(BOOL finished) {
-    }];
-    
+
 }
 
 - (void)eColumnChart:(EColumnChart *)eColumnChart fingerDidLeaveColumn:(EColumn *)eColumn
 {
-    NSLog(@"Finger did leave %d", eColumn.eColumnDataModel.index);
+    //NSLog(@"Finger did leave %d", eColumn.eColumnDataModel.index);
 }
 
 - (void)fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart
 {
-    if (_eFloatBox)
-    {
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
-            _eFloatBox.alpha = 0.0;
-            _eFloatBox.frame = CGRectMake(_eFloatBox.frame.origin.x, _eFloatBox.frame.origin.y + _eFloatBox.frame.size.height, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
-        } completion:^(BOOL finished) {
-            [_eFloatBox removeFromSuperview];
-            _eFloatBox = nil;
-        }];
-    }
+
 }
 
 //地区选择

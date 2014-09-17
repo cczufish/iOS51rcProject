@@ -33,8 +33,6 @@
     return self;
 }
 
-
-
 -(void)setGrade:(float)grade
 {
 	_grade = grade;
