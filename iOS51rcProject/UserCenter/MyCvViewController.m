@@ -60,7 +60,9 @@
 
 - (void)getCvList
 {
-    [loadView startAnimating];
+    if (![loadView isAnimating]) {
+        [loadView startAnimating];
+    }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
     [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
