@@ -22,7 +22,7 @@ typedef enum {
 @property (nonatomic, retain) NSMutableArray* arrCvButton;
 @property (nonatomic, retain) NSString* selectCvID;
 -(id) popupCvSelect:(NSMutableArray *)arrayCv;
--(id) popupCommon:(UIView *)contentView
+-(id) popupCommon:(UIView *)contentViewOrign
        buttonType:(PopupButtonType)buttonType;
 
 -(void) showPopup:(UIView *)view;

@@ -40,8 +40,12 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnAddExperience;
 @property (retain, nonatomic) IBOutlet UIButton *btnAddEducation;
 @property (retain, nonatomic) IBOutlet UIButton *btnPhotoCancel;
-@property (retain, nonatomic) IBOutlet UILabel *lbSetExperienceContent;
-@property (retain, nonatomic) IBOutlet UIButton *btnSetExperienceCancel;
-@property (retain, nonatomic) IBOutlet UIButton *btnSetExperienceOk;
+@property (retain, nonatomic) IBOutlet UILabel *lbConfirmContent;
+@property (retain, nonatomic) IBOutlet UIView *viewConfirm;
+@property (retain, nonatomic) IBOutlet UIButton *btnConfirmOK;
+@property (retain, nonatomic) IBOutlet UIButton *btnConfirmCancel;
+@property (retain, nonatomic) IBOutlet UIButton *btnSetHasExp;
+@property (retain, nonatomic) IBOutlet UIButton *btnSetNoExp;
+
 
 @end

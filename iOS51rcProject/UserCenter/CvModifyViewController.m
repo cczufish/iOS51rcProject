@@ -64,6 +64,8 @@
     self.viewExperience.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.viewExperience.layer.borderWidth = 0.5;
     self.btnPhotoCancel.layer.cornerRadius = 5;
+    self.btnConfirmOK.layer.cornerRadius = 5;
+    self.btnConfirmCancel.layer.cornerRadius = 5;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -118,6 +120,7 @@
 - (void)getJobIntention:(NSArray *)arrayCvIntention
 {
     CGRect frameViewJobIntention = self.viewJobIntention.frame;
+    frameViewJobIntention.size.height = 205;
     [self.lbEmployType setText:[CommonController getDictionaryDesc:arrayCvIntention[0][@"EmployType"] tableName:@"EmployType"]];
     if ([arrayCvIntention[0][@"IsNegotiable"] isEqualToString:@"true"]) {
         [self.lbSalary setText:[NSString stringWithFormat:@"%@（可面议）",arrayCvIntention[0][@"Salary"]]];
@@ -144,11 +147,11 @@
         [self.lbExpectJobPlace setFrame:frameExpectJobPlace];
         
         CGRect frameExpectJobType = self.lbExpectJobType.frame;
-        frameExpectJobType.origin.y += labelSize.height-15;
+        frameExpectJobType.origin.y = frameExpectJobPlace.origin.y + frameExpectJobPlace.size.height + 12;
         [self.lbExpectJobType setFrame:frameExpectJobType];
         
         CGRect frameExpectJobTypeTitle = self.lbExpectJobTypeTitle.frame;
-        frameExpectJobTypeTitle.origin.y += labelSize.height-15;
+        frameExpectJobTypeTitle.origin.y = frameExpectJobPlace.origin.y + frameExpectJobPlace.size.height + 12;
         [self.lbExpectJobTypeTitle setFrame:frameExpectJobTypeTitle];
         //修改求职意向view的高度
         frameViewJobIntention.size.height += labelSize.height-15;
@@ -167,6 +170,12 @@
 
 - (void)getCvEducation:(NSArray *)arrayCvEducation
 {
+    NSArray *arrayViews = self.viewEducation.subviews;
+    for (int i=0; i<arrayViews.count; i++) {
+        if (i>0) {
+            [arrayViews[i] removeFromSuperview];
+        }
+    }
     if (arrayCvEducation.count > 19) {
         [self.btnAddEducation setHidden:true];
     }
@@ -192,13 +201,13 @@
 {
     float destinationContentHeight = contentHeight;
     //添加分割线的球形
-    UIImageView *imgSeparate = [[UIImageView alloc] initWithFrame:CGRectMake(10, destinationContentHeight, 16, 16)];
+    UIImageView *imgSeparate = [[UIImageView alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 16, 16)];
     [imgSeparate setImage:[UIImage imageNamed:@"ico_cvmain_group.png"]];
     [self.viewEducation addSubview:imgSeparate];
     [imgSeparate release];
     
     //添加分割线
-    CGRect frameSeparate = CGRectMake(17, destinationContentHeight+16, 1, 1);
+    CGRect frameSeparate = CGRectMake(22, destinationContentHeight+16, 1, 1);
     UILabel *lbSeparate = [[UILabel alloc] initWithFrame:frameSeparate];
     [lbSeparate setBackgroundColor:[UIColor colorWithRed:87.f/255.f green:212.f/255.f blue:117.f/255.f alpha:1]];
     [self.viewEducation addSubview:lbSeparate];
@@ -228,7 +237,7 @@
     [lbGraduationDateTitle setText:@"毕业时间"];
     [lbGraduationDateTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
     
-    UILabel *lbGraduationDate = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    UILabel *lbGraduationDate = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
     [lbGraduationDate setFont:[UIFont systemFontOfSize:14]];
     [lbGraduationDate setTextAlignment:NSTextAlignmentLeft];
     [lbGraduationDate setText:[NSString stringWithFormat:@"%@年%@月",[educationData[@"Graduation"] substringWithRange:NSMakeRange(0, 4)],[educationData[@"Graduation"] substringWithRange:NSMakeRange(4, 2)]]];
@@ -237,6 +246,24 @@
     [self.viewEducation addSubview:lbGraduationDate];
     [lbGraduationDate release];
     [lbGraduationDateTitle release];
+    
+    //添加编辑、删除按钮
+    UIButton *btnEducationModify = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight, 30, 30)];
+    [btnEducationModify setBackgroundColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+    [btnEducationModify setTitle:@"编辑" forState:UIControlStateNormal];
+    [btnEducationModify.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [btnEducationModify.titleLabel setTextColor:[UIColor whiteColor]];
+    [btnEducationModify setTag:[educationData[@"ID"] intValue]];
+    [btnEducationModify addTarget:self action:@selector(switchToEducationModify:) forControlEvents:UIControlEventTouchUpInside];
+    [self.viewEducation addSubview:btnEducationModify];
+    [btnEducationModify release];
+    
+    UIButton *btnEducationDelete = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight+35, 30, 30)];
+    [btnEducationDelete setImage:[UIImage imageNamed:@"ico_cvmain_del.png"] forState:UIControlStateNormal];
+    [btnEducationDelete setTag:[educationData[@"ID"] intValue]];
+    [btnEducationDelete addTarget:self action:@selector(deleteCvEducation:) forControlEvents:UIControlEventTouchUpInside];
+    [self.viewEducation addSubview:btnEducationDelete];
+    [btnEducationDelete release];
     destinationContentHeight += 27;
     
     //学历
@@ -246,7 +273,7 @@
     [lbDegreeTitle setText:@"学历"];
     [lbDegreeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
     
-    UILabel *lbDegree = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    UILabel *lbDegree = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
     [lbDegree setFont:[UIFont systemFontOfSize:14]];
     [lbDegree setTextAlignment:NSTextAlignmentLeft];
     [lbDegree setText:educationData[@"Education"]];
@@ -264,7 +291,7 @@
     [lbEducationTypeTitle setText:@"学历类型"];
     [lbEducationTypeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
     
-    UILabel *lbEducationType = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    UILabel *lbEducationType = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
     [lbEducationType setFont:[UIFont systemFontOfSize:14]];
     [lbEducationType setTextAlignment:NSTextAlignmentLeft];
     [lbEducationType setText:educationData[@"EduTypeName"]];
@@ -297,7 +324,7 @@
     UILabel *lbMajorNameTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
     [lbMajorNameTitle setFont:[UIFont systemFontOfSize:14]];
     [lbMajorNameTitle setTextAlignment:NSTextAlignmentRight];
-    [lbMajorNameTitle setText:@"专业"];
+    [lbMajorNameTitle setText:@"专业名称"];
     [lbMajorNameTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
     
     UILabel *lbMajorName = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
@@ -348,15 +375,269 @@
 
 - (void)getCvExperience:(NSArray *)arrayCvExperience
 {
-    
+    NSArray *arrayViews = self.viewExperience.subviews;
+    for (int i=0; i<arrayViews.count; i++) {
+        if (i>0) {
+            [arrayViews[i] removeFromSuperview];
+        }
+    }
+    if (arrayCvExperience.count > 19 || [self.cvData[0][@"cvType"] isEqualToString:@"1"]) {
+        [self.btnAddExperience setHidden:true];
+    }
+    else {
+        [self.btnAddExperience setHidden:false];
+    }
+    float heightViewExperience = 65;
+    if (arrayCvExperience.count == 0) {
+        [self.viewSetExperience setHidden:false];
+        heightViewExperience = 150;
+    }
+    else {
+        [self.viewSetExperience setHidden:true];
+        for (NSDictionary *dicExperience in arrayCvExperience) {
+            heightViewExperience = [self fillCvExperience:dicExperience contentHeight:heightViewExperience];
+        }
+    }
+    if ([self.cvData[0][@"cvType"] isEqualToString:@"0"]) {
+        [self.btnSetHasExp setBackgroundImage:[UIImage imageNamed:@"radio_sel.png"] forState:UIControlStateNormal];
+        [self.btnSetHasExp setEnabled:false];
+        [self.btnSetNoExp setBackgroundImage:[UIImage imageNamed:@"radio_unsel.png"] forState:UIControlStateNormal];
+        [self.btnSetNoExp setEnabled:true];
+        [self.btnAddExperience setHidden:false];
+    }
+    else {
+        [self.btnSetHasExp setBackgroundImage:[UIImage imageNamed:@"radio_unsel.png"] forState:UIControlStateNormal];
+        [self.btnSetHasExp setEnabled:true];
+        [self.btnSetNoExp setBackgroundImage:[UIImage imageNamed:@"radio_sel.png"] forState:UIControlStateNormal];
+        [self.btnSetNoExp setEnabled:false];
+        [self.btnAddExperience setHidden:true];
+    }
     //修改位置和高度
     CGRect frameViewExperience = self.viewExperience.frame;
-//    frameViewExperience.size.height += labelSize.height-15;
+    frameViewExperience.size.height = heightViewExperience;
     CGSize sizeScroll = self.scrollCvModify.contentSize;
     frameViewExperience.origin.y = sizeScroll.height;
     [self.viewExperience setFrame:frameViewExperience];
     sizeScroll.height = self.viewExperience.frame.origin.y+self.viewExperience.frame.size.height+15;
     [self.scrollCvModify setContentSize:sizeScroll];
+}
+
+- (float)fillCvExperience:(NSDictionary *)experienceData
+           contentHeight:(float)contentHeight
+{
+    float destinationContentHeight = contentHeight;
+    //添加分割线的球形
+    UIImageView *imgSeparate = [[UIImageView alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 16, 16)];
+    [imgSeparate setImage:[UIImage imageNamed:@"ico_cvmain_group.png"]];
+    [self.viewExperience addSubview:imgSeparate];
+    [imgSeparate release];
+    
+    //添加分割线
+    CGRect frameSeparate = CGRectMake(22, destinationContentHeight+16, 1, 1);
+    UILabel *lbSeparate = [[UILabel alloc] initWithFrame:frameSeparate];
+    [lbSeparate setBackgroundColor:[UIColor colorWithRed:87.f/255.f green:212.f/255.f blue:117.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbSeparate];
+    
+    //公司名称
+    UILabel *lbCompanyTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbCompanyTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbCompanyTitle setTextAlignment:NSTextAlignmentRight];
+    [lbCompanyTitle setText:@"毕业学校"];
+    [lbCompanyTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbCompany = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    [lbCompany setFont:[UIFont systemFontOfSize:14]];
+    [lbCompany setTextAlignment:NSTextAlignmentLeft];
+    [lbCompany setText:experienceData[@"CompanyName"]];
+    [lbCompany setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbCompanyTitle];
+    [self.viewExperience addSubview:lbCompany];
+    [lbCompany release];
+    [lbCompanyTitle release];
+    destinationContentHeight += 27;
+    
+    //所属行业
+    UILabel *lbIndustryTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbIndustryTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbIndustryTitle setTextAlignment:NSTextAlignmentRight];
+    [lbIndustryTitle setText:@"所属行业"];
+    [lbIndustryTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbIndustry = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
+    [lbIndustry setFont:[UIFont systemFontOfSize:14]];
+    [lbIndustry setTextAlignment:NSTextAlignmentLeft];
+    [lbIndustry setText:experienceData[@"Industry"]];
+    [lbIndustry setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbIndustryTitle];
+    [self.viewExperience addSubview:lbIndustry];
+    [lbIndustry release];
+    [lbIndustryTitle release];
+    
+    //添加编辑、删除按钮
+    UIButton *btnExperienceModify = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight, 30, 30)];
+    [btnExperienceModify setBackgroundColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+    [btnExperienceModify setTitle:@"编辑" forState:UIControlStateNormal];
+    [btnExperienceModify.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [btnExperienceModify.titleLabel setTextColor:[UIColor whiteColor]];
+    [btnExperienceModify setTag:[experienceData[@"ID"] intValue]];
+    [btnExperienceModify addTarget:self action:@selector(switchToExperienceModify:) forControlEvents:UIControlEventTouchUpInside];
+    [self.viewExperience addSubview:btnExperienceModify];
+    [btnExperienceModify release];
+    
+    UIButton *btnExperienceDelete = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight+35, 30, 30)];
+    [btnExperienceDelete setImage:[UIImage imageNamed:@"ico_cvmain_del.png"] forState:UIControlStateNormal];
+    [btnExperienceDelete setTag:[experienceData[@"ID"] intValue]];
+    [btnExperienceDelete addTarget:self action:@selector(deleteCvExperience:) forControlEvents:UIControlEventTouchUpInside];
+    [self.viewExperience addSubview:btnExperienceDelete];
+    [btnExperienceDelete release];
+    destinationContentHeight += 27;
+    
+    //公司规模
+    UILabel *lbCompanySizeTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbCompanySizeTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbCompanySizeTitle setTextAlignment:NSTextAlignmentRight];
+    [lbCompanySizeTitle setText:@"公司规模"];
+    [lbCompanySizeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbCompanySize = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
+    [lbCompanySize setFont:[UIFont systemFontOfSize:14]];
+    [lbCompanySize setTextAlignment:NSTextAlignmentLeft];
+    [lbCompanySize setText:experienceData[@"CpmpanySize"]];
+    [lbCompanySize setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbCompanySizeTitle];
+    [self.viewExperience addSubview:lbCompanySize];
+    [lbCompanySize release];
+    [lbCompanySizeTitle release];
+    destinationContentHeight += 27;
+    
+    //职位名称
+    UILabel *lbJobNameTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbJobNameTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbJobNameTitle setTextAlignment:NSTextAlignmentRight];
+    [lbJobNameTitle setText:@"职位名称"];
+    [lbJobNameTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
+    [lbJobName setFont:[UIFont systemFontOfSize:14]];
+    [lbJobName setTextAlignment:NSTextAlignmentLeft];
+    [lbJobName setText:experienceData[@"JobName"]];
+    [lbJobName setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbJobNameTitle];
+    [self.viewExperience addSubview:lbJobName];
+    [lbJobName release];
+    [lbJobNameTitle release];
+    destinationContentHeight += 27;
+    
+    //职位类别
+    UILabel *lbJobTypeTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbJobTypeTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbJobTypeTitle setTextAlignment:NSTextAlignmentRight];
+    [lbJobTypeTitle setText:@"职位类别"];
+    [lbJobTypeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbJobType = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    [lbJobType setFont:[UIFont systemFontOfSize:14]];
+    [lbJobType setTextAlignment:NSTextAlignmentLeft];
+    [lbJobType setText:experienceData[@"JobType"]];
+    [lbJobType setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbJobTypeTitle];
+    [self.viewExperience addSubview:lbJobType];
+    [lbJobType release];
+    [lbJobTypeTitle release];
+    destinationContentHeight += 27;
+    
+    //开始时间
+    UILabel *lbBeginDateTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbBeginDateTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbBeginDateTitle setTextAlignment:NSTextAlignmentRight];
+    [lbBeginDateTitle setText:@"开始时间"];
+    [lbBeginDateTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbBeginDate = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    [lbBeginDate setFont:[UIFont systemFontOfSize:14]];
+    [lbBeginDate setTextAlignment:NSTextAlignmentLeft];
+    [lbBeginDate setText:[NSString stringWithFormat:@"%@年%@月",[experienceData[@"BeginDate"] substringWithRange:NSMakeRange(0, 4)],[experienceData[@"BeginDate"] substringWithRange:NSMakeRange(4, 2)]]];
+    [lbBeginDate setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbBeginDateTitle];
+    [self.viewExperience addSubview:lbBeginDate];
+    [lbBeginDate release];
+    [lbBeginDateTitle release];
+    destinationContentHeight += 27;
+    
+    //结束时间
+    UILabel *lbEndDateTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbEndDateTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbEndDateTitle setTextAlignment:NSTextAlignmentRight];
+    [lbEndDateTitle setText:@"结束时间"];
+    [lbEndDateTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbEndDate = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    [lbEndDate setFont:[UIFont systemFontOfSize:14]];
+    [lbEndDate setTextAlignment:NSTextAlignmentLeft];
+    if ([experienceData[@"EndDate"] isEqualToString:@"999999"]) {
+        [lbEndDate setText:@"至今"];
+    }
+    else {
+        [lbEndDate setText:[NSString stringWithFormat:@"%@年%@月",[experienceData[@"EndDate"] substringWithRange:NSMakeRange(0, 4)],[experienceData[@"EndDate"] substringWithRange:NSMakeRange(4, 2)]]];
+    }
+    [lbEndDate setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbEndDateTitle];
+    [self.viewExperience addSubview:lbEndDate];
+    [lbEndDate release];
+    [lbEndDateTitle release];
+    destinationContentHeight += 27;
+    
+    //下属人数
+    UILabel *lbLowerNumberTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbLowerNumberTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbLowerNumberTitle setTextAlignment:NSTextAlignmentRight];
+    [lbLowerNumberTitle setText:@"下属人数"];
+    [lbLowerNumberTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbLowerNumber = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    [lbLowerNumber setFont:[UIFont systemFontOfSize:14]];
+    [lbLowerNumber setTextAlignment:NSTextAlignmentLeft];
+    [lbLowerNumber setText:experienceData[@"LowerNumber"]];
+    [lbLowerNumber setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbLowerNumberTitle];
+    [self.viewExperience addSubview:lbLowerNumber];
+    [lbLowerNumber release];
+    [lbLowerNumberTitle release];
+    destinationContentHeight += 27;
+    
+    //工作描述
+    UILabel *lbDescriptionTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    [lbDescriptionTitle setFont:[UIFont systemFontOfSize:14]];
+    [lbDescriptionTitle setTextAlignment:NSTextAlignmentRight];
+    [lbDescriptionTitle setText:@"工作描述"];
+    [lbDescriptionTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    
+    UILabel *lbDescription = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
+    [lbDescription setFont:[UIFont systemFontOfSize:14]];
+    [lbDescription setTextAlignment:NSTextAlignmentLeft];
+    [lbDescription setText:experienceData[@"Description"]];
+    CGSize labelSize = [CommonController CalculateFrame:experienceData[@"Description"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 5000)];
+    if (labelSize.height > 20) {
+        //重设工作描述的高度
+        lbDescription.lineBreakMode = NSLineBreakByCharWrapping;
+        lbDescription.numberOfLines = 0;
+        CGRect frameDescription = lbDescription.frame;
+        frameDescription.size.height = labelSize.height;
+        [lbDescription setFrame:frameDescription];
+        destinationContentHeight += labelSize.height-15;
+    }
+    [lbDescription setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
+    [self.viewExperience addSubview:lbDescriptionTitle];
+    [self.viewExperience addSubview:lbDescription];
+    [lbDescription release];
+    [lbDescriptionTitle release];
+    
+    frameSeparate.size.height = destinationContentHeight-contentHeight;
+    [lbSeparate setFrame:frameSeparate];
+    [lbSeparate release];
+    
+    destinationContentHeight += 35;
+    return destinationContentHeight;
 }
 
 - (void)getCvSpecaility
@@ -460,20 +741,123 @@
 }
 
 - (IBAction)switchToEducationModify:(UIButton *)sender {
+    NSLog(@"%d",sender.tag);
 }
+
 - (IBAction)switchToExperienceModify:(UIButton *)sender {
+    NSLog(@"%d",sender.tag);
 }
+
 - (IBAction)switchToSpeciality:(UIButton *)sender {
 }
 
-- (IBAction)changeNoExp:(UIButton *)sender {
-}
 - (IBAction)changeHasExp:(UIButton *)sender {
+    [self.lbConfirmContent setText:@"确定要改为有工作经验吗？"];
+    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone];
+    [self.cPopup setTag:3];
+    [self.cPopup showPopup:self.view];
 }
 
-- (IBAction)setCvType:(id)sender {
+- (IBAction)changeNoExp:(UIButton *)sender {
+    [self.lbConfirmContent setText:@"确定要改为无工作经验吗？"];
+    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone];
+    [self.cPopup setTag:4];
+    [self.cPopup showPopup:self.view];
 }
-- (IBAction)cancelSetCvType:(id)sender {
+
+- (void)deleteCvEducation:(UIButton *)sender {
+    [self.lbConfirmContent setText:@"确定要删除该教育背景吗？"];
+    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone];
+    [self.btnConfirmOK setTag:sender.tag];
+    [self.cPopup setTag:1];
+    [self.cPopup showPopup:self.view];
+}
+
+- (void)deleteCvExperience:(UIButton *)sender {
+    [self.lbConfirmContent setText:@"确定要删除该工作经历吗？"];
+    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone];
+    [self.btnConfirmOK setTag:sender.tag];
+    [self.cPopup setTag:2];
+    [self.cPopup showPopup:self.view];
+}
+
+- (IBAction)confirmOK:(UIButton *)sender {
+    [self.cPopup closePopup];
+    switch (self.cPopup.tag) {
+        case 1: //删除教育背景
+        {
+            if (![loadView isAnimating]) {
+                [loadView startAnimating];
+            }
+            NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+            [dicParam setObject:[NSString stringWithFormat:@"%d",sender.tag] forKey:@"iD"];
+            [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+            [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
+            NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"DeleteEducation" Params:dicParam];
+            [request setDelegate:self];
+            [request startAsynchronous];
+            request.tag = 3;
+            self.runningRequest = request;
+            [dicParam release];
+            break;
+        }
+        case 2: //删除工作经验
+        {
+            if (![loadView isAnimating]) {
+                [loadView startAnimating];
+            }
+            NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+            [dicParam setObject:[NSString stringWithFormat:@"%d",sender.tag] forKey:@"iD"];
+            [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+            [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
+            NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"DeleteExperience" Params:dicParam];
+            [request setDelegate:self];
+            [request startAsynchronous];
+            request.tag = 4;
+            self.runningRequest = request;
+            [dicParam release];
+            break;
+        }
+        case 3: //改为有工作经验
+        {
+            [self changeCvType:@"0"];
+            break;
+        }
+        case 4: //改为无工作经验
+        {
+            [self changeCvType:@"1"];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)changeCvType:(NSString *)cvType
+{
+    if (![loadView isAnimating]) {
+        [loadView startAnimating];
+    }
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.cvId forKey:@"cvMainID"];
+    [dicParam setObject:cvType forKey:@"cvType"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"UpdateCvType" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    if ([cvType isEqualToString:@"0"]) {
+        request.tag = 5;
+    }
+    else {
+        request.tag = 6;
+    }
+    self.runningRequest = request;
+    [dicParam release];
+}
+
+- (IBAction)confirmCancel:(UIButton *)sender {
+    [self.cPopup closePopup];
 }
 
 - (void)updateCvName
@@ -508,6 +892,30 @@
     }
     else if (request.tag == 2) {
         [self.view makeToast:@"头像上传成功"];
+    }
+    else if (request.tag == 3) {
+        [self.view makeToast:@"删除教育背景成功"];
+        [self getCvInfo];
+    }
+    else if (request.tag == 4) {
+        [self.view makeToast:@"删除工作能力成功"];
+        [self getCvInfo];
+    }
+    else if (request.tag == 5) {
+        [self.view makeToast:@"已修改为有工作经验"];
+        [self.btnSetHasExp setBackgroundImage:[UIImage imageNamed:@"radio_sel.png"] forState:UIControlStateNormal];
+        [self.btnSetHasExp setEnabled:false];
+        [self.btnSetNoExp setBackgroundImage:[UIImage imageNamed:@"radio_unsel.png"] forState:UIControlStateNormal];
+        [self.btnSetNoExp setEnabled:true];
+        [self.btnAddExperience setHidden:false];
+    }
+    else if (request.tag == 6) {
+        [self.view makeToast:@"已修改为无工作经验"];
+        [self.btnSetHasExp setBackgroundImage:[UIImage imageNamed:@"radio_unsel.png"] forState:UIControlStateNormal];
+        [self.btnSetHasExp setEnabled:true];
+        [self.btnSetNoExp setBackgroundImage:[UIImage imageNamed:@"radio_sel.png"] forState:UIControlStateNormal];
+        [self.btnSetNoExp setEnabled:false];
+        [self.btnAddExperience setHidden:true];
     }
     [loadView stopAnimating];
 }
@@ -663,9 +1071,12 @@
     [_btnAddExperience release];
     [_btnAddEducation release];
     [_btnPhotoCancel release];
-    [_lbSetExperienceContent release];
-    [_btnSetExperienceCancel release];
-    [_btnSetExperienceOk release];
+    [_lbConfirmContent release];
+    [_viewConfirm release];
+    [_btnConfirmOK release];
+    [_btnConfirmCancel release];
+    [_btnSetHasExp release];
+    [_btnSetNoExp release];
     [super dealloc];
 }
 @end
