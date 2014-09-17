@@ -15,6 +15,7 @@
     LoadingAnimationView *loadView;
     BOOL loadingColumnExp;//正在加载经验柱状图
     BOOL loadingColumnEdu;//正在加载学历柱状图
+    NSString *jobTypeName;//职位类别名称
 }
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @property (retain, nonatomic) NSString *regionSelect;//工作地点
@@ -32,6 +33,7 @@
 @property (nonatomic, strong) EFloatBox *eFloatBox;
 @property (nonatomic, strong) EColumn *eColumnSelected;
 @property (nonatomic, strong) UIColor *tempColor;
+
 -(void)cancelDicPicker;
 @end
 
@@ -68,26 +70,32 @@
     [self.btnRegionSelect addTarget:self action:@selector(showRegionSelect:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnJobTypeSelect addTarget:self action:@selector(showJobTypeSelect:) forControlEvents:UIControlEventTouchUpInside];
     
+    //加载等待动画
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    
     [self.lbRegionSelect setText:@"山东省"];
     self.regionSelect = @"32";
     self.jobTypeSelect = @"0";
+    jobTypeName = @"职工";
     [self onSearch];
 }
 
 
 - (void)onSearch
 {
+    //jobTypeName = [CommonController getDictionaryDesc:self.jobTypeSelect tableName:@"dcJobType"];
+    //开始等待动画
+    [loadView startAnimating];
+    
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.regionSelect forKey:@"regionID"];
     [dicParam setObject:self.jobTypeSelect forKey:@"jobTypeID"];
-   
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetSalaryAnalysis" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
-    
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
@@ -95,9 +103,17 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) {
+        NSDictionary *tmpData = requestData[0];
         //获取工资排名的数据
         NSMutableDictionary *dicParam2 = [[NSMutableDictionary alloc] init];
-        [dicParam2 setObject:self.regionSelect forKey:@"regionID"];
+        //如果自己有Parement2，说明自己是地级市，查工资排名的regionid要用parement1的id
+        if (tmpData[@"Parent2"] != nil) {
+            NSString *pID = [tmpData[@"dcRegionID"] substringToIndex:2];
+            [dicParam2 setObject:pID forKey:@"regionID"];
+        }else{
+            [dicParam2 setObject:self.regionSelect forKey:@"regionID"];
+        }
+        
         NetWebServiceRequest *request2 = [NetWebServiceRequest serviceRequestUrl:@"GetCitySalaryRankByReginID" Params:dicParam2];
         [request2 setDelegate:self];
         [request2 startAsynchronous];
@@ -111,20 +127,24 @@
     }
     else if(request.tag == 2){
         [self GenerageSalaryRankForRegion:requestData];
+        [loadView stopAnimating];
     }
     
     //结束等待动画
-    [loadView stopAnimating];
+    //[loadView stopAnimating];
 }
 
 //平均工资的View
 -(void) GenerateViewAvg:(NSMutableArray *) resultData{
+    for (UIView * subview in [self.viewAvg subviews]) {
+        [subview removeFromSuperview];
+    }
     NSDictionary *tmpData = resultData[0];
     self.viewAvg.layer.borderWidth = 0.5;
     self.viewAvg.layer.borderColor = [UIColor lightGrayColor].CGColor;
     UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
-    title.text = [NSString stringWithFormat:@"%@职工平均工资为：%@元",self.lbRegionSelect.text, tmpData[@"AvgSalary"] ];
+    title.text = [NSString stringWithFormat:@"%@%@平均工资为：%@元",self.lbRegionSelect.text, jobTypeName, tmpData[@"AvgSalary"] ];
     title.font = [UIFont systemFontOfSize:12];
     [self.viewAvg addSubview:title];
     //3行还是两行（如果选择省以下的的是三条数据）
@@ -134,7 +154,7 @@
     self.viewAvg.frame = CGRectMake(10, self.viewTop.frame.origin.y + self.viewTop.frame.size.height, 300, viewHeight);
     int p2Salary = 0;//全国级
     if (tmpData[@"Parent2"] != nil) {
-        viewHeight = 240;
+        viewHeight = 200;
         p2Salary = [tmpData[@"Parent2"] integerValue];
         self.viewAvg.frame = CGRectMake(10, self.viewTop.frame.origin.y + self.viewTop.frame.size.height, 300, viewHeight);
     }
@@ -170,7 +190,7 @@
     //自己的平均工资
     UIView *view1 = [[[UIView alloc] initWithFrame:CGRectMake(25, 50, selfSalary/10000.0*250, 40 )] autorelease];
     UILabel *lb1 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
-    lb1.text = [NSString stringWithFormat:@"%@职工平均月薪", self.lbRegionSelect.text];
+    lb1.text = [NSString stringWithFormat:@"%@%@平均月薪", self.lbRegionSelect.text, jobTypeName];
     lb1.font = [UIFont systemFontOfSize:10];
     lb1.textColor = [UIColor grayColor];
     UILabel *lb1Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, selfSalary/10000.0*250, 10)];
@@ -184,9 +204,16 @@
     [self.viewAvg addSubview:view1];
     
     //第一层上级的平均工资
-    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(25, 80, p1Salary/10000.0*250, 40 )] autorelease];
+    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(25, 90, p1Salary/10000.0*250, 40 )] autorelease];
     UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
-    lb2.text = [NSString stringWithFormat:@"%@职工平均月薪", self.lbRegionSelect.text];
+    if (p2Salary == 0) {
+        
+        lb2.text = @"全国职工平均月薪";
+    }else{
+        NSString *parementRegion = [CommonController getDictionaryDesc:tmpData[@"Parent1"] tableName: @"dcRegion"];
+        lb2.text = [NSString stringWithFormat:@"%@%@平均月薪", parementRegion, jobTypeName];
+    }
+    
     lb2.font = [UIFont systemFontOfSize:10];
     lb2.textColor = [UIColor grayColor];
     UILabel *lb2Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, p1Salary/10000.0*250, 10)];
@@ -201,9 +228,9 @@
     
     //全国平均
     if (p2Salary != 0) {
-        UIView *view3 = [[[UIView alloc] initWithFrame:CGRectMake(25, 110, p2Salary/10000.0*250, 40 )] autorelease];
+        UIView *view3 = [[[UIView alloc] initWithFrame:CGRectMake(25, 130, p2Salary/10000.0*250, 40 )] autorelease];
         UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
-        lb3.text = @"全国职工平均月薪";
+        lb3.text = [NSString stringWithFormat: @"全国%@平均月薪", jobTypeName];
         lb3.font = [UIFont systemFontOfSize:10];
         lb3.textColor = [UIColor grayColor];
         UILabel *lb3Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, p2Salary/10000.0*250, 10)];
@@ -216,17 +243,19 @@
         [view3 addSubview:lb3Money];
         [self.viewAvg addSubview:view3];
     }
-
 }
 
 //生成工作经验和学历的柱状图
 -(void) GenerateExperienceAndEducationAnalysis:(NSMutableArray *) resultData{
+    for (UIView * subview in [self.viewDistribution subviews]) {
+        [subview removeFromSuperview];
+    }
     loadingColumnExp = false;
     loadingColumnEdu = false;
     NSDictionary *tmpData = resultData[0];
     UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
-    title.text = [NSString stringWithFormat:@"%@企业招聘待遇分配",self.lbRegionSelect.text];
+    title.text = [NSString stringWithFormat:@"  %@%@招聘待遇分布",self.lbRegionSelect.text, jobTypeName];
     title.font = [UIFont systemFontOfSize:12];
     [self.viewDistribution addSubview:title];
 
@@ -260,7 +289,7 @@
         [temp addObject:eColumnDataModel];
     }
     _dataExperience = [NSArray arrayWithArray:temp];
-    self.colExperience = [[EColumnChart alloc] initWithFrame:CGRectMake(60, 40, 220, 160)];
+    self.colExperience = [[EColumnChart alloc] initWithFrame:CGRectMake(40, 40, 240, 160)];
     //设置颜色
     self.colExperience.maxColumnColor =  [UIColor colorWithRed:0/255.f green:109/255.f blue:191/255.f alpha:1];
     self.colExperience.minColumnColor =[UIColor colorWithRed:0/255.f green:109/255.f blue:191/255.f alpha:1];
@@ -301,7 +330,7 @@
         [tmpArrayForEducation addObject:eColumnDataModel];
     }
     _dataEducation = [NSArray arrayWithArray:tmpArrayForEducation];
-    self.colEducation = [[EColumnChart alloc] initWithFrame:CGRectMake(60, self.colExperience.frame.origin.y+self.colExperience.frame.size.height + 40, 220, 160)];
+    self.colEducation = [[EColumnChart alloc] initWithFrame:CGRectMake(40, self.colExperience.frame.origin.y+self.colExperience.frame.size.height + 40, 240, 160)];
     [self.colEducation setColumnsIndexStartFromLeft:YES];
     //设置颜色
     self.colEducation.maxColumnColor =  [UIColor colorWithRed:211/255.f green:0/255.f blue:32/255.f alpha:1];
@@ -310,32 +339,48 @@
 	[self.colEducation setDelegate:self];
     [self.colEducation setDataSource:self];
     //loadingColumnEdu = false;
+    [self.viewDistribution addSubview:self.colEducation];
+    
+    //日期生命
+    UILabel *lbTime = [[[UILabel alloc] initWithFrame:CGRectMake(40, self.colEducation.frame.origin.y + self.colEducation.frame.size.height + 10, 280, 30)] autorelease];
+    NSDate *  dtNow=[NSDate date];
+    NSDateFormatter  *dateformatter=[[[NSDateFormatter alloc] init] autorelease];
+    [dateformatter setDateFormat:@"YYYY-MM-dd"];
+    NSString * strNowDate=[dateformatter stringFromDate:dtNow];
+    lbTime.text = [NSString stringWithFormat:@"统计截止到%@，该数据仅供参考",strNowDate];
+    lbTime.textColor = [UIColor blackColor];
+    lbTime.font = [UIFont systemFontOfSize:13];
+    [self.viewDistribution addSubview:lbTime];
     
     //重新计算View大小
-    [self.viewDistribution addSubview:self.colEducation];
-    self.viewDistribution.frame = CGRectMake(10, self.viewAvg.frame.origin.y+self.viewAvg.frame.size.height + 15, 300, self.colEducation.frame.size.height + self.colExperience.frame.size.height + 100);
+    self.viewDistribution.frame = CGRectMake(10, self.viewAvg.frame.origin.y+self.viewAvg.frame.size.height + 15, 300, lbTime.frame.size.height + lbTime.frame.origin.y + 10);
     self.viewDistribution.layer.borderWidth = 0.5;
     self.viewDistribution.layer.borderColor = [UIColor lightGrayColor].CGColor;
 }
 
 //生成工资排行的列表
 -(void) GenerageSalaryRankForRegion:(NSMutableArray *) requestData{
+    for (UIView * subview in [self.viewRank subviews]) {
+        [subview removeFromSuperview];
+    }
     UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
-    title.text = [NSString stringWithFormat:@"%@地区薪酬排行",self.lbRegionSelect.text];
+    NSString *regionName = [CommonController getDictionaryDesc:[self.regionSelect substringToIndex:2] tableName:@"dcRegion"];
+    title.text = [NSString stringWithFormat:@"  %@地区薪酬排行",regionName];
     title.font = [UIFont systemFontOfSize:12];
     [self.viewRank addSubview:title];
     for (int i=0; i<requestData.count; i++) {
         NSDictionary *tmpData = requestData[i];
         UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(0, 20 + i*20, 280, 20)] autorelease];
         //左侧圆圈
-        //CGContextRef context = UIGraphicsGetCurrentContext();
-        //CGContextFillEllipseInRect(context, CGRectMake(95, 95, 100.0, 100));
-        //UIColor*aColor = [UIColor colorWithRed:1 green:0.0 blue:0 alpha:1];
-        //CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色
+        UIImageView *imgRank = [[[UIImageView alloc] initWithFrame:CGRectMake(15, 5, 17, 17)] autorelease];
+        imgRank.image = [UIImage imageNamed:[NSString stringWithFormat:@"ico_salary_rank%d", i+1]];
+        [tmpView addSubview:imgRank];
         //地区名称
         UILabel *lbRegionName = [[[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 15)]autorelease];
-        lbRegionName.text = @"济南";
+        NSString *strRegion =  tmpData[@"dcRegionID"];
+        NSString *strRegionName = [CommonController getDictionaryDesc:strRegion tableName:@"dcRegion"];
+        lbRegionName.text = strRegionName;
         lbRegionName.font = [UIFont systemFontOfSize:13];
         [tmpView addSubview:lbRegionName];
         //薪酬
@@ -417,7 +462,7 @@
 
 - (void)eColumnChart:(EColumnChart *)eColumnChart fingerDidLeaveColumn:(EColumn *)eColumn
 {
-    //NSLog(@"Finger did leave %d", eColumn.eColumnDataModel.index);
+    
 }
 
 - (void)fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart
@@ -428,7 +473,7 @@
 //地区选择
 -(void)showRegionSelect:(UIButton *)sender {
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL3 pickerMode:DictionaryPickerModeMulti pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.regionSelect defaultName:self.lbRegionSelect.text] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.self.regionSelect defaultName:@"山东省"] autorelease];
     [self.DictionaryPicker setTag:1];
     [self.DictionaryPicker showInView:self.view];
 }
@@ -436,7 +481,7 @@
 //职位类别选择
 -(void)showJobTypeSelect:(UIButton *)sender {
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithJobType pickerMode:DictionaryPickerModeMulti pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.jobTypeSelect defaultName:self.lbJobTypeSelect.text] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithJobType pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.jobTypeSelect defaultName:self.lbJobTypeSelect.text] autorelease];
     [self.DictionaryPicker setTag:2];
     [self.DictionaryPicker showInView:self.view];
 }
@@ -463,6 +508,7 @@
             else {
                 self.lbJobTypeSelect.text = selectedName;
             }
+            jobTypeName = self.lbJobTypeSelect.text;
             break;
         default:
             break;

@@ -266,6 +266,16 @@
 		99BDC5F519A5F4A900B2BDB1 /* radioUnChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 99BDC5F319A5F4A900B2BDB1 /* radioUnChecked.png */; };
 		99BEE43D19ADAEDE0090C9E1 /* MyRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */; };
 		99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */; };
+		99C539C119C962A600E6165A /* ico_salary_rank1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B719C962A600E6165A /* ico_salary_rank1.png */; };
+		99C539C219C962A600E6165A /* ico_salary_rank2.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B819C962A600E6165A /* ico_salary_rank2.png */; };
+		99C539C319C962A600E6165A /* ico_salary_rank3.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B919C962A600E6165A /* ico_salary_rank3.png */; };
+		99C539C419C962A600E6165A /* ico_salary_rank4.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539BA19C962A600E6165A /* ico_salary_rank4.png */; };
+		99C539C519C962A600E6165A /* ico_salary_rank5.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539BB19C962A600E6165A /* ico_salary_rank5.png */; };
+		99C539C619C962A600E6165A /* ico_salary_rank6.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539BC19C962A600E6165A /* ico_salary_rank6.png */; };
+		99C539C719C962A600E6165A /* ico_salary_rank7.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539BD19C962A600E6165A /* ico_salary_rank7.png */; };
+		99C539C819C962A600E6165A /* ico_salary_rank8.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539BE19C962A600E6165A /* ico_salary_rank8.png */; };
+		99C539C919C962A600E6165A /* ico_salary_rank9.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539BF19C962A600E6165A /* ico_salary_rank9.png */; };
+		99C539CA19C962A600E6165A /* ico_salary_rank10.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539C019C962A600E6165A /* ico_salary_rank10.png */; };
 		99C581D519C193C7009985C5 /* CpInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581D419C193C7009985C5 /* CpInviteViewController.m */; };
 		99C581D819C196B7009985C5 /* InterviewNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581D719C196B7009985C5 /* InterviewNoticeViewController.m */; };
 		99C581DB19C19709009985C5 /* JobInviteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581DA19C19709009985C5 /* JobInviteListViewController.m */; };
@@ -810,6 +820,16 @@
 		99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecruitmentViewController.m; path = Recruitment/MyRecruitmentViewController.m; sourceTree = "<group>"; };
 		99BEE44219ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmReceivedInvitationViewController.h; path = Recruitment/MyRmReceivedInvitationViewController.h; sourceTree = "<group>"; };
 		99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmReceivedInvitationViewController.m; path = Recruitment/MyRmReceivedInvitationViewController.m; sourceTree = "<group>"; };
+		99C539B719C962A600E6165A /* ico_salary_rank1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank1.png; sourceTree = "<group>"; };
+		99C539B819C962A600E6165A /* ico_salary_rank2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank2.png; sourceTree = "<group>"; };
+		99C539B919C962A600E6165A /* ico_salary_rank3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank3.png; sourceTree = "<group>"; };
+		99C539BA19C962A600E6165A /* ico_salary_rank4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank4.png; sourceTree = "<group>"; };
+		99C539BB19C962A600E6165A /* ico_salary_rank5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank5.png; sourceTree = "<group>"; };
+		99C539BC19C962A600E6165A /* ico_salary_rank6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank6.png; sourceTree = "<group>"; };
+		99C539BD19C962A600E6165A /* ico_salary_rank7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank7.png; sourceTree = "<group>"; };
+		99C539BE19C962A600E6165A /* ico_salary_rank8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank8.png; sourceTree = "<group>"; };
+		99C539BF19C962A600E6165A /* ico_salary_rank9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank9.png; sourceTree = "<group>"; };
+		99C539C019C962A600E6165A /* ico_salary_rank10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank10.png; sourceTree = "<group>"; };
 		99C581D019C1414A009985C5 /* RM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RM.h; path = Entity/RM.h; sourceTree = "<group>"; };
 		99C581D319C193C7009985C5 /* CpInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CpInviteViewController.h; path = UserCenter/CpInviteViewController.h; sourceTree = "<group>"; };
 		99C581D419C193C7009985C5 /* CpInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CpInviteViewController.m; path = UserCenter/CpInviteViewController.m; sourceTree = "<group>"; };
@@ -1781,6 +1801,16 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99C539B719C962A600E6165A /* ico_salary_rank1.png */,
+				99C539B819C962A600E6165A /* ico_salary_rank2.png */,
+				99C539B919C962A600E6165A /* ico_salary_rank3.png */,
+				99C539BA19C962A600E6165A /* ico_salary_rank4.png */,
+				99C539BB19C962A600E6165A /* ico_salary_rank5.png */,
+				99C539BC19C962A600E6165A /* ico_salary_rank6.png */,
+				99C539BD19C962A600E6165A /* ico_salary_rank7.png */,
+				99C539BE19C962A600E6165A /* ico_salary_rank8.png */,
+				99C539BF19C962A600E6165A /* ico_salary_rank9.png */,
+				99C539C019C962A600E6165A /* ico_salary_rank10.png */,
 				9936980019C7D4020060BDD1 /* ico_cvmain_del.png */,
 				9936980119C7D4020060BDD1 /* ico_cvmain_education.png */,
 				9936980219C7D4020060BDD1 /* ico_cvmain_exp.png */,
@@ -2086,12 +2116,15 @@
 				99CFD87B199B60D8009A5ABA /* ico_leftmenu_head.png in Resources */,
 				99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */,
 				99AF5B8719C1317E00BE73F2 /* ico_member_cpinvite.png in Resources */,
+				99C539C119C962A600E6165A /* ico_salary_rank1.png in Resources */,
 				99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */,
 				99CFD892199B60D8009A5ABA /* main_pic_head.png in Resources */,
 				99CFD882199B60D8009A5ABA /* ico_leftmenu_search.png in Resources */,
 				99BD6FA119B54B5E00514807 /* GovernmentRecruitmentStoryboard.storyboard in Resources */,
+				99C539C419C962A600E6165A /* ico_salary_rank4.png in Resources */,
 				99CFD889199B60D8009A5ABA /* ico_main_salary.png in Resources */,
 				9942F44819B987D900191C74 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				99C539CA19C962A600E6165A /* ico_salary_rank10.png in Resources */,
 				995575BA19AC56A800B73E4A /* ico_coordinate_blue.png in Resources */,
 				992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */,
 				99CFD830199B5F80009A5ABA /* Images.xcassets in Resources */,
@@ -2122,6 +2155,7 @@
 				99B350BF199CB1F100CAEC71 /* welcom4-320x960.png in Resources */,
 				9901836119AC58F900CA1CB2 /* ico_joblist_online.png in Resources */,
 				99B350BE199CB1F100CAEC71 /* welcom3-320x1136.png in Resources */,
+				99C539C719C962A600E6165A /* ico_salary_rank7.png in Resources */,
 				99CFD884199B60D8009A5ABA /* ico_main_membercenter.png in Resources */,
 				99CFD891199B60D8009A5ABA /* main_pic_govnews.png in Resources */,
 				99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */,
@@ -2143,9 +2177,11 @@
 				9925BE8E19B807F4002DBFE0 /* ico_mapsearch_pre_unable.png in Resources */,
 				9925BE8D19B807F4002DBFE0 /* ico_mapsearch_next.png in Resources */,
 				9945C30B19A1A4890027E931 /* ico_clock.png in Resources */,
+				99C539C919C962A600E6165A /* ico_salary_rank9.png in Resources */,
 				99AF5B8A19C1317E00BE73F2 /* ico_member_mobileuncer.png in Resources */,
 				99CFD890199B60D8009A5ABA /* main_pic_campus.png in Resources */,
 				998025BE19A23024001A7E84 /* MJRefresh.bundle in Resources */,
+				99C539C619C962A600E6165A /* ico_salary_rank6.png in Resources */,
 				9925BE8C19B807F4002DBFE0 /* ico_mapsearch_next_unable.png in Resources */,
 				9942F39819B95C2100191C74 /* ico_mainmore_setting.png in Resources */,
 				99CFD894199B60D8009A5ABA /* password.png in Resources */,
@@ -2179,7 +2215,9 @@
 				99BD700719B5BBF400514807 /* ico_jobnews_search.png in Resources */,
 				99B4693719B2EB520034505D /* ico_mainsearch_mapsearch1.png in Resources */,
 				99F3F84519B007C100B5AB88 /* ico_shen.png in Resources */,
+				99C539C319C962A600E6165A /* ico_salary_rank3.png in Resources */,
 				99CFD87A199B60D8009A5ABA /* ico_leftmenu_govnews.png in Resources */,
+				99C539C819C962A600E6165A /* ico_salary_rank8.png in Resources */,
 				9925BEF219B80E02002DBFE0 /* DictionaryPickerView.xib in Resources */,
 				9942F39619B95C2100191C74 /* ico_mainmore_logout.png in Resources */,
 				9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */,
@@ -2197,6 +2235,7 @@
 				99BD6FA719B5983100514807 /* ico_jobnews_searchresult.png in Resources */,
 				9936980B19C7D4020060BDD1 /* ico_cvmain_jobintention.png in Resources */,
 				990CCC8519A998620022B44B /* check.png in Resources */,
+				99C539C519C962A600E6165A /* ico_salary_rank5.png in Resources */,
 				9942F38019B94E4400191C74 /* ico_mapsearch_pointer_blue.png in Resources */,
 				9942F39419B95C2100191C74 /* ico_mainmore_about.png in Resources */,
 				9936980719C7D4020060BDD1 /* ico_cvmain_del.png in Resources */,
@@ -2205,6 +2244,7 @@
 				99B350BB199CB1F100CAEC71 /* welcom2-320x960.png in Resources */,
 				99CFD899199B60D8009A5ABA /* weibo.png in Resources */,
 				99CFD88C199B60D8009A5ABA /* loading.gif in Resources */,
+				99C539C219C962A600E6165A /* ico_salary_rank2.png in Resources */,
 				99CFD87F199B60D8009A5ABA /* ico_leftmenu_more.png in Resources */,
 				99938FD319BCAFFB008F986A /* Recruitment.storyboard in Resources */,
 				9901836019AC58F900CA1CB2 /* ico_joblist_favorite.png in Resources */,
