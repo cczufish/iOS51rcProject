@@ -5,7 +5,7 @@
 #import "CommonController.h"
 #import "RecruitmentViewController.h"
 
-//我邀请的企业列表
+//我的预约
 @interface MyRmCpListViewController ()<NetWebServiceRequestDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UITableView *tvRecruitmentCpList;
@@ -79,7 +79,7 @@
     //显示标题
     NSString *strRecruitmentName = rowData[@"RecruitmentName"];
     UIFont *titleFont = [UIFont systemFontOfSize:15];
-    CGFloat titleWidth = 270;
+    CGFloat titleWidth = 290;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strRecruitmentName fontDemond:titleFont sizeDemand:titleSize];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, labelSize.width, labelSize.height)];
@@ -104,7 +104,7 @@
     
     //举办场馆
     NSString *strPlace = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]];
-    labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 40)];
+    labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
     UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPlace.text = strPlace;
     lbPlace.font = [UIFont systemFontOfSize:12];
@@ -125,17 +125,28 @@
     [btnLngLat release];
     [imgLngLat release];
     
-    //举办地址
-    NSString *strAddress =[NSString stringWithFormat:@"举办地址：%@",rowData[@"Address"]];
-    labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 40)];
-    UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
+    //具体地址
+    NSString *strPreAddress =@"具体地址：";
+    labelSize = [CommonController CalculateFrame:strPreAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 40)];
+    UILabel *lbPreAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
+    lbPreAddress.text = strPreAddress;
+    lbPreAddress.font = [UIFont systemFontOfSize:12];
+    lbPreAddress.textColor = [UIColor grayColor];
+    [cell.contentView addSubview:(lbPreAddress)];
+    [lbPreAddress release];
+    
+    NSString *strAddress =rowData[@"Address"];
+    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(140, 80)];
+    UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(80, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbAddress.text = strAddress;
+    lbAddress.numberOfLines = 0;
+    lbAddress.lineBreakMode = NSLineBreakByCharWrapping;
     lbAddress.font = [UIFont systemFontOfSize:12];
     lbAddress.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbAddress)];
     [lbAddress release];
     
-    //我邀请的企业
+    //我邀请的企业(右侧的小方块)
     NSString *myRmCpCount = rowData[@"myInvitCpNum"] ;
     UIButton *btnMyRmCp = [[UIButton alloc] initWithFrame:CGRectMake(237, 58, 75, 40)];
     UILabel *lbMyRmCp = [[UILabel alloc] initWithFrame:CGRectMake(7, 25, 60, 10)];
@@ -193,7 +204,14 @@
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 110;
+    NSString *strRecruitmentName = recruitmentCpData[indexPath.row][@"RecruitmentName"];
+    CGSize titleSize = CGSizeMake(290, 5000.0f);
+    CGSize labelSize = [CommonController CalculateFrame:strRecruitmentName fontDemond:[UIFont systemFontOfSize:15] sizeDemand:titleSize];
+    if (labelSize.height>30) {//标题换行了
+        return 125;
+    }else{
+        return 105;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -201,17 +219,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc {
     [_tvRecruitmentCpList release];

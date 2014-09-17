@@ -110,7 +110,9 @@
 -(void) btnMyRecruitmentClick:(UIButton *)sender
 {
     MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
+    myRmCtrl.navigationItem.title = @"我的招聘会";
     [self.navigationController pushViewController:myRmCtrl animated:YES];
+    self.navigationItem.title = @" ";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
