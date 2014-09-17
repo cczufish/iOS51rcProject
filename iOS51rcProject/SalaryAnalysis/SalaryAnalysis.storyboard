@@ -17,7 +17,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="6Ez-8p-bkv">
-                                        <rect key="frame" x="0.0" y="36" width="320" height="229"/>
+                                        <rect key="frame" x="0.0" y="64" width="320" height="213"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7gi-Dn-omH">
@@ -100,17 +100,17 @@
                                         </subviews>
                                     </view>
                                     <view contentMode="scaleToFill" id="WVo-U8-rxU">
-                                        <rect key="frame" x="20" y="251" width="280" height="91"/>
+                                        <rect key="frame" x="20" y="294" width="280" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="akZ-6T-6ZC">
-                                        <rect key="frame" x="20" y="360" width="280" height="96"/>
+                                        <rect key="frame" x="20" y="377" width="280" height="78"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="6F4-1p-53i">
-                                        <rect key="frame" x="20" y="464" width="280" height="97"/>
+                                        <rect key="frame" x="20" y="469" width="280" height="81"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -126,10 +126,12 @@
                         <outlet property="lbJobTypeSelect" destination="Sap-1P-GQf" id="GWM-eu-dWV"/>
                         <outlet property="lbQueryResult" destination="Arr-KU-GWA" id="392-FP-1vX"/>
                         <outlet property="lbRegionSelect" destination="KlW-h3-JQX" id="yTj-bU-AWp"/>
+                        <outlet property="svMain" destination="I9x-ba-dY1" id="bFd-qv-dtB"/>
                         <outlet property="viewAvg" destination="WVo-U8-rxU" id="lgR-Bc-17N"/>
                         <outlet property="viewDistribution" destination="akZ-6T-6ZC" id="MlC-I2-Pft"/>
                         <outlet property="viewRank" destination="6F4-1p-53i" id="6S6-QH-5QO"/>
                         <outlet property="viewSearchSelect" destination="9wu-ns-A8W" id="c5b-7L-lpN"/>
+                        <outlet property="viewTop" destination="6Ez-8p-bkv" id="Zfv-OA-N4V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VlQ-jX-1oy" userLabel="First Responder" sceneMemberID="firstResponder"/>

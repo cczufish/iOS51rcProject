@@ -4,8 +4,13 @@
 #import "SlideNavigationContorllerAnimator.h"
 #import "DictionaryPickerView.h"
 #import "Toast+UIView.h"
+#import "EColumnDataModel.h"
+#import "EColumnChartLabel.h"
+#import "EFloatBox.h"
+#import "EColor.h"
 #import "LoadingAnimationView.h"
-@interface SalaryAnalysisViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate,UIGestureRecognizerDelegate, NetWebServiceRequestDelegate>
+
+@interface SalaryAnalysisViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate,UIGestureRecognizerDelegate, NetWebServiceRequestDelegate, UIScrollViewDelegate>
 {
     LoadingAnimationView *loadView;
 }
@@ -16,7 +21,15 @@
 @property (retain, nonatomic) IBOutlet UIView *viewDistribution;//分布
 @property (retain, nonatomic) IBOutlet UIView *viewRank;//排行
 @property (retain, nonatomic) NetWebServiceRequest *runningRequest;
+@property (retain, nonatomic) NetWebServiceRequest *runningReqestForGetRank;//工资排名所用
+@property (retain, nonatomic) EColumnChart *colExperience;
+@property (retain, nonatomic) EColumnChart *colEducation;
 
+@property (nonatomic, strong) NSArray *dataExperience;
+@property (nonatomic, strong) NSArray *dataEducation;
+@property (nonatomic, strong) EFloatBox *eFloatBox;
+@property (nonatomic, strong) EColumn *eColumnSelected;
+@property (nonatomic, strong) UIColor *tempColor;
 -(void)cancelDicPicker;
 @end
 
@@ -72,6 +85,7 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
@@ -79,22 +93,22 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) {
-    [self GenerateViewAvg: requestData];
+        //获取工资排名的数据
+        NSMutableDictionary *dicParam2 = [[NSMutableDictionary alloc] init];
+        [dicParam2 setObject:self.regionSelect forKey:@"regionID"];
+        NetWebServiceRequest *request2 = [NetWebServiceRequest serviceRequestUrl:@"GetCitySalaryRankByReginID" Params:dicParam2];
+        [request2 setDelegate:self];
+        [request2 startAsynchronous];
+        request2.tag = 2;
+        self.runningReqestForGetRank = request2;
+        [dicParam2 release];
+
+        //绑定第一批数据
+        [self GenerateViewAvg: requestData];
+        [self GenerateExperienceAndEducationAnalysis:requestData];
     }
     else if(request.tag == 2){
-        NSMutableArray *arrCv = [[NSMutableArray alloc] init];
-        NSDictionary *defalult = [[[NSDictionary alloc] initWithObjectsAndKeys:
-                                   @"0",@"id",
-                                   @"相关简历",@"value"
-                                   ,nil] autorelease];
-        [arrCv addObject:defalult];
-        for (int i = 0; i < requestData.count; i++) {
-            NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
-                                    requestData[i][@"ID"],@"id",
-                                    requestData[i][@"Name"],@"value"
-                                    ,nil] autorelease];
-            [arrCv addObject:dicCv];
-        }
+        [self GenerageSalaryRankForRegion:requestData];
     }
     
     //结束等待动画
@@ -112,15 +126,15 @@
     title.font = [UIFont systemFontOfSize:12];
     [self.viewAvg addSubview:title];
     //3行还是两行（如果选择省以下的的是三条数据）
-    int viewHeight = 120;
+    int viewHeight = 160;
     int selfSalary =  [tmpData[@"AvgSalary"] integerValue];
     int p1Salary = [tmpData[@"Parent1"] integerValue];//上一级
-    self.viewAvg.frame = CGRectMake(10, self.lbQueryResult.frame.origin.y + self.lbQueryResult.frame.size.height + 45, 300, viewHeight);
+    self.viewAvg.frame = CGRectMake(10, self.viewTop.frame.origin.y + self.viewTop.frame.size.height, 300, viewHeight);
     int p2Salary = 0;//全国级
     if (tmpData[@"Parent2"] != nil) {
-        viewHeight = 170;
+        viewHeight = 240;
         p2Salary = [tmpData[@"Parent2"] integerValue];
-        self.viewAvg.frame = CGRectMake(10, self.lbQueryResult.frame.origin.y + self.lbQueryResult.frame.size.height + 45, 300, viewHeight);
+        self.viewAvg.frame = CGRectMake(10, self.viewTop.frame.origin.y + self.viewTop.frame.size.height, 300, viewHeight);
     }
     
     //一条横线，x轴
@@ -152,7 +166,7 @@
     
     //横柱子--avgView是从小10开始，左右两个空隙是25
     //自己的平均工资
-    UIView *view1 = [[[UIView alloc] initWithFrame:CGRectMake(25, 40, selfSalary/10000.0*250, 40 )] autorelease];
+    UIView *view1 = [[[UIView alloc] initWithFrame:CGRectMake(25, 50, selfSalary/10000.0*250, 40 )] autorelease];
     UILabel *lb1 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
     lb1.text = [NSString stringWithFormat:@"%@职工平均月薪", self.lbRegionSelect.text];
     lb1.font = [UIFont systemFontOfSize:10];
@@ -168,7 +182,7 @@
     [self.viewAvg addSubview:view1];
     
     //第一层上级的平均工资
-    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(25, 70, p1Salary/10000.0*250, 40 )] autorelease];
+    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(25, 80, p1Salary/10000.0*250, 40 )] autorelease];
     UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
     lb2.text = [NSString stringWithFormat:@"%@职工平均月薪", self.lbRegionSelect.text];
     lb2.font = [UIFont systemFontOfSize:10];
@@ -185,7 +199,7 @@
     
     //全国平均
     if (p2Salary != 0) {
-        UIView *view3 = [[[UIView alloc] initWithFrame:CGRectMake(25, 100, p2Salary/10000.0*250, 40 )] autorelease];
+        UIView *view3 = [[[UIView alloc] initWithFrame:CGRectMake(25, 110, p2Salary/10000.0*250, 40 )] autorelease];
         UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
         lb3.text = @"全国职工平均月薪";
         lb3.font = [UIFont systemFontOfSize:10];
@@ -203,6 +217,233 @@
 
 }
 
+//生成工作经验和学历的柱状图
+-(void) GenerateExperienceAndEducationAnalysis:(NSMutableArray *) resultData{
+    NSDictionary *tmpData = resultData[0];
+    UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
+    title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
+    title.text = [NSString stringWithFormat:@"%@企业招聘待遇分配",self.lbRegionSelect.text];
+    title.font = [UIFont systemFontOfSize:12];
+    [self.viewDistribution addSubview:title];
+
+    //======================工作经验的柱状图======================
+    NSMutableArray *temp = [NSMutableArray array];
+    for (int i = 4; i >= 0; i--)
+    {
+        int value = [tmpData[[NSString stringWithFormat:@"ExperienceSalary%d", i]] intValue];
+        NSString *strExpName = @" ";
+        switch (i) {
+            case 0:
+                strExpName = @"应届毕业生";
+                break;
+            case 1:
+                strExpName = @"1-2年";
+                break;
+            case 2:
+                strExpName = @"3-5年";
+                break;
+            case 3:
+                strExpName = @"6-10年";
+                break;
+            case 4:
+                strExpName = @"10年以上";
+                break;
+            default:
+                break;
+        }
+        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:strExpName value:value index:i unit:@"(元)"];
+        [temp addObject:eColumnDataModel];
+    }
+    _dataExperience = [NSArray arrayWithArray:temp];
+    self.colExperience = [[EColumnChart alloc] initWithFrame:CGRectMake(60, 40, 220, 160)];
+    [self.colExperience setColumnsIndexStartFromLeft:YES];
+	[self.colExperience setDelegate:self];
+    [self.colExperience setDataSource:self];
+    
+    [self.viewDistribution addSubview:self.colExperience];
+    //======================学历柱状图======================
+    NSMutableArray *tmpArrayForEducation = [NSMutableArray array];
+    for (int i = 7; i >= 4; i--)
+    {
+        int value = [tmpData[[NSString stringWithFormat:@"EducationSalary%d", i]] intValue];
+        NSString *strEduName = @" ";
+        switch (i) {
+            case 0:
+                strEduName = @"大专以下";
+                break;
+            case 1:
+                strEduName = @"大专";
+                break;
+            case 2:
+                strEduName = @"本科";
+                break;
+            case 3:
+                strEduName = @"硕士";
+                break;
+            case 4:
+                strEduName = @"硕士以上";
+                break;
+            default:
+                break;
+        }
+        EColumnDataModel *eColumnDataModel = [[EColumnDataModel alloc] initWithLabel:strEduName value:value index:i unit:@"(元)"];
+        [tmpArrayForEducation addObject:eColumnDataModel];
+    }
+    _dataEducation = [NSArray arrayWithArray:tmpArrayForEducation];
+    self.colEducation = [[EColumnChart alloc] initWithFrame:CGRectMake(60, self.colExperience.frame.origin.y+self.colExperience.frame.size.height + 40, 220, 160)];
+    [self.colEducation setColumnsIndexStartFromLeft:YES];
+	[self.colEducation setDelegate:self];
+    [self.colEducation setDataSource:self];
+    
+    [self.viewDistribution addSubview:self.colEducation];
+    self.viewDistribution.frame = CGRectMake(10, self.viewAvg.frame.origin.y+self.viewAvg.frame.size.height + 15, 300, self.colEducation.frame.size.height + self.colExperience.frame.size.height + 100);
+    self.viewDistribution.layer.borderWidth = 0.5;
+    self.viewDistribution.layer.borderColor = [UIColor lightGrayColor].CGColor;
+}
+
+//生成工资排行的列表
+-(void) GenerageSalaryRankForRegion:(NSMutableArray *) requestData{
+    UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
+    title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
+    title.text = [NSString stringWithFormat:@"%@地区薪酬排行",self.lbRegionSelect.text];
+    title.font = [UIFont systemFontOfSize:12];
+    [self.viewRank addSubview:title];
+    for (int i=0; i<requestData.count; i++) {
+        NSDictionary *tmpData = requestData[i];
+        UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(0, 20 + i*20, 280, 20)] autorelease];
+        //左侧圆圈
+        //CGContextRef context = UIGraphicsGetCurrentContext();
+        //CGContextFillEllipseInRect(context, CGRectMake(95, 95, 100.0, 100));
+        //UIColor*aColor = [UIColor colorWithRed:1 green:0.0 blue:0 alpha:1];
+        //CGContextSetFillColorWithColor(context, aColor.CGColor);//填充颜色
+        //地区名称
+        UILabel *lbRegionName = [[[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 15)]autorelease];
+        lbRegionName.text = @"111";
+        lbRegionName.font = [UIFont systemFontOfSize:13];
+        [tmpView addSubview:lbRegionName];
+        //薪酬
+        UILabel *lbMoney = [[[UILabel alloc] initWithFrame:CGRectMake(220, 5, 80, 15)] autorelease];
+        lbMoney.text = [NSString stringWithFormat:@"￥%@", tmpData[@"AvgSalary"]];
+        lbMoney.font = [UIFont systemFontOfSize:13];
+        [tmpView addSubview:lbMoney];
+        //下划线
+        UILabel *lbLine = [[[UILabel alloc] initWithFrame:CGRectMake(40, 20, 280, 5)] autorelease];
+        lbLine.text = @"-------------------------------------------------------";
+        lbLine.font = [UIFont systemFontOfSize:10];
+        lbLine.textColor = [UIColor lightGrayColor];
+        [tmpView addSubview:lbLine];
+        
+        [self.viewRank addSubview:tmpView];
+    }
+    
+    self.viewRank.frame = CGRectMake(10, self.viewDistribution.frame.origin.y + self.viewDistribution.frame.size.height + 20, 300, 20+requestData.count * 20 + 20);
+    self.viewRank.layer.borderWidth = 0.5;
+    self.viewRank.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [self.svMain setContentSize:CGSizeMake(320, self.viewRank.frame.origin.y+self.viewRank.frame.size.height)];
+}
+#pragma -mark- EColumnChartDataSource
+
+- (NSInteger)numberOfColumnsInEColumnChart:(EColumnChart *)eColumnChart
+{
+    //return [_dataExperience count];
+    return 5;
+}
+
+- (NSInteger)numberOfColumnsPresentedEveryTime:(EColumnChart *)eColumnChart
+{
+    return 5;
+}
+
+//最大值
+- (EColumnDataModel *)highestValueEColumnChart:(EColumnChart *)eColumnChart
+{
+    EColumnDataModel *maxDataModel = nil;
+    float maxValue = -FLT_MIN;
+    for (EColumnDataModel *dataModel in _dataExperience)
+    {
+        if (dataModel.value > maxValue)
+        {
+            maxValue = dataModel.value;
+            maxDataModel = dataModel;
+        }
+    }
+    return maxDataModel;
+}
+
+- (EColumnDataModel *)eColumnChart:(EColumnChart *)eColumnChart valueForIndex:(NSInteger)index
+{
+    if (index >= [_dataExperience count] || index < 0) return nil;
+    return [_dataExperience objectAtIndex:index];
+}
+
+#pragma -mark- EColumnChartDelegate
+- (void)eColumnChart:(EColumnChart *)eColumnChart didSelectColumn:(EColumn *)eColumn
+{
+    NSLog(@"Index: %d  Value: %f", eColumn.eColumnDataModel.index, eColumn.eColumnDataModel.value);
+    
+    if (_eColumnSelected)
+    {
+        _eColumnSelected.barColor = _tempColor;
+    }
+    _eColumnSelected = eColumn;
+    _tempColor = eColumn.barColor;
+    eColumn.barColor = [UIColor blackColor];
+    
+    //_valueLabel.text = [NSString stringWithFormat:@"%.1f",eColumn.eColumnDataModel.value];
+}
+
+- (void)eColumnChart:(EColumnChart *)eColumnChart fingerDidEnterColumn:(EColumn *)eColumn
+{
+    /**The EFloatBox here, is just to show an example of
+     taking adventage of the event handling system of the Echart.
+     You can do even better effects here, according to your needs.*/
+    NSLog(@"Finger did enter %d", eColumn.eColumnDataModel.index);
+    CGFloat eFloatBoxX = eColumn.frame.origin.x + eColumn.frame.size.width * 1.25;
+    CGFloat eFloatBoxY = eColumn.frame.origin.y + eColumn.frame.size.height * (1-eColumn.grade);
+    if (_eFloatBox)
+    {
+        [_eFloatBox removeFromSuperview];
+        _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
+        [_eFloatBox setValue:eColumn.eColumnDataModel.value];
+        [eColumnChart addSubview:_eFloatBox];
+    }
+    else
+    {
+        _eFloatBox = [[EFloatBox alloc] initWithPosition:CGPointMake(eFloatBoxX, eFloatBoxY) value:eColumn.eColumnDataModel.value unit:@"kWh" title:@"Title"];
+        _eFloatBox.alpha = 0.0;
+        [eColumnChart addSubview:_eFloatBox];
+        
+    }
+    eFloatBoxY -= (_eFloatBox.frame.size.height + eColumn.frame.size.width * 0.25);
+    _eFloatBox.frame = CGRectMake(eFloatBoxX, eFloatBoxY, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+        _eFloatBox.alpha = 1.0;
+        
+    } completion:^(BOOL finished) {
+    }];
+    
+}
+
+- (void)eColumnChart:(EColumnChart *)eColumnChart fingerDidLeaveColumn:(EColumn *)eColumn
+{
+    NSLog(@"Finger did leave %d", eColumn.eColumnDataModel.index);
+}
+
+- (void)fingerDidLeaveEColumnChart:(EColumnChart *)eColumnChart
+{
+    if (_eFloatBox)
+    {
+        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionTransitionNone animations:^{
+            _eFloatBox.alpha = 0.0;
+            _eFloatBox.frame = CGRectMake(_eFloatBox.frame.origin.x, _eFloatBox.frame.origin.y + _eFloatBox.frame.size.height, _eFloatBox.frame.size.width, _eFloatBox.frame.size.height);
+        } completion:^(BOOL finished) {
+            [_eFloatBox removeFromSuperview];
+            _eFloatBox = nil;
+        }];
+    }
+}
+
+//地区选择
 -(void)showRegionSelect:(UIButton *)sender {
     [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL3 pickerMode:DictionaryPickerModeMulti pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.regionSelect defaultName:self.lbRegionSelect.text] autorelease];
@@ -210,12 +451,14 @@
     [self.DictionaryPicker showInView:self.view];
 }
 
+//职位类别选择
 -(void)showJobTypeSelect:(UIButton *)sender {
     [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithJobType pickerMode:DictionaryPickerModeMulti pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.jobTypeSelect defaultName:self.lbJobTypeSelect.text] autorelease];
     [self.DictionaryPicker setTag:2];
     [self.DictionaryPicker showInView:self.view];
 }
+
 
 - (void)pickerDidChangeStatus:(DictionaryPickerView *)picker
                 selectedValue:(NSString *)selectedValue
@@ -273,13 +516,14 @@
     [_regionSelect release];
     [_jobTypeSelect release];
     [_DictionaryPicker release];
-    [_scrollSearch release];    
-    [_imgSearch release];
-    [_lbSearch release];
     [_lbQueryResult release];
     [_viewAvg release];
     [_viewDistribution release];
     [_viewRank release];
+    [_dataEducation release];
+    [_dataExperience release];
+    [_svMain release];
+    [_viewTop release];
     [super dealloc];
 }
 @end

@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
-
-@interface SalaryAnalysisViewController : UIViewController
+#import "EColumnChart.h"
+@interface SalaryAnalysisViewController : UIViewController <EColumnChartDelegate, EColumnChartDataSource>
 @property (retain, nonatomic) IBOutlet UIView *viewSearchSelect;
 @property (retain, nonatomic) IBOutlet UIButton *btnSearch;
 @property (retain, nonatomic) IBOutlet UIButton *btnRegionSelect;
@@ -8,7 +8,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnJobTypeSelect;
 @property (retain, nonatomic) IBOutlet UILabel *lbJobTypeSelect;
 @property (retain, nonatomic) IBOutlet UILabel *lbQueryResult;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollSearch;
-@property (retain, nonatomic) IBOutlet UIImageView *imgSearch;
-@property (retain, nonatomic) IBOutlet UILabel *lbSearch;
+@property (retain, nonatomic) IBOutlet UIScrollView *svMain;
+@property (retain, nonatomic) IBOutlet UIView *viewTop;
 @end
