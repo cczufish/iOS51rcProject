@@ -1,7 +1,8 @@
 #import <UIKit/UIKit.h>
 #import "GoJobSearchResultListViewDelegate.h"
-
-@interface RmSearchJobForInviteViewController: UIViewController<GoJobSearchResultListViewDelegate>
+#import "InviteJobsFromApplyViewDelegate.h"
+#import "InviteJobsFromFavorityViewDelegate.h"
+@interface RmSearchJobForInviteViewController: UIViewController<GoJobSearchResultListViewDelegate,InviteJobsFromApplyViewDelegate, InviteJobsFromFavorityViewDelegate>
 {
     //是否是第一次加载
     BOOL firstPageLoad;

@@ -4,6 +4,7 @@
 #import "CommonFavorityViewController.h"
 #import "RmInviteCpListFromSearchViewController.h"
 #import "RMSearchJobListViewController.h"
+#import "RmInviteCpViewController.h"
 #define MENUHEIHT 40
 @interface RmSearchJobForInviteViewController ()<UIScrollViewDelegate>
 
@@ -56,6 +57,9 @@
     
     //代理
     self.firstCtrl.searchDelegate = self;
+    self.sccondCtrl.inviteFromApplyViewDelegate = self;
+    self.thirdCtrl.InviteJobsFromFavorityViewDelegate = self;
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     //self.scrollView.frame =  CGRectMake(0, 0, 320, HEIGHT);
     [self.scrollView setContentSize:CGSizeMake(960, self.scrollView.frame.size.height)];
@@ -139,6 +143,33 @@
     [self.navigationController pushViewController:jobList animated:true];
     self.navigationItem.title = @" ";
     jobList.navigationItem.title = @"邀请企业参会";
+}
+
+//收藏职位页面的代理
+-(void) InviteJobsFromFavorityView:(NSMutableArray *)checkedCps{
+    UIStoryboard *rmStoryboard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
+    RmInviteCpViewController *rmInviteCpViewCtrl = [rmStoryboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+    rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
+    rmInviteCpViewCtrl.strAddress = self.strAddress;
+    rmInviteCpViewCtrl.strPlace = self.strPlace;
+    rmInviteCpViewCtrl.strRmID = self.rmID;
+    rmInviteCpViewCtrl.selectRmCps = checkedCps;
+    self.navigationItem.title = @" ";
+    [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
+}
+
+//申请职位页面的代理代理
+-(void) InviteJobsFromApplyView:(NSMutableArray *)checkedCps{
+    //得到父View
+    UIStoryboard *rmStoryboard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
+    RmInviteCpViewController *rmInviteCpViewCtrl = [rmStoryboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+    rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
+    rmInviteCpViewCtrl.strAddress = self.strAddress;
+    rmInviteCpViewCtrl.strPlace = self.strPlace;
+    rmInviteCpViewCtrl.strRmID = self.rmID;
+    rmInviteCpViewCtrl.selectRmCps = checkedCps;
+    self.navigationItem.title = @" ";
+    [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
