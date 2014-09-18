@@ -27,16 +27,9 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnLeftClick:" destination="odG-lM-2dY" eventType="touchUpInside" id="vka-oK-b2N"/>
+                                    <action selector="switchToFirstView:" destination="odG-lM-2dY" eventType="touchUpInside" id="FIg-7k-BWZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ktf-Lr-VHU">
-                                <rect key="frame" x="158" y="101" width="162" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="s1s-1m-bc6">
                                 <rect key="frame" x="158" y="63" width="162" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -45,7 +38,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnRightClick:" destination="odG-lM-2dY" eventType="touchUpInside" id="qgS-Ea-GDr"/>
+                                    <action selector="switchToSecondView:" destination="odG-lM-2dY" eventType="touchUpInside" id="udc-F7-Dth"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nOw-R4-q7C">
@@ -56,14 +49,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3bc-mp-Sgl">
+                                <rect key="frame" x="0.0" y="109" width="320" height="459"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="btnInvitation" destination="s1s-1m-bc6" id="Q31-kJ-P1A"/>
                         <outlet property="btnMyRm" destination="tl1-yB-QEY" id="STP-qy-Kfb"/>
+                        <outlet property="lbBackLine" destination="nOw-R4-q7C" id="l3o-HO-yyy"/>
                         <outlet property="lbBgLeft" destination="q9P-jP-4zm" id="jEv-Hh-cvm"/>
-                        <outlet property="lbBgRight" destination="ktf-Lr-VHU" id="fjK-EX-dWK"/>
+                        <outlet property="scrollView" destination="3bc-mp-Sgl" id="PH7-EP-gA7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b0r-78-hIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -73,7 +71,7 @@
         <!--My Rm Received Invitation View Controller-->
         <scene sceneID="2S7-cK-XJU">
             <objects>
-                <viewController storyboardIdentifier="MyRmInvitationView" id="gUw-RP-oT3" customClass="MyRmReceivedInvitationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyRmReceivedInvitationView" id="gUw-RP-oT3" customClass="MyRmReceivedInvitationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Law-QI-48P" customClass="MyRm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -144,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKP-dP-ERT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1256" y="-565"/>
+            <point key="canvasLocation" x="1230" y="-185"/>
         </scene>
         <!--Common Favority View Controller-->
         <scene sceneID="b5o-YG-34S">
@@ -159,7 +157,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YtV-XG-5oA">
-                                        <rect key="frame" x="116" y="7" width="90" height="36"/>
+                                        <rect key="frame" x="116" y="3" width="90" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="邀请">
@@ -211,7 +209,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="NL3-nL-yvV">
-                                <rect key="frame" x="-2" y="518" width="322" height="50"/>
+                                <rect key="frame" x="-2" y="409" width="322" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="42R-gF-ekD">
@@ -227,7 +225,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="25" sectionHeaderHeight="22" sectionFooterHeight="22" id="PXZ-7e-7OR">
-                                <rect key="frame" x="0.0" y="44" width="320" height="472"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="365"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -246,7 +244,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" id="GVB-gn-R5l">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="36"/>
+                                <rect key="frame" x="0.0" y="-3" width="320" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jaM-zn-l5R">
@@ -291,12 +289,95 @@
                     <view key="view" contentMode="scaleToFill" id="x5K-3i-dkW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="gPE-lc-z88">
+                                <rect key="frame" x="0.0" y="63" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eLa-bU-CkS">
+                                        <rect key="frame" x="0.0" y="49" width="320" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="N5y-BR-RKH">
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="switchToFirstView:" destination="Ehh-6Q-wFr" eventType="touchUpInside" id="Y9J-Aa-HaN"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LWu-n7-5T5">
+                                        <rect key="frame" x="0.0" y="47" width="106" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="搜索的职位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vGE-nl-7Kc">
+                                        <rect key="frame" x="0.0" y="14" width="106" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="A8a-47-bLf">
+                                        <rect key="frame" x="106" y="0.0" width="108" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="switchToSecondView:" destination="Ehh-6Q-wFr" eventType="touchUpInside" id="KLD-Nb-8lW"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请的职位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="88c-zu-KYf">
+                                        <rect key="frame" x="106" y="14" width="108" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pzv-NU-iVh">
+                                        <rect key="frame" x="214" y="0.0" width="106" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="switchToThirdView:" destination="Ehh-6Q-wFr" eventType="touchUpInside" id="XNF-6X-hnF"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收藏的职位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="thB-PZ-F3p">
+                                        <rect key="frame" x="214" y="14" width="106" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="VeE-Jz-Rv8">
+                                <rect key="frame" x="0.0" y="115" width="320" height="453"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="lbFirst" destination="vGE-nl-7Kc" id="ffK-Vs-bDo"/>
+                        <outlet property="lbSecond" destination="88c-zu-KYf" id="trQ-Vr-H6m"/>
+                        <outlet property="lbThird" destination="thB-PZ-F3p" id="nVG-sB-Odv"/>
+                        <outlet property="lbUnderline" destination="LWu-n7-5T5" id="4Vz-BG-Yie"/>
+                        <outlet property="scrollView" destination="VeE-Jz-Rv8" id="Twa-vC-aLZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OUa-Sw-qGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="-1231"/>
+            <point key="canvasLocation" x="82" y="-1952"/>
         </scene>
         <!--Recruitment List View Controller - 招聘会-->
         <scene sceneID="dAd-Tj-dto">
@@ -994,10 +1075,10 @@
             </objects>
             <point key="canvasLocation" x="413" y="-1952"/>
         </scene>
-        <!--My Rm Cp List View Controller-->
+        <!--My Rm Subscribe List View Controller-->
         <scene sceneID="eAc-fG-vpE">
             <objects>
-                <viewController storyboardIdentifier="MyRmCpListView" id="sAu-SY-f8z" customClass="MyRmCpListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyRmSubscribeListView" id="sAu-SY-f8z" customClass="MyRmSubscribeListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1li-wt-Pxa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1024,18 +1105,34 @@
                             <view contentMode="scaleToFill" id="TEs-Nn-lHX">
                                 <rect key="frame" x="0.0" y="506" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nDz-93-JaB">
+                                        <rect key="frame" x="104" y="13" width="113" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="邀请企业参会">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnInviteCp:" destination="sAu-SY-f8z" eventType="touchUpInside" id="IFZ-A6-nNZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="btnInviteCp" destination="nDz-93-JaB" id="DEd-of-MXk"/>
                         <outlet property="tvRecruitmentCpList" destination="4ZW-wQ-XnZ" id="Moj-Js-J26"/>
+                        <outlet property="viewBottom" destination="TEs-Nn-lHX" id="tBR-tN-NPV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2u-tQ-ZSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1223" y="-1280"/>
+            <point key="canvasLocation" x="1230" y="-846"/>
         </scene>
         <!--Search Job List View Controller-->
         <scene sceneID="ZMX-IE-h77">

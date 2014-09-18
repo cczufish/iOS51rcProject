@@ -16,4 +16,5 @@
 }
 @property (retain, nonatomic) id<GoToRmViewDetailDelegate> gotoRmViewDelegate;
 @property (retain, nonatomic) id<GoToMyInvitedCpViewDelegate> gotoMyInvitedCpViewDelegate;
+-(void) onSearch;
 @end

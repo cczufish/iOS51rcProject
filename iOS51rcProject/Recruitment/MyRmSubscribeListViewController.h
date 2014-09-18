@@ -3,11 +3,10 @@
 #import "LoadingAnimationView.h"
 #import "GoToRmViewDetailDelegate.h"
 #import "GoToMyInvitedCpViewDelegate.h"
-//我邀请的企业列表
-@interface MyRmCpListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+//我的预约
+@interface MyRmSubscribeListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {   
-    NSMutableArray *recruitmentCpData;
-    //NSString *rmID;
+    NSMutableArray *recruitmentCpData;   
     LoadingAnimationView *loadView;
     NSMutableArray *checkedCpArray;
     id<GoToRmViewDetailDelegate> gotoRmViewDelegate;
@@ -15,5 +14,6 @@
 }
 @property (retain, nonatomic) id<GoToRmViewDetailDelegate> gotoRmViewDelegate;
 @property (retain, nonatomic) id<GoToMyInvitedCpViewDelegate> gotoMyInvitedCpViewDelegate;
+-(void) onSearch;
 @end
 

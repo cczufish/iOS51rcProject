@@ -28,9 +28,7 @@
     [button setTitle: @"我的招聘会" forState: UIControlStateNormal];
     [button sizeToFit];
     self.navigationItem.titleView = button;
-    //UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"后退" style:UIBarButtonItemStyleDone target:nil action:nil];
-    //self.navigationItem.leftBarButtonItem=backButton;
-    
+       
     [super viewDidLoad];
     self.rmID = @"95935";
     //数据加载等待控件初始化

@@ -177,14 +177,14 @@
     [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL3 pickerMode:DictionaryPickerModeMulti pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.regionSelect defaultName:self.lbRegionSelect.text] autorelease];
     [self.DictionaryPicker setTag:1];
-    [self.DictionaryPicker showInView:self.view];
+    [self.DictionaryPicker showInView:[CommonController getFatherController:self.view].view ];
 }
 
 -(void)showJobTypeSelect:(UIButton *)sender {
     [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithJobType pickerMode:DictionaryPickerModeMulti pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.jobTypeSelect defaultName:self.lbJobTypeSelect.text] autorelease];
     [self.DictionaryPicker setTag:2];
-    [self.DictionaryPicker showInView:self.view];
+    [self.DictionaryPicker showInView: [CommonController getFatherController:self.view].view ];
 }
 
 -(void)showIndustrySelect:(UIButton *)sender {
@@ -193,7 +193,7 @@
     
     [self.DictionaryPicker setTag:3];
     NSLog(@"%d",[self.DictionaryPicker retainCount]);
-    [self.DictionaryPicker showInView:self.view];
+    [self.DictionaryPicker showInView:[CommonController getFatherController:self.view].view ];
 }
 
 - (void)pickerDidChangeStatus:(DictionaryPickerView *)picker
@@ -257,8 +257,7 @@
         strSearchCondition = [strSearchCondition stringByAppendingFormat:@"+%@",self.txtKeyWord.text];
     }
     strSearchCondition = strSearchCondition;
-    [searchDelegate gotoJobSearchResultListView:strSearchRegion SearchJobType:strSearchJobType SearchIndustry:strSearchIndustry SearchKeyword:strSearchKeyword SearchRegionName:strSearchRegionName SearchJobTypeName:strSearchJobTypeName SearchCondition:strSearchCondition];
-    //[searchDelegate gotoJobSearchResultListView:@"111" SearchJobType:@"111" SearchIndustry:@"111" SearchKeyword:@"111" SearchRegionName:@"111" SearchJobTypeName:@"111" SearchCondition:@"111"];
+    [searchDelegate gotoJobSearchResultListView:strSearchRegion SearchJobType:strSearchJobType SearchIndustry:strSearchIndustry SearchKeyword:strSearchKeyword SearchRegionName:strSearchRegionName SearchJobTypeName:strSearchJobTypeName SearchCondition:strSearchCondition];   
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu

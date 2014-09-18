@@ -1,14 +1,32 @@
 #import "RmSearchJobForInviteViewController.h"
 #import "CommonSearchJobViewController.h"
+#import "CommonApplyJobViewController.h"
+#import "CommonFavorityViewController.h"
 #import "RmInviteCpListFromSearchViewController.h"
 #import "RMSearchJobListViewController.h"
+#import "RmInviteCpViewController.h"
 #define MENUHEIHT 40
-@interface RmSearchJobForInviteViewController ()
-@property (retain, nonatomic) CommonSearchJobViewController  *searchViewCtrl;
+@interface RmSearchJobForInviteViewController ()<UIScrollViewDelegate>
+
+@property (retain, nonatomic) IBOutlet UILabel *lbUnderline;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UILabel *lbFirst;
+@property (retain, nonatomic) IBOutlet UILabel *lbSecond;
+@property (retain, nonatomic) IBOutlet UILabel *lbThird;
+
+
+//三个子页面
+@property (retain, nonatomic) CommonSearchJobViewController *firstCtrl;
+@property (retain, nonatomic) CommonApplyJobViewController *sccondCtrl;
+@property (retain, nonatomic) CommonFavorityViewController *thirdCtrl;
+
+@property (retain, nonatomic) NSString *employId;
+@property (retain, nonatomic) NSString *companyId;
+
 @end
 
 @implementation RmSearchJobForInviteViewController
-
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -21,74 +39,94 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self commInit];
-}
-
--(void)commInit{
-    NSArray *vButtonItemArray = @[@{NOMALKEY: @"normal.png",
-                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
-                                    TITLEKEY:@"搜索的职位",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:107]
-                                    },
-                                  @{NOMALKEY: @"normal.png",
-                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
-                                    TITLEKEY:@"申请的职位",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:106]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
-                                    TITLEKEY:@"收藏的职位",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:107]
-                                    },
-                                  ];
+    firstPageLoad = false;
+    secondPageLoad = false;
+    thriePageLoad = false;
     
-    if (mMenuHriZontal == nil) {
-        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, MENUHEIHT) ButtonItems:vButtonItemArray];
-        mMenuHriZontal.delegate = self;
+    //初始化三个子View
+    self.firstCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonSearchJobView"];
+    self.firstCtrl.view.frame = CGRectMake(0, 0, 320, HEIGHT);
+    self.sccondCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonApplyJobView"];
+    self.sccondCtrl.view.frame = CGRectMake(320, 0, 320, HEIGHT);
+    self.thirdCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonFavorityView"];
+    self.thirdCtrl.view.frame = CGRectMake(640, 0, 320, HEIGHT);
+    //把三个子View加到Scrollview中
+    [self.scrollView addSubview:self.firstCtrl.view];
+    [self.scrollView addSubview:self.sccondCtrl.view];
+    [self.scrollView addSubview:self.thirdCtrl.view];
+    
+    //代理
+    self.firstCtrl.searchDelegate = self;
+    self.sccondCtrl.inviteFromApplyViewDelegate = self;
+    self.thirdCtrl.InviteJobsFromFavorityViewDelegate = self;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    //self.scrollView.frame =  CGRectMake(0, 0, 320, HEIGHT);
+    [self.scrollView setContentSize:CGSizeMake(960, self.scrollView.frame.size.height)];
+   }
+
+- (IBAction)switchToFirstView:(id)sender {
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+    
+    if (!firstPageLoad) {
+        //[self.firstCtrl onSearch];
     }
-    //初始化滑动列表
-    if (mScrollPageView == nil) {
-        mScrollPageView = [[RMScrollPageView alloc] initWithFrame:CGRectMake(0, 60 + MENUHEIHT, self.view.frame.size.width, self.view.frame.size.height - MENUHEIHT)];
-        mScrollPageView.delegate = self;
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbThird setTextColor:[UIColor blackColor]];
+        [self.lbSecond setTextColor:[UIColor blackColor]];
+        [self.lbFirst setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        firstPageLoad = true;
+    }];
+}
+
+- (IBAction)switchToSecondView:(id)sender {
+    [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
+    if (!secondPageLoad) {
+        [self.sccondCtrl onSearch:@""];
     }
-    //初始化多个页面，添加入滚动的列表里
-    [mScrollPageView setContentOfTables:vButtonItemArray.count];
-    mScrollPageView.gotoSearchResultViewDelegate = self;
-    //默认选中第一个button
-    [mMenuHriZontal clickButtonAtIndex:0];
-    //-------
-    [self.view addSubview:mScrollPageView];
-    [self.view addSubview:mMenuHriZontal];
-}
-#pragma mark MenuHrizontalDelegate
--(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
-    NSLog(@"第%d个Button点击了",aIndex);
-    [mScrollPageView moveScrollowViewAthIndex:aIndex];
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbThird setTextColor:[UIColor blackColor]];
+        [self.lbFirst setTextColor:[UIColor blackColor]];
+        [self.lbSecond setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(106, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        secondPageLoad = true;
+    }];
 }
 
-#pragma mark ScrollPageViewDelegate
--(void)didScrollPageViewChangedPage:(NSInteger)aPage{
-    NSLog(@"CurrentPage:%d",aPage);
-    [mMenuHriZontal changeButtonStateAtIndex:aPage];
-    //刷新当页数据
-    [mScrollPageView freshContentTableAtIndex:aPage];
+- (IBAction)switchToThirdView:(id)sender {
+    [self.scrollView setContentOffset:CGPointMake(640, 0) animated:true];
+    if (!thriePageLoad) {
+        [self.thirdCtrl onSearch];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbFirst setTextColor:[UIColor blackColor]];
+        [self.lbSecond setTextColor:[UIColor blackColor]];
+        [self.lbThird setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(214, self.lbUnderline.frame.origin.y, self.lbUnderline.frame.size.width, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        thriePageLoad = true;
+    }];
 }
 
-//#pragma mark 内存相关
--(void)dealloc{
-    [mMenuHriZontal release],mMenuHriZontal = nil;
-    [mScrollPageView release],mScrollPageView = nil;
-    [super dealloc];
-}
 
-- (void)didReceiveMemoryWarning
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if (self.scrollView.contentOffset.x > 480) {
+        [self switchToThirdView:nil];
+    }
+    else if (self.scrollView.contentOffset.x > 160) {
+        [self switchToSecondView:nil];
+    }
+    else {
+        [self switchToFirstView:nil];
+    }
 }
 
 //搜索职位的代理
--(void) GoJobSearchResultListFromScrollPage:(NSString *)strSearchRegion SearchJobType:(NSString *)strSearchJobType SearchIndustry:(NSString *)strSearchIndustry SearchKeyword:(NSString *)strSearchKeyword SearchRegionName:(NSString *)strSearchRegionName SearchJobTypeName:(NSString *)strSearchJobTypeName SearchCondition:(NSString *)strSearchCondition{
+-(void) gotoJobSearchResultListView:(NSString *)strSearchRegion SearchJobType:(NSString *)strSearchJobType SearchIndustry:(NSString *)strSearchIndustry SearchKeyword:(NSString *)strSearchKeyword SearchRegionName:(NSString *)strSearchRegionName SearchJobTypeName:(NSString *)strSearchJobTypeName SearchCondition:(NSString *)strSearchCondition{
     RMSearchJobListViewController *jobList = [self.storyboard instantiateViewControllerWithIdentifier: @"RMSearchJobListView"];
     jobList.searchRegion = strSearchRegion;
     jobList.searchJobType = strSearchJobType;
@@ -103,30 +141,54 @@
     jobList.strBeginTime = self.strBeginTime;
     jobList.rmID = self.rmID;
     [self.navigationController pushViewController:jobList animated:true];
-    
+    self.navigationItem.title = @" ";
+    jobList.navigationItem.title = @"邀请企业参会";
 }
 
--(void) gotoJobSearchResultListView:(NSString*) strSearchRegion SearchJobType:(NSString*) strSearchJobType SearchIndustry:(NSString *) strSearchIndustry SearchKeyword:(NSString *) strSearchKeyword SearchRegionName:(NSString *) strSearchRegionName SearchJobTypeName:(NSString *) strSearchJobTypeName SearchCondition:(NSString *) strSearchCondition{
-    RMSearchJobListViewController *jobList = [self.storyboard instantiateViewControllerWithIdentifier: @"RMSearchJobListView"];
-      jobList.searchRegion = strSearchRegion;
-      jobList.searchJobType = strSearchJobType;
-      jobList.searchIndustry = strSearchIndustry;
-      jobList.searchKeyword = strSearchKeyword;
-      jobList.searchRegionName = strSearchRegionName;
-      jobList.searchJobTypeName = strSearchJobTypeName;
-      jobList.searchCondition = strSearchCondition;
-      [self.navigationController pushViewController:jobList animated:true];
+//收藏职位页面的代理
+-(void) InviteJobsFromFavorityView:(NSMutableArray *)checkedCps{
+    UIStoryboard *rmStoryboard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
+    RmInviteCpViewController *rmInviteCpViewCtrl = [rmStoryboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+    rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
+    rmInviteCpViewCtrl.strAddress = self.strAddress;
+    rmInviteCpViewCtrl.strPlace = self.strPlace;
+    rmInviteCpViewCtrl.strRmID = self.rmID;
+    rmInviteCpViewCtrl.selectRmCps = checkedCps;
+    self.navigationItem.title = @" ";
+    [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
 
-/*
-#pragma mark - Navigation
+//申请职位页面的代理代理
+-(void) InviteJobsFromApplyView:(NSMutableArray *)checkedCps{
+    //得到父View
+    UIStoryboard *rmStoryboard = [UIStoryboard storyboardWithName:@"Recruitment" bundle:nil];
+    RmInviteCpViewController *rmInviteCpViewCtrl = [rmStoryboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+    rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
+    rmInviteCpViewCtrl.strAddress = self.strAddress;
+    rmInviteCpViewCtrl.strPlace = self.strPlace;
+    rmInviteCpViewCtrl.strRmID = self.rmID;
+    rmInviteCpViewCtrl.selectRmCps = checkedCps;
+    self.navigationItem.title = @" ";
+    [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
+}
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)didReceiveMemoryWarning
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-*/
 
+- (void)dealloc {
+    [_firstCtrl release];
+    [_sccondCtrl release];
+    [_thirdCtrl release];
+    [_lbUnderline release];
+    [_scrollView release];
+    [_employId release];
+    [_companyId release];
+    [_lbFirst release];
+    [_lbSecond release];
+    [_lbThird release];
+    [super dealloc];
+}
 @end
