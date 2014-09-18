@@ -8,14 +8,9 @@
 @interface RmInviteCpViewController : UIViewController<SelectJobDelegate>
 {
     NSMutableArray *placeData;//场馆
-<<<<<<< HEAD
-    
     NSString *regionID;
     NSString *beginDate;
     NSString *placeID;
-=======
-    DatePicker *pickDate;//时间选择    
->>>>>>> FETCH_HEAD
     LoadingAnimationView *loadView;
     
     //如果是从职位页面设置返回

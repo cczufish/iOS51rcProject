@@ -67,10 +67,8 @@
     self.lbAddress.text = self.strAddress;
     self.lbPlace.text = self.strPlace;
     //默认参数
-<<<<<<< HEAD
     regionID = @"32";
     beginDate = self.strBeginTime;
-=======
     if (self.strAddressID == nil) {
         self.strAddressID = @"32";
     }
@@ -80,11 +78,6 @@
         [dateformatter setDateFormat:@"YYYY-MM-dd"];
         self.strBeginTime = [dateformatter stringFromDate:dtNow];
     }
-
-    //初始化时间选择控件
-    pickDate = [[DatePicker alloc] init];
-    pickDate.delegate = self;
->>>>>>> FETCH_HEAD
 
     [self.btnTimeSelect addTarget:self action:@selector(showDateSelect) forControlEvents:UIControlEventTouchUpInside];
     [self.btnAddressSelect addTarget:self action:@selector(showRegionSelect) forControlEvents:UIControlEventTouchUpInside];
@@ -290,33 +283,17 @@
 }
 
 //选择日期完成
-<<<<<<< HEAD
 - (void)getSelectDate:(NSString *)date
 {
     beginDate = date;
     self.lbTime.text = [date substringFromIndex:5];
-=======
--(void)saveDate:(NSDate *)selectDate{
-    NSString *strSelDate = [CommonController stringFromDate:selectDate formatType:@"MM-dd"];
-    self.lbTime.text = strSelDate;
-    self.strBeginTime = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
-    [pickDate removeDatePicker];
->>>>>>> FETCH_HEAD
 }
 
 - (void)cancelPickDate
 {
     self.lbTime.text = @"日期";
-<<<<<<< HEAD
     beginDate = @"";
-=======
     self.strBeginTime = @"";
-    //page = 1;
-    //[self onSearch];
-    [pickDate removeDatePicker];
-    //开始等待动画
-    //[loadView startAnimating];
->>>>>>> FETCH_HEAD
 }
 
 //-(void)saveDate:(NSDate *)selectDate{
@@ -354,11 +331,7 @@
         return;
     }
     [self cancelDicPicker];
-<<<<<<< HEAD
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defaultValue:placeID defaultName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
-=======
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:@"0" defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
->>>>>>> FETCH_HEAD
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }
