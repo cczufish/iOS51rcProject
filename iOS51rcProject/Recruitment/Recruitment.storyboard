@@ -377,7 +377,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OUa-Sw-qGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="60" y="-1952"/>
+            <point key="canvasLocation" x="82" y="-1952"/>
         </scene>
         <!--Recruitment List View Controller - 招聘会-->
         <scene sceneID="dAd-Tj-dto">

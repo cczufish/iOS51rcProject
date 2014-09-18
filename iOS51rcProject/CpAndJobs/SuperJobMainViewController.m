@@ -1,12 +1,30 @@
 #import "SuperJobMainViewController.h"
+#import "JobViewController.h"
+#import "CpMainViewController.h"
+#import "CpJobsViewController.h"
 
 #define MENUHEIHT 40
-@interface SuperJobMainViewController ()
-//@property (retain, nonatomic) CommonSearchJobViewController  *searchViewCtrl;
+@interface SuperJobMainViewController ()<UIScrollViewDelegate>
+
+@property (retain, nonatomic) IBOutlet UILabel *lbUnderline;
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UILabel *lbFirst;
+@property (retain, nonatomic) IBOutlet UILabel *lbSecond;
+@property (retain, nonatomic) IBOutlet UILabel *lbThird;
+
+
+//三个子页面
+@property (retain, nonatomic) JobViewController *firstCtrl;
+@property (retain, nonatomic) CpMainViewController *sccondCtrl;
+@property (retain, nonatomic) CpJobsViewController *thirdCtrl;
+
+@property (retain, nonatomic) NSString *employId;
+@property (retain, nonatomic) NSString *companyId;
+
 @end
 
 @implementation SuperJobMainViewController
-
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -19,67 +37,93 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self commInit];
-}
-
--(void)commInit{
-    NSArray *vButtonItemArray = @[@{NOMALKEY: @"normal.png",
-                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
-                                    TITLEKEY:@"职位详情",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:107]
-                                    },
-                                  @{NOMALKEY: @"normal.png",
-                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
-                                    TITLEKEY:@"公司信息",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:106]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"ico_EI_Background_width107.png",
-                                    TITLEKEY:@"其他职位",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:107]
-                                    },
-                                  ];
+    firstPageLoad = false;
+    secondPageLoad = false;
+    thriePageLoad = false;
     
-    if (mMenuHriZontal == nil) {
-        mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, MENUHEIHT) ButtonItems:vButtonItemArray];
-        mMenuHriZontal.delegate = self;
-    }
-    //初始化滑动列表
-    if (mScrollPageView == nil) {
-        mScrollPageView = [[JobMainScrollViewController alloc] initWithFrame:CGRectMake(0, 60 + MENUHEIHT, self.view.frame.size.width, self.view.frame.size.height - MENUHEIHT)];
-        //向子页面传参
-        mScrollPageView.JobID = self.JobID;
-        mScrollPageView.cpMainID = self.cpMainID;
-        mScrollPageView.delegate = self;
-    }
-    //初始化多个页面，添加入滚动的列表里
-    [mScrollPageView setContentOfTables:vButtonItemArray.count];
-    //mScrollPageView.gotoSearchResultViewDelegate = self;
-    //默认选中第一个button
-    [mMenuHriZontal clickButtonAtIndex:0];
-    //-------
-    [self.view addSubview:mScrollPageView];
-    [self.view addSubview:mMenuHriZontal];
-}
-#pragma mark MenuHrizontalDelegate
--(void)didMenuHrizontalClickedButtonAtIndex:(NSInteger)aIndex{
-    NSLog(@"第%d个Button点击了",aIndex);
-    [mScrollPageView moveScrollowViewAthIndex:aIndex];
+    //初始化三个子View
+    self.firstCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"JobView"];
+    self.firstCtrl.view.frame = CGRectMake(0, 0, 320, HEIGHT);
+    self.sccondCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CpMainView"];
+    self.sccondCtrl.view.frame = CGRectMake(320, 0, 320, HEIGHT);    
+    self.thirdCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CpJobsView"];
+    self.thirdCtrl.view.frame = CGRectMake(640, 0, 320, HEIGHT);
+    //把三个子View加到Scrollview中
+    [self.scrollView addSubview:self.firstCtrl.view];
+    [self.scrollView addSubview:self.sccondCtrl.view];
+    [self.scrollView addSubview:self.thirdCtrl.view];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    //self.scrollView.frame =  CGRectMake(0, 0, 320, HEIGHT);
+    [self.scrollView setContentSize:CGSizeMake(960, self.scrollView.frame.size.height)];
+    
+    //默认加载第一个
+    [self switchToFirstView:nil];
 }
 
-#pragma mark ScrollPageViewDelegate
--(void)didScrollPageViewChangedPage:(NSInteger)aPage{
-    NSLog(@"CurrentPage:%d",aPage);
-    [mMenuHriZontal changeButtonStateAtIndex:aPage];
-    //刷新当页数据
-    [mScrollPageView freshContentTableAtIndex:aPage];
+- (IBAction)switchToFirstView:(id)sender {
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+    
+    if (!firstPageLoad) {
+        self.firstCtrl.JobID = self.JobID;
+        [self.JobID retain];
+        [self.firstCtrl onSearch];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbThird setTextColor:[UIColor blackColor]];
+        [self.lbSecond setTextColor:[UIColor blackColor]];
+        [self.lbFirst setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(0, self.lbUnderline.frame.origin.y, 100, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        firstPageLoad = true;
+    }];
 }
 
-//#pragma mark 内存相关
--(void)dealloc{
-    [mMenuHriZontal release],mMenuHriZontal = nil;
-    [mScrollPageView release],mScrollPageView = nil;
-    [super dealloc];
+- (IBAction)switchToSecondView:(id)sender {
+    [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
+    if (!secondPageLoad) {
+        self.sccondCtrl.cpMainID = self.cpMainID;
+        [self.cpMainID retain];
+        [self.sccondCtrl onSearch];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbThird setTextColor:[UIColor blackColor]];
+        [self.lbFirst setTextColor:[UIColor blackColor]];
+        [self.lbSecond setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(100, self.lbUnderline.frame.origin.y, 100, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        secondPageLoad = true;
+    }];
+}
+
+- (IBAction)switchToThirdView:(id)sender {
+    [self.scrollView setContentOffset:CGPointMake(640, 0) animated:true];
+    if (!thriePageLoad) {
+        self.thirdCtrl.cpMainID = self.cpMainID;
+        [self.cpMainID retain];
+        [self.thirdCtrl onSearch];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbFirst setTextColor:[UIColor blackColor]];
+        [self.lbSecond setTextColor:[UIColor blackColor]];
+        [self.lbThird setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbUnderline setFrame:CGRectMake(200, self.lbUnderline.frame.origin.y, 120, self.lbUnderline.frame.size.height)];
+    } completion:^(BOOL finished) {
+        thriePageLoad = true;
+    }];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (self.scrollView.contentOffset.x > 480) {
+        [self switchToThirdView:nil];
+    }
+    else if (self.scrollView.contentOffset.x > 160) {
+        [self switchToSecondView:nil];
+    }
+    else {
+        [self switchToFirstView:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,16 +132,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
+- (void)dealloc {
+    [_firstCtrl release];
+    [_sccondCtrl release];
+    [_thirdCtrl release];
+    [_lbUnderline release];
+    [_scrollView release];
+    [_employId release];
+    [_companyId release];
+    [_lbFirst release];
+    [_lbSecond release];
+    [_lbThird release];
+    [_JobID release];
+    [_cpMainID release];
+    [super dealloc];
+}
 @end

@@ -1,13 +1,13 @@
 #import <UIKit/UIKit.h>
 #import "MenuHrizontal.h"
-#import "JobMainScrollViewController.h"
 
-@interface SuperJobMainViewController : UIViewController <MenuHrizontalDelegate,ScrollPageViewDelegate>
+@interface SuperJobMainViewController :UIViewController
 {
-    MenuHrizontal *mMenuHriZontal;
-    JobMainScrollViewController *mScrollPageView;
+    //是否是第一次加载
+    BOOL firstPageLoad;
+    BOOL secondPageLoad;
+    BOOL thriePageLoad;
 }
-
 @property (retain, nonatomic) NSString *JobID;
 @property (retain, nonatomic) NSString *cpMainID;
 @end

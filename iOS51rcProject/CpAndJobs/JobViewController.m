@@ -32,6 +32,7 @@
 @end
 
 @implementation JobViewController
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 @synthesize runningRequest = _runningRequest;
 @synthesize loading = _loading;
 @synthesize JobID;
@@ -53,6 +54,9 @@
 {
     [super viewDidLoad];
     self.jobMainScroll.delegate = self;
+ }
+
+-(void) onSearch{
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.JobID forKey:@"JobID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetJobInfo" Params:dicParam];
@@ -76,7 +80,7 @@
 {
     if (request.tag == 1) { //职位搜索
         [self didReceiveJobMain:requestData];
-    } else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
+    }else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
     }else if (request.tag == 3) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
             [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
@@ -226,8 +230,8 @@
     int originHeight = tmpView.frame.size.height;
     scrolHeight = originHeight + originY;
     [self.jobMainScroll setContentSize:CGSizeMake(320, scrolHeight) ];
-    self.ViewBottom.frame = CGRectMake(0, self.height - 80, 320, 50);
-    self.jobMainScroll.frame = CGRectMake(0, 0, 320, self.height - 80);
+    self.ViewBottom.frame = CGRectMake(0, HEIGHT - 80, 320, 50);
+    self.jobMainScroll.frame = CGRectMake(0, 0, 320, HEIGHT - 80);
     
     [self.loading stopAnimating];
 }
@@ -580,7 +584,7 @@
         self.lbChat.text = @"交谈";
         self.imgChat.image = [UIImage imageNamed:@"ico_onlinechat_online.png"];
     }
-    self.subView.frame = CGRectMake(self.jobMainScroll.frame.origin.x, self.jobMainScroll.frame.origin.y, 320, self.height - 50);
+    self.subView.frame = CGRectMake(self.jobMainScroll.frame.origin.x, self.jobMainScroll.frame.origin.y, 320, HEIGHT - 50);
     
     //===================其他职位----调用Webservice=======================
     tmpHeight = lbOther.frame.origin.y + lbOther.frame.size.height + 20;

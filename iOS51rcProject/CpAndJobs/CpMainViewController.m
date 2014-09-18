@@ -50,7 +50,9 @@
     [button setTitle: @"企业信息" forState: UIControlStateNormal];
     [button sizeToFit];
     self.navigationItem.titleView = button;
-    
+}
+
+-(void) onSearch{
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.cpMainID forKey:@"CpMainID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCpMainInfo" Params:dicParam];
@@ -62,7 +64,6 @@
     [self.loading startAnimating];
 
 }
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     NSLog(@"scrollViewDidScroll......");
 }

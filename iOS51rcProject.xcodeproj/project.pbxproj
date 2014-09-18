@@ -26,7 +26,6 @@
 		9905134419C2F3D500B9C096 /* CpJobsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905133619C2F3D500B9C096 /* CpJobsViewController.m */; };
 		9905134519C2F3D500B9C096 /* CpMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905133819C2F3D500B9C096 /* CpMainViewController.m */; };
 		9905134619C2F3D500B9C096 /* CpOtherJobsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905133A19C2F3D500B9C096 /* CpOtherJobsMainViewController.m */; };
-		9905134719C2F3D500B9C096 /* JobMainScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905133C19C2F3D500B9C096 /* JobMainScrollViewController.m */; };
 		9905134819C2F3D500B9C096 /* JobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905133E19C2F3D500B9C096 /* JobViewController.m */; };
 		9905134919C2F3D500B9C096 /* SuperCpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905134019C2F3D500B9C096 /* SuperCpViewController.m */; };
 		9905134A19C2F3D500B9C096 /* SuperJobMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905134219C2F3D500B9C096 /* SuperJobMainViewController.m */; };
@@ -397,8 +396,6 @@
 		9905133819C2F3D500B9C096 /* CpMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CpMainViewController.m; path = iOS51rcProject/CpAndJobs/CpMainViewController.m; sourceTree = SOURCE_ROOT; };
 		9905133919C2F3D500B9C096 /* CpOtherJobsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CpOtherJobsMainViewController.h; path = iOS51rcProject/CpAndJobs/CpOtherJobsMainViewController.h; sourceTree = SOURCE_ROOT; };
 		9905133A19C2F3D500B9C096 /* CpOtherJobsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CpOtherJobsMainViewController.m; path = iOS51rcProject/CpAndJobs/CpOtherJobsMainViewController.m; sourceTree = SOURCE_ROOT; };
-		9905133B19C2F3D500B9C096 /* JobMainScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JobMainScrollViewController.h; path = iOS51rcProject/CpAndJobs/JobMainScrollViewController.h; sourceTree = SOURCE_ROOT; };
-		9905133C19C2F3D500B9C096 /* JobMainScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JobMainScrollViewController.m; path = iOS51rcProject/CpAndJobs/JobMainScrollViewController.m; sourceTree = SOURCE_ROOT; };
 		9905133D19C2F3D500B9C096 /* JobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JobViewController.h; path = iOS51rcProject/CpAndJobs/JobViewController.h; sourceTree = SOURCE_ROOT; };
 		9905133E19C2F3D500B9C096 /* JobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JobViewController.m; path = iOS51rcProject/CpAndJobs/JobViewController.m; sourceTree = SOURCE_ROOT; };
 		9905133F19C2F3D500B9C096 /* SuperCpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperCpViewController.h; path = iOS51rcProject/CpAndJobs/SuperCpViewController.h; sourceTree = SOURCE_ROOT; };
@@ -1314,20 +1311,18 @@
 			isa = PBXGroup;
 			children = (
 				9905133419C2F3D500B9C096 /* CpAndJob.storyboard */,
-				9905133519C2F3D500B9C096 /* CpJobsViewController.h */,
-				9905133619C2F3D500B9C096 /* CpJobsViewController.m */,
-				9905133719C2F3D500B9C096 /* CpMainViewController.h */,
-				9905133819C2F3D500B9C096 /* CpMainViewController.m */,
-				9905133919C2F3D500B9C096 /* CpOtherJobsMainViewController.h */,
-				9905133A19C2F3D500B9C096 /* CpOtherJobsMainViewController.m */,
-				9905133B19C2F3D500B9C096 /* JobMainScrollViewController.h */,
-				9905133C19C2F3D500B9C096 /* JobMainScrollViewController.m */,
-				9905133D19C2F3D500B9C096 /* JobViewController.h */,
-				9905133E19C2F3D500B9C096 /* JobViewController.m */,
-				9905133F19C2F3D500B9C096 /* SuperCpViewController.h */,
-				9905134019C2F3D500B9C096 /* SuperCpViewController.m */,
 				9905134119C2F3D500B9C096 /* SuperJobMainViewController.h */,
 				9905134219C2F3D500B9C096 /* SuperJobMainViewController.m */,
+				9905133D19C2F3D500B9C096 /* JobViewController.h */,
+				9905133E19C2F3D500B9C096 /* JobViewController.m */,
+				9905133719C2F3D500B9C096 /* CpMainViewController.h */,
+				9905133819C2F3D500B9C096 /* CpMainViewController.m */,
+				9905133519C2F3D500B9C096 /* CpJobsViewController.h */,
+				9905133619C2F3D500B9C096 /* CpJobsViewController.m */,
+				9905133919C2F3D500B9C096 /* CpOtherJobsMainViewController.h */,
+				9905133A19C2F3D500B9C096 /* CpOtherJobsMainViewController.m */,
+				9905133F19C2F3D500B9C096 /* SuperCpViewController.h */,
+				9905134019C2F3D500B9C096 /* SuperCpViewController.m */,
 			);
 			name = CpAndJobs;
 			path = JobSearch;
@@ -2364,7 +2359,6 @@
 				999BDD4D19C2E60B000A152A /* SoapXmlParseHelper.m in Sources */,
 				9927AC6219C7E3AC0037E3F9 /* SalaryAnalysisViewController.m in Sources */,
 				998025C519A23024001A7E84 /* UIView+Extension.m in Sources */,
-				9905134719C2F3D500B9C096 /* JobMainScrollViewController.m in Sources */,
 				9905134A19C2F3D500B9C096 /* SuperJobMainViewController.m in Sources */,
 				999BDD4519C2E60B000A152A /* ASIDownloadCache.m in Sources */,
 				99CFD828199B5F80009A5ABA /* AppDelegate.m in Sources */,

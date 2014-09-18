@@ -8,5 +8,5 @@
     int scrolHeight;
 }
 @property (retain, nonatomic) NSString *JobID;
-@property int height;
+-(void) onSearch;
 @end
