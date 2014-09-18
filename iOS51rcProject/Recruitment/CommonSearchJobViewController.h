@@ -19,4 +19,5 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollSearch;
 @property (retain, nonatomic) UIView *viewHistory;
 @property (retain, nonatomic) id<GoJobSearchResultListViewDelegate>searchDelegate;
+-(void) onSearch;
 @end

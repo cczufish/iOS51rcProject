@@ -164,7 +164,6 @@
 		99938FD619BD4051008F986A /* AttendRMPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD519BD4051008F986A /* AttendRMPopUp.m */; };
 		99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */; };
 		99938FDC19BD84F0008F986A /* CommonFavorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */; };
-		99938FDF19BD85A9008F986A /* RMScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FDE19BD85A9008F986A /* RMScrollPageView.m */; };
 		99938FE319BD9821008F986A /* RMSearchJobListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FE219BD9821008F986A /* RMSearchJobListViewController.m */; };
 		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
 		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
@@ -655,8 +654,6 @@
 		99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonApplyJobViewController.m; path = Recruitment/CommonApplyJobViewController.m; sourceTree = "<group>"; };
 		99938FDA19BD84F0008F986A /* CommonFavorityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonFavorityViewController.h; path = Recruitment/CommonFavorityViewController.h; sourceTree = "<group>"; };
 		99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonFavorityViewController.m; path = Recruitment/CommonFavorityViewController.m; sourceTree = "<group>"; };
-		99938FDD19BD85A9008F986A /* RMScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMScrollPageView.h; path = Recruitment/RMScrollPageView.h; sourceTree = "<group>"; };
-		99938FDE19BD85A9008F986A /* RMScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMScrollPageView.m; path = Recruitment/RMScrollPageView.m; sourceTree = "<group>"; };
 		99938FE119BD9821008F986A /* RMSearchJobListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMSearchJobListViewController.h; path = Recruitment/RMSearchJobListViewController.h; sourceTree = "<group>"; };
 		99938FE219BD9821008F986A /* RMSearchJobListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMSearchJobListViewController.m; path = Recruitment/RMSearchJobListViewController.m; sourceTree = "<group>"; };
 		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
@@ -1394,8 +1391,6 @@
 			children = (
 				99B9671E19B4550500E93CBD /* RmSearchJobForInviteViewController.h */,
 				99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */,
-				99938FDD19BD85A9008F986A /* RMScrollPageView.h */,
-				99938FDE19BD85A9008F986A /* RMScrollPageView.m */,
 				99938FDA19BD84F0008F986A /* CommonFavorityViewController.h */,
 				99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */,
 				99B9672319B45B3600E93CBD /* CommonSearchJobViewController.h */,
@@ -2373,7 +2368,6 @@
 				998025C519A23024001A7E84 /* UIView+Extension.m in Sources */,
 				9905134719C2F3D500B9C096 /* JobMainScrollViewController.m in Sources */,
 				9905134A19C2F3D500B9C096 /* SuperJobMainViewController.m in Sources */,
-				99938FDF19BD85A9008F986A /* RMScrollPageView.m in Sources */,
 				999BDD4519C2E60B000A152A /* ASIDownloadCache.m in Sources */,
 				99CFD828199B5F80009A5ABA /* AppDelegate.m in Sources */,
 				999BDD2019C2E4FC000A152A /* SearchViewController.m in Sources */,

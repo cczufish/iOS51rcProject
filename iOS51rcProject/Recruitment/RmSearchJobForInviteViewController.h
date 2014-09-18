@@ -2,13 +2,14 @@
 #import "SearchViewController.h"
 #import "GoJobSearchResultListViewDelegate.h"
 #import "MenuHrizontal.h"
-#import "RMScrollPageView.h"
 #import "GoJobSearchResultListFromScrollPageDelegate.h"
 
-@interface RmSearchJobForInviteViewController: UIViewController <MenuHrizontalDelegate,ScrollPageViewDelegate, GoJobSearchResultListFromScrollPageDelegate>
+@interface RmSearchJobForInviteViewController: UIViewController
 {
-    MenuHrizontal *mMenuHriZontal;
-    RMScrollPageView *mScrollPageView;    
+    //是否是第一次加载
+    BOOL firstPageLoad;
+    BOOL secondPageLoad;
+    BOOL thriePageLoad;
 }
 //招聘会的信息
 @property (retain,nonatomic) NSString* strBeginTime;

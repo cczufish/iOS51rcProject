@@ -110,7 +110,7 @@
     //获取简历列表
     [self GetBasicCvList];
     selectCV = @"";
-    [self onSearch:selectCV];//默认选择全部
+    //[self onSearch:selectCV];//默认选择全部
 }
 
 //获得简历列表
