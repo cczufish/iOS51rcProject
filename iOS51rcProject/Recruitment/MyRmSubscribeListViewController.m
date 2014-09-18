@@ -33,7 +33,6 @@
     self.btnInviteCp.layer.cornerRadius = 5;
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    [self onSearch];
     self.btnInviteCp.frame = CGRectMake(100, 300, 100, 50);
 }
 - (void)onSearch

@@ -27,16 +27,9 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnLeftClick:" destination="odG-lM-2dY" eventType="touchUpInside" id="vka-oK-b2N"/>
+                                    <action selector="switchToFirstView:" destination="odG-lM-2dY" eventType="touchUpInside" id="FIg-7k-BWZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ktf-Lr-VHU">
-                                <rect key="frame" x="158" y="101" width="162" height="4"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="s1s-1m-bc6">
                                 <rect key="frame" x="158" y="63" width="162" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -45,7 +38,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnRightClick:" destination="odG-lM-2dY" eventType="touchUpInside" id="qgS-Ea-GDr"/>
+                                    <action selector="switchToSecondView:" destination="odG-lM-2dY" eventType="touchUpInside" id="udc-F7-Dth"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nOw-R4-q7C">
@@ -56,14 +49,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3bc-mp-Sgl">
+                                <rect key="frame" x="0.0" y="109" width="320" height="459"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="btnInvitation" destination="s1s-1m-bc6" id="Q31-kJ-P1A"/>
                         <outlet property="btnMyRm" destination="tl1-yB-QEY" id="STP-qy-Kfb"/>
+                        <outlet property="lbBackLine" destination="nOw-R4-q7C" id="l3o-HO-yyy"/>
                         <outlet property="lbBgLeft" destination="q9P-jP-4zm" id="jEv-Hh-cvm"/>
-                        <outlet property="lbBgRight" destination="ktf-Lr-VHU" id="fjK-EX-dWK"/>
+                        <outlet property="scrollView" destination="3bc-mp-Sgl" id="PH7-EP-gA7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b0r-78-hIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -73,7 +71,7 @@
         <!--My Rm Received Invitation View Controller-->
         <scene sceneID="2S7-cK-XJU">
             <objects>
-                <viewController storyboardIdentifier="MyRmInvitationView" id="gUw-RP-oT3" customClass="MyRmReceivedInvitationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyRmReceivedInvitationView" id="gUw-RP-oT3" customClass="MyRmReceivedInvitationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Law-QI-48P" customClass="MyRm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

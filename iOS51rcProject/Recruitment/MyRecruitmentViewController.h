@@ -1,11 +1,3 @@
-//
-//  MyRecruitmentViewController.h
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-8-27.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "MyRmReceivedInvitationViewController.h"
 #import "MyRmSubscribeListViewController.h"
@@ -16,8 +8,6 @@
 {
     
 }
-@property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
-@property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
-@property (retain,nonatomic) MyRmSubscribeListViewController *myRmSubscribeListView;
-@property (retain,nonatomic) MyRmReceivedInvitationViewController *myRmInvitationViewCtrl;
+@property (retain,nonatomic) MyRmSubscribeListViewController *myRmSubscribeListViewCtrl;
+@property (retain,nonatomic) MyRmReceivedInvitationViewController *myRmReceiveInvitationListViewCtrl;
 @end

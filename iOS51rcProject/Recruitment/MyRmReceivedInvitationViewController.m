@@ -30,8 +30,7 @@
     selectRowIndex = 0;
     selectRowHeight = 110;//选择行的高度    
     //数据加载等待控件初始化
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    [self onSearch];
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];    
 }
 
 - (void)onSearch

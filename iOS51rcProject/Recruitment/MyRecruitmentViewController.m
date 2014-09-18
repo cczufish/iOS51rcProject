@@ -3,16 +3,21 @@
 #import "MyRmInviteCpListViewController.h"
 #import "RmInviteCpViewController.h"
 
-@interface MyRecruitmentViewController ()
+@interface MyRecruitmentViewController ()<UIScrollViewDelegate>
+{
+    BOOL firstPageLoad;
+    BOOL secondPageLoad;
+}
 @property (retain, nonatomic) IBOutlet UILabel *lbBgLeft;
-@property (retain, nonatomic) IBOutlet UILabel *lbBgRight;
 @property (retain, nonatomic) IBOutlet UIButton *btnInvitation;//右
 @property (retain, nonatomic) IBOutlet UIButton *btnMyRm;//左
+@property (retain, nonatomic) IBOutlet UILabel *lbBackLine;//横线
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;//滑动
 
 @end
 
 @implementation MyRecruitmentViewController
-
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,35 +30,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-     self.lbBgRight.backgroundColor = [UIColor clearColor];
-    //self.btnInvitation.titleLabel.textColor = [UIColor orangeColor];
+    firstPageLoad = false;
+    secondPageLoad = false;
+    //上方横线
+    self.lbBgLeft.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
+    self.lbBackLine.frame = CGRectMake(self.lbBackLine.frame.origin.x, self.lbBackLine.frame.origin.y, 320, 0.5);
+    self.lbBackLine.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     self.btnInvitation.titleLabel.textColor = [UIColor blackColor];
-    CGRect frame = [[UIScreen mainScreen] bounds];
-    frame.origin.y = 106;//状态栏和切换栏的高度
-    frame.size.height = frame.size.height - 106;
+   
     //获得子View
-    self.myRmSubscribeListView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmSubscribeListView"];
-    self.myRmInvitationViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmInvitationView"];
-    self.myRmSubscribeListView.view.frame = frame;
-    self.myRmInvitationViewCtrl.view.frame = frame;
+    self.myRmSubscribeListViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmSubscribeListView"];
+    self.myRmReceiveInvitationListViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmReceivedInvitationView"];
+    self.myRmSubscribeListViewCtrl.view.frame = CGRectMake(0, 0, 320, HEIGHT);
+    self.myRmReceiveInvitationListViewCtrl.view.frame = CGRectMake(320, 0, 320, HEIGHT);
     
-    //初始化左侧和右侧的登录以及注册子View
-    self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    
-    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
-    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
-    self.myRmSubscribeListView.gotoRmViewDelegate = self;
-    self.myRmSubscribeListView.gotoMyInvitedCpViewDelegate = self;
-    //self.myRmInvitationViewCtrl.gotoHomeDelegate = self;
-    
-    //默认加载我的预约页面
-    [self.view addSubview: self.myRmSubscribeListView.view];
+    //代理
+    self.myRmSubscribeListViewCtrl.gotoRmViewDelegate = self;
+    self.myRmSubscribeListViewCtrl.gotoMyInvitedCpViewDelegate = self;
+    //把三个子View加到Scrollview中
+    [self.scrollView addSubview:self.myRmSubscribeListViewCtrl.view];
+    [self.scrollView addSubview:self.myRmReceiveInvitationListViewCtrl.view];
+    [self.myRmSubscribeListViewCtrl onSearch];//先加载第一个页面
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.scrollView setContentSize:CGSizeMake(640, self.scrollView.frame.size.height)];
     
     //添加邀请按钮
-    UIButton *btnInviteCp = [[UIButton alloc] initWithFrame:CGRectMake(110,  self.myRmSubscribeListView.view.frame.size.height + 60, 110, 35)];
+    UIButton *btnInviteCp = [[UIButton alloc] initWithFrame:CGRectMake(110,  self.myRmSubscribeListViewCtrl.view.frame.size.height + 60, 110, 35)];
     btnInviteCp.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1];
     btnInviteCp.layer.cornerRadius = 5;
     [btnInviteCp addTarget:self action:@selector(inviteCp) forControlEvents:UIControlEventTouchUpInside];
@@ -66,6 +68,47 @@
     [self.view addSubview:btnInviteCp];
     [btnInviteCp release];
     [lbInviteCp release];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (self.scrollView.contentOffset.x > 160) {
+        [self switchToSecondView:nil];
+    }
+    else {
+        [self switchToFirstView:nil];
+    }
+}
+
+
+- (IBAction)switchToFirstView:(id)sender {
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+    if (!firstPageLoad) {
+        [self.myRmSubscribeListViewCtrl onSearch];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        self.lbBgLeft.frame = CGRectMake(0, self.lbBgLeft.frame.origin.y, 160, self.lbBgLeft.frame.size.height);
+        self.lbBgLeft.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+        self.btnMyRm.titleLabel.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+        self.btnInvitation.titleLabel.textColor = [UIColor blackColor];
+    } completion:^(BOOL finished) {
+        firstPageLoad = true;
+    }];
+}
+
+- (IBAction)switchToSecondView:(id)sender {
+    [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
+    if (!secondPageLoad) {
+        [self.myRmReceiveInvitationListViewCtrl onSearch];
+    }
+    [UIView animateWithDuration:0.2 animations:^{
+        self.lbBgLeft.frame = CGRectMake(160, self.lbBgLeft.frame.origin.y, 160, self.lbBgLeft.frame.size.height);
+        self.lbBgLeft.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+        self.btnMyRm.titleLabel.textColor = [UIColor blackColor];
+        self.btnInvitation.titleLabel.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+    } completion:^(BOOL finished) {
+        secondPageLoad = true;
+    }];
 }
 
 //邀请企业参会
@@ -90,58 +133,19 @@
     [self.navigationController pushViewController:rmViewCtrl animated:true];
 }
 
-- (void)handleSwipes:(UISwipeGestureRecognizer *)sender
-{
-    if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
-        [self.myRmSubscribeListView removeFromParentViewController];
-        [self.view addSubview:self.myRmInvitationViewCtrl.view];
-        //self.navigationItem.title = @"登录";
-        self.lbBgRight.backgroundColor = [UIColor clearColor];
-        self.lbBgLeft.backgroundColor = [UIColor orangeColor];
-        self.btnMyRm.titleLabel.textColor = [UIColor orangeColor];
-        self.btnInvitation.titleLabel.textColor = [UIColor blackColor];
-    }
-    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
-        [self.myRmInvitationViewCtrl removeFromParentViewController];
-        [self.view addSubview:self.myRmSubscribeListView.view];
-        //self.navigationItem.title = @"注册";
-        self.lbBgRight.backgroundColor = [UIColor orangeColor];
-        self.lbBgLeft.backgroundColor = [UIColor clearColor];
-        self.btnMyRm.titleLabel.textColor = [UIColor blackColor];
-        self.btnInvitation.titleLabel.textColor = [UIColor orangeColor];
-    }
-}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)btnLeftClick:(id)sender {
-    [self.myRmInvitationViewCtrl removeFromParentViewController];
-    [self.view addSubview:self.myRmSubscribeListView.view];
-    //self.navigationItem.title = @"登录";
-    self.lbBgRight.backgroundColor = [UIColor clearColor];
-    self.lbBgLeft.backgroundColor = [UIColor orangeColor];
-    self.btnMyRm.titleLabel.textColor = [UIColor orangeColor];
-    self.btnInvitation.titleLabel.textColor = [UIColor blackColor];
-}
-
-- (IBAction)btnRightClick:(id)sender {
-    [self.myRmSubscribeListView removeFromParentViewController];
-    [self.view addSubview:self.myRmInvitationViewCtrl.view];
-    //self.navigationItem.title = @"注册";
-    self.lbBgRight.backgroundColor = [UIColor orangeColor];
-    self.lbBgLeft.backgroundColor = [UIColor clearColor];
-    self.btnMyRm.titleLabel.textColor = [UIColor blackColor];
-    self.btnInvitation.titleLabel.textColor = [UIColor orangeColor];
-}
 
 - (void)dealloc {
     [_lbBgLeft release];
-    [_lbBgRight release];
     [_btnInvitation release];
     [_btnMyRm release];
+    [_lbBackLine release];
+    [_scrollView release];
     [super dealloc];
 }
 @end

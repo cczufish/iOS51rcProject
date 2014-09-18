@@ -1193,10 +1193,10 @@
 				99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */,
 				9905135119C2F4EE00B9C096 /* MyRmSubscribeListViewController.h */,
 				9905135219C2F4EE00B9C096 /* MyRmSubscribeListViewController.m */,
-				999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */,
-				999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */,
 				99BEE44219ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.h */,
 				99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */,
+				999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */,
+				999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */,
 			);
 			name = MyRm;
 			sourceTree = "<group>";
