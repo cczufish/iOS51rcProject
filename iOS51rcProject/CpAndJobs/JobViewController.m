@@ -11,14 +11,6 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *jobMainScroll;
 @property (retain, nonatomic) IBOutlet UILabel *lbJobName;
 @property (retain, nonatomic) IBOutlet UILabel *lbFereashTime;
-@property (retain, nonatomic) IBOutlet UILabel *lbCpName;
-@property (retain, nonatomic) IBOutlet UILabel *lbCpNameValue;
-@property (retain, nonatomic) IBOutlet UILabel *lbWorkPlace;
-@property (retain, nonatomic) IBOutlet UILabel *lbWorkPlaceValue;
-@property (retain, nonatomic) IBOutlet UILabel *lbJobRequest;
-@property (retain, nonatomic) IBOutlet UILabel *lbJobRequestValue;
-@property (retain, nonatomic) IBOutlet UILabel *lbSalary;
-@property (retain, nonatomic) IBOutlet UILabel *lbSpitLine2;//招聘条件后面
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) LoadingAnimationView *loading;
@@ -38,7 +30,6 @@
 @synthesize JobID;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    //NSLog(@"scrollViewDidScroll......");
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -197,6 +188,7 @@
 -(void) didReceiveRecommendJob:(NSMutableArray *) requestData{
     //结束等待动画
     [self.loading stopAnimating];
+    //浏览过的其他职位子View
     UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, tmpHeight - 20, 280, requestData.count*27)] autorelease];
     for (int i=0; i<requestData.count; i++) {
         NSDictionary *rowData = requestData[i];
@@ -225,13 +217,13 @@
         [tmpView addSubview:btnOhter];
     }
     [self.subView addSubview:tmpView];
-    self.subView.frame = CGRectMake(tmpView.frame.origin.x, tmpView.frame.origin.y, 320, 400);
+    self.subView.frame = CGRectMake(0, 0, 320, tmpView.frame.origin.y + tmpView.frame.size.height);
     int originY = tmpView.frame.origin.y;
     int originHeight = tmpView.frame.size.height;
     scrolHeight = originHeight + originY;
     [self.jobMainScroll setContentSize:CGSizeMake(320, scrolHeight) ];
-    self.ViewBottom.frame = CGRectMake(0, HEIGHT - 80, 320, 50);
-    self.jobMainScroll.frame = CGRectMake(0, 0, 320, HEIGHT - 80);
+    self.ViewBottom.frame = CGRectMake(0, HEIGHT - 170, 320, 50);
+    self.jobMainScroll.frame = CGRectMake(0, 0, 320, HEIGHT - 170);
     
     [self.loading stopAnimating];
 }
@@ -265,22 +257,39 @@
     //职位名称
     NSString *jobName = dicJob[@"Name"];
     CGSize labelSize = [CommonController CalculateFrame:jobName fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
-    self.lbJobName.frame = CGRectMake(20, 15, labelSize.width, labelSize.height);
+    self.lbJobName.frame = CGRectMake(20, 5, labelSize.width, labelSize.height);
     self.lbJobName.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbJobName.numberOfLines = 0;
     [self.lbJobName setText:jobName];
     //刷新时间
     self.lbFereashTime.textColor = [UIColor grayColor];
+    self.lbFereashTime.frame = CGRectMake(20, self.lbJobName.frame.origin.y + self.lbJobName.frame.size.height + 2, 280, 15);
     NSDate *refreshDate = [CommonController dateFromString:dicJob[@"RefreshDate"]];
     NSString *strRefreshDate = [CommonController stringFromDate:refreshDate formatType:@"MM-dd HH:mm"];
     [self.lbFereashTime setText:[NSString stringWithFormat:@"刷新时间：%@", strRefreshDate]];
+    //第一条横线
+    UILabel *lbLine1 = [[UILabel alloc] initWithFrame:CGRectMake(8, self.lbFereashTime.frame.origin.y + self.lbFereashTime.frame.size.height + 3,304, 1)];
+    lbLine1.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    [self.subView addSubview:lbLine1];
+    [lbLine1 release];
+
     //待遇
     NSString *strSalary = dicJob[@"Salary"];
-    self.lbSalary.text = strSalary;
+    UILabel *lbSalary = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLine1.frame.origin.y + lbLine1.frame.size.height, 280, 20) ]autorelease];
+    lbSalary.text = strSalary;
+    [self.subView addSubview:lbSalary];
     
     //公司名称
-    self.lbCpName.textColor = [UIColor grayColor];
-    [self.lbCpNameValue setText:dicJob[@"cpName"]];
+    NSString *strPreCpName =@"公司名称";
+    UILabel *lbreCpName = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
+    lbreCpName.text = strSalary;
+    [self.subView addSubview:lbreCpName];
+    
+     UILabel *lbCpName = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
+    lbCpName.textColor = [UIColor grayColor];
+    [lbCpName setText:dicJob[@"cpName"]];
+    [self.subView addSubview:lbCpName];
+    
     //＝＝＝＝＝＝＝＝＝＝＝＝设置当前View标题＝＝＝＝＝＝＝＝＝＝＝
     UIView *viewTitle = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)] autorelease];
     UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 5, 125, 20)] autorelease];
@@ -291,13 +300,20 @@
     [self.navigationItem setTitleView:viewTitle];
     
     //工作地点
+    NSString *strPreJobRegion =@"工作地点";
+    UILabel *lbJobRegion = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
+    lbJobRegion.text = strPreJobRegion;
+    [self.subView addSubview:lbJobRegion];
+    
     NSString *strJobRegion = dicJob[@"JobRegion"];
+     UILabel *lbWorkPlace = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
     labelSize = [CommonController CalculateFrame:strJobRegion fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
-    self.lbWorkPlace.textColor = [UIColor grayColor];
-    self.lbWorkPlaceValue.frame = CGRectMake(76, 122, labelSize.width, 15);
-    [self.lbWorkPlaceValue setText:strJobRegion];
+    lbWorkPlace.textColor = [UIColor grayColor];
+    [lbWorkPlace setText:strJobRegion];
+    [self.subView addSubview:lbWorkPlace];
+    
     //坐标
-    UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 76 + 5, self.lbWorkPlaceValue.frame.origin.y + self.lbWorkPlaceValue.frame.size.height - 15, 15, 15)];
+    UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 76 + 5, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height - 15, 15, 15)];
     //NSString *lng = rowData[@"lng"];
     //NSString *lat = rowData[@"lat"];
     UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
@@ -321,8 +337,13 @@
     //全职与否
     NSString *employType = dicJob[@"EmployType"];
     //招聘条件
-    self.lbJobRequest.textColor = [UIColor grayColor];
-    self.lbJobRequestValue.text = [NSString stringWithFormat:@"%@|%@|%@-%@|%@|%@", num, education, minAge, maxAge, experience, employType];
+    UILabel *lbJobRequest = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 5, 280, 15) ]autorelease];
+    [self.subView addSubview:lbJobRequest];
+    lbJobRequest.textColor = [UIColor grayColor];
+    lbJobRequest.text = @"招聘条件";
+    
+    UILabel *lbJobRequestValue = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 5, 280, 15) ]autorelease];
+    lbJobRequestValue.text = [NSString stringWithFormat:@"%@|%@|%@-%@|%@|%@", num, education, minAge, maxAge, experience, employType];
     //===========================福利小图标=============================
     NSMutableArray *fuliArray = [[NSMutableArray alloc] init];
     //获取所有的福利，并判断是否包含。如果包含则创建view
@@ -411,19 +432,19 @@
         }
         //[dicParam setObject:fuli forKey:tmpStr];
     }
-    //NSArray tmpArray = [NSArray alloc] initwith
-    UIView *mainView = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 300, 15)];
+   
+    UIView *fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, 0, 300, 15)];
     //四个一组
-    int y = self.lbJobRequestValue.frame.origin.y + self.lbJobRequestValue.frame.size.height + 5;
+    int y = lbJobRequestValue.frame.origin.y + lbJobRequestValue.frame.size.height + 5;
     int count = fuliArray.count;
     if (count<=4) {
-        mainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 15)];
+        fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 15)];
     }else if(count>4&&count<=8){
-        mainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 30)];
+        fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 30)];
     }else if(count>8&&count<=12){
-        mainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 45)];
+        fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 45)];
     }else{
-        mainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 60)];
+        fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 60)];
     }
     //遍历所有的福利图标
     for (int i=0; i<fuliArray.count; i++) {
@@ -437,14 +458,14 @@
             tmpView.frame = CGRectMake(beforeView.frame.origin.x + beforeView.frame.size.width, beforeView.frame.origin.y, tmpView.frame.size.width, 15) ;
         }
         
-        [mainView addSubview: tmpView];
+        [fuliMainView addSubview: tmpView];
         //UIView *view1 = [UIView alloc] initWithFrame:;
     }
-    [self.subView addSubview:mainView];
-    [mainView release];
+    [self.subView addSubview:fuliMainView];
+    [fuliMainView release];
     
     //第二个分割线
-    y = mainView.frame.origin.y + mainView.frame.size.height + 5;
+    y = fuliMainView.frame.origin.y + fuliMainView.frame.size.height + 5;
     UILabel *lbLine2 = [[UILabel alloc] initWithFrame:CGRectMake(8, y,304, 1)];
     lbLine2.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     [self.subView addSubview:lbLine2];
@@ -584,12 +605,13 @@
         self.lbChat.text = @"交谈";
         self.imgChat.image = [UIImage imageNamed:@"ico_onlinechat_online.png"];
     }
-    self.subView.frame = CGRectMake(self.jobMainScroll.frame.origin.x, self.jobMainScroll.frame.origin.y, 320, HEIGHT - 50);
+    self.subView.frame = CGRectMake(0, 0, 320, HEIGHT - 50);
+    self.jobMainScroll.frame = CGRectMake(0, 0, 320, HEIGHT - 50);
+    //[self.jobMainScroll addSubview:self.subView];
     
     //===================其他职位----调用Webservice=======================
     tmpHeight = lbOther.frame.origin.y + lbOther.frame.size.height + 20;
     [self callOhters];
-    
 }
 
 -(void) callOhters{
@@ -736,14 +758,7 @@
 - (void)dealloc {
     [_lbFereashTime release];
     [_cPopup release];
-    [_lbWorkPlaceValue release];
-    [_lbJobRequestValue release];
-    [_lbSalary release];
-    [_lbSpitLine2 release];
     [_jobMainScroll release];
-    [_lbCpName release];
-    [_lbWorkPlace release];
-    [_lbJobRequest release];
     [_contentView release];
     [_tvRecommentJobList release];
     [_subView release];
