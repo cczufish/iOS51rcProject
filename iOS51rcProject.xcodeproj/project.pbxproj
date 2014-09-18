@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9901836019AC58F900CA1CB2 /* ico_joblist_favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 9901835E19AC58F900CA1CB2 /* ico_joblist_favorite.png */; };
 		9901836119AC58F900CA1CB2 /* ico_joblist_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9901835F19AC58F900CA1CB2 /* ico_joblist_online.png */; };
+		990325E219C982A500729791 /* PaModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990325E119C982A500729791 /* PaModifyViewController.m */; };
 		990512FB19C27F4400B9C096 /* NewsHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990512FA19C27F4400B9C096 /* NewsHelpViewController.m */; };
 		9905132019C2EF2E00B9C096 /* FindPsdStep1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905131319C2EF2E00B9C096 /* FindPsdStep1ViewController.m */; };
 		9905132119C2EF2E00B9C096 /* FindPsdStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905131519C2EF2E00B9C096 /* FindPsdStep2ViewController.m */; };
@@ -363,6 +364,8 @@
 /* Begin PBXFileReference section */
 		9901835E19AC58F900CA1CB2 /* ico_joblist_favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_joblist_favorite.png; sourceTree = "<group>"; };
 		9901835F19AC58F900CA1CB2 /* ico_joblist_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_joblist_online.png; sourceTree = "<group>"; };
+		990325E019C982A500729791 /* PaModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaModifyViewController.h; path = UserCenter/PaModifyViewController.h; sourceTree = "<group>"; };
+		990325E119C982A500729791 /* PaModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaModifyViewController.m; path = UserCenter/PaModifyViewController.m; sourceTree = "<group>"; };
 		990512F919C27F4400B9C096 /* NewsHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsHelpViewController.h; path = More/NewsHelpViewController.h; sourceTree = "<group>"; };
 		990512FA19C27F4400B9C096 /* NewsHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsHelpViewController.m; path = More/NewsHelpViewController.m; sourceTree = "<group>"; };
 		9905131219C2EF2E00B9C096 /* FindPsdStep1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FindPsdStep1ViewController.h; path = LogIn/FindPsdStep1ViewController.h; sourceTree = "<group>"; };
@@ -2000,6 +2003,8 @@
 				99FC0B6519C2E33500B7EC74 /* MyCvViewController.m */,
 				999CE42B19C7031600A8842B /* CvModifyViewController.h */,
 				999CE42C19C7031600A8842B /* CvModifyViewController.m */,
+				990325E019C982A500729791 /* PaModifyViewController.h */,
+				990325E119C982A500729791 /* PaModifyViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -2373,6 +2378,7 @@
 				9927ACC819C82F450037E3F9 /* EColumnChart.m in Sources */,
 				99C581DB19C19709009985C5 /* JobInviteListViewController.m in Sources */,
 				99908A5919A34DD300137FDE /* FMDatabaseQueue.m in Sources */,
+				990325E219C982A500729791 /* PaModifyViewController.m in Sources */,
 				99BDC5E719A5F10D00B2BDB1 /* Dialog.m in Sources */,
 				99B9822419B4C3B600D5D77D /* GRListViewController.m in Sources */,
 				999BDD1319C2E41E000A152A /* MoreViewController.m in Sources */,

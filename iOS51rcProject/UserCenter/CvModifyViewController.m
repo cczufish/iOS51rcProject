@@ -15,6 +15,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "MLImageCrop.h"
 #import "CommonController.h"
+#import "PaModifyViewController.h"
 
 @interface CvModifyViewController ()<NetWebServiceRequestDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate>
 {
@@ -736,6 +737,9 @@
 }
 
 - (IBAction)switchToPaModify:(id)sender {
+    PaModifyViewController *paModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"PaModifyView"];
+    paModifyC.cvId = self.cvId;
+    [self.navigationController pushViewController:paModifyC animated:true];
 }
 - (IBAction)switchToJobIntention:(UIButton *)sender {
 }
