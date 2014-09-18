@@ -41,8 +41,8 @@
     //获得子View
     self.myRmSubscribeListViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmSubscribeListView"];
     self.myRmReceiveInvitationListViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmReceivedInvitationView"];
-    self.myRmSubscribeListViewCtrl.view.frame = CGRectMake(0, 0, 320, HEIGHT);
-    self.myRmReceiveInvitationListViewCtrl.view.frame = CGRectMake(320, 0, 320, HEIGHT);
+    self.myRmSubscribeListViewCtrl.view.frame = CGRectMake(0, 0, 320, self.scrollView.frame.size.height);
+    self.myRmReceiveInvitationListViewCtrl.view.frame = CGRectMake(320, 0, 320, self.scrollView.frame.size.height);
     
     //代理
     self.myRmSubscribeListViewCtrl.gotoRmViewDelegate = self;
@@ -53,21 +53,6 @@
     [self.myRmSubscribeListViewCtrl onSearch];//先加载第一个页面
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.scrollView setContentSize:CGSizeMake(640, self.scrollView.frame.size.height)];
-    
-    //添加邀请按钮
-    UIButton *btnInviteCp = [[UIButton alloc] initWithFrame:CGRectMake(110,  self.myRmSubscribeListViewCtrl.view.frame.size.height + 60, 110, 35)];
-    btnInviteCp.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1];
-    btnInviteCp.layer.cornerRadius = 5;
-    [btnInviteCp addTarget:self action:@selector(inviteCp) forControlEvents:UIControlEventTouchUpInside];
-    UILabel *lbInviteCp = [[UILabel alloc]initWithFrame:CGRectMake(0,0, 110,35)];
-    lbInviteCp.text = @"邀请企业参会";
-    lbInviteCp.font = [UIFont systemFontOfSize:12];
-    lbInviteCp.textColor = [UIColor whiteColor];
-    lbInviteCp.textAlignment = NSTextAlignmentCenter;
-    [btnInviteCp addSubview:lbInviteCp];
-    [self.view addSubview:btnInviteCp];
-    [btnInviteCp release];
-    [lbInviteCp release];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -109,13 +94,6 @@
     } completion:^(BOOL finished) {
         secondPageLoad = true;
     }];
-}
-
-//邀请企业参会
--(void) inviteCp
-{
-    RmInviteCpViewController *inviteViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
-    [self.navigationController pushViewController:inviteViewCtrl animated:true];
 }
 
 //从我的预约页面到招聘会详情页面

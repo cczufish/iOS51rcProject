@@ -142,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKP-dP-ERT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1256" y="-565"/>
+            <point key="canvasLocation" x="1230" y="-185"/>
         </scene>
         <!--Common Favority View Controller-->
         <scene sceneID="b5o-YG-34S">
@@ -1022,18 +1022,31 @@
                             <view contentMode="scaleToFill" id="TEs-Nn-lHX">
                                 <rect key="frame" x="0.0" y="506" width="320" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nDz-93-JaB">
+                                        <rect key="frame" x="104" y="13" width="113" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="邀请企业参会">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="btnInviteCp" destination="nDz-93-JaB" id="DEd-of-MXk"/>
                         <outlet property="tvRecruitmentCpList" destination="4ZW-wQ-XnZ" id="Moj-Js-J26"/>
+                        <outlet property="viewBottom" destination="TEs-Nn-lHX" id="tBR-tN-NPV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2u-tQ-ZSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1223" y="-1280"/>
+            <point key="canvasLocation" x="1230" y="-846"/>
         </scene>
         <!--Search Job List View Controller-->
         <scene sceneID="ZMX-IE-h77">

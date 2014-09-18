@@ -27,6 +27,7 @@
 +(NSString*)GetCurrentNet;
 +(NSMutableArray *)getNewsType:(NSMutableArray *)newsTypeArray;
 + (NSString *) FilterHtml :(NSString*) content;
++ (UIViewController *)getFatherController:(UIView *) selfView;
 +(BOOL) isLogin;
 +(BOOL) logout;
 @end

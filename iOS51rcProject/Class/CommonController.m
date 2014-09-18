@@ -278,8 +278,21 @@
             break;
     }
     return result;
-    
 }
+
+//得到父View
++ (UIViewController *)getFatherController:(UIView *) selfView
+{
+    for (UIView* next = [selfView superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    
+    return nil;
+}
+
 //是否已经登录
 +(BOOL) isLogin{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

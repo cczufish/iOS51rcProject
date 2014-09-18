@@ -6,8 +6,7 @@
 //我的预约
 @interface MyRmSubscribeListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {   
-    NSMutableArray *recruitmentCpData;
-    //NSString *rmID;
+    NSMutableArray *recruitmentCpData;   
     LoadingAnimationView *loadView;
     NSMutableArray *checkedCpArray;
     id<GoToRmViewDetailDelegate> gotoRmViewDelegate;
