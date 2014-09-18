@@ -257,8 +257,7 @@
         strSearchCondition = [strSearchCondition stringByAppendingFormat:@"+%@",self.txtKeyWord.text];
     }
     strSearchCondition = strSearchCondition;
-    [searchDelegate gotoJobSearchResultListView:strSearchRegion SearchJobType:strSearchJobType SearchIndustry:strSearchIndustry SearchKeyword:strSearchKeyword SearchRegionName:strSearchRegionName SearchJobTypeName:strSearchJobTypeName SearchCondition:strSearchCondition];
-    //[searchDelegate gotoJobSearchResultListView:@"111" SearchJobType:@"111" SearchIndustry:@"111" SearchKeyword:@"111" SearchRegionName:@"111" SearchJobTypeName:@"111" SearchCondition:@"111"];
+    [searchDelegate gotoJobSearchResultListView:strSearchRegion SearchJobType:strSearchJobType SearchIndustry:strSearchIndustry SearchKeyword:strSearchKeyword SearchRegionName:strSearchRegionName SearchJobTypeName:strSearchJobTypeName SearchCondition:strSearchCondition];   
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu

@@ -85,7 +85,6 @@
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
     [lbTitle setFont:[UIFont systemFontOfSize:12]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
-    //    [viewTitle setBackgroundColor:[UIColor blueColor]];
     [viewTitle addSubview:lbTitle];
     //设置导航标题(搜索结果)
     self.lbSearchResult = [[[UILabel alloc] initWithFrame:CGRectMake(0, 22, viewTitle.frame.size.width, 20)] autorelease];
@@ -141,7 +140,7 @@
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defalutValue:@"0" defalutName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.frame = CGRectMake(self.DictionaryPicker.frame.origin.x, self.DictionaryPicker.frame.origin.y-50, self.DictionaryPicker.frame.size.width, self.DictionaryPicker.frame.size.height);
     [self.DictionaryPicker setTag:1];
-    [self.DictionaryPicker showInView:self.view];
+    [self.DictionaryPicker showInView:[CommonController getFatherController:self.view].view];
 }
 
 - (void)pickerDidChangeStatus:(DictionaryPickerView *)picker

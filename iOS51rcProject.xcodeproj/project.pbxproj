@@ -410,7 +410,6 @@
 		9905134E19C2F45B00B9C096 /* CreateResumeAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateResumeAlertViewController.xib; sourceTree = "<group>"; };
 		9905135119C2F4EE00B9C096 /* MyRmSubscribeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmSubscribeListViewController.h; path = Recruitment/MyRmSubscribeListViewController.h; sourceTree = "<group>"; };
 		9905135219C2F4EE00B9C096 /* MyRmSubscribeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmSubscribeListViewController.m; path = Recruitment/MyRmSubscribeListViewController.m; sourceTree = "<group>"; };
-		9905135419C2F50400B9C096 /* GoJobSearchResultListFromScrollPageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoJobSearchResultListFromScrollPageDelegate.h; path = Recruitment/Delegate/GoJobSearchResultListFromScrollPageDelegate.h; sourceTree = "<group>"; };
 		9905135519C2F50400B9C096 /* GoToRmViewDetailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoToRmViewDetailDelegate.h; path = Recruitment/Delegate/GoToRmViewDetailDelegate.h; sourceTree = "<group>"; };
 		9905135619C2F50400B9C096 /* InviteJobsFromApplyViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteJobsFromApplyViewDelegate.h; path = Recruitment/Delegate/InviteJobsFromApplyViewDelegate.h; sourceTree = "<group>"; };
 		990CCC8419A998620022B44B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -1391,10 +1390,10 @@
 			children = (
 				99B9671E19B4550500E93CBD /* RmSearchJobForInviteViewController.h */,
 				99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */,
-				99938FDA19BD84F0008F986A /* CommonFavorityViewController.h */,
-				99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */,
 				99B9672319B45B3600E93CBD /* CommonSearchJobViewController.h */,
 				99B9672419B45B3600E93CBD /* CommonSearchJobViewController.m */,
+				99938FDA19BD84F0008F986A /* CommonFavorityViewController.h */,
+				99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */,
 				99938FD719BD84C1008F986A /* CommonApplyJobViewController.h */,
 				99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */,
 				99938FE119BD9821008F986A /* RMSearchJobListViewController.h */,
@@ -1510,7 +1509,6 @@
 		999DF62F19AECEE700C05F20 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				9905135419C2F50400B9C096 /* GoJobSearchResultListFromScrollPageDelegate.h */,
 				9905135519C2F50400B9C096 /* GoToRmViewDetailDelegate.h */,
 				9905135619C2F50400B9C096 /* InviteJobsFromApplyViewDelegate.h */,
 				999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */,

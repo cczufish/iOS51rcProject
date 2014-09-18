@@ -54,6 +54,8 @@
     [self.scrollView addSubview:self.sccondCtrl.view];
     [self.scrollView addSubview:self.thirdCtrl.view];
     
+    //代理
+    self.firstCtrl.searchDelegate = self;
     self.automaticallyAdjustsScrollViewInsets = NO;
     //self.scrollView.frame =  CGRectMake(0, 0, 320, HEIGHT);
     [self.scrollView setContentSize:CGSizeMake(960, self.scrollView.frame.size.height)];
@@ -117,6 +119,26 @@
     else {
         [self switchToFirstView:nil];
     }
+}
+
+//搜索职位的代理
+-(void) gotoJobSearchResultListView:(NSString *)strSearchRegion SearchJobType:(NSString *)strSearchJobType SearchIndustry:(NSString *)strSearchIndustry SearchKeyword:(NSString *)strSearchKeyword SearchRegionName:(NSString *)strSearchRegionName SearchJobTypeName:(NSString *)strSearchJobTypeName SearchCondition:(NSString *)strSearchCondition{
+    RMSearchJobListViewController *jobList = [self.storyboard instantiateViewControllerWithIdentifier: @"RMSearchJobListView"];
+    jobList.searchRegion = strSearchRegion;
+    jobList.searchJobType = strSearchJobType;
+    jobList.searchIndustry = strSearchIndustry;
+    jobList.searchKeyword = strSearchKeyword;
+    jobList.searchRegionName = strSearchRegionName;
+    jobList.searchJobTypeName = strSearchJobTypeName;
+    jobList.searchCondition = strSearchCondition;
+    //招聘会的基本信息
+    jobList.strPlace = self.strPlace;
+    jobList.strAddress = self.strAddress;
+    jobList.strBeginTime = self.strBeginTime;
+    jobList.rmID = self.rmID;
+    [self.navigationController pushViewController:jobList animated:true];
+    self.navigationItem.title = @" ";
+    jobList.navigationItem.title = @"邀请企业参会";
 }
 
 - (void)didReceiveMemoryWarning

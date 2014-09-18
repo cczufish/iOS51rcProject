@@ -1,10 +1,7 @@
 #import <UIKit/UIKit.h>
-#import "SearchViewController.h"
 #import "GoJobSearchResultListViewDelegate.h"
-#import "MenuHrizontal.h"
-#import "GoJobSearchResultListFromScrollPageDelegate.h"
 
-@interface RmSearchJobForInviteViewController: UIViewController
+@interface RmSearchJobForInviteViewController: UIViewController<GoJobSearchResultListViewDelegate>
 {
     //是否是第一次加载
     BOOL firstPageLoad;
