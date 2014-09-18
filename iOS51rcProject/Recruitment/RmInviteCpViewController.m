@@ -21,6 +21,7 @@
 @property (retain, nonatomic) NetWebServiceRequest *runningRequestGetJobs;
 @property (retain, nonatomic) NetWebServiceRequest *runningRequestGetPlace;
 @property (retain, nonatomic) NetWebServiceRequest *runningRequestInviteCps;
+@property (retain, nonatomic) NetWebServiceRequest *runningRequestGetRm;
 @property (retain, nonatomic) IBOutlet UIView *ViewRmInfo;
 //绑定工作用的Table
 @property (retain, nonatomic) UIView *cpListView;
@@ -66,14 +67,14 @@
     self.lbAddress.text = self.strAddress;
     self.lbPlace.text = self.strPlace;
     //默认参数
-    regionID = @"32";
+    if (self.strAddressID == nil) {
+        self.strAddressID = @"32";
+    }
     if (self.strBeginTime == nil) {
         NSDate *  dtNow=[NSDate date];
         NSDateFormatter  *dateformatter=[[[NSDateFormatter alloc] init] autorelease];
         [dateformatter setDateFormat:@"YYYY-MM-dd"];
-        beginDate = [dateformatter stringFromDate:dtNow];
-    }else{
-        beginDate = self.strBeginTime;
+        self.strBeginTime = [dateformatter stringFromDate:dtNow];
     }
 
     //初始化时间选择控件
@@ -98,8 +99,8 @@
 //加载场馆
 - (void)reloadPlace {
     NSMutableDictionary *dicParam = [[ NSMutableDictionary alloc] init];
-    [dicParam setObject:beginDate forKey:@"strBeginDate"];
-    [dicParam setObject:regionID forKey:@"RegionID"];
+    [dicParam setObject:self.strBeginTime forKey:@"strBeginDate"];
+    [dicParam setObject:self.strAddressID forKey:@"RegionID"];
     [dicParam setObject:@"1" forKey:@"isDistinct"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPlaceListByBeginDate" Params:dicParam];
     [request setDelegate:self];
@@ -166,8 +167,7 @@
     if (request.tag == 1) {        
         //结束等待动画
         [loadView stopAnimating];
-    }
-    else if(request.tag == 2){
+    }else if(request.tag == 2){
         NSMutableArray *arrPlace = [[NSMutableArray alloc] init];
         for (int i = 0; i < requestData.count; i++) {
             NSDictionary *dicPlace = [[[NSDictionary alloc] initWithObjectsAndKeys:
@@ -178,8 +178,7 @@
         }
         placeData = arrPlace;
         [loadView stopAnimating];
-    }
-    else{//邀请
+    }else if(request.tag == 3){//邀请
         if (result == nil) {
             [self.view makeToast:@"网络连接错误！"];
         } else if ([result isEqual:@"-100"]){
@@ -196,6 +195,18 @@
             [self.view makeToast:@"未知错误！"];
         }
         [self.navigationController popViewControllerAnimated:YES];
+    }else if(request.tag == 4){
+        if (result == nil) {
+            [self.view makeToast:@"网络连接错误！"];
+        } else{
+            if (requestData.count == 0) {
+                [self.view makeToast:@"改场馆没有招聘会，请选择其他场馆！"];
+            }else{
+                NSDictionary *tmpDate = requestData[0];
+                self.strRmID =tmpDate[@"ID"];
+            }
+        }
+        [loadView stopAnimating];
     }
 }
 
@@ -233,54 +244,57 @@
 
 //邀请企业
 - (IBAction)btnInviteClick:(id)sender {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *code = [userDefaults objectForKey:@"code"];
-    NSString *paMainID = [userDefaults objectForKey:@"UserID"];
-    NSString *caids = @"";
-    NSString *jobids = @"";
-    for (int i = 0; i<self.selectRmCps.count; i++) {
-        RmCpMain *tmpCp = self.selectRmCps[i];
-        NSString *caID = tmpCp.caMainID;
-        NSString *jobID = tmpCp.jobID;
-        if (i == 0) {
-            caids = caID;
-            jobids = jobID;
-        }
-        else
-        {
-            caids = [caids stringByAppendingFormat:@",%@", caID];
-            jobids = [jobids stringByAppendingFormat:@",%@", jobID];
-        }
+    if (self.strRmID == nil) {
+        [self.view makeToast:@"请选择招聘会！"];
     }
-    NSMutableDictionary *dicParam = [[ NSMutableDictionary alloc] init];
-    [dicParam setObject:self.strRmID forKey:@"recruitmentID"];
-    [dicParam setObject:paMainID forKey:@"paMainId"];
-    [dicParam setObject:caids forKey:@"caids"];
-    [dicParam setObject:jobids forKey:@"jobids"];
-    [dicParam setObject:code forKey:@"code"];
-    [dicParam setObject:@"1" forKey:@"isNeedBook"];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertBatchInviteCpToRm" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    request.tag = 3;
-    self.runningRequestInviteCps = request;
-    [dicParam release];
-
+    else{
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *code = [userDefaults objectForKey:@"code"];
+        NSString *paMainID = [userDefaults objectForKey:@"UserID"];
+        NSString *caids = @"";
+        NSString *jobids = @"";
+        for (int i = 0; i<self.selectRmCps.count; i++) {
+            RmCpMain *tmpCp = self.selectRmCps[i];
+            NSString *caID = tmpCp.caMainID;
+            NSString *jobID = tmpCp.jobID;
+            if (i == 0) {
+                caids = caID;
+                jobids = jobID;
+            }
+            else
+            {
+                caids = [caids stringByAppendingFormat:@",%@", caID];
+                jobids = [jobids stringByAppendingFormat:@",%@", jobID];
+            }
+        }
+        NSMutableDictionary *dicParam = [[ NSMutableDictionary alloc] init];
+        [dicParam setObject:self.strRmID forKey:@"recruitmentID"];
+        [dicParam setObject:paMainID forKey:@"paMainId"];
+        [dicParam setObject:caids forKey:@"caids"];
+        [dicParam setObject:jobids forKey:@"jobids"];
+        [dicParam setObject:code forKey:@"code"];
+        [dicParam setObject:@"1" forKey:@"isNeedBook"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertBatchInviteCpToRm" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 3;
+        self.runningRequestInviteCps = request;
+        [dicParam release];
+    }
 }
 
 //选择日期完成
 -(void)saveDate:(NSDate *)selectDate{
     NSString *strSelDate = [CommonController stringFromDate:selectDate formatType:@"MM-dd"];
     self.lbTime.text = strSelDate;
-    beginDate = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
-    [beginDate retain];
+    self.strBeginTime = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
     [pickDate removeDatePicker];
 }
 
 //重置时间
 -(void)resetDate{
     self.lbTime.text = @"日期";
-    beginDate = @"";
+    self.strBeginTime = @"";
     //page = 1;
     //[self onSearch];
     [pickDate removeDatePicker];
@@ -291,7 +305,7 @@
 //地区选择
 -(void)showRegionSelect {
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:regionID defaultName:@"山东省"] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:@"32" defaultName:@"山东省"] autorelease];
     
     self.DictionaryPicker.tag = 1;
     [self.DictionaryPicker showInView:self.view];
@@ -304,34 +318,50 @@
         return;
     }
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:placeID defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:@"0" defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }
 
+//选择完成
 - (void)pickerDidChangeStatus:(DictionaryPickerView *)picker
                 selectedValue:(NSString *)selectedValue
                  selectedName:(NSString *)selectedName {
     [self cancelDicPicker];
     if (picker.tag == 1) { //地区选择
-        regionID = selectedValue;
-        placeID = @"";
+        self.strAddressID = selectedValue;
+        self.strAddress = selectedName;
+        self.lbAddress.text = selectedName;
+        self.strPlaceID = @"";
         [self.lbPlace setText:@"全部场馆"];
-        //[self.lbProvince setText:selectedName];
         //加载场馆
         [self reloadPlace];
     }
-    else { //场馆选择
-        placeID = selectedValue;
+    else if  (picker.tag == 2){ //场馆选择
+        self.strPlaceID = selectedValue;
+        self.strPlace = selectedValue;
         [self.lbPlace setText:selectedName];
+        [self searchRm];
+        [loadView startAnimating];
     }
-    //重新加载列表
-    //page = 1;
-    //[self onSearch];
-    //开始等待动画
-    //[loadView startAnimating];
 }
 
+- (void)searchRm
+{
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:@"0" forKey:@"paMainID"];
+    [dicParam setObject:self.strBeginTime forKey:@"strBeginDate"];
+    [dicParam setObject:self.strPlace forKey:@"strPlaceID"];
+    [dicParam setObject:self.strAddressID forKey:@"strRegionID"];
+    [dicParam setObject:@"1" forKey:@"page"];
+    [dicParam setObject:@"0" forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetRecruitMentList" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 4;
+    self.runningRequestGetRm = request;
+    [dicParam release];
+}
 -(void)cancelDicPicker
 {
     [self.DictionaryPicker cancelPicker];
@@ -359,6 +389,10 @@
 */
 
 - (void)dealloc {
+    [_runningRequestGetJobs release];
+    [_runningRequestGetPlace release];
+    [_runningRequestGetRm release];
+    [_runningRequestInviteCps release];
     [_lbTime release];
     [_lbAddress release];
     [_lbPlace release];

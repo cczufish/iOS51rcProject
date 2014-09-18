@@ -21,4 +21,5 @@
 @property (retain,nonatomic) NSString* strAddress;
 @property (retain,nonatomic) NSString* strPlace;
 @property (retain,nonatomic) NSString* rmID;
+-(void) onSearch;
 @end

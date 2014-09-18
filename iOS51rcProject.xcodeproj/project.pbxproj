@@ -1398,6 +1398,10 @@
 				99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */,
 				99938FE119BD9821008F986A /* RMSearchJobListViewController.h */,
 				99938FE219BD9821008F986A /* RMSearchJobListViewController.m */,
+				99B96B0B19B0286C0069C1FA /* RmInviteCpViewController.h */,
+				99B96B0C19B0286C0069C1FA /* RmInviteCpViewController.m */,
+				99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */,
+				99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */,
 			);
 			name = Invite;
 			sourceTree = "<group>";
@@ -1680,10 +1684,6 @@
 				995575BF19AC64CE00B73E4A /* RmAttendPaListViewController.m */,
 				99B9672719B462CF00E93CBD /* RmInviteCpListFromSearchViewController.h */,
 				99B9672819B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m */,
-				99B96B0B19B0286C0069C1FA /* RmInviteCpViewController.h */,
-				99B96B0C19B0286C0069C1FA /* RmInviteCpViewController.m */,
-				99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */,
-				99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */,
 			);
 			name = Recruitment;
 			sourceTree = "<group>";
