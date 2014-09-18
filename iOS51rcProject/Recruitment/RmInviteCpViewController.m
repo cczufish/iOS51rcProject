@@ -67,7 +67,14 @@
     self.lbPlace.text = self.strPlace;
     //默认参数
     regionID = @"32";
-    beginDate = self.strBeginTime;   
+    if (self.strBeginTime == nil) {
+        NSDate *  dtNow=[NSDate date];
+        NSDateFormatter  *dateformatter=[[[NSDateFormatter alloc] init] autorelease];
+        [dateformatter setDateFormat:@"YYYY-MM-dd"];
+        beginDate = [dateformatter stringFromDate:dtNow];
+    }else{
+        beginDate = self.strBeginTime;
+    }
 
     //初始化时间选择控件
     pickDate = [[DatePicker alloc] init];

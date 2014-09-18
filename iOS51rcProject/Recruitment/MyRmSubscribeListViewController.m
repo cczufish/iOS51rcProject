@@ -5,6 +5,7 @@
 #import "CommonController.h"
 #import "RecruitmentViewController.h"
 #import "RmInviteCpViewController.h"
+#import "RmSearchJobForInviteViewController.h"
 
 //我的预约
 @interface MyRmSubscribeListViewController ()<NetWebServiceRequestDelegate>
@@ -33,7 +34,7 @@
     [super viewDidLoad];
     self.viewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.viewBottom.layer.borderWidth = 0.5;
-    self.viewBottom.frame = CGRectMake(0, self.view.frame.size.height - self.viewBottom.frame.size.height, 320, self.viewBottom.frame.size.height);
+    self.viewBottom.frame = CGRectMake(0, self.view.frame.size.height - self.viewBottom.frame.size.height - 109, 320, self.viewBottom.frame.size.height);
     self.btnInviteCp.layer.cornerRadius = 5;
     self.btnInviteCp.backgroundColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     //数据加载等待控件初始化
@@ -187,7 +188,7 @@
 //邀请企业参会
 - (IBAction)btnInviteCp:(id)sender {
     UIViewController *pCtrl = [CommonController getFatherController:self.view];
-    RmInviteCpViewController *inviteViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+    RmSearchJobForInviteViewController *inviteViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmSearchJobForInviteView"];
     [pCtrl.navigationController pushViewController:inviteViewCtrl animated:true];
     pCtrl.navigationItem.title = @" ";
     inviteViewCtrl.navigationItem.title = @"邀请企业参会";
