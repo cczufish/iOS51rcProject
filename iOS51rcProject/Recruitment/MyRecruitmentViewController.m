@@ -32,9 +32,9 @@
     frame.origin.y = 106;//状态栏和切换栏的高度
     frame.size.height = frame.size.height - 106;
     //获得子View
-    self.myRmCpListViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmCpListView"];
+    self.myRmSubscribeListView = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmSubscribeListView"];
     self.myRmInvitationViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmInvitationView"];
-    self.myRmCpListViewCtrl.view.frame = frame;
+    self.myRmSubscribeListView.view.frame = frame;
     self.myRmInvitationViewCtrl.view.frame = frame;
     
     //初始化左侧和右侧的登录以及注册子View
@@ -45,15 +45,15 @@
     
     [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
     [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
-    self.myRmCpListViewCtrl.gotoRmViewDelegate = self;
-    self.myRmCpListViewCtrl.gotoMyInvitedCpViewDelegate = self;
+    self.myRmSubscribeListView.gotoRmViewDelegate = self;
+    self.myRmSubscribeListView.gotoMyInvitedCpViewDelegate = self;
     //self.myRmInvitationViewCtrl.gotoHomeDelegate = self;
     
     //默认加载我的预约页面
-    [self.view addSubview: self.myRmCpListViewCtrl.view];
+    [self.view addSubview: self.myRmSubscribeListView.view];
     
     //添加邀请按钮
-    UIButton *btnInviteCp = [[UIButton alloc] initWithFrame:CGRectMake(110,  self.myRmCpListViewCtrl.view.frame.size.height + 60, 110, 35)];
+    UIButton *btnInviteCp = [[UIButton alloc] initWithFrame:CGRectMake(110,  self.myRmSubscribeListView.view.frame.size.height + 60, 110, 35)];
     btnInviteCp.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1];
     btnInviteCp.layer.cornerRadius = 5;
     [btnInviteCp addTarget:self action:@selector(inviteCp) forControlEvents:UIControlEventTouchUpInside];
@@ -93,7 +93,7 @@
 - (void)handleSwipes:(UISwipeGestureRecognizer *)sender
 {
     if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
-        [self.myRmCpListViewCtrl removeFromParentViewController];
+        [self.myRmSubscribeListView removeFromParentViewController];
         [self.view addSubview:self.myRmInvitationViewCtrl.view];
         //self.navigationItem.title = @"登录";
         self.lbBgRight.backgroundColor = [UIColor clearColor];
@@ -103,7 +103,7 @@
     }
     if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
         [self.myRmInvitationViewCtrl removeFromParentViewController];
-        [self.view addSubview:self.myRmCpListViewCtrl.view];
+        [self.view addSubview:self.myRmSubscribeListView.view];
         //self.navigationItem.title = @"注册";
         self.lbBgRight.backgroundColor = [UIColor orangeColor];
         self.lbBgLeft.backgroundColor = [UIColor clearColor];
@@ -119,7 +119,7 @@
 }
 - (IBAction)btnLeftClick:(id)sender {
     [self.myRmInvitationViewCtrl removeFromParentViewController];
-    [self.view addSubview:self.myRmCpListViewCtrl.view];
+    [self.view addSubview:self.myRmSubscribeListView.view];
     //self.navigationItem.title = @"登录";
     self.lbBgRight.backgroundColor = [UIColor clearColor];
     self.lbBgLeft.backgroundColor = [UIColor orangeColor];
@@ -128,7 +128,7 @@
 }
 
 - (IBAction)btnRightClick:(id)sender {
-    [self.myRmCpListViewCtrl removeFromParentViewController];
+    [self.myRmSubscribeListView removeFromParentViewController];
     [self.view addSubview:self.myRmInvitationViewCtrl.view];
     //self.navigationItem.title = @"注册";
     self.lbBgRight.backgroundColor = [UIColor orangeColor];

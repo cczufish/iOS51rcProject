@@ -4,7 +4,7 @@
 #import "GoToRmViewDetailDelegate.h"
 #import "GoToMyInvitedCpViewDelegate.h"
 //我邀请的企业列表
-@interface MyRmCpListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MyRmSubscribeListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {   
     NSMutableArray *recruitmentCpData;
     //NSString *rmID;

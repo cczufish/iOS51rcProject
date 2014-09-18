@@ -32,7 +32,7 @@
 		9905134A19C2F3D500B9C096 /* SuperJobMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905134219C2F3D500B9C096 /* SuperJobMainViewController.m */; };
 		9905134F19C2F45B00B9C096 /* CreateResumeAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905134D19C2F45B00B9C096 /* CreateResumeAlertViewController.m */; };
 		9905135019C2F45B00B9C096 /* CreateResumeAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9905134E19C2F45B00B9C096 /* CreateResumeAlertViewController.xib */; };
-		9905135319C2F4EE00B9C096 /* MyRmCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905135219C2F4EE00B9C096 /* MyRmCpListViewController.m */; };
+		9905135319C2F4EE00B9C096 /* MyRmSubscribeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905135219C2F4EE00B9C096 /* MyRmSubscribeListViewController.m */; };
 		990CCC8519A998620022B44B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 990CCC8419A998620022B44B /* check.png */; };
 		991125A119A49DCE00C98173 /* Toast+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991125A019A49DCE00C98173 /* Toast+UIView.m */; };
 		991125A319A4D24F00C98173 /* ico_expire.png in Resources */ = {isa = PBXBuildFile; fileRef = 991125A219A4D24F00C98173 /* ico_expire.png */; };
@@ -409,8 +409,8 @@
 		9905134C19C2F45B00B9C096 /* CreateResumeAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateResumeAlertViewController.h; sourceTree = "<group>"; };
 		9905134D19C2F45B00B9C096 /* CreateResumeAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateResumeAlertViewController.m; sourceTree = "<group>"; };
 		9905134E19C2F45B00B9C096 /* CreateResumeAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateResumeAlertViewController.xib; sourceTree = "<group>"; };
-		9905135119C2F4EE00B9C096 /* MyRmCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmCpListViewController.h; path = Recruitment/MyRmCpListViewController.h; sourceTree = "<group>"; };
-		9905135219C2F4EE00B9C096 /* MyRmCpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmCpListViewController.m; path = Recruitment/MyRmCpListViewController.m; sourceTree = "<group>"; };
+		9905135119C2F4EE00B9C096 /* MyRmSubscribeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmSubscribeListViewController.h; path = Recruitment/MyRmSubscribeListViewController.h; sourceTree = "<group>"; };
+		9905135219C2F4EE00B9C096 /* MyRmSubscribeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmSubscribeListViewController.m; path = Recruitment/MyRmSubscribeListViewController.m; sourceTree = "<group>"; };
 		9905135419C2F50400B9C096 /* GoJobSearchResultListFromScrollPageDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoJobSearchResultListFromScrollPageDelegate.h; path = Recruitment/Delegate/GoJobSearchResultListFromScrollPageDelegate.h; sourceTree = "<group>"; };
 		9905135519C2F50400B9C096 /* GoToRmViewDetailDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoToRmViewDetailDelegate.h; path = Recruitment/Delegate/GoToRmViewDetailDelegate.h; sourceTree = "<group>"; };
 		9905135619C2F50400B9C096 /* InviteJobsFromApplyViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InviteJobsFromApplyViewDelegate.h; path = Recruitment/Delegate/InviteJobsFromApplyViewDelegate.h; sourceTree = "<group>"; };
@@ -1186,6 +1186,21 @@
 			path = EChart;
 			sourceTree = "<group>";
 		};
+		9938338E19CA63C9008AFEC1 /* MyRm */ = {
+			isa = PBXGroup;
+			children = (
+				99BEE43B19ADAEDE0090C9E1 /* MyRecruitmentViewController.h */,
+				99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */,
+				9905135119C2F4EE00B9C096 /* MyRmSubscribeListViewController.h */,
+				9905135219C2F4EE00B9C096 /* MyRmSubscribeListViewController.m */,
+				999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */,
+				999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */,
+				99BEE44219ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.h */,
+				99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */,
+			);
+			name = MyRm;
+			sourceTree = "<group>";
+		};
 		9942F38419B954D700191C74 /* More */ = {
 			isa = PBXGroup;
 			children = (
@@ -1660,19 +1675,12 @@
 			children = (
 				99938FE019BD85DE008F986A /* Invite */,
 				999DF62F19AECEE700C05F20 /* Delegate */,
+				9938338E19CA63C9008AFEC1 /* MyRm */,
 				99938FD219BCAFFB008F986A /* Recruitment.storyboard */,
 				9905132719C2EF8200B9C096 /* RecruitmentListViewController.h */,
 				9905132819C2EF8200B9C096 /* RecruitmentListViewController.m */,
 				9905132919C2EF8200B9C096 /* RecruitmentViewController.h */,
 				9905132A19C2EF8200B9C096 /* RecruitmentViewController.m */,
-				9905135119C2F4EE00B9C096 /* MyRmCpListViewController.h */,
-				9905135219C2F4EE00B9C096 /* MyRmCpListViewController.m */,
-				99BEE43B19ADAEDE0090C9E1 /* MyRecruitmentViewController.h */,
-				99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */,
-				999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */,
-				999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */,
-				99BEE44219ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.h */,
-				99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */,
 				995575C119AC64EA00B73E4A /* RmAttendCpListViewController.h */,
 				995575C219AC64EA00B73E4A /* RmAttendCpListViewController.m */,
 				995575BE19AC64CE00B73E4A /* RmAttendPaListViewController.h */,
@@ -2383,7 +2391,7 @@
 				99B9822419B4C3B600D5D77D /* GRListViewController.m in Sources */,
 				999BDD1319C2E41E000A152A /* MoreViewController.m in Sources */,
 				9905132219C2EF2E00B9C096 /* FindPsdStep3ViewController.m in Sources */,
-				9905135319C2F4EE00B9C096 /* MyRmCpListViewController.m in Sources */,
+				9905135319C2F4EE00B9C096 /* MyRmSubscribeListViewController.m in Sources */,
 				99FC0AEA19C175A400B7EC74 /* MLImageCrop.m in Sources */,
 				9905134F19C2F45B00B9C096 /* CreateResumeAlertViewController.m in Sources */,
 				999BDD4919C2E60B000A152A /* ASINetworkQueue.m in Sources */,

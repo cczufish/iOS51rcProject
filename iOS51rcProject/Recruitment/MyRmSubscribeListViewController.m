@@ -1,4 +1,4 @@
-#import "MyRmCpListViewController.h"
+#import "MyRmSubscribeListViewController.h"
 #import "MJRefresh.h"
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
@@ -6,14 +6,14 @@
 #import "RecruitmentViewController.h"
 
 //我的预约
-@interface MyRmCpListViewController ()<NetWebServiceRequestDelegate>
+@interface MyRmSubscribeListViewController ()<NetWebServiceRequestDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UITableView *tvRecruitmentCpList;
 @property (retain, nonatomic) IBOutlet UIButton *btnInviteCp;
 
 @end
 
-@implementation MyRmCpListViewController
+@implementation MyRmSubscribeListViewController
 @synthesize gotoRmViewDelegate;
 @synthesize gotoMyInvitedCpViewDelegate;
 

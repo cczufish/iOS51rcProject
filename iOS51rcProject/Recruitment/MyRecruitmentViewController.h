@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MyRmReceivedInvitationViewController.h"
-#import "MyRmCpListViewController.h"
+#import "MyRmSubscribeListViewController.h"
 #import "GoToRmViewDetailDelegate.h"
 #import "Delegate/GoToMyInvitedCpViewDelegate.h"
 
@@ -18,6 +18,6 @@
 }
 @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
 @property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
-@property (retain,nonatomic) MyRmCpListViewController *myRmCpListViewCtrl;
+@property (retain,nonatomic) MyRmSubscribeListViewController *myRmSubscribeListView;
 @property (retain,nonatomic) MyRmReceivedInvitationViewController *myRmInvitationViewCtrl;
 @end

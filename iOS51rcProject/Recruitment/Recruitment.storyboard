@@ -994,10 +994,10 @@
             </objects>
             <point key="canvasLocation" x="413" y="-1952"/>
         </scene>
-        <!--My Rm Cp List View Controller-->
+        <!--My Rm Subscribe List View Controller-->
         <scene sceneID="eAc-fG-vpE">
             <objects>
-                <viewController storyboardIdentifier="MyRmCpListView" id="sAu-SY-f8z" customClass="MyRmCpListViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyRmSubscribeListView" id="sAu-SY-f8z" customClass="MyRmSubscribeListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1li-wt-Pxa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
