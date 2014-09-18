@@ -67,11 +67,7 @@
     self.lbPlace.text = self.strPlace;
     //默认参数
     regionID = @"32";
-    beginDate = self.strBeginTime;   
-
-    //初始化时间选择控件
-    pickDate = [[DatePicker alloc] init];
-    pickDate.delegate = self;
+    beginDate = self.strBeginTime;
 
     [self.btnTimeSelect addTarget:self action:@selector(showDateSelect) forControlEvents:UIControlEventTouchUpInside];
     [self.btnAddressSelect addTarget:self action:@selector(showRegionSelect) forControlEvents:UIControlEventTouchUpInside];
@@ -221,7 +217,8 @@
 }
 
 -(void)showDateSelect{
-    [pickDate showDatePicker:self dateTitle:@"请选择举办日期"];
+    DatePickerView *pickDate = [[DatePickerView alloc] initWithCustom:DatePickerTypeDay dateButton:DatePickerWithReset maxYear:2016 minYear:2000 selectYear:0 delegate:self];
+    [pickDate showDatePicker:self.view];
 }
 
 //邀请企业
@@ -262,24 +259,36 @@
 }
 
 //选择日期完成
--(void)saveDate:(NSDate *)selectDate{
-    NSString *strSelDate = [CommonController stringFromDate:selectDate formatType:@"MM-dd"];
-    self.lbTime.text = strSelDate;
-    beginDate = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
-    [beginDate retain];
-    [pickDate removeDatePicker];
+- (void)getSelectDate:(NSString *)date
+{
+    beginDate = date;
+    self.lbTime.text = [date substringFromIndex:5];
 }
 
-//重置时间
--(void)resetDate{
+- (void)cancelPickDate
+{
     self.lbTime.text = @"日期";
     beginDate = @"";
-    //page = 1;
-    //[self onSearch];
-    [pickDate removeDatePicker];
-    //开始等待动画
-    //[loadView startAnimating];
 }
+
+//-(void)saveDate:(NSDate *)selectDate{
+//    NSString *strSelDate = [CommonController stringFromDate:selectDate formatType:@"MM-dd"];
+//    self.lbTime.text = strSelDate;
+//    beginDate = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
+//    [beginDate retain];
+//    [pickDate removeDatePicker];
+//}
+//
+////重置时间
+//-(void)resetDate{
+//    self.lbTime.text = @"日期";
+//    beginDate = @"";
+//    //page = 1;
+//    //[self onSearch];
+//    [pickDate removeDatePicker];
+//    //开始等待动画
+//    //[loadView startAnimating];
+//}
 
 //地区选择
 -(void)showRegionSelect {
@@ -297,7 +306,7 @@
         return;
     }
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defalutValue:placeID defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:placeData defaultValue:placeID defaultName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }

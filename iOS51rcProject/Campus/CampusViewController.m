@@ -366,7 +366,7 @@
         [self.view makeToast:@"该地区下没有学校信息"];
         return;
     }
-    self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.schoolData defalutValue:self.schoolId defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
+    self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.schoolData defaultValue:self.schoolId defaultName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
     [self.dictionaryPicker setTag:2];
     [self.dictionaryPicker showInView:self.view];
 }

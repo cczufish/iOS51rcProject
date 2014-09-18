@@ -52,7 +52,7 @@
        pickerInclude:(DictionaryPickerInclude)pickerInclude
            delegate:(id <DictionaryPickerDelegate>)delegate
         defaultValue:(NSString *)defaultValue
-         defaultName:(NSString *)defalutName
+         defaultName:(NSString *)defaultName
 {
     self = [[[[NSBundle mainBundle] loadNibNamed:@"DictionaryPickerView" owner:self options:nil] objectAtIndex:0] retain];
     if (self) {
@@ -65,8 +65,9 @@
         self.arrSelectValue = [NSMutableArray arrayWithCapacity:10];
         self.arrSelectName = [NSMutableArray arrayWithCapacity:10];
         if (defaultValue.length > 0) {
+            defaultValue = [defaultValue stringByReplacingOccurrencesOfString:@"," withString:@" "];
             self.arrSelectValue = [[[defaultValue componentsSeparatedByString:@" "] mutableCopy] autorelease];
-            self.arrSelectName = [[[defalutName componentsSeparatedByString:@" "] mutableCopy] autorelease];
+            self.arrSelectName = [[[defaultName componentsSeparatedByString:@" "] mutableCopy] autorelease];
             [self setupScollMulti];
         }
         [self setupDictionary];
@@ -77,7 +78,7 @@
 - (id)initWithCommon:(id <DictionaryPickerDelegate>)delegate
           pickerMode:(DictionaryPickerMode)pickerMode
            tableName:(NSString *)tableName
-        defalutValue:(NSString *)defaultValue
+        defaultValue:(NSString *)defaultValue
          defaultName:(NSString *)defaultName
 {
     self = [[[[NSBundle mainBundle] loadNibNamed:@"DictionaryPickerView" owner:self options:nil] objectAtIndex:0] retain];
@@ -93,6 +94,7 @@
         self.arrSelectName = [NSMutableArray arrayWithCapacity:10];
         
         if (defaultValue.length > 0) {
+            defaultValue = [defaultValue stringByReplacingOccurrencesOfString:@"," withString:@" "];
             self.arrSelectValue = [[[defaultValue componentsSeparatedByString:@" "] mutableCopy] autorelease];
             self.arrSelectName = [[[defaultName componentsSeparatedByString:@" "] mutableCopy] autorelease];
             [self setupScollMulti];
@@ -104,8 +106,8 @@
 
 - (id)initWithDictionary:(id <DictionaryPickerDelegate>)delegate
        defaultArray:(NSMutableArray *)defaultArray
-            defalutValue:(NSString *)defaultValue
-             defalutName:(NSString *)defalutName
+            defaultValue:(NSString *)defaultValue
+             defaultName:(NSString *)defaultName
               pickerMode:(DictionaryPickerMode)pickerMode
 {
     self = [[[[NSBundle mainBundle] loadNibNamed:@"DictionaryPickerView" owner:self options:nil] objectAtIndex:0] retain];
@@ -309,7 +311,16 @@
 
 - (void)setCommonDictionary
 {
-    FMResultSet *commonList = [db executeQuery:[NSString stringWithFormat:@"select * from %@",self.selectTableName]];
+    FMResultSet *commonList;
+    if ([self.selectTableName isEqualToString:@"Experience"]) {
+        commonList = [db executeQuery:@"select DetailID _id,Description from dcothers where Category='职位要求工作经验'"];
+    }
+    else if ([self.selectTableName isEqualToString:@"EmployType"]) {
+        commonList = [db executeQuery:@"select DetailID _id,Description from dcothers where Category='工作性质'"];
+    }
+    else {
+        commonList = [db executeQuery:[NSString stringWithFormat:@"select * from %@",self.selectTableName]];
+    }
     int i = 0;
     while ([commonList next]) {
         if (i == 0) {

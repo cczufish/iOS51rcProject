@@ -211,7 +211,7 @@
 
 -(void)showIndustrySelect:(UIButton *)sender {
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeMulti tableName:@"dcIndustry" defalutValue:self.industrySelect defaultName:self.lbIndustrySelect.text] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeMulti tableName:@"dcIndustry" defaultValue:self.industrySelect defaultName:self.lbIndustrySelect.text] autorelease];
     
     [self.DictionaryPicker setTag:3];
     NSLog(@"%d",[self.DictionaryPicker retainCount]);

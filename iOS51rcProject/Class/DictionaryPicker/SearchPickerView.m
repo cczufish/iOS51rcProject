@@ -18,7 +18,7 @@
 - (id)initWithSearchRegionFilter:(id <SearchPickerDelegate>)delegate
                      selectValue:(NSString *)selectValue
                       selectName:(NSString *)selectName
-                    defalutValue:(NSString *)defaultValue
+                    defaultValue:(NSString *)defaultValue
 {
     self = [[[[NSBundle mainBundle] loadNibNamed:@"SearchPickerView" owner:self options:nil] objectAtIndex:0] retain];
     if (self) {
@@ -66,7 +66,7 @@
 - (id)initWithSearchJobTypeFilter:(id <SearchPickerDelegate>)delegate
                       selectValue:(NSString *)selectValue
                        selectName:(NSString *)selectName
-                     defalutValue:(NSString *)defaultValue
+                     defaultValue:(NSString *)defaultValue
 {
     self = [[[[NSBundle mainBundle] loadNibNamed:@"SearchPickerView" owner:self options:nil] objectAtIndex:0] retain];
     if (self) {
@@ -107,7 +107,7 @@
 }
 
 - (id)initWithSearchOtherFilter:(id <SearchPickerDelegate>)delegate
-                   defalutValue:(NSString *)defaultValue
+                   defaultValue:(NSString *)defaultValue
                     defaultName:(NSString *)defaultName
                       otherType:(SearchPickerOther)otherType
 

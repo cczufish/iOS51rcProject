@@ -49,18 +49,18 @@ typedef enum {
        pickerInclude:(DictionaryPickerInclude)pickerInclude
            delegate:(id <DictionaryPickerDelegate>)delegate
         defaultValue:(NSString *)defaultValue
-         defaultName:(NSString *)defalutName;
+         defaultName:(NSString *)defaultName;
 
 - (id)initWithDictionary:(id <DictionaryPickerDelegate>)delegate
        defaultArray:(NSMutableArray *)defaultArray
-            defalutValue:(NSString *)defaultValue
-             defalutName:(NSString *)defalutName
+            defaultValue:(NSString *)defaultValue
+             defaultName:(NSString *)defaultName
               pickerMode:(DictionaryPickerMode)pickerMode;
 
 - (id)initWithCommon:(id <DictionaryPickerDelegate>)delegate
           pickerMode:(DictionaryPickerMode)pickerMode
            tableName:(NSString *)tableName
-        defalutValue:(NSString *)defaultValue
+        defaultValue:(NSString *)defaultValue
          defaultName:(NSString *)defaultName;
 
 - (void)showInView:(UIView *)view;

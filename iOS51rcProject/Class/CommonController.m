@@ -300,4 +300,23 @@
     
     return true;
 }
+//是否是3.5寸屏幕
++(BOOL) is35inchScreen
+{
+    //判断当前设备屏幕尺寸
+    CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
+    if (iOSDeviceScreenSize.height == 480) {//3.5寸屏幕
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+//是否是中文
++(BOOL) isChinese:(NSString *)content
+{
+    NSString *chineseRegex = @"^[\u4e00-\u9fa5]+$";
+    NSPredicate *chineseTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",chineseRegex];
+    return [chineseTest evaluateWithObject:content];
+}
 @end

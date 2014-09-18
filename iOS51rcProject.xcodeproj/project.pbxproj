@@ -127,7 +127,6 @@
 		99442A6819BFE9AD00667CE1 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99442A6719BFE9AD00667CE1 /* FeedbackViewController.m */; };
 		9945C30B19A1A4890027E931 /* ico_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30A19A1A4890027E931 /* ico_clock.png */; };
 		9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30C19A1AB370027E931 /* ico_rm_group.png */; };
-		9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9945C32A19A1E8FA0027E931 /* DatePicker.m */; };
 		994C507119C02B8000E27017 /* pic_noinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C507019C02B8000E27017 /* pic_noinfo.png */; };
 		994C507319C0335600E27017 /* ico_time_notice.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C507219C0335600E27017 /* ico_time_notice.png */; };
 		99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 99512F5F19A5C64800E56EF4 /* ico_calltelphone.png */; };
@@ -203,6 +202,9 @@
 		999BDD6819C2F6AF000A152A /* CampusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999BDD6519C2F6AF000A152A /* CampusViewController.m */; };
 		999CE42D19C7031600A8842B /* CvModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999CE42C19C7031600A8842B /* CvModifyViewController.m */; };
 		999DF63319AED80900C05F20 /* MyRmInviteCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */; };
+		999F367319CABF2C007856F6 /* IntentionModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 999F367219CABF2C007856F6 /* IntentionModifyViewController.m */; };
+		99A0673319CA769C00F095DF /* DatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A0673219CA769C00F095DF /* DatePickerView.m */; };
+		99A0673919CA771100F095DF /* DatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99A0673819CA771100F095DF /* DatePickerView.xib */; };
 		99A16D1419C6B6180053C6E9 /* JobApplication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99A16D1319C6B6180053C6E9 /* JobApplication.storyboard */; };
 		99A16D1719C6B6460053C6E9 /* JmMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A16D1619C6B6460053C6E9 /* JmMainViewController.m */; };
 		99A16D1A19C6B6600053C6E9 /* JmJobApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99A16D1919C6B6600053C6E9 /* JmJobApplyViewController.m */; };
@@ -594,8 +596,6 @@
 		99442A6719BFE9AD00667CE1 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = More/FeedbackViewController.m; sourceTree = "<group>"; };
 		9945C30A19A1A4890027E931 /* ico_clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_clock.png; sourceTree = "<group>"; };
 		9945C30C19A1AB370027E931 /* ico_rm_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_group.png; sourceTree = "<group>"; };
-		9945C32919A1E8FA0027E931 /* DatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePicker.h; sourceTree = "<group>"; };
-		9945C32A19A1E8FA0027E931 /* DatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePicker.m; sourceTree = "<group>"; };
 		994C507019C02B8000E27017 /* pic_noinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_noinfo.png; sourceTree = "<group>"; };
 		994C507219C0335600E27017 /* ico_time_notice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_time_notice.png; sourceTree = "<group>"; };
 		99512F5F19A5C64800E56EF4 /* ico_calltelphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_calltelphone.png; sourceTree = "<group>"; };
@@ -727,6 +727,11 @@
 		999DF63019AECF3700C05F20 /* GoToMyInvitedCpViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoToMyInvitedCpViewDelegate.h; path = Recruitment/Delegate/GoToMyInvitedCpViewDelegate.h; sourceTree = "<group>"; };
 		999DF63119AED80900C05F20 /* MyRmInviteCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmInviteCpListViewController.h; path = Recruitment/MyRmInviteCpListViewController.h; sourceTree = "<group>"; };
 		999DF63219AED80900C05F20 /* MyRmInviteCpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmInviteCpListViewController.m; path = Recruitment/MyRmInviteCpListViewController.m; sourceTree = "<group>"; };
+		999F367119CABF2C007856F6 /* IntentionModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntentionModifyViewController.h; path = UserCenter/IntentionModifyViewController.h; sourceTree = "<group>"; };
+		999F367219CABF2C007856F6 /* IntentionModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntentionModifyViewController.m; path = UserCenter/IntentionModifyViewController.m; sourceTree = "<group>"; };
+		99A0673119CA769C00F095DF /* DatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatePickerView.h; path = DatePicker/DatePickerView.h; sourceTree = "<group>"; };
+		99A0673219CA769C00F095DF /* DatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatePickerView.m; path = DatePicker/DatePickerView.m; sourceTree = "<group>"; };
+		99A0673819CA771100F095DF /* DatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DatePickerView.xib; path = DatePicker/DatePickerView.xib; sourceTree = "<group>"; };
 		99A16D1319C6B6180053C6E9 /* JobApplication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = JobApplication.storyboard; sourceTree = "<group>"; };
 		99A16D1519C6B6460053C6E9 /* JmMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JmMainViewController.h; sourceTree = "<group>"; };
 		99A16D1619C6B6460053C6E9 /* JmMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JmMainViewController.m; sourceTree = "<group>"; };
@@ -1511,6 +1516,16 @@
 			name = Delegate;
 			sourceTree = "<group>";
 		};
+		99A0673019CA761100F095DF /* DatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				99A0673119CA769C00F095DF /* DatePickerView.h */,
+				99A0673219CA769C00F095DF /* DatePickerView.m */,
+				99A0673819CA771100F095DF /* DatePickerView.xib */,
+			);
+			name = DatePicker;
+			sourceTree = "<group>";
+		};
 		99A16D1219C6B5FA0053C6E9 /* JobApplication */ = {
 			isa = PBXGroup;
 			children = (
@@ -1971,10 +1986,9 @@
 				99908A4B19A34DD300137FDE /* FMDB */,
 				998025C619A23528001A7E84 /* LoadingAnimation */,
 				998025AD19A23024001A7E84 /* MJRefresh */,
+				99A0673019CA761100F095DF /* DatePicker */,
 				9925BED119B80E02002DBFE0 /* CommonController.h */,
 				9925BED219B80E02002DBFE0 /* CommonController.m */,
-				9945C32919A1E8FA0027E931 /* DatePicker.h */,
-				9945C32A19A1E8FA0027E931 /* DatePicker.m */,
 				99B4ED8A19AB0458004C9068 /* JobDetailsController.h */,
 				99B4ED8B19AB0458004C9068 /* JobDetailsController.m */,
 			);
@@ -2005,6 +2019,8 @@
 				999CE42C19C7031600A8842B /* CvModifyViewController.m */,
 				990325E019C982A500729791 /* PaModifyViewController.h */,
 				990325E119C982A500729791 /* PaModifyViewController.m */,
+				999F367119CABF2C007856F6 /* IntentionModifyViewController.h */,
+				999F367219CABF2C007856F6 /* IntentionModifyViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -2270,6 +2286,7 @@
 				99B4693219B2B71A0034505D /* ico_searchlog_log.png in Resources */,
 				99CFD88F199B60D8009A5ABA /* loginWeiBo.png in Resources */,
 				9942F44A19B987D900191C74 /* WeiboSDK.bundle in Resources */,
+				99A0673919CA771100F095DF /* DatePickerView.xib in Resources */,
 				9942F44419B987D900191C74 /* Resource.bundle in Resources */,
 				9925BEFC19B80E02002DBFE0 /* menu-button@2x.png in Resources */,
 				999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */,
@@ -2336,7 +2353,6 @@
 				999BDD4B19C2E60B000A152A /* GDataXMLNode.m in Sources */,
 				99938FE319BD9821008F986A /* RMSearchJobListViewController.m in Sources */,
 				999BDD1D19C2E4FC000A152A /* MapSearchListViewController.m in Sources */,
-				9945C32B19A1E8FA0027E931 /* DatePicker.m in Sources */,
 				998025C119A23024001A7E84 /* MJRefreshFooterView.m in Sources */,
 				999BDD6719C2F6AF000A152A /* CampusCompanyViewController.m in Sources */,
 				999BDD4419C2E60B000A152A /* ASIDataDecompressor.m in Sources */,
@@ -2355,6 +2371,7 @@
 				999BDD4619C2E60B000A152A /* ASIFormDataRequest.m in Sources */,
 				99908A5819A34DD300137FDE /* FMDatabasePool.m in Sources */,
 				991125A119A49DCE00C98173 /* Toast+UIView.m in Sources */,
+				999F367319CABF2C007856F6 /* IntentionModifyViewController.m in Sources */,
 				9927ACC919C82F450037E3F9 /* EColumnChartLabel.m in Sources */,
 				99FC0B5E19C2E26100B7EC74 /* MDRadialProgressLabel.m in Sources */,
 				9905133119C2F29E00B9C096 /* WelcomeUIImage.m in Sources */,
@@ -2418,6 +2435,7 @@
 				99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */,
 				99FC0B6D19C2E36900B7EC74 /* IndexViewController.m in Sources */,
 				999BDD4319C2E60B000A152A /* ASIDataCompressor.m in Sources */,
+				99A0673319CA769C00F095DF /* DatePickerView.m in Sources */,
 				9905132B19C2EF8200B9C096 /* RecruitmentListViewController.m in Sources */,
 				999BDD4A19C2E60B000A152A /* Reachability.m in Sources */,
 				9927ACCA19C82F450037E3F9 /* EColumnDataModel.m in Sources */,

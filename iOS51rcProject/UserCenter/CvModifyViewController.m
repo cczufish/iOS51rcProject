@@ -16,6 +16,7 @@
 #import "MLImageCrop.h"
 #import "CommonController.h"
 #import "PaModifyViewController.h"
+#import "IntentionModifyViewController.h"
 
 @interface CvModifyViewController ()<NetWebServiceRequestDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate>
 {
@@ -72,7 +73,29 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    //获取数据
     [self getCvInfo];
+    //返回该view后显示相关的toast
+    if (self.toastType == 1) {
+        [self.view makeToast:@"基本信息保存成功"];
+    }
+    else if (self.toastType == 2)
+    {
+        [self.view makeToast:@"求职意向保存成功"];
+    }
+    else if (self.toastType == 3)
+    {
+        [self.view makeToast:@"教育背景保存成功"];
+    }
+    else if (self.toastType == 4)
+    {
+        [self.view makeToast:@"工作经历保存成功"];
+    }
+    else if (self.toastType == 5)
+    {
+        [self.view makeToast:@"工作能力保存成功"];
+    }
+    self.toastType = 0;
 }
 
 - (void)getCvInfo
@@ -116,6 +139,18 @@
     else {
         [self.lbGender setText:@"女"];
     }
+    if (self.paData[0][@"PhotoProcessed"])
+    {
+        if (![self.paData[0][@"HasPhoto"] isEqualToString:@"2"]) {
+            NSString *path = [NSString stringWithFormat:@"%d",([[self.userDefaults objectForKey:@"UserID"] intValue] / 100000 + 1) * 100000];
+            for (int i=0; i<9-path.length; i++) {
+                path = [NSString stringWithFormat:@"0%@",path];
+            }
+            path = [NSString stringWithFormat:@"L%@",path];
+            path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,self.paData[0][@"PhotoProcessed"]];
+            [self.btnPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]] forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (void)getJobIntention:(NSArray *)arrayCvIntention
@@ -157,6 +192,20 @@
         //修改求职意向view的高度
         frameViewJobIntention.size.height += labelSize.height-15;
     }
+    else {
+        //期望职位类别多行，将下面的控件位置处理
+        CGRect frameExpectJobPlace = self.lbExpectJobPlace.frame;
+        frameExpectJobPlace.size.height = 15;
+        [self.lbExpectJobPlace setFrame:frameExpectJobPlace];
+        
+        CGRect frameExpectJobType = self.lbExpectJobType.frame;
+        frameExpectJobType.origin.y = 173;
+        [self.lbExpectJobType setFrame:frameExpectJobType];
+        
+        CGRect frameExpectJobTypeTitle = self.lbExpectJobTypeTitle.frame;
+        frameExpectJobTypeTitle.origin.y = 173;
+        [self.lbExpectJobTypeTitle setFrame:frameExpectJobTypeTitle];
+    }
     labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobTypeName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 300)];
     if (labelSize.height > 20) {
         CGRect frameExpectJobType = self.lbExpectJobType.frame;
@@ -164,6 +213,11 @@
         [self.lbExpectJobType setFrame:frameExpectJobType];
         //修改求职意向view的高度
         frameViewJobIntention.size.height += labelSize.height-15;
+    }
+    else {
+        CGRect frameExpectJobType = self.lbExpectJobType.frame;
+        frameExpectJobType.size.height = 15;
+        [self.lbExpectJobType setFrame:frameExpectJobType];
     }
     [self.viewJobIntention setFrame:frameViewJobIntention];
     [self.scrollCvModify setContentSize:CGSizeMake(320, self.viewJobIntention.frame.origin.y+self.viewJobIntention.frame.size.height+15)];
@@ -359,6 +413,12 @@
         frameDetails.size.height = labelSize.height;
         [lbDetails setFrame:frameDetails];
         destinationContentHeight += labelSize.height-15;
+    }
+    else {
+        //重设学历经历的高度
+        CGRect frameDetails = lbDetails.frame;
+        frameDetails.size.height = 15;
+        [lbDetails setFrame:frameDetails];
     }
     [lbDetails setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
     [self.viewEducation addSubview:lbDetailsTitle];
@@ -620,12 +680,18 @@
     CGSize labelSize = [CommonController CalculateFrame:experienceData[@"Description"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 5000)];
     if (labelSize.height > 20) {
         //重设工作描述的高度
+        CGRect frameDescription = lbDescription.frame;
         lbDescription.lineBreakMode = NSLineBreakByCharWrapping;
         lbDescription.numberOfLines = 0;
-        CGRect frameDescription = lbDescription.frame;
         frameDescription.size.height = labelSize.height;
         [lbDescription setFrame:frameDescription];
         destinationContentHeight += labelSize.height-15;
+    }
+    else {
+        //重设工作描述的高度
+        CGRect frameDescription = lbDescription.frame;
+        frameDescription.size.height = 15;
+        [lbDescription setFrame:frameDescription];
     }
     [lbDescription setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
     [self.viewExperience addSubview:lbDescriptionTitle];
@@ -741,7 +807,11 @@
     paModifyC.cvId = self.cvId;
     [self.navigationController pushViewController:paModifyC animated:true];
 }
+
 - (IBAction)switchToJobIntention:(UIButton *)sender {
+    IntentionModifyViewController *intentionModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"IntentionModifyView"];
+    intentionModifyC.cvId = self.cvId;
+    [self.navigationController pushViewController:intentionModifyC animated:true];
 }
 
 - (IBAction)switchToEducationModify:(UIButton *)sender {

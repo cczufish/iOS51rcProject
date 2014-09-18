@@ -1,6 +1,6 @@
 
 #import <UIKit/UIKit.h>
-#import "DatePicker.h"
+#import "DatePickerView.h"
 #import "LoadingAnimationView.h"
 #import "RmCpMain.h"
 #import "Delegate/SelectJobDelegate.h"
@@ -8,7 +8,6 @@
 @interface RmInviteCpViewController : UIViewController<SelectJobDelegate>
 {
     NSMutableArray *placeData;//场馆
-    DatePicker *pickDate;//时间选择
     
     NSString *regionID;
     NSString *beginDate;

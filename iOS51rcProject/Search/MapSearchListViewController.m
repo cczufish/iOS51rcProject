@@ -350,28 +350,28 @@
                                  @"10",@"id",
                                  @"提供住宿",@"value", nil] autorelease]];
     
-    self.dictionaryPicker = [[DictionaryPickerView alloc] initWithDictionary:self defaultArray:arrWelfare defalutValue:self.welfare defalutName:self.welfareName pickerMode:DictionaryPickerModeMulti];
+    self.dictionaryPicker = [[DictionaryPickerView alloc] initWithDictionary:self defaultArray:arrWelfare defaultValue:self.welfare defaultName:self.welfareName pickerMode:DictionaryPickerModeMulti];
     self.dictionaryPicker.tag = 2;
     [self.dictionaryPicker showInView:self.view];
 }
 
 - (void)jobtypeFilter
 {
-    self.searchPicker = [[[SearchPickerView alloc] initWithSearchJobTypeFilter:self selectValue:@"" selectName:@"" defalutValue:self.jobType] autorelease];
+    self.searchPicker = [[[SearchPickerView alloc] initWithSearchJobTypeFilter:self selectValue:@"" selectName:@"" defaultValue:self.jobType] autorelease];
     self.searchPicker.tag = 1;
     [self.searchPicker showInView:self.view];
 }
 
 - (void)salaryFilter
 {
-    self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defalutValue:self.salary defaultName:@""] autorelease];
+    self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defaultValue:self.salary defaultName:@""] autorelease];
     self.dictionaryPicker.tag = 1;
     [self.dictionaryPicker showInView:self.view];
 }
 
 - (void)otherFilter
 {
-    self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defalutValue:self.selectOther defaultName:self.selectOtherName otherType:SearchPickerOtherNoWelfare] autorelease];
+    self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defaultValue:self.selectOther defaultName:self.selectOtherName otherType:SearchPickerOtherNoWelfare] autorelease];
     self.searchPicker.tag = 2;
     [self.searchPicker showInView:self.view];
 }

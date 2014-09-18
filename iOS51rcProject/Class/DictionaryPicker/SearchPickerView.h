@@ -46,15 +46,15 @@ typedef enum {
 - (id)initWithSearchRegionFilter:(id <SearchPickerDelegate>)delegate
                      selectValue:(NSString *)selectValue
                       selectName:(NSString *)selectName
-                    defalutValue:(NSString *)defaultValue;
+                    defaultValue:(NSString *)defaultValue;
 
 - (id)initWithSearchJobTypeFilter:(id <SearchPickerDelegate>)delegate
                      selectValue:(NSString *)selectValue
                       selectName:(NSString *)selectName
-                    defalutValue:(NSString *)defaultValue;
+                    defaultValue:(NSString *)defaultValue;
 
 - (id)initWithSearchOtherFilter:(id <SearchPickerDelegate>)delegate
-                   defalutValue:(NSString *)defaultValue
+                   defaultValue:(NSString *)defaultValue
                     defaultName:(NSString *)defaultName
                       otherType:(SearchPickerOther)otherType;
 

@@ -365,7 +365,7 @@
             return;
         }
     }
-    self.searchPicker = [[[SearchPickerView alloc] initWithSearchRegionFilter:self selectValue:self.searchRegion selectName:self.searchRegionName defalutValue:self.workPlace] autorelease];
+    self.searchPicker = [[[SearchPickerView alloc] initWithSearchRegionFilter:self selectValue:self.searchRegion selectName:self.searchRegionName defaultValue:self.workPlace] autorelease];
     self.searchPicker.tag = 1;
     [self.searchPicker showInView:self.view];
 }
@@ -378,21 +378,21 @@
             return;
         }
     }
-    self.searchPicker = [[[SearchPickerView alloc] initWithSearchJobTypeFilter:self selectValue:self.searchJobType selectName:self.searchJobTypeName defalutValue:self.jobType] autorelease];
+    self.searchPicker = [[[SearchPickerView alloc] initWithSearchJobTypeFilter:self selectValue:self.searchJobType selectName:self.searchJobTypeName defaultValue:self.jobType] autorelease];
     self.searchPicker.tag = 2;
     [self.searchPicker showInView:self.view];
 }
 
 - (void)salaryFilter
 {
-    self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defalutValue:self.salary defaultName:@""] autorelease];
+    self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defaultValue:self.salary defaultName:@""] autorelease];
     self.dictionaryPicker.tag = 1;
     [self.dictionaryPicker showInView:self.view];
 }
 
 - (void)otherFilter
 {
-    self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defalutValue:self.selectOther defaultName:self.selectOtherName otherType:SearchPickerOtherAll] autorelease];
+    self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defaultValue:self.selectOther defaultName:self.selectOtherName otherType:SearchPickerOtherAll] autorelease];
     self.searchPicker.tag = 3;
     [self.searchPicker showInView:self.view];
 }

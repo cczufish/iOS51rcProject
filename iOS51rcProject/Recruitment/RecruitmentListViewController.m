@@ -80,9 +80,6 @@
     self.btnPlaceSel.layer.borderWidth = 1.0;
     self.btnPlaceSel.layer.borderColor = [[UIColor grayColor] CGColor];
     
-    //时间选择控件
-    self.pickDate = [[DatePicker alloc] init];
-    self.pickDate.delegate = self;
     [self.btnDateSet addTarget:self action:@selector(showDateSelect) forControlEvents:UIControlEventTouchUpInside];
     [self.btnProvinceSel addTarget:self action:@selector(showRegionSelect) forControlEvents:UIControlEventTouchUpInside];
     [self.btnPlaceSel addTarget:self action:@selector(showPlaceSelect) forControlEvents:UIControlEventTouchUpInside];
@@ -385,7 +382,6 @@
 - (void)dealloc {
     [_recruitmentData release];
     [_placeData release];
-    [_pickDate release];
     [loadView release];
     [_tvRecruitmentList release];
     [_btnDateSet release];
@@ -404,26 +400,26 @@
 }
 
 -(void)showDateSelect{
-    [self.pickDate showDatePicker:self dateTitle:@"请选择举办日期"];
+    DatePickerView *pickDate = [[DatePickerView alloc] initWithCustom:DatePickerTypeDay dateButton:DatePickerWithReset maxYear:2016 minYear:2000 selectYear:0 delegate:self];
+    [pickDate showDatePicker:self.view];
 }
 
--(void)saveDate:(NSDate *)selectDate{
-    NSString *strSelDate = [CommonController stringFromDate:selectDate formatType:@"MM-dd"];
-    self.lbDateSet.text = strSelDate;
-    self.begindate = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
+- (void)getSelectDate:(NSString *)date
+{
+    self.lbDateSet.text = [date substringFromIndex:5];
+    self.begindate = date;
     self.page = 1;
     [self onSearch];
-    [self.pickDate removeDatePicker];
     //开始等待动画
     [loadView startAnimating];
 }
 
--(void)resetDate{
+- (void)cancelPickDate
+{
     self.lbDateSet.text = @"日期";
     self.begindate = @"";
     self.page = 1;
     [self onSearch];
-    [self.pickDate removeDatePicker];
     //开始等待动画
     [loadView startAnimating];
 }
@@ -442,7 +438,7 @@
         return;
     }
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.placeData defalutValue:self.placeid defalutName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.placeData defaultValue:self.placeid defaultName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }

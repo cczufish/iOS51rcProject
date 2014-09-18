@@ -29,4 +29,6 @@
 + (NSString *) FilterHtml :(NSString*) content;
 +(BOOL) isLogin;
 +(BOOL) logout;
++(BOOL) is35inchScreen;
++(BOOL) isChinese:(NSString *)content;
 @end

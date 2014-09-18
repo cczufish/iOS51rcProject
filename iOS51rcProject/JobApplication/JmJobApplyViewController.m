@@ -386,7 +386,7 @@
     [self cancelDicPicker];
     imgCornor.image = [UIImage imageNamed:@"ico_triangle_orange.png"];
     
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defalutValue:@"0" defalutName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defaultValue:@"0" defaultName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.frame = CGRectMake(self.DictionaryPicker.frame.origin.x, self.DictionaryPicker.frame.origin.y-50, self.DictionaryPicker.frame.size.width, self.DictionaryPicker.frame.size.height);
     [self.DictionaryPicker setTag:1];
     UIViewController *pCtrl = [self getFatherController];

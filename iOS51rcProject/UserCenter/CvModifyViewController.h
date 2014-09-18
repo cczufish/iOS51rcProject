@@ -46,6 +46,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnConfirmCancel;
 @property (retain, nonatomic) IBOutlet UIButton *btnSetHasExp;
 @property (retain, nonatomic) IBOutlet UIButton *btnSetNoExp;
-
+@property int toastType;
 
 @end
