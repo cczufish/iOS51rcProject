@@ -66,6 +66,9 @@
 		9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */; };
 		9925BF0E19B83835002DBFE0 /* ico_mapsearch_jobnext.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */; };
 		9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */; };
+		9926A61F19CBBB1300331038 /* ChatOnlineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9926A61E19CBBB1300331038 /* ChatOnlineViewController.m */; };
+		9926A62219CBBB2700331038 /* ChatOnlineLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9926A62119CBBB2700331038 /* ChatOnlineLogViewController.m */; };
+		9926A62419CBC33E00331038 /* ico_onlinechat_cphead_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9926A62319CBC33E00331038 /* ico_onlinechat_cphead_online.png */; };
 		9927AC5F19C7E37F0037E3F9 /* SalaryAnalysis.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9927AC5E19C7E37F0037E3F9 /* SalaryAnalysis.storyboard */; };
 		9927AC6219C7E3AC0037E3F9 /* SalaryAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927AC6119C7E3AC0037E3F9 /* SalaryAnalysisViewController.m */; };
 		9927ACC619C82F450037E3F9 /* EColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9927ACAF19C82F450037E3F9 /* EColor.m */; };
@@ -512,6 +515,11 @@
 		9925BF0A19B83835002DBFE0 /* ico_mapsearch_jobclose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobclose.png; sourceTree = "<group>"; };
 		9925BF0B19B83835002DBFE0 /* ico_mapsearch_jobnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobnext.png; sourceTree = "<group>"; };
 		9925BF0C19B83835002DBFE0 /* ico_mapsearch_jobpre.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_jobpre.png; sourceTree = "<group>"; };
+		9926A61D19CBBB1300331038 /* ChatOnlineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatOnlineViewController.h; path = UserCenter/ChatOnlineViewController.h; sourceTree = "<group>"; };
+		9926A61E19CBBB1300331038 /* ChatOnlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatOnlineViewController.m; path = UserCenter/ChatOnlineViewController.m; sourceTree = "<group>"; };
+		9926A62019CBBB2700331038 /* ChatOnlineLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatOnlineLogViewController.h; path = UserCenter/ChatOnlineLogViewController.h; sourceTree = "<group>"; };
+		9926A62119CBBB2700331038 /* ChatOnlineLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatOnlineLogViewController.m; path = UserCenter/ChatOnlineLogViewController.m; sourceTree = "<group>"; };
+		9926A62319CBC33E00331038 /* ico_onlinechat_cphead_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_onlinechat_cphead_online.png; sourceTree = "<group>"; };
 		9927AC5E19C7E37F0037E3F9 /* SalaryAnalysis.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SalaryAnalysis.storyboard; sourceTree = "<group>"; };
 		9927AC6019C7E3AC0037E3F9 /* SalaryAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryAnalysisViewController.h; sourceTree = "<group>"; };
 		9927AC6119C7E3AC0037E3F9 /* SalaryAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalaryAnalysisViewController.m; sourceTree = "<group>"; };
@@ -1815,6 +1823,7 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9926A62319CBC33E00331038 /* ico_onlinechat_cphead_online.png */,
 				99C539B719C962A600E6165A /* ico_salary_rank1.png */,
 				99C539B819C962A600E6165A /* ico_salary_rank2.png */,
 				99C539B919C962A600E6165A /* ico_salary_rank3.png */,
@@ -2017,6 +2026,10 @@
 				990325E119C982A500729791 /* PaModifyViewController.m */,
 				999F367119CABF2C007856F6 /* IntentionModifyViewController.h */,
 				999F367219CABF2C007856F6 /* IntentionModifyViewController.m */,
+				9926A61D19CBBB1300331038 /* ChatOnlineViewController.h */,
+				9926A61E19CBBB1300331038 /* ChatOnlineViewController.m */,
+				9926A62019CBBB2700331038 /* ChatOnlineLogViewController.h */,
+				9926A62119CBBB2700331038 /* ChatOnlineLogViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -2282,6 +2295,7 @@
 				99B4693219B2B71A0034505D /* ico_searchlog_log.png in Resources */,
 				99CFD88F199B60D8009A5ABA /* loginWeiBo.png in Resources */,
 				9942F44A19B987D900191C74 /* WeiboSDK.bundle in Resources */,
+				9926A62419CBC33E00331038 /* ico_onlinechat_cphead_online.png in Resources */,
 				99A0673919CA771100F095DF /* DatePickerView.xib in Resources */,
 				9942F44419B987D900191C74 /* Resource.bundle in Resources */,
 				9925BEFC19B80E02002DBFE0 /* menu-button@2x.png in Resources */,
@@ -2347,6 +2361,7 @@
 				9905134419C2F3D500B9C096 /* CpJobsViewController.m in Sources */,
 				99B9822719B4C3DA00D5D77D /* GRItemDetailsViewController.m in Sources */,
 				999BDD4B19C2E60B000A152A /* GDataXMLNode.m in Sources */,
+				9926A61F19CBBB1300331038 /* ChatOnlineViewController.m in Sources */,
 				99938FE319BD9821008F986A /* RMSearchJobListViewController.m in Sources */,
 				999BDD1D19C2E4FC000A152A /* MapSearchListViewController.m in Sources */,
 				998025C119A23024001A7E84 /* MJRefreshFooterView.m in Sources */,
@@ -2399,6 +2414,7 @@
 				9905134F19C2F45B00B9C096 /* CreateResumeAlertViewController.m in Sources */,
 				999BDD4919C2E60B000A152A /* ASINetworkQueue.m in Sources */,
 				999BDD4219C2E60B000A152A /* ASIAuthenticationDialog.m in Sources */,
+				9926A62219CBBB2700331038 /* ChatOnlineLogViewController.m in Sources */,
 				9905132019C2EF2E00B9C096 /* FindPsdStep1ViewController.m in Sources */,
 				999BDD4719C2E60B000A152A /* ASIHTTPRequest.m in Sources */,
 				99B4ED8C19AB0458004C9068 /* JobDetailsController.m in Sources */,
