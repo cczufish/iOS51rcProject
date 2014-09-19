@@ -2,6 +2,7 @@
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
+#import "SuperCpViewController.h"
 
 @interface ChatOnlineLogViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate, NSXMLParserDelegate, UITextFieldDelegate>
 {
@@ -33,39 +34,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //代理
+    //代理(隐藏键盘)
     self.textSend.delegate = self;
     //顶部view边框
-    self.viewTop.frame = CGRectMake(0, 40, 320, 40);
+    self.viewTop.frame = CGRectMake(0, 60, 320, 40);
     self.viewTop.layer.backgroundColor = [UIColor colorWithRed:244.f/255.f green:244.f/255.f blue:244.f/255.f alpha:1].CGColor;
     self.viewTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.viewTop.layer.borderWidth = 0.5;
+    //中间table的大小
+    self.tvChatOnlineLogList.frame = CGRectMake(self.viewTop.frame.origin.x, self.viewTop.frame.origin.y+self.viewTop.frame.size.height, 320, self.view.frame.size.height - self.viewTop.frame.size.height - self.viewBottom.frame.size.height - 60);
     
-    //标题
-    UIImageView *imgOnline = [[[UIImageView alloc] initWithFrame:CGRectMake(30, 7, 8, 12)] autorelease];
+    //公司名称和企业用户名称
+    NSString *strTitle = [NSString stringWithFormat:@"%@  %@", self.cpName, self.caName];
+    CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(240, 500)];
+    int x = (320-labelSize.width)/2;
+    UIButton *btnGoToCpPage = [[[UIButton alloc] initWithFrame:CGRectMake(x, 15, labelSize.width, 20)] autorelease];
+    [btnGoToCpPage addTarget:self action:@selector(gotoCpPage) forControlEvents:UIControlEventTouchUpInside];
+    UILabel *lbCpName = [[[UILabel alloc]initWithFrame:CGRectMake(0, 0, labelSize.width, 15)] autorelease];
+    lbCpName.font = [UIFont systemFontOfSize:12];
+    lbCpName.text = strTitle;
+    [btnGoToCpPage addSubview:lbCpName];
+    [self.viewTop addSubview:btnGoToCpPage];
+    
+    //小图标
+    UIImageView *imgOnline = [[[UIImageView alloc] initWithFrame:CGRectMake(btnGoToCpPage.frame.origin.x - 10, 15, 10, 12)] autorelease];
     if ([self.isOnline isEqualToString:@"1"]) {
         imgOnline.image = [UIImage imageNamed:@"ico_onlinechat_online.png"];
     }else{
         imgOnline.image = [UIImage imageNamed:@"ico_onlinechat_offline.png"];
     }
     [self.viewTop addSubview:imgOnline];
-    
-    //公司名称
-    UILabel *lbCpName = [[[UILabel alloc]initWithFrame:CGRectMake(40, 7, 180, 15)] autorelease];
-    lbCpName.font = [UIFont systemFontOfSize:12];
-    lbCpName.text = self.cpName;
-    [self.viewTop addSubview:lbCpName];
-    
-    //企业用户名称
-    UILabel *lbCaName = [[[UILabel alloc] initWithFrame:CGRectMake(260, 7, 60, 15)]autorelease];
-    lbCaName.font = [UIFont systemFontOfSize:12];
-    lbCaName.text = self.caName;
-    [self.viewTop addSubview:lbCaName];
-    
+
     //底部背景色
     self.viewBottom.layer.backgroundColor = [UIColor colorWithRed:244.f/255.f green:244.f/255.f blue:244.f/255.f alpha:1].CGColor;
     self.textSend.layer.cornerRadius = 5;
     self.btnSend.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
+    
+    //底部位置
+    self.viewBottom.frame = CGRectMake(0, self.tvChatOnlineLogList.frame.origin.y + self.tvChatOnlineLogList.frame.size.height, 320, self.viewBottom.frame.size.height);
     
     //不显示列表分隔线
     self.tvChatOnlineLogList.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -75,6 +81,16 @@
     //实例化timer，每隔7s刷新一下数据库
     connectionTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(getChatOnlineLog) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop]addTimer:connectionTimer forMode:NSDefaultRunLoopMode];
+}
+
+//转到企业页面
+-(void) gotoCpPage{
+    UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperCpViewController *cpMainCtrl = (SuperCpViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"SuperCpView"];
+    cpMainCtrl.cpMainID = self.cpMainID;
+    [self.navigationController pushViewController:cpMainCtrl animated:true];
+    cpMainCtrl.navigationItem.title = self.cpName;
+    self.navigationItem.title = @"";
 }
 
 //获取聊天记录
