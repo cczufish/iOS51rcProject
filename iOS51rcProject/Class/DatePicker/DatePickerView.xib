@@ -52,6 +52,16 @@
                                 <action selector="datePickerReset:" destination="iN0-l3-epB" eventType="touchUpInside" id="OJr-d5-OVv"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ndf-cr-n9A">
+                            <rect key="frame" x="20" y="5" width="46" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="至今">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="datePickerNow:" destination="iN0-l3-epB" eventType="touchUpInside" id="ATz-Pt-gh8"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
                 </view>
@@ -61,6 +71,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="btnDateCancel" destination="e9P-Cl-LbT" id="ItI-jY-ahs"/>
+                <outlet property="btnDateNow" destination="Ndf-cr-n9A" id="V6Q-VZ-z7u"/>
                 <outlet property="btnDateReset" destination="vs4-iV-Zyy" id="BoY-YP-ti5"/>
                 <outlet property="pickerView" destination="22M-sk-wOv" id="obF-rU-wcz"/>
             </connections>

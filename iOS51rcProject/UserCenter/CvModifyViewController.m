@@ -17,6 +17,9 @@
 #import "CommonController.h"
 #import "PaModifyViewController.h"
 #import "IntentionModifyViewController.h"
+#import "EducationModifyViewController.h"
+#import "ExperienceModifyViewController.h"
+#import "SpecialitityModifyViewController.h"
 
 @interface CvModifyViewController ()<NetWebServiceRequestDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate>
 {
@@ -68,13 +71,18 @@
     self.btnPhotoCancel.layer.cornerRadius = 5;
     self.btnConfirmOK.layer.cornerRadius = 5;
     self.btnConfirmCancel.layer.cornerRadius = 5;
+    
+    //获取数据
+    [self getCvInfo];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //获取数据
-    [self getCvInfo];
+    if (self.toastType > 0) {
+        //获取数据
+        [self getCvInfo];
+    }
     //返回该view后显示相关的toast
     if (self.toastType == 1) {
         [self.view makeToast:@"基本信息保存成功"];
@@ -503,7 +511,7 @@
     UILabel *lbCompanyTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
     [lbCompanyTitle setFont:[UIFont systemFontOfSize:14]];
     [lbCompanyTitle setTextAlignment:NSTextAlignmentRight];
-    [lbCompanyTitle setText:@"毕业学校"];
+    [lbCompanyTitle setText:@"公司名称"];
     [lbCompanyTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
     
     UILabel *lbCompany = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
@@ -713,10 +721,11 @@
     //计算工作能力文本的高度
     CGSize labelSize = [CommonController CalculateFrame:self.cvData[0][@"Speciality"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(270, 300)];
     CGRect frameSpeciality = self.lbSpeciality.frame;
-    frameSpeciality.origin.y += labelSize.height-15;
+    frameSpeciality.size.height = labelSize.height;
     [self.lbSpeciality setFrame:frameSpeciality];
     //修改工作能力view的高度和Y
     CGRect frameViewSpeciality = self.viewSpeciality.frame;
+    frameViewSpeciality.size.height = 100;
     frameViewSpeciality.size.height += labelSize.height-15;
     CGSize sizeScroll = self.scrollCvModify.contentSize;
     frameViewSpeciality.origin.y = sizeScroll.height;
@@ -805,24 +814,39 @@
 - (IBAction)switchToPaModify:(id)sender {
     PaModifyViewController *paModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"PaModifyView"];
     paModifyC.cvId = self.cvId;
+    [paModifyC.navigationItem setTitle:@"基本信息"];
     [self.navigationController pushViewController:paModifyC animated:true];
 }
 
 - (IBAction)switchToJobIntention:(UIButton *)sender {
     IntentionModifyViewController *intentionModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"IntentionModifyView"];
     intentionModifyC.cvId = self.cvId;
+    [intentionModifyC.navigationItem setTitle:@"求职意向"];
     [self.navigationController pushViewController:intentionModifyC animated:true];
 }
 
 - (IBAction)switchToEducationModify:(UIButton *)sender {
-    NSLog(@"%d",sender.tag);
+    EducationModifyViewController *educationModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"EducationModifyView"];
+    educationModifyC.cvId = self.cvId;
+    [educationModifyC.navigationItem setTitle:@"教育背景"];
+    educationModifyC.cvEducationId = [NSString stringWithFormat:@"%d",sender.tag];
+    [self.navigationController pushViewController:educationModifyC animated:true];
 }
 
 - (IBAction)switchToExperienceModify:(UIButton *)sender {
-    NSLog(@"%d",sender.tag);
+    ExperienceModifyViewController *experienceModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"ExperienceModifyView"];
+    experienceModifyC.cvId = self.cvId;
+    [experienceModifyC.navigationItem setTitle:@"工作经历"];
+    experienceModifyC.cvExperienceId = [NSString stringWithFormat:@"%d",sender.tag];
+    [self.navigationController pushViewController:experienceModifyC animated:true];
 }
 
 - (IBAction)switchToSpeciality:(UIButton *)sender {
+    SpecialitityModifyViewController *specialitityModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"SpecialitityModifyView"];
+    specialitityModifyC.cvId = self.cvId;
+    [specialitityModifyC.navigationItem setTitle:@"工作能力"];
+    specialitityModifyC.specialitity = self.cvData[0][@"Speciality"];
+    [self.navigationController pushViewController:specialitityModifyC animated:true];
 }
 
 - (IBAction)changeHasExp:(UIButton *)sender {

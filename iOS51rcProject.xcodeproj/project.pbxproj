@@ -37,6 +37,10 @@
 		991125A319A4D24F00C98173 /* ico_expire.png in Resources */ = {isa = PBXBuildFile; fileRef = 991125A219A4D24F00C98173 /* ico_expire.png */; };
 		991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */ = {isa = PBXBuildFile; fileRef = 991125AD19A4EE9800C98173 /* ico_rm_pa.png */; };
 		991125B019A4EE9800C98173 /* ico_rm_cp.png in Resources */ = {isa = PBXBuildFile; fileRef = 991125AE19A4EE9800C98173 /* ico_rm_cp.png */; };
+		991BC85F19CBB8B70014FB80 /* EducationModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991BC85E19CBB8B70014FB80 /* EducationModifyViewController.m */; };
+		991BC86319CBDE940014FB80 /* touchScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 991BC86219CBDE940014FB80 /* touchScrollView.m */; };
+		991BC86619CBFA0E0014FB80 /* ExperienceModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991BC86519CBFA0E0014FB80 /* ExperienceModifyViewController.m */; };
+		991BC86919CC1DCD0014FB80 /* SpecialitityModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991BC86819CC1DCD0014FB80 /* SpecialitityModifyViewController.m */; };
 		9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */ = {isa = PBXBuildFile; fileRef = 9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */; };
 		9922970B19B95FF7008E8646 /* ico_onlinechat_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9922970919B95FF7008E8646 /* ico_onlinechat_online.png */; };
 		9925BE8A19B807F4002DBFE0 /* ico_map_centerpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */; };
@@ -417,6 +421,14 @@
 		991125A219A4D24F00C98173 /* ico_expire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_expire.png; sourceTree = "<group>"; };
 		991125AD19A4EE9800C98173 /* ico_rm_pa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_pa.png; sourceTree = "<group>"; };
 		991125AE19A4EE9800C98173 /* ico_rm_cp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_cp.png; sourceTree = "<group>"; };
+		991BC85D19CBB8B70014FB80 /* EducationModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EducationModifyViewController.h; path = UserCenter/EducationModifyViewController.h; sourceTree = "<group>"; };
+		991BC85E19CBB8B70014FB80 /* EducationModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EducationModifyViewController.m; path = UserCenter/EducationModifyViewController.m; sourceTree = "<group>"; };
+		991BC86119CBDE940014FB80 /* touchScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = touchScrollView.h; path = touchScroll/touchScrollView.h; sourceTree = "<group>"; };
+		991BC86219CBDE940014FB80 /* touchScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = touchScrollView.m; path = touchScroll/touchScrollView.m; sourceTree = "<group>"; };
+		991BC86419CBFA0E0014FB80 /* ExperienceModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExperienceModifyViewController.h; path = UserCenter/ExperienceModifyViewController.h; sourceTree = "<group>"; };
+		991BC86519CBFA0E0014FB80 /* ExperienceModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExperienceModifyViewController.m; path = UserCenter/ExperienceModifyViewController.m; sourceTree = "<group>"; };
+		991BC86719CC1DCD0014FB80 /* SpecialitityModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpecialitityModifyViewController.h; path = UserCenter/SpecialitityModifyViewController.h; sourceTree = "<group>"; };
+		991BC86819CC1DCD0014FB80 /* SpecialitityModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpecialitityModifyViewController.m; path = UserCenter/SpecialitityModifyViewController.m; sourceTree = "<group>"; };
 		9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_onlinechat_offline.png; sourceTree = "<group>"; };
 		9922970919B95FF7008E8646 /* ico_onlinechat_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_onlinechat_online.png; sourceTree = "<group>"; };
 		9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_centerpoint.png; sourceTree = "<group>"; };
@@ -997,6 +1009,15 @@
 				991125A019A49DCE00C98173 /* Toast+UIView.m */,
 			);
 			path = Toast;
+			sourceTree = "<group>";
+		};
+		991BC86019CBDE4A0014FB80 /* touchScroll */ = {
+			isa = PBXGroup;
+			children = (
+				991BC86119CBDE940014FB80 /* touchScrollView.h */,
+				991BC86219CBDE940014FB80 /* touchScrollView.m */,
+			);
+			name = touchScroll;
 			sourceTree = "<group>";
 		};
 		9925BE9119B80C93002DBFE0 /* BaiduMap */ = {
@@ -1966,6 +1987,7 @@
 		99CFD89A199B6196009A5ABA /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				991BC86019CBDE4A0014FB80 /* touchScroll */,
 				9927ACAD19C82F450037E3F9 /* EChart */,
 				999BDD2119C2E60B000A152A /* NetworkConnect */,
 				99FC0B5719C2E26100B7EC74 /* MDRadialProgress */,
@@ -2017,6 +2039,12 @@
 				990325E119C982A500729791 /* PaModifyViewController.m */,
 				999F367119CABF2C007856F6 /* IntentionModifyViewController.h */,
 				999F367219CABF2C007856F6 /* IntentionModifyViewController.m */,
+				991BC85D19CBB8B70014FB80 /* EducationModifyViewController.h */,
+				991BC85E19CBB8B70014FB80 /* EducationModifyViewController.m */,
+				991BC86419CBFA0E0014FB80 /* ExperienceModifyViewController.h */,
+				991BC86519CBFA0E0014FB80 /* ExperienceModifyViewController.m */,
+				991BC86719CC1DCD0014FB80 /* SpecialitityModifyViewController.h */,
+				991BC86819CC1DCD0014FB80 /* SpecialitityModifyViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -2310,13 +2338,16 @@
 				998025C219A23024001A7E84 /* MJRefreshHeaderView.m in Sources */,
 				99BDC5E919A5F10D00B2BDB1 /* MLTableAlert.m in Sources */,
 				99FC0B5F19C2E26100B7EC74 /* MDRadialProgressTheme.m in Sources */,
+				991BC86619CBFA0E0014FB80 /* ExperienceModifyViewController.m in Sources */,
 				99B9672019B4550500E93CBD /* RmSearchJobForInviteViewController.m in Sources */,
 				99A16D1D19C6B6790053C6E9 /* JmFavouriteViewController.m in Sources */,
 				995575C319AC64EA00B73E4A /* RmAttendCpListViewController.m in Sources */,
 				998025BF19A23024001A7E84 /* MJRefreshBaseView.m in Sources */,
 				999BDD1F19C2E4FC000A152A /* SearchListViewController.m in Sources */,
+				991BC86319CBDE940014FB80 /* touchScrollView.m in Sources */,
 				99FC0B6F19C2E36900B7EC74 /* MobileModifyViewController.m in Sources */,
 				99FA8B7519A6DBD500F8B1B9 /* MenuViewController.m in Sources */,
+				991BC86919CC1DCD0014FB80 /* SpecialitityModifyViewController.m in Sources */,
 				99908A5719A34DD300137FDE /* FMDatabaseAdditions.m in Sources */,
 				99B9671D19B443D000E93CBD /* RmCpMain.m in Sources */,
 				99B96B0D19B0286C0069C1FA /* RmInviteCpViewController.m in Sources */,
@@ -2367,6 +2398,7 @@
 				999BDD4619C2E60B000A152A /* ASIFormDataRequest.m in Sources */,
 				99908A5819A34DD300137FDE /* FMDatabasePool.m in Sources */,
 				991125A119A49DCE00C98173 /* Toast+UIView.m in Sources */,
+				991BC85F19CBB8B70014FB80 /* EducationModifyViewController.m in Sources */,
 				999F367319CABF2C007856F6 /* IntentionModifyViewController.m in Sources */,
 				9927ACC919C82F450037E3F9 /* EColumnChartLabel.m in Sources */,
 				99FC0B5E19C2E26100B7EC74 /* MDRadialProgressLabel.m in Sources */,

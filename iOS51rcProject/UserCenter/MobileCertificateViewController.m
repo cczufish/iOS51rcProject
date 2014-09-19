@@ -138,12 +138,6 @@
     [self.txtVerify resignFirstResponder];
 }
 
-- (IBAction)textFiledReturnEditing:(id)sender
-{
-    [self.txtMobile resignFirstResponder];
-    [self.txtVerify resignFirstResponder];
-}
-
 - (void)setTimer:(NSTimer *)timer
 {
     if (secondSend == 0) {

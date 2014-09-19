@@ -9,7 +9,8 @@
 
 typedef enum {
     DatePickerWithReset, //有重置按钮
-    DatePickerWithoutReset //无重置按钮
+    DatePickerWithoutReset, //无重置按钮
+    DatePickerWithNow //至今按钮
 } DatePickerButton;
 
 typedef enum {
@@ -34,6 +35,9 @@ typedef enum {
 @property (assign, nonatomic) id<DatePickerDelegate> delegate;
 @property (retain, nonatomic) IBOutlet UIButton *btnDateReset;
 @property (retain, nonatomic) IBOutlet UIButton *btnDateCancel;
+@property (retain, nonatomic) IBOutlet UIButton *btnDateNow;
+
+
 @property (retain, nonatomic) IBOutlet UIPickerView *pickerView;
 
 - (id)initWithCustom:(DatePickerType)dateType
@@ -43,4 +47,5 @@ typedef enum {
           selectYear:(int)selectYear
             delegate:(id<DatePickerDelegate>)delegate;
 - (void)showDatePicker:(UIView *)view;
+- (void)canclDatePicker;
 @end

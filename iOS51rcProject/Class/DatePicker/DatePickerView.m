@@ -31,7 +31,13 @@
         self.delegate = delegate;
         self.dateType = dateType;
         self.maxYear = maxYear;
+        if (maxYear == 0) {
+            self.maxYear = [[CommonController stringFromDate:[NSDate date] formatType:@"yyyy"] intValue]+5;
+        }
         self.minYear = minYear;
+        if (minYear == 0) {
+            self.minYear = [[CommonController stringFromDate:[NSDate date] formatType:@"yyyy"] intValue]-50;
+        }
         self.selectYear = selectYear;
         if (selectYear == 0) {
             self.selectYear = [[CommonController stringFromDate:[NSDate date] formatType:@"yyyy"] intValue];
@@ -39,11 +45,18 @@
         self.dayCount = 31;
         if (dateButton == DatePickerWithReset) {
             [self.btnDateCancel setHidden:true];
+            [self.btnDateNow setHidden:true];
             [self.btnDateReset setHidden:false];
         }
-        else {
+        else if (dateButton == DatePickerWithoutReset) {
             [self.btnDateReset setHidden:true];
+            [self.btnDateNow setHidden:true];
             [self.btnDateCancel setHidden:false];
+        }
+        else if (dateButton == DatePickerWithNow) {
+            [self.btnDateReset setHidden:true];
+            [self.btnDateCancel setHidden:true];
+            [self.btnDateNow setHidden:false];
         }
     }
     return self;
@@ -95,6 +108,13 @@
     [self canclDatePicker];
     if (self.delegate && [self.delegate respondsToSelector:@selector(cancelPickDate)]) {
         [self.delegate cancelPickDate];
+    }
+}
+
+- (IBAction)datePickerNow:(id)sender {
+    [self canclDatePicker];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(getSelectDate:)]) {
+        [self.delegate getSelectDate:@"9999年99月"];
     }
 }
 
@@ -162,6 +182,8 @@
     [_btnDateReset release];
     [_btnDateCancel release];
     [_pickerView release];
+    [_btnDateNow release];
+    [_btnDateNow release];
     [super dealloc];
 }
 @end

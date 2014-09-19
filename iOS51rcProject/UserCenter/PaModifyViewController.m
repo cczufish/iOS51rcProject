@@ -21,6 +21,8 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) NSUserDefaults *userDefaults;
 @property (nonatomic, retain) DictionaryPickerView *DictionaryPicker;
+@property (nonatomic, retain) DatePickerView *datePicker;
+
 @end
 
 @implementation PaModifyViewController
@@ -152,8 +154,9 @@
     return arrXml;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
+    [self cancelPicker];
     if (textField.tag == 1) {
         CGRect frameView = self.view.frame;
         frameView.origin.y = -100;
@@ -164,6 +167,7 @@
             [self.view setFrame:frameView];
         }];
     }
+    return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -171,19 +175,22 @@
     if (textField.tag == 1) {
         CGRect frameView = self.view.frame;
         frameView.origin.y = 0;
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.1 animations:^{
             [self.view setFrame:frameView];
         }];
     }
 }
 
-- (IBAction)textFiledReturnEditing:(id)sender {
-    [sender resignFirstResponder];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (IBAction)clickBirth:(id)sender {
-    DatePickerView *datePicker = [[DatePickerView alloc] initWithCustom:DatePickerTypeMonth dateButton:DatePickerWithoutReset maxYear:2000 minYear:1955 selectYear:1990 delegate:self];
-    [datePicker showDatePicker:self.view];
+    [self cancelPicker];
+    self.datePicker = [[DatePickerView alloc] initWithCustom:DatePickerTypeMonth dateButton:DatePickerWithoutReset maxYear:2000 minYear:1955 selectYear:1990 delegate:self];
+    [self.datePicker showDatePicker:self.view];
 }
 
 - (void)getSelectDate:(NSString *)date
@@ -195,18 +202,21 @@
 }
 
 - (IBAction)selectLivePlace:(id)sender {
+    [self cancelPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL3 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerNoIncludeParent delegate:self defaultValue:@"" defaultName:@""] autorelease];
     self.DictionaryPicker.tag = 1;
     [self.DictionaryPicker showInView:self.view];
 }
 
 - (IBAction)selectAccountPlace:(id)sender {
+    [self cancelPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerNoIncludeParent delegate:self defaultValue:@"" defaultName:@""] autorelease];
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }
 
 - (IBAction)selectGrowPlace:(id)sender {
+    [self cancelPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL3 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerNoIncludeParent delegate:self defaultValue:@"" defaultName:@""] autorelease];
     self.DictionaryPicker.tag = 3;
     [self.DictionaryPicker showInView:self.view];
@@ -228,15 +238,27 @@
         [self.btnGrowPlace setTitle:selectedName forState:UIControlStateNormal];
         [self.btnGrowPlace setTag:[selectedValue intValue]];
     }
-    [self cancelDicPicker];
+    [self cancelPicker];
 }
 
--(void)cancelDicPicker
+-(void)cancelPicker
 {
     [self.DictionaryPicker cancelPicker];
     self.DictionaryPicker.delegate = nil;
     self.DictionaryPicker = nil;
     [_DictionaryPicker release];
+    
+    [self.datePicker canclDatePicker];
+    self.datePicker.delegate = nil;
+    self.datePicker = nil;
+    [_datePicker release];
+    
+    [self.view endEditing:true];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self cancelPicker];
 }
 
 - (void)didReceiveMemoryWarning
@@ -257,10 +279,12 @@
 */
 
 - (void)dealloc {
+    [_cvId release];
     [loadView release];
     [_runningRequest release];
     [_DictionaryPicker release];
     [_userDefaults release];
+    [_datePicker release];
     [_scrollPa release];
     [_viewPa release];
     [_txtName release];

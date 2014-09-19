@@ -85,11 +85,6 @@
     [self.txtMobile resignFirstResponder];
 }
 
-- (IBAction)textFiledReturnEditing:(id)sender
-{
-    [self.txtMobile resignFirstResponder];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

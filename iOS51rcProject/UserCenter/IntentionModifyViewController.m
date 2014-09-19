@@ -40,7 +40,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.viewIntention.layer.borderColor = [[UIColor grayColor] CGColor];
     self.viewIntention.layer.borderWidth = 1;
     self.viewIntention.layer.cornerRadius = 5;
@@ -91,31 +90,35 @@
     [arrExperience addObject:[[[NSDictionary alloc] initWithObjectsAndKeys:
                               @"11",@"id",
                               @"10年以上",@"value", nil] autorelease]];
-    
+    [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:arrExperience defaultValue:@"" defaultName:@"" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.tag = 1;
     [self.DictionaryPicker showInView:self.view];
 }
 
 - (IBAction)selectEmployType:(id)sender {
+    [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"EmployType" defaultValue:@"" defaultName:@""] autorelease];
     self.DictionaryPicker.tag = 2;
     [self.DictionaryPicker showInView:self.view];
 }
 
 - (IBAction)selectSalary:(id)sender {
+    [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defaultValue:@"" defaultName:@""] autorelease];
     self.DictionaryPicker.tag = 3;
     [self.DictionaryPicker showInView:self.view];
 }
 
 - (IBAction)selectWorkPlace:(id)sender {
+    [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL3 pickerMode:DictionaryPickerModeMulti pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.workPlaceId defaultName:self.btnWorkPlace.titleLabel.text] autorelease];
     self.DictionaryPicker.tag = 4;
     [self.DictionaryPicker showInView:self.view];
 }
 
 - (IBAction)selectJobType:(id)sender {
+    [self cancelDicPicker];
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithJobType pickerMode:DictionaryPickerModeMulti pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.jobTypeId defaultName:self.btnJobType.titleLabel.text] autorelease];
     self.DictionaryPicker.tag = 5;
     [self.DictionaryPicker showInView:self.view];
@@ -280,6 +283,11 @@
     return arrXml;
 }
 
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self cancelDicPicker];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -298,6 +306,7 @@
 */
 
 - (void)dealloc {
+    [_cvId release];
     [loadView release];
     [_runningRequest release];
     [_DictionaryPicker release];

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "touchScrollView.h"
 
 @interface PaModifyViewController : UIViewController
 @property (retain, nonatomic) NSString *cvId;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollPa;
+@property (retain, nonatomic) IBOutlet touchScrollView *scrollPa;
 @property (retain, nonatomic) IBOutlet UIView *viewPa;
 @property (retain, nonatomic) IBOutlet UITextField *txtName;
 @property (retain, nonatomic) IBOutlet UISegmentedControl *segGender;

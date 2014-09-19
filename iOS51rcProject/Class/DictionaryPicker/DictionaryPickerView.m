@@ -631,6 +631,7 @@
 
 - (void)showInView:(UIView *) view
 {
+    [view endEditing:true];
     if (self.pickerMode == DictionaryPickerModeOne) {
         [self.viewMultiTop setHidden:true];
         [self.viewMultiBottom setHidden:true];
