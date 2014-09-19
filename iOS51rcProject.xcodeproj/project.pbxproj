@@ -2048,7 +2048,6 @@
 				990325E119C982A500729791 /* PaModifyViewController.m */,
 				999F367119CABF2C007856F6 /* IntentionModifyViewController.h */,
 				999F367219CABF2C007856F6 /* IntentionModifyViewController.m */,
-<<<<<<< HEAD
 				991BC85D19CBB8B70014FB80 /* EducationModifyViewController.h */,
 				991BC85E19CBB8B70014FB80 /* EducationModifyViewController.m */,
 				991BC86419CBFA0E0014FB80 /* ExperienceModifyViewController.h */,
@@ -2060,7 +2059,6 @@
 				9926A61E19CBBB1300331038 /* ChatOnlineViewController.m */,
 				9926A62019CBBB2700331038 /* ChatOnlineLogViewController.h */,
 				9926A62119CBBB2700331038 /* ChatOnlineLogViewController.m */,
->>>>>>> FETCH_HEAD
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
