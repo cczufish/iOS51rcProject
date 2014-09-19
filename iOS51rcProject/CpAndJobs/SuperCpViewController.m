@@ -33,6 +33,7 @@
     //加载子View
     self.cpInfoCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CpMainView"];
     self.cpInfoCtrl.cpMainID = self.cpMainID;
+    [self.cpInfoCtrl onSearch];
     self.jobsCtrl =  [self.storyboard instantiateViewControllerWithIdentifier:@"CpJobsView"];
     self.jobsCtrl.cpMainID = self.cpMainID;
    

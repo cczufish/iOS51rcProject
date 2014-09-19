@@ -50,6 +50,7 @@
     [button setTitle: @"企业信息" forState: UIControlStateNormal];
     [button sizeToFit];
     self.navigationItem.titleView = button;
+    //[self onSearch];
 }
 
 -(void) onSearch{
@@ -65,9 +66,7 @@
 
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"scrollViewDidScroll......");
 }
-
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
@@ -108,21 +107,18 @@
     self.lbAddressValue.text = dicCpMain[@"Address"];
     //坐标图标
     self.imageCoordinate.frame = CGRectMake(self.lbAddressValue.frame.origin.x + self.lbAddressValue.frame.size.width + 1, self.lbAddressValue.frame.origin.y, 15, 15);
-    
     //分割线
     CGFloat y = self.lbAddressValue.frame.origin.y + self.lbAddressValue.frame.size.height - 23;
     self.lbLine.frame = CGRectMake(8, y + 34, 304, 0.5);
-    
     //公司介绍------hight = 166
     self.lbBrief.textColor = [UIColor grayColor];
     self.lbBrief.frame = CGRectMake(20, self.lbLine.frame.origin.y + self.lbLine.frame.size.height, 200, 40);
-    NSString *strResponsibility = dicCpMain[@"Brief"];
+    NSString *strResponsibility = [CommonController FilterHtml: dicCpMain[@"Brief"]];
     labelSize = [CommonController CalculateFrame:strResponsibility fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
     self.lbBriefValue.frame = CGRectMake(20, self.lbBrief.frame.origin.y + self.lbBrief.frame.size.height - 5, labelSize.width, labelSize.height);
     self.lbBriefValue.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbBriefValue.numberOfLines = 0;
     self.lbBriefValue.text = strResponsibility;
-  
     //屏幕滚动
     self.cpMainScroll.frame = CGRectMake(0, 0, self.cpMainScroll.frame.size.width, self.cpMainScroll.frame.size.height-5);
     [self.cpMainScroll setContentSize:CGSizeMake(320, self.lbBriefValue.frame.size.height + 310)];
@@ -133,17 +129,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc {
     [_lbCpName release];

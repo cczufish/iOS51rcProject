@@ -277,17 +277,20 @@
     NSString *strSalary = dicJob[@"Salary"];
     UILabel *lbSalary = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLine1.frame.origin.y + lbLine1.frame.size.height, 280, 20) ]autorelease];
     lbSalary.text = strSalary;
+    lbSalary.textColor = [UIColor redColor];
     [self.subView addSubview:lbSalary];
     
     //公司名称
-    NSString *strPreCpName =@"公司名称";
-    UILabel *lbreCpName = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
-    lbreCpName.text = strSalary;
-    [self.subView addSubview:lbreCpName];
+    NSString *strPreCpName =@"公司名称：";
+    UILabel *lbPreCpName = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
+    lbPreCpName.text = strPreCpName;
+    lbPreCpName.textColor = [UIColor grayColor];
+    lbPreCpName.font = [UIFont systemFontOfSize:12];
+    [self.subView addSubview:lbPreCpName];
     
      UILabel *lbCpName = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
-    lbCpName.textColor = [UIColor grayColor];
     [lbCpName setText:dicJob[@"cpName"]];
+     lbCpName.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbCpName];
     
     //＝＝＝＝＝＝＝＝＝＝＝＝设置当前View标题＝＝＝＝＝＝＝＝＝＝＝
@@ -300,20 +303,22 @@
     [self.navigationItem setTitleView:viewTitle];
     
     //工作地点
-    NSString *strPreJobRegion =@"工作地点";
-    UILabel *lbJobRegion = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
+    NSString *strPreJobRegion =@"工作地点：";
+    UILabel *lbJobRegion = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 5, 280, 15) ]autorelease];
     lbJobRegion.text = strPreJobRegion;
+    lbJobRegion.textColor = [UIColor grayColor];
+    lbJobRegion.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbJobRegion];
     
     NSString *strJobRegion = dicJob[@"JobRegion"];
-     UILabel *lbWorkPlace = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbSalary.frame.origin.y + lbSalary.frame.size.height + 5, 280, 15) ]autorelease];
+     UILabel *lbWorkPlace = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 5, 280, 15) ]autorelease];
     labelSize = [CommonController CalculateFrame:strJobRegion fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
-    lbWorkPlace.textColor = [UIColor grayColor];
     [lbWorkPlace setText:strJobRegion];
+    lbWorkPlace.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbWorkPlace];
     
     //坐标
-    UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 76 + 5, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height - 15, 15, 15)];
+    UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 80 + 5, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height - 15, 15, 15)];
     //NSString *lng = rowData[@"lng"];
     //NSString *lat = rowData[@"lat"];
     UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
@@ -340,10 +345,14 @@
     UILabel *lbJobRequest = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 5, 280, 15) ]autorelease];
     [self.subView addSubview:lbJobRequest];
     lbJobRequest.textColor = [UIColor grayColor];
-    lbJobRequest.text = @"招聘条件";
+    lbJobRequest.text = @"招聘条件：";
+    lbJobRequest.font = [UIFont systemFontOfSize:12];
     
     UILabel *lbJobRequestValue = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 5, 280, 15) ]autorelease];
     lbJobRequestValue.text = [NSString stringWithFormat:@"%@|%@|%@-%@|%@|%@", num, education, minAge, maxAge, experience, employType];
+    lbJobRequestValue.font = [UIFont systemFontOfSize:12];
+    [self.subView addSubview:lbJobRequestValue];
+    
     //===========================福利小图标=============================
     NSMutableArray *fuliArray = [[NSMutableArray alloc] init];
     //获取所有的福利，并判断是否包含。如果包含则创建view

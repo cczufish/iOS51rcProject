@@ -18,7 +18,9 @@
 #import "CpInviteViewController.h"
 #import "LoginViewController.h"
 #import "CommonController.h"
+#import "ChatOnlineViewController.h"
 #import "MobileCertificateViewController.h"
+
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
@@ -312,23 +314,22 @@
         }
         case 3:
         {
-            if ([CommonController isLogin]) {
-                UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
-                CpInviteViewController *CpInviteViewCtrl = [userCenter instantiateViewControllerWithIdentifier:@"CpInviteView"];
-                CpInviteViewCtrl.navigationItem.title = @"企业邀约";
-                self.navigationItem.title = @" ";
-                [self.navigationController pushViewController:CpInviteViewCtrl animated:true];
-            }else{
-                UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-                LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
-                [self.navigationController pushViewController:loginCtrl animated:YES];
-                loginCtrl.navigationItem.title = @"企业邀约";
-            }
-
+            UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
+            CpInviteViewController *CpInviteViewCtrl = [userCenter instantiateViewControllerWithIdentifier:@"CpInviteView"];
+            CpInviteViewCtrl.navigationItem.title = @"企业邀约";
+            self.navigationItem.title = @" ";
+            [self.navigationController pushViewController:CpInviteViewCtrl animated:true];
+        
             break;
         }
         case 4:
         {
+            UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
+            ChatOnlineViewController *chatOnlieCtrl = [userCenter instantiateViewControllerWithIdentifier:@"ChatOnlineView"];
+            chatOnlieCtrl.navigationItem.title = @"在线沟通";
+            self.navigationItem.title = @" ";
+            [self.navigationController pushViewController:chatOnlieCtrl animated:true];
+
              break;
         }
         case 5:

@@ -1,11 +1,16 @@
 #import "CpJobsViewController.h"
 #import "CommonController.h"
-
+#import "Toast+UIView.h"
+#import "LoginViewController.h"
+#import "Popup+UIView.h"
+#import "CustomPopup.h"
 //公司职位列表页面
-@interface CpJobsViewController ()<NetWebServiceRequestDelegate>
+@interface CpJobsViewController ()<NetWebServiceRequestDelegate, CustomPopupDelegate>
 @property (retain, nonatomic) IBOutlet UITableView *tvCpJobList;
 @property (retain, nonatomic) IBOutlet UIButton *btnApply;
 @property (retain, nonatomic) IBOutlet UIView *ViewBottom;
+@property (retain, nonatomic) IBOutlet UIButton *btnFavourite;
+@property (nonatomic, retain) CustomPopup *cPopup;
 @end
 
 @implementation CpJobsViewController
@@ -30,9 +35,12 @@
     self.view.frame = CGRectMake(0, 0, 320, self.frameHeight);
     //设置下方View的位置
     self.ViewBottom.frame = CGRectMake(0, self.frameHeight-50, 320, 50);
-    
+    [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnFavourite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    //不显示列表分隔线
+    self.tvCpJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //[self onSearch];
 }
 
@@ -60,11 +68,27 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
-    [jobListData removeAllObjects];
-    jobListData = requestData;
-    
-    [self.tvCpJobList reloadData];
-    //[self.tvCpJobList footerEndRefreshing];
+    if (request.tag == 1) {
+        [jobListData removeAllObjects];
+        jobListData = requestData;
+        
+        [self.tvCpJobList reloadData];
+    }else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
+        if (requestData.count == 0) {
+            [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
+        }
+        else {
+            self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
+            [self.cPopup setDelegate:self];
+            [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
+        }
+    }else if (request.tag == 3) { //默认投递完之后，显示弹层
+        [self.cPopup showJobApplyCvSelect:result view:self.view];
+    }else if (request.tag == 4) { //重新申请职位成功
+        [self.view makeToast:@"重新申请简历成功"];
+    }else if (request.tag == 5) {
+        [self.view makeToast:@"收藏职位成功"];
+    }
     
     //结束等待动画
     [loadView stopAnimating];
@@ -81,7 +105,7 @@
     NSString *strJobName = rowData[@"Name"];
     UIFont *titleFont = [UIFont systemFontOfSize:12];
     CGSize labelSize = [CommonController CalculateFrame:strJobName fontDemond:titleFont sizeDemand:titleSize];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 200, labelSize.height)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 200, labelSize.height)];
     lbTitle.text = strJobName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
@@ -105,7 +129,7 @@
     NSString *strDegree = [CommonController getDictionaryDesc:rowData[@"dcEducationID"] tableName:@"dcEducation"];
     //[CommonController getDictionary:rowData[@"dcEducationID"]];
     NSString *strInfo = [NSString stringWithFormat:@"%@|%@", strAge, strDegree];
-    UILabel *lbInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 200, labelSize.height)];
+    UILabel *lbInfo = [[UILabel alloc] initWithFrame:CGRectMake(40, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 200, labelSize.height)];
     lbInfo.text = strInfo;
     lbInfo.font = [UIFont systemFontOfSize:12];
     lbInfo.textColor = [UIColor grayColor];
@@ -121,7 +145,20 @@
     lbSalary.textColor = [UIColor redColor];
     [cell.contentView addSubview:(lbSalary)];
     [lbSalary release];
-    
+    //复选框
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, 20, 20)];
+    [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+    [btnCheck setTitle:rowData[@"ID"] forState:UIControlStateNormal];
+    [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+    [btnCheck setTag:1];
+    [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:btnCheck];
+    [btnCheck release];
+    //分割线
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbSalary.frame.origin.y+lbSalary.frame.size.height + 5, 320, 0.5)];
+    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [cell.contentView addSubview:viewSeparate];
+
     return cell;
 }
 
@@ -140,10 +177,114 @@
 }
 
 
+- (void)rowChecked:(UIButton *)sender
+{
+    if (sender.tag == 1) {
+        if (![self.arrCheckJobID containsObject:sender.titleLabel.text]) {
+            [self.arrCheckJobID addObject:sender.titleLabel.text];
+        }
+        [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        [sender setTag:2];
+    }
+    else {
+        [self.arrCheckJobID removeObject:sender.titleLabel.text];
+        [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        [sender setTag:1];
+    }
+    NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
+}
+
+- (void)insertJobApply:(NSString *)cvMainID
+               isFirst:(BOOL)isFirst
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:[self.arrCheckJobID componentsJoinedByString:@","] forKey:@"JobID"];
+    [dicParam setObject:cvMainID forKey:@"cvMainID"];
+    [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertJobApply" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    if (isFirst) {
+        request.tag = 3;
+    }
+    else {
+        request.tag = 4;
+    }
+    self.runningRequest = request;
+    [dicParam release];
+}
+
+- (void)jobApply
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        //判断是否有选中的职位
+        if (self.arrCheckJobID.count == 0) {
+            [self.view makeToast:@"您还没有选择职位"];
+            return;
+        }
+        //连接数据库，读取有效简历
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+        [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCvListByApply" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 2;
+        self.runningRequest = request;
+        [dicParam release];
+        [loadView startAnimating];
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
+}
+
+- (void)jobFavorite
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        //判断是否有选中的职位
+        if (self.arrCheckJobID.count == 0) {
+            [self.view makeToast:@"您还没有选择职位"];
+            return;
+        }
+        //连接数据库，读取有效简历
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+        [dicParam setObject:[self.arrCheckJobID componentsJoinedByString:@","] forKey:@"jobID"];
+        [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertPaFavorate" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 5;
+        self.runningRequest = request;
+        [dicParam release];
+        [loadView startAnimating];
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
+}
+
+- (void) getPopupValue:(NSString *)value
+{
+    [self insertJobApply:value isFirst:NO];
+}
+
+
 - (void)dealloc {
+    [_cPopup release];
     [_tvCpJobList release];
     [_ViewBottom release];
     [_btnApply release];
+    [_btnFavourite release];
     [super dealloc];
 }
 @end
