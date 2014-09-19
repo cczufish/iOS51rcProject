@@ -6,6 +6,8 @@
 #import "CustomPopup.h"
 #import "Toast+UIView.h"
 #import "LoginViewController.h"
+#import "SuperJobMainViewController.h"
+#import <objc/runtime.h>
 
 @interface JobViewController ()<NetWebServiceRequestDelegate,UIScrollViewDelegate,CustomPopupDelegate>
 @property (retain, nonatomic) IBOutlet UIScrollView *jobMainScroll;
@@ -14,7 +16,6 @@
 @property (retain, nonatomic) IBOutlet UIView *contentView;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) LoadingAnimationView *loading;
-@property (retain, nonatomic) IBOutlet UITableView *tvRecommentJobList;
 @property (retain, nonatomic) IBOutlet UIView *subView;
 @property (nonatomic, retain) CustomPopup *cPopup;
 
@@ -186,15 +187,15 @@
 
 //第一个消息完成了以后再调用第二个消息(绑定其他职位)
 -(void) didReceiveRecommendJob:(NSMutableArray *) requestData{
-    //结束等待动画
-    [self.loading stopAnimating];
+    [recommentJobsData removeAllObjects];
+    recommentJobsData = requestData;
     //浏览过的其他职位子View
     UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, tmpHeight - 20, 280, requestData.count*27)] autorelease];
     for (int i=0; i<requestData.count; i++) {
         NSDictionary *rowData = requestData[i];
         UIButton *btnOhter = [[[UIButton alloc] initWithFrame:CGRectMake(0, 27*i, 280, 20)] autorelease];
         [btnOhter addTarget:self action:@selector(btnOhterJobClick:) forControlEvents:UIControlEventTouchUpInside];
-        btnOhter.tag = [rowData[@"ID"] integerValue];
+        btnOhter.tag = i;
         //职位名称
         UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, 20)]autorelease];
         lbTitle.textColor = [UIColor blackColor];
@@ -230,9 +231,15 @@
 
 //点击其他企业
 -(void) btnOhterJobClick:(UIButton *) sender{
-    JobViewController *jobCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@""];
-    jobCtrl.JobID = [NSString stringWithFormat:@"%d", sender.tag];
-    [self.navigationController pushViewController:jobCtrl animated:YES];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
+    NSDictionary *tmpJob = recommentJobsData[sender.tag];
+    jobC.JobID = tmpJob[@"ID"];
+    jobC.cpMainID = tmpJob[@"cpMainID"];
+    jobC.navigationItem.title = tmpJob[@"cpName"];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
+    pCtrl.navigationItem.title = @" ";
+    [pCtrl.navigationController pushViewController:jobC animated:YES];
 }
 
 //生成福利的小图片
@@ -318,7 +325,7 @@
     [self.subView addSubview:lbWorkPlace];
     
     //坐标
-    UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 80 + 5, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height - 15, 15, 15)];
+    UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 90, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height - 15, 15, 15)];
     //NSString *lng = rowData[@"lng"];
     //NSString *lat = rowData[@"lat"];
     UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
@@ -769,7 +776,6 @@
     [_cPopup release];
     [_jobMainScroll release];
     [_contentView release];
-    [_tvRecommentJobList release];
     [_subView release];
     [_lbChat release];
     [_imgChat release];

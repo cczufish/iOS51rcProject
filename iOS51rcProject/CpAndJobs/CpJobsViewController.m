@@ -4,6 +4,8 @@
 #import "LoginViewController.h"
 #import "Popup+UIView.h"
 #import "CustomPopup.h"
+#import "SuperJobMainViewController.h"
+
 //公司职位列表页面
 @interface CpJobsViewController ()<NetWebServiceRequestDelegate, CustomPopupDelegate>
 @property (retain, nonatomic) IBOutlet UITableView *tvCpJobList;
@@ -27,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.arrCheckJobID = [[NSMutableArray alloc] init];
     if (self.frameHeight == 0) {
         self.frameHeight = 496;
     }
@@ -76,8 +79,7 @@
     }else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
             [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
-        }
-        else {
+        }else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
             [self.cPopup setDelegate:self];
             [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
@@ -162,6 +164,17 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *rowData = jobListData[indexPath.row];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
+    jobC.JobID = rowData[@"ID"];
+    jobC.cpMainID = rowData[@"cpMainID"];
+    self.navigationItem.title = @" ";
+    jobC.navigationItem.title = rowData[@"cpName"];
+    [self.navigationController pushViewController:jobC animated:YES];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [jobListData count];

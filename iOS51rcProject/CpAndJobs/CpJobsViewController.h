@@ -6,10 +6,8 @@
 @interface CpJobsViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *jobListData;
-   
     NSInteger page;
     LoadingAnimationView *loadView;
-    //id<GoToEIItemDetailsViewDelegate> goToEIItemDetailsViewDelegate;
 }
 @property int frameHeight;
 @property (nonatomic,retain) NSString *cpMainID;//企业的ID
