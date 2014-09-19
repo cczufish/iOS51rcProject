@@ -87,7 +87,7 @@
 -(void) gotoCpPage{
     UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperCpViewController *cpMainCtrl = (SuperCpViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"SuperCpView"];
-    cpMainCtrl.cpMainID = self.cpMainID;
+    cpMainCtrl.cpMainID = self.cpMainID;    
     [self.navigationController pushViewController:cpMainCtrl animated:true];
     cpMainCtrl.navigationItem.title = self.cpName;
     self.navigationItem.title = @"";
@@ -305,7 +305,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	//label.text = [NSString stringWithFormat:@"Connection failed: %@", [error description]];
+	
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -354,8 +354,6 @@
 //开始编辑输入框的时候，软键盘出现，执行此事件
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    //CGRect frame = textField.frame;
-    //int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
     int offset = -216;
     NSTimeInterval animationDuration = 0.30f;
     [UIView beginAnimations:@"ResizeForKeyboard" context:nil];

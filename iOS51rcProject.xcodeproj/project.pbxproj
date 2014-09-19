@@ -1332,10 +1332,10 @@
 				9905133819C2F3D500B9C096 /* CpMainViewController.m */,
 				9905133519C2F3D500B9C096 /* CpJobsViewController.h */,
 				9905133619C2F3D500B9C096 /* CpJobsViewController.m */,
-				9905133919C2F3D500B9C096 /* CpOtherJobsMainViewController.h */,
-				9905133A19C2F3D500B9C096 /* CpOtherJobsMainViewController.m */,
 				9905133F19C2F3D500B9C096 /* SuperCpViewController.h */,
 				9905134019C2F3D500B9C096 /* SuperCpViewController.m */,
+				9905133919C2F3D500B9C096 /* CpOtherJobsMainViewController.h */,
+				9905133A19C2F3D500B9C096 /* CpOtherJobsMainViewController.m */,
 			);
 			name = CpAndJobs;
 			path = JobSearch;

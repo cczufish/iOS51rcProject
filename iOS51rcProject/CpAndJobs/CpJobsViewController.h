@@ -15,5 +15,6 @@
 @property (nonatomic,retain) NSString *cpMainID;//企业的ID
 @property (retain, nonatomic) NSString *newsType;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
+@property (retain,nonatomic) NSMutableArray* arrCheckJobID;
 - (void)onSearch;
 @end
