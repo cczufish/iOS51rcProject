@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ChatOnlineLogViewController : UIViewController
-@property (retain, nonatomic) NSString *chatonlineID;
+@property (retain, nonatomic) NSString *chatOnlineID;
 @property (retain, nonatomic) NSString *cvMainID;
 @property (retain, nonatomic) NSString *caMainID;
 @property (retain, nonatomic) NSString *cpName;

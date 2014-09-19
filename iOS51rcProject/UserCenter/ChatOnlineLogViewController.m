@@ -3,7 +3,12 @@
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
 
-@interface ChatOnlineLogViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface ChatOnlineLogViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate, NSXMLParserDelegate, UITextFieldDelegate>
+{
+    NSMutableData *webData;
+	NSString *currentElement;
+    NSTimer *connectionTimer;  //timer对象
+}
 @property (retain, nonatomic) IBOutlet UIView *viewTop;
 @property (retain, nonatomic) IBOutlet UIView *viewBottom;
 @property (retain, nonatomic) IBOutlet UITextField *textSend;
@@ -28,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //代理
+    self.textSend.delegate = self;
     //顶部view边框
     self.viewTop.frame = CGRectMake(0, 40, 320, 40);
     self.viewTop.layer.backgroundColor = [UIColor colorWithRed:244.f/255.f green:244.f/255.f blue:244.f/255.f alpha:1].CGColor;
@@ -64,12 +71,16 @@
     self.tvChatOnlineLogList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //获取数据
     [self getChatOnlineLog];
+    
+    //实例化timer，每隔7s刷新一下数据库
+    connectionTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(getChatOnlineLog) userInfo:nil repeats:NO];
+    [[NSRunLoop currentRunLoop]addTimer:connectionTimer forMode:NSDefaultRunLoopMode];
 }
 
 //获取聊天记录
 -(void) getChatOnlineLog{
     //开始等待动画
-    [loadView startAnimating];
+    //[loadView startAnimating];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
@@ -88,7 +99,6 @@
     [dicParam release];
 }
 
-
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
@@ -100,7 +110,7 @@
         [self.tvChatOnlineLogList reloadData];
     }
     //结束等待动画
-    [loadView stopAnimating];
+    //[loadView stopAnimating];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -115,6 +125,7 @@
     
     int tmpHeight = 40;
     int senderType = [rowData[@"SenderType"] integerValue];
+    self.chatOnlineID = rowData[@"ChatOnlineID"];
     //企业发送
     if (senderType == 1) {
         //左侧图片
@@ -128,6 +139,9 @@
         //消息内容
         NSString *strMsg = rowData[@"Message"];
         CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:10] sizeDemand:CGSizeMake(250, 500)];
+        if (labelSize.width<80) {
+            labelSize.width = 80;
+        }
         strMsg = [strMsg stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
         strMsg = [strMsg stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
         UILabel *lbMsg = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, labelSize.width, labelSize.height)] autorelease];
@@ -135,6 +149,7 @@
         lbMsg.lineBreakMode = NSLineBreakByCharWrapping;
         lbMsg.numberOfLines = 0;
         [lbMsg setFont:[UIFont systemFontOfSize:10]];
+        lbMsg.textColor = [UIColor whiteColor];
         [lbMsg setTextAlignment:NSTextAlignmentLeft];
         [viewMsg addSubview:lbMsg];
         //发送时间
@@ -143,7 +158,7 @@
         [lbRefreshDate setText:strDate];
         [lbRefreshDate setFont:[UIFont systemFontOfSize:10]];
         [lbRefreshDate setTextColor:[UIColor whiteColor]];
-        [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
+        [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
         [viewMsg addSubview:lbRefreshDate];
         //重新设置消息内容的大小
         viewMsg.frame = CGRectMake(50, 8, labelSize.width + 10, labelSize.height + 15 + 10);
@@ -163,6 +178,9 @@
         //消息内容
         NSString *strMsg = rowData[@"Message"];
         CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:10] sizeDemand:CGSizeMake(240, 500)];
+        if (labelSize.width<80) {
+            labelSize.width = 80;
+        }
         strMsg = [strMsg stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
         strMsg = [strMsg stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
         //最右端的坐标是320-50=270
@@ -171,6 +189,7 @@
         [lbMsg setFont:[UIFont systemFontOfSize:10]];
         lbMsg.lineBreakMode = NSLineBreakByCharWrapping;
         lbMsg.numberOfLines = 0;
+        lbMsg.textColor = [UIColor whiteColor];
         [lbMsg setTextAlignment:NSTextAlignmentLeft];
         [viewMsg addSubview:lbMsg];
         //发送时间
@@ -179,7 +198,7 @@
         [lbRefreshDate setText:strDate];
         [lbRefreshDate setFont:[UIFont systemFontOfSize:10]];
         [lbRefreshDate setTextColor:[UIColor whiteColor]];
-        [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
+        [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
         [viewMsg addSubview:lbRefreshDate];
         
         //重新设置消息内容的大小
@@ -189,7 +208,11 @@
             tmpHeight = viewMsg.frame.size.height;
         }
     }
-
+    
+    //如果是最后一行，则滚动到最下方
+    if (indexPath.row == self.chatOnlineLogData.count - 1) {
+        [self.tvChatOnlineLogList scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatOnlineLogData count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    }
     return cell;
 }
 
@@ -199,15 +222,112 @@
     NSString *strMsg = tmpDic[@"Message"];
      CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:10] sizeDemand:CGSizeMake(250, 500)];
     if (labelSize.height>20) {
-        return 40+ labelSize.height;
+        return 42+ labelSize.height;
     }else{
-        return 50;
+        return 55;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
+}
+
+//点击消息发送
+- (IBAction)btnSendClick:(id)sender {
+    [self textFieldShouldReturn:self.textSend];
+    NSString *strMsg = self.textSend.text;
+    //注：调用的参数中枚举值必须使用具体的string，如 "<clientType>IOS</clientType>"，而不是"<clientType>1</clientType>"
+    NSString *soapMessage = [NSString stringWithFormat:
+							 @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+							 "<SOAP-ENV:Envelope \n"
+							 "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" \n"
+							 "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n"
+							 "xmlns:SOAP-ENC=\"http://schemas.xmlsoap.org/soap/encoding/\" \n"
+							 "SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" \n"
+							 "xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"> \n"
+							 "<SOAP-ENV:Body> \n"
+							 "<SendMessage xmlns=\"http://www.51rc.com/\">"
+                             "<clientType>IOS</clientType>"
+                             "<chatType>Pa2Cp</chatType>"
+                             "<cvMainID>%@</cvMainID>"
+                             "<caMainID>%@</caMainID>"
+                             "<managerUserID>0</managerUserID>"
+                             "<chatOnlineID>%@</chatOnlineID>"
+                             "<msg>%@</msg>"
+							 "</SendMessage> \n"
+							 "</SOAP-ENV:Body> \n"
+							 "</SOAP-ENV:Envelope>",
+                             self.cvMainID, self.caMainID, self.chatOnlineID, strMsg];
+    
+	//[[NSURLCache sharedURLCache] removeAllCachedResponses];
+    NSURL *url = [NSURL URLWithString:@"http://chat.51rc.com/ChatOnlineService.svc"];
+    NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
+    NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
+    [theRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [theRequest addValue: @"http://www.51rc.com/ChatOnlineService/SendMessage" forHTTPHeaderField:@"SOAPAction"];
+    [theRequest addValue: msgLength forHTTPHeaderField:@"Content-Length"];
+    [theRequest setHTTPMethod:@"POST"];
+    [theRequest setHTTPBody: [soapMessage dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+	
+    if(theConnection) {
+        webData = [[NSMutableData data] retain];
+    }
+    else {
+        NSLog(@"theConnection is NULL");
+	}
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+	[webData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+	[webData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	//label.text = [NSString stringWithFormat:@"Connection failed: %@", [error description]];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+	[connection release];
+	NSLog(@"Data has been loaded");
+	NSXMLParser *parser = [[NSXMLParser alloc] initWithData:webData];
+	[parser setDelegate:self];
+    [parser parse];
+	[webData release];
+}
+
+- (void)parserDidStartDocument:(NSXMLParser *)parser {
+	
+}
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI
+               qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
+	currentElement = elementName;
+}
+
+//收到消息
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    NSLog(@"%@----%@",string,currentElement);
+    if ([currentElement isEqualToString:@"SendMessageResult"] && [string isEqualToString:self.chatOnlineID])
+    {
+        //清空文本框
+        self.textSend.text = @" ";
+        //重新调用获取聊天消息，并显示在聊天框中
+        [self getChatOnlineLog];
+    }
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
+    namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser {
+	
 }
 
 - (void)didReceiveMemoryWarning
@@ -215,8 +335,43 @@
     [super didReceiveMemoryWarning];
 }
 
+//开始编辑输入框的时候，软键盘出现，执行此事件
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    //CGRect frame = textField.frame;
+    //int offset = frame.origin.y + 32 - (self.view.frame.size.height - 216.0);//键盘高度216
+    int offset = -216;
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+    self.view.frame = CGRectMake(0.0f, offset, self.view.frame.size.width, self.view.frame.size.height);
+    
+    [UIView commitAnimations];
+}
+
+//当用户按下return键或者按回车键，keyboard消失
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+//输入框编辑完成以后，将视图恢复到原始状态
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+}
 
 - (void)dealloc {
+    [_chatOnlineID release];
+    [_cvMainID release];
+    [_caMainID release];
+    [_cpName release];
+    [_caName release];
+    [_cpMainID release];
+    [_isOnline release];
     [_viewBottom release];
     [_textSend release];
     [_btnSend release];
