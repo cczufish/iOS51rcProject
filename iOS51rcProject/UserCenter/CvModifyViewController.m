@@ -719,7 +719,7 @@
 {
     [self.lbSpeciality setText:self.cvData[0][@"Speciality"]];
     //计算工作能力文本的高度
-    CGSize labelSize = [CommonController CalculateFrame:self.cvData[0][@"Speciality"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(270, 300)];
+    CGSize labelSize = [CommonController CalculateFrame:self.cvData[0][@"Speciality"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(270, 3000)];
     CGRect frameSpeciality = self.lbSpeciality.frame;
     frameSpeciality.size.height = labelSize.height;
     [self.lbSpeciality setFrame:frameSpeciality];

@@ -135,12 +135,14 @@
 		9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30C19A1AB370027E931 /* ico_rm_group.png */; };
 		994C507119C02B8000E27017 /* pic_noinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C507019C02B8000E27017 /* pic_noinfo.png */; };
 		994C507319C0335600E27017 /* ico_time_notice.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C507219C0335600E27017 /* ico_time_notice.png */; };
+		9950D85B19CEC0A20048B415 /* CvViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9950D85A19CEC0A20048B415 /* CvViewViewController.m */; };
 		99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 99512F5F19A5C64800E56EF4 /* ico_calltelphone.png */; };
 		9952A06919AAD5F200F6452C /* ico_select_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 9952A06819AAD5F200F6452C /* ico_select_right.png */; };
 		995575BA19AC56A800B73E4A /* ico_coordinate_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 995575B819AC56A800B73E4A /* ico_coordinate_blue.png */; };
 		995575BD19AC582600B73E4A /* ico_cp_hasLincence.png in Resources */ = {isa = PBXBuildFile; fileRef = 995575BC19AC582600B73E4A /* ico_cp_hasLincence.png */; };
 		995575C019AC64CE00B73E4A /* RmAttendPaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 995575BF19AC64CE00B73E4A /* RmAttendPaListViewController.m */; };
 		995575C319AC64EA00B73E4A /* RmAttendCpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 995575C219AC64EA00B73E4A /* RmAttendCpListViewController.m */; };
+		995ED5A519CFCEEA005CFBC0 /* SearchPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 995ED5A419CFCEEA005CFBC0 /* SearchPickerView.xib */; };
 		997BF0F5199DCAB800FD0B12 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 997BF0F1199DBB9D00FD0B12 /* libxml2.dylib */; };
 		997BF0F6199DCAC600FD0B12 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 997BF0F3199DBBE900FD0B12 /* libz.dylib */; };
 		997BF0F8199DCB1A00FD0B12 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 997BF0F7199DCB1A00FD0B12 /* SystemConfiguration.framework */; };
@@ -613,6 +615,8 @@
 		9945C30C19A1AB370027E931 /* ico_rm_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_group.png; sourceTree = "<group>"; };
 		994C507019C02B8000E27017 /* pic_noinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_noinfo.png; sourceTree = "<group>"; };
 		994C507219C0335600E27017 /* ico_time_notice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_time_notice.png; sourceTree = "<group>"; };
+		9950D85919CEC0A20048B415 /* CvViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CvViewViewController.h; path = UserCenter/CvViewViewController.h; sourceTree = "<group>"; };
+		9950D85A19CEC0A20048B415 /* CvViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CvViewViewController.m; path = UserCenter/CvViewViewController.m; sourceTree = "<group>"; };
 		99512F5F19A5C64800E56EF4 /* ico_calltelphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_calltelphone.png; sourceTree = "<group>"; };
 		9952A06819AAD5F200F6452C /* ico_select_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_select_right.png; sourceTree = "<group>"; };
 		995575B819AC56A800B73E4A /* ico_coordinate_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_coordinate_blue.png; sourceTree = "<group>"; };
@@ -622,6 +626,7 @@
 		995575BF19AC64CE00B73E4A /* RmAttendPaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmAttendPaListViewController.m; path = Recruitment/RmAttendPaListViewController.m; sourceTree = "<group>"; };
 		995575C119AC64EA00B73E4A /* RmAttendCpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmAttendCpListViewController.h; path = Recruitment/RmAttendCpListViewController.h; sourceTree = "<group>"; };
 		995575C219AC64EA00B73E4A /* RmAttendCpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmAttendCpListViewController.m; path = Recruitment/RmAttendCpListViewController.m; sourceTree = "<group>"; };
+		995ED5A419CFCEEA005CFBC0 /* SearchPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchPickerView.xib; sourceTree = "<group>"; };
 		997BF0F1199DBB9D00FD0B12 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		997BF0F3199DBBE900FD0B12 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		997BF0F7199DCB1A00FD0B12 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1124,6 +1129,7 @@
 				9925BED619B80E02002DBFE0 /* DictionaryPickerView.xib */,
 				9925BED719B80E02002DBFE0 /* SearchPickerView.h */,
 				9925BED819B80E02002DBFE0 /* SearchPickerView.m */,
+				995ED5A419CFCEEA005CFBC0 /* SearchPickerView.xib */,
 			);
 			path = DictionaryPicker;
 			sourceTree = "<group>";
@@ -2058,6 +2064,8 @@
 				9926A61E19CBBB1300331038 /* ChatOnlineViewController.m */,
 				9926A62019CBBB2700331038 /* ChatOnlineLogViewController.h */,
 				9926A62119CBBB2700331038 /* ChatOnlineLogViewController.m */,
+				9950D85919CEC0A20048B415 /* CvViewViewController.h */,
+				9950D85A19CEC0A20048B415 /* CvViewViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -2307,6 +2315,7 @@
 				99938FD319BCAFFB008F986A /* Recruitment.storyboard in Resources */,
 				9901836019AC58F900CA1CB2 /* ico_joblist_favorite.png in Resources */,
 				9925BF0F19B83835002DBFE0 /* ico_mapsearch_jobpre.png in Resources */,
+				995ED5A519CFCEEA005CFBC0 /* SearchPickerView.xib in Resources */,
 				999BDD1219C2E41E000A152A /* More.storyboard in Resources */,
 				9936980D19C7D4020060BDD1 /* ico_cvmain_specially.png in Resources */,
 				9936980A19C7D4020060BDD1 /* ico_cvmain_group.png in Resources */,
@@ -2480,6 +2489,7 @@
 				99A0673319CA769C00F095DF /* DatePickerView.m in Sources */,
 				9905132B19C2EF8200B9C096 /* RecruitmentListViewController.m in Sources */,
 				999BDD4A19C2E60B000A152A /* Reachability.m in Sources */,
+				9950D85B19CEC0A20048B415 /* CvViewViewController.m in Sources */,
 				9927ACCA19C82F450037E3F9 /* EColumnDataModel.m in Sources */,
 				99FC0B6019C2E26100B7EC74 /* MDRadialProgressView.m in Sources */,
 				99C581E019C1A0D6009985C5 /* RM.m in Sources */,

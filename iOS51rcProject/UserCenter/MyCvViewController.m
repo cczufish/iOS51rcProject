@@ -16,6 +16,7 @@
 #import "CustomPopup.h"
 #import "CreateResumeAlertViewController.h"
 #import "CvModifyViewController.h"
+#import "CvViewViewController.h"
 
 @interface MyCvViewController ()<NetWebServiceRequestDelegate,UIScrollViewDelegate,CreateResumeDelegate>
 {
@@ -441,7 +442,9 @@
 }
 
 - (IBAction)switchToCvView:(id)sender {
-    
+    CvViewViewController *cvViewC = [self.storyboard instantiateViewControllerWithIdentifier:@"CvViewView"];
+    cvViewC.cvId = self.cvId;
+    [self.navigationController pushViewController:cvViewC animated:true];
 }
 
 - (IBAction)refreshCv:(id)sender {

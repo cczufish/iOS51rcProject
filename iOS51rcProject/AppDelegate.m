@@ -74,6 +74,7 @@
     
     //将字典存入到document内
     NSArray *paths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory,NSUserDomainMask, YES);
+    NSLog(@"%@",paths);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *dbPath = [documentsDirectory stringByAppendingPathComponent:@"dictionary.db"];
     NSFileManager *file = [NSFileManager defaultManager];
