@@ -1581,7 +1581,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王凯新" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OeF-rV-c3x">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OeF-rV-c3x">
                                                 <rect key="frame" x="20" y="13" width="50" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1592,14 +1592,14 @@
                                                 <rect key="frame" x="76" y="13" width="138" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="男" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WoK-Wg-J5G">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WoK-Wg-J5G">
                                                         <rect key="frame" x="0.0" y="0.0" width="20" height="15"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.56603558389999997" alpha="1" colorSpace="deviceRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24岁" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bwJ-L2-8YY">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bwJ-L2-8YY">
                                                         <rect key="frame" x="25" y="0.0" width="30" height="15"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1619,7 +1619,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             </view>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="无工作经验 | 博士（自学考试）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tzR-l2-Zkt">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tzR-l2-Zkt">
                                                 <rect key="frame" x="20" y="40" width="204" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1631,7 +1631,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山东省济南市市中区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Up5-80-djX">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Up5-80-djX">
                                                 <rect key="frame" x="76" y="69" width="150" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1649,7 +1649,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山东省济南市" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3iV-Fr-a4D">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3iV-Fr-a4D">
                                                 <rect key="frame" x="76" y="115" width="150" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1661,7 +1661,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="山东省济南市市中区" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PU9-g1-YMo">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PU9-g1-YMo">
                                                 <rect key="frame" x="76" y="92" width="150" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1673,7 +1673,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15550396770" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rWJ-XP-QOw">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rWJ-XP-QOw">
                                                 <rect key="frame" x="76" y="185" width="150" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1691,19 +1691,19 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="madyson1215@163.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iPv-hz-akG">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iPv-hz-akG">
                                                 <rect key="frame" x="76" y="208" width="150" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014-09-21 12:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m8w-80-cVZ">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="m8w-80-cVZ">
                                                 <rect key="frame" x="76" y="231" width="150" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014-09-21 12:43" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sf1-5u-1KA">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sf1-5u-1KA">
                                                 <rect key="frame" x="76" y="138" width="150" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1735,7 +1735,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销售" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0lT-Pi-i9x">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0lT-Pi-i9x">
                                                 <rect key="frame" x="78" y="40" width="222" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1751,7 +1751,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销售" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oc0-9n-OrB">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oc0-9n-OrB">
                                                         <rect key="frame" x="78" y="0.0" width="222" height="15"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1770,7 +1770,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销售" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lFQ-qS-sWn">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lFQ-qS-sWn">
                                                         <rect key="frame" x="78" y="0.0" width="222" height="15"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1782,7 +1782,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销售" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4I8-ce-8Dv">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4I8-ce-8Dv">
                                                         <rect key="frame" x="78" y="23" width="222" height="15"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1795,7 +1795,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="Ujq-Aa-fIN" userLabel="工作能力">
-                                        <rect key="frame" x="0.0" y="400" width="320" height="75"/>
+                                        <rect key="frame" x="0.0" y="400" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   工作能力" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p9V-GX-tBX">
@@ -1807,7 +1807,7 @@
                                                 <nil key="highlightedColor"/>
                                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你好你好你好" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TGd-hL-J2Z">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TGd-hL-J2Z">
                                                 <rect key="frame" x="25" y="42" width="270" height="15"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1832,6 +1832,46 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
+                                    <view contentMode="scaleToFill" id="3JV-ha-LMM" userLabel="联系方式">
+                                        <rect key="frame" x="0.0" y="800" width="320" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   联系方式" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tgu-9a-wMK">
+                                                <rect key="frame" x="15" y="0.0" width="290" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机:" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Ub-LS-10A">
+                                                <rect key="frame" x="20" y="42" width="50" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OpV-Ir-HTq">
+                                                <rect key="frame" x="76" y="42" width="150" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="邮箱:" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IDa-YV-4WS">
+                                                <rect key="frame" x="20" y="65" width="50" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BBi-dx-8TD">
+                                                <rect key="frame" x="76" y="65" width="150" height="15"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -1843,6 +1883,7 @@
                         <outlet property="lbAccountPlace" destination="3iV-Fr-a4D" id="MaZ-Y1-ChN"/>
                         <outlet property="lbBirth" destination="bwJ-L2-8YY" id="FYX-A5-7Sy"/>
                         <outlet property="lbEmail" destination="iPv-hz-akG" id="2yQ-Md-Gnx"/>
+                        <outlet property="lbEmail2" destination="BBi-dx-8TD" id="NXZ-vM-bm9"/>
                         <outlet property="lbEmployType" destination="4I8-ce-8Dv" id="mYf-rl-CTE"/>
                         <outlet property="lbExpectJobPlace" destination="oc0-9n-OrB" id="6nc-oy-cV3"/>
                         <outlet property="lbExpectJobType" destination="0lT-Pi-i9x" id="pOp-so-zGd"/>
@@ -1851,6 +1892,7 @@
                         <outlet property="lbLivePlace" destination="Up5-80-djX" id="71a-Pl-H2J"/>
                         <outlet property="lbLoginDate" destination="Sf1-5u-1KA" id="PJb-UG-rvi"/>
                         <outlet property="lbMobile" destination="rWJ-XP-QOw" id="gjA-uJ-tBP"/>
+                        <outlet property="lbMobile2" destination="OpV-Ir-HTq" id="ApI-jj-Edw"/>
                         <outlet property="lbMobileCer" destination="25y-9l-hJQ" id="yQQ-tM-Nlr"/>
                         <outlet property="lbPaName" destination="OeF-rV-c3x" id="z4Z-Jb-op0"/>
                         <outlet property="lbPaOther" destination="tzR-l2-Zkt" id="j09-kX-ijO"/>
@@ -1862,6 +1904,7 @@
                         <outlet property="viewIntention1" destination="4EV-1T-S9d" id="xOh-Lw-ZG3"/>
                         <outlet property="viewIntention2" destination="Vna-Kb-sMa" id="UTu-aW-vjn"/>
                         <outlet property="viewJobIntention" destination="BIH-eN-b2S" id="Lj0-qp-WpQ"/>
+                        <outlet property="viewLink" destination="3JV-ha-LMM" id="vxv-HN-Xuk"/>
                         <outlet property="viewPaBasic" destination="Jg1-GF-27U" id="p71-xv-nlR"/>
                         <outlet property="viewSpeciality" destination="Ujq-Aa-fIN" id="rQW-nz-Vr0"/>
                     </connections>

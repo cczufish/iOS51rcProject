@@ -72,7 +72,7 @@
         return;
     }
     [self.lbPaName setText:self.paData[0][@"Name"]];
-    CGSize lableSize = [CommonController CalculateFrame:self.lbPaName.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(800, 15)];
+    CGSize lableSize = [CommonController CalculateFrame:self.lbPaName.text fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(800, 15)];
     CGRect framePaName = self.lbPaName.frame;
     framePaName.size.width = lableSize.width;
     [self.lbPaName setFrame:framePaName];
@@ -89,8 +89,10 @@
     [self.lbLivePlace setText:self.paData[0][@"LiveRegion"]];
     [self.lbAccountPlace setText:self.paData[0][@"AccountRegion"]];
     [self.lbGrowPlace setText:self.paData[0][@"GrowRegion"]];
-    [self.lbMobile setText:self.paData[0][@"Mobile"]];
+    [self.lbMobile setText:[NSString stringWithFormat:@"%@（%@）",self.paData[0][@"Mobile"],self.paData[0][@"MobileRegion"]]];
+    [self.lbMobile2 setText:[NSString stringWithFormat:@"%@（%@）",self.paData[0][@"Mobile"],self.paData[0][@"MobileRegion"]]];
     [self.lbEmail setText:self.paData[0][@"Email"]];
+    [self.lbEmail2 setText:self.paData[0][@"Email"]];
     
     if ([self.paData[0][@"Gender"] isEqualToString:@"false"]) {
         [self.lbGender setText:@"男"];
@@ -176,7 +178,6 @@
     CGSize sizeScroll = self.scrollCvView.contentSize;
     frameViewSpeciality.origin.y = sizeScroll.height;
     [self.viewSpeciality setFrame:frameViewSpeciality];
-    [self.viewSpeciality setBackgroundColor:[UIColor redColor]];
     sizeScroll.height = self.viewSpeciality.frame.origin.y+self.viewSpeciality.frame.size.height;
     [self.scrollCvView setContentSize:sizeScroll];
 }
@@ -193,7 +194,6 @@
     CGSize sizeScroll = self.scrollCvView.contentSize;
     frameViewEduAndExp.origin.y = sizeScroll.height;
     [self.viewEduAndExp setFrame:frameViewEduAndExp];
-    [self.viewEduAndExp setBackgroundColor:[UIColor grayColor]];
     sizeScroll.height = self.viewEduAndExp.frame.origin.y+self.viewEduAndExp.frame.size.height+15;
     [self.scrollCvView setContentSize:sizeScroll];
 }
@@ -201,73 +201,6 @@
 - (float)fillCvEducation:(NSDictionary *)educationData
            contentHeight:(float)contentHeight
 {
-    float destinationContentHeight = contentHeight;
-    //添加分割线的球形
-    UIImageView *imgSeparate = [[UIImageView alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 16, 16)];
-    [imgSeparate setImage:[UIImage imageNamed:@"ico_cvmain_group.png"]];
-    [self.viewEduAndExp addSubview:imgSeparate];
-    [imgSeparate release];
-    
-    //添加分割线
-    CGRect frameSeparate = CGRectMake(22, destinationContentHeight+16, 1, 1);
-    UILabel *lbSeparate = [[UILabel alloc] initWithFrame:frameSeparate];
-    [lbSeparate setBackgroundColor:[UIColor colorWithRed:87.f/255.f green:212.f/255.f blue:117.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbSeparate];
-    
-    //毕业学校
-    UILabel *lbCollegeTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbCollegeTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbCollegeTitle setTextAlignment:NSTextAlignmentRight];
-    [lbCollegeTitle setText:@"毕业学校"];
-    [lbCollegeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbCollege = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbCollege setFont:[UIFont systemFontOfSize:12]];
-    [lbCollege setTextAlignment:NSTextAlignmentLeft];
-    [lbCollege setText:educationData[@"GraduateCollage"]];
-    [lbCollege setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbCollegeTitle];
-    [self.viewEduAndExp addSubview:lbCollege];
-    [lbCollege release];
-    [lbCollegeTitle release];
-    destinationContentHeight += 27;
-    
-    //毕业时间
-    UILabel *lbGraduationDateTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbGraduationDateTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbGraduationDateTitle setTextAlignment:NSTextAlignmentRight];
-    [lbGraduationDateTitle setText:@"毕业时间"];
-    [lbGraduationDateTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbGraduationDate = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
-    [lbGraduationDate setFont:[UIFont systemFontOfSize:12]];
-    [lbGraduationDate setTextAlignment:NSTextAlignmentLeft];
-    [lbGraduationDate setText:[NSString stringWithFormat:@"%@年%@月",[educationData[@"Graduation"] substringWithRange:NSMakeRange(0, 4)],[educationData[@"Graduation"] substringWithRange:NSMakeRange(4, 2)]]];
-    [lbGraduationDate setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbGraduationDateTitle];
-    [self.viewEduAndExp addSubview:lbGraduationDate];
-    [lbGraduationDate release];
-    [lbGraduationDateTitle release];
-    destinationContentHeight += 27;
-    
-    //学历
-    UILabel *lbDegreeTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbDegreeTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbDegreeTitle setTextAlignment:NSTextAlignmentRight];
-    [lbDegreeTitle setText:@"学历"];
-    [lbDegreeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbDegree = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
-    [lbDegree setFont:[UIFont systemFontOfSize:12]];
-    [lbDegree setTextAlignment:NSTextAlignmentLeft];
-    [lbDegree setText:educationData[@"Education"]];
-    [lbDegree setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbDegreeTitle];
-    [self.viewEduAndExp addSubview:lbDegree];
-    [lbDegree release];
-    [lbDegreeTitle release];
-    destinationContentHeight += 27;
-    
     if ([self.cvData[0][@"Degree"] isEqualToString:educationData[@"Degree"]]) {
         NSString *strWorkYears = nil;
         if ([self.intentionData[0][@"RelatedWorkYears"] isEqualToString:@"0"]) {
@@ -282,104 +215,53 @@
         [self.lbPaOther setText:[NSString stringWithFormat:@"%@ | %@（%@）",strWorkYears,educationData[@"Education"],educationData[@"EduTypeName"]]];
     }
     
-    //学历类型
-    UILabel *lbEducationTypeTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbEducationTypeTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbEducationTypeTitle setTextAlignment:NSTextAlignmentRight];
-    [lbEducationTypeTitle setText:@"学历类型"];
-    [lbEducationTypeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
+    float destinationContentHeight = contentHeight;
+    //添加标题
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 40, 20)];
+    [lbTitle setText:@"学习"];
+    [lbTitle setTextColor:[UIColor whiteColor]];
+    [lbTitle setFont:[UIFont systemFontOfSize:10]];
+    [lbTitle setTextAlignment:NSTextAlignmentCenter];
+    [lbTitle setBackgroundColor:[UIColor colorWithRed:14.f/255.f green:170.f/255.f blue:32.f/255.f alpha:1]];
+    [self.viewEduAndExp addSubview:lbTitle];
+    [lbTitle release];
+    //添加教育背景信息
+    UILabel *lbEduDetail = [[UILabel alloc] init];
+    [lbEduDetail setText:[NSString stringWithFormat:@"%@毕业 | %@ | %@ | %@（%@）",[NSString stringWithFormat:@"%@年%@月",[educationData[@"Graduation"] substringWithRange:NSMakeRange(0, 4)],[educationData[@"Graduation"] substringWithRange:NSMakeRange(4, 2)]],educationData[@"GraduateCollage"],educationData[@"MajorName"],educationData[@"Education"],educationData[@"EduTypeName"]]];
     
-    UILabel *lbEducationType = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
-    [lbEducationType setFont:[UIFont systemFontOfSize:12]];
-    [lbEducationType setTextAlignment:NSTextAlignmentLeft];
-    [lbEducationType setText:educationData[@"EduTypeName"]];
-    [lbEducationType setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbEducationTypeTitle];
-    [self.viewEduAndExp addSubview:lbEducationType];
-    [lbEducationType release];
-    [lbEducationTypeTitle release];
-    destinationContentHeight += 27;
-    
-    //专业
-    UILabel *lbMajorTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbMajorTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbMajorTitle setTextAlignment:NSTextAlignmentRight];
-    [lbMajorTitle setText:@"专业"];
-    [lbMajorTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbMajor = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbMajor setFont:[UIFont systemFontOfSize:12]];
-    [lbMajor setTextAlignment:NSTextAlignmentLeft];
-    [lbMajor setText:educationData[@"Major"]];
-    [lbMajor setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbMajorTitle];
-    [self.viewEduAndExp addSubview:lbMajor];
-    [lbMajor release];
-    [lbMajorTitle release];
-    destinationContentHeight += 27;
-    
-    //专业名称
-    UILabel *lbMajorNameTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbMajorNameTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbMajorNameTitle setTextAlignment:NSTextAlignmentRight];
-    [lbMajorNameTitle setText:@"专业名称"];
-    [lbMajorNameTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbMajorName = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbMajorName setFont:[UIFont systemFontOfSize:12]];
-    [lbMajorName setTextAlignment:NSTextAlignmentLeft];
-    [lbMajorName setText:educationData[@"MajorName"]];
-    [lbMajorName setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbMajorNameTitle];
-    [self.viewEduAndExp addSubview:lbMajorName];
-    [lbMajorName release];
-    [lbMajorNameTitle release];
-    destinationContentHeight += 27;
-    
-    //学习经历
-    UILabel *lbDetailsTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbDetailsTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbDetailsTitle setTextAlignment:NSTextAlignmentRight];
-    [lbDetailsTitle setText:@"学习经历"];
-    [lbDetailsTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbDetails = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbDetails setFont:[UIFont systemFontOfSize:12]];
-    [lbDetails setTextAlignment:NSTextAlignmentLeft];
-    [lbDetails setText:educationData[@"Details"]];
-    CGSize labelSize = [CommonController CalculateFrame:educationData[@"Details"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(160, 5000)];
-    if (labelSize.height > 20) {
-        //重设学历经历的高度
-        lbDetails.lineBreakMode = NSLineBreakByCharWrapping;
+    CGSize labelSize = [CommonController CalculateFrame:lbEduDetail.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(245, 500)];
+    [lbEduDetail setFrame:CGRectMake(60, destinationContentHeight, 240, labelSize.height)];
+    [lbEduDetail setFont:[UIFont systemFontOfSize:12]];
+    lbEduDetail.numberOfLines = 0;
+    lbEduDetail.lineBreakMode = NSLineBreakByCharWrapping;
+    [lbEduDetail setTextAlignment:NSTextAlignmentLeft];
+    [self.viewEduAndExp addSubview:lbEduDetail];
+    [lbEduDetail release];
+    destinationContentHeight += labelSize.height+10;
+    //添加学习经历
+    if (educationData[@"Details"]) {
+        UILabel *lbDetailsTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 60, 15)];
+        [lbDetailsTitle setText:@"学习经历:"];
+        [lbDetailsTitle setFont:[UIFont systemFontOfSize:12]];
+        [self.viewEduAndExp addSubview:lbDetailsTitle];
+        [lbDetailsTitle release];
+        UILabel *lbDetails = [[UILabel alloc] init];
+        [lbDetails setText:educationData[@"Details"]];
+        labelSize = [CommonController CalculateFrame:lbDetails.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(240, 5000)];
+        [lbDetails setFrame:CGRectMake(70, destinationContentHeight, 240, labelSize.height)];
+        [lbDetails setFont:[UIFont systemFontOfSize:12]];
         lbDetails.numberOfLines = 0;
-        CGRect frameDetails = lbDetails.frame;
-        frameDetails.size.height = labelSize.height;
-        [lbDetails setFrame:frameDetails];
-        destinationContentHeight += labelSize.height-15;
+        lbDetails.lineBreakMode = NSLineBreakByCharWrapping;
+        [self.viewEduAndExp addSubview:lbDetails];
+        [lbDetails release];
+        destinationContentHeight += labelSize.height+15;
     }
-    else {
-        //重设学历经历的高度
-        CGRect frameDetails = lbDetails.frame;
-        frameDetails.size.height = 15;
-        [lbDetails setFrame:frameDetails];
-    }
-    [lbDetails setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbDetailsTitle];
-    [self.viewEduAndExp addSubview:lbDetails];
-    [lbDetails release];
-    [lbDetailsTitle release];
-    
-    frameSeparate.size.height = destinationContentHeight-contentHeight;
-    [lbSeparate setFrame:frameSeparate];
-    [lbSeparate release];
-    
-    destinationContentHeight += 35;
     return destinationContentHeight;
 }
 
 - (void)getCvExperience:(NSArray *)arrayCvExperience
 {
-    float heightViewExperience = 65;
+    float heightViewExperience = self.viewEduAndExp.frame.size.height;
     for (NSDictionary *dicExperience in arrayCvExperience) {
         heightViewExperience = [self fillCvExperience:dicExperience contentHeight:heightViewExperience];
     }
@@ -387,9 +269,8 @@
     CGRect frameViewExperience = self.viewEduAndExp.frame;
     frameViewExperience.size.height = heightViewExperience;
     CGSize sizeScroll = self.scrollCvView.contentSize;
-    frameViewExperience.origin.y = sizeScroll.height;
     [self.viewEduAndExp setFrame:frameViewExperience];
-    sizeScroll.height = self.viewEduAndExp.frame.origin.y+self.viewEduAndExp.frame.size.height+15;
+    sizeScroll.height = self.viewEduAndExp.frame.origin.y+self.viewEduAndExp.frame.size.height;
     [self.scrollCvView setContentSize:sizeScroll];
 }
 
@@ -397,205 +278,68 @@
             contentHeight:(float)contentHeight
 {
     float destinationContentHeight = contentHeight;
-    //添加分割线的球形
-    UIImageView *imgSeparate = [[UIImageView alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 16, 16)];
-    [imgSeparate setImage:[UIImage imageNamed:@"ico_cvmain_group.png"]];
-    [self.viewEduAndExp addSubview:imgSeparate];
-    [imgSeparate release];
+    //添加标题
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 40, 20)];
+    [lbTitle setText:@"工作"];
+    [lbTitle setTextColor:[UIColor whiteColor]];
+    [lbTitle setFont:[UIFont systemFontOfSize:10]];
+    [lbTitle setTextAlignment:NSTextAlignmentCenter];
+    [lbTitle setBackgroundColor:[UIColor colorWithRed:240.f/255.f green:78.f/255.f blue:44.f/255.f alpha:1]];
+    [self.viewEduAndExp addSubview:lbTitle];
+    [lbTitle release];
+    //添加工作经历信息
+    NSString *strEndDate;
+    if ([experienceData[@"EndDate"] isEqualToString:@"999999"]) {
+        strEndDate = @"至今";
+    }
+    else {
+        strEndDate = [NSString stringWithFormat:@"%@年%@月",[experienceData[@"EndDate"] substringWithRange:NSMakeRange(0, 4)],[experienceData[@"EndDate"] substringWithRange:NSMakeRange(4, 2)]];
+    }
+    UILabel *lbExpDetail = [[UILabel alloc] init];
+    [lbExpDetail setText:[NSString stringWithFormat:@"%@-%@ | %@ | %@（%@）",[NSString stringWithFormat:@"%@年%@月",[experienceData[@"BeginDate"] substringWithRange:NSMakeRange(0, 4)],[experienceData[@"BeginDate"] substringWithRange:NSMakeRange(4, 2)]],strEndDate,experienceData[@"CompanyName"],experienceData[@"JobName"],experienceData[@"LowerNumber"]]];
     
-    //添加分割线
-    CGRect frameSeparate = CGRectMake(22, destinationContentHeight+16, 1, 1);
-    UILabel *lbSeparate = [[UILabel alloc] initWithFrame:frameSeparate];
-    [lbSeparate setBackgroundColor:[UIColor colorWithRed:87.f/255.f green:212.f/255.f blue:117.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbSeparate];
+    CGSize labelSize = [CommonController CalculateFrame:lbExpDetail.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(245, 500)];
+    [lbExpDetail setFrame:CGRectMake(60, destinationContentHeight, 240, labelSize.height)];
+    [lbExpDetail setFont:[UIFont systemFontOfSize:12]];
+    lbExpDetail.numberOfLines = 0;
+    lbExpDetail.lineBreakMode = NSLineBreakByCharWrapping;
+    [lbExpDetail setTextAlignment:NSTextAlignmentLeft];
+    [self.viewEduAndExp addSubview:lbExpDetail];
+    [lbExpDetail release];
+    destinationContentHeight += labelSize.height+10;
     
-    //公司名称
-    UILabel *lbCompanyTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbCompanyTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbCompanyTitle setTextAlignment:NSTextAlignmentRight];
-    [lbCompanyTitle setText:@"公司名称"];
-    [lbCompanyTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbCompany = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbCompany setFont:[UIFont systemFontOfSize:12]];
-    [lbCompany setTextAlignment:NSTextAlignmentLeft];
-    [lbCompany setText:experienceData[@"CompanyName"]];
-    [lbCompany setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbCompanyTitle];
-    [self.viewEduAndExp addSubview:lbCompany];
-    [lbCompany release];
-    [lbCompanyTitle release];
-    destinationContentHeight += 27;
-    
-    //所属行业
-    UILabel *lbIndustryTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbIndustryTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbIndustryTitle setTextAlignment:NSTextAlignmentRight];
-    [lbIndustryTitle setText:@"所属行业"];
-    [lbIndustryTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbIndustry = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
-    [lbIndustry setFont:[UIFont systemFontOfSize:12]];
-    [lbIndustry setTextAlignment:NSTextAlignmentLeft];
-    [lbIndustry setText:experienceData[@"Industry"]];
-    [lbIndustry setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbIndustryTitle];
-    [self.viewEduAndExp addSubview:lbIndustry];
-    [lbIndustry release];
-    [lbIndustryTitle release];
-    destinationContentHeight += 27;
-    
-    //公司规模
-    UILabel *lbCompanySizeTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    //添加企业规模
+    UILabel *lbCompanySizeTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 60, 15)];
+    [lbCompanySizeTitle setText:@"企业规模:"];
     [lbCompanySizeTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbCompanySizeTitle setTextAlignment:NSTextAlignmentRight];
-    [lbCompanySizeTitle setText:@"公司规模"];
-    [lbCompanySizeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbCompanySize = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
-    [lbCompanySize setFont:[UIFont systemFontOfSize:12]];
-    [lbCompanySize setTextAlignment:NSTextAlignmentLeft];
-    [lbCompanySize setText:experienceData[@"CpmpanySize"]];
-    [lbCompanySize setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
     [self.viewEduAndExp addSubview:lbCompanySizeTitle];
+    [lbCompanySizeTitle release];
+    UILabel *lbCompanySize = [[UILabel alloc] init];
+    [lbCompanySize setText:experienceData[@"CpmpanySize"]];
+    [lbCompanySize setFrame:CGRectMake(70, destinationContentHeight, 240, 15)];
+    [lbCompanySize setFont:[UIFont systemFontOfSize:12]];
+    lbCompanySize.numberOfLines = 0;
+    lbCompanySize.lineBreakMode = NSLineBreakByCharWrapping;
     [self.viewEduAndExp addSubview:lbCompanySize];
     [lbCompanySize release];
-    [lbCompanySizeTitle release];
-    destinationContentHeight += 27;
+    destinationContentHeight += 30;
     
-    //职位名称
-    UILabel *lbJobNameTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbJobNameTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbJobNameTitle setTextAlignment:NSTextAlignmentRight];
-    [lbJobNameTitle setText:@"职位名称"];
-    [lbJobNameTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 120, 15)];
-    [lbJobName setFont:[UIFont systemFontOfSize:12]];
-    [lbJobName setTextAlignment:NSTextAlignmentLeft];
-    [lbJobName setText:experienceData[@"JobName"]];
-    [lbJobName setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbJobNameTitle];
-    [self.viewEduAndExp addSubview:lbJobName];
-    [lbJobName release];
-    [lbJobNameTitle release];
-    destinationContentHeight += 27;
-    
-    //职位类别
-    UILabel *lbJobTypeTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbJobTypeTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbJobTypeTitle setTextAlignment:NSTextAlignmentRight];
-    [lbJobTypeTitle setText:@"职位类别"];
-    [lbJobTypeTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbJobType = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbJobType setFont:[UIFont systemFontOfSize:12]];
-    [lbJobType setTextAlignment:NSTextAlignmentLeft];
-    [lbJobType setText:experienceData[@"JobType"]];
-    [lbJobType setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbJobTypeTitle];
-    [self.viewEduAndExp addSubview:lbJobType];
-    [lbJobType release];
-    [lbJobTypeTitle release];
-    destinationContentHeight += 27;
-    
-    //开始时间
-    UILabel *lbBeginDateTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbBeginDateTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbBeginDateTitle setTextAlignment:NSTextAlignmentRight];
-    [lbBeginDateTitle setText:@"开始时间"];
-    [lbBeginDateTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbBeginDate = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbBeginDate setFont:[UIFont systemFontOfSize:12]];
-    [lbBeginDate setTextAlignment:NSTextAlignmentLeft];
-    [lbBeginDate setText:[NSString stringWithFormat:@"%@年%@月",[experienceData[@"BeginDate"] substringWithRange:NSMakeRange(0, 4)],[experienceData[@"BeginDate"] substringWithRange:NSMakeRange(4, 2)]]];
-    [lbBeginDate setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbBeginDateTitle];
-    [self.viewEduAndExp addSubview:lbBeginDate];
-    [lbBeginDate release];
-    [lbBeginDateTitle release];
-    destinationContentHeight += 27;
-    
-    //结束时间
-    UILabel *lbEndDateTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbEndDateTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbEndDateTitle setTextAlignment:NSTextAlignmentRight];
-    [lbEndDateTitle setText:@"结束时间"];
-    [lbEndDateTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbEndDate = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbEndDate setFont:[UIFont systemFontOfSize:12]];
-    [lbEndDate setTextAlignment:NSTextAlignmentLeft];
-    if ([experienceData[@"EndDate"] isEqualToString:@"999999"]) {
-        [lbEndDate setText:@"至今"];
-    }
-    else {
-        [lbEndDate setText:[NSString stringWithFormat:@"%@年%@月",[experienceData[@"EndDate"] substringWithRange:NSMakeRange(0, 4)],[experienceData[@"EndDate"] substringWithRange:NSMakeRange(4, 2)]]];
-    }
-    [lbEndDate setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbEndDateTitle];
-    [self.viewEduAndExp addSubview:lbEndDate];
-    [lbEndDate release];
-    [lbEndDateTitle release];
-    destinationContentHeight += 27;
-    
-    //下属人数
-    UILabel *lbLowerNumberTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
-    [lbLowerNumberTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbLowerNumberTitle setTextAlignment:NSTextAlignmentRight];
-    [lbLowerNumberTitle setText:@"下属人数"];
-    [lbLowerNumberTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbLowerNumber = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbLowerNumber setFont:[UIFont systemFontOfSize:12]];
-    [lbLowerNumber setTextAlignment:NSTextAlignmentLeft];
-    [lbLowerNumber setText:experienceData[@"LowerNumber"]];
-    [lbLowerNumber setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
-    [self.viewEduAndExp addSubview:lbLowerNumberTitle];
-    [self.viewEduAndExp addSubview:lbLowerNumber];
-    [lbLowerNumber release];
-    [lbLowerNumberTitle release];
-    destinationContentHeight += 27;
-    
-    //工作描述
-    UILabel *lbDescriptionTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, destinationContentHeight, 90, 15)];
+    //添加工作描述
+    UILabel *lbDescriptionTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 60, 15)];
+    [lbDescriptionTitle setText:@"工作描述:"];
     [lbDescriptionTitle setFont:[UIFont systemFontOfSize:12]];
-    [lbDescriptionTitle setTextAlignment:NSTextAlignmentRight];
-    [lbDescriptionTitle setText:@"工作描述"];
-    [lbDescriptionTitle setTextColor:[UIColor colorWithRed:90.f/255.f green:99.f/255.f blue:103.f/255.f alpha:1]];
-    
-    UILabel *lbDescription = [[UILabel alloc] initWithFrame:CGRectMake(140, destinationContentHeight, 160, 15)];
-    [lbDescription setFont:[UIFont systemFontOfSize:12]];
-    [lbDescription setTextAlignment:NSTextAlignmentLeft];
-    [lbDescription setText:experienceData[@"Description"]];
-    CGSize labelSize = [CommonController CalculateFrame:experienceData[@"Description"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(160, 5000)];
-    if (labelSize.height > 20) {
-        //重设工作描述的高度
-        CGRect frameDescription = lbDescription.frame;
-        lbDescription.lineBreakMode = NSLineBreakByCharWrapping;
-        lbDescription.numberOfLines = 0;
-        frameDescription.size.height = labelSize.height;
-        [lbDescription setFrame:frameDescription];
-        destinationContentHeight += labelSize.height-15;
-    }
-    else {
-        //重设工作描述的高度
-        CGRect frameDescription = lbDescription.frame;
-        frameDescription.size.height = 15;
-        [lbDescription setFrame:frameDescription];
-    }
-    [lbDescription setTextColor:[UIColor colorWithRed:0.f/255.f green:0.f/255.f blue:144.f/255.f alpha:1]];
     [self.viewEduAndExp addSubview:lbDescriptionTitle];
+    [lbDescriptionTitle release];
+    UILabel *lbDescription = [[UILabel alloc] init];
+    [lbDescription setText:experienceData[@"Description"]];
+    labelSize = [CommonController CalculateFrame:lbDescription.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(240, 5000)];
+    [lbDescription setFrame:CGRectMake(70, destinationContentHeight, 240, labelSize.height)];
+    [lbDescription setFont:[UIFont systemFontOfSize:12]];
+    lbDescription.numberOfLines = 0;
+    lbDescription.lineBreakMode = NSLineBreakByCharWrapping;
     [self.viewEduAndExp addSubview:lbDescription];
     [lbDescription release];
-    [lbDescriptionTitle release];
-    
-    frameSeparate.size.height = destinationContentHeight-contentHeight;
-    [lbSeparate setFrame:frameSeparate];
-    [lbSeparate release];
-    
-    destinationContentHeight += 35;
+    destinationContentHeight += labelSize.height+15;
     return destinationContentHeight;
 }
 
@@ -616,7 +360,13 @@
     [self getJobIntention:[self getArrayFromXml:xmlContent tableName:@"Table4"]];
     [self getCvSpecaility];
     [self getCvEducation:[self getArrayFromXml:xmlContent tableName:@"Table2"]];
-//    [self getCvExperience:[self getArrayFromXml:xmlContent tableName:@"Table3"]];
+    [self getCvExperience:[self getArrayFromXml:xmlContent tableName:@"Table3"]];
+    CGSize scrollSize = [self.scrollCvView contentSize];
+    CGRect frameViewLink = self.viewLink.frame;
+    frameViewLink.origin.y = scrollSize.height;
+    [self.viewLink setFrame:frameViewLink];
+    scrollSize.height += frameViewLink.size.height;
+    [self.scrollCvView setContentSize:scrollSize];
     [loadView stopAnimating];
 }
 
@@ -689,6 +439,9 @@
     [_imgMobileCer release];
     [_lbMobileCer release];
     [_viewPaBasic release];
+    [_viewLink release];
+    [_lbMobile2 release];
+    [_lbEmail2 release];
     [super dealloc];
 }
 @end

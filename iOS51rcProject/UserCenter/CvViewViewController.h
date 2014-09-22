@@ -35,5 +35,8 @@
 @property (retain, nonatomic) IBOutlet UIImageView *imgMobileCer;
 @property (retain, nonatomic) IBOutlet UILabel *lbMobileCer;
 @property (retain, nonatomic) IBOutlet UIView *viewPaBasic;
+@property (retain, nonatomic) IBOutlet UIView *viewLink;
+@property (retain, nonatomic) IBOutlet UILabel *lbMobile2;
+@property (retain, nonatomic) IBOutlet UILabel *lbEmail2;
 
 @end
