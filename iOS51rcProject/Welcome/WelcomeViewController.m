@@ -124,7 +124,6 @@
 {
     CGPoint offset = scrollView.contentOffset;
     pageControl.currentPage = offset.x/320 ;
-    //NSLog(@"111-------%d", pageControl.currentPage);
 }
 
 
@@ -132,25 +131,16 @@
 {
     CGPoint offset = scrollView.contentOffset;
     pageControl.currentPage = offset.x / 320;
-     //NSLog(@"222---------%d", pageControl.currentPage);
 }
 
 
 -(void)pageTurn:(UIPageControl*)aPageControl
 {
-    /*
-    int whichPage = aPageControl.currentPage;
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:2];
-    pageScroll.contentOffset = CGPointMake(320*whichPage, 0);
-    [UIView commitAnimations];
-     */
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
