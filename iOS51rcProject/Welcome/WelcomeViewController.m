@@ -1,14 +1,6 @@
-//
-//  tipViewController.m
-//  welcom_demo_1
-//
-//  Created by chaoxiao zhuang on 13-1-10.
-//  Copyright (c) 2013年 taizhouxueyuan. All rights reserved.
-//
-
 #import "WelcomeViewController.h"
 #import "WelcomeUIImage.h"
-//#import "Home.storyboard"
+#import "HomeViewController.h"
 
 @interface WelcomeViewController ()
 
@@ -116,23 +108,15 @@
 {
     if( [animationID isEqualToString:@"split"] && finished )
     {
-        //self.left removeFromSuperview];
-        //[self.right removeFromSuperview];
-        
         [pageScroll removeFromSuperview];
-        
-        //LogInView * logView = [[LogInView alloc] initWithNibName:@"LogInView" bundle:nil];
-        //[self.view addSubview:logView.view];
-        //[logView release];
-        
     }
 }
 
 -(void)gotoMainView:(id)sender
 {
-     NSLog(@"登录");
-    //[[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
-    //[UIView commitAnimations];
+    NSLog(@"登录");
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    HomeViewController *homeCtrl = (HomeViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"HomeView"];
 }
 
 
