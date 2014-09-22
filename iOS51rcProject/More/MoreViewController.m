@@ -5,6 +5,7 @@
 #import "FeedbackViewController.h"
 #import "CustomPopup.h"
 #import "NewsHelpViewController.h"
+#import "PushNotificationViewController.h"
 
 @interface MoreViewController () <UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate, CustomPopupDelegate>
 @property (retain, nonatomic) CustomPopup *cPopup;
@@ -121,6 +122,9 @@
         case 0:
         {
             //推送设置
+            PushNotificationViewController *pushCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"PushNotificationView"];
+            [self.navigationController pushViewController:pushCtrl animated:YES];
+            pushCtrl.navigationItem.title = @"推送设置";
             break;
         }
         case 1:
