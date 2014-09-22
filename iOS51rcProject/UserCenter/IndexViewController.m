@@ -306,6 +306,8 @@
         }
         case 1:
         {
+            UIViewController *viewC = [self.storyboard instantiateViewControllerWithIdentifier:@"CvRecommendView"];
+            [self.navigationController pushViewController:viewC animated:true];
             break;
         }
         case 2:

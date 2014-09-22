@@ -4,6 +4,7 @@
 #import "SlideNavigationContorllerAnimatorScale.h"
 #import "SlideNavigationContorllerAnimatorScaleAndFade.h"
 #import "SlideNavigationContorllerAnimatorSlideAndFade.h"
+#import "CommonController.h"
 
 @interface MenuViewController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -45,7 +46,12 @@
     switch (indexPath.row)
     {
         case 0:
-            lbTitle.text = @"点击登陆";
+            if ([CommonController isLogin]) {
+                lbTitle.text = @"点击登陆";
+            }
+            else {
+                lbTitle.text = @"点击登陆";
+            }
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_head.png"]];
             ivTitle.frame = CGRectMake(35, 3, 40, 40);
             break;

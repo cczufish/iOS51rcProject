@@ -220,38 +220,39 @@
                           xmlContent:(GDataXMLDocument *)xmlContent;
 {
     NSDictionary *intentionData = [self getArrayFromXml:xmlContent tableName:@"Table4"][0];
-    //工作经验
-    if ([intentionData[@"RelatedWorkYears"] isEqualToString:@"0"]) {
-        [self.btnExperience setTitle:@"无" forState:UIControlStateNormal];
+    if (intentionData[@"RelatedWorkYears"]) {
+        //工作经验
+        if ([intentionData[@"RelatedWorkYears"] isEqualToString:@"0"]) {
+            [self.btnExperience setTitle:@"无" forState:UIControlStateNormal];
+        }
+        else if ([intentionData[@"RelatedWorkYears"] isEqualToString:@"11"]) {
+            [self.btnExperience setTitle:@"10年以上" forState:UIControlStateNormal];
+        }
+        else {
+            [self.btnExperience setTitle:[NSString stringWithFormat:@"%@年",intentionData[@"RelatedWorkYears"]] forState:UIControlStateNormal];
+        }
+        [self.btnExperience setTag:[intentionData[@"RelatedWorkYears"] intValue]];
+        //薪水
+        [self.btnSalary setTitle:intentionData[@"Salary"] forState:UIControlStateNormal];
+        if ([intentionData[@"IsNegotiable"] isEqualToString:@"true"]) {
+            self.btnNogetiation.tag = 1;
+            [self.btnNogetiation setBackgroundImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        }
+        else {
+            self.btnNogetiation.tag = 0;
+            [self.btnNogetiation setBackgroundImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        }
+        [self.btnSalary setTag:[intentionData[@"dcSalaryID"] intValue]];
+        //工作类型
+        [self.btnEmployType setTitle:[CommonController getDictionaryDesc:intentionData[@"EmployType"] tableName:@"EmployType"] forState:UIControlStateNormal];
+        [self.btnEmployType setTag:[intentionData[@"EmployType"] intValue]];
+        //工作地点
+        [self.btnWorkPlace setTitle:intentionData[@"JobPlaceName"] forState:UIControlStateNormal];
+        self.workPlaceId = intentionData[@"JobPlace"];
+        //职位类别
+        [self.btnJobType setTitle:intentionData[@"JobTypeName"] forState:UIControlStateNormal];
+        self.jobTypeId = intentionData[@"JobType"];
     }
-    else if ([intentionData[@"RelatedWorkYears"] isEqualToString:@"11"]) {
-        [self.btnExperience setTitle:@"10年以上" forState:UIControlStateNormal];
-    }
-    else {
-        [self.btnExperience setTitle:[NSString stringWithFormat:@"%@年",intentionData[@"RelatedWorkYears"]] forState:UIControlStateNormal];
-    }
-    [self.btnExperience setTag:[intentionData[@"RelatedWorkYears"] intValue]];
-    //薪水
-    [self.btnSalary setTitle:intentionData[@"Salary"] forState:UIControlStateNormal];
-    if ([intentionData[@"IsNegotiable"] isEqualToString:@"true"]) {
-        self.btnNogetiation.tag = 1;
-        [self.btnNogetiation setBackgroundImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
-    }
-    else {
-        self.btnNogetiation.tag = 0;
-        [self.btnNogetiation setBackgroundImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
-    }
-    [self.btnSalary setTag:[intentionData[@"dcSalaryID"] intValue]];
-    //工作类型
-    [self.btnEmployType setTitle:[CommonController getDictionaryDesc:intentionData[@"EmployType"] tableName:@"EmployType"] forState:UIControlStateNormal];
-    [self.btnEmployType setTag:[intentionData[@"EmployType"] intValue]];
-    //工作地点
-    [self.btnWorkPlace setTitle:intentionData[@"JobPlaceName"] forState:UIControlStateNormal];
-    self.workPlaceId = intentionData[@"JobPlace"];
-    //职位类别
-    [self.btnJobType setTitle:intentionData[@"JobTypeName"] forState:UIControlStateNormal];
-    self.jobTypeId = intentionData[@"JobType"];
-    
     [loadView stopAnimating];
 }
 

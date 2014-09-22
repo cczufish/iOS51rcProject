@@ -165,67 +165,69 @@
 {
     CGRect frameViewJobIntention = self.viewJobIntention.frame;
     frameViewJobIntention.size.height = 205;
-    [self.lbEmployType setText:[CommonController getDictionaryDesc:arrayCvIntention[0][@"EmployType"] tableName:@"EmployType"]];
-    if ([arrayCvIntention[0][@"IsNegotiable"] isEqualToString:@"true"]) {
-        [self.lbSalary setText:[NSString stringWithFormat:@"%@（可面议）",arrayCvIntention[0][@"Salary"]]];
-    }
-    else {
-        [self.lbSalary setText:arrayCvIntention[0][@"Salary"]];
-    }
-    if ([arrayCvIntention[0][@"RelatedWorkYears"] isEqualToString:@"0"]) {
-        [self.lbExperience setText:@"无"];
-    }
-    else if ([arrayCvIntention[0][@"RelatedWorkYears"] isEqualToString:@"11"]) {
-        [self.lbExperience setText:@"10年以上"];
-    }
-    else {
-        [self.lbExperience setText:[NSString stringWithFormat:@"%@年",arrayCvIntention[0][@"RelatedWorkYears"]]];
-    }
-    CGSize labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobPlaceName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 300)];
-    [self.lbExpectJobPlace setText:arrayCvIntention[0][@"JobPlaceName"]];
-    [self.lbExpectJobType setText:arrayCvIntention[0][@"JobTypeName"]];
-    if (labelSize.height > 20) {
-        //期望职位类别多行，将下面的控件位置处理
-        CGRect frameExpectJobPlace = self.lbExpectJobPlace.frame;
-        frameExpectJobPlace.size.height = labelSize.height;
-        [self.lbExpectJobPlace setFrame:frameExpectJobPlace];
-        
-        CGRect frameExpectJobType = self.lbExpectJobType.frame;
-        frameExpectJobType.origin.y = frameExpectJobPlace.origin.y + frameExpectJobPlace.size.height + 12;
-        [self.lbExpectJobType setFrame:frameExpectJobType];
-        
-        CGRect frameExpectJobTypeTitle = self.lbExpectJobTypeTitle.frame;
-        frameExpectJobTypeTitle.origin.y = frameExpectJobPlace.origin.y + frameExpectJobPlace.size.height + 12;
-        [self.lbExpectJobTypeTitle setFrame:frameExpectJobTypeTitle];
-        //修改求职意向view的高度
-        frameViewJobIntention.size.height += labelSize.height-15;
-    }
-    else {
-        //期望职位类别多行，将下面的控件位置处理
-        CGRect frameExpectJobPlace = self.lbExpectJobPlace.frame;
-        frameExpectJobPlace.size.height = 15;
-        [self.lbExpectJobPlace setFrame:frameExpectJobPlace];
-        
-        CGRect frameExpectJobType = self.lbExpectJobType.frame;
-        frameExpectJobType.origin.y = 173;
-        [self.lbExpectJobType setFrame:frameExpectJobType];
-        
-        CGRect frameExpectJobTypeTitle = self.lbExpectJobTypeTitle.frame;
-        frameExpectJobTypeTitle.origin.y = 173;
-        [self.lbExpectJobTypeTitle setFrame:frameExpectJobTypeTitle];
-    }
-    labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobTypeName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 300)];
-    if (labelSize.height > 20) {
-        CGRect frameExpectJobType = self.lbExpectJobType.frame;
-        frameExpectJobType.size.height = labelSize.height;
-        [self.lbExpectJobType setFrame:frameExpectJobType];
-        //修改求职意向view的高度
-        frameViewJobIntention.size.height += labelSize.height-15;
-    }
-    else {
-        CGRect frameExpectJobType = self.lbExpectJobType.frame;
-        frameExpectJobType.size.height = 15;
-        [self.lbExpectJobType setFrame:frameExpectJobType];
+    if (arrayCvIntention[0][@"RelatedWorkYears"]) {
+        [self.lbEmployType setText:[CommonController getDictionaryDesc:arrayCvIntention[0][@"EmployType"] tableName:@"EmployType"]];
+        if ([arrayCvIntention[0][@"IsNegotiable"] isEqualToString:@"true"]) {
+            [self.lbSalary setText:[NSString stringWithFormat:@"%@（可面议）",arrayCvIntention[0][@"Salary"]]];
+        }
+        else {
+            [self.lbSalary setText:arrayCvIntention[0][@"Salary"]];
+        }
+        if ([arrayCvIntention[0][@"RelatedWorkYears"] isEqualToString:@"0"]) {
+            [self.lbExperience setText:@"无"];
+        }
+        else if ([arrayCvIntention[0][@"RelatedWorkYears"] isEqualToString:@"11"]) {
+            [self.lbExperience setText:@"10年以上"];
+        }
+        else {
+            [self.lbExperience setText:[NSString stringWithFormat:@"%@年",arrayCvIntention[0][@"RelatedWorkYears"]]];
+        }
+        CGSize labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobPlaceName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 300)];
+        [self.lbExpectJobPlace setText:arrayCvIntention[0][@"JobPlaceName"]];
+        [self.lbExpectJobType setText:arrayCvIntention[0][@"JobTypeName"]];
+        if (labelSize.height > 20) {
+            //期望职位类别多行，将下面的控件位置处理
+            CGRect frameExpectJobPlace = self.lbExpectJobPlace.frame;
+            frameExpectJobPlace.size.height = labelSize.height;
+            [self.lbExpectJobPlace setFrame:frameExpectJobPlace];
+            
+            CGRect frameExpectJobType = self.lbExpectJobType.frame;
+            frameExpectJobType.origin.y = frameExpectJobPlace.origin.y + frameExpectJobPlace.size.height + 12;
+            [self.lbExpectJobType setFrame:frameExpectJobType];
+            
+            CGRect frameExpectJobTypeTitle = self.lbExpectJobTypeTitle.frame;
+            frameExpectJobTypeTitle.origin.y = frameExpectJobPlace.origin.y + frameExpectJobPlace.size.height + 12;
+            [self.lbExpectJobTypeTitle setFrame:frameExpectJobTypeTitle];
+            //修改求职意向view的高度
+            frameViewJobIntention.size.height += labelSize.height-15;
+        }
+        else {
+            //期望职位类别多行，将下面的控件位置处理
+            CGRect frameExpectJobPlace = self.lbExpectJobPlace.frame;
+            frameExpectJobPlace.size.height = 15;
+            [self.lbExpectJobPlace setFrame:frameExpectJobPlace];
+            
+            CGRect frameExpectJobType = self.lbExpectJobType.frame;
+            frameExpectJobType.origin.y = 173;
+            [self.lbExpectJobType setFrame:frameExpectJobType];
+            
+            CGRect frameExpectJobTypeTitle = self.lbExpectJobTypeTitle.frame;
+            frameExpectJobTypeTitle.origin.y = 173;
+            [self.lbExpectJobTypeTitle setFrame:frameExpectJobTypeTitle];
+        }
+        labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobTypeName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 300)];
+        if (labelSize.height > 20) {
+            CGRect frameExpectJobType = self.lbExpectJobType.frame;
+            frameExpectJobType.size.height = labelSize.height;
+            [self.lbExpectJobType setFrame:frameExpectJobType];
+            //修改求职意向view的高度
+            frameViewJobIntention.size.height += labelSize.height-15;
+        }
+        else {
+            CGRect frameExpectJobType = self.lbExpectJobType.frame;
+            frameExpectJobType.size.height = 15;
+            [self.lbExpectJobType setFrame:frameExpectJobType];
+        }
     }
     [self.viewJobIntention setFrame:frameViewJobIntention];
     [self.scrollCvModify setContentSize:CGSizeMake(320, self.viewJobIntention.frame.origin.y+self.viewJobIntention.frame.size.height+15)];
