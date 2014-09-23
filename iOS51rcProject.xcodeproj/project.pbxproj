@@ -174,6 +174,7 @@
 		99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD819BD84C1008F986A /* CommonApplyJobViewController.m */; };
 		99938FDC19BD84F0008F986A /* CommonFavorityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */; };
 		99938FE319BD9821008F986A /* RMSearchJobListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FE219BD9821008F986A /* RMSearchJobListViewController.m */; };
+		9994AF2419D10C01008068AD /* ico_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 9994AF2319D10C01008068AD /* ico_top.png */; };
 		999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */; };
 		999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 999B5B0319B980510067B3E7 /* ico_EI_Background.png */; };
 		999B5B0819B9873D0067B3E7 /* EiScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 999B5B0719B9873D0067B3E7 /* EiScrollPageView.m */; };
@@ -683,6 +684,7 @@
 		99938FDB19BD84F0008F986A /* CommonFavorityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonFavorityViewController.m; path = Recruitment/CommonFavorityViewController.m; sourceTree = "<group>"; };
 		99938FE119BD9821008F986A /* RMSearchJobListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RMSearchJobListViewController.h; path = Recruitment/RMSearchJobListViewController.h; sourceTree = "<group>"; };
 		99938FE219BD9821008F986A /* RMSearchJobListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RMSearchJobListViewController.m; path = Recruitment/RMSearchJobListViewController.m; sourceTree = "<group>"; };
+		9994AF2319D10C01008068AD /* ico_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_top.png; sourceTree = "<group>"; };
 		999B5B0219B980510067B3E7 /* ico_EI_Background_width107.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background_width107.png; sourceTree = "<group>"; };
 		999B5B0319B980510067B3E7 /* ico_EI_Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_EI_Background.png; sourceTree = "<group>"; };
 		999B5B0619B9873D0067B3E7 /* EiScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiScrollPageView.h; sourceTree = "<group>"; };
@@ -1858,6 +1860,7 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9994AF2319D10C01008068AD /* ico_top.png */,
 				9926A62319CBC33E00331038 /* ico_onlinechat_cphead_online.png */,
 				99C539B719C962A600E6165A /* ico_salary_rank1.png */,
 				99C539B819C962A600E6165A /* ico_salary_rank2.png */,
@@ -2328,6 +2331,7 @@
 				995ED5A519CFCEEA005CFBC0 /* SearchPickerView.xib in Resources */,
 				999BDD1219C2E41E000A152A /* More.storyboard in Resources */,
 				9936980D19C7D4020060BDD1 /* ico_cvmain_specially.png in Resources */,
+				9994AF2419D10C01008068AD /* ico_top.png in Resources */,
 				9936980A19C7D4020060BDD1 /* ico_cvmain_group.png in Resources */,
 				99CFD888199B60D8009A5ABA /* ico_main_rm.png in Resources */,
 				9942F39519B95C2100191C74 /* ico_mainmore_help.png in Resources */,

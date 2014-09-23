@@ -284,7 +284,7 @@
     }
     
     //乘车线路
-    if ([dicRecruitment objectForKey:@"BusLine"]) {
+    if ([[dicRecruitment objectForKey:@"BusLine"] length] > 0) {
         fltHeight += 10;
         UILabel *lbBusLine = [[UILabel alloc] initWithFrame:CGRectMake(20, fltHeight, 280, 20)];
         //        lbBusLine.backgroundColor = [UIColor grayColor];
@@ -307,7 +307,7 @@
         UILabel *lbBrief = [[UILabel alloc] initWithFrame:CGRectMake(20, fltHeight, 280, 20)];
         //        lbBrief.backgroundColor = [UIColor grayColor];
         NSString *recruitmentBrief = [NSString stringWithFormat:@"招聘会详情：\n\n%@",dicRecruitment[@"Brief"]];
-        labelSize = [CommonController CalculateFrame:recruitmentBrief fontDemond:font sizeDemand:CGSizeMake(lbBrief.frame.size.width, 500)];
+        labelSize = [CommonController CalculateFrame:recruitmentBrief fontDemond:font sizeDemand:CGSizeMake(lbBrief.frame.size.width, 5000)];
         [lbBrief setFrame:CGRectMake(lbBrief.frame.origin.x, lbBrief.frame.origin.y, lbBrief.frame.size.width, labelSize.height)];
         lbBrief.lineBreakMode = NSLineBreakByCharWrapping;
         lbBrief.numberOfLines = 0;

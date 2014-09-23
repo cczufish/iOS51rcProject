@@ -185,6 +185,9 @@
         [self.tvJobList footerEndRefreshing];
         //重新加载列表
         [self.tvJobList reloadData];
+        if (requestData.count == 0) {
+            [self.view makeToast:@"没有符合条件的职位"];
+        }
     }
     else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
@@ -406,10 +409,16 @@
     [self cancelPicker];
     if (picker.tag == 1) {
         self.workPlace = selectedValue;
+        if (selectedValue.length == 0) {
+            self.workPlace = self.searchRegion;
+        }
         self.lbRegionFilter.text = selectedName;
     }
     else if (picker.tag == 2) {
         self.jobType = selectedValue;
+        if (selectedValue.length == 0) {
+            self.jobType = self.searchJobType;
+        }
         self.lbJobTypeFilter.text = selectedName;
     }
     else if (picker.tag == 3) {
@@ -538,6 +547,21 @@
     [self insertJobApply:value isFirst:NO];
 }
 
+- (IBAction)scrollToTop:(id)sender {
+    [self.tvJobList setContentOffset:CGPointMake(0, 0) animated:true];
+    [self.btnTop setHidden:true];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (self.tvJobList.contentOffset.y > 300) {
+        [self.btnTop setHidden:false];
+    }
+    else {
+        [self.btnTop setHidden:true];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -590,6 +614,7 @@
     [_dictionaryPicker release];
     [_arrCheckJobID release];
     [_cPopup release];
+    [_btnTop release];
     [super dealloc];
 }
 @end

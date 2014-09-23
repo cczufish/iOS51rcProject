@@ -47,13 +47,29 @@
     {
         case 0:
             if ([CommonController isLogin]) {
-                lbTitle.text = @"点击登陆";
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                UILabel *lbPaName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
+                lbPaName.text = [userDefaults objectForKey:@"paName"];
+                lbPaName.font = [UIFont systemFontOfSize:14];
+                lbPaName.textColor = [UIColor whiteColor];
+                [lbTitle addSubview:lbPaName];
+                [lbPaName release];
+                
+                UILabel *lbUserName = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 200, 10)];
+                lbUserName.text = [userDefaults objectForKey:@"UserName"];
+                lbUserName.font = [UIFont systemFontOfSize:10];
+                lbUserName.textColor = [UIColor whiteColor];
+                [lbTitle addSubview:lbUserName];
+                [lbUserName release];
+                
+                [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_head.png"]];
+                ivTitle.frame = CGRectMake(35, 3, 40, 40);
             }
             else {
                 lbTitle.text = @"点击登陆";
+                [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_head.png"]];
+                ivTitle.frame = CGRectMake(35, 3, 40, 40);
             }
-            [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_head.png"]];
-            ivTitle.frame = CGRectMake(35, 3, 40, 40);
             break;
         case 1:
             lbTitle.text = @"首页";
@@ -135,17 +151,26 @@
 	UIViewController *vc;
 	switch (indexPath.row)
 	{
+        case 0:
+        {
+            if ([CommonController isLogin]) {
+                vc = [[UIStoryboard storyboardWithName:@"UserCenter" bundle: nil] instantiateViewControllerWithIdentifier: @"IndexView"];
+            }
+            else {
+                vc = [[UIStoryboard storyboardWithName:@"Login" bundle: nil] instantiateViewControllerWithIdentifier: @"LoginView"];
+            }
+            break;
+        }
 		case 1:
 			[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
-			return;
+            return;
 			break;
         case 2:
             vc = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"SearchView"];
 			break;
         case 3:
         {
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            if ([userDefaults objectForKey:@"UserID"]) {
+            if ([CommonController isLogin]) {
                 vc = [[UIStoryboard storyboardWithName:@"UserCenter" bundle: nil] instantiateViewControllerWithIdentifier: @"IndexView"];
             }
             else {
@@ -159,9 +184,12 @@
         case 7:
 			vc = [[UIStoryboard storyboardWithName:@"Campus" bundle: nil] instantiateViewControllerWithIdentifier: @"CampusView"];
 			break;
+        case 9:
+			vc = [[UIStoryboard storyboardWithName:@"More" bundle: nil] instantiateViewControllerWithIdentifier: @"MoreView"];
+			break;
         default:
             [[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
-			return;
+            return;
 			break;
 	}
 	

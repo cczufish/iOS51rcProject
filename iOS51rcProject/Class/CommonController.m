@@ -230,16 +230,6 @@
 //过滤Html标签
 + (NSString *) FilterHtml :(NSString*) content
 {
-//    content =[content stringByReplacingOccurrencesOfString:@"<br> <br>" withString:@"\n"];
-//    content =[content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-//    content =[content stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
-//    content =[content stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
-//    content =[content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-//    content =[content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-//    content =[content stringByReplacingOccurrencesOfString:@"<p" withString:@""];
-//    content =[content stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
-//    content =[content stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
-//    return content;
     content = [content stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
     content = [content stringByReplacingOccurrencesOfString:@"&gt;" withString:@">"];
     content = [content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];

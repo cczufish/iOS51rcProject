@@ -47,7 +47,7 @@
     self.viewJobShow.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     self.viewJobShow.layer.borderWidth = 1;
     self.viewJobShow.layer.cornerRadius = 5;
-    if ([[CommonController GetCurrentNet] isEqualToString:@"wifi"]) {
+    if (![[CommonController GetCurrentNet] isEqualToString:@"wifi"]) {
         //添加温馨提示说明
         NSString *strNoWifi = @"系统检测到您没有接入wifi网络，使用地图搜索可能会耗费大量流量，您确定继续这么做么？";
         CGSize labelSize = [CommonController CalculateFrame:strNoWifi fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(240, 5000)];
@@ -78,6 +78,9 @@
         [lbNoWifiTitle release];
         [lbSeperate release];
         [viewPopup release];
+    }
+    else {
+        [self confirmAndCancelPopupNext];
     }
 }
 

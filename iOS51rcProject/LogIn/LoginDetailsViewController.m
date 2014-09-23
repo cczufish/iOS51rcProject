@@ -97,7 +97,7 @@
     [dicParam setObject:passWord forKey:@"passWord"];
     [dicParam setObject:@"IOS" forKey:@"ip"];
     [dicParam setObject:@"32" forKey:@"provinceID"];
-    [dicParam setObject:@"ismobile:Android" forKey:@"browser"];
+    [dicParam setObject:@"ismobile:IOS" forKey:@"browser"];
     [dicParam setObject:@"0" forKey:@"autoLogin"];
     
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"Login" Params:dicParam];
@@ -145,6 +145,21 @@
         [result retain];
         [self didReceiveGetCodeData: result];
     }
+    else if ([wsName isEqual:@"GetPaMainInfoByID"]) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setValue: userID forKey:@"UserID"];//PamainID
+        [userDefaults setValue: userName forKey:@"UserName"];
+        [userDefaults setValue: passWord forKey:@"PassWord"];
+        [userDefaults setValue: @"1" forKey:@"BeLogined"];
+        [userDefaults setBool: isAutoLogin forKey:@"isAutoLogin"];
+        [userDefaults setObject:code forKey:@"code"];
+        [userDefaults setObject:requestData[0][@"Name"] forKey:@"paName"];
+        [self.loginLoading stopAnimating];
+        [NSThread sleepForTimeInterval:1];
+        [self.view makeToast:@"登录成功"];
+        [NSThread sleepForTimeInterval:1];
+        [gotoHomeDelegate gotoHome];
+    }
 }
 
 //接收到登录webservice内容
@@ -183,19 +198,9 @@
         [realCode stringByAppendingFormat:@"%@%@%@%@%@",[result substringWithRange:NSMakeRange(11,2)],
         [result substringWithRange:NSMakeRange(0,4)],[result substringWithRange:NSMakeRange(14,2)],
         [result substringWithRange:NSMakeRange(8,2)],[result substringWithRange:NSMakeRange(5,2)]];
-   
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue: userID forKey:@"UserID"];//PamainID
-    [userDefaults setValue: userName forKey:@"UserName"];
-    [userDefaults setValue: passWord forKey:@"PassWord"];    
-    [userDefaults setValue: @"1" forKey:@"BeLogined"];
-    [userDefaults setBool: isAutoLogin forKey:@"isAutoLogin"];
-    [userDefaults setObject:realCode forKey:@"code"];
-    [self.loginLoading stopAnimating];
-    [NSThread sleepForTimeInterval:1];
-    [self.view makeToast:@"登录成功"];
-    [NSThread sleepForTimeInterval:1];
-    [gotoHomeDelegate gotoHome];
+
+    code = realCode;
+    [self getPaName];
 }
 
 //从webservice获取code
@@ -209,6 +214,20 @@
     [request setDelegate:self];
     self.runningRequest = request;
     wsName = @"GetPaAddDate";
+}
+
+//从webservice获取姓名
+-(void) getPaName
+{
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaMainInfoByID" Params:dicParam];
+    
+    [request startAsynchronous];
+    [request setDelegate:self];
+    self.runningRequest = request;
+    wsName = @"GetPaMainInfoByID";
 }
 
 //隐藏键盘

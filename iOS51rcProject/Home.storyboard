@@ -774,6 +774,16 @@
                                             <outlet property="delegate" destination="uzh-8g-oQu" id="zAh-ZO-l9M"/>
                                         </connections>
                                     </tableView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GPu-D1-ZTg">
+                                        <rect key="frame" x="280" y="480" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="ico_top.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="scrollToTop:" destination="uzh-8g-oQu" eventType="touchUpInside" id="aKj-9F-1WD"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_select_down.png" id="dge-zK-1Z0">
                                         <rect key="frame" x="64" y="82" width="12" height="6"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -888,6 +898,7 @@
                         <outlet property="btnOtherFilter" destination="nVp-b8-tm8" id="ca8-BY-DBU"/>
                         <outlet property="btnRegionFilter" destination="Wy3-nw-NR7" id="Hhw-1j-x3g"/>
                         <outlet property="btnSalaryFilter" destination="sXW-hf-gV1" id="Huf-TB-avd"/>
+                        <outlet property="btnTop" destination="GPu-D1-ZTg" id="2kq-NZ-E2O"/>
                         <outlet property="lbJobTypeFilter" destination="5m5-Rg-k8e" id="BUl-t0-maa"/>
                         <outlet property="lbRegionFilter" destination="y3h-UD-BHh" id="aow-PA-izM"/>
                         <outlet property="lbSalaryFilter" destination="Aok-d1-hhV" id="fI6-5Y-tkf"/>
@@ -1169,6 +1180,7 @@
         <image name="ico_mapsearch_search.png" width="62" height="62"/>
         <image name="ico_select_down.png" width="36" height="21"/>
         <image name="ico_select_right.png" width="21" height="36"/>
+        <image name="ico_top.png" width="110" height="110"/>
         <image name="main_pic_campus.png" width="308" height="476"/>
         <image name="main_pic_govnews.png" width="308" height="476"/>
         <image name="main_pic_head.png" width="720" height="205"/>

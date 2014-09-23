@@ -6,6 +6,7 @@
 #import "CustomPopup.h"
 #import "NewsHelpViewController.h"
 #import "PushNotificationViewController.h"
+#import "MenuViewController.h"
 
 @interface MoreViewController () <UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate, CustomPopupDelegate>
 @property (retain, nonatomic) CustomPopup *cPopup;

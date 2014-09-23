@@ -20,6 +20,7 @@
     NSString *ip;
     NSString *provinceID;
     NSString *browser;
+    NSString *code;
     BOOL isAutoLogin;
     
     NSString *wsName;//当前调用的webservice名字
