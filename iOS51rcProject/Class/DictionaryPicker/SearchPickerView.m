@@ -15,6 +15,25 @@
 
 @implementation SearchPickerView
 
+- (void)dealloc
+{
+    [db close];
+    [db release];
+    [_pickerDictionary release];
+    [_arrSelectValue release];
+    [_arrSelectName release];
+    [_selectTableName release];
+    [arrDictionaryL1 release];
+    [arrDictionaryL2 release];
+    [arrDictionaryL3 release];
+    [_viewMultiTop release];
+    [_viewMultiBottom release];
+    [_viewOneTop release];
+    [_lbMulti release];
+    [_scrollMulti release];
+    [super dealloc];
+}
+
 - (id)initWithSearchRegionFilter:(id <SearchPickerDelegate>)delegate
                      selectValue:(NSString *)selectValue
                       selectName:(NSString *)selectName

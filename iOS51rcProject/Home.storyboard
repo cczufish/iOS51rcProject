@@ -942,7 +942,7 @@
         <!--Slide Navigation Controller-->
         <scene sceneID="ZVW-oo-lv7">
             <objects>
-                <navigationController id="IDp-DD-dkI" customClass="SlideNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SlideNavigation" id="IDp-DD-dkI" customClass="SlideNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fXX-Gc-Gq1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

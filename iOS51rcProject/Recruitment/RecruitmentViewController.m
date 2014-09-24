@@ -151,7 +151,6 @@
     
     //举办日期
     self.dtBeginTime = [CommonController dateFromString:dicRecruitment[@"BeginDate"]];
-    [self.dtBeginTime retain];
     NSDate *dtEndDate = [CommonController dateFromString:dicRecruitment[@"EndDate"]] ;
     NSString *strTime = [NSString stringWithFormat:@"%@-%@",[CommonController stringFromDate:self.dtBeginTime formatType:@"yyyy-MM-dd HH:mm"],[CommonController stringFromDate:dtEndDate formatType:@"HH:mm"]];
     [self.lbRunDate setText:strTime];
@@ -407,6 +406,9 @@
 }
 
 - (void)dealloc {
+    [_recruitmentMobile release];
+    [_recruitmentTelephone release];
+    [_recruitmentID release];
     [_attentCpCount release];
     [_lbViewNumber release];
     [_lbRmPa release];

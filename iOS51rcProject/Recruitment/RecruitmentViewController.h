@@ -9,12 +9,12 @@
 //    NSDate *dtBeginTime;
 }
 
-@property (assign,nonatomic) NSString *recruitmentMobile;
-@property (assign,nonatomic) NSString *recruitmentTelephone;
+@property (retain,nonatomic) NSString *recruitmentMobile;
+@property (retain,nonatomic) NSString *recruitmentTelephone;
 @property (retain,nonatomic) NSString *recruitmentID;
 
-@property (assign,nonatomic) NSString *strAddress;
-@property (assign,nonatomic) NSString *strPlace;
-@property (assign,nonatomic) NSDate *dtBeginTime;
+@property (retain,nonatomic) NSString *strAddress;
+@property (retain,nonatomic) NSString *strPlace;
+@property (retain,nonatomic) NSDate *dtBeginTime;
 
 @end

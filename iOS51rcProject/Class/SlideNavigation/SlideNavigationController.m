@@ -20,6 +20,7 @@ typedef enum {
 #define MENU_SLIDE_ANIMATION_DURATION .4
 #define MENU_QUICK_SLIDE_ANIMATION_DURATION .18
 #define MENU_IMAGE @"menu-button"
+#define MENU_BACK_IMAGE @"menu-back"
 #define MENU_SHADOW_RADIUS 10
 #define MENU_SHADOW_OPACITY 1
 #define MENU_DEFAULT_SLIDE_OFFSET 100
@@ -70,6 +71,7 @@ static SlideNavigationController *singletonInstance;
 
 - (void)setup
 {
+    singletonInstance = nil;
 	if (singletonInstance)
 		NSLog(@"Singleton instance already exists. You can only instantiate one instance of SlideNavigationController. This could cause major issues");
 	
@@ -595,7 +597,7 @@ static SlideNavigationController *singletonInstance;
 		viewController.navigationItem.leftBarButtonItem = [self barButtonItemForMenu:MenuLeft];
     }
     else {
-        UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ico_mapsearch_pre.png"] style:UIBarButtonItemStyleDone target:self action:@selector(popViewControllerAnimated:)];
+        UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:MENU_BACK_IMAGE] style:UIBarButtonItemStyleDone target:self action:@selector(popViewControllerAnimated:)];
         viewController.navigationItem.leftBarButtonItem = leftBarItem;
     }
 	

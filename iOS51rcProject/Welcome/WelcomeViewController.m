@@ -1,6 +1,6 @@
 #import "WelcomeViewController.h"
 #import "WelcomeUIImage.h"
-#import "HomeViewController.h"
+#import "MenuViewController.h"
 
 @interface WelcomeViewController ()
 
@@ -34,13 +34,11 @@
     [super viewDidLoad];
 	
     self.view.backgroundColor = [UIColor whiteColor];
-    
     pageScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, HEIGHT)];
     pageScroll.contentSize = CGSizeMake(4*320, HEIGHT);
     pageScroll.pagingEnabled = YES;
     pageScroll.delegate = self;
     [pageScroll setShowsHorizontalScrollIndicator:NO];
-    
     //欢迎页（切换）
     UIImageView * imageView1 = [[UIImageView alloc]init];
     UIImageView * imageView2 = [[UIImageView alloc]init];
@@ -99,6 +97,7 @@
     pageControl.frame = CGRectMake(141,364,50,50);
     [pageControl setNumberOfPages:4];
     pageControl.currentPage = 0;
+    [pageControl setHidden:true];
     [pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:pageControl];
 }
@@ -114,9 +113,11 @@
 
 -(void)gotoMainView:(id)sender
 {
-    NSLog(@"登录");
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
-    HomeViewController *homeCtrl = (HomeViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"HomeView"];
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.view setAlpha:0];
+    } completion:^(BOOL finished) {
+        [self.view removeFromSuperview];
+    }];
 }
 
 

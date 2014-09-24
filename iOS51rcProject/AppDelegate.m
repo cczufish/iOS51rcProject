@@ -90,6 +90,8 @@
     //判断当前设备屏幕尺寸
     CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
     UIStoryboard *mainStoryboard = nil;
+    mainStoryboard = self.window.rootViewController.storyboard;
+    mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
     if (iOSDeviceScreenSize.height == 568) {//IPhone 5
         mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
     }
@@ -99,7 +101,6 @@
     
     MenuViewController *menuC = (MenuViewController*)[mainStoryboard
                                                       instantiateViewControllerWithIdentifier: @"MenuView"];
-	
 	[SlideNavigationController sharedInstance].rightMenu = menuC;
 	[SlideNavigationController sharedInstance].leftMenu = menuC;
 
@@ -111,13 +112,14 @@
     //获得是否是第一次登录
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSInteger logCount = [userDefaults integerForKey:@"loginCount"];
-    if (logCount == 0) {
+    if (logCount > 0) {
         //NSLog(@"the first login");
         //如果是第一次登录，则显示四个欢迎图片
-        self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-        WelcomeViewController * startView = [[WelcomeViewController alloc]init];
-        self.window.rootViewController = startView;
-        [startView release];
+//        self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+        WelcomeViewController * startView = [[WelcomeViewController alloc] init];
+        [self.window.rootViewController.view addSubview:startView.view];
+//        self.window.rootViewController = startView;
+//        [startView release];
     }
     else{
         //NSLog(@"not the first login");

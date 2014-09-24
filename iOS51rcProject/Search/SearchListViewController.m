@@ -50,7 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.arrCheckJobID = [[NSMutableArray alloc] init];
+    self.arrCheckJobID = [[[NSMutableArray alloc] init] autorelease];
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
@@ -329,6 +329,7 @@
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
+    [viewSeparate release];
     return cell;
 }
 
