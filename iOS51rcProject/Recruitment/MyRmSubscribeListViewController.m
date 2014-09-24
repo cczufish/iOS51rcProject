@@ -61,14 +61,16 @@
 
 //成功
 - (void)netRequestFinished:(NetWebServiceRequest *)request
-      finishedInfoToResult:(NSString *)result
-              responseData:(NSMutableArray *)requestData
+      finishedInfoToResult:(NSString *)result responseData:(NSMutableArray *)requestData
 {
     [recruitmentCpData removeAllObjects];
     recruitmentCpData = requestData;
+    [recruitmentCpData retain];
     
-    [self.tvRecruitmentCpList reloadData];
-    [self.tvRecruitmentCpList footerEndRefreshing];
+    if (recruitmentCpData.count>0) {
+        [self.tvRecruitmentCpList reloadData];
+        [self.tvRecruitmentCpList footerEndRefreshing];
+    }    
     
     //结束等待动画
     [loadView stopAnimating];
@@ -230,6 +232,7 @@
 
 - (void)dealloc {
     [_tvRecruitmentCpList release];
+    [recruitmentCpData release];
     [_btnInviteCp release];
     [_viewBottom release];
     [super dealloc];
