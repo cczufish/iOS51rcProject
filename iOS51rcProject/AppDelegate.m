@@ -1,11 +1,3 @@
-//
-//  AppDelegate.m
-//  iOS51rcProject
-//
-//  Created by Lucifer on 14-8-13.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import "AppDelegate.h"
 #import <ShareSDK/ShareSDK.h>
 #import "WXApi.h"
@@ -14,6 +6,7 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WelcomeViewController.h"
+#import "BPush.h"
 
 @implementation AppDelegate
 
@@ -105,8 +98,22 @@
 	[SlideNavigationController sharedInstance].leftMenu = menuC;
 
     //设置推送
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
-    
+    [BPush setupChannel:launchOptions];
+    [BPush setDelegate:self];
+#if SUPPORT_IOS8
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIUserNotificationType myTypes = UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:myTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else
+#endif
+    {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+    }
+
+    //推送绑定
+    [BPush bindChannel];
     //设置欢迎界面
     [NSThread sleepForTimeInterval:1.0];
     //获得是否是第一次登录
@@ -132,10 +139,18 @@
     return YES;
 }
 
+#if SUPPORT_IOS8
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    //register to receive notifications
+    [application registerForRemoteNotifications];
+}
+#endif
+
 //如果注册成功，APNs会返回给你设备的token
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-    NSLog(@"My token is:%@", token);
+    NSLog(@"My token is:%@", deviceToken);
+    [BPush registerDeviceToken: deviceToken];
 }
 
 //注册失败
@@ -144,19 +159,46 @@
     NSLog(@"Failed to get token, error:%@", error_str);
 }
 
-//收到远端的推送
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    if (application.applicationState == UIApplicationStateActive) {
-        // 转换成一个本地通知，显示到通知栏，你也可以直接显示出一个alertView，只是那样稍显aggressive：）
-        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-        localNotification.userInfo = userInfo;
-        localNotification.soundName = UILocalNotificationDefaultSoundName;
-        localNotification.alertBody = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
-        localNotification.fireDate = [NSDate date];
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    } else {
-        //[AVAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+- (void) onMethod:(NSString*)method response:(NSDictionary*)data {
+    NSLog(@"On method:%@", method);
+    NSLog(@"data:%@", [data description]);
+    NSDictionary* res = [[[NSDictionary alloc] initWithDictionary:data] autorelease];
+    if ([BPushRequestMethod_Bind isEqualToString:method]) {
+        //NSString *appid = [res valueForKey:BPushRequestAppIdKey];
+        //NSString *userid = [res valueForKey:BPushRequestUserIdKey];
+        //NSString *channelid = [res valueForKey:BPushRequestChannelIdKey];
+        //NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];        
+        if (returnCode == BPushErrorCode_Success) {
+            // 在内存中备份，以便短时间内进入可以看到这些值，而不需要重新bind
+//            self.appId = appid;
+//            self.channelId = channelid;
+//            self.userId = userid;
+        }
+    } else if ([BPushRequestMethod_Unbind isEqualToString:method]) {
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+        if (returnCode == BPushErrorCode_Success) {
+           
+        }
     }
+
+}
+
+//收到推送
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    //NSLog(@"Receive Notify: %@", [userInfo JSONString]);
+    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    if (application.applicationState == UIApplicationStateActive) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Did receive a Remote Notification"
+                                                            message:[NSString stringWithFormat:@"The application received this remote notification while it was running:\n%@", alert]
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    [application setApplicationIconBadgeNumber:0];
+    
+    [BPush handleNotification:userInfo];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

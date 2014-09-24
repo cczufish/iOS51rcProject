@@ -1,11 +1,3 @@
-//
-//  LoginDetailsViewController.m
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-8-15.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import "LoginDetailsViewController.h"
 #import "FindPsdStep1ViewController.h"
 #import "NetWebServiceRequest.h"
@@ -16,6 +8,7 @@
 #import "CommonController.h"
 #import "LoadingAnimationView.h"
 #import "Toast+UIView.h"
+#import "BPush.h"
 
 @interface LoginDetailsViewController ()<NetWebServiceRequestDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *txtName;
@@ -157,6 +150,10 @@
         [self.loginLoading stopAnimating];
         [NSThread sleepForTimeInterval:1];
         [self.view makeToast:@"登录成功"];
+        
+        //注册百度push,把自己userID作为push的tag       
+        [BPush setTag:userID];
+        
         [NSThread sleepForTimeInterval:1];
         [gotoHomeDelegate gotoHome];
     }
