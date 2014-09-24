@@ -7,7 +7,7 @@
 @interface InterviewNoticeViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     NSInteger selectRowIndex;
-    NSMutableArray *recruitmentCpData;   
+    
     LoadingAnimationView *loadView;
     NSMutableArray *checkedCpArray;
     id<GoToRmViewDetailDelegate> gotoRmViewDelegate;
@@ -16,5 +16,6 @@
 }
 @property (retain, nonatomic) id<GoToRmViewDetailDelegate> gotoRmViewDelegate;
 @property (retain, nonatomic) id<GoToMyInvitedCpViewDelegate> gotoMyInvitedCpViewDelegate;
+@property (retain, nonatomic) NSMutableArray *recruitmentCpData;
 -(void) onSearch;
 @end

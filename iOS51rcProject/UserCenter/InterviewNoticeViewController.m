@@ -42,7 +42,7 @@
 - (void)onSearch
 {
     [loadView startAnimating];
-    [recruitmentCpData removeAllObjects];
+    [self.recruitmentCpData removeAllObjects];
     [self.tvReceivedInvitationList reloadData];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -65,8 +65,8 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) {
-        [recruitmentCpData removeAllObjects];
-        recruitmentCpData = requestData;
+        [self.recruitmentCpData removeAllObjects];
+        self.recruitmentCpData = requestData;
         
         [self.tvReceivedInvitationList reloadData];
         [self.tvReceivedInvitationList footerEndRefreshing];
@@ -84,7 +84,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"cpList"] autorelease];
     
-    NSDictionary *rowData = recruitmentCpData[indexPath.row];
+    NSDictionary *rowData = self.recruitmentCpData[indexPath.row];
     NSString *strReply = rowData[@"Reply"];
     //标题左侧的红线(已经处理则显示灰色)
     UILabel *lbLeft = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 5, 20)];
@@ -320,7 +320,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [recruitmentCpData count];
+    return [self.recruitmentCpData count];
 }
 
 -(IBAction)dismissKeyBoard:(UIButton*)sender
@@ -386,7 +386,7 @@
 
 //点击某一行,到达企业页面--调用代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [gotoRmViewDelegate gotoRmView:recruitmentCpData[indexPath.row][@"id"]];
+    [gotoRmViewDelegate gotoRmView:self.recruitmentCpData[indexPath.row][@"id"]];
     selectRowIndex = indexPath.row;
     //重新加载
     [self.tvReceivedInvitationList reloadData];
@@ -395,7 +395,7 @@
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *strReply = recruitmentCpData[indexPath.row][@"Reply"];
+    NSString *strReply = self.recruitmentCpData[indexPath.row][@"Reply"];
     
     if (selectRowIndex == indexPath.row) {
         //如果未结束，并且没操作
@@ -451,6 +451,7 @@
  */
 
 - (void)dealloc {
+    [_recruitmentCpData release];
     [_tvReceivedInvitationList release];
     [_lbMessage release];
     [super dealloc];
