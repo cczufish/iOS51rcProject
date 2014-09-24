@@ -181,8 +181,14 @@
 		case 5:
 			vc = [[UIStoryboard storyboardWithName:@"Recruitment" bundle: nil] instantiateViewControllerWithIdentifier: @"RecruitmentListView"];
 			break;
+        case 6:
+            vc = [[UIStoryboard storyboardWithName:@"GovernmentRecruitmentStoryboard" bundle:nil] instantiateViewControllerWithIdentifier:@"GRListView"];
+            break;
         case 7:
 			vc = [[UIStoryboard storyboardWithName:@"Campus" bundle: nil] instantiateViewControllerWithIdentifier: @"CampusView"];
+			break;
+        case 8:
+			vc = [[UIStoryboard storyboardWithName:@"EmploymentInformation" bundle: nil] instantiateViewControllerWithIdentifier: @"EIMainView"];
 			break;
         case 9:
 			vc = [[UIStoryboard storyboardWithName:@"More" bundle: nil] instantiateViewControllerWithIdentifier: @"MoreView"];

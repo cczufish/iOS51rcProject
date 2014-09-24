@@ -66,7 +66,6 @@
     
     if (!firstPageLoad) {
         self.firstCtrl.JobID = self.JobID;
-        [self.JobID retain];
         [self.firstCtrl onSearch];
     }
     [UIView animateWithDuration:0.2 animations:^{
@@ -83,7 +82,6 @@
     [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
     if (!secondPageLoad) {
         self.sccondCtrl.cpMainID = self.cpMainID;
-        [self.cpMainID retain];
         [self.sccondCtrl onSearch];
     }
     [UIView animateWithDuration:0.2 animations:^{
@@ -100,7 +98,6 @@
     [self.scrollView setContentOffset:CGPointMake(640, 0) animated:true];
     if (!thriePageLoad) {
         self.thirdCtrl.cpMainID = self.cpMainID;
-        [self.cpMainID retain];
         [self.thirdCtrl onSearch];
     }
     [UIView animateWithDuration:0.2 animations:^{

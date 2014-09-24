@@ -548,8 +548,6 @@
     [_viewAvg release];
     [_viewDistribution release];
     [_viewRank release];
-    [_dataEducation release];
-    [_dataExperience release];
     [_svMain release];
     [_viewTop release];
     [super dealloc];

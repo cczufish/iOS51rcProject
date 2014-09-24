@@ -8,7 +8,7 @@
 #import "DictionaryPickerView.h"
 #import "LoginViewController.h"
 #import "CustomPopup.h"
-#import "JobViewController.h"
+#import "SuperJobMainViewController.h"
 
 @interface MapSearchListViewController () <NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,SearchPickerDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
@@ -281,12 +281,17 @@
     [lbSalary release];
     
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
-    [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 77)];
     [btnCheck setTitle:rowData[@"ID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
+    [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
+    [btnCheck addSubview:imgCheck];
+    [imgCheck release];
+    
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
     
@@ -305,24 +310,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *rowData = self.jobListData[indexPath.row];
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
-    JobViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"JobView"];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
+    jobC.cpMainID = rowData[@"cpMainID"];
+    self.navigationItem.title = @" ";
+    jobC.navigationItem.title = rowData[@"cpName"];
     [self.navigationController pushViewController:jobC animated:YES];
 }
 
 - (void)rowChecked:(UIButton *)sender
 {
+    UIImageView *imgCheck = sender.subviews[0];
     if (sender.tag == 1) {
         if (![self.arrCheckJobID containsObject:sender.titleLabel.text]) {
             [self.arrCheckJobID addObject:sender.titleLabel.text];
         }
-        [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
         [sender setTag:2];
     }
     else {
         [self.arrCheckJobID removeObject:sender.titleLabel.text];
-        [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
         [sender setTag:1];
     }
     NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
@@ -516,6 +525,21 @@
     [self insertJobApply:value isFirst:NO];
 }
 
+- (IBAction)scrollToTop:(id)sender {
+    [self.tvJobList setContentOffset:CGPointMake(0, 0) animated:true];
+    [self.btnTop setHidden:true];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if (self.tvJobList.contentOffset.y > 300) {
+        [self.btnTop setHidden:false];
+    }
+    else {
+        [self.btnTop setHidden:true];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -561,6 +585,7 @@
     [_arrCheckJobID release];
     [_cPopup release];
     [_jobListData release];
+    [_btnTop release];
     [super dealloc];
 }
 @end

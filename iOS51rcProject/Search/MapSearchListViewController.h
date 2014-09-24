@@ -12,6 +12,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnApply;
 @property (retain, nonatomic) IBOutlet UIButton *btnFavorite;
 @property (retain, nonatomic) IBOutlet UIView *viewBottom;
+@property (retain, nonatomic) IBOutlet UIButton *btnTop;
 
 @property float searchLat;
 @property float searchLng;

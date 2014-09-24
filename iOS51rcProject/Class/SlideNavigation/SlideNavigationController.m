@@ -591,8 +591,13 @@ static SlideNavigationController *singletonInstance;
 	  willShowViewController:(UIViewController *)viewController
 					animated:(BOOL)animated
 {
-	if ([self shouldDisplayMenu:MenuLeft forViewController:viewController])
+	if ([self shouldDisplayMenu:MenuLeft forViewController:viewController]) {
 		viewController.navigationItem.leftBarButtonItem = [self barButtonItemForMenu:MenuLeft];
+    }
+    else {
+        UIBarButtonItem *leftBarItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"ico_mapsearch_pre.png"] style:UIBarButtonItemStyleDone target:self action:@selector(popViewControllerAnimated:)];
+        viewController.navigationItem.leftBarButtonItem = leftBarItem;
+    }
 	
 	if ([self shouldDisplayMenu:MenuRight forViewController:viewController])
 		viewController.navigationItem.rightBarButtonItem = [self barButtonItemForMenu:MenuRight];

@@ -39,11 +39,12 @@
         [vButton setTitle:vTitleStr forState:UIControlStateNormal];
         [vButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [vButton setTitleColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1] forState:UIControlStateHighlighted];;
+        [vButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
         //[vButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
-        //添加下方黑线北京
+        //添加下方黑线背景
         UILabel *lbBg = [[[UILabel alloc] initWithFrame:CGRectMake(0, vButton.frame.size.height - 2.5, vButtonWidth, 0.5)] autorelease];
         lbBg.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
         [vButton addSubview:lbBg];
@@ -71,6 +72,7 @@
 -(void)changeButtonsToNormalState{
     for (UIButton *vButton in mButtonArray) {
         vButton.selected = NO;
+        [vButton.titleLabel setTextColor:[UIColor blackColor]];
     }
 }
 
@@ -85,6 +87,7 @@
     UIButton *vButton = [mButtonArray objectAtIndex:aIndex];
     [self changeButtonsToNormalState];
     vButton.selected = YES;
+    [vButton.titleLabel setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
     [self moveScrolViewWithIndex:aIndex];
 }
 

@@ -395,6 +395,17 @@
                                             <outlet property="delegate" destination="oAn-E0-SYK" id="3PO-Sy-py3"/>
                                         </connections>
                                     </tableView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RFD-V0-OEJ">
+                                        <rect key="frame" x="280" y="480" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="ico_top.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="scrollToTop:" destination="oAn-E0-SYK" eventType="touchUpInside" id="EW1-YC-75s"/>
+                                            <action selector="scrollToTop:" destination="uzh-8g-oQu" eventType="touchUpInside" id="FV6-ak-gQz"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_select_down.png" id="Emd-PQ-qIB">
                                         <rect key="frame" x="64" y="82" width="12" height="6"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -515,6 +526,7 @@
                         <outlet property="btnJobTypeFilter" destination="nli-E2-7PV" id="6N4-M7-2Sg"/>
                         <outlet property="btnOtherFilter" destination="sRb-yi-Hig" id="hSg-bt-edm"/>
                         <outlet property="btnSalaryFilter" destination="xjl-Lz-LCK" id="8xM-OK-bzI"/>
+                        <outlet property="btnTop" destination="RFD-V0-OEJ" id="ock-Ta-fDq"/>
                         <outlet property="btnWelfareFilter" destination="xhl-lC-qoo" id="UIS-uh-4fK"/>
                         <outlet property="lbJobTypeFilter" destination="WTe-jg-kDy" id="PBk-W5-7dt"/>
                         <outlet property="lbSalaryFilter" destination="du7-r5-Z63" id="T0P-ol-1NZ"/>
@@ -525,6 +537,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aDq-vP-gCO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="758" y="-924"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="IJ6-8I-dZo">
+            <objects>
+                <viewController storyboardIdentifier="MapView" id="OnH-no-B3s" customClass="MapViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PKI-JO-zps" customClass="BMKMapView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="viewMap" destination="PKI-JO-zps" id="TTy-9H-5C3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QZK-VU-iAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1171" y="-641"/>
         </scene>
         <!--Search View Controller - 职位搜索-->
         <scene sceneID="J5w-9m-5kC">
