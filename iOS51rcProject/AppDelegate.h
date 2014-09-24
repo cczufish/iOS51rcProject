@@ -16,5 +16,4 @@
     BMKMapManager* _mapManager;
 }
 @property (strong, nonatomic) UIWindow *window;
-
 @end

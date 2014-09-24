@@ -9,7 +9,6 @@
 #import "BPush.h"
 
 @implementation AppDelegate
-
 @synthesize window = _window;
 
 - (void)dealloc
@@ -20,6 +19,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self.window makeKeyAndVisible];
+    //误删，用于切换用户欢迎界面
+//    UIImageView *imgFirs = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
+//    imgFirs.image = [UIImage imageNamed:@"Default@2x.png"];
+//    [self.window addSubview:imgFirs];
+//    [self.window bringSubviewToFront:imgFirs];
+//    [UIView animateWithDuration:5.0 animations:^{
+//        [imgFirs setAlpha:0];
+//    } completion:^(BOOL finished) {
+//        [imgFirs removeFromSuperview];
+//    }];
+
     //shareSDK初始化
     [ShareSDK registerApp:@"2fb76b87ccc8"];
     //添加新浪微博应用 注册网址 http://open.weibo.com
@@ -119,19 +130,13 @@
     //获得是否是第一次登录
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSInteger logCount = [userDefaults integerForKey:@"loginCount"];
-    if (logCount > 0) {
-        //NSLog(@"the first login");
-        //如果是第一次登录，则显示四个欢迎图片
-//        self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    if (logCount == 0) {
         WelcomeViewController * startView = [[WelcomeViewController alloc] init];
-        [self.window.rootViewController.view addSubview:startView.view];
-//        self.window.rootViewController = startView;
-//        [startView release];
-    }
+        [self.window.rootViewController.view addSubview:startView.view];    }
     else{
         //NSLog(@"not the first login");
     }
-    [self.window makeKeyAndVisible];
+    
     logCount ++;
     [userDefaults setInteger:logCount forKey:@"loginCount"];
     [userDefaults synchronize];
@@ -199,6 +204,26 @@
     [application setApplicationIconBadgeNumber:0];
     
     [BPush handleNotification:userInfo];
+}
+
+
+-(void)setAnimation:(UIImageView *)nowView
+{
+    
+    [UIView animateWithDuration:0.6f delay:0.0f options:UIViewAnimationOptionCurveLinear
+                     animations:^
+     {
+         // 执行的动画code
+         [nowView setFrame:CGRectMake(nowView.frame.origin.x- nowView.frame.size.width*0.1, nowView.frame.origin.y-nowView.frame.size.height*0.1, nowView.frame.size.width*1.2, nowView.frame.size.height*1.2)];
+     }
+                     completion:^(BOOL finished)
+     {
+         // 完成后执行code
+         [nowView removeFromSuperview];
+     }
+     ];
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
