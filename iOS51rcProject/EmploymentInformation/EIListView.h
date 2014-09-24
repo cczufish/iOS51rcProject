@@ -8,7 +8,6 @@
 #import "GoToEIItemDetailsViewDelegate.h"
 @interface EIListView : UIView<UITableViewDataSource,UITableViewDelegate, NetWebServiceRequestDelegate>
 {
-    NSMutableArray *eiListData;//新闻列表
     NSMutableArray *placeData;
     NSInteger page;
     NSString *regionid;
@@ -16,6 +15,7 @@
     id<GoToEIItemDetailsViewDelegate> goToEIItemDetailsViewDelegate;
 }
 
+@property (nonatomic,retain) NSMutableArray *eiListData;//新闻列表
 @property (nonatomic,retain) UITableView *newsTableView;//显示Table
 @property (retain, nonatomic) NSString *newsType;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;

@@ -37,8 +37,8 @@
     [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
     [myRmBtn release];
     
-    gRListData = [[NSMutableArray alloc] init];
-    placeData = [[NSMutableArray alloc] init];
+    self.gRListData = [[NSMutableArray alloc] init];
+    self.placeData = [[NSMutableArray alloc] init];
    
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -68,7 +68,7 @@
 - (void)onSearch
 {
     if (page == 1) {
-        [gRListData removeAllObjects];
+        [self.gRListData removeAllObjects];
         [self.tvGRList reloadData];
     }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -93,7 +93,7 @@
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"rmList"] autorelease];
     
-    NSDictionary *rowData = gRListData[indexPath.row];
+    NSDictionary *rowData = self.gRListData[indexPath.row];
     
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 310, 55)];
     tmpView.layer.borderWidth = 0.5;
@@ -152,12 +152,12 @@
     //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
     GRItemDetailsViewController *detailCtrl = (GRItemDetailsViewController*)[self.storyboard
                                                                       instantiateViewControllerWithIdentifier: @"GRItemDetailsView"];
-    detailCtrl.strNewsID = gRListData[indexPath.row][@"ID"];
+    detailCtrl.strNewsID = self.gRListData[indexPath.row][@"ID"];
     [self.navigationController pushViewController:detailCtrl animated:true];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [gRListData count];
+    return [self.gRListData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -176,11 +176,11 @@
 {
     if (request.tag == 1) {
         if(page == 1){
-            [gRListData removeAllObjects];
-            gRListData = requestData;
+            [self.gRListData removeAllObjects];
+            self.gRListData = requestData;
         }
         else{
-            [gRListData addObjectsFromArray:requestData];
+            [self.gRListData addObjectsFromArray:requestData];
         }
         [self.tvGRList reloadData];
         [self.tvGRList footerEndRefreshing];
@@ -191,8 +191,8 @@
 }
 
 - (void)dealloc {
-    //[placeData release];
-    //[loadView release];
+//    //[placeData release];
+//    //[loadView release];
     [_tvGRList release];
     [_runningRequest release];
     [super dealloc];

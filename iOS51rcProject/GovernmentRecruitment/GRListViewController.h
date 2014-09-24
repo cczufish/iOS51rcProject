@@ -3,10 +3,10 @@
 
 @interface GRListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 {
-    NSMutableArray *gRListData;
-    NSMutableArray *placeData;
     NSInteger page;    
     NSString *regionid;    
     LoadingAnimationView *loadView;
 }
+@property (nonatomic, retain) NSMutableArray *gRListData;
+@property (nonatomic, retain) NSMutableArray *placeData;
 @end

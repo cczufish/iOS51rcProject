@@ -13,8 +13,8 @@
             _newsTableView.dataSource = self;
             [_newsTableView setBackgroundColor:[UIColor clearColor]];
         }
-        if (eiListData == Nil) {
-            eiListData = [[NSMutableArray alloc] init];
+        if (self.eiListData == Nil) {
+            self.eiListData = [[NSMutableArray alloc] init];
         }
         [self addSubview:_newsTableView];
     }
@@ -45,7 +45,7 @@
 -(void)forceToFreshData:(NSString *) newsType{
     self.newsType = newsType;
     if (page == 1) {
-        [eiListData removeAllObjects];
+        [self.eiListData removeAllObjects];
         [self.newsTableView reloadData];
     }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -66,7 +66,7 @@
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"rmList"] autorelease];
     //数据
-    NSDictionary *rowData = eiListData[indexPath.row];
+    NSDictionary *rowData = self.eiListData[indexPath.row];
     
     //显示标题
     NSString *strTitle = rowData[@"Title"];
@@ -176,16 +176,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *newsID;
     if ([self.newsType isEqualToString:@"0"]) {
-        newsID = eiListData[indexPath.row][@"Id"] ;
+        newsID = self.eiListData[indexPath.row][@"Id"] ;
     }else
     {
-        newsID = eiListData[indexPath.row][@"ID"] ;
+        newsID = self.eiListData[indexPath.row][@"ID"] ;
     }
     [goToEIItemDetailsViewDelegate GoToEIItemDetailsView:newsID];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [eiListData count];
+    return [self.eiListData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -209,11 +209,11 @@
 {
     if (request.tag == 1) {
         if(page == 1){
-            [eiListData removeAllObjects];
-            eiListData = requestData;
+            [self.eiListData removeAllObjects];
+            self.eiListData = requestData;
         }
         else{
-            [eiListData addObjectsFromArray:requestData];
+            [self.eiListData addObjectsFromArray:requestData];
         }
         [self.newsTableView reloadData];
         [self.newsTableView footerEndRefreshing];
