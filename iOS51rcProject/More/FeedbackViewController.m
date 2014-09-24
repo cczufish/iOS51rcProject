@@ -44,7 +44,6 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     self.txtEmail.text = [userDefaults objectForKey:@"UserID"];
     self.txtEmail.text = [userDefaults objectForKey:@"UserName"];
-    
 
     self.UserInfoView.layer.cornerRadius = 5;
     self.UserInfoView.layer.borderWidth = 1;
@@ -65,7 +64,6 @@
     if ([[UIScreen mainScreen] bounds].size.height < 568) {//IPhone 5以下
         [self.svContent setContentSize:CGSizeMake(320, 590) ];
         self.svContent.frame = CGRectMake(0, 0, 320, 490);
-        //self.txtInput.frame = CGRectMake(self.lbInfo.frame.origin.x, self.lbInfo.frame.origin.y + self.lbInfo.frame.size.height + 10, 320, self.txtInput.frame.size.height - 100);
     }else{
         [self.svContent setContentSize:CGSizeMake(320, self.svContent.frame.size.height) ];
         self.svContent.frame = CGRectMake(0, 0, 320, self.svContent.frame.size.height);
@@ -110,6 +108,10 @@
     }
     if ([CommonController isBlankString:strInput]) {
        [self.view makeToast:@"意见不能为空！"];
+        return;
+    }
+    if (![CommonController isValidateMobile:strPhone]) {
+        [self.view makeToast:@"手机号格式不正确"];
         return;
     }
     if([strEmail length]>50){

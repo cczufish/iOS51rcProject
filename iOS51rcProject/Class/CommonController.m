@@ -100,7 +100,8 @@
     //手机号以13， 15，18开头，八个 \d 数字字符
     NSString *phoneRegex = @"^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\\d{8}$";
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
-    return [phoneTest evaluateWithObject:mobile];
+    BOOL result = [phoneTest evaluateWithObject:mobile];
+    return result;
 }
 
 +(NSString *)getWeek:(NSDate *)date{
