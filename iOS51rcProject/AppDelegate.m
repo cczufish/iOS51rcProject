@@ -33,9 +33,9 @@
                               weiboSDKCls:[WeiboSDK class]];
     
     //添加腾讯微博应用 注册网址 http://dev.t.qq.com
-    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
-                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-                                redirectUri:@"http://www.sharesdk.cn"
+    [ShareSDK connectTencentWeiboWithAppKey:@"801542718"
+                                  appSecret:@"4b77146e2165df1b5d0f8312ee8757f3"
+                                redirectUri:@"http://www.51rc.com"
                                    wbApiCls:[WeiboApi class]];
     
     //添加QQ空间应用  注册网址  http://connect.qq.com/intro/login/

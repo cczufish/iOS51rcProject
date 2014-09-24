@@ -134,6 +134,7 @@
 		9945C30B19A1A4890027E931 /* ico_clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30A19A1A4890027E931 /* ico_clock.png */; };
 		9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 9945C30C19A1AB370027E931 /* ico_rm_group.png */; };
 		99475CD019CFC87B0005E855 /* PushNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99475CCF19CFC87B0005E855 /* PushNotificationViewController.m */; };
+		9947A52319D2AFCC0033B571 /* SubSiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9947A52219D2AFCC0033B571 /* SubSiteViewController.m */; };
 		994C507119C02B8000E27017 /* pic_noinfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C507019C02B8000E27017 /* pic_noinfo.png */; };
 		994C507319C0335600E27017 /* ico_time_notice.png in Resources */ = {isa = PBXBuildFile; fileRef = 994C507219C0335600E27017 /* ico_time_notice.png */; };
 		9950D85B19CEC0A20048B415 /* CvViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9950D85A19CEC0A20048B415 /* CvViewViewController.m */; };
@@ -647,6 +648,8 @@
 		9945C30C19A1AB370027E931 /* ico_rm_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_rm_group.png; sourceTree = "<group>"; };
 		99475CCE19CFC87B0005E855 /* PushNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PushNotificationViewController.h; path = More/PushNotificationViewController.h; sourceTree = "<group>"; };
 		99475CCF19CFC87B0005E855 /* PushNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PushNotificationViewController.m; path = More/PushNotificationViewController.m; sourceTree = "<group>"; };
+		9947A52119D2AFCC0033B571 /* SubSiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubSiteViewController.h; sourceTree = "<group>"; };
+		9947A52219D2AFCC0033B571 /* SubSiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubSiteViewController.m; sourceTree = "<group>"; };
 		994C507019C02B8000E27017 /* pic_noinfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_noinfo.png; sourceTree = "<group>"; };
 		994C507219C0335600E27017 /* ico_time_notice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_time_notice.png; sourceTree = "<group>"; };
 		9950D85919CEC0A20048B415 /* CvViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CvViewViewController.h; path = UserCenter/CvViewViewController.h; sourceTree = "<group>"; };
@@ -2060,6 +2063,8 @@
 				99FA8B7419A6DBD500F8B1B9 /* MenuViewController.m */,
 				9994AF4E19D1627C008068AD /* MapViewController.h */,
 				9994AF4F19D1627C008068AD /* MapViewController.m */,
+				9947A52119D2AFCC0033B571 /* SubSiteViewController.h */,
+				9947A52219D2AFCC0033B571 /* SubSiteViewController.m */,
 			);
 			path = iOS51rcProject;
 			sourceTree = "<group>";
@@ -2770,6 +2775,7 @@
 				9905132019C2EF2E00B9C096 /* FindPsdStep1ViewController.m in Sources */,
 				999BDD4719C2E60B000A152A /* ASIHTTPRequest.m in Sources */,
 				99B4ED8C19AB0458004C9068 /* JobDetailsController.m in Sources */,
+				9947A52319D2AFCC0033B571 /* SubSiteViewController.m in Sources */,
 				999B5B0E19B996FB0067B3E7 /* EIListView.m in Sources */,
 				9925BEFD19B80E02002DBFE0 /* SlideNavigationController.m in Sources */,
 				995C470A19D24AB8004F1A37 /* AnimatedGif.m in Sources */,

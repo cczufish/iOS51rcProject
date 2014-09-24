@@ -53,7 +53,7 @@
 }
 - (void)onSearch
 {
-    [jobListData removeAllObjects];
+    [self.jobListData removeAllObjects];
     [self.tvCpJobList reloadData];
     
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -72,8 +72,8 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) {
-        [jobListData removeAllObjects];
-        jobListData = requestData;
+        [self.jobListData removeAllObjects];
+        self.jobListData = requestData;
         
         [self.tvCpJobList reloadData];
     }else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
@@ -102,7 +102,7 @@
     
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"paList"] autorelease];
-    NSDictionary *rowData = jobListData[indexPath.row];
+    NSDictionary *rowData = self.jobListData[indexPath.row];
     //职位名称
     NSString *strJobName = rowData[@"Name"];
     UIFont *titleFont = [UIFont systemFontOfSize:12];
@@ -166,7 +166,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *rowData = jobListData[indexPath.row];
+    NSDictionary *rowData = self.jobListData[indexPath.row];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
@@ -177,7 +177,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [jobListData count];
+    return [self.jobListData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -294,6 +294,7 @@
 
 - (void)dealloc {
     [_cPopup release];
+    [_jobListData release];
     [_tvCpJobList release];
     [_ViewBottom release];
     [_btnApply release];
