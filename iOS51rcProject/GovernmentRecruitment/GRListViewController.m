@@ -191,9 +191,9 @@
 }
 
 - (void)dealloc {
-    
-    [placeData release];
-    [loadView release];
+    //[placeData release];
+    //[loadView release];
+    [_tvGRList release];
     [_runningRequest release];
     [super dealloc];
 }
