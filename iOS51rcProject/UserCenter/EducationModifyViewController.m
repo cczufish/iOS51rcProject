@@ -302,7 +302,7 @@
                    tableName:(NSString *)tableName
 {
     NSArray *xmlTable = [xmlContent nodesForXPath:[NSString stringWithFormat:@"//%@", tableName] error:nil];
-    NSMutableArray *arrXml = [[NSMutableArray alloc] init];
+    NSMutableArray *arrXml = [[[NSMutableArray alloc] init] autorelease];
     for (int i=0; i<xmlTable.count; i++) {
         GDataXMLElement *oneXmlElement = [xmlTable objectAtIndex:i];
         NSArray *arrChild = [oneXmlElement children];
@@ -311,6 +311,7 @@
             [dicOneXml setObject:[arrChild[j] stringValue] forKey:[arrChild[j] name]];
         }
         [arrXml addObject:dicOneXml];
+        [dicOneXml release];
     }
     return arrXml;
 }

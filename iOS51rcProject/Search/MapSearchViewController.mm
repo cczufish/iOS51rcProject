@@ -115,7 +115,7 @@
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
     [self.btnJobShow setTag:[view.reuseIdentifier intValue]];
-    NSArray *arrJobDetail = [[NSArray alloc] init];
+    NSArray *arrJobDetail = [[[NSArray alloc] init] autorelease];
     for (NSArray *arr in self.jobDetails) {
         if ([arr[3] isEqualToString:view.reuseIdentifier]) {
             arrJobDetail = arr;
@@ -420,7 +420,7 @@
     [self.viewMap setZoomLevel:14.07];
     _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     self.viewMap.showMapScaleBar = YES;
-    self.locService = [[BMKLocationService alloc] init];
+    self.locService = [[[BMKLocationService alloc] init] autorelease];
     self.locService.delegate = self;
     //开始定位
     [self.locService startUserLocationService];

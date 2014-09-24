@@ -150,7 +150,7 @@
             UILabel *lbSeperate = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 220, 1)];
             [lbSeperate setBackgroundColor:[UIColor lightGrayColor]];
             [self.viewContent addSubview:lbSeperate];
-            
+            [lbSeperate release];
             //添加选择简历提醒
             UILabel *lbCvTips = [[UILabel alloc] initWithFrame:CGRectMake(15, 100, 160, 20)];
             [lbCvTips setText:@"您可以重新选择应聘的简历"];

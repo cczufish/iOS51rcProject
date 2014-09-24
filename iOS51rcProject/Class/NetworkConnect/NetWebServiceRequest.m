@@ -53,7 +53,7 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", WebURL]];
     
 	if ((self = [super init])) {
-        self.runningRequest = [[ASIHTTPRequest alloc] initWithURL:url];
+        self.runningRequest = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
         
         NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[soapMsg length]];
         
@@ -76,7 +76,7 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
 #else
         [self.runningRequest setValidatesSecureCertificate:YES];
 #endif
-        self.cancelLock = [[NSRecursiveLock alloc]  init];
+        self.cancelLock = [[[NSRecursiveLock alloc] init] autorelease];
     }
 	return self;
 }
@@ -200,7 +200,7 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     if (statusCode == 200) {
         //表示正常请求
         result = [SoapXmlParseHelper SoapMessageResultXml:responseString ServiceMethodName:methodName];
-        GDataXMLDocument *xmlContent = [[GDataXMLDocument alloc] initWithXMLString:responseString options:0 error:nil];
+        GDataXMLDocument *xmlContent = [[[GDataXMLDocument alloc] initWithXMLString:responseString options:0 error:nil] autorelease];
         //GetCvInfo为多表联合，单独判断
         if ([[xmlContent nodesForXPath:@"//paData" error:nil] count] > 0) {
             [self FinishedReceiveCvInfoResult:xmlContent];
@@ -213,11 +213,11 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
         if ([xmlTable count] == 0) {
             xmlTable = [xmlContent nodesForXPath:@"//Table" error:nil];
         }
-        NSMutableArray *arrXml = [[NSMutableArray alloc] init];
+        NSMutableArray *arrXml = [[[NSMutableArray alloc] init] autorelease];
         for (int i=0; i<xmlTable.count; i++) {
             GDataXMLElement *oneXmlElement = [xmlTable objectAtIndex:i];
             NSArray *arrChild = [oneXmlElement children];
-            NSMutableDictionary *dicOneXml = [[NSMutableDictionary alloc] init];
+            NSMutableDictionary *dicOneXml = [[[NSMutableDictionary alloc] init] autorelease];
             for (int j=0; j<arrChild.count; j++) {
                 [dicOneXml setObject:[arrChild[j] stringValue] forKey:[arrChild[j] name]];
             }

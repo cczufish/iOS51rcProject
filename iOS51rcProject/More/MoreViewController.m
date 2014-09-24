@@ -92,6 +92,10 @@
             iconLeft = 30;
             break;
         default:
+            strTitle = @"";
+            strIcon = @"";
+            iconWidth = 30;
+            iconLeft = 30;
             break;
     }
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"more"] autorelease];

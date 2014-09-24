@@ -196,6 +196,7 @@
     viewCvLevel.unit = @"分";
 	viewCvLevel.theme.sliceDividerHidden = YES;
     [self.scrollCv addSubview:viewCvLevel];
+    [themeCvLevel release];
     [viewCvLevel release];
     
     UILabel *lbCvLevel = [[UILabel alloc] initWithFrame:CGRectMake(fltContentX+130, 120, 60, 20)];
@@ -210,6 +211,7 @@
 	themeCvview.incompletedColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:0.2];
     
     MDRadialProgressView *viewCvview = [[MDRadialProgressView alloc] initWithFrame:CGRectMake(fltContentX+215, 60, 60, 60) andTheme:themeCvview];
+    [themeCvview release];
     viewCvview.progressCount = [dicCvInfo[@"ViewNumber"] intValue];
 	viewCvview.theme.sliceDividerHidden = YES;
     [self.scrollCv addSubview:viewCvview];
@@ -226,7 +228,7 @@
     UILabel *lbSeparate = [[UILabel alloc] initWithFrame:CGRectMake(fltContentX+30, 155, 260, 0.5)];
     [lbSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [self.scrollCv addSubview:lbSeparate];
-    
+    [lbSeparate release];
     //添加姓名公开
     UIButton *btnNameHidden = [[UIButton alloc] initWithFrame:CGRectMake(fltContentX+40, 170, 100, 27)];
     [btnNameHidden.titleLabel setFont:[UIFont systemFontOfSize:12]];
@@ -411,7 +413,7 @@
 - (IBAction)createCv:(id)sender {
     CreateResumeAlertViewController *viewCreateCv = [[CreateResumeAlertViewController alloc] init];
     viewCreateCv.delegate = self;
-    self.cPopup = [[CustomPopup alloc] popupCommon:viewCreateCv.view buttonType:PopupButtonTypeNone];
+    self.cPopup = [[[CustomPopup alloc] popupCommon:viewCreateCv.view buttonType:PopupButtonTypeNone] autorelease];
     [self.cPopup showPopup:self.view];
 }
 

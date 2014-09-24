@@ -51,7 +51,7 @@
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    self.viewWait = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.viewWait = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
     [self.viewWait setCenter:CGPointMake(160, 125)];//指定进度轮中心点
     [self.view addSubview:self.viewWait];
     //添加边框
@@ -81,7 +81,7 @@
 }
 
 - (IBAction)changePhoto:(UIButton *)sender {
-    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewPhotoSelect buttonType:PopupButtonTypeNone];
+    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewPhotoSelect buttonType:PopupButtonTypeNone] autorelease];
     [self.cPopup showPopup:self.view];
 }
 
@@ -270,6 +270,10 @@
             iconLeft = 30;
             break;
         default:
+            strTitle = @"";
+            strIcon = @"";
+            iconWidth = 30;
+            iconLeft = 30;
             break;
     }
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"index"] autorelease];

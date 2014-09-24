@@ -751,7 +751,7 @@
 }
 
 - (IBAction)changePhoto:(UIButton *)sender {
-    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewPhotoSelect buttonType:PopupButtonTypeNone];
+    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewPhotoSelect buttonType:PopupButtonTypeNone] autorelease];
     [self.cPopup showPopup:self.view];
 }
 
@@ -853,21 +853,21 @@
 
 - (IBAction)changeHasExp:(UIButton *)sender {
     [self.lbConfirmContent setText:@"确定要改为有工作经验吗？"];
-    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone];
+    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone] autorelease];
     [self.cPopup setTag:3];
     [self.cPopup showPopup:self.view];
 }
 
 - (IBAction)changeNoExp:(UIButton *)sender {
     [self.lbConfirmContent setText:@"确定要改为无工作经验吗？"];
-    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone];
+    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone] autorelease];
     [self.cPopup setTag:4];
     [self.cPopup showPopup:self.view];
 }
 
 - (void)deleteCvEducation:(UIButton *)sender {
     [self.lbConfirmContent setText:@"确定要删除该教育背景吗？"];
-    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone];
+    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone] autorelease];
     [self.btnConfirmOK setTag:sender.tag];
     [self.cPopup setTag:1];
     [self.cPopup showPopup:self.view];
@@ -875,7 +875,7 @@
 
 - (void)deleteCvExperience:(UIButton *)sender {
     [self.lbConfirmContent setText:@"确定要删除该工作经历吗？"];
-    self.cPopup = [[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone];
+    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone] autorelease];
     [self.btnConfirmOK setTag:sender.tag];
     [self.cPopup setTag:2];
     [self.cPopup showPopup:self.view];
@@ -1040,7 +1040,7 @@
               tableName:(NSString *)tableName
 {
     NSArray *xmlTable = [xmlContent nodesForXPath:[NSString stringWithFormat:@"//%@", tableName] error:nil];
-    NSMutableArray *arrXml = [[NSMutableArray alloc] init];
+    NSMutableArray *arrXml = [[[NSMutableArray alloc] init] autorelease];
     for (int i=0; i<xmlTable.count; i++) {
         GDataXMLElement *oneXmlElement = [xmlTable objectAtIndex:i];
         NSArray *arrChild = [oneXmlElement children];
@@ -1049,6 +1049,7 @@
             [dicOneXml setObject:[arrChild[j] stringValue] forKey:[arrChild[j] name]];
         }
         [arrXml addObject:dicOneXml];
+        [dicOneXml release];
     }
     return arrXml;
 }

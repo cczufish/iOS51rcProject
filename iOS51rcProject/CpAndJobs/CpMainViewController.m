@@ -61,8 +61,9 @@
     [request startAsynchronous];
     self.runningRequest = request;
     self.wsName = @"GetCpMainInfo";//当前调用的函数名称
-    self.loading = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    self.loading = [[[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self] autorelease];
     [self.loading startAnimating];
+    [dicParam release];
 
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -147,6 +148,7 @@
     [_cpMainScroll release];
     [_cpMainView release];
     [_imageCoordinate release];
+    [_loading release];
     [super dealloc];
 }
 @end

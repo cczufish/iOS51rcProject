@@ -84,7 +84,7 @@
     if ([searchHistory next]) {
         searchHistory = [CommonController querySql:@"SELECT * FROM paSearchHistory ORDER BY AddDate DESC LIMIT 0,10"];
         //添加搜索记录
-        self.viewHistory = [[UIView alloc] initWithFrame:CGRectMake(20, 280, 280, 1000)];
+        self.viewHistory = [[[UIView alloc] initWithFrame:CGRectMake(20, 280, 280, 1000)] autorelease];
         [self.viewHistory setBackgroundColor:[UIColor colorWithRed:248.f/255.f green:248.f/255.f blue:248.f/255.f alpha:1]];
         //添加小图标
         UIImageView *imgHistory = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
@@ -159,7 +159,6 @@
         [self.viewHistory addSubview:viewHistoryLog];
         [viewHistoryLog release];
         [self.scrollSearch addSubview:self.viewHistory];
-        [self.viewHistory release];
     }
     [searchHistory close];
 }
@@ -326,6 +325,7 @@
 }
 
 - (void)dealloc {
+    [_viewHistory release];
     [_viewSearchSelect release];
     [_btnSearch release];
     [_txtKeyWord release];

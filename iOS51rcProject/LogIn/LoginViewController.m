@@ -42,7 +42,7 @@
     //返回按钮
     UIBarButtonItem *btnBack = [[UIBarButtonItem alloc] initWithTitle:@"后退" style:UIBarButtonItemStyleDone target:nil action:nil];
     self.navigationItem.backBarButtonItem = btnBack;
-    
+    [btnBack release];
     CGRect frame = [[UIScreen mainScreen] bounds];
     frame.origin.y = 107;//状态栏和切换栏的高度
     frame.size.height = frame.size.height - 107;

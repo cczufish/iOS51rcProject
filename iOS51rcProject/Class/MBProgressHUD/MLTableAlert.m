@@ -143,15 +143,15 @@
 	[self createBackgroundView];
 	
 	// alert view creation
-	self.alertBg = [[UIView alloc] initWithFrame:CGRectZero];
+	self.alertBg = [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
 	[self addSubview:self.alertBg];
 	
 	// setting alert background image
-	UIImageView *alertBgImage = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"MLTableAlertBackground.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:30]];
+	UIImageView *alertBgImage = [[[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"MLTableAlertBackground.png"] stretchableImageWithLeftCapWidth:15 topCapHeight:30]] autorelease];
 	[self.alertBg addSubview:alertBgImage];
 	
 	// alert title creation
-	self.titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+	self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 	self.titleLabel.backgroundColor = [UIColor clearColor];
 	self.titleLabel.textColor = [UIColor whiteColor];
 	self.titleLabel.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.75];
@@ -163,14 +163,14 @@
 	[self.alertBg addSubview:self.titleLabel];
 	
 	// table view creation
-	self.table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+	self.table = [[[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain] autorelease];
 	self.table.frame = CGRectMake(kLateralInset, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + kTitleLabelMargin, kTableAlertWidth - kLateralInset * 2, (self.height - kVerticalInset * 2) - self.titleLabel.frame.origin.y - self.titleLabel.frame.size.height - kTitleLabelMargin - kCancelButtonMargin - kCancelButtonHeight);
 	self.table.layer.cornerRadius = 6.0;
 	self.table.layer.masksToBounds = YES;
 	self.table.delegate = self;
 	self.table.dataSource = self;
 	self.table.separatorStyle = UITableViewCellSeparatorStyleNone;
-	self.table.backgroundView = [[UIView alloc] init];
+	self.table.backgroundView = [[[UIView alloc] init] autorelease];
 	[self.alertBg addSubview:self.table];
 	
 	// setting white-to-gray gradient as table view's background
@@ -180,7 +180,7 @@
 	[self.table.backgroundView.layer insertSublayer:tableGradient atIndex:0];
 	
 	// adding inner shadow mask on table view
-	UIImageView *maskShadow = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"MLTableAlertShadowMask.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:7]];
+	UIImageView *maskShadow = [[[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"MLTableAlertShadowMask.png"] stretchableImageWithLeftCapWidth:6 topCapHeight:7]] autorelease];
 	maskShadow.userInteractionEnabled = NO;
 	maskShadow.layer.masksToBounds = YES;
 	maskShadow.layer.cornerRadius = 5.0;

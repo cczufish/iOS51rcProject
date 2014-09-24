@@ -57,8 +57,8 @@
     [request setDelegate:self];
     [request startAsynchronous];
     self.runningRequest = request;
-    self.loading = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    
+    self.loading = [[[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self] autorelease];
+    [dicParam release];
     [self.loading startAnimating];
 }
 
@@ -193,8 +193,8 @@
 
 //第一个消息完成了以后再调用第二个消息(绑定其他职位)
 -(void) didReceiveRecommendJob:(NSMutableArray *) requestData{
-    [recommentJobsData removeAllObjects];
-    recommentJobsData = requestData;
+    [self.recommentJobsData removeAllObjects];
+    self.recommentJobsData = requestData;
     //浏览过的其他职位子View
     UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, tmpHeight, 280, requestData.count*27)] autorelease];
     for (int i=0; i<requestData.count; i++) {
@@ -240,7 +240,7 @@
 -(void) btnOtherJobClick:(UIButton *) sender{
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
-    NSDictionary *tmpJob = recommentJobsData[sender.tag];
+    NSDictionary *tmpJob = self.recommentJobsData[sender.tag];
     jobC.JobID = tmpJob[@"ID"];
     jobC.cpMainID = tmpJob[@"cpMainID"];
     jobC.navigationItem.title = tmpJob[@"cpName"];
@@ -457,7 +457,7 @@
     
     //四个一组
     int y = lbJobRequestValue.frame.origin.y + lbJobRequestValue.frame.size.height + 10;
-    UIView *fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 20)];
+    UIView *fuliMainView = nil;
     if (fuliArray.count == 0) {
         fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y-10, 300, 0)];
     }
@@ -709,7 +709,7 @@
 }
 
 -(void)callOthers {
-//    [self.loading startAnimating];
+    [self.loading startAnimating];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.JobID forKey:@"JobID"];
     [dicParam setObject:@"8500" forKey:@"SearchFromID"];
@@ -718,6 +718,7 @@
     [request startAsynchronous];
     request.tag = 9;
     self.runningRequest = request;
+    [dicParam release];
 }
 
 - (void)call:(UIButton *)sender {
@@ -728,9 +729,12 @@
     [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
     //记得添加到view上
     [self.view addSubview:callWebview];
+    [callWebview release];
 }
 
 - (void)dealloc {
+    [_loading release];
+    [_recommentJobsData release];
     [_lbFereashTime release];
     [_cPopup release];
     [_jobMainScroll release];

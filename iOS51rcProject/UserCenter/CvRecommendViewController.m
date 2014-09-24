@@ -46,7 +46,7 @@
     [self.navigationItem setTitle:@"推荐职位"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.userDefaults = [NSUserDefaults standardUserDefaults];
-    self.arrCheckJobID = [[NSMutableArray alloc] init];
+    self.arrCheckJobID = [[[NSMutableArray alloc] init] autorelease];
     self.tvList1.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tvList2.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tvList3.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -492,6 +492,7 @@
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
+    [viewSeparate release];
     return cell;
 }
 
