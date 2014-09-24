@@ -62,6 +62,7 @@
     
     [recruitmentCpData removeAllObjects];
     recruitmentCpData = requestData;
+    [recruitmentCpData retain];
     [self.tvRecruitmentCpList reloadData];
     [self.tvRecruitmentCpList footerEndRefreshing];
     
