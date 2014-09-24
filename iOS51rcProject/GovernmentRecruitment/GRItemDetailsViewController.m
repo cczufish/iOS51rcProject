@@ -116,7 +116,7 @@
     [tmpView addSubview:lbLine];
     
     //正文
-    NSString *strContent =[self FilterHtml: dicCpMain[@"Content"]];
+    NSString *strContent =[CommonController FilterHtml: dicCpMain[@"Content"]];
     labelSize = [CommonController CalculateFrame:strContent fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(300, 5000)];
     y = lbLine.frame.origin.y + lbLine.frame.size.height + 5;
     UILabel *lbContent = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, labelSize.width, labelSize.height)] autorelease];
@@ -150,20 +150,6 @@
     [super didReceiveMemoryWarning];
 }
 
-
-//过滤Html标签
-- (NSString *) FilterHtml :(NSString*) content
-{
-    content =[content stringByReplacingOccurrencesOfString:@"<br> <br>" withString:@"\n"];
-    content =[content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-    content =[content stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
-    return content;
-}
 - (void)dealloc {
     [strNewsID release];
     //修复错误添加：scrollViewDidScroll:]: message sent to deallocated instance；原因是scrollView释放时，scrollView滑动的动画还未结束，会调用scrollViewDidScroll:(UIScrollView *)sender方法，这时sender也就是UIScrollView已被释放，所以会报错

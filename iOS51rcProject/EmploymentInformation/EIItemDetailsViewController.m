@@ -117,7 +117,7 @@
     [tmpView addSubview:lbLine];
     
     //正文
-    NSString *strContent =[self FilterHtml: dicCpMain[@"Content"]];
+    NSString *strContent =[CommonController FilterHtml: dicCpMain[@"Content"]];
     labelSize = [CommonController CalculateFrame:strContent fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(300, 5000)];
     y = lbLine.frame.origin.y + lbLine.frame.size.height + 5;
     UILabel *lbContent = [[UILabel alloc] initWithFrame:CGRectMake(10, y, labelSize.width, labelSize.height)];
@@ -161,30 +161,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
-//过滤Html标签
-- (NSString *) FilterHtml :(NSString*) content
-{
-    content =[content stringByReplacingOccurrencesOfString:@"<br> <br>" withString:@"\n"];
-    content =[content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-    content =[content stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
-    content =[content stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
-    return content;
-}
 - (void)dealloc {
     [_newsScroll release];
     [super dealloc];
