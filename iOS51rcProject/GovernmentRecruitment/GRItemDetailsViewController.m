@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     self.newsScroll.delegate = self;
+    
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     [button setTitle: @"政府招考详情" forState: UIControlStateNormal];
     [button sizeToFit];
@@ -139,7 +140,7 @@
     tmpView.frame = CGRectMake(0, 0, 320, y);
     [self.newsScroll addSubview:tmpView];
     
-    //屏幕滚动
+    //屏幕滚动大小
     [self.newsScroll setContentSize:CGSizeMake(320, y + 10)];
     [self.loading stopAnimating];    
 }
@@ -165,6 +166,8 @@
 }
 - (void)dealloc {
     [strNewsID release];
+    //修复错误添加：scrollViewDidScroll:]: message sent to deallocated instance；原因是scrollView释放时，scrollView滑动的动画还未结束，会调用scrollViewDidScroll:(UIScrollView *)sender方法，这时sender也就是UIScrollView已被释放，所以会报错
+    _newsScroll.delegate = nil;
     [_newsScroll release];
     [_loading release];
     [_runningRequest release];
