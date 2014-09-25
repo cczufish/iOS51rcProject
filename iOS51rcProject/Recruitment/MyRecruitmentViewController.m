@@ -45,6 +45,7 @@
     self.myRmReceiveInvitationListViewCtrl.view.frame = CGRectMake(320, 0, 320, self.scrollView.frame.size.height);
     
     //代理
+    self.scrollView.delegate = self;
     self.myRmSubscribeListViewCtrl.gotoRmViewDelegate = self;
     self.myRmSubscribeListViewCtrl.gotoMyInvitedCpViewDelegate = self;
     //把三个子View加到Scrollview中

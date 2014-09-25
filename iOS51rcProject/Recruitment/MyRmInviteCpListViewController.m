@@ -4,6 +4,8 @@
 #import "CommonController.h"
 #import "MJRefresh.h"
 #import "CpMainViewController.h"
+#import "SuperCpViewController.h"
+#import "SuperJobMainViewController.h"
 
 //＝＝＝＝＝＝＝＝我邀请的企业＝＝＝＝＝＝
 @interface MyRmInviteCpListViewController ()<NetWebServiceRequestDelegate>
@@ -30,7 +32,7 @@
     self.navigationItem.titleView = button;
        
     [super viewDidLoad];
-    self.rmID = @"95935";
+    //self.rmID = @"95935";
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [self onSearch];
@@ -42,16 +44,21 @@
 }
 - (void)onSearch
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
+
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:@"95935" forKey:@"recruitmentID"];
-    [dicParam setObject:@"152014391908" forKey:@"code"];
-    [dicParam setObject:@"25056119" forKey:@"paMainID"];
+    [dicParam setObject:self.rmID forKey:@"recruitmentID"];
+    [dicParam setObject:code forKey:@"code"];
+    [dicParam setObject:userID forKey:@"paMainID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetMyInviteCpLogList" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    [loadView startAnimating];
 }
 
 //成功
@@ -209,9 +216,10 @@
 //点击某一行,到达企业页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
-    CpMainViewController *cpMainCtrl = (CpMainViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"CpMainView"];
-    cpMainCtrl.cpMainID = recruitmentCpData[indexPath.row][@"cpMainID"];
-    [self.navigationController pushViewController:cpMainCtrl animated:true];
+    SuperJobMainViewController *jobCtrl = (SuperJobMainViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"SuperJobMainView"];
+    jobCtrl.cpMainID = recruitmentCpData[indexPath.row][@"cpMainID"];
+    jobCtrl.JobID = recruitmentCpData[indexPath.row][@"JobID"];
+    [self.navigationController pushViewController:jobCtrl animated:true];
 }
 
 //点击我要参会
@@ -228,16 +236,7 @@
     return 80;
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+
 
 - (void)dealloc {
     [_tvRecruitmentCpList release];

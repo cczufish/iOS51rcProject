@@ -4,6 +4,7 @@
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
+#import "MapViewController.h"
 
 //收到的邀请
 @interface MyRmReceivedInvitationViewController ()<NetWebServiceRequestDelegate>
@@ -30,7 +31,9 @@
     selectRowIndex = 0;
     selectRowHeight = 110;//选择行的高度    
     //数据加载等待控件初始化
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];    
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    //不显示列表分隔线
+    self.tvReceivedInvitationList.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)onSearch
@@ -72,7 +75,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"cpList"] autorelease];
     //主要信息
-    //UIView *viewJobMain;
     NSDictionary *rowData = recruitmentCpData[indexPath.row];
     
     //是否已经结束
@@ -196,8 +198,8 @@
         [lbPlace release];
         //坐标
         UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(20 + lbPlace.frame.size.width, lbPlace.frame.origin.y, 15, 15)];
-        //NSString *lng = rowData[@"lng"];
-        //NSString *lat = rowData[@"lat"];
+        self.lng = rowData[@"lng"];
+        self.lat = rowData[@"lat"];
         UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
         imgLngLat.image = [UIImage imageNamed:@"ico_coordinate_red.png"];
         [btnLngLat addSubview:imgLngLat];
@@ -251,21 +253,20 @@
         [cell.contentView addSubview:(lbLinkman)];
         [lbLinkman release];
         //手机号
-        NSString *strMobile = [NSString stringWithFormat:@"手机号：%@",rowData[@"Mobile"]];
-        labelSize = [CommonController CalculateFrame:strMobile fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+        self.strMobile = rowData[@"Mobile"];
+        labelSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"手机号：%@",self.strMobile] fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbMobile = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, labelSize.width, 15)];
-        lbMobile.text = strMobile;
+        lbMobile.text = [NSString stringWithFormat:@"手机号：%@",self.strMobile];
         lbMobile.font = [UIFont systemFontOfSize:11];
         lbMobile.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbMobile)];
         [lbMobile release];
         //手机号后面的图标
-        UIImageView *imgMobile = [[UIImageView alloc] initWithFrame:CGRectMake(lbMobile.frame.origin.x + lbMobile.frame.size.width, lbMobile.frame.origin.y, 15, 15)];
-        imgMobile.image = [UIImage imageNamed:@"ico_calltelphone.png"];
-        imgMobile.tag = (NSInteger)rowData[@"ID"];
-        [cell.contentView addSubview:imgMobile];
-        [imgMobile release];
-        
+        UIButton *btnCallMobile = [[[UIButton alloc] initWithFrame:CGRectMake(lbMobile.frame.origin.x+lbMobile.frame.size.width+5, lbMobile.frame.origin.y+2, 15, 15)] autorelease];
+        [btnCallMobile setImage:[UIImage imageNamed:@"ico_calltelphone.png"] forState:UIControlStateNormal];
+        btnCallMobile.tag = (NSInteger)rowData[@"ID"];
+        [cell.contentView addSubview:btnCallMobile];
+        [btnCallMobile addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
         //判断是否已经结束，如果没有结束，则可以赴约参会
         if (!isPassed && [strStatus isEqualToString:@"0"]) {
             //赴约参会
@@ -294,14 +295,19 @@
             [btnReject addSubview:lbReject];
             [cell.contentView addSubview:btnReject];
             [btnReject release];
-            selectRowHeight = btnReject.frame.origin.y + btnReject.frame.size.height + 5;
+            selectRowHeight = btnReject.frame.origin.y + btnReject.frame.size.height + 10;
         }
         else{
-            selectRowHeight = lbMobile.frame.origin.y + lbMobile.frame.size.height + 5;
+            selectRowHeight = lbMobile.frame.origin.y + lbMobile.frame.size.height + 10;
         }
     }else{
         selectRowHeight = 100;
     }
+    //分割线
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 5, 320, 0.5)];
+    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [cell.contentView addSubview:viewSeparate];
+    
     return cell;
 }
 
@@ -314,9 +320,26 @@
     NSLog(@"");
 }
 
+//打电话
+- (void)call:(UIButton *)sender {
+    NSString *strCallNumber = self.strMobile;
+    NSLog(@"%@", strCallNumber);
+    UIWebView*callWebview =[[[UIWebView alloc] init] autorelease];
+    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",strCallNumber]];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    //记得添加到view上
+    [self.view addSubview:callWebview];
+}
+
 //点击坐标
 -(void)btnLngLatClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
+    MapViewController *mapC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"MapView"];
+    mapC.lat = [self.lat floatValue];
+    mapC.lng = [self.lng floatValue];
+    UIViewController *superJobC = [CommonController getFatherController:self.view];
+    [mapC.navigationItem setTitle:superJobC.navigationItem.title];
+    [superJobC.navigationController pushViewController:mapC animated:true];
 }
 
 //点击参会

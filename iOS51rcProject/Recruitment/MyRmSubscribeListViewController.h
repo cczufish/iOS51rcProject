@@ -14,6 +14,8 @@
 }
 @property (retain, nonatomic) id<GoToRmViewDetailDelegate> gotoRmViewDelegate;
 @property (retain, nonatomic) id<GoToMyInvitedCpViewDelegate> gotoMyInvitedCpViewDelegate;
+@property (retain, nonatomic) NSString *lng;
+@property (retain, nonatomic) NSString *lat;
 -(void) onSearch;
 @end
 

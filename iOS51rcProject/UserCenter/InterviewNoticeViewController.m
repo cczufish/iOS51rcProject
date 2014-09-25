@@ -6,6 +6,7 @@
 #import "CommonController.h"
 #import <objc/runtime.h>
 #import "RmCpMain.h"
+#import "MapViewController.h"
 
 @interface InterviewNoticeViewController ()<NetWebServiceRequestDelegate, UITextViewDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -333,6 +334,12 @@
 //点击坐标
 -(void)btnLngLatClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
+    MapViewController *mapC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"MapView"];
+    //mapC.lat = [self.lat floatValue];
+    //mapC.lng = [self.lng floatValue];
+    UIViewController *superJobC = [CommonController getFatherController:self.view];
+    [mapC.navigationItem setTitle:superJobC.navigationItem.title];
+    [superJobC.navigationController pushViewController:mapC animated:true];
 }
 
 //点击赴约

@@ -6,6 +6,7 @@
 #import "RecruitmentViewController.h"
 #import "RmInviteCpViewController.h"
 #import "RmSearchJobForInviteViewController.h"
+#import "MapViewController.h"
 
 //我的预约
 @interface MyRmSubscribeListViewController ()<NetWebServiceRequestDelegate>
@@ -39,6 +40,8 @@
     self.btnInviteCp.backgroundColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    //不显示列表分隔线
+    self.tvRecruitmentCpList.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 - (void)onSearch
 {
@@ -57,6 +60,7 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    [loadView startAnimating];
 }
 
 //成功
@@ -120,8 +124,8 @@
     
     //坐标
     UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(20 + lbPlace.frame.size.width, lbPlace.frame.origin.y, 15, 15)];
-    //NSString *lng = rowData[@"lng"];
-    //NSString *lat = rowData[@"lat"];
+    self.lng = rowData[@"lng"];
+    self.lat = rowData[@"lat"];
     UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     imgLngLat.image = [UIImage imageNamed:@"ico_coordinate_red.png"];
     [btnLngLat addSubview:imgLngLat];
@@ -161,25 +165,29 @@
     lbMyRmCp.textColor = [UIColor blackColor];
     lbMyRmCp.textAlignment = NSTextAlignmentCenter;
     [btnMyRmCp addSubview:lbMyRmCp];
-    
+    //我邀请的企业个数
     UILabel *lbMyRmCpCount = [[UILabel alloc] initWithFrame:CGRectMake(17, 9, 40, 10)];
     lbMyRmCpCount.text = myRmCpCount;
     lbMyRmCpCount.font = [UIFont systemFontOfSize:9];
     lbMyRmCpCount.textColor = [UIColor redColor];
     lbMyRmCpCount.textAlignment = NSTextAlignmentCenter;
     [btnMyRmCp addSubview:lbMyRmCpCount];
-  
     //我邀请的企业按钮
     btnMyRmCp.tag = (NSInteger)rowData[@"paMainID"];
     btnMyRmCp.layer.borderWidth = 0.5;
     btnMyRmCp.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [btnMyRmCp addTarget:self action:@selector(joinRecruitment:) forControlEvents:UIControlEventTouchUpInside];
+    if (![myRmCpCount isEqualToString:@"0"]) {//大于0才可以点击
+        [btnMyRmCp addTarget:self action:@selector(joinRecruitment:) forControlEvents:UIControlEventTouchUpInside];
+    }
     [cell.contentView addSubview:btnMyRmCp];
     
     [btnMyRmCp release];
     [lbMyRmCp release];
     [lbMyRmCpCount release];
     
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbAddress.frame.origin.y+lbAddress.frame.size.height + 5, 320, 0.5)];
+    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [cell.contentView addSubview:viewSeparate];
     return cell;
 }
 
@@ -198,7 +206,13 @@
 
 //点击坐标
 -(void)btnLngLatClick:(UIButton *) sender{
-    NSLog(@"%d", sender.tag);
+    NSLog(@"%d, %@, %@", sender.tag, self.lat, self.lng);
+    MapViewController *mapC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"MapView"];
+    mapC.lat = [self.lat floatValue];
+    mapC.lng = [self.lng floatValue];
+    UIViewController *superJobC = [CommonController getFatherController:self.view];
+    [mapC.navigationItem setTitle:superJobC.navigationItem.title];
+    [superJobC.navigationController pushViewController:mapC animated:true];
 }
 
 //点击我参会的企业
@@ -212,15 +226,16 @@
     [gotoRmViewDelegate gotoRmView:recruitmentCpData[indexPath.row][@"id"]];
 }
 
+
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *strRecruitmentName = recruitmentCpData[indexPath.row][@"RecruitmentName"];
     CGSize titleSize = CGSizeMake(290, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strRecruitmentName fontDemond:[UIFont systemFontOfSize:15] sizeDemand:titleSize];
     if (labelSize.height>30) {//标题换行了
-        return 125;
+        return 128;
     }else{
-        return 105;
+        return 108;
     }
 }
 
@@ -231,6 +246,7 @@
 }
 
 - (void)dealloc {
+    [loadView release];
     [_tvRecruitmentCpList release];
     [recruitmentCpData release];
     [_btnInviteCp release];
