@@ -280,7 +280,7 @@
     [lbRefreshDate release];
     
     //月薪
-    NSString *strdcSalaryId = rowData[@"dcSalaryID"] ;
+    NSString *strdcSalaryId = rowData[@"dcSalaryId"] ;
     NSString *strSalary = [CommonController getDictionaryDesc:strdcSalaryId tableName:@"dcSalary"];
     if (strSalary.length == 0) {
         strSalary = @"面议";
