@@ -16,7 +16,6 @@
 @end
 
 @implementation CpJobsViewController
-//@synthesize delegate;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -35,13 +34,13 @@
     }
     self.btnApply.layer.cornerRadius = 5;
     //根据外部传来的高度设置本页面的高度
-    self.view.frame = CGRectMake(0, 0, 320, self.frameHeight);
+    //self.view.frame = CGRectMake(0, 0, 320, self.frameHeight);
     //设置下方View的位置
     self.ViewBottom.frame = CGRectMake(0, self.frameHeight-50, 320, 50);
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     [self.btnFavourite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
     //数据加载等待控件初始化
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    self.loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //不显示列表分隔线
     self.tvCpJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //[self onSearch];
@@ -93,7 +92,7 @@
     }
     
     //结束等待动画
-    [loadView stopAnimating];
+    [self.loadView stopAnimating];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -173,7 +172,8 @@
     jobC.cpMainID = rowData[@"cpMainID"];
     self.navigationItem.title = @" ";
     jobC.navigationItem.title = rowData[@"cpName"];
-    [self.navigationController pushViewController:jobC animated:YES];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
+    [pCtrl.navigationController pushViewController:jobC animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -248,7 +248,7 @@
         request.tag = 2;
         self.runningRequest = request;
         [dicParam release];
-        [loadView startAnimating];
+        [self.loadView startAnimating];
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
@@ -277,7 +277,7 @@
         request.tag = 5;
         self.runningRequest = request;
         [dicParam release];
-        [loadView startAnimating];
+        [self.loadView startAnimating];
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
@@ -293,6 +293,7 @@
 
 
 - (void)dealloc {
+    [_loadView release];
     [_cPopup release];
     [_jobListData release];
     [_tvCpJobList release];

@@ -6,6 +6,5 @@
     BOOL firstPageLoad;
     BOOL secondPageLoad;
     BOOL thriePageLoad;
-
 }
 @end

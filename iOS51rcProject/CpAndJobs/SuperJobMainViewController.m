@@ -12,7 +12,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbSecond;
 @property (retain, nonatomic) IBOutlet UILabel *lbThird;
 
-
 //三个子页面
 @property (retain, nonatomic) JobViewController *firstCtrl;
 @property (retain, nonatomic) CpMainViewController *sccondCtrl;
