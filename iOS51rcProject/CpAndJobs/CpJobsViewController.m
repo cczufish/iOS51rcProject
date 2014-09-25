@@ -16,6 +16,7 @@
 @end
 
 @implementation CpJobsViewController
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,15 +33,17 @@
     if (self.frameHeight == 0) {
         self.frameHeight = 496;
     }
-    self.btnApply.layer.cornerRadius = 5;
-    //根据外部传来的高度设置本页面的高度
-    //self.view.frame = CGRectMake(0, 0, 320, self.frameHeight);
-    //设置下方View的位置
-    self.ViewBottom.frame = CGRectMake(0, self.frameHeight-50, 320, 50);
+    self.btnApply.layer.cornerRadius = 5;   
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     [self.btnFavourite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    //设置高度
+    self.ViewBottom.frame = CGRectMake(0, HEIGHT - 170, 320, 55);
+    self.tvCpJobList.frame = CGRectMake(0, 0, 320, HEIGHT - 170);
+    //设置边框
+    self.ViewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.ViewBottom.layer.borderWidth = 0.5;
     //不显示列表分隔线
     self.tvCpJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //[self onSearch];
@@ -78,17 +81,21 @@
     }else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
             [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [self.arrCheckJobID removeAllObjects];
         }else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
             [self.cPopup setDelegate:self];
             [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
         }
     }else if (request.tag == 3) { //默认投递完之后，显示弹层
-        [self.cPopup showJobApplyCvSelect:result view:self.view];
+        [self.cPopup showJobApplyCvSelect:result view:[CommonController getFatherController:self.view].view];
+        [self.arrCheckJobID removeAllObjects];
     }else if (request.tag == 4) { //重新申请职位成功
         [self.view makeToast:@"重新申请简历成功"];
+        [self.arrCheckJobID removeAllObjects];
     }else if (request.tag == 5) {
         [self.view makeToast:@"收藏职位成功"];
+        [self.arrCheckJobID removeAllObjects];
     }
     
     //结束等待动画
@@ -207,8 +214,7 @@
     NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
 }
 
-- (void)insertJobApply:(NSString *)cvMainID
-               isFirst:(BOOL)isFirst
+- (void)insertJobApply:(NSString *)cvMainID isFirst:(BOOL)isFirst
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -291,8 +297,8 @@
     [self insertJobApply:value isFirst:NO];
 }
 
-
-- (void)dealloc {  
+- (void)dealloc {
+    [loadView release];
     [_cPopup release];
     [_jobListData release];
     [_tvCpJobList release];
