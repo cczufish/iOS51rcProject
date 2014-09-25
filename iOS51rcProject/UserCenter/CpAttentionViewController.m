@@ -178,8 +178,11 @@
     [lbCompanyName release];
     
     //地址
+    NSString *strRegionID = rowData[@"dcRegionId"];
+    NSString *strCity = [CommonController getDictionaryDesc: [strRegionID substringToIndex:4] tableName:@"dcRegion"];
+    NSString *strProvince = [CommonController getDictionaryDesc: [strRegionID substringToIndex:2] tableName:@"dcRegion"];
     UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbCompanyName.frame.origin.y+lbCompanyName.frame.size.height + 5, 280, 20)];
-    [lbAddress setText:rowData[@"Address"]];
+    [lbAddress setText:[NSString stringWithFormat:@"%@%@%@", strProvince, strCity, rowData[@"Address"]]];
     lbAddress.font = [UIFont systemFontOfSize:14];
     [lbAddress setTextColor:[UIColor blackColor]];
     [cell.contentView addSubview:lbAddress];
@@ -203,7 +206,7 @@
     [lbRefreshDate release];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 90, 320, 1)];
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 90, 320, 0.5)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
@@ -211,7 +214,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 92;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,7 +224,7 @@
     SuperCpViewController *cpCtrl = [storyBoard instantiateViewControllerWithIdentifier:@"SuperCpView"];
     cpCtrl.cpMainID= rowData[@"cpID"];
     
-    UIViewController *superView = [self getFatherController];
+    UIViewController *superView = [CommonController getFatherController:self.view];
     [superView.navigationController pushViewController:cpCtrl animated:YES];
 }
 
@@ -241,7 +244,7 @@
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defaultValue:@"0" defaultName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.frame = CGRectMake(self.DictionaryPicker.frame.origin.x, self.DictionaryPicker.frame.origin.y-50, self.DictionaryPicker.frame.size.width, self.DictionaryPicker.frame.size.height);
     [self.DictionaryPicker setTag:1];
-    UIViewController *pCtrl = [self getFatherController];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     [self.DictionaryPicker showInView:pCtrl.view];
 }
 
@@ -286,18 +289,6 @@
     [self cancelDicPicker];
 }
 
-//得到父View
-- (UIViewController *)getFatherController
-{
-    for (UIView* next = [self.view superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    
-    return nil;
-}
 - (void)dealloc {
     [_runningRequest release];
     [_isOnline release];

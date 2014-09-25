@@ -90,7 +90,7 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
-    UIViewController *pCtrl = [self getFatherController];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     if (request.tag == 1) { //职位搜索
         if(self.pageNumber == 1){
             [self.jobListData removeAllObjects];
@@ -138,19 +138,6 @@
     }
     //结束等待动画
     [loadView stopAnimating];
-}
-
-//得到父View
-- (UIViewController *)getFatherController
-{
-    for (UIView* next = [self.view superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    
-    return nil;
 }
 
 - (void)insertJobApply:(NSString *)cvMainID
@@ -307,7 +294,7 @@
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"JobID"];
     jobC.cpMainID = rowData[@"cpID"];
-    UIViewController *pCtrl = [self getFatherController];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     [pCtrl.navigationController pushViewController:jobC animated:YES];
 }
 
@@ -330,7 +317,7 @@
 
 - (void)jobApply
 {
-    UIViewController *pCtrl = [self getFatherController];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位

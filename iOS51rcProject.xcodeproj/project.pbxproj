@@ -1803,6 +1803,21 @@
 			path = Campus;
 			sourceTree = "<group>";
 		};
+		999C2A4119D3C87400255E66 /* CpIntitation */ = {
+			isa = PBXGroup;
+			children = (
+				99C581D319C193C7009985C5 /* CpInviteViewController.h */,
+				99C581D419C193C7009985C5 /* CpInviteViewController.m */,
+				99C581D619C196B7009985C5 /* InterviewNoticeViewController.h */,
+				99C581D719C196B7009985C5 /* InterviewNoticeViewController.m */,
+				99C581D919C19709009985C5 /* JobInviteListViewController.h */,
+				99C581DA19C19709009985C5 /* JobInviteListViewController.m */,
+				99C581DC19C19756009985C5 /* CpAttentionViewController.h */,
+				99C581DD19C19756009985C5 /* CpAttentionViewController.m */,
+			);
+			name = CpIntitation;
+			sourceTree = "<group>";
+		};
 		999DF62F19AECEE700C05F20 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -2324,14 +2339,7 @@
 				99FC0B6A19C2E36900B7EC74 /* MobileCertificateViewController.m */,
 				99FC0B6B19C2E36900B7EC74 /* MobileModifyViewController.h */,
 				99FC0B6C19C2E36900B7EC74 /* MobileModifyViewController.m */,
-				99C581D319C193C7009985C5 /* CpInviteViewController.h */,
-				99C581D419C193C7009985C5 /* CpInviteViewController.m */,
-				99C581D619C196B7009985C5 /* InterviewNoticeViewController.h */,
-				99C581D719C196B7009985C5 /* InterviewNoticeViewController.m */,
-				99C581D919C19709009985C5 /* JobInviteListViewController.h */,
-				99C581DA19C19709009985C5 /* JobInviteListViewController.m */,
-				99C581DC19C19756009985C5 /* CpAttentionViewController.h */,
-				99C581DD19C19756009985C5 /* CpAttentionViewController.m */,
+				999C2A4119D3C87400255E66 /* CpIntitation */,
 				99FC0B6419C2E33500B7EC74 /* MyCvViewController.h */,
 				99FC0B6519C2E33500B7EC74 /* MyCvViewController.m */,
 				999CE42B19C7031600A8842B /* CvModifyViewController.h */,
