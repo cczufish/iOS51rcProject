@@ -17,5 +17,6 @@
 @property (retain, nonatomic) id<GoToRmViewDetailDelegate> gotoRmViewDelegate;
 @property (retain, nonatomic) id<GoToMyInvitedCpViewDelegate> gotoMyInvitedCpViewDelegate;
 @property (retain, nonatomic) NSMutableArray *recruitmentCpData;
+@property (retain, nonatomic) NSString *strPhone;
 -(void) onSearch;
 @end

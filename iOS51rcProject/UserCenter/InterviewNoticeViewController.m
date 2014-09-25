@@ -205,20 +205,21 @@
         lbPreMobile.font  = [UIFont systemFontOfSize:11];
         lbPreMobile.textColor = [UIColor grayColor];
         [cell.contentView addSubview:lbPreMobile];
-        NSString *strMobile = rowData[@"Telephone"];
-        labelSize = [CommonController CalculateFrame:strMobile fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+        self.strPhone = rowData[@"Telephone"];
+        labelSize = [CommonController CalculateFrame:self.strPhone fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbMobile = [[UILabel alloc] initWithFrame:CGRectMake(80, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, labelSize.width, 15)];
-        lbMobile.text = strMobile;
+        lbMobile.text = self.strPhone;
         lbMobile.font = [UIFont systemFontOfSize:11];
         lbMobile.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
         [cell.contentView addSubview:(lbMobile)];
         [lbMobile release];
         //手机号后面的图标
-        UIImageView *imgMobile = [[UIImageView alloc] initWithFrame:CGRectMake(lbMobile.frame.origin.x + lbMobile.frame.size.width, lbMobile.frame.origin.y, 15, 15)];
-        imgMobile.image = [UIImage imageNamed:@"ico_calltelphone.png"];
-        imgMobile.tag = (NSInteger)rowData[@"ID"];
-        [cell.contentView addSubview:imgMobile];
-        [imgMobile release];
+        UIButton *btnCall = [[[UIButton alloc] initWithFrame:CGRectMake(lbMobile.frame.origin.x + lbMobile.frame.size.width, lbMobile.frame.origin.y, 15, 15)] autorelease ];
+        [btnCall addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
+        [btnCall setImage:[UIImage imageNamed:@"ico_calltelphone.png"] forState:UIControlStateNormal];
+        btnCall.tag = (NSInteger)rowData[@"ID"];
+        [cell.contentView addSubview:btnCall];
+      
         //备注
         UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbMobile.frame.origin.y + lbMobile.frame.size.height + 5, 60, 15)] autorelease];
         lbPreRemark.text = @"备     注：";
@@ -340,6 +341,15 @@
     [txtView resignFirstResponder];
 }
 
+//打电话
+- (void)call:(UIButton *)sender {
+    NSString *strCallNumber = self.strPhone;
+    UIWebView*callWebview =[[[UIWebView alloc] init] autorelease];
+    NSURL *telURL =[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",strCallNumber]];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    //记得添加到view上
+    [self.view addSubview:callWebview];
+}
 
 //点击坐标
 -(void)btnLngLatClick:(UIButton *) sender{
@@ -456,18 +466,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 - (void)dealloc {
+    [_strPhone release];
     [_recruitmentCpData release];
     [_tvReceivedInvitationList release];
     [_lbMessage release];
