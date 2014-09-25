@@ -128,6 +128,7 @@
         [self.view makeToast:[NSString stringWithFormat:@"已切换到%@",requestData[0][@"SubSiteName"]]];
         [self.userDefaults setValue:requestData[0][@"ID"] forKey:@"subSiteId"];
         [self.userDefaults setValue:requestData[0][@"SubSiteName"] forKey:@"subSiteName"];
+        [self.userDefaults setValue:requestData[0][@"SubSIteCity"] forKey:@"subSiteCity"];
         [self.userDefaults synchronize];
     }
 }

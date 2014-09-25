@@ -142,6 +142,7 @@
     if (![userDefaults objectForKey:@"subSiteId"]) {
         [userDefaults setValue:@"32" forKey:@"subSiteId"];
         [userDefaults setValue:@"齐鲁人才网" forKey:@"subSiteName"];
+        [userDefaults setValue:@"山东" forKey:@"subSiteCity"];
     }
     [userDefaults setBool:YES forKey:@"firstToHome"];
     [userDefaults synchronize];

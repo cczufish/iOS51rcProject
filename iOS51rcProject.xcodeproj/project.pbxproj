@@ -271,6 +271,9 @@
 		99B350C0199CB1F100CAEC71 /* welcom4-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350B6199CB1F100CAEC71 /* welcom4-320x1136.png */; };
 		99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */; };
 		99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */; };
+		99B3D17F19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B3D17E19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m */; };
+		99B3D18119D40D4F00AEF1D9 /* btn_keywords_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B3D18019D40D4F00AEF1D9 /* btn_keywords_del.png */; };
+		99B3D18319D414C800AEF1D9 /* ico_hiskeywords_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B3D18219D414C800AEF1D9 /* ico_hiskeywords_del.png */; };
 		99B4693219B2B71A0034505D /* ico_searchlog_log.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693119B2B71A0034505D /* ico_searchlog_log.png */; };
 		99B4693719B2EB520034505D /* ico_mainsearch_mapsearch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693319B2EB520034505D /* ico_mainsearch_mapsearch1.png */; };
 		99B4693819B2EB520034505D /* ico_mainsearch_mapsearch2.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693419B2EB520034505D /* ico_mainsearch_mapsearch2.png */; };
@@ -915,6 +918,10 @@
 		99B350B6199CB1F100CAEC71 /* welcom4-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom4-320x1136.png"; sourceTree = "<group>"; };
 		99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x960.png"; sourceTree = "<group>"; };
 		99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x1136.png"; sourceTree = "<group>"; };
+		99B3D17D19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchByKeyWorkViewController.h; path = Search/SearchByKeyWorkViewController.h; sourceTree = "<group>"; };
+		99B3D17E19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchByKeyWorkViewController.m; path = Search/SearchByKeyWorkViewController.m; sourceTree = "<group>"; };
+		99B3D18019D40D4F00AEF1D9 /* btn_keywords_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_keywords_del.png; sourceTree = "<group>"; };
+		99B3D18219D414C800AEF1D9 /* ico_hiskeywords_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_hiskeywords_del.png; sourceTree = "<group>"; };
 		99B4693119B2B71A0034505D /* ico_searchlog_log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_searchlog_log.png; sourceTree = "<group>"; };
 		99B4693319B2EB520034505D /* ico_mainsearch_mapsearch1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mainsearch_mapsearch1.png; sourceTree = "<group>"; };
 		99B4693419B2EB520034505D /* ico_mainsearch_mapsearch2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mainsearch_mapsearch2.png; sourceTree = "<group>"; };
@@ -1720,6 +1727,8 @@
 				999BDD1A19C2E4FC000A152A /* SearchListViewController.m */,
 				999BDD1B19C2E4FC000A152A /* SearchViewController.h */,
 				999BDD1C19C2E4FC000A152A /* SearchViewController.m */,
+				99B3D17D19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.h */,
+				99B3D17E19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -2129,6 +2138,8 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99B3D18219D414C800AEF1D9 /* ico_hiskeywords_del.png */,
+				99B3D18019D40D4F00AEF1D9 /* btn_keywords_del.png */,
 				999B296F19D3A3A9005B084B /* ico_titlemain_search.png */,
 				9994AF2719D144BF008068AD /* ico_fuli_banche.png */,
 				9994AF2819D144BF008068AD /* ico_fuli_baoxian.png */,
@@ -2492,6 +2503,7 @@
 				99C539CA19C962A600E6165A /* ico_salary_rank10.png in Resources */,
 				995575BA19AC56A800B73E4A /* ico_coordinate_blue.png in Resources */,
 				992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */,
+				99B3D18119D40D4F00AEF1D9 /* btn_keywords_del.png in Resources */,
 				99CFD830199B5F80009A5ABA /* Images.xcassets in Resources */,
 				9994AF3A19D144BF008068AD /* ico_fuli_baoxian.png in Resources */,
 				99B350B8199CB1F100CAEC71 /* index640x1136.png in Resources */,
@@ -2540,6 +2552,7 @@
 				9927AC5F19C7E37F0037E3F9 /* SalaryAnalysis.storyboard in Resources */,
 				999BDD5A19C2E89C000A152A /* ico_cvlist_point_gray.png in Resources */,
 				99CFD87E199B60D8009A5ABA /* ico_leftmenu_mebercenter.png in Resources */,
+				99B3D18319D414C800AEF1D9 /* ico_hiskeywords_del.png in Resources */,
 				99CFD878199B60D8009A5ABA /* color-orange.png in Resources */,
 				99AF5B8519C1317E00BE73F2 /* camara.png in Resources */,
 				9994AF4319D144BF008068AD /* ico_fuli_nzj.png in Resources */,
@@ -2695,6 +2708,7 @@
 				99908A5719A34DD300137FDE /* FMDatabaseAdditions.m in Sources */,
 				99B9671D19B443D000E93CBD /* RmCpMain.m in Sources */,
 				99B96B0D19B0286C0069C1FA /* RmInviteCpViewController.m in Sources */,
+				99B3D17F19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m in Sources */,
 				9925BEF019B80E02002DBFE0 /* CommonController.m in Sources */,
 				9925BEF719B80E02002DBFE0 /* SlideNavigationContorllerAnimatorScale.m in Sources */,
 				995575C019AC64CE00B73E4A /* RmAttendPaListViewController.m in Sources */,

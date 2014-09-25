@@ -553,7 +553,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZK-VU-iAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1171" y="-641"/>
+            <point key="canvasLocation" x="1127" y="-281"/>
         </scene>
         <!--Search View Controller - 职位搜索-->
         <scene sceneID="J5w-9m-5kC">
@@ -1200,7 +1200,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="sUm-FB-sI4" kind="push" id="D2u-4z-aGf"/>
+                                            <segue destination="xFH-96-3X2" kind="push" id="Rzs-Dy-jbM"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_titlemain_search.png" id="gQu-OT-N7b">
@@ -1261,9 +1261,91 @@
             </objects>
             <point key="canvasLocation" x="758" y="362"/>
         </scene>
+        <!--Search By Key Work View Controller-->
+        <scene sceneID="Bfg-ab-Fyk">
+            <objects>
+                <viewController storyboardIdentifier="SearchByKeyWorkView" id="xFH-96-3X2" customClass="SearchByKeyWorkViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B3c-yb-SgC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="E80-nc-7Tc">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="keyword" id="5AS-w5-Zvi">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5AS-w5-Zvi" id="Zdg-gf-c5J">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="xFH-96-3X2" id="52M-PS-cZ0"/>
+                                    <outlet property="delegate" destination="xFH-96-3X2" id="8EV-cm-boU"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EYb-wH-RgE">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="PLi-8Y-G92">
+                            <rect key="frame" x="52" y="6" width="196" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入关键词" minimumFontSize="17" id="8S7-Ex-lFI">
+                                    <rect key="frame" x="-2" y="2" width="196" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="xFH-96-3X2" id="GKA-Cb-0GT"/>
+                                    </connections>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IIe-4p-d7c">
+                                    <rect key="frame" x="169" y="7" width="20" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" backgroundImage="btn_keywords_del.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="clearTextField:" destination="xFH-96-3X2" eventType="touchUpInside" id="BeR-N9-3dl"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="F7p-Fg-PAu">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Prf-3R-dFR">
+                                <rect key="frame" x="254" y="7" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="搜索">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="goToSearch:" destination="xFH-96-3X2" eventType="touchUpInside" id="s0s-w6-IwQ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tvKeyword" destination="E80-nc-7Tc" id="AI0-Ru-q3q"/>
+                        <outlet property="txtKeyword" destination="8S7-Ex-lFI" id="GQd-no-asD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wNk-eJ-Fp2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1127" y="362"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bg_leftmenu.png" width="508" height="1280"/>
+        <image name="btn_keywords_del.png" width="56" height="56"/>
         <image name="ico_joblist_favorite.png" width="55" height="52"/>
         <image name="ico_main_jobapply.png" width="150" height="150"/>
         <image name="ico_main_membercenter.png" width="150" height="150"/>
@@ -1300,7 +1382,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="Efu-y1-mfN"/>
-    </inferredMetricsTieBreakers>
 </document>
