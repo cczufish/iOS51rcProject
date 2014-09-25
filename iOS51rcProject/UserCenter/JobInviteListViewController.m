@@ -244,8 +244,9 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
-    jobC.cpMainID = rowData[@"cpMainID"];
-    [self.navigationController pushViewController:jobC animated:YES];
+    jobC.cpMainID = rowData[@"cpID"];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
+    [pCtrl.navigationController pushViewController:jobC animated:YES];
 }
 
 - (void)rowChecked:(UIButton *)sender

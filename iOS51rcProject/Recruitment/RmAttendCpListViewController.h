@@ -5,8 +5,6 @@
 {
     NSInteger page;
     NSInteger pageSize;
-    NSMutableArray *recruitmentCpData;
-    //NSString *rmID;
     LoadingAnimationView *loadView;
     NSMutableArray *checkedCpArray;
 }
@@ -14,4 +12,5 @@
 @property (retain, nonatomic) NSString *strBeginTime;
 @property (retain, nonatomic) NSString *strAddress;
 @property (retain, nonatomic) NSString *strPlace;
+@property (retain, nonatomic) NSMutableArray *recruitmentCpData;
 @end

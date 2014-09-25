@@ -31,9 +31,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    checkedCpArray = [[NSMutableArray alloc] init];//选择的企业
+    self.navigationItem.title = @"参会企业";
+    //选择的企业
+    checkedCpArray = [[NSMutableArray alloc] init];
     page = 1;
-    pageSize = 20;   
+    pageSize = 20;
+    self.tvRecruitmentCpList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [self onSearch];
@@ -47,7 +50,7 @@
 - (void)onSearch
 {
     if (page == 1) {
-        [recruitmentCpData removeAllObjects];
+        [self.recruitmentCpData removeAllObjects];
         [self.tvRecruitmentCpList reloadData];
     }
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -66,6 +69,7 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    [loadView startAnimating];
 }
 
 //成功
@@ -74,11 +78,11 @@
               responseData:(NSMutableArray *)requestData
 {
     if(page == 1){
-        [recruitmentCpData removeAllObjects];
-        recruitmentCpData = requestData;
+        [self.recruitmentCpData removeAllObjects];
+        self.recruitmentCpData = requestData;
     }
     else{
-        [recruitmentCpData addObjectsFromArray:requestData];
+        [self.recruitmentCpData addObjectsFromArray:requestData];
     }
     [self.tvRecruitmentCpList reloadData];
     [self.tvRecruitmentCpList footerEndRefreshing];
@@ -92,7 +96,7 @@
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"cpList"] autorelease];
     
-    NSDictionary *rowData = recruitmentCpData[indexPath.row];
+    NSDictionary *rowData = self.recruitmentCpData[indexPath.row];
     RmCpMain *cpMain = [[RmCpMain alloc] init];
     
     int isBooked = [rowData[@"isBooked"] integerValue];
@@ -193,6 +197,10 @@
     rightButton.tag = [rowData[@"cpMainID"] integerValue];
     [cell.contentView addSubview:rightButton];
     
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 78, 320, 0.5)];
+    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [cell.contentView addSubview:viewSeparate];
+
     [rightButton release];
     [lbWillRun release];
     [imgWillRun release];
@@ -206,9 +214,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperCpViewController *cpMainCtrl = (SuperCpViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"SuperCpView"];
-    cpMainCtrl.cpMainID = recruitmentCpData[indexPath.row][@"cpMainID"];
+    cpMainCtrl.cpMainID = self.recruitmentCpData[indexPath.row][@"cpMainID"];
     [self.navigationController pushViewController:cpMainCtrl animated:true];
-    cpMainCtrl.navigationItem.title = recruitmentCpData[indexPath.row][@"Name"];
+    cpMainCtrl.navigationItem.title = self.recruitmentCpData[indexPath.row][@"Name"];
     self.navigationItem.title = @"参会企业";
 }
 
@@ -250,7 +258,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [recruitmentCpData count];
+    return [self.recruitmentCpData count];
 }
 
 //每一行的高度
@@ -263,18 +271,9 @@
     [self onSearch];
 }
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
-
 - (void)dealloc {
+    [_runningRequest release];
+    [_recruitmentCpData release];
     [_tvRecruitmentCpList release];
     [super dealloc];
 }
