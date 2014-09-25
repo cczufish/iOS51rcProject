@@ -40,7 +40,7 @@
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     [self.btnFavourite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
     //数据加载等待控件初始化
-    self.loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //不显示列表分隔线
     self.tvCpJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //[self onSearch];
@@ -92,7 +92,7 @@
     }
     
     //结束等待动画
-    [self.loadView stopAnimating];
+    [loadView stopAnimating];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -248,7 +248,7 @@
         request.tag = 2;
         self.runningRequest = request;
         [dicParam release];
-        [self.loadView startAnimating];
+        [loadView startAnimating];
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
@@ -277,7 +277,7 @@
         request.tag = 5;
         self.runningRequest = request;
         [dicParam release];
-        [self.loadView startAnimating];
+        [loadView startAnimating];
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
@@ -292,8 +292,7 @@
 }
 
 
-- (void)dealloc {
-    [_loadView release];
+- (void)dealloc {  
     [_cPopup release];
     [_jobListData release];
     [_tvCpJobList release];

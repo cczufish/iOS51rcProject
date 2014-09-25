@@ -150,7 +150,7 @@
         self.cvList = arrCv;
     }
     else if(request.tag == 6){
-        UIViewController *pCtrl = [self getFatherController];
+        UIViewController *pCtrl = [CommonController getFatherController:self.view];
         [pCtrl.view makeToast:@"删除成功"];
         //更新视图，删除全局对象内改数据，并重新绑定
         for (int i = 0; i<self.jobListData.count; i++) {
@@ -264,7 +264,7 @@
     }
     
        //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 90, 320, 1)];
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 88, 320, 0.5)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
@@ -274,7 +274,7 @@
 //删除职位
 - (void)jobDelete
 {
-    UIViewController *pCtrl = [self getFatherController];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位
@@ -369,7 +369,7 @@
     jobCtrl.cpMainID= rowData[@"cpID"];
     jobCtrl.JobID = rowData[@"JobID"];
     
-    UIViewController *superView = [self getFatherController];
+    UIViewController *superView = [CommonController getFatherController:self.view];
     [superView.navigationController pushViewController:jobCtrl animated:YES];
 }
 
@@ -389,7 +389,7 @@
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defaultValue:@"0" defaultName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.frame = CGRectMake(self.DictionaryPicker.frame.origin.x, self.DictionaryPicker.frame.origin.y-50, self.DictionaryPicker.frame.size.width, self.DictionaryPicker.frame.size.height);
     [self.DictionaryPicker setTag:1];
-    UIViewController *pCtrl = [self getFatherController];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     [self.DictionaryPicker showInView:pCtrl.view];
 }
 
@@ -434,18 +434,6 @@
     [self cancelDicPicker];
 }
 
-//得到父View
-- (UIViewController *)getFatherController
-{
-    for (UIView* next = [self.view superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    
-    return nil;
-}
 - (void)dealloc {
     [_runningRequest release];
     [_isOnline release];

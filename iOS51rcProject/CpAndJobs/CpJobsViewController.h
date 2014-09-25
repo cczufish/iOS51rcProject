@@ -6,6 +6,7 @@
 @interface CpJobsViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     NSInteger page;
+    LoadingAnimationView *loadView;
    
 }
 @property int frameHeight;
@@ -14,6 +15,6 @@
 @property (retain, nonatomic) NSString *newsType;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain,nonatomic) NSMutableArray* arrCheckJobID;
-@property (retain, nonatomic) LoadingAnimationView *loadView;
+
 - (void)onSearch;
 @end
