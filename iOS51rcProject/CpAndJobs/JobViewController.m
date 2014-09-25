@@ -351,6 +351,12 @@
     //年龄
     NSString *minAge = dicJob[@"MinAge"];
     NSString *maxAge = dicJob[@"MaxAge"];
+    NSString *strAge = @" ";
+    if ([minAge isEqualToString:@"99"]&&[maxAge isEqualToString:@"99"]) {
+        strAge = @"年龄不限";
+    }else{
+        strAge = [NSString stringWithFormat:@"%@-%@", minAge, maxAge];
+    }
     //经验
     NSString *experience = dicJob[@"Experience"];
     //全职与否
@@ -363,7 +369,7 @@
     lbJobRequest.font = [UIFont systemFontOfSize:12];
     
     UILabel *lbJobRequestValue = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 10, 280, 15) ]autorelease];
-    lbJobRequestValue.text = [NSString stringWithFormat:@"%@|%@|%@-%@|%@|%@", num, education, minAge, maxAge, experience, employType];
+    lbJobRequestValue.text = [NSString stringWithFormat:@"%@|%@|%@|%@|%@", num, education, strAge, experience, employType];
     lbJobRequestValue.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbJobRequestValue];
     
