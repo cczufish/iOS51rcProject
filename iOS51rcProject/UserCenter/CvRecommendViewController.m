@@ -363,7 +363,7 @@
     if (self.scrollContent.contentOffset.x > 480) {
         [self switchToCv3:nil];
     }
-    else if (scrollView.contentOffset.x > 160) {
+    else if (self.scrollContent.contentOffset.x > 160) {
         [self switchToCv2:nil];
     }
     else {
@@ -422,8 +422,8 @@
     [lbJobName release];
     
     //匹配度
-    UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(275, 5, 40, 20)];
-    [lbMatch setText:[NSString stringWithFormat:@"匹配度%@",rowData[@"matchPercent"]]];
+    UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(270, 5, 45, 20)];
+    [lbMatch setText:[NSString stringWithFormat:@"匹配度%@%%",rowData[@"matchPercent"]]];
     [lbMatch setTextAlignment:NSTextAlignmentCenter];
     [lbMatch setTextColor:[UIColor whiteColor]];
     [lbMatch setFont:[UIFont systemFontOfSize:8]];
