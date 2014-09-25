@@ -66,6 +66,7 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    [loadView startAnimating];
 }
 
 //成功
@@ -177,9 +178,9 @@
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
     jobC.cpMainID = rowData[@"cpMainID"];
-    self.navigationItem.title = @" ";
-    jobC.navigationItem.title = rowData[@"cpName"];
+    //self.navigationItem.title = @" ";    
     UIViewController *pCtrl = [CommonController getFatherController:self.view];
+    jobC.navigationItem.title = pCtrl.navigationItem.title;
     [pCtrl.navigationController pushViewController:jobC animated:YES];
 }
 
@@ -305,6 +306,9 @@
     [_ViewBottom release];
     [_btnApply release];
     [_btnFavourite release];
+    [_runningRequest release];
+    [_arrCheckJobID release];
+    
     [super dealloc];
 }
 @end
