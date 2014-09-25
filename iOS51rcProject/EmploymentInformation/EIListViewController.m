@@ -43,7 +43,7 @@
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
     self.navigationItem.leftBarButtonItem=backButton;
     
-    eiListData = [[NSMutableArray alloc] init];
+    self.eiListData = [[NSMutableArray alloc] init];
     placeData = [[NSMutableArray alloc] init];
     
     //数据加载等待控件初始化
@@ -74,7 +74,7 @@
 - (void)onSearch
 {
     if (page == 1) {
-        [eiListData removeAllObjects];
+        [self.eiListData removeAllObjects];
         [self.tvEIList reloadData];
     }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -99,7 +99,7 @@
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"rmList"] autorelease];
     
-    NSDictionary *rowData = eiListData[indexPath.row];
+    NSDictionary *rowData = self.eiListData[indexPath.row];
     
     //显示标题
     NSString *strTitle = rowData[@"Title"];
@@ -147,12 +147,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
      EIItemDetailsViewController *detailCtrl = (EIItemDetailsViewController*)[self.storyboard
                                                                              instantiateViewControllerWithIdentifier: @"EIItemDetailsView"];
-    detailCtrl.strNewsID = eiListData[indexPath.row][@"Id"];
+    detailCtrl.strNewsID = self.eiListData[indexPath.row][@"Id"];
     [self.navigationController pushViewController:detailCtrl animated:true];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [eiListData count];
+    return [self.eiListData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -171,11 +171,11 @@
 {
     if (request.tag == 1) {
         if(page == 1){
-            [eiListData removeAllObjects];
-            eiListData = requestData;
+            [self.eiListData removeAllObjects];
+            self.eiListData = requestData;
         }
         else{
-            [eiListData addObjectsFromArray:requestData];
+            [self.eiListData addObjectsFromArray:requestData];
         }
         [self.tvEIList reloadData];
         [self.tvEIList footerEndRefreshing];
@@ -186,7 +186,7 @@
 }
 
 - (void)dealloc {
-    
+    [_eiListData release];
     [placeData release];
     [loadView release];
     [_tvEIList release];
