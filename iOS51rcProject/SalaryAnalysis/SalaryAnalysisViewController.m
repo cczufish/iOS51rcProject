@@ -341,9 +341,11 @@
     //loadingColumnEdu = false;
     [self.viewDistribution addSubview:self.colEducation];
     
-    //日期生命
-    UILabel *lbTime = [[[UILabel alloc] initWithFrame:CGRectMake(40, self.colEducation.frame.origin.y + self.colEducation.frame.size.height + 10, 280, 30)] autorelease];
+    //日期
+    UILabel *lbTime = [[[UILabel alloc] initWithFrame:CGRectMake(40, self.colEducation.frame.origin.y + self.colEducation.frame.size.height + 15, 280, 30)] autorelease];
     NSDate *  dtNow=[NSDate date];
+    NSTimeInterval interval = 60 * 60 * 24;
+    dtNow = [dtNow initWithTimeIntervalSinceNow:-interval];//减去一天
     NSDateFormatter  *dateformatter=[[[NSDateFormatter alloc] init] autorelease];
     [dateformatter setDateFormat:@"YYYY-MM-dd"];
     NSString * strNowDate=[dateformatter stringFromDate:dtNow];
