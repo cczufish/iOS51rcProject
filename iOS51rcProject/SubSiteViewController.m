@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationItem setTitle:@"站点选择"];
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     
@@ -40,7 +41,7 @@
 - (void)onSearch
 {
     [loadView startAnimating];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetJobListBySearch" Params:nil];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetSubSite" Params:nil];
     [request setDelegate:self];
     [request startAsynchronous];
     self.runningRequest = request;
@@ -52,6 +53,7 @@
 {
     self.subsiteData = requestData;
     [self.tvSubsite reloadData];
+    [loadView stopAnimating];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -63,9 +65,14 @@
 {
     NSDictionary *rowData = self.subsiteData[indexPath.row];
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"subsite"];
-    cell.textLabel.text = rowData[@"SubSiteName"];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@（%@）",rowData[@"SubSIteCity"],rowData[@"SubSiteName"]];
     cell.tag = [rowData[@"ID"] intValue];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,6 +94,8 @@
 
 - (void)dealloc {
     [_tvSubsite release];
+    [_runningRequest release];
+    [loadView release];
     [super dealloc];
 }
 @end

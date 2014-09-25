@@ -2435,9 +2435,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Lucifer;
 				TargetAttributes = {
-					99CFD813199B5F80009A5ABA = {
-						DevelopmentTeam = KRHBFGDGWF;
-					};
 					99CFD834199B5F80009A5ABA = {
 						TestTargetID = 99CFD813199B5F80009A5ABA;
 					};

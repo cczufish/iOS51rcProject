@@ -12,8 +12,13 @@
 #import "JmMainViewController.h"
 #import "CommonController.h"
 #import "SalaryAnalysisViewController.h"
+#import "BMapKit.h"
+#import "NetWebServiceRequest.h"
 
-@interface HomeViewController() <SlideNavigationControllerDelegate>
+@interface HomeViewController() <SlideNavigationControllerDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,NetWebServiceRequestDelegate>
+@property (retain, nonatomic) BMKLocationService *locService;
+@property (retain, nonatomic) BMKGeoCodeSearch *geocodesearch;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 
 @end
 
@@ -39,6 +44,77 @@
                                              selector:@selector(popBackCompletion:)
                                                  name:@"Home"
                                                object:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //获取地理位置
+    self.locService = [[[BMKLocationService alloc] init] autorelease];
+    self.locService.delegate = self;
+    //开始定位
+    [self.locService startUserLocationService];
+    [self.view makeToast:@"正在定位..."];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.locService.delegate = nil;
+    self.geocodesearch.delegate = nil;
+}
+
+//定位完成后执行此方法，将定位的位置添加到地图上
+- (void)didUpdateUserLocation:(BMKUserLocation *)userLocation
+{
+    [self.locService stopUserLocationService];
+    [self getAddress:userLocation.location.coordinate];
+}
+
+//根据坐标获取地理位置
+- (void)getAddress:(CLLocationCoordinate2D) pt
+{
+    self.geocodesearch = [[[BMKGeoCodeSearch alloc] init] autorelease];
+    self.geocodesearch.delegate = self;
+    BMKReverseGeoCodeOption *reverseGeocodeSearchOption = [[BMKReverseGeoCodeOption alloc] init];
+    reverseGeocodeSearchOption.reverseGeoPoint = pt;
+    BOOL flag = [self.geocodesearch reverseGeoCode:reverseGeocodeSearchOption];
+    [reverseGeocodeSearchOption release];
+    if(!flag)
+    {
+        [self.view makeToast:@"获取地理位置失败"];
+    }
+}
+
+//根据坐标获取地理位置成功执行此方法
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
+{
+    if (error == BMK_SEARCH_NO_ERROR) {
+        NSLog(@"%@",result.address);
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:result.address forKey:@"address"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetSubSiteByAddress" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 1;
+        self.runningRequest = request;
+        [dicParam release];
+    }
+    else {
+        [self.view makeToast:@"获取地理位置失败"];
+    }
+}
+
+- (void)netRequestFinished:(NetWebServiceRequest *)request
+      finishedInfoToResult:(NSString *)result
+              responseData:(NSArray *)requestData
+{
+    if (requestData.count > 0) {
+        NSArray *titleViews = self.viewTitle.subviews;
+        UIButton *btnSubSite = titleViews[0];
+        [btnSubSite setTitle:requestData[0][@"SubSiteName"] forState:UIControlStateNormal];
+        [self.view makeToast:[NSString stringWithFormat:@"已切换到%@",requestData[0][@"SubSiteName"]]];
+    }
 }
 
 //处理其他页面返回的事件
@@ -170,6 +246,7 @@
 */
 
 - (void)dealloc {
+    [_runningRequest release];
     [_viewTitle release];
     [super dealloc];
 }

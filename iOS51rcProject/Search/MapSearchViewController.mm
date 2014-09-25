@@ -315,6 +315,7 @@
     [self.viewMap removeAnnotations:currentAnnotations];
     [currentAnnotations release];
     //将数组清除
+    [self.jobDetails removeAllObjects];
     [self.jobAnnotations removeAllObjects];
     self.maxPageNumber = 0;
     self.jobNumber = 1;
@@ -418,10 +419,11 @@
 {
     [self.viewMap setHidden:false];
     [self.viewMap setZoomLevel:14.07];
-    _geocodesearch = [[BMKGeoCodeSearch alloc] init];
     self.viewMap.showMapScaleBar = YES;
-    self.locService = [[[BMKLocationService alloc] init] autorelease];
+    self.locService = [[BMKLocationService alloc] init];
     self.locService.delegate = self;
+    self.geocodesearch = [[BMKGeoCodeSearch alloc] init];
+    self.geocodesearch.delegate = self;
     //开始定位
     [self.locService startUserLocationService];
 }
@@ -431,13 +433,13 @@
     [super viewWillAppear:animated];
     [self.viewMap viewWillAppear];
     self.viewMap.delegate = self;
-    self.geocodesearch.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.viewMap viewWillDisappear];
+    self.locService.delegate = nil;
     self.viewMap.delegate = nil;
     self.geocodesearch.delegate = nil;
 }

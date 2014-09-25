@@ -71,7 +71,7 @@
     //百度地图初始化
     _mapManager = [[BMKMapManager alloc] init];
     // 如果要关注网络及授权验证事件，请设定generalDelegate参数
-    BOOL ret = [_mapManager start:@"Fl1kNLMN9YUgWjqapnhCf1Ax"  generalDelegate:nil];
+    BOOL ret = [_mapManager start:@"6EaXjB5c8pkW5Gm0KL9QEIpD"  generalDelegate:nil];
     if (!ret) {
         NSLog(@"manager start failed!");
     }
@@ -137,8 +137,11 @@
         //NSLog(@"not the first login");
     }
     
-    logCount ++;
+    logCount++;
     [userDefaults setInteger:logCount forKey:@"loginCount"];
+    [userDefaults setInteger:32 forKey:@"subSiteId"];
+    [userDefaults setValue:@"齐鲁人才网" forKey:@"subSiteName"];
+    [userDefaults setBool:YES forKey:@"firstToHome"];
     [userDefaults synchronize];
 	
     return YES;

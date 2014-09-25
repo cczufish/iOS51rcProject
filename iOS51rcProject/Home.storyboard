@@ -1188,6 +1188,9 @@
                                         <state key="normal" title="齐鲁人才网">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="Nw9-Hh-vZK" kind="push" id="whI-ca-VXF"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PJC-Xd-0SW">
                                         <rect key="frame" x="102" y="4" width="148" height="25"/>
@@ -1196,6 +1199,9 @@
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="sUm-FB-sI4" kind="push" id="D2u-4z-aGf"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_titlemain_search.png" id="gQu-OT-N7b">
                                         <rect key="frame" x="225" y="7" width="20" height="20"/>
@@ -1230,7 +1236,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="subsite" id="Ql2-V8-qNN">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ql2-V8-qNN" id="EyH-lm-O57">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1294,4 +1300,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Efu-y1-mfN"/>
+    </inferredMetricsTieBreakers>
 </document>
