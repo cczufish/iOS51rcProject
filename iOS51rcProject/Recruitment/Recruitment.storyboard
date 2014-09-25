@@ -716,44 +716,6 @@
             </objects>
             <point key="canvasLocation" x="439" y="104"/>
         </scene>
-        <!--Rm Attend Cp List View Controller-->
-        <scene sceneID="YoT-nJ-QNY">
-            <objects>
-                <viewController storyboardIdentifier="RmAttendCpListView" id="bag-nE-Ayv" customClass="RmAttendCpListViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cDR-eC-snQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="y1b-kH-yZ8">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KYt-4R-7i2">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KYt-4R-7i2" id="XbT-1Z-taL">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="bag-nE-Ayv" id="NeG-a0-bHj"/>
-                                    <outlet property="delegate" destination="bag-nE-Ayv" id="vKr-bD-bo0"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="tvCpJobList" destination="y1b-kH-yZ8" id="bSM-se-USm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yep-k7-fQm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1615" y="-1274"/>
-        </scene>
         <!--Rm Invite Cp View Controller-->
         <scene sceneID="rCD-1n-0L2">
             <objects>
@@ -1132,7 +1094,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2u-tQ-ZSS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1230" y="-846"/>
+            <point key="canvasLocation" x="822" y="-1242"/>
         </scene>
         <!--Search Job List View Controller-->
         <scene sceneID="ZMX-IE-h77">
