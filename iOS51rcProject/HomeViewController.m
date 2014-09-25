@@ -31,6 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSArray *titleViews = self.viewTitle.subviews;
+    UIView *btnSearch = titleViews[1];
+    btnSearch.layer.cornerRadius = 5;
     //接收其他页面的消息（返回时）
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(popBackCompletion:)
@@ -166,4 +169,8 @@
 }
 */
 
+- (void)dealloc {
+    [_viewTitle release];
+    [super dealloc];
+}
 @end

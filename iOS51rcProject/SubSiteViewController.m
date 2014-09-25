@@ -9,7 +9,7 @@
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 
-@interface SubSiteViewController ()
+@interface SubSiteViewController () <NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate>
 {
     LoadingAnimationView *loadView;
 }
@@ -34,7 +34,38 @@
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     
-//    [self onSearch];
+    [self onSearch];
+}
+
+- (void)onSearch
+{
+    [loadView startAnimating];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetJobListBySearch" Params:nil];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    self.runningRequest = request;
+}
+
+- (void)netRequestFinished:(NetWebServiceRequest *)request
+      finishedInfoToResult:(NSString *)result
+              responseData:(NSArray *)requestData
+{
+    self.subsiteData = requestData;
+    [self.tvSubsite reloadData];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.subsiteData.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *rowData = self.subsiteData[indexPath.row];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"subsite"];
+    cell.textLabel.text = rowData[@"SubSiteName"];
+    cell.tag = [rowData[@"ID"] intValue];
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,4 +85,8 @@
 }
 */
 
+- (void)dealloc {
+    [_tvSubsite release];
+    [super dealloc];
+}
 @end

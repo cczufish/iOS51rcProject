@@ -8,5 +8,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SubSiteViewController : UIViewController
+@property (retain, nonatomic) IBOutlet UITableView *tvSubsite;
 
 @end
