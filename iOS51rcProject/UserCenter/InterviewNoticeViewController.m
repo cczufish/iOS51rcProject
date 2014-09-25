@@ -98,7 +98,17 @@
     [cell.contentView addSubview:lbLeft];
     [lbLeft release];
     //职位标题
+    BOOL isDelete = [rowData[@"IsDelete"] boolValue];
     NSString *strJobName = rowData[@"JobName"];
+    if (isDelete) {
+        strJobName = [NSString stringWithFormat:@"（已删除）%@", strJobName];
+    }
+    NSString *issueEnd = rowData[@"IssueEND"];
+    NSDate *dtIssueEnd = [CommonController dateFromString:issueEnd];
+    NSDate * now = [NSDate date];
+    if ([now laterDate:dtIssueEnd] == now ) {
+        strJobName = [NSString stringWithFormat:@"（已过期）%@", strJobName];
+    }
     UIFont *titleFont = [UIFont systemFontOfSize:15];
     CGFloat titleWidth = 235;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
