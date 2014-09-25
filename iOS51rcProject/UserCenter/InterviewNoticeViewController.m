@@ -64,7 +64,7 @@
             [self.tvReceivedInvitationList reloadData];
             [self.tvReceivedInvitationList footerEndRefreshing];
         }else{
-            //没有面试通知记录醒
+            //没有面试通知记录
             self.lbMessage.text = @" ";
             self.lbMessage.layer.borderColor = [UIColor whiteColor].CGColor;
             
