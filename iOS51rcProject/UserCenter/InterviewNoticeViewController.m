@@ -11,6 +11,7 @@
 @interface InterviewNoticeViewController ()<NetWebServiceRequestDelegate, UITextViewDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequestForRejectOrAccept;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequestGetCvList;
 @property (retain, nonatomic) IBOutlet UITableView *tvReceivedInvitationList;
 @property (retain, nonatomic) IBOutlet UILabel *lbMessage;
 @end
@@ -38,26 +39,14 @@
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //[self onSearch];
+   
 }
 
 - (void)onSearch
 {
     [loadView startAnimating];
-    [self.recruitmentCpData removeAllObjects];
-    [self.tvReceivedInvitationList reloadData];
-    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *code = [userDefaults objectForKey:@"code"];
-    NSString *userID = [userDefaults objectForKey:@"UserID"];
-    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:userID forKey:@"paMainID"];//21142013
-    [dicParam setObject:code forKey:@"code"];//152014391908
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaInterviewListByID" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    request.tag = 1;
-    self.runningRequest = request;
-    [dicParam release];
+    //首先获得简历
+    [self GetBasicCvList];
 }
 
 //成功
@@ -71,14 +60,81 @@
         
         [self.tvReceivedInvitationList reloadData];
         [self.tvReceivedInvitationList footerEndRefreshing];
+        //结束等待动画
+        [loadView stopAnimating];
     }
     else if(request.tag == 2)
     {
         [self onSearch];//加载完后重新刷新
     }
+    else if(request.tag == 3)
+    {
+        if (requestData != nil) {
+            //如果有简历，才查询数据
+            [self.recruitmentCpData removeAllObjects];
+            [self.tvReceivedInvitationList reloadData];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            NSString *code = [userDefaults objectForKey:@"code"];
+            NSString *userID = [userDefaults objectForKey:@"UserID"];
+            NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+            [dicParam setObject:userID forKey:@"paMainID"];//21142013
+            [dicParam setObject:code forKey:@"code"];//152014391908
+            NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaInterviewListByID" Params:dicParam];
+            [request setDelegate:self];
+            [request startAsynchronous];
+            request.tag = 1;
+            self.runningRequest = request;
+            [dicParam release];
+        }
+        else{
+            //没有简历的提醒
+            UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(40, 100, 240, 80)]autorelease];
+            UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 60)] autorelease];
+            img.image = [UIImage imageNamed:@"pic_noinfo.png"];
+            [viewHsaNoCv addSubview:img];
+            
+            UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 180, 20)] autorelease];
+            lb1.text = @"亲，您没有完整的简历";
+            lb1.font = [UIFont systemFontOfSize:15];
+            lb1.textAlignment = NSTextAlignmentCenter;
+            [viewHsaNoCv addSubview:lb1];
+            
+            UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 30, 160, 20)] autorelease];
+            lb2.text = @"HR关注不到您，建议您";
+            lb2.font = [UIFont systemFontOfSize:15];
+            lb2.textAlignment = NSTextAlignmentLeft;
+            [viewHsaNoCv addSubview:lb2];
+            
+            UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(lb2.frame.origin.x, 30, 160, 20)] autorelease];
+            lb3.text = @"立即完善简历";
+            lb3.font = [UIFont systemFontOfSize:15];
+            lb3.textAlignment = NSTextAlignmentLeft;
+            [viewHsaNoCv addSubview:lb3];
+            
+            [self.view addSubview:viewHsaNoCv];
+            //结束等待动画
+            [loadView stopAnimating];
+        }
+    }
+}
+
+//获得简历列表
+-(void) GetBasicCvList{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
     
-    //结束等待动画
-    [loadView stopAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetBasicCvListByPaMainID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 3;
+    self.runningRequestGetCvList = request;
+    [dicParam release];
 }
 
 //绑定数据
@@ -467,6 +523,9 @@
 }
 
 - (void)dealloc {
+    [_runningRequest release];
+    [_runningRequestForRejectOrAccept release];
+    [_runningRequestGetCvList release];
     [_strPhone release];
     [_recruitmentCpData release];
     [_tvReceivedInvitationList release];

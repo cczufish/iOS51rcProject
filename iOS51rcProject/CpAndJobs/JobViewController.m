@@ -74,7 +74,9 @@
     //结束等待动画
     [self.loading stopAnimating];
     if (request.tag == 1) { //职位搜索
-        [self didReceiveJobMain:requestData];
+        if (requestData.count>0) {
+            [self didReceiveJobMain:requestData];
+        }        
     }
     else if (request.tag == 3) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
