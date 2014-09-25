@@ -19,7 +19,7 @@
 @property (retain, nonatomic) BMKLocationService *locService;
 @property (retain, nonatomic) BMKGeoCodeSearch *geocodesearch;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
-
+@property (nonatomic, retain) NSUserDefaults *userDefaults;
 @end
 
 @implementation HomeViewController
@@ -36,9 +36,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSArray *titleViews = self.viewTitle.subviews;
-    UIView *btnSearch = titleViews[1];
-    btnSearch.layer.cornerRadius = 5;
     //接收其他页面的消息（返回时）
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(popBackCompletion:)
@@ -46,15 +43,30 @@
                                                object:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray *titleViews = self.viewTitle.subviews;
+    UIButton *btnSubSite = titleViews[0];
+    [btnSubSite setTitle:[self.userDefaults objectForKey:@"subSiteName"] forState:UIControlStateNormal];
+    UIView *btnSearch = titleViews[1];
+    btnSearch.layer.cornerRadius = 5;
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //获取地理位置
-    self.locService = [[[BMKLocationService alloc] init] autorelease];
-    self.locService.delegate = self;
-    //开始定位
-    [self.locService startUserLocationService];
-    [self.view makeToast:@"正在定位..."];
+    //第一次进入home获取地理位置
+    if ([[self.userDefaults objectForKey:@"firstToHome"] boolValue] == YES) {
+        self.locService = [[BMKLocationService alloc] init];
+        self.locService.delegate = self;
+        //开始定位
+        [self.locService startUserLocationService];
+        [self.view makeToast:@"正在定位..."];
+        [self.userDefaults setBool:NO forKey:@"firstToHome"];
+        [self.userDefaults synchronize];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -114,6 +126,9 @@
         UIButton *btnSubSite = titleViews[0];
         [btnSubSite setTitle:requestData[0][@"SubSiteName"] forState:UIControlStateNormal];
         [self.view makeToast:[NSString stringWithFormat:@"已切换到%@",requestData[0][@"SubSiteName"]]];
+        [self.userDefaults setValue:requestData[0][@"ID"] forKey:@"subSiteId"];
+        [self.userDefaults setValue:requestData[0][@"SubSiteName"] forKey:@"subSiteName"];
+        [self.userDefaults synchronize];
     }
 }
 
@@ -248,6 +263,9 @@
 - (void)dealloc {
     [_runningRequest release];
     [_viewTitle release];
+    [_locService release];
+    [_geocodesearch release];
+    [_userDefaults release];
     [super dealloc];
 }
 @end

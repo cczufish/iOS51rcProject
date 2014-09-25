@@ -139,8 +139,10 @@
     
     logCount++;
     [userDefaults setInteger:logCount forKey:@"loginCount"];
-    [userDefaults setInteger:32 forKey:@"subSiteId"];
-    [userDefaults setValue:@"齐鲁人才网" forKey:@"subSiteName"];
+    if (![userDefaults objectForKey:@"subSiteId"]) {
+        [userDefaults setValue:@"32" forKey:@"subSiteId"];
+        [userDefaults setValue:@"齐鲁人才网" forKey:@"subSiteName"];
+    }
     [userDefaults setBool:YES forKey:@"firstToHome"];
     [userDefaults synchronize];
 	

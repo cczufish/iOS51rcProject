@@ -66,13 +66,17 @@
     NSDictionary *rowData = self.subsiteData[indexPath.row];
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"subsite"];
     cell.textLabel.text = [NSString stringWithFormat:@"%@（%@）",rowData[@"SubSIteCity"],rowData[@"SubSiteName"]];
-    cell.tag = [rowData[@"ID"] intValue];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSDictionary *rowData = self.subsiteData[indexPath.row];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:rowData[@"ID"] forKey:@"subSiteId"];
+    [userDefaults setValue:rowData[@"SubSiteName"] forKey:@"subSiteName"];
+    [userDefaults synchronize];
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 - (void)didReceiveMemoryWarning
