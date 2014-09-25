@@ -24,7 +24,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];   
-    
+    //不显示列表分隔线
+    self.tvRecruitmentPaList.separatorStyle = UITableViewCellSeparatorStyleNone;
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     [button setTitle: @"参会个人" forState: UIControlStateNormal];
     button.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -51,7 +52,7 @@
 - (void)onSearch
 {
     if (page == 1) {
-        [recruitmentPaData removeAllObjects];
+        [self.recruitmentPaData removeAllObjects];
         [self.tvRecruitmentPaList reloadData];
     }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -72,11 +73,11 @@
               responseData:(NSMutableArray *)requestData
 {
         if(page == 1){
-            [recruitmentPaData removeAllObjects];
-            recruitmentPaData = requestData;
+            [self.recruitmentPaData removeAllObjects];
+            self.recruitmentPaData = requestData;
         }
         else{
-            [recruitmentPaData addObjectsFromArray:requestData];
+            [self.recruitmentPaData addObjectsFromArray:requestData];
         }
         [self.tvRecruitmentPaList reloadData];
         [self.tvRecruitmentPaList footerEndRefreshing];
@@ -90,7 +91,7 @@
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"paList"] autorelease];
     
-    NSDictionary *rowData = recruitmentPaData[indexPath.row];
+    NSDictionary *rowData = self.recruitmentPaData[indexPath.row];
     //标题：现职位
     NSString *strJobName = rowData[@"JobName"];
     if (strJobName == nil) {
@@ -157,6 +158,11 @@
     lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     
+    //分割线
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y+lbBegin.frame.size.height + 5, 320, 0.5)] autorelease];
+    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [cell.contentView addSubview:viewSeparate];
+
     [lbPreTitle release];
     [lbTitle release];
     [lbPaInfo release];
@@ -166,7 +172,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [recruitmentPaData count];
+    return [self.recruitmentPaData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -178,18 +184,8 @@
     [self onSearch];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)dealloc {
+    [_recruitmentPaData release];
     [_tvRecruitmentPaList release];
     [super dealloc];
 }
