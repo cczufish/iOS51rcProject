@@ -92,10 +92,12 @@
         [self.cPopup showJobApplyCvSelect:result view:self.view];
     }
     else if (request.tag == 5) { //重新申请职位成功
-        [self.view makeToast:@"重新申请简历成功"];
+         UIViewController *pCtrl = [CommonController getFatherController:self.view];
+        [pCtrl.view makeToast:@"重新申请简历成功"];
     }
     else if (request.tag == 6) {
-        [self.view makeToast:@"收藏职位成功"];
+        UIViewController *pCtrl = [CommonController getFatherController:self.view];
+        [pCtrl.view makeToast:@"收藏职位成功"];
     }
     else if(request.tag == 9){//其他建议的职位
         [self didReceiveRecommendJob:requestData];
