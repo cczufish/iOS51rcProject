@@ -2,7 +2,6 @@
 #import "CommonSearchJobViewController.h"
 #import "CommonApplyJobViewController.h"
 #import "CommonFavorityViewController.h"
-#import "RmInviteCpListFromSearchViewController.h"
 #import "RMSearchJobListViewController.h"
 #import "RmInviteCpViewController.h"
 #define MENUHEIHT 40

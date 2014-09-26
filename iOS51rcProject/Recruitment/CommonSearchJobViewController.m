@@ -6,7 +6,6 @@
 #import "SearchListViewController.h"
 #import "FMDatabase.h"
 #import "CommonController.h"
-#import "RmInviteCpListFromSearchViewController.h"
 
 @interface CommonSearchJobViewController ()<DictionaryPickerDelegate>
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;

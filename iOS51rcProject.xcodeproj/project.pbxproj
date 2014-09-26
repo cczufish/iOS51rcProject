@@ -291,7 +291,6 @@
 		99B9671D19B443D000E93CBD /* RmCpMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9671C19B443D000E93CBD /* RmCpMain.m */; };
 		99B9672019B4550500E93CBD /* RmSearchJobForInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */; };
 		99B9672519B45B3600E93CBD /* CommonSearchJobViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9672419B45B3600E93CBD /* CommonSearchJobViewController.m */; };
-		99B9672919B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9672819B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m */; };
 		99B96B0D19B0286C0069C1FA /* RmInviteCpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B96B0C19B0286C0069C1FA /* RmInviteCpViewController.m */; };
 		99B9822419B4C3B600D5D77D /* GRListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9822319B4C3B600D5D77D /* GRListViewController.m */; };
 		99B9822719B4C3DA00D5D77D /* GRItemDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9822619B4C3DA00D5D77D /* GRItemDetailsViewController.m */; };
@@ -950,8 +949,6 @@
 		99B9672319B45B3600E93CBD /* CommonSearchJobViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommonSearchJobViewController.h; path = Recruitment/CommonSearchJobViewController.h; sourceTree = "<group>"; };
 		99B9672419B45B3600E93CBD /* CommonSearchJobViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommonSearchJobViewController.m; path = Recruitment/CommonSearchJobViewController.m; sourceTree = "<group>"; };
 		99B9672619B4614F00E93CBD /* GoJobSearchResultListViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GoJobSearchResultListViewDelegate.h; path = Recruitment/Delegate/GoJobSearchResultListViewDelegate.h; sourceTree = "<group>"; };
-		99B9672719B462CF00E93CBD /* RmInviteCpListFromSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmInviteCpListFromSearchViewController.h; path = Recruitment/RmInviteCpListFromSearchViewController.h; sourceTree = "<group>"; };
-		99B9672819B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmInviteCpListFromSearchViewController.m; path = Recruitment/RmInviteCpListFromSearchViewController.m; sourceTree = "<group>"; };
 		99B96B0B19B0286C0069C1FA /* RmInviteCpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmInviteCpViewController.h; path = Recruitment/RmInviteCpViewController.h; sourceTree = "<group>"; };
 		99B96B0C19B0286C0069C1FA /* RmInviteCpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmInviteCpViewController.m; path = Recruitment/RmInviteCpViewController.m; sourceTree = "<group>"; };
 		99B9822219B4C3B600D5D77D /* GRListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRListViewController.h; sourceTree = "<group>"; };
@@ -2016,8 +2013,6 @@
 				995575C219AC64EA00B73E4A /* RmAttendCpListViewController.m */,
 				995575BE19AC64CE00B73E4A /* RmAttendPaListViewController.h */,
 				995575BF19AC64CE00B73E4A /* RmAttendPaListViewController.m */,
-				99B9672719B462CF00E93CBD /* RmInviteCpListFromSearchViewController.h */,
-				99B9672819B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m */,
 			);
 			name = Recruitment;
 			sourceTree = "<group>";
@@ -2825,7 +2820,6 @@
 				9905134819C2F3D500B9C096 /* JobViewController.m in Sources */,
 				9927ACC719C82F450037E3F9 /* EColumn.m in Sources */,
 				9905132519C2EF2E00B9C096 /* LoginViewController.m in Sources */,
-				99B9672919B462CF00E93CBD /* RmInviteCpListFromSearchViewController.m in Sources */,
 				99BD6FF219B5AFDF00514807 /* MenuHrizontal.m in Sources */,
 				9905134619C2F3D500B9C096 /* CpOtherJobsMainViewController.m in Sources */,
 				99BD6FF319B5AFDF00514807 /* CircleView.m in Sources */,
