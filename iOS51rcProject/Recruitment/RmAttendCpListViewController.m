@@ -154,7 +154,7 @@
     CGFloat titleWidth = 235;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strCpName fontDemond:titleFont sizeDemand:titleSize];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(50, self.tvRecruitmentCpList.frame.origin.x + 20, labelSize.width, labelSize.height)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(50, self.tvRecruitmentCpList.frame.origin.x + 15, labelSize.width, labelSize.height)];
     lbTitle.text = strCpName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
@@ -165,7 +165,7 @@
     //所在地
     NSString *strAddress = rowData[@"Address"];
     labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:titleSize];
-    UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(50, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
+    UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(50, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, 15)];
     lbPaInfo.text = strAddress;
     lbPaInfo.font = [UIFont systemFontOfSize:12];
     lbPaInfo.textColor = [UIColor grayColor];
@@ -214,7 +214,8 @@
     rightButton.tag = [rowData[@"cpMainID"] integerValue];
     [cell.contentView addSubview:rightButton];
     
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 78, 320, 0.5)];
+    //分割线
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 80, 325, 0.5)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
 
@@ -277,7 +278,7 @@
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    return 81;
 }
 
 - (void)footerRereshing{
