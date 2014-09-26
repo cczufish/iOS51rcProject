@@ -267,13 +267,16 @@
     [lbRefreshDate release];
     
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
-    [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 77)];
     [btnCheck setTitle:rowData[@"JobID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
+    
+    UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
+    [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
+    [btnCheck addSubview:imgCheck];
+    [imgCheck release];
     [cell.contentView addSubview:btnCheck];
-    [btnCheck release];
     
     //查看状态
     UILabel *lbReply = [[UILabel alloc] initWithFrame:CGRectMake(220,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 80, 20)];
@@ -301,8 +304,9 @@
         lbReply.text = @"不符合要求";
         [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
     }
+    [btnCheck release];
     
-       //分割线
+    //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 88, 320, 0.5)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
@@ -379,16 +383,17 @@
 
 - (void)rowChecked:(UIButton *)sender
 {
+    UIImageView *imgCheck = sender.subviews[0];
     if (sender.tag == 1) {
         if (![self.arrCheckJobID containsObject:sender.titleLabel.text]) {
             [self.arrCheckJobID addObject:sender.titleLabel.text];
         }
-        [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
         [sender setTag:2];
     }
     else {
         [self.arrCheckJobID removeObject:sender.titleLabel.text];
-        [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
         [sender setTag:1];
     }
     NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);

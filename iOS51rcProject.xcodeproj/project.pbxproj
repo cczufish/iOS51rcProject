@@ -2343,6 +2343,7 @@
 		99FA8B7E19A7132C00F8B1B9 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				999C2A4119D3C87400255E66 /* CpIntitation */,
 				999BDD4E19C2E6F2000A152A /* UserCenter.storyboard */,
 				99FC0B6719C2E36900B7EC74 /* IndexViewController.h */,
 				99FC0B6819C2E36900B7EC74 /* IndexViewController.m */,
@@ -2350,7 +2351,6 @@
 				99FC0B6A19C2E36900B7EC74 /* MobileCertificateViewController.m */,
 				99FC0B6B19C2E36900B7EC74 /* MobileModifyViewController.h */,
 				99FC0B6C19C2E36900B7EC74 /* MobileModifyViewController.m */,
-				999C2A4119D3C87400255E66 /* CpIntitation */,
 				99FC0B6419C2E33500B7EC74 /* MyCvViewController.h */,
 				99FC0B6519C2E33500B7EC74 /* MyCvViewController.m */,
 				999CE42B19C7031600A8842B /* CvModifyViewController.h */,

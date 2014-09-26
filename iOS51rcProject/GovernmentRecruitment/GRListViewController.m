@@ -26,16 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //右侧导航按钮
-    UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 22)];
-    //myRmBtn.titleLabel.text = @"我的招聘会";//这样无法赋值
-    [myRmBtn setTitle: @"政府招考" forState: UIControlStateNormal];
-    myRmBtn.titleLabel.textColor = [UIColor whiteColor];
-    myRmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    myRmBtn.layer.cornerRadius = 5;
-    myRmBtn.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
-    [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
-    [myRmBtn release];
+    [self.navigationItem setTitle:@"政府招考"];
     
     self.gRListData = [[NSMutableArray alloc] init];
     self.placeData = [[NSMutableArray alloc] init];
