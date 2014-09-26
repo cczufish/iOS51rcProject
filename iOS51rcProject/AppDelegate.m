@@ -19,7 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self.window makeKeyAndVisible];
     //误删，用于切换用户欢迎界面
 //    UIImageView *imgFirs = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
 //    imgFirs.image = [UIImage imageNamed:@"Default@2x.png"];
@@ -149,7 +148,7 @@
     }
     [userDefaults setBool:YES forKey:@"firstToHome"];
     [userDefaults synchronize];
-	
+	[self.window makeKeyAndVisible];
     return YES;
 }
 
