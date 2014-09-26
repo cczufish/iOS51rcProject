@@ -47,6 +47,9 @@
     if (self.toastType == 1) {
         [self.view makeToast:@"账号已退出"];
     }
+    else if (self.toastType == 2) {
+        [self.view makeToast:@"登录成功"];
+    }
     self.toastType = 0;
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     NSArray *titleViews = self.viewTitle.subviews;

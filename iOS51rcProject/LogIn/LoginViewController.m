@@ -4,6 +4,7 @@
 #import "CommonController.h"
 #import "FindPsdStep1ViewController.h"
 #import "FindPsdStep3ViewController.h"
+#import "HomeViewController.h"
 
 
 @interface LoginViewController ()<UIScrollViewDelegate>
@@ -99,6 +100,8 @@
 
 - (void) gotoHome
 {
+    HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    homeViewC.toastType = 2;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
