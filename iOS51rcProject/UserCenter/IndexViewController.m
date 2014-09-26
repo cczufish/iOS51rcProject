@@ -1,10 +1,3 @@
-//
-//  IndexViewController.m
-//  iOS51rcProject
-//
-//  Created by Lucifer on 14-9-11.
-//
-
 #import "IndexViewController.h"
 #import "SlideNavigationController.h"
 #import "CustomPopup.h"
@@ -20,6 +13,7 @@
 #import "CommonController.h"
 #import "ChatOnlineViewController.h"
 #import "MobileCertificateViewController.h"
+#import "JmMainViewController.h"
 
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
@@ -316,6 +310,11 @@
         }
         case 2:
         {
+            UIStoryboard *jm = [UIStoryboard storyboardWithName:@"JobApplication" bundle:nil];
+            JmMainViewController *jmMainCtrl = [jm instantiateViewControllerWithIdentifier:@"JmMainView"];
+            jmMainCtrl.navigationItem.title = @"职位申请";
+            self.navigationItem.title = @" ";
+            [self.navigationController pushViewController:jmMainCtrl animated:true];
             break;
         }
         case 3:
