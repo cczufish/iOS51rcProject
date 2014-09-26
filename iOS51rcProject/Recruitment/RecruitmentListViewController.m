@@ -109,10 +109,17 @@
 
 -(void) btnMyRecruitmentClick:(UIButton *)sender
 {
-    MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
-    myRmCtrl.navigationItem.title = @"我的招聘会";
-    [self.navigationController pushViewController:myRmCtrl animated:YES];
-    self.navigationItem.title = @" ";
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+     if ([userDefaults objectForKey:@"UserID"]) {
+         MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
+         myRmCtrl.navigationItem.title = @"我的招聘会";
+         [self.navigationController pushViewController:myRmCtrl animated:YES];
+         self.navigationItem.title = @" ";
+     }else{
+         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+         LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+         [self.navigationController pushViewController:loginC animated:true];
+     }   
 }
 
 - (void)viewWillAppear:(BOOL)animated{
