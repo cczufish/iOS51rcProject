@@ -193,6 +193,15 @@
         }else {
             [self.view makeToast:@"未知错误！"];
         }
+        //返回上一页
+        //设置返回
+        NSDictionary *dataDict = [NSDictionary dictionaryWithObject:@"InviteCpToRmFinished"
+                                                             forKey:@"operation"];
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"RmInviteCpViewController"
+         object:nil
+         userInfo:dataDict];
+
         [self.navigationController popViewControllerAnimated:YES];
     }else if(request.tag == 4){
         if (result == nil) {

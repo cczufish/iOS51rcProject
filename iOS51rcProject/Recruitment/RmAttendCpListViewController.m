@@ -10,6 +10,7 @@
 #import "RmCpMain.h"
 #import <objc/runtime.h> 
 #import "SuperCpViewController.h"
+#import "Toast+UIView.h"
 
 @interface RmAttendCpListViewController ()<NetWebServiceRequestDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -39,7 +40,23 @@
     self.tvRecruitmentCpList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(InviteCompletion:)
+                                                 name:@"RmInviteCpViewController"
+                                               object:nil];
     [self onSearch];
+}
+
+//从邀请页面成功返回
+-(void)InviteCompletion:(NSNotification*)notification {
+    NSDictionary *theData = [notification userInfo];
+    NSString *value = [theData objectForKey:@"operation"];     
+    if([value isEqualToString:@"InviteCpToRmFinished"]){
+        //更新界面
+        [self.view makeToast:@"预约成功"];
+        [self onSearch];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -234,7 +251,6 @@
 
 //点击我要参会--进入邀请企业参会页面（预约一个）
 -(void) bookinginterview:(UIButton *)sender{
-    //NSLog(@"%d",sender.tag);
     RmInviteCpViewController *rmInviteCpViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
     [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
@@ -243,12 +259,10 @@
 -(void) checkBoxBookinginterviewClick:(UIButton *)sender{
     NSLog(@"选择的企业为：%d",sender.tag);
     RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
-    //NSInteger cpID = [@(sender.tag) integerValue];
     UIImageView *imgView = [sender subviews][0];
     int tmpTag = imgView.tag;
     if (tmpTag == 1) {//如果是已经预约
         imgView.image = [UIImage imageNamed:@"unChecked.png"];
-        //[checkedCpArray removeObject:@(cpID)];
         [self.checkedCpArray removeObject:(selectCp)];
     }else{
         imgView.image = [UIImage imageNamed:@"checked.png"];
