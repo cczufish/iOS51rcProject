@@ -47,16 +47,24 @@
     self.txtPsd.layer.borderColor = [UIColor whiteColor].CGColor;
     self.btnLogin.layer.cornerRadius = 5;
     self.btnLogin.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
-
-    isAutoLogin = true;
+    
+    //加载之前登录的数据
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    isAutoLogin =  [[userDefaults objectForKey:@"isAutoLogin"] boolValue];
+    [self btnAutoLoginClick:nil];
+    if (isAutoLogin) {//如果之前要求自动登录,则把密码填上
+        self.txtPsd = [userDefaults objectForKey:@"PassWord"];
+    }
+    //默认把用户名填上
+    self.txtName = [userDefaults objectForKey:@"UserName"];
 }
 
 - (IBAction)btnAutoLoginClick:(id)sender {
     isAutoLogin = !isAutoLogin;
     if (isAutoLogin) {
-        self.imgAutoLogin.image = [UIImage imageNamed:@"unChecked.png" ];
+        self.imgAutoLogin.image = [UIImage imageNamed:@"chk_check.png" ];
     }else{
-        self.imgAutoLogin.image = [UIImage imageNamed:@"checked.png"];
+        self.imgAutoLogin.image = [UIImage imageNamed:@"chk_default.png"];
     }
 }
 
