@@ -53,7 +53,7 @@
     [super viewDidLoad];
     
     //右侧导航按钮
-    UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 22)];
+    UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
     //myRmBtn.titleLabel.text = @"我的招聘会";//这样无法赋值
     [myRmBtn setTitle: @"我的招聘会" forState: UIControlStateNormal];
     myRmBtn.titleLabel.textColor = [UIColor whiteColor];
@@ -135,12 +135,13 @@
         [self.tvRecruitmentList reloadData];
     }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:@"0" forKey:@"paMainID"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [dicParam setObject:[userDefault objectForKey:@"UserID"] forKey:@"paMainID"];
     [dicParam setObject:self.begindate forKey:@"strBeginDate"];
     [dicParam setObject:self.placeid forKey:@"strPlaceID"];
     [dicParam setObject:self.regionid forKey:@"strRegionID"];
     [dicParam setObject:[NSString stringWithFormat:@"%d",self.page] forKey:@"page"];
-    [dicParam setObject:@"0" forKey:@"code"];
+    [dicParam setObject:[userDefault objectForKey:@"code"] forKey:@"code"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetRecruitMentList" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
@@ -254,8 +255,7 @@
         [imgExpired release];
     }
     else if (runStatus == 3){
-        BOOL canBook = [rowData[@"CanBooking"] boolValue];
-        if (canBook) {
+        if (!rowData[@"orderTime"]) {
             UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 35, 30, 45)];
             UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(-5, 35, 40, 10)];
             lbWillRun.text = @"我要参会";
@@ -275,12 +275,12 @@
             [rightButton release];
             [lbWillRun release];
             [imgWillRun release];
-        }else{
+        }
+        else {
             UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 35, 30, 45)];
-            UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(-5, 31, 40, 10)];
+            UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 40, 15)];
             lbWillRun.text = @"已预约";
-            lbWillRun.font = [UIFont systemFontOfSize:10];
-            lbWillRun.textColor = [UIColor grayColor];
+            lbWillRun.font = [UIFont systemFontOfSize:12];
             lbWillRun.textAlignment = NSTextAlignmentCenter;
             [rightButton addSubview:lbWillRun];
             [cell.contentView addSubview:rightButton];
