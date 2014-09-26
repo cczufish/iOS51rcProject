@@ -319,9 +319,11 @@
     [btnCheck release];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 0.5)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
-    [cell.contentView addSubview:viewSeparate];
+    if (indexPath.row != self.jobListData.count - 1) {
+        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 0.5)];
+        [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+        [cell.contentView addSubview:viewSeparate];
+    }
     return cell;
 }
 
