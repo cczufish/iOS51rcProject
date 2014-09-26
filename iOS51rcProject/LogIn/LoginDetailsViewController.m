@@ -51,12 +51,16 @@
     //加载之前登录的数据
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     isAutoLogin =  [[userDefaults objectForKey:@"isAutoLogin"] boolValue];
-    [self btnAutoLoginClick:nil];
+    
     if (isAutoLogin) {//如果之前要求自动登录,则把密码填上
-        self.txtPsd = [userDefaults objectForKey:@"PassWord"];
+        self.txtPsd.text = [userDefaults objectForKey:@"PassWord"];
+        self.imgAutoLogin.image = [UIImage imageNamed:@"chk_check.png" ];
+    }else
+    {
+        self.imgAutoLogin.image = [UIImage imageNamed:@"chk_default.png"];
     }
     //默认把用户名填上
-    self.txtName = [userDefaults objectForKey:@"UserName"];
+    self.txtName.text = [userDefaults objectForKey:@"UserName"];
 }
 
 - (IBAction)btnAutoLoginClick:(id)sender {
@@ -74,10 +78,6 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)btnLoginClick:(id)sender {
-    //隐藏键盘
-    [self.txtName resignFirstResponder];
-    [self.txtPsd resignFirstResponder];
-    
     userName = self.txtName.text;
     passWord = self.txtPsd.text;
     if ([CommonController isBlankString:userName]) {
@@ -106,6 +106,10 @@
     [request setDelegate:self];
     self.runningRequest = request;
     wsName = @"login";
+    
+    //隐藏键盘
+    [self.txtName resignFirstResponder];
+    [self.txtPsd resignFirstResponder];
     //登录缓冲界面
     self.loginLoading = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [self.loginLoading startAnimating];
