@@ -13,8 +13,12 @@
 #import "Toast+UIView.h"
 
 @interface RmAttendCpListViewController ()<NetWebServiceRequestDelegate>
+{
+    BOOL expired;
+}
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UITableView *tvRecruitmentCpList;
+@property (retain, nonatomic) IBOutlet UIButton *btnInvite;
 
 @end
 
@@ -32,6 +36,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSString *tmpBeginTime = [NSString stringWithFormat:@"%@:00", self.strBeginTime];
+    NSDate *dtBeginTime = [CommonController dateFromString:tmpBeginTime];
+    if ([dtBeginTime laterDate:[NSDate date]] == dtBeginTime) {
+        expired = false;
+    }else{//过期
+        self.btnInvite.hidden = true;
+        expired = true;
+    }
     self.navigationItem.title = @"参会企业";
     //选择的企业
     self.checkedCpArray = [[NSMutableArray alloc] init];
@@ -128,25 +140,27 @@
     cpMain.caMainID = rowData[@"caMainID"];
     cpMain.JobName = rowData[@"JobName"];
     
-    //选择图标
-    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 22, 30, 45)];
-    leftButton.tag = [rowData[@"cpMainID"] integerValue];
-    UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(7, 15, 15, 15)] autorelease];
-    imgCheck.tag = isBooked;
-    if (isBooked == 1) {
-        //已经预约
-        imgCheck.image = [UIImage imageNamed:@"checked.png"];
-    }else{
-        //没有预约才可以点击
-        objc_setAssociatedObject(leftButton, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [leftButton addTarget:self action:@selector(checkBoxBookinginterviewClick:) forControlEvents:UIControlEventTouchUpInside];
+    //选择图标（没有过期）
+    if (!expired) {
+        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 22, 30, 45)];
+        leftButton.tag = [rowData[@"cpMainID"] integerValue];
+        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(7, 15, 15, 15)] autorelease];
+        imgCheck.tag = isBooked;
+        if (isBooked == 1) {
+            //已经预约
+            imgCheck.image = [UIImage imageNamed:@"checked.png"];
+        }else{
+            //没有预约才可以点击
+            objc_setAssociatedObject(leftButton, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            [leftButton addTarget:self action:@selector(checkBoxBookinginterviewClick:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        imgCheck.image = [UIImage imageNamed:@"unChecked.png"];
+        [leftButton addSubview:imgCheck];
+        
+        [cell.contentView addSubview:leftButton];
+        [leftButton release];
     }
-    
-    imgCheck.image = [UIImage imageNamed:@"unChecked.png"];
-    [leftButton addSubview:imgCheck];
-   
-    [cell.contentView addSubview:leftButton];
-    [leftButton release];
     
     //企业名称
     NSString *strCpName = rowData[@"Name"];
@@ -186,42 +200,41 @@
     [cell.contentView addSubview:(lbBegin)];
     
     //预约面试按钮
-    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(270, 22, 30, 45)];
-    UILabel *lbWillRun;
-    UIImageView *imgWillRun = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    if (isBooked == 1) {
-        //没有图片，只显示“已预约”三个字
-        lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, 40, 10)];
-        lbWillRun.text = @"已预约";
-        lbWillRun.font = [UIFont systemFontOfSize:12];
-        lbWillRun.textColor = [UIColor grayColor];
-        lbWillRun.textAlignment = NSTextAlignmentCenter;
-    }else{
-        //文字
-        lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(-5, 35, 40, 10)];
-        lbWillRun.text = @"预约面试";
-        lbWillRun.font = [UIFont systemFontOfSize:10];
-        lbWillRun.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:40.f/255.f alpha:1];
-        lbWillRun.textAlignment = NSTextAlignmentCenter;
-        //图片
-        imgWillRun.image = [UIImage imageNamed:@"ico_rm_group.png"];
-        [rightButton addSubview:imgWillRun];
-        //没有预约才可以点击
-        [rightButton addTarget:self action:@selector(bookinginterview:) forControlEvents:UIControlEventTouchUpInside];
+    if (!expired) {
+        UIButton *rightButton = [[[UIButton alloc] initWithFrame:CGRectMake(270, 22, 30, 45)] autorelease];
+        UILabel *lbWillRun;
+        UIImageView *imgWillRun = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
+        if (isBooked == 1) {
+            //没有图片，只显示“已预约”三个字
+            lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, 40, 10)];
+            lbWillRun.text = @"已预约";
+            lbWillRun.font = [UIFont systemFontOfSize:12];
+            lbWillRun.textColor = [UIColor grayColor];
+            lbWillRun.textAlignment = NSTextAlignmentCenter;
+        }else{
+            //文字
+            lbWillRun = [[[UILabel alloc] initWithFrame:CGRectMake(-5, 35, 40, 10)] autorelease];
+            lbWillRun.text = @"预约面试";
+            lbWillRun.font = [UIFont systemFontOfSize:10];
+            lbWillRun.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:40.f/255.f alpha:1];
+            lbWillRun.textAlignment = NSTextAlignmentCenter;
+            //图片
+            imgWillRun.image = [UIImage imageNamed:@"ico_rm_group.png"];
+            [rightButton addSubview:imgWillRun];
+            //没有预约才可以点击
+            [rightButton addTarget:self action:@selector(bookinginterview:) forControlEvents:UIControlEventTouchUpInside];
+        }
+        
+        [rightButton addSubview:lbWillRun];
+        rightButton.tag = [rowData[@"cpMainID"] integerValue];
+        [cell.contentView addSubview:rightButton];
     }
-   
-    [rightButton addSubview:lbWillRun];
-    rightButton.tag = [rowData[@"cpMainID"] integerValue];
-    [cell.contentView addSubview:rightButton];
+    
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 80, 325, 0.5)];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, 80, 325, 0.5)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
-
-    [rightButton release];
-    [lbWillRun release];
-    [imgWillRun release];
     [lbTitle release];
     [lbPaInfo release];
     [lbBegin release];
@@ -291,6 +304,7 @@
     [_runningRequest release];
     [_recruitmentCpData release];
     [_tvRecruitmentCpList release];
+    [_btnInvite release];
     [super dealloc];
 }
 @end

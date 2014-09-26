@@ -671,6 +671,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="btnInvite" destination="3FG-Xf-bhX" id="pIQ-Wl-3EO"/>
                         <outlet property="tvRecruitmentCpList" destination="HJX-ID-0tw" id="6Nk-eN-JqD"/>
                     </connections>
                 </viewController>
