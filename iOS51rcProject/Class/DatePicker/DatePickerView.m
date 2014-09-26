@@ -153,23 +153,30 @@
     }
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
+    NSString *strTitle = @"";
     switch (component) {
         case 0:
-            return [NSString stringWithFormat:@"%d年",(self.minYear+row)];
+            strTitle = [NSString stringWithFormat:@"%d年",(self.minYear+row)];
             break;
         case 1:
         {
-            return [NSString stringWithFormat:@"%d月",(1+row)];
+            strTitle = [NSString stringWithFormat:@"%d月",(1+row)];
             break;
         }
         case 2:
-            return [NSString stringWithFormat:@"%d日",(1+row)];
+            strTitle = [NSString stringWithFormat:@"%d日",(1+row)];
+            break;
         default:
-            return @"";
             break;
     }
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 80, 20)];
+    lbTitle.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+    lbTitle.textAlignment = NSTextAlignmentCenter;
+    lbTitle.text = strTitle;
+    lbTitle.font = [UIFont systemFontOfSize:14];
+    return lbTitle;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component

@@ -291,6 +291,9 @@
     
     //地区|学历
     NSString *strRegionAndEducation = [NSString stringWithFormat:@"%@|%@",[CommonController getDictionaryDesc:rowData[@"dcRegionID"] tableName:@"dcRegion"],[CommonController getDictionaryDesc:rowData[@"dcEducationID"] tableName:@"dcEducation"]];
+    if ([rowData[@"dcEducationID"] isEqualToString:@"100"]) {
+        strRegionAndEducation = [NSString stringWithFormat:@"%@%@",strRegionAndEducation,@"学历不限"];
+    }
     UILabel *lbRegionAndEducation = [[UILabel alloc] initWithFrame:CGRectMake(40, 51, 200, 20)];
     [lbRegionAndEducation setText:strRegionAndEducation];
     [lbRegionAndEducation setFont:fontCell];
@@ -370,6 +373,7 @@
 
 - (void)regionFilter
 {
+    [self cancelPicker];
     if ([self.searchRegion rangeOfString:@","].location == NSNotFound) {
         if (![CommonController hasParentOfRegion:self.searchRegion]) {
             [self.view makeToast:@"您选择的地区已经到最后一级，不能再继续筛选了"];
@@ -383,6 +387,7 @@
 
 - (void)jobtypeFilter
 {
+    [self cancelPicker];
     if ([self.searchRegion rangeOfString:@","].location == NSNotFound) {
         if (self.searchRegion.length == 4) {
             [self.view makeToast:@"您选择的职位类别已经到最后一级，不能再继续筛选了"];
@@ -396,6 +401,7 @@
 
 - (void)salaryFilter
 {
+    [self cancelPicker];
     self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defaultValue:self.salary defaultName:@""] autorelease];
     self.dictionaryPicker.tag = 1;
     [self.dictionaryPicker showInView:self.view];
@@ -403,6 +409,7 @@
 
 - (void)otherFilter
 {
+    [self cancelPicker];
     self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defaultValue:self.selectOther defaultName:self.selectOtherName otherType:SearchPickerOtherAll] autorelease];
     self.searchPicker.tag = 3;
     [self.searchPicker showInView:self.view];

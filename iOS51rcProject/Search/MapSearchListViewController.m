@@ -359,7 +359,7 @@
     [arrWelfare addObject:[[[NSDictionary alloc] initWithObjectsAndKeys:
                                  @"10",@"id",
                                  @"提供住宿",@"value", nil] autorelease]];
-    
+    [self cancelPicker];
     self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:arrWelfare defaultValue:self.welfare defaultName:self.welfareName pickerMode:DictionaryPickerModeMulti] autorelease];
     self.dictionaryPicker.tag = 2;
     [self.dictionaryPicker showInView:self.view];
@@ -367,6 +367,7 @@
 
 - (void)jobtypeFilter
 {
+    [self cancelPicker];
     self.searchPicker = [[[SearchPickerView alloc] initWithSearchJobTypeFilter:self selectValue:@"" selectName:@"" defaultValue:self.jobType] autorelease];
     self.searchPicker.tag = 1;
     [self.searchPicker showInView:self.view];
@@ -374,6 +375,7 @@
 
 - (void)salaryFilter
 {
+    [self cancelPicker];
     self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defaultValue:self.salary defaultName:@""] autorelease];
     self.dictionaryPicker.tag = 1;
     [self.dictionaryPicker showInView:self.view];
@@ -381,6 +383,7 @@
 
 - (void)otherFilter
 {
+    [self cancelPicker];
     self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defaultValue:self.selectOther defaultName:self.selectOtherName otherType:SearchPickerOtherNoWelfare] autorelease];
     self.searchPicker.tag = 2;
     [self.searchPicker showInView:self.view];

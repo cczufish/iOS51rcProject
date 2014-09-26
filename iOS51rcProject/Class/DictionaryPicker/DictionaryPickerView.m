@@ -121,6 +121,13 @@
         arrDictionaryL1 = [defaultArray retain];
         self.arrSelectValue = [NSMutableArray arrayWithCapacity:10];
         self.arrSelectName = [NSMutableArray arrayWithCapacity:10];
+        
+        if (defaultValue.length > 0) {
+            defaultValue = [defaultValue stringByReplacingOccurrencesOfString:@"," withString:@" "];
+            self.arrSelectValue = [[[defaultValue componentsSeparatedByString:@" "] mutableCopy] autorelease];
+            self.arrSelectName = [[[defaultName componentsSeparatedByString:@" "] mutableCopy] autorelease];
+            [self setupScollMulti];
+        }
     }
     return self;
 }
@@ -566,6 +573,9 @@
         self.arrSelectName = arrNewSelectName;
     }
     else {
+        if ([self.arrSelectValue containsObject:dicSelected[@"id"]]) {
+            return;
+        }
         [self.arrSelectValue addObject:dicSelected[@"id"]];
         [self.arrSelectName addObject:[dicSelected[@"value"] stringByReplacingOccurrencesOfString:@"全部" withString:@""]];
     }

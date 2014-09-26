@@ -12,9 +12,11 @@
 @property (retain,nonatomic) NSString *recruitmentMobile;
 @property (retain,nonatomic) NSString *recruitmentTelephone;
 @property (retain,nonatomic) NSString *recruitmentID;
-
 @property (retain,nonatomic) NSString *strAddress;
 @property (retain,nonatomic) NSString *strPlace;
 @property (retain,nonatomic) NSDate *dtBeginTime;
+@property (retain,nonatomic) NSString *lng;
+@property (retain,nonatomic) NSString *lat;
+@property (retain,nonatomic) NSString *recruitmentName;
 
 @end

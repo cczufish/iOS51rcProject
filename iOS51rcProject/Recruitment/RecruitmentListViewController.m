@@ -41,6 +41,7 @@
 
 -(void)cancelDicPicker
 {
+    [self.pickDate canclDatePicker];
     [self.DictionaryPicker cancelPicker];
     self.DictionaryPicker.delegate = nil;
     self.DictionaryPicker = nil;
@@ -193,14 +194,15 @@
     [cell.contentView addSubview:(lbBegin)];
     [lbBegin release];
     
-    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 35), titleWidth, 15)];
+    CGSize placeSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(2000, 15)];
+    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 35), placeSize.width, 15)];
     lbPlace.text = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]];
     lbPlace.font = [UIFont systemFontOfSize:12];
     [cell.contentView addSubview:(lbPlace)];
     [lbPlace release];
     
     UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 55), titleWidth, 15)];
-    lbAddress.text = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"Address"]];
+    lbAddress.text = [NSString stringWithFormat:@"具体地址：%@",rowData[@"Address"]];
     lbAddress.font = [UIFont systemFontOfSize:12];
     [cell.contentView addSubview:(lbAddress)];
     [lbAddress release];
@@ -412,9 +414,8 @@
 }
 
 -(void)showDateSelect{
-    if (!self.pickDate) {
-        self.pickDate = [[DatePickerView alloc] initWithCustom:DatePickerTypeDay dateButton:DatePickerWithReset maxYear:2016 minYear:2000 selectYear:0 delegate:self];
-    }
+    [self cancelDicPicker];
+    self.pickDate = [[DatePickerView alloc] initWithCustom:DatePickerTypeDay dateButton:DatePickerWithReset maxYear:2016 minYear:2000 selectYear:0 delegate:self];
     [self.pickDate showDatePicker:self.view];
 }
 

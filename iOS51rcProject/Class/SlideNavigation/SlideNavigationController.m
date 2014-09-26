@@ -400,6 +400,8 @@ static SlideNavigationController *singletonInstance;
 
 - (BOOL)shouldDisplayMenu:(Menu)menu forViewController:(UIViewController *)vc
 {
+    MenuViewController *menuC = (MenuViewController *)self.leftMenu;
+    [menuC.tvMenu reloadData];
     if ([vc respondsToSelector:@selector(slideMenuItem)])
     {
         self.selectMenuItem = [(UIViewController<SlideNavigationControllerDelegate> *)vc slideMenuItem];
@@ -542,7 +544,6 @@ static SlideNavigationController *singletonInstance;
         [(MenuViewController *)self.leftMenu changeMenuItem:self.selectMenuItem];
         return;
     }
-    
     UIViewController *menuViewController = (menu == MenuLeft) ? self.leftMenu : self.rightMenu;
 	UIViewController *removingMenuViewController = (menu == MenuLeft) ? self.rightMenu : self.leftMenu;
 

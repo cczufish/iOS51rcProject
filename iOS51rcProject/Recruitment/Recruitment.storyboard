@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uqh-H5-3dK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="uqh-H5-3dK">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -583,7 +583,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tPr-d0-jAs">
-                                                <rect key="frame" x="76" y="175" width="224" height="20"/>
+                                                <rect key="frame" x="76" y="175" width="200" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
@@ -600,6 +600,16 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tm6-v4-nJV">
+                                                <rect key="frame" x="285" y="174" width="16" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="ico_cpinfo_cpaddress.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="goToMapView:" destination="sPk-Pr-ZRT" eventType="touchUpInside" id="v7P-9A-iuS"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </view>
                                 </subviews>
@@ -612,6 +622,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="招聘会详情" id="7eA-9f-umS"/>
                     <connections>
+                        <outlet property="btnMapView" destination="tm6-v4-nJV" id="d71-Qf-oG7"/>
                         <outlet property="btnRmCp" destination="7aO-hY-IHF" id="0YN-3J-IOD"/>
                         <outlet property="btnRmPa" destination="DHh-79-tM7" id="VXh-Je-NcV"/>
                         <outlet property="lbAddress" destination="HFm-LG-n3F" id="y1l-mI-YrW"/>
@@ -1280,6 +1291,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ico_cpinfo_cpaddress.png" width="32" height="42"/>
         <image name="ico_rm_cp.png" width="61" height="61"/>
         <image name="ico_rm_pa.png" width="61" height="61"/>
         <image name="ico_select_down.png" width="36" height="21"/>

@@ -7,6 +7,7 @@
 #import "MyRecruitmentViewController.h"
 #import "RmSearchJobForInviteViewController.h"
 #import "LoginViewController.h"
+#import "MapViewController.h"
 
 
 @interface RecruitmentViewController () <NetWebServiceRequestDelegate,UIScrollViewDelegate>
@@ -21,6 +22,8 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbAddress;
 @property (retain, nonatomic) IBOutlet UILabel *lbRunDate;
 @property (retain, nonatomic) IBOutlet UILabel *lbViewNumber;
+@property (retain, nonatomic) IBOutlet UIButton *btnMapView;
+
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) NetWebServiceRequest *runningRequestJoinRm;
 @property (nonatomic, retain) LoadingAnimationView *loading;
@@ -131,8 +134,11 @@
 }
 
 //绑定招聘会的基本信息
--(void)bindRm:(NSArray* )requestData{
+-(void)bindRm:(NSArray* )requestData {
     NSDictionary *dicRecruitment = requestData[0];
+    self.lng = dicRecruitment[@"Lng"];
+    self.lat = dicRecruitment[@"Lat"];
+    self.recruitmentName = dicRecruitment[@"RecruitmentName"];
     //招聘会名称
     NSString *recruitmentTitle = dicRecruitment[@"RecruitmentName"];
     CGSize labelSize = [CommonController CalculateFrame:recruitmentTitle fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbRmTitle.frame.size.width, 500)];
@@ -156,8 +162,19 @@
     [self.lbRunDate setText:strTime];
     
     //举办场馆
+    CGSize placeSize = [CommonController CalculateFrame:dicRecruitment[@"PlaceName"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(2000, 20)];
     self.strPlace = dicRecruitment[@"PlaceName"];
     [self.lbPlace setText:self.strPlace];
+    CGRect placeFrame = self.lbPlace.frame;
+    if (placeSize.width < placeFrame.size.width) {
+        placeFrame.size.width = placeSize.width;
+        self.lbPlace.frame = placeFrame;
+        
+        CGRect mapFrame = self.btnMapView.frame;
+        mapFrame.origin.x = placeFrame.origin.x + placeFrame.size.width + 5;
+        self.btnMapView.frame = mapFrame;
+    }
+    
     
     UIFont *font = [UIFont systemFontOfSize:12];
     //举办地址
@@ -398,6 +415,14 @@
     [self.navigationController pushViewController:paListCtrl animated:YES];
 }
 
+- (IBAction)goToMapView:(id)sender {
+    MapViewController *mapViewC = [[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateViewControllerWithIdentifier:@"MapView"];
+    mapViewC.lat = [self.lat floatValue];
+    mapViewC.lng = [self.lng floatValue];
+    [mapViewC.navigationItem setTitle:self.recruitmentName];
+    [self.navigationController pushViewController:mapViewC animated:true];
+}
+
 - (void)call:(UIButton *)sender {
     NSString *strCallNumber;
     if (sender.tag == 1) {
@@ -432,6 +457,10 @@
     [_dtBeginTime release];
     [_strAddress release];
     [_strPlace release];
+    [_btnMapView release];
+    [_lng release];
+    [_lat release];
+    [_recruitmentName release];
     [super dealloc];
 }
 @end
