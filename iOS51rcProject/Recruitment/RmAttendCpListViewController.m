@@ -148,14 +148,14 @@
         imgCheck.tag = isBooked;
         if (isBooked == 1) {
             //已经预约
-            imgCheck.image = [UIImage imageNamed:@"checked.png"];
+            imgCheck.image = [UIImage imageNamed:@"chk_check.png"];
         }else{
             //没有预约才可以点击
             objc_setAssociatedObject(leftButton, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             [leftButton addTarget:self action:@selector(checkBoxBookinginterviewClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        imgCheck.image = [UIImage imageNamed:@"unChecked.png"];
+        imgCheck.image = [UIImage imageNamed:@"chk_default.png"];
         [leftButton addSubview:imgCheck];
         
         [cell.contentView addSubview:leftButton];
@@ -173,7 +173,6 @@
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
     lbTitle.font = [UIFont systemFontOfSize:14];
-   
     [cell.contentView addSubview:(lbTitle)];
    
     //所在地
@@ -232,7 +231,7 @@
     
     
     //分割线
-    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, 80, 325, 0.5)] autorelease];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y+lbBegin.frame.size.height + 5, 325, 0.5)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
     [lbTitle release];
@@ -291,7 +290,16 @@
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 81;
+    NSDictionary *rowData = self.recruitmentCpData[indexPath.row];
+    NSString *strCpName = rowData[@"Name"];
+    CGFloat titleWidth = 235;
+    CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
+    CGSize labelSize = [CommonController CalculateFrame:strCpName fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
+    if(labelSize.height > 40){
+        return 95;
+    }else{
+        return 81;
+    }
 }
 
 - (void)footerRereshing{

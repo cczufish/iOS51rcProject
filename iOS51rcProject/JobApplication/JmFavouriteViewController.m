@@ -270,6 +270,16 @@
         [cell.contentView addSubview:lbFavourite];
     }
     
+    //已经过期
+    NSString *issueEnd = rowData[@"IssueEND"];
+    NSDate *dtIssueEnd = [CommonController dateFromString:issueEnd];
+    NSDate * now = [NSDate date];
+    if ([now laterDate:dtIssueEnd] == now ) {
+        UIImageView *imgEnd = [[[UIImageView alloc] initWithFrame:CGRectMake(290, 0, 30, 30)]autorelease];
+        imgEnd.image = [UIImage imageNamed:@"ico_expire.png"];
+        [cell.contentView addSubview:imgEnd];
+    }
+    
     //收藏时间
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 51, 200, 20)];
     NSString *strDate = [NSString stringWithFormat:@"收藏时间：%@", [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"]];

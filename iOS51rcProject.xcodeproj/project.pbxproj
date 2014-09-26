@@ -45,6 +45,7 @@
 		9922970B19B95FF7008E8646 /* ico_onlinechat_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9922970919B95FF7008E8646 /* ico_onlinechat_online.png */; };
 		9923827C19D4F039003CFF62 /* ico_login_name.png in Resources */ = {isa = PBXBuildFile; fileRef = 9923827A19D4F039003CFF62 /* ico_login_name.png */; };
 		9923827D19D4F039003CFF62 /* ico_login_pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9923827B19D4F039003CFF62 /* ico_login_pwd.png */; };
+		9923827F19D560BA003CFF62 /* btn_cpmain_share.png in Resources */ = {isa = PBXBuildFile; fileRef = 9923827E19D560BA003CFF62 /* btn_cpmain_share.png */; };
 		9925BE8A19B807F4002DBFE0 /* ico_map_centerpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */; };
 		9925BE8B19B807F4002DBFE0 /* ico_mapsearch_joblist.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8419B807F4002DBFE0 /* ico_mapsearch_joblist.png */; };
 		9925BE8C19B807F4002DBFE0 /* ico_mapsearch_next_unable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8519B807F4002DBFE0 /* ico_mapsearch_next_unable.png */; };
@@ -477,6 +478,7 @@
 		9922970919B95FF7008E8646 /* ico_onlinechat_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_onlinechat_online.png; sourceTree = "<group>"; };
 		9923827A19D4F039003CFF62 /* ico_login_name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_login_name.png; sourceTree = "<group>"; };
 		9923827B19D4F039003CFF62 /* ico_login_pwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_login_pwd.png; sourceTree = "<group>"; };
+		9923827E19D560BA003CFF62 /* btn_cpmain_share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_cpmain_share.png; sourceTree = "<group>"; };
 		9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_centerpoint.png; sourceTree = "<group>"; };
 		9925BE8419B807F4002DBFE0 /* ico_mapsearch_joblist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_joblist.png; sourceTree = "<group>"; };
 		9925BE8519B807F4002DBFE0 /* ico_mapsearch_next_unable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_next_unable.png; sourceTree = "<group>"; };
@@ -2140,6 +2142,7 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9923827E19D560BA003CFF62 /* btn_cpmain_share.png */,
 				9923827A19D4F039003CFF62 /* ico_login_name.png */,
 				9923827B19D4F039003CFF62 /* ico_login_pwd.png */,
 				99B3D18219D414C800AEF1D9 /* ico_hiskeywords_del.png */,
@@ -2591,6 +2594,7 @@
 				999BDD5B19C2E89C000A152A /* ico_cvlist_point_red.png in Resources */,
 				99CFD876199B60D8009A5ABA /* btn_leftmenu.png in Resources */,
 				9925BE8A19B807F4002DBFE0 /* ico_map_centerpoint.png in Resources */,
+				9923827F19D560BA003CFF62 /* btn_cpmain_share.png in Resources */,
 				9925BECE19B80C94002DBFE0 /* mapapi.bundle in Resources */,
 				992A5B4B19BE982D0042F2EB /* ico_triangle.png in Resources */,
 				994C507119C02B8000E27017 /* pic_noinfo.png in Resources */,

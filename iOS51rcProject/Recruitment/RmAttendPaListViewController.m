@@ -4,6 +4,7 @@
 #import "CommonController.h"
 #import "MJRefresh.h"
 #import "MyRecruitmentViewController.h"
+#import "MJRefresh.h"
 
 @interface RmAttendPaListViewController ()<NetWebServiceRequestDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -23,7 +24,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];   
+    [super viewDidLoad];
+    //添加上拉加载更多
+    [self.tvRecruitmentPaList addFooterWithTarget:self action:@selector(footerRereshing)];
     //不显示列表分隔线
     self.tvRecruitmentPaList.separatorStyle = UITableViewCellSeparatorStyleNone;
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
@@ -65,6 +68,7 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    [loadView startAnimating];
 }
 
 //成功
@@ -133,11 +137,28 @@
     int age = [[strNow substringToIndex:4] intValue] - [[strAge substringToIndex:4] intValue];
     //学历
     NSString *strDegree = rowData[@"Degree"];
+    if (strDegree == nil) {
+        strDegree = @"";
+    }else{
+        strDegree = [NSString stringWithFormat:@"/%@", strDegree];
+    }
     //经验
     NSString *strRelatedWorkYears = rowData[@"RelatedWorkYears"];
+    if (strRelatedWorkYears == nil) {
+        strRelatedWorkYears = @"";
+    }else if([strRelatedWorkYears isEqualToString:@"0"]){
+        strRelatedWorkYears = @"/应届毕业生";
+    }else{
+        strRelatedWorkYears = [NSString stringWithFormat:@"/%@年", strRelatedWorkYears];
+    }
     //所在地
     NSString *strLivePlace = rowData[@"LivePlace"];
-    NSString *strPaInfo = [NSString stringWithFormat:@"%@/%d岁/%@/%@年  %@ ", strSex, age, strDegree, strRelatedWorkYears, strLivePlace];
+    if (strLivePlace == nil) {
+        strLivePlace = @"";
+    }else{
+        strLivePlace = [NSString stringWithFormat:@"%@", strLivePlace];
+    }
+    NSString *strPaInfo = [NSString stringWithFormat:@"%@/%d岁%@%@  %@ ", strSex, age, strDegree, strRelatedWorkYears, strLivePlace];
     labelSize = [CommonController CalculateFrame:strPaInfo fontDemond:[UIFont systemFontOfSize:12] sizeDemand:titleSize];
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPaInfo.text = strPaInfo;

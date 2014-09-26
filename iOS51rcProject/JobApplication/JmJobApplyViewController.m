@@ -253,8 +253,9 @@
     NSDate *dtIssueEnd = [CommonController dateFromString:issueEnd];
     NSDate * now = [NSDate date];
     if ([now laterDate:dtIssueEnd] == now ) {
-        UIImageView *imgEnd = [[[UIImageView alloc] initWithFrame:CGRectMake(300, 0, 20, 20)]autorelease];
+        UIImageView *imgEnd = [[[UIImageView alloc] initWithFrame:CGRectMake(290, 0, 30, 30)]autorelease];
         imgEnd.image = [UIImage imageNamed:@"ico_expire.png"];
+        [cell.contentView addSubview:imgEnd];
     }
 
     //申请时间
