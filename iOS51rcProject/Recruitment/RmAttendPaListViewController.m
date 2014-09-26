@@ -4,6 +4,7 @@
 #import "CommonController.h"
 #import "MJRefresh.h"
 #import "MyRecruitmentViewController.h"
+#import "MJRefresh.h"
 
 @interface RmAttendPaListViewController ()<NetWebServiceRequestDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -23,7 +24,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];   
+    [super viewDidLoad];
+    //添加上拉加载更多
+    [self.tvRecruitmentPaList addFooterWithTarget:self action:@selector(footerRereshing)];
     //不显示列表分隔线
     self.tvRecruitmentPaList.separatorStyle = UITableViewCellSeparatorStyleNone;
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
