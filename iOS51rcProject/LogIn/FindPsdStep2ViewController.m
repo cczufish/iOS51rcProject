@@ -1,11 +1,3 @@
-//
-//  FindPsdStep2ViewController.m
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-8-15.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import "FindPsdStep2ViewController.h"
 #import "Dialog.h"
 #import "CommonController.h"
@@ -14,14 +6,22 @@
 #import <UIKit/UIKit.h>
 #import "FindPsdStep3ViewController.h"
 #import "LoadingAnimationView.h"
+#import "Toast+UIView.h"
+#import "LoadingAnimationView.h"
 
 @interface FindPsdStep2ViewController ()<NetWebServiceRequestDelegate>
+{
+    int secondSend;
+    LoadingAnimationView *loadView;
+}
+
 @property (retain, nonatomic) IBOutlet UITextField *txtUserName;
 @property (retain, nonatomic) IBOutlet UITextField *txtVerifyCode;
 @property (retain, nonatomic) IBOutlet UILabel *txtLabel;
 @property (retain, nonatomic) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UIButton *btnNext;
 @property (retain, nonatomic) LoadingAnimationView *loadingView;
+@property (retain, nonatomic) IBOutlet UIButton *btnSendSms;
 @end
 
 @implementation FindPsdStep2ViewController
@@ -43,23 +43,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    secondSend = 10;
+    
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     [button setTitle: @"重置密码" forState: UIControlStateNormal];
     [button sizeToFit];
     self.navigationItem.titleView = button;
     
+    [self.txtUserName setEnabled:false];
     if ([self.type  isEqual: @"1"]) {
         self.txtLabel.text = @"您的邮箱";
+        self.btnSendSms.hidden = true;
     }else    {
+        [self.btnSendSms setEnabled:false];
         self.txtLabel.text = @"您的手机号";
     }
     self.txtUserName.text = self.name;//手机号或者邮箱
-    
-    //自定义从下一个视图左上角，“返回”本视图的按钮
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"后退" style:UIBarButtonItemStyleDone target:nil action:nil];
-    self.navigationItem.backBarButtonItem=backButton;
     self.btnNext.layer.cornerRadius = 5;
     self.btnNext.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
+    //设置为数字键盘
+    [self.txtVerifyCode setKeyboardType:UIKeyboardTypeNumberPad];
+    //倒计时
+     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setTimer:) userInfo:nil repeats:YES];
 }
 - (IBAction)btnResetPsd:(id)sender {
     [self GetCode];
@@ -114,40 +119,88 @@
               responseData:(NSArray *)requestData
 {
     [self.loadingView stopAnimating];
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *Array = (NSMutableArray* ) requestData;
-    NSDictionary *rowData = Array[0];
-    NSString *strTmp = rowData[@"ActivateCode"];
-    if (![verifyCode isEqualToString:strTmp]) {
-        [Dialog alert:@"您输入的激活码信息不正确，请查证！"];
-    }
-    else
+    if (request.tag == 1) {
+        [self.txtUserName setEnabled:false];
+        [self.btnSendSms setEnabled:false];
+        [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setTimer:) userInfo:nil repeats:YES];
+    }else
     {
-        [userDefault setValue: rowData[@"paMainID"] forKeyPath:@"UserID"];
-        [userDefault setValue: rowData[@"UserName"] forKeyPath:@"UserName"];
-        [userDefault setValue: rowData[@"AddDate"] forKeyPath:@"AddDate"];
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        NSMutableArray *Array = (NSMutableArray* ) requestData;
+        NSDictionary *rowData = Array[0];
+        NSString *strTmp = rowData[@"ActivateCode"];
+        if (![verifyCode isEqualToString:strTmp]) {
+            [Dialog alert:@"您输入的激活码信息不正确，请查证！"];
+        }
+        else
+        {
+            [userDefault setValue: rowData[@"paMainID"] forKeyPath:@"UserID"];
+            [userDefault setValue: rowData[@"UserName"] forKeyPath:@"UserName"];
+            [userDefault setValue: rowData[@"AddDate"] forKeyPath:@"AddDate"];
+            
+            FindPsdStep3ViewController *find3Ctr = [self.storyboard instantiateViewControllerWithIdentifier: @"findPsd3View"];
+            find3Ctr.userName = rowData[@"UserName"];
+            find3Ctr.paMainID = rowData[@"paMainID"];
+            [self.navigationController pushViewController:find3Ctr animated:YES];
+        }
         
-        FindPsdStep3ViewController *find3Ctr = [self.storyboard instantiateViewControllerWithIdentifier: @"findPsd3View"];
-        find3Ctr.userName = rowData[@"UserName"];
-        find3Ctr.paMainID = rowData[@"paMainID"];
-        [self.navigationController pushViewController:find3Ctr animated:YES];
+        [result retain];
     }
-   
-    [result retain];
 }
 
-/*
-#pragma mark - Navigation
+//重新验证
+- (IBAction)sendSms:(id)sender {
+    [self.txtUserName resignFirstResponder];
+    NSString *mobile = self.txtUserName.text;
+    if (mobile.length == 0) {
+        [self.view makeToast:@"请输入手机号"];
+        return;
+    }
+    if (![CommonController isValidateMobile:mobile]) {
+        [self.view makeToast:@"请输入有效的手机号"];
+        return;
+    }
+    [loadView startAnimating];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *provinceID=[defaults stringForKey:@"provinceID"];
+    provinceID = @"32";
+    
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.txtUserName.text forKey:@"userName"];
+    [dicParam setObject:self.txtUserName.text forKey:@"email"];
+    [dicParam setObject:self.txtUserName.text forKey:@"mobile"];
+    [dicParam setObject:@"IOS" forKey:@"ip"];
+    [dicParam setObject:@"" forKey:@"strPageHost"];
+    [dicParam setObject:@"" forKey:@"subsiteName"];
+    [dicParam setObject:provinceID forKey:@"provinceID"];
+    
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"paGetPassword" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequest = request;
+    [dicParam release];
+}
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//输入倒计时
+- (void)setTimer:(NSTimer *)timer
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if (secondSend == 0) {
+        [self.btnSendSms setEnabled:true];
+        [self.btnSendSms setTitle:@"重新验证" forState:UIControlStateNormal];
+        [timer invalidate];
+        secondSend = 160;
+        return;
+    }
+    [self.btnSendSms setTitle:[NSString stringWithFormat:@"%d秒后重试",secondSend] forState:UIControlStateDisabled];
+    secondSend--;
 }
-*/
 
 - (void)dealloc {
+    if (self.btnSendSms != nil) {
+        [_btnSendSms release];
+    }
+    [loadView release];
     [_txtUserName release];
     [_txtVerifyCode release];
     [_txtLabel release];

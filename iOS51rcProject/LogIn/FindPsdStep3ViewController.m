@@ -1,11 +1,3 @@
-//
-//  FindPsdStep3ViewController.m
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-8-15.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import "FindPsdStep3ViewController.h"
 #import "Dialog.h"
 #import "CommonController.h"
@@ -13,6 +5,7 @@
 #import "GDataXMLNode.h"
 #import <UIKit/UIKit.h>
 #import "LoadingAnimationView.h"
+#import "CommonController.h"
 
 @interface FindPsdStep3ViewController () <NetWebServiceRequestDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *txtUserName;
@@ -145,6 +138,7 @@
     else if([result intValue] > 0)
     {
         [Dialog alert:@"修改成功"];
+        [CommonController logout];//清除数据
         return;
     }
     else
@@ -188,16 +182,6 @@
     self.wsName = @"GetPaAddDate";
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (BOOL)checkInput:(NSString *)userName Password:(NSString*) passWord RePassword:(NSString*) rePsd
 {
     BOOL result = true;
