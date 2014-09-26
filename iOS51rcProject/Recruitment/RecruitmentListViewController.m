@@ -24,6 +24,8 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequestJoinRm;//预约
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @property (nonatomic, retain) AttendRMPopUp *cPopup;
+@property (nonatomic, retain) DatePickerView *pickDate;
+
 -(void)cancelDicPicker;
 @end
 
@@ -97,7 +99,8 @@
     self.begindate = @"";
     self.page = 1;
     self.placeid = @"";
-    self.regionid = @"32";
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    self.regionid = [userDefault objectForKey:@"subSiteId"];
     [self onSearch];
     
     //场馆初始化
@@ -402,8 +405,10 @@
 }
 
 -(void)showDateSelect{
-    DatePickerView *pickDate = [[DatePickerView alloc] initWithCustom:DatePickerTypeDay dateButton:DatePickerWithReset maxYear:2016 minYear:2000 selectYear:0 delegate:self];
-    [pickDate showDatePicker:self.view];
+    if (!self.pickDate) {
+        self.pickDate = [[DatePickerView alloc] initWithCustom:DatePickerTypeDay dateButton:DatePickerWithReset maxYear:2016 minYear:2000 selectYear:0 delegate:self];
+    }
+    [self.pickDate showDatePicker:self.view];
 }
 
 - (void)getSelectDate:(NSString *)date
@@ -414,6 +419,8 @@
     [self onSearch];
     //开始等待动画
     [loadView startAnimating];
+    //加载场馆
+    [self reloadPlace];
 }
 
 - (void)cancelPickDate

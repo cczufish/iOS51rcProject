@@ -17,6 +17,7 @@
 #import "CreateResumeAlertViewController.h"
 #import "CvModifyViewController.h"
 #import "CvViewViewController.h"
+#import "RefreshCvViewController.h"
 
 @interface MyCvViewController ()<NetWebServiceRequestDelegate,UIScrollViewDelegate,CreateResumeDelegate>
 {
@@ -51,11 +52,17 @@
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [loadView startAnimating];
     self.btnCreateCv.layer.cornerRadius = 5;
+    self.btnConfirm.layer.cornerRadius = 5;
+    self.btnConfirmCancel.layer.cornerRadius = 5;
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    if (self.toastType == 1) {
+        [self.view makeToast:@"简历更新成功"];
+    }
+    self.toastType = 0;
     [self getCvList];
 }
 
@@ -132,10 +139,6 @@
         CvModifyViewController *cvModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"CvModifyView"];
         cvModifyC.cvId = result;
         [self.navigationController pushViewController:cvModifyC animated:true];
-    }
-    else if (request.tag == 4) {
-        [self.view makeToast:@"简历刷新成功"];
-        [self getCvList];
     }
     else if (request.tag == 5) {
         [self.view makeToast:@"简历删除成功"];
@@ -414,6 +417,7 @@
     CreateResumeAlertViewController *viewCreateCv = [[CreateResumeAlertViewController alloc] init];
     viewCreateCv.delegate = self;
     self.cPopup = [[[CustomPopup alloc] popupCommon:viewCreateCv.view buttonType:PopupButtonTypeNone] autorelease];
+    [self.cPopup setTag:1];
     [self.cPopup showPopup:self.view];
 }
 
@@ -449,23 +453,24 @@
     [self.navigationController pushViewController:cvViewC animated:true];
 }
 
-- (IBAction)refreshCv:(id)sender {
-    [loadView startAnimating];
-    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:self.cvId forKey:@"ID"];
-    [dicParam setObject:self.cvListData[0][@"Mobile"] forKey:@"mobile"];
-    [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
-    [dicParam setObject:[self.userDefaults objectForKey:@"code"] forKey:@"code"];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"UpdateCvRefreshDate" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    request.tag = 4;
-    self.runningRequest = request;
-    [dicParam release];
-    [self.cPopup closePopup];
+- (IBAction)switchToCvRefresh:(id)sender {
+    RefreshCvViewController *refreshViewC = [self.storyboard instantiateViewControllerWithIdentifier:@"RefreshCvView"];
+    refreshViewC.cvId = self.cvId;
+    refreshViewC.mobile = self.cvListData[0][@"Mobile"];
+    [self.navigationController pushViewController:refreshViewC animated:true];
 }
 
 - (IBAction)deleteCv:(id)sender {
+    self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone] autorelease];
+    [self.cPopup setTag:2];
+    [self.cPopup showPopup:self.view];
+}
+
+- (IBAction)confirmCancel:(id)sender {
+    [self.cPopup closePopup];
+}
+
+- (IBAction)confirmOK:(id)sender {
     [loadView startAnimating];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.cvId forKey:@"cvMainID"];
@@ -511,6 +516,9 @@
     [_btnCreateCv release];
     [_cvListData release];
     [_cPopup release];
+    [_btnConfirmCancel release];
+    [_btnConfirm release];
+    [_viewConfirm release];
     [super dealloc];
 }
 @end

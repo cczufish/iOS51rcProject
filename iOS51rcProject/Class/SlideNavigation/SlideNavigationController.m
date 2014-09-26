@@ -414,6 +414,9 @@ static SlideNavigationController *singletonInstance;
             [self.view removeGestureRecognizer:self.panRecognizer];
         }
     }
+    else {
+        [self.view addGestureRecognizer:self.panRecognizer];
+    }
 	if (menu == MenuRight)
 	{
 		if ([vc respondsToSelector:@selector(slideNavigationControllerShouldDisplayRightMenu)] &&

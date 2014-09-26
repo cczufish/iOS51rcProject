@@ -60,7 +60,8 @@
     //开始等待动画
     [loadView startAnimating];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:@"32" forKey:@"ProvinceID"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"ProvinceID"];
     [dicParam setObject:self.companyId forKey:@"CompanyID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCampusTalkByProvinceIDCompanyID" Params:dicParam];
     [request setDelegate:self];

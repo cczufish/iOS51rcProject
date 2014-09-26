@@ -29,7 +29,6 @@
 + (NSString *) FilterHtml :(NSString*) content;
 + (UIViewController *)getFatherController:(UIView *) selfView;
 +(BOOL) isLogin;
-+(BOOL) logout;
 +(BOOL) is35inchScreen;
 +(BOOL) isChinese:(NSString *)content;
 @end

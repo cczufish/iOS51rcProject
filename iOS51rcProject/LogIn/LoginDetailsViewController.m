@@ -87,7 +87,8 @@
     [dicParam setObject:userName forKey:@"userName"];
     [dicParam setObject:passWord forKey:@"passWord"];
     [dicParam setObject:@"IOS" forKey:@"ip"];
-    [dicParam setObject:@"32" forKey:@"provinceID"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"provinceID"];
     [dicParam setObject:@"ismobile:IOS" forKey:@"browser"];
     [dicParam setObject:@"0" forKey:@"autoLogin"];
     
@@ -127,13 +128,13 @@
     }
     else if ([wsName isEqual:@"GetPaMainInfoByID"]) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        [userDefaults setValue: userID forKey:@"UserID"];//PamainID
-        [userDefaults setValue: userName forKey:@"UserName"];
-        [userDefaults setValue: passWord forKey:@"PassWord"];
-        [userDefaults setValue: @"1" forKey:@"BeLogined"];
-        [userDefaults setBool: isAutoLogin forKey:@"isAutoLogin"];
-        [userDefaults setObject:code forKey:@"code"];
-        [userDefaults setObject:requestData[0][@"Name"] forKey:@"paName"];
+        [userDefaults setValue:userID forKey:@"UserID"];//PamainID
+        [userDefaults setValue:userName forKey:@"UserName"];
+        [userDefaults setValue:passWord forKey:@"PassWord"];
+        [userDefaults setValue:@"1" forKey:@"BeLogined"];
+        [userDefaults setBool:isAutoLogin forKey:@"isAutoLogin"];
+        [userDefaults setValue:code forKey:@"code"];
+        [userDefaults setValue:requestData[0][@"Name"] forKey:@"paName"];
         [self.loginLoading stopAnimating];
         [NSThread sleepForTimeInterval:1];
         [self.view makeToast:@"登录成功"];

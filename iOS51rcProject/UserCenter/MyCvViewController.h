@@ -15,5 +15,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbCvCount;
 @property (retain, nonatomic) IBOutlet UIView *viewCreate;
 @property (retain, nonatomic) IBOutlet UIButton *btnCreateCv;
+@property (retain, nonatomic) IBOutlet UIButton *btnConfirmCancel;
+@property (retain, nonatomic) IBOutlet UIButton *btnConfirm;
+@property (retain, nonatomic) IBOutlet UIView *viewConfirm;
+@property int toastType;
 
 @end

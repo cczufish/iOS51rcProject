@@ -97,7 +97,8 @@
         NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
         [dicParam setObject:userName forKey:@"email"];
         [dicParam setObject:password forKey:@"password"];
-        [dicParam setObject:@"32" forKey:@"provinceid"];
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"provinceid"];
         [dicParam setObject:@"6" forKey:@"registermod"];
         [dicParam setObject:@"IOS" forKey:@"ip"];
         

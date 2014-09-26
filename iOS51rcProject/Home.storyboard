@@ -1215,6 +1215,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="imgHomeTitle" destination="Ef3-zw-jSh" id="m1H-51-gn6"/>
                         <outlet property="viewTitle" destination="w32-Vn-bOi" id="kNU-3E-dRq"/>
                     </connections>
                 </viewController>

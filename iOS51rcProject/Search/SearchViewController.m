@@ -53,7 +53,8 @@
     [self.btnIndustrySelect addTarget:self action:@selector(showIndustrySelect:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.lbRegionSelect setText:@"山东省"];
-    self.regionSelect = @"32";
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    self.regionSelect = [userDefault objectForKey:@"subSiteId"];
 }
 
 -(void)switchToMapSearch

@@ -57,7 +57,8 @@
     self.tvEIList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     page = 1;
-    regionid = @"32";
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    regionid = [userDefault objectForKey:@"subSiteId"];
     [self onSearch];
 }
 

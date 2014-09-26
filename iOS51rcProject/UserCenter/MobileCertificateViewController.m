@@ -122,7 +122,7 @@
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
     [dicParam setObject:self.txtMobile.text forKey:@"mobile"];
-    [dicParam setObject:@"齐鲁人才网" forKey:@"subSiteName"];
+    [dicParam setObject:[userDefaults objectForKey:@"subSiteName"] forKey:@"subSiteName"];
     [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaVerifyCode" Params:dicParam];
     [request setDelegate:self];

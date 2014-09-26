@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="QNE-Zz-bsU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="QNE-Zz-bsU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -194,6 +194,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oz0-jJ-xpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="488" y="62"/>
+        </scene>
+        <!--Refresh Cv View Controller-->
+        <scene sceneID="DMU-nc-Lau">
+            <objects>
+                <viewController storyboardIdentifier="RefreshCvView" id="WrQ-c5-il1" customClass="RefreshCvViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ysL-RR-xYc" customClass="UIControl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="VNv-MR-aeZ">
+                                <rect key="frame" x="20" y="80" width="280" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G78-ok-I9a">
+                                        <rect key="frame" x="20" y="12" width="54" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="aXg-A9-Xbp">
+                                        <rect key="frame" x="85" y="8" width="178" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="WrQ-c5-il1" id="X5S-pk-oN4"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i8p-km-KmE">
+                                <rect key="frame" x="20" y="153" width="280" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="更新">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="refreshCv:" destination="WrQ-c5-il1" eventType="touchUpInside" id="mge-0Z-yyB"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="及时更新简历，让HR在简历库中优先看到您的简历。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x3a-Gf-KeL">
+                                <rect key="frame" x="20" y="213" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="backgroundTap:" destination="WrQ-c5-il1" eventType="touchDown" id="X5O-Fd-SY9"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="zTw-PG-q1Q"/>
+                    <connections>
+                        <outlet property="btnRefresh" destination="i8p-km-KmE" id="3OX-kZ-i2Z"/>
+                        <outlet property="txtMobile" destination="aXg-A9-Xbp" id="SEr-tJ-yaK"/>
+                        <outlet property="viewMobile" destination="VNv-MR-aeZ" id="hia-Z1-7eV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="llQ-rk-vSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-548" y="735"/>
         </scene>
         <!--Cv Recommend View Controller-->
         <scene sceneID="blr-0j-3CJ">
@@ -1037,7 +1103,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="refreshCv:" destination="nnK-Ye-crK" eventType="touchUpInside" id="DUg-Hc-kRB"/>
+                                                    <action selector="switchToCvRefresh:" destination="nnK-Ye-crK" eventType="touchUpInside" id="QE0-nx-oDz"/>
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_cvlist_refresh.png" id="Pzi-Ma-CrM">
@@ -1102,14 +1168,68 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" id="GJ4-qU-XE4" userLabel="Confirm弹层">
+                                <rect key="frame" x="20" y="800" width="280" height="170"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="提示" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FQF-Fj-HUY">
+                                        <rect key="frame" x="86" y="13" width="108" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SUX-0J-LYz">
+                                        <rect key="frame" x="10" y="42" width="260" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zoR-qu-Ad4">
+                                        <rect key="frame" x="159" y="118" width="83" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="deviceRGB"/>
+                                        <state key="normal" title="返回">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmCancel:" destination="oar-oC-r53" eventType="touchUpInside" id="2bC-SM-Get"/>
+                                            <action selector="confirmCancel:" destination="nnK-Ye-crK" eventType="touchUpInside" id="J8S-Av-MIf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fLl-Tb-g63">
+                                        <rect key="frame" x="38" y="118" width="83" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="确定">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmOK:" destination="nnK-Ye-crK" eventType="touchUpInside" id="TJH-N3-GFI"/>
+                                            <action selector="confirmOK:" destination="oar-oC-r53" eventType="touchUpInside" id="nXN-oS-UOa"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确定要删除该简历吗？" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pgk-rQ-SXw">
+                                        <rect key="frame" x="20" y="66" width="240" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="btnConfirm" destination="fLl-Tb-g63" id="18d-ip-0Bg"/>
+                        <outlet property="btnConfirmCancel" destination="zoR-qu-Ad4" id="ysb-ox-R2P"/>
                         <outlet property="btnCreateCv" destination="42d-Bq-CwW" id="MZx-kM-fQx"/>
                         <outlet property="lbCvCount" destination="k2O-gS-RiX" id="8L1-iY-Wjq"/>
                         <outlet property="pageControl" destination="CMT-GU-ffb" id="h0g-ep-zmo"/>
                         <outlet property="scrollCv" destination="EGf-gx-Fge" id="x8C-yG-wwc"/>
+                        <outlet property="viewConfirm" destination="GJ4-qU-XE4" id="DGz-w5-08q"/>
                         <outlet property="viewCreate" destination="5Em-ce-U2s" id="7q2-CK-aq1"/>
                         <outlet property="viewCvEdit" destination="Vdg-YX-w0i" id="2fB-Mt-g8r"/>
                         <outlet property="viewNoCv" destination="pxk-DW-zfI" id="MgD-Dk-AFL"/>

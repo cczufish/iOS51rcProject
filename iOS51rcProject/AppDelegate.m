@@ -144,6 +144,9 @@
         [userDefaults setValue:@"齐鲁人才网" forKey:@"subSiteName"];
         [userDefaults setValue:@"山东" forKey:@"subSiteCity"];
     }
+    if (![userDefaults objectForKey:@"sqlVersion"]) {
+        [userDefaults setValue:@"2" forKey:@"sqlVersion"];
+    }
     [userDefaults setBool:YES forKey:@"firstToHome"];
     [userDefaults synchronize];
 	

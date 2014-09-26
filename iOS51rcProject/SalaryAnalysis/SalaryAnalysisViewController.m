@@ -74,7 +74,8 @@
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     
     [self.lbRegionSelect setText:@"山东省"];
-    self.regionSelect = @"32";
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    self.regionSelect = [userDefault objectForKey:@"subSiteId"];
     self.jobTypeSelect = @"0";
     jobTypeName = @"职工";
     [self onSearch];

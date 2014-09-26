@@ -135,8 +135,9 @@
         case 1:
         {
             NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
+            NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
             //构造分享内容
-            id<ISSContent> publishContent = [ShareSDK content:@"我正在使用齐鲁人才网手机客户端找工作，随时随地，方便实用！你也来试试...http://m.qlrc.com\n来自：齐鲁人才网"
+            id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"我正在使用%@手机客户端找工作，随时随地，方便实用！你也来试试...http://m.qlrc.com\n来自：%@",[userDefault objectForKey:@"subSiteName"],[userDefault objectForKey:@"subSiteName"]]
                                                defaultContent:@"默认分享内容，没内容时显示"
                                                         image:[ShareSDK imageWithPath:imagePath]
                                                         title:@"分享APP"
@@ -234,7 +235,16 @@
 //点击退出帐号，清楚UserDefault里边的数据
 - (void) confirmAndCancelPopupNext
 {
-    [CommonController logout];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue: nil forKey:@"UserID"];//PamainID
+    [userDefaults setValue: nil forKey:@"UserName"];
+    [userDefaults setValue: nil forKey:@"PassWord"];
+    [userDefaults setValue: nil forKey:@"BeLogined"];
+    [userDefaults setBool: false forKey:@"isAutoLogin"];
+    [userDefaults setValue:nil forKey:@"code"];
+    [userDefaults setValue:nil forKey:@"paName"];
+    [userDefaults synchronize];
+    
     //设置返回,传递给home页面
     NSDictionary *dataDict = [NSDictionary dictionaryWithObject:@"logout"
                                                          forKey:@"operation"];

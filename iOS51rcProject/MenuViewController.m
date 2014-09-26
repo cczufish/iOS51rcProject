@@ -178,6 +178,10 @@
             }
 			break;
         }
+        case 4:
+            vc = [[UIStoryboard storyboardWithName:@"SalaryAnalysis" bundle:nil] instantiateViewControllerWithIdentifier:@"SalaryAnalysisView"];
+            vc.navigationItem.title = @"查工资";
+            break;
 		case 5:
 			vc = [[UIStoryboard storyboardWithName:@"Recruitment" bundle: nil] instantiateViewControllerWithIdentifier: @"RecruitmentListView"];
 			break;

@@ -472,7 +472,8 @@
     NSString *userName = [userDefaults objectForKey:@"UserName"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:userName forKey:@"paName"];
-    [dicParam setObject:@"32" forKey:@"dcRegionId"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
     [dicParam setObject: [NSString stringWithFormat:@"%d", sender.tag] forKey:@"cpMainID"];
     [dicParam setObject:msg forKey:@"message"];
     [dicParam setObject:userID forKey:@"id"];
@@ -496,7 +497,8 @@
     NSString *userName = [userDefaults objectForKey:@"UserName"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:userName forKey:@"paName"];
-    [dicParam setObject:@"32" forKey:@"dcRegionId"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
     [dicParam setObject: [NSString stringWithFormat:@"%d", sender.tag] forKey:@"cpMainID"];
     [dicParam setObject:msg forKey:@"message"];
     [dicParam setObject:userID forKey:@"id"];

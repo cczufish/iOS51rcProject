@@ -67,10 +67,11 @@
     self.lbAddress.text = self.strAddress;
     self.lbPlace.text = self.strPlace;
     //默认参数
-    regionID = @"32";
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    regionID = [userDefault objectForKey:@"subSiteId"];
     beginDate = self.strBeginTime;
     if (self.strAddressID == nil) {
-        self.strAddressID = @"32";
+        self.strAddressID = [userDefault objectForKey:@"subSiteId"];
     }
     if (self.strBeginTime == nil) {
         NSDate *  dtNow=[NSDate date];
@@ -318,7 +319,7 @@
 //地区选择
 -(void)showRegionSelect {
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:@"32" defaultName:@"山东省"] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:@"" defaultName:@""] autorelease];
     
     self.DictionaryPicker.tag = 1;
     [self.DictionaryPicker showInView:self.view];

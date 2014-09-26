@@ -39,9 +39,6 @@
             self.minYear = [[CommonController stringFromDate:[NSDate date] formatType:@"yyyy"] intValue]-50;
         }
         self.selectYear = selectYear;
-        if (selectYear == 0) {
-            self.selectYear = [[CommonController stringFromDate:[NSDate date] formatType:@"yyyy"] intValue];
-        }
         self.dayCount = 31;
         if (dateButton == DatePickerWithReset) {
             [self.btnDateCancel setHidden:true];
@@ -69,7 +66,17 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.frame = CGRectMake(0, view.frame.size.height - self.frame.size.height, self.frame.size.width, self.frame.size.height);
     }];
-    [self.pickerView selectRow:(self.selectYear-self.minYear) inComponent:0 animated:true];
+    if (self.selectYear == 0) {
+        self.selectYear = [[CommonController stringFromDate:[NSDate date] formatType:@"yyyy"] intValue];
+        [self.pickerView selectRow:(self.selectYear-self.minYear) inComponent:0 animated:true];
+        [self.pickerView selectRow:[[CommonController stringFromDate:[NSDate date] formatType:@"MM"] intValue]-1 inComponent:1 animated:true];
+        if (self.pickerView.numberOfComponents == 3) {
+            [self.pickerView selectRow:[[CommonController stringFromDate:[NSDate date] formatType:@"dd"] intValue]-1 inComponent:2 animated:true];
+        }
+    }
+    else {
+        [self.pickerView selectRow:(self.selectYear-self.minYear) inComponent:0 animated:true];
+    }
 }
 
 - (void)canclDatePicker

@@ -71,7 +71,8 @@
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *provinceID=[defaults stringForKey:@"provinceID"];
-    provinceID = @"32";
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    provinceID = [userDefault objectForKey:@"subSiteId"];
     
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:userName forKey:@"userName"];

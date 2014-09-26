@@ -19,7 +19,10 @@
 @property (retain, nonatomic) BMKLocationService *locService;
 @property (retain, nonatomic) BMKGeoCodeSearch *geocodesearch;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequestPic;
+@property (nonatomic, retain) NetWebServiceRequest *runningRequestSql;
 @property (nonatomic, retain) NSUserDefaults *userDefaults;
+@property (nonatomic, retain) NSString *titleUrl;
 @end
 
 @implementation HomeViewController
@@ -52,13 +55,15 @@
     [btnSubSite setTitle:[self.userDefaults objectForKey:@"subSiteName"] forState:UIControlStateNormal];
     UIView *btnSearch = titleViews[1];
     btnSearch.layer.cornerRadius = 5;
+    [self getSQL];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //第一次进入home获取地理位置
+    //第一次进入home获取地理位置，和主页头部图片
     if ([[self.userDefaults objectForKey:@"firstToHome"] boolValue] == YES) {
+        [self getLauncherPic];
         self.locService = [[BMKLocationService alloc] init];
         self.locService.delegate = self;
         //开始定位
@@ -74,6 +79,30 @@
     [super viewWillDisappear:animated];
     self.locService.delegate = nil;
     self.geocodesearch.delegate = nil;
+}
+
+- (void)getLauncherPic
+{
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:[self.userDefaults objectForKey:@"subSiteId"] forKey:@"regionID"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetLauncherPic" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequestPic = request;
+    [dicParam release];
+}
+
+- (void)getSQL
+{
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:[self.userDefaults objectForKey:@"sqlVersion"] forKey:@"version"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetSQLByVersion" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 3;
+    self.runningRequestSql = request;
+    [dicParam release];
 }
 
 //定位完成后执行此方法，将定位的位置添加到地图上
@@ -121,16 +150,54 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSArray *)requestData
 {
-    if (requestData.count > 0) {
-        NSArray *titleViews = self.viewTitle.subviews;
-        UIButton *btnSubSite = titleViews[0];
-        [btnSubSite setTitle:requestData[0][@"SubSiteName"] forState:UIControlStateNormal];
-        [self.view makeToast:[NSString stringWithFormat:@"已切换到%@",requestData[0][@"SubSiteName"]]];
-        [self.userDefaults setValue:requestData[0][@"ID"] forKey:@"subSiteId"];
-        [self.userDefaults setValue:requestData[0][@"SubSiteName"] forKey:@"subSiteName"];
-        [self.userDefaults setValue:requestData[0][@"SubSIteCity"] forKey:@"subSiteCity"];
-        [self.userDefaults synchronize];
+    if (request.tag == 1) {
+        if (requestData.count > 0) {
+            NSArray *titleViews = self.viewTitle.subviews;
+            UIButton *btnSubSite = titleViews[0];
+            [btnSubSite setTitle:requestData[0][@"SubSiteName"] forState:UIControlStateNormal];
+            [self.view makeToast:[NSString stringWithFormat:@"已切换到%@",requestData[0][@"SubSiteName"]]];
+            [self.userDefaults setValue:requestData[0][@"ID"] forKey:@"subSiteId"];
+            [self.userDefaults setValue:requestData[0][@"SubSiteName"] forKey:@"subSiteName"];
+            [self.userDefaults setValue:requestData[0][@"SubSIteCity"] forKey:@"subSiteCity"];
+            [self.userDefaults synchronize];
+        }
     }
+    else if (request.tag == 2) {
+        if (requestData.count > 0) {
+            //首页的头部图片更改
+            if ([requestData[0][@"Type"] isEqualToString:@"24"]) {
+                NSString *strUrl = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/operational/hpimage/%@",requestData[0][@"ImageFile"]];
+                [self.imgHomeTitle setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:strUrl]]]];
+                
+                //如果有url，添加点击事件
+                if (requestData[0][@"Url"]) {
+                    self.imgHomeTitle.userInteractionEnabled = YES;
+                    self.titleUrl = requestData[0][@"Url"];
+                    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(goToUrl)];
+                    [self.imgHomeTitle addGestureRecognizer:singleTap];
+                    [singleTap release];
+                }
+            }
+        }
+    }
+    else {
+        if (result.length > 0) {
+            NSArray *arrResult = [result componentsSeparatedByString:@"##$$"];
+            NSString *strVersion = arrResult[0];
+            NSString *strSql = arrResult[1];
+            NSArray *arrSql = [strSql componentsSeparatedByString:@"@@!!"];
+            for (NSString *sql in arrSql) {
+                [CommonController execSql:sql];
+            }
+            [self.userDefaults setValue:strVersion forKey:@"sqlVersion"];
+            NSLog(@"%@",result);
+        }
+    }
+}
+
+-(void)goToUrl
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.titleUrl]];
 }
 
 //处理其他页面返回的事件
@@ -262,11 +329,15 @@
 */
 
 - (void)dealloc {
+    [_runningRequestPic release];
+    [_runningRequestSql release];
     [_runningRequest release];
     [_viewTitle release];
     [_locService release];
     [_geocodesearch release];
     [_userDefaults release];
+    [_imgHomeTitle release];
+    [_titleUrl release];
     [super dealloc];
 }
 @end

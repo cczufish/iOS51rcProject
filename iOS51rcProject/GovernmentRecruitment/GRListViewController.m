@@ -42,7 +42,8 @@
     self.tvGRList.separatorStyle = UITableViewCellSeparatorStyleNone;
    
     page = 1;
-    regionid = @"32";
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    regionid = [userDefault objectForKey:@"subSiteId"];
     [self onSearch];
 }
 
@@ -92,7 +93,7 @@
     //显示标题
     NSString *strTitle = rowData[@"Title"];
     UIFont *titleFont = [UIFont systemFontOfSize:12];
-    CGFloat titleWidth = 245;
+    CGFloat titleWidth = 280;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:titleFont sizeDemand:titleSize];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, labelSize.width, labelSize.height)];

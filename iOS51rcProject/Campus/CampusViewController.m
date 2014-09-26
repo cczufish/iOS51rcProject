@@ -73,7 +73,8 @@
     [dicParam setObject:@"30" forKey:@"pageSize"];
     [dicParam setObject:self.regionId forKey:@"dcRegionID"];
     [dicParam setObject:self.schoolId forKey:@"strSchoolID"];
-    [dicParam setObject:@"32" forKey:@"strProvinceID"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"strProvinceID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCampusListByRegionAndSchool" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
@@ -104,7 +105,8 @@
         [loadView startAnimating];
     }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:@"32" forKey:@"dcProvinceID"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"dcProvinceID"];
     [dicParam setObject:[NSString stringWithFormat:@"%d",self.pageNumberEmploy] forKey:@"pageNum"];
     [dicParam setObject:@"30" forKey:@"pageSize"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetSchoolNewsList" Params:dicParam];

@@ -241,9 +241,6 @@
     [_txtUserName release];
     [_txtPsd release];
     [_txtRePsd release];
-    [_txtUserName release];
-    [_txtPsd release];
-    [_txtRePsd release];
     [_btnOK release];
     [_labelLine1 release];
     [_labelLine2 release];
