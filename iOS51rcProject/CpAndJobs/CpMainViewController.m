@@ -2,6 +2,7 @@
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
+#import "MapViewController.h"
 
 //企业页面
 @interface CpMainViewController ()<NetWebServiceRequestDelegate, UIScrollViewDelegate>
@@ -101,13 +102,28 @@
     [self.lbCompanySizeValue setText:dicCpMain[@"CompanySize"]];
     //详细地址
     self.lbAddress.textColor = [UIColor grayColor];
-    labelSize = [CommonController CalculateFrame:dicCpMain[@"Address"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
+    NSString *strRegion = dicCpMain[@"RegionName"];
+    NSString *strAddressDetails = [NSString stringWithFormat:@"%@%@", strRegion, dicCpMain[@"Address"]];
+    labelSize = [CommonController CalculateFrame:strAddressDetails fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
     self.lbAddressValue.frame = CGRectMake(80, self.lbAddress.frame.origin.y + 5, labelSize.width, labelSize.height);
     self.lbAddressValue.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbAddressValue.numberOfLines = 0;
-    self.lbAddressValue.text = dicCpMain[@"Address"];
-    //坐标图标
-    self.imageCoordinate.frame = CGRectMake(self.lbAddressValue.frame.origin.x + self.lbAddressValue.frame.size.width + 1, self.lbAddressValue.frame.origin.y, 15, 15);
+    self.lbAddressValue.text = strAddressDetails;
+    //坐标
+    if (dicCpMain[@"Lng"] != nil) {
+        UIButton *btnLngLat = [[[UIButton alloc] initWithFrame:CGRectMake(self.lbAddressValue.frame.origin.x + self.lbAddressValue.frame.size.width, self.lbAddressValue.frame.origin.y - 5, 13, 15)]autorelease];
+
+        [btnLngLat setBackgroundImage:[UIImage imageNamed:@"ico_cpinfo_cpaddress.png"] forState:UIControlStateNormal];
+        self.lng = [dicCpMain[@"Lng"] floatValue];
+        self.lat = [dicCpMain[@"Lat"] floatValue];
+        btnLngLat.tag = (NSInteger)dicCpMain[@"ID"];
+        [btnLngLat addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnLngLat];
+    }
+
+//    //坐标图标
+//    self.imageCoordinate.frame = CGRectMake(self.lbAddressValue.frame.origin.x + self.lbAddressValue.frame.size.width + 1, self.lbAddressValue.frame.origin.y, 13, 15);
+//    self.imageCoordinate.image = [UIImage imageNamed:@"ico_cpinfo_cpaddress.png"];
     //分割线
     CGFloat y = self.lbAddressValue.frame.origin.y + self.lbAddressValue.frame.size.height - 23;
     self.lbLine.frame = CGRectMake(8, y + 34, 304, 0.5);
@@ -129,6 +145,16 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) showMap:(UIButton *)sender
+{
+    MapViewController *mapC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"MapView"];
+    mapC.lat = self.lat;
+    mapC.lng = self.lng;
+    UIViewController *superJobC = [CommonController getFatherController:self.view];
+    [mapC.navigationItem setTitle:superJobC.navigationItem.title];
+    [superJobC.navigationController pushViewController:mapC animated:true];
 }
 
 - (void)dealloc {
