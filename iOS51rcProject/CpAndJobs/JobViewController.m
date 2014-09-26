@@ -288,6 +288,20 @@
     [self.subView addSubview:lbLine1];
     [lbLine1 release];
 
+    //匹配度
+    NSString *strMatch = dicJob[@"matchPercent"];
+    if (strMatch != nil) {
+        UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(270, self.lbJobName.frame.origin.y+5, 45, 20)];
+        lbMatch.layer.cornerRadius = 5;
+        [lbMatch setText:[NSString stringWithFormat:@"匹配度%@%%",strMatch]];
+        [lbMatch setTextAlignment:NSTextAlignmentCenter];
+        [lbMatch setTextColor:[UIColor whiteColor]];
+        [lbMatch setFont:[UIFont systemFontOfSize:8]];
+        [lbMatch setBackgroundColor:[UIColor colorWithRed:14.f/255.f green:170.f/255.f blue:32.f/255.f alpha:1]];
+        [self.subView addSubview:lbMatch];
+        [lbMatch release];
+    }
+
     //待遇
     NSString *strSalary = dicJob[@"Salary"];
     UILabel *lbSalary = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLine1.frame.origin.y + lbLine1.frame.size.height+5, 280, 20) ]autorelease];
@@ -359,6 +373,9 @@
     }
     //经验
     NSString *experience = dicJob[@"Experience"];
+    if (experience == nil) {
+        experience = @"经验不限";
+    }
     //全职与否
     NSString *employType = dicJob[@"EmployType"];
     //招聘条件
@@ -720,7 +737,7 @@
     [self.loading startAnimating];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.JobID forKey:@"JobID"];
-    [dicParam setObject:@"8500" forKey:@"SearchFromID"];
+    [dicParam setObject:self.JobID forKey:@"SearchFromID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetRecommendJobByJobID" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];

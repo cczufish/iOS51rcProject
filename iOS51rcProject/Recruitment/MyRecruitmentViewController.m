@@ -112,7 +112,6 @@
     [self.navigationController pushViewController:rmViewCtrl animated:true];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
