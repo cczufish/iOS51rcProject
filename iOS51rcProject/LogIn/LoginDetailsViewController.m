@@ -37,14 +37,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.viewLogin.layer.borderWidth = 0.5;
-    self.viewLogin.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewLogin.layer.borderWidth = 1;
+    self.viewLogin.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewLogin.layer.cornerRadius = 5;
     
-    self.txtName.layer.borderWidth = 1;
-    self.txtName.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.txtPsd.layer.borderWidth = 1;
-    self.txtPsd.layer.borderColor = [UIColor whiteColor].CGColor;
     self.btnLogin.layer.cornerRadius = 5;
     self.btnLogin.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
     

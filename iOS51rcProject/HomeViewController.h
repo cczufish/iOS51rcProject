@@ -11,6 +11,6 @@
 @interface HomeViewController : UIViewController
 @property (retain, nonatomic) IBOutlet UIView *viewTitle;
 @property (retain, nonatomic) IBOutlet UIImageView *imgHomeTitle;
-
+@property int toastType;
 
 @end

@@ -22,11 +22,10 @@
 @property (retain, nonatomic) IBOutlet UITextField *txtPsd;
 @property (retain, nonatomic) IBOutlet UITextField *txtRePsd;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
-@property (retain, nonatomic) IBOutlet UILabel *labelBg;
 @property (retain, nonatomic) IBOutlet UIButton *btnRegister;
+@property (retain, nonatomic) IBOutlet UIView *viewRegister;
 
-@property (retain, nonatomic) IBOutlet UILabel *labelLine1;
-@property (retain, nonatomic) IBOutlet UILabel *labelLine2;
+
 @property (retain, nonatomic) LoadingAnimationView *loadingView;
 @end
 
@@ -44,27 +43,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.txtUserName.layer.borderWidth = 1;
-    self.txtRePsd.layer.borderWidth = 1;
-    self.txtPsd.layer.borderWidth = 1;
-    self.txtUserName.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.txtRePsd.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.txtPsd.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.labelBg.layer.borderWidth = 0.3;
-    self.labelBg.layer.borderColor = [UIColor grayColor].CGColor;
-    self.labelBg.layer.cornerRadius = 5;
+    self.viewRegister.layer.borderWidth = 1;
+    self.viewRegister.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.viewRegister.layer.cornerRadius = 5;
 
     self.btnRegister.layer.cornerRadius = 5;
     createResumeCtrl =[[CreateResumeAlertViewController alloc] init];
     self.btnRegister.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
     createResumeCtrl.delegate = self;
-
-    //设置中间的横线
-    self.labelLine1.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [self.labelLine1 setFrame:CGRectMake(24, 75, 273, 0.5f)];
-    self.labelLine2.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [self.labelLine2 setFrame:CGRectMake(24, 115, 273, 0.5f)];    
 }
 
 - (void)didReceiveMemoryWarning
@@ -286,10 +273,8 @@
     [_txtUserName release];
     [_txtPsd release];
     [_txtRePsd release];
-    [_labelBg release];
     [_btnRegister release];
-    [_labelLine1 release];
-    [_labelLine2 release];
+    [_viewRegister release];
     [super dealloc];
 }
 @end

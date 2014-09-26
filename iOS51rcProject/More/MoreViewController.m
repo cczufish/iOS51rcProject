@@ -7,6 +7,7 @@
 #import "NewsHelpViewController.h"
 #import "PushNotificationViewController.h"
 #import "MenuViewController.h"
+#import "HomeViewController.h"
 
 @interface MoreViewController () <UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate, CustomPopupDelegate>
 @property (retain, nonatomic) CustomPopup *cPopup;
@@ -47,7 +48,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -56,36 +57,30 @@
     float iconWidth,iconLeft;
     switch (indexPath.row) {
         case 0:
-            strTitle = @"推送设置";
-            strIcon = @"ico_mainmore_setting.png";
-            iconWidth = 30;
-            iconLeft = 30;
-            break;
-        case 1:
             strTitle = @"应用分享";
             strIcon = @"ico_mainmore_share.png";
             iconWidth = 30;
             iconLeft = 30;
             break;
-        case 2:
+        case 1:
             strTitle = @"新手帮助";
             strIcon = @"ico_mainmore_help.png";
             iconWidth = 25;
             iconLeft = 30;
             break;
-        case 3:
+        case 2:
             strTitle = @"意见反馈";
             strIcon = @"ico_mainmore_opinion.png";
             iconWidth = 30;
             iconLeft = 30;
             break;
-        case 4:
+        case 3:
             strTitle = @"关于我们";
             strIcon = @"ico_mainmore_about.png";
             iconWidth = 30;
             iconLeft = 30;
             break;
-        case 5:
+        case 4:
             strTitle = @"退出账号";
             strIcon = @"ico_mainmore_logout.png";
             iconWidth = 30;
@@ -126,14 +121,6 @@
     switch (indexPath.row) {
         case 0:
         {
-            //推送设置
-            PushNotificationViewController *pushCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"PushNotificationView"];
-            [self.navigationController pushViewController:pushCtrl animated:YES];
-            pushCtrl.navigationItem.title = @"推送设置";
-            break;
-        }
-        case 1:
-        {
             NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
             NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
             //构造分享内容
@@ -163,14 +150,14 @@
                                     }];
             break;
         }
-        case 2:
+        case 1:
         {
             NewsHelpViewController * helpview = [self.storyboard instantiateViewControllerWithIdentifier:@"NewsHelpView"];
             [self.navigationController pushViewController:helpview animated:true];
             //[self.navigationController setNavigationBarHidden:YES animated:YES];
             break;
         }
-        case 3:
+        case 2:
         {
             //意见反馈
             FeedbackViewController *feedBackCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"FeedbackView"];
@@ -178,14 +165,14 @@
             feedBackCtrl.navigationItem.title = @"意见反馈";
             break;
         }
-        case 4:
+        case 3:
         {
             AboutUsViewController *aboutUsC = [self.storyboard instantiateViewControllerWithIdentifier:@"AboutUsView"];
             aboutUsC.navigationItem.title = @"关于我们";
             [self.navigationController pushViewController:aboutUsC animated:true];
             break;
         }
-        case 5:
+        case 4:
         {
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             if ([userDefaults objectForKey:@"UserID"]) {                
@@ -237,22 +224,16 @@
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue: nil forKey:@"UserID"];//PamainID
+    [userDefaults setValue:nil forKey:@"paName"];
 //    [userDefaults setValue: nil forKey:@"UserName"];
 //    [userDefaults setValue: nil forKey:@"PassWord"];
 //    [userDefaults setValue: nil forKey:@"BeLogined"];
 //    [userDefaults setBool: false forKey:@"isAutoLogin"];
 //    [userDefaults setValue:nil forKey:@"code"];
-//    [userDefaults setValue:nil forKey:@"paName"];
     [userDefaults synchronize];
     
-    //设置返回,传递给home页面
-    NSDictionary *dataDict = [NSDictionary dictionaryWithObject:@"logout"
-                                                         forKey:@"operation"];
-    [[NSNotificationCenter defaultCenter]
-     postNotificationName:@"Home"
-     object:nil
-     userInfo:dataDict];
-
+    HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    homeViewC.toastType = 1;
     //返回到首页
     [self.navigationController popToRootViewControllerAnimated:true];
 }
