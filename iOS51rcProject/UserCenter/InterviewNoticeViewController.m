@@ -17,6 +17,7 @@
 @end
 
 @implementation InterviewNoticeViewController
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 @synthesize gotoMyInvitedCpViewDelegate;
 @synthesize gotoRmViewDelegate;
 
@@ -36,6 +37,7 @@
     self.lbMessage.layer.borderWidth = 0.5;
     selectRowIndex = 0;
     selectRowHeight = 110;//选择行的高度
+    self.tvReceivedInvitationList.frame = CGRectMake(0, self.tvReceivedInvitationList.frame.origin.y, 320, HEIGHT-160);
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //[self onSearch];
