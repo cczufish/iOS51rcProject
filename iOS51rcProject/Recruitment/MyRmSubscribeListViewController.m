@@ -67,14 +67,33 @@
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result responseData:(NSMutableArray *)requestData
 {
-    [recruitmentCpData removeAllObjects];
-    recruitmentCpData = requestData;
-    [recruitmentCpData retain];
-    
-    if (recruitmentCpData.count>0) {
-        [self.tvRecruitmentCpList reloadData];
-        [self.tvRecruitmentCpList footerEndRefreshing];
-    }    
+    if (requestData.count>0) {
+        [recruitmentCpData removeAllObjects];
+        recruitmentCpData = requestData;
+        [recruitmentCpData retain];
+        
+        if (recruitmentCpData.count>0) {
+            [self.tvRecruitmentCpList reloadData];
+            [self.tvRecruitmentCpList footerEndRefreshing];
+        }
+    }else{
+        //记录
+        UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 240, 80)]autorelease];
+        UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 60)] autorelease];
+        img.image = [UIImage imageNamed:@"pic_noinfo.png"];
+        [viewHsaNoCv addSubview:img];
+        
+        NSString *strMsg = @"亲，您还没有预约参加招聘会，现在就去报名预约参会吧.";
+        CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(220, 500)];
+        UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, labelSize.width, labelSize.height)] autorelease];
+        lb1.text = strMsg;
+        lb1.numberOfLines = 0;
+        lb1.font = [UIFont systemFontOfSize:14];
+        lb1.textAlignment = NSTextAlignmentLeft;
+        [viewHsaNoCv addSubview:lb1];
+        
+        [self.view addSubview:viewHsaNoCv];
+    }
     
     //结束等待动画
     [loadView stopAnimating];
