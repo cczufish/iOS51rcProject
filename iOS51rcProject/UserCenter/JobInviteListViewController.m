@@ -44,7 +44,7 @@
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置底部功能栏
     self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-160);
-    self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height+self.lbTop.frame.size.height, 320, self.viewBottom.frame.size.height);
+    self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 320, self.viewBottom.frame.size.height);
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
@@ -225,6 +225,16 @@
     [cell.contentView addSubview:lbCompanyName];
     [lbCompanyName release];
     
+    //已经过期
+    NSString *issueEnd = rowData[@"IssueEnd"];
+    NSDate *dtIssueEnd = [CommonController dateFromString:issueEnd];
+    NSDate * now = [NSDate date];
+    if ([now laterDate:dtIssueEnd] == now ) {
+        UIImageView *imgEnd = [[[UIImageView alloc] initWithFrame:CGRectMake(290, 0, 30, 30)]autorelease];
+        imgEnd.image = [UIImage imageNamed:@"ico_expire.png"];
+        [cell.contentView addSubview:imgEnd];
+    }
+    
     //邀请时间
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 51, 200, 20)];
     NSString *strDate = [NSString stringWithFormat:@"邀请时间：%@", [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"]];
@@ -235,6 +245,19 @@
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
 
+    //已申请按钮
+    NSString *isApply = rowData[@"isApply"];
+    if ([isApply isEqualToString:@"1"]) {
+        UILabel *lbFavourite = [[[UILabel alloc] initWithFrame:CGRectMake(250, 28, 50, 15)] autorelease];
+        [lbFavourite setText:@"已申请"];
+        [lbFavourite setFont:fontCell];
+        lbFavourite.textAlignment = NSTextAlignmentCenter;
+        [lbFavourite setTextColor:[UIColor whiteColor]];
+        lbFavourite.layer.cornerRadius = 5;
+        lbFavourite.layer.backgroundColor = [UIColor colorWithRed:0.f/255.f green:161.f/255.f blue:233.f/255.f alpha:1].CGColor;
+        [cell.contentView addSubview:lbFavourite];
+    }
+    
     //月薪
     NSString *strdcSalaryId = rowData[@"dcSalaryId"] ;
     NSString *strSalary = [CommonController getDictionaryDesc:strdcSalaryId tableName:@"dcSalary"];
