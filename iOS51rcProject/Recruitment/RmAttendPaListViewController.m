@@ -65,6 +65,7 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    [loadView startAnimating];
 }
 
 //成功
