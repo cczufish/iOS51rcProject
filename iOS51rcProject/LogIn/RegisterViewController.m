@@ -79,6 +79,10 @@
 }
 
 - (IBAction)btnRegisterClick:(id)sender {
+    //隐藏键盘
+    [self.txtPsd resignFirstResponder];
+    [self.txtRePsd resignFirstResponder];
+    [self.txtUserName resignFirstResponder];
     userName=self.txtUserName.text;
     password= self.txtPsd.text; 
     rePassword=self.txtRePsd.text;

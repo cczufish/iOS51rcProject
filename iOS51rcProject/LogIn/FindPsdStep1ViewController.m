@@ -52,6 +52,7 @@
 
 //发送验证码
 - (IBAction)btnGetCode:(id)sender {
+    [self.txtName resignFirstResponder];
     if(self.txtName.text==nil||[self.txtName.text isEqualToString:@""]){
         //提示输入信息
         [Dialog alert:@"请输入用户名或邮箱或手机号"];

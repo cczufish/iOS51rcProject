@@ -65,7 +65,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)btnLoginClick:(id)sender {   
+- (IBAction)btnLoginClick:(id)sender {
+    //隐藏键盘
+    [self.txtName resignFirstResponder];
+    [self.txtPsd resignFirstResponder];
+    
     userName = self.txtName.text;
     passWord = self.txtPsd.text;
     if ([CommonController isBlankString:userName]) {

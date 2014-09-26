@@ -82,6 +82,10 @@
 
 
 - (IBAction)btnResetPsd:(id)sender {
+    [self.txtPsd resignFirstResponder];
+    [self.txtRePsd resignFirstResponder];
+    [self.txtUserName resignFirstResponder];
+    
     self.userName=self.txtUserName.text;
     NSString *passWord= self.txtPsd.text;
     NSString *rePassord=self.txtRePsd.text;

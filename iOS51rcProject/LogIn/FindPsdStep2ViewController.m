@@ -67,6 +67,8 @@
      [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setTimer:) userInfo:nil repeats:YES];
 }
 - (IBAction)btnResetPsd:(id)sender {
+    [self.txtVerifyCode resignFirstResponder];
+    [self.txtUserName resignFirstResponder];
     [self GetCode];
 }
 
@@ -151,6 +153,7 @@
 //重新验证
 - (IBAction)sendSms:(id)sender {
     [self.txtUserName resignFirstResponder];
+    [self.txtVerifyCode resignFirstResponder];
     NSString *mobile = self.txtUserName.text;
     if (mobile.length == 0) {
         [self.view makeToast:@"请输入手机号"];
