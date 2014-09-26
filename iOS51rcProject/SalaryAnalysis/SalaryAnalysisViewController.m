@@ -208,8 +208,12 @@
     UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(25, 90, p1Salary/10000.0*250, 40 )] autorelease];
     UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
     if (p2Salary == 0) {
+        if ([jobTypeName isEqualToString:@"所有职位"]) {
+            lb2.text = @"全国职工平均月薪";
+        }else{
+            lb2.text = [NSString stringWithFormat:@"全国%@平均月薪", jobTypeName];
+        }
         
-        lb2.text = @"全国职工平均月薪";
     }else{
         NSString *parementRegion = [CommonController getDictionaryDesc:tmpData[@"Parent1"] tableName: @"dcRegion"];
         lb2.text = [NSString stringWithFormat:@"%@%@平均月薪", parementRegion, jobTypeName];
