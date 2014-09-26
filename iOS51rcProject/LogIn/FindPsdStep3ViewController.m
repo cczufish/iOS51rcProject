@@ -15,11 +15,9 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UIButton *btnOK;
 @property (retain, nonatomic) LoadingAnimationView *loadingView;
+@property (retain, nonatomic) IBOutlet UIView *viewPsdStep3;
 @property (retain, nonatomic) NSString *code;
 @property (retain, nonatomic) NSString *wsName;
-@property (retain, nonatomic) IBOutlet UILabel *labelLine1;
-@property (retain, nonatomic) IBOutlet UILabel *labelLine2;
-@property (retain, nonatomic) IBOutlet UILabel *labelBg;
 @end
 
 @implementation FindPsdStep3ViewController
@@ -45,17 +43,9 @@
     self.txtRePsd.layer.borderWidth = 1;
     self.txtRePsd.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    self.labelBg.layer.borderWidth = 0.3;
-    self.labelBg.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.labelBg.layer.cornerRadius = 5;
-    
-    self.labelLine1.layer.borderWidth = 0.15;
-    self.labelLine1.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [self.labelLine1 setFrame:CGRectMake(24, 125.5, 273, 0.5)];
-   
-    self.labelLine2.layer.borderWidth = 0.15;
-    self.labelLine2.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [self.labelLine2 setFrame:CGRectMake(24, 170.5, 273, 0.5)];
+    self.viewPsdStep3.layer.borderWidth = 1;
+    self.viewPsdStep3.layer.borderColor = [UIColor colorWithRed:236.f/255.0 green:236.f/255.0 blue:236.f/255.0 alpha:1].CGColor;
+    self.viewPsdStep3.layer.cornerRadius = 5;
     
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     [button setTitle: @"重置密码" forState: UIControlStateNormal];
@@ -242,9 +232,7 @@
     [_txtPsd release];
     [_txtRePsd release];
     [_btnOK release];
-    [_labelLine1 release];
-    [_labelLine2 release];
-    [_labelBg release];
+    [_viewPsdStep3 release];
     [super dealloc];
 }
 @end

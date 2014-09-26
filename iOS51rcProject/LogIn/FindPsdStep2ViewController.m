@@ -18,10 +18,12 @@
 @property (retain, nonatomic) IBOutlet UITextField *txtUserName;
 @property (retain, nonatomic) IBOutlet UITextField *txtVerifyCode;
 @property (retain, nonatomic) IBOutlet UILabel *txtLabel;
-@property (retain, nonatomic) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UIButton *btnNext;
-@property (retain, nonatomic) LoadingAnimationView *loadingView;
 @property (retain, nonatomic) IBOutlet UIButton *btnSendSms;
+@property (retain, nonatomic) IBOutlet UIView *viewPsdStep2;
+@property (retain, nonatomic) NetWebServiceRequest *runningRequest;
+@property (retain, nonatomic) LoadingAnimationView *loadingView;
+
 @end
 
 @implementation FindPsdStep2ViewController
@@ -58,6 +60,11 @@
         [self.btnSendSms setEnabled:false];
         self.txtLabel.text = @"您的手机号";
     }
+    
+    self.viewPsdStep2.layer.borderWidth = 1;
+    self.viewPsdStep2.layer.borderColor = [UIColor colorWithRed:236.f/255.0 green:236.f/255.0 blue:236.f/255.0 alpha:1].CGColor;
+    self.viewPsdStep2.layer.cornerRadius = 5;
+    
     self.txtUserName.text = self.name;//手机号或者邮箱
     self.btnNext.layer.cornerRadius = 5;
     self.btnNext.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
@@ -208,6 +215,7 @@
     [_txtVerifyCode release];
     [_txtLabel release];
     [_btnNext release];
+    [_viewPsdStep2 release];
     [super dealloc];
 }
 @end
