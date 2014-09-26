@@ -6,6 +6,7 @@
 #import <UIKit/UIKit.h>
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
+#import "LoginViewController.h"
 
 @interface FindPsdStep3ViewController () <NetWebServiceRequestDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *txtUserName;
@@ -139,7 +140,10 @@
     {
         [Dialog alert:@"修改成功"];
         [CommonController logout];//清除数据
-        return;
+        //跳转到登录界面
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
     }
     else
     {
