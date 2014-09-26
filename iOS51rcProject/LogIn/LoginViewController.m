@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;//不加这一行，滚动条会飘
     self.scrollView.delegate = self;
     self.navigationItem.title = @"登录";   
     //获得子View
@@ -49,7 +50,7 @@
     //把两个个子View加到Scrollview中
     [self.scrollView addSubview:self.loginDetailsView.view];
     [self.scrollView addSubview:self.registerView.view];
-    
+    [self.scrollView setContentSize:CGSizeMake(640, self.scrollView.frame.size.height)];//这一行必须放到后面。。否则不滑动
     [self btnLoginClick:nil];
 }
 
