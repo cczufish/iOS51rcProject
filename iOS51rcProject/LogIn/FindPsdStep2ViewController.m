@@ -177,7 +177,7 @@
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"paGetPassword" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
-    request.tag = 2;
+    request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
 }
