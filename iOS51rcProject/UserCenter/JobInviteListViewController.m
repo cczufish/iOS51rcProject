@@ -294,13 +294,15 @@
     return 77;
 }
 
+//选择某一行
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *rowData = self.jobListData[indexPath.row];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
-    jobC.JobID = rowData[@"ID"];
+    jobC.JobID = rowData[@"JobID"];
     jobC.cpMainID = rowData[@"cpID"];
+    jobC.navigationItem.title = rowData[@"cpName"];
     UIViewController *pCtrl = [CommonController getFatherController:self.view];
     [pCtrl.navigationController pushViewController:jobC animated:YES];
 }
