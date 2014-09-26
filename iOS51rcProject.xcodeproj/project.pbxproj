@@ -43,6 +43,8 @@
 		991BC86919CC1DCD0014FB80 /* SpecialitityModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 991BC86819CC1DCD0014FB80 /* SpecialitityModifyViewController.m */; };
 		9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */ = {isa = PBXBuildFile; fileRef = 9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */; };
 		9922970B19B95FF7008E8646 /* ico_onlinechat_online.png in Resources */ = {isa = PBXBuildFile; fileRef = 9922970919B95FF7008E8646 /* ico_onlinechat_online.png */; };
+		9923827C19D4F039003CFF62 /* ico_login_name.png in Resources */ = {isa = PBXBuildFile; fileRef = 9923827A19D4F039003CFF62 /* ico_login_name.png */; };
+		9923827D19D4F039003CFF62 /* ico_login_pwd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9923827B19D4F039003CFF62 /* ico_login_pwd.png */; };
 		9925BE8A19B807F4002DBFE0 /* ico_map_centerpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */; };
 		9925BE8B19B807F4002DBFE0 /* ico_mapsearch_joblist.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8419B807F4002DBFE0 /* ico_mapsearch_joblist.png */; };
 		9925BE8C19B807F4002DBFE0 /* ico_mapsearch_next_unable.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8519B807F4002DBFE0 /* ico_mapsearch_next_unable.png */; };
@@ -473,6 +475,8 @@
 		991BC86819CC1DCD0014FB80 /* SpecialitityModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpecialitityModifyViewController.m; path = UserCenter/SpecialitityModifyViewController.m; sourceTree = "<group>"; };
 		9922970819B95FF6008E8646 /* ico_onlinechat_offline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_onlinechat_offline.png; sourceTree = "<group>"; };
 		9922970919B95FF7008E8646 /* ico_onlinechat_online.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_onlinechat_online.png; sourceTree = "<group>"; };
+		9923827A19D4F039003CFF62 /* ico_login_name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_login_name.png; sourceTree = "<group>"; };
+		9923827B19D4F039003CFF62 /* ico_login_pwd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_login_pwd.png; sourceTree = "<group>"; };
 		9925BE8319B807F4002DBFE0 /* ico_map_centerpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_centerpoint.png; sourceTree = "<group>"; };
 		9925BE8419B807F4002DBFE0 /* ico_mapsearch_joblist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_joblist.png; sourceTree = "<group>"; };
 		9925BE8519B807F4002DBFE0 /* ico_mapsearch_next_unable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_next_unable.png; sourceTree = "<group>"; };
@@ -2138,6 +2142,8 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9923827A19D4F039003CFF62 /* ico_login_name.png */,
+				9923827B19D4F039003CFF62 /* ico_login_pwd.png */,
 				99B3D18219D414C800AEF1D9 /* ico_hiskeywords_del.png */,
 				99B3D18019D40D4F00AEF1D9 /* btn_keywords_del.png */,
 				999B296F19D3A3A9005B084B /* ico_titlemain_search.png */,
@@ -2529,6 +2535,7 @@
 				9922970B19B95FF7008E8646 /* ico_onlinechat_online.png in Resources */,
 				99B350C0199CB1F100CAEC71 /* welcom4-320x1136.png in Resources */,
 				9994AF4019D144BF008068AD /* ico_fuli_jtbt.png in Resources */,
+				9923827C19D4F039003CFF62 /* ico_login_name.png in Resources */,
 				99CFD87D199B60D8009A5ABA /* ico_leftmenu_jobnews.png in Resources */,
 				99CFD895199B60D8009A5ABA /* qq.png in Resources */,
 				9994AF4219D144BF008068AD /* ico_fuli_nianjia.png in Resources */,
@@ -2594,6 +2601,7 @@
 				991125A319A4D24F00C98173 /* ico_expire.png in Resources */,
 				99F3F84919B00CEB00B5AB88 /* ico_jobright.png in Resources */,
 				99CFD88A199B60D8009A5ABA /* ico_main_search.png in Resources */,
+				9923827D19D4F039003CFF62 /* ico_login_pwd.png in Resources */,
 				9994AF3B19D144BF008068AD /* ico_fuli_canbu.png in Resources */,
 				999BDD5F19C2E89C000A152A /* ico_setting_on.png in Resources */,
 				99CFD887199B60D8009A5ABA /* ico_main_near.png in Resources */,

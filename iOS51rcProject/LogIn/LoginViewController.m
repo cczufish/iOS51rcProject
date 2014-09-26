@@ -1,11 +1,3 @@
-//
-//  LoginViewController.m
-//  iOS51rcProject
-//
-//  Created by qlrc on 14-8-15.
-//  Copyright (c) 2014年 Lucifer. All rights reserved.
-//
-
 #import "LoginViewController.h"
 #import "NetWebServiceRequest.h"
 #import "GDataXMLNode.h"
@@ -14,16 +6,17 @@
 #import "FindPsdStep3ViewController.h"
 
 
-@interface LoginViewController ()
-@property (retain, nonatomic) IBOutlet UILabel *labelBgLogin;//登录背景条
-@property (retain, nonatomic) IBOutlet UILabel *labelBgRegister;//注册背景条
+@interface LoginViewController ()<UIScrollViewDelegate>
+@property (retain, nonatomic) IBOutlet UILabel *lbTopBg;//最上方的红色下划线
 @property (retain, nonatomic) IBOutlet UIButton *btnLogin;
 @property (retain, nonatomic) IBOutlet UIButton *btnRegister;
-
+@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (retain, nonatomic) IBOutlet UILabel *lbFirst;
+@property (retain, nonatomic) IBOutlet UILabel *lbSecond;
 @end
 
 @implementation LoginViewController
-
+#define HEIGHT [[UIScreen mainScreen] bounds].size.height
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,80 +26,64 @@
     return self;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    //
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
-    self.labelBgRegister.backgroundColor = [UIColor clearColor];
-    self.navigationItem.title = @"登录";
-    //返回按钮
-    UIBarButtonItem *btnBack = [[UIBarButtonItem alloc] initWithTitle:@"后退" style:UIBarButtonItemStyleDone target:nil action:nil];
-    self.navigationItem.backBarButtonItem = btnBack;
-    [btnBack release];
-    CGRect frame = [[UIScreen mainScreen] bounds];
-    frame.origin.y = 107;//状态栏和切换栏的高度
-    frame.size.height = frame.size.height - 107;
+    self.scrollView.delegate = self;
+    self.navigationItem.title = @"登录";   
     //获得子View
     self.loginDetailsView = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginDetailsView"];
     self.registerView = [self.storyboard instantiateViewControllerWithIdentifier:@"RegisterView"];
-    self.loginDetailsView.view.frame = frame;
-    self.registerView.view.frame = frame;
-    
-    //初始化左侧和右侧的登录以及注册子View
-    self.leftSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    self.rightSwipeGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipes:)];
-    self.leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-    self.rightSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
-    
-    [self.view addGestureRecognizer:self.leftSwipeGestureRecognizer];
-    [self.view addGestureRecognizer:self.rightSwipeGestureRecognizer];
+    self.loginDetailsView.view.frame = CGRectMake(0, 0, 320, HEIGHT);
+    self.registerView.view.frame = CGRectMake(320, 0, 320, HEIGHT);
+
     self.loginDetailsView.delegate = self;
     self.loginDetailsView.gotoHomeDelegate = self;;
     self.registerView.gotoHomeDelegate = self;
     
-    //默认加载登录页面
-    [self.view addSubview: self.loginDetailsView.view];
+    //把两个个子View加到Scrollview中
+    [self.scrollView addSubview:self.loginDetailsView.view];
+    [self.scrollView addSubview:self.registerView.view];
+    
+    [self btnLoginClick:nil];
 }
 
 - (IBAction)btnLoginClick:(id)sender {
-    [self.registerView removeFromParentViewController];
-    [self.view addSubview:self.loginDetailsView.view];
     self.navigationItem.title = @"登录";
-    self.labelBgRegister.backgroundColor = [UIColor clearColor];
-    self.labelBgLogin.backgroundColor = [UIColor orangeColor];
-    self.btnLogin.titleLabel.textColor = [UIColor orangeColor];
-    self.btnRegister.titleLabel.textColor = [UIColor blackColor];
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:true];
+   
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbSecond setTextColor:[UIColor blackColor]];
+        [self.lbFirst setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbTopBg setFrame:CGRectMake(0, self.lbTopBg.frame.origin.y, self.lbTopBg.frame.size.width, self.lbTopBg.frame.size.height)];
+    } completion:^(BOOL finished) {
+    }];
 }
 
 - (IBAction)btnRegisterClick:(id)sender {
-    [self.loginDetailsView removeFromParentViewController];
-    [self.view addSubview:self.registerView.view];
     self.navigationItem.title = @"注册";
-    self.labelBgRegister.backgroundColor = [UIColor orangeColor];
-    self.labelBgLogin.backgroundColor = [UIColor clearColor];
-    self.btnLogin.titleLabel.textColor = [UIColor blackColor];
-    self.btnRegister.titleLabel.textColor = [UIColor orangeColor];
+    [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.lbFirst setTextColor:[UIColor blackColor]];
+        [self.lbSecond setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+        [self.lbTopBg setFrame:CGRectMake(160, self.lbTopBg.frame.origin.y, self.lbTopBg.frame.size.width, self.lbTopBg.frame.size.height)];
+    } completion:^(BOOL finished) {
+    }];
 }
 
-- (void)handleSwipes:(UISwipeGestureRecognizer *)sender
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (sender.direction == UISwipeGestureRecognizerDirectionRight) {
-        [self.registerView removeFromParentViewController];
-        [self.view addSubview:self.loginDetailsView.view];
-        self.navigationItem.title = @"登录";
-        self.labelBgRegister.backgroundColor = [UIColor clearColor];
-        self.labelBgLogin.backgroundColor = [UIColor orangeColor];
-        self.btnLogin.titleLabel.textColor = [UIColor orangeColor];
-        self.btnRegister.titleLabel.textColor = [UIColor blackColor];
+    if (self.scrollView.contentOffset.x > 160) {
+        [self btnRegisterClick:nil];
     }
-    if (sender.direction == UISwipeGestureRecognizerDirectionLeft) {
-        [self.loginDetailsView removeFromParentViewController];
-        [self.view addSubview:self.registerView.view];
-        self.navigationItem.title = @"注册";
-        self.labelBgRegister.backgroundColor = [UIColor orangeColor];
-        self.labelBgLogin.backgroundColor = [UIColor clearColor];
-        self.btnLogin.titleLabel.textColor = [UIColor blackColor];
-        self.btnRegister.titleLabel.textColor = [UIColor orangeColor];
+    else {
+        [self btnLoginClick:nil];
     }
 }
 
@@ -130,23 +107,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (void)dealloc {
-    //[_ni release];
-    [_labelBgLogin release];
-    [_labelBgRegister release];
+    [_loginDetailsView release];
+    [_registerView release];
+    [_scrollView release];
     [_btnLogin release];
     [_btnRegister release];
+    [_lbFirst release];
+    [_lbSecond release];
     [super dealloc];
 }
 @end

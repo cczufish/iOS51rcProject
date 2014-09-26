@@ -13,8 +13,6 @@
 #import "GoToHomeDelegate.h"
 
 @interface LoginViewController: UIViewController<LoginDetailsDelegate, GoToHomeDelegate>
-    @property (nonatomic, strong) UISwipeGestureRecognizer *leftSwipeGestureRecognizer;
-    @property (nonatomic, strong) UISwipeGestureRecognizer *rightSwipeGestureRecognizer;
     @property (nonatomic, strong) LoginDetailsViewController *loginDetailsView;
     @property (nonatomic, strong) RegisterViewController *registerView;
 @end

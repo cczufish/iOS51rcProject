@@ -12,7 +12,6 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbJobFavourite;
 @property (retain, nonatomic) IBOutlet UILabel *lbJobScan;
 
-
 //三个子页面
 @property (retain, nonatomic) JmJobApplyViewController *jobApplyCtrl;
 @property (retain, nonatomic) JmFavouriteViewController *jobFavoriteCtrl;

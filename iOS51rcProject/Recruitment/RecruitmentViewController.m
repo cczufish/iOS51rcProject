@@ -372,14 +372,22 @@
 
 //点击参会企业
 - (IBAction)btnRmCpClick:(id)sender {
-    if ([self.attentCpCount intValue]>0) {
-        RmAttendCpListViewController *cpListCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmCpListView"];
-        cpListCtrl.rmID = self.recruitmentID;
-        NSString *strTime = [NSString stringWithFormat:@"%@",[CommonController stringFromDate:self.dtBeginTime formatType:@"yyyy-MM-dd HH:mm"]];
-        cpListCtrl.strBeginTime = strTime;
-        cpListCtrl.strAddress = self.strAddress;
-        cpListCtrl.strPlace = self.strPlace;
-        [self.navigationController pushViewController:cpListCtrl animated:YES];
+    //判断登录
+    if ([CommonController isLogin]) {
+        if ([self.attentCpCount intValue]>0) {
+            RmAttendCpListViewController *cpListCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmCpListView"];
+            cpListCtrl.rmID = self.recruitmentID;
+            NSString *strTime = [NSString stringWithFormat:@"%@",[CommonController stringFromDate:self.dtBeginTime formatType:@"yyyy-MM-dd HH:mm"]];
+            cpListCtrl.strBeginTime = strTime;
+            cpListCtrl.strAddress = self.strAddress;
+            cpListCtrl.strPlace = self.strPlace;
+            [self.navigationController pushViewController:cpListCtrl animated:YES];
+        }
+    }else{
+        UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+        LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginCtrl animated:YES];
+        self.navigationItem.title = @" ";
     }
 }
 

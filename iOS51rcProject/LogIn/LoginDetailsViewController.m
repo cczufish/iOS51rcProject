@@ -14,12 +14,11 @@
 @property (retain, nonatomic) IBOutlet UITextField *txtName;
 @property (retain, nonatomic) IBOutlet UITextField *txtPsd;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
-@property (retain, nonatomic) IBOutlet UILabel *labelNameBg;
 @property (retain, nonatomic) IBOutlet UIButton *btnLogin;
-@property (retain, nonatomic) IBOutlet UILabel *labelLine;
 @property (retain, nonatomic) IBOutlet UIImageView *imgAutoLogin;
 @property (retain, nonatomic) IBOutlet UIButton *btnAutoLogin;
 @property (nonatomic, retain) LoadingAnimationView *loginLoading;
+@property (retain, nonatomic) IBOutlet UIView *viewLogin;
 @end
 
 
@@ -38,22 +37,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.viewLogin.layer.borderWidth = 0.5;
+    self.viewLogin.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewLogin.layer.cornerRadius = 5;
+    
     self.txtName.layer.borderWidth = 1;
     self.txtName.layer.borderColor = [UIColor whiteColor].CGColor;
     self.txtPsd.layer.borderWidth = 1;
     self.txtPsd.layer.borderColor = [UIColor whiteColor].CGColor;
-    
-    self.labelNameBg.layer.borderWidth = 0.3;
-    self.labelNameBg.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.labelNameBg.layer.cornerRadius = 5;
-    
     self.btnLogin.layer.cornerRadius = 5;
     self.btnLogin.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
-    
-    self.labelLine.layer.borderWidth = 0.15;
-    self.labelLine.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    [self.labelLine setFrame:CGRectMake(24, 76.5, 273, 0.5)];
+
     isAutoLogin = true;
 }
 
@@ -107,17 +101,6 @@
 - (IBAction)btnFindPsd:(id)sender {
     [delegate pushParentsFromLoginDetails];//调用父界面的函数
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 //失败
 - (void)netRequestFailed:(NetWebServiceRequest *)request didRequestError:(int *)error
@@ -235,11 +218,10 @@
 - (void)dealloc {
     [_txtName release];
     [_txtPsd release];
-    [_labelNameBg release];   
     [_btnLogin release];
-    [_labelLine release];
     [_imgAutoLogin release];
-    [_btnAutoLogin release];
+    [_btnAutoLogin release]; 
+    [_viewLogin release];
     [super dealloc];
 }
 @end

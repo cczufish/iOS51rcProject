@@ -33,7 +33,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"参会企业";
     //选择的企业
-    checkedCpArray = [[NSMutableArray alloc] init];
+    self.checkedCpArray = [[NSMutableArray alloc] init];
     page = 1;
     pageSize = 20;
     self.tvRecruitmentCpList.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -227,8 +227,8 @@
     rmInviteCpViewCtrl.strAddress = self.strAddress;
     rmInviteCpViewCtrl.strPlace = self.strPlace;
     rmInviteCpViewCtrl.strRmID = self.rmID;
-    rmInviteCpViewCtrl.selectRmCps = checkedCpArray;
-    [checkedCpArray retain];
+    rmInviteCpViewCtrl.selectRmCps = self.checkedCpArray;
+    [self.checkedCpArray retain];
     [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
 
@@ -249,10 +249,10 @@
     if (tmpTag == 1) {//如果是已经预约
         imgView.image = [UIImage imageNamed:@"unChecked.png"];
         //[checkedCpArray removeObject:@(cpID)];
-        [checkedCpArray removeObject:(selectCp)];
+        [self.checkedCpArray removeObject:(selectCp)];
     }else{
         imgView.image = [UIImage imageNamed:@"checked.png"];
-        [checkedCpArray addObject: selectCp];
+        [self.checkedCpArray addObject: selectCp];
     }
     imgView.tag = !imgView.tag;
 }
@@ -272,6 +272,7 @@
 }
 
 - (void)dealloc {
+    [_checkedCpArray release];
     [_runningRequest release];
     [_recruitmentCpData release];
     [_tvRecruitmentCpList release];
