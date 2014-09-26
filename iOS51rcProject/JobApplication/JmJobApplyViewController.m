@@ -230,7 +230,7 @@
     }
     
     //匹配度
-    UILabel *lbCvMatch = [[UILabel alloc] initWithFrame:CGRectMake(245, 5, 55, 15)];
+    UILabel *lbCvMatch = [[UILabel alloc] initWithFrame:CGRectMake(245, 15, 55, 15)];
     [lbCvMatch setText: [NSString stringWithFormat:@"匹配度%@%@", rowData[@"cvMatch"], @"%"]];
     lbCvMatch.font = [UIFont systemFontOfSize:10];
     [lbCvMatch setTextColor:[UIColor whiteColor]];
@@ -248,6 +248,15 @@
     [cell.contentView addSubview:lbAddress];
     [lbAddress release];
     
+    //已经过期
+    NSString *issueEnd = rowData[@"IssueEND"];
+    NSDate *dtIssueEnd = [CommonController dateFromString:issueEnd];
+    NSDate * now = [NSDate date];
+    if ([now laterDate:dtIssueEnd] == now ) {
+        UIImageView *imgEnd = [[[UIImageView alloc] initWithFrame:CGRectMake(300, 0, 20, 20)]autorelease];
+        imgEnd.image = [UIImage imageNamed:@"ico_expire.png"];
+    }
+
     //申请时间
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 200, 20)];
     NSString *strDate = [NSString stringWithFormat:@"申请时间：%@", [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"]];
