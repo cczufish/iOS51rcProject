@@ -260,7 +260,7 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperCpViewController *cpCtrl = [storyBoard instantiateViewControllerWithIdentifier:@"SuperCpView"];
     cpCtrl.cpMainID= rowData[@"cpID"];
-    
+    cpCtrl.navigationItem.title = rowData[@"cpName"];
     UIViewController *superView = [CommonController getFatherController:self.view];
     [superView.navigationController pushViewController:cpCtrl animated:YES];
 }
