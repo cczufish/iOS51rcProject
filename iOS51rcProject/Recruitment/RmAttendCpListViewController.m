@@ -148,14 +148,14 @@
         imgCheck.tag = isBooked;
         if (isBooked == 1) {
             //已经预约
-            imgCheck.image = [UIImage imageNamed:@"checked.png"];
+            imgCheck.image = [UIImage imageNamed:@"chk_check.png"];
         }else{
             //没有预约才可以点击
             objc_setAssociatedObject(leftButton, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             [leftButton addTarget:self action:@selector(checkBoxBookinginterviewClick:) forControlEvents:UIControlEventTouchUpInside];
         }
         
-        imgCheck.image = [UIImage imageNamed:@"unChecked.png"];
+        imgCheck.image = [UIImage imageNamed:@"chk_default.png"];
         [leftButton addSubview:imgCheck];
         
         [cell.contentView addSubview:leftButton];
