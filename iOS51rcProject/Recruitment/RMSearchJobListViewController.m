@@ -287,13 +287,17 @@
     [lbSalary release];
     
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
-    [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 77)];
     [btnCheck setTitle:rowData[@"ID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
     objc_setAssociatedObject(btnCheck, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
+    [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
+    [btnCheck addSubview:imgCheck];
+    [imgCheck release];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
     
@@ -320,15 +324,16 @@
 
 - (void)rowChecked:(UIButton *)sender
 {
+    UIImageView *imgCheck = sender.subviews[0];
     RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
     if (sender.tag == 1) {
         [checkedCpArray addObject:(selectCp)];
-        [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
         [sender setTag:2];
     }
     else {      
         [checkedCpArray removeObject:(selectCp)];
-        [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
         [sender setTag:1];
     }
     //NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
@@ -336,6 +341,7 @@
 
 - (void)regionFilter
 {
+    [self cancelPicker];
     if ([self.searchRegion rangeOfString:@","].location == NSNotFound) {
         if (![CommonController hasParentOfRegion:self.searchRegion]) {
             [self.view makeToast:@"您选择的地区已经到最后一级，不能再继续筛选了"];
@@ -349,6 +355,7 @@
 
 - (void)jobtypeFilter
 {
+    [self cancelPicker];
     if ([self.searchRegion rangeOfString:@","].location == NSNotFound) {
         if (self.searchRegion.length == 4) {
             [self.view makeToast:@"您选择的职位类别已经到最后一级，不能再继续筛选了"];
@@ -362,6 +369,7 @@
 
 - (void)salaryFilter
 {
+    [self cancelPicker];
     self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defaultValue:self.salary defaultName:@""] autorelease];
     self.dictionaryPicker.tag = 1;
     [self.dictionaryPicker showInView:self.view];
@@ -369,6 +377,7 @@
 
 - (void)otherFilter
 {
+    [self cancelPicker];
     self.searchPicker = [[[SearchPickerView alloc] initWithSearchOtherFilter:self defaultValue:self.selectOther defaultName:self.selectOtherName otherType:SearchPickerOtherAll] autorelease];
     self.searchPicker.tag = 3;
     [self.searchPicker showInView:self.view];
