@@ -121,9 +121,6 @@
         [self.view addSubview:btnLngLat];
     }
 
-//    //坐标图标
-//    self.imageCoordinate.frame = CGRectMake(self.lbAddressValue.frame.origin.x + self.lbAddressValue.frame.size.width + 1, self.lbAddressValue.frame.origin.y, 13, 15);
-//    self.imageCoordinate.image = [UIImage imageNamed:@"ico_cpinfo_cpaddress.png"];
     //分割线
     CGFloat y = self.lbAddressValue.frame.origin.y + self.lbAddressValue.frame.size.height - 23;
     self.lbLine.frame = CGRectMake(8, y + 34, 304, 0.5);

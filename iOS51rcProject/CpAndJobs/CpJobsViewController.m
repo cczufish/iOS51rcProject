@@ -74,6 +74,7 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     if (request.tag == 1) {
         [self.jobListData removeAllObjects];
         self.jobListData = requestData;
@@ -81,7 +82,7 @@
         [self.tvCpJobList reloadData];
     }else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
-            [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [pCtrl.view makeToast:@"您没有有效职位，请先完善您的简历"];
             [self.arrCheckJobID removeAllObjects];
         }else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
@@ -92,10 +93,10 @@
         [self.cPopup showJobApplyCvSelect:result view:[CommonController getFatherController:self.view].view];
         [self.arrCheckJobID removeAllObjects];
     }else if (request.tag == 4) { //重新申请职位成功
-        [self.view makeToast:@"重新申请简历成功"];
+        [pCtrl.view makeToast:@"重新申请简历成功"];
         [self.arrCheckJobID removeAllObjects];
     }else if (request.tag == 5) {
-        [self.view makeToast:@"收藏职位成功"];
+        [pCtrl.view makeToast:@"收藏职位成功"];
         [self.arrCheckJobID removeAllObjects];
     }
     
