@@ -388,7 +388,7 @@
             [btnReject addSubview:lbReject];
             [cell.contentView addSubview:btnReject];
             [btnReject release];
-            selectRowHeight = btnReject.frame.origin.y + btnReject.frame.size.height + 5;
+            selectRowHeight = btnReject.frame.origin.y + btnReject.frame.size.height + 15;
         }
         else {
             //不赴约状态
@@ -421,10 +421,10 @@
             }
             [cell.contentView addSubview:(lbApply)];
 
-            selectRowHeight = lbApply.frame.origin.y + lbApply.frame.size.height + 5;
+            selectRowHeight = lbApply.frame.origin.y + lbApply.frame.size.height + 23;
         }
     }else{
-        selectRowHeight = 100;
+        selectRowHeight = 70;
     }
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 0.5)];
