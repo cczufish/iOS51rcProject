@@ -142,6 +142,7 @@
         [userDefaults setValue:@"32" forKey:@"subSiteId"];
         [userDefaults setValue:@"齐鲁人才网" forKey:@"subSiteName"];
         [userDefaults setValue:@"山东" forKey:@"subSiteCity"];
+        [userDefaults setValue:@"http://www.qlrc.com" forKey:@"subSiteUrl"];
     }
     if (![userDefaults objectForKey:@"sqlVersion"]) {
         [userDefaults setValue:@"2" forKey:@"sqlVersion"];
