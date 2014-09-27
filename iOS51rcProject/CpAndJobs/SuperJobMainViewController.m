@@ -2,6 +2,7 @@
 #import "JobViewController.h"
 #import "CpMainViewController.h"
 #import "CpJobsViewController.h"
+#import <ShareSDK/ShareSDK.h>
 
 #define MENUHEIHT 40
 @interface SuperJobMainViewController ()<UIScrollViewDelegate>
@@ -40,6 +41,21 @@
     secondPageLoad = false;
     thriePageLoad = false;
     
+    //分享按钮
+    UIButton *btnRight = [[[UIButton alloc] initWithFrame:CGRectMake(260, 0, 30, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    //添加左侧竖线
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.5, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    view.layer.backgroundColor = [UIColor whiteColor].CGColor;
+    [btnRight addSubview:view];
+    //添加分享图片
+    [btnRight addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, (self.navigationController.navigationBar.frame.size.height-20)/2, 20, 20)] autorelease];
+    UIImage *imgShared = [[UIImage imageNamed:@"btn_cpmain_share.png"] autorelease];
+    imageView.image = imgShared;
+    [btnRight addSubview:imageView];
+    UIBarButtonItem *btnBarRight = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
+    self.navigationItem.rightBarButtonItem=btnBarRight;
+    
     //初始化三个子View
     self.firstCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"JobView"];
     self.firstCtrl.view.frame = CGRectMake(0, 0, 320, HEIGHT);
@@ -58,6 +74,36 @@
     
     //默认加载第一个
     [self switchToFirstView:nil];
+}
+
+- (void) btnShareClick:(UIButton*) sender{
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    //构造分享内容
+    NSString *subSiteUrl = [userDefault objectForKey:@"subSiteUrl"];
+    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n正在齐鲁人才网网上招聘，一定有适合你的职位，真心推荐哦？\n http://%@/personal/jv/companyDetail?cpmainID=%@\n",self.navigationItem.title, subSiteUrl,self.cpMainID]
+                                       defaultContent:@"默认分享内容，没内容时显示"
+                                                image:[ShareSDK imageWithPath:imagePath]
+                                                title:@"分享APP"
+                                                  url:@"http://www.51rc.com"
+                                          description:@""
+                                            mediaType:SSPublishContentMediaTypeNews];
+    [ShareSDK showShareActionSheet:nil
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions: nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    NSLog(@"分享成功");
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
+                                }
+                            }];
 }
 
 - (IBAction)switchToFirstView:(id)sender {

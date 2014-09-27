@@ -1,4 +1,5 @@
 #import "SuperCpViewController.h"
+#import <ShareSDK/ShareSDK.h>
 //企业信息父页面
 @interface SuperCpViewController ()<UIScrollViewDelegate>
 @property (retain, nonatomic) CpJobsViewController *jobsCtrl;
@@ -23,6 +24,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //分享按钮
+    UIButton *btnRight = [[[UIButton alloc] initWithFrame:CGRectMake(260, 0, 30, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    //添加左侧竖线
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.5, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    view.layer.backgroundColor = [UIColor whiteColor].CGColor;
+    [btnRight addSubview:view];
+    //添加分享图片
+    [btnRight addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, (self.navigationController.navigationBar.frame.size.height-20)/2, 20, 20)] autorelease];
+    UIImage *imgShared = [[UIImage imageNamed:@"btn_cpmain_share.png"] autorelease];
+    imageView.image = imgShared;
+    [btnRight addSubview:imageView];
+    UIBarButtonItem *btnBarRight = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
+    self.navigationItem.rightBarButtonItem=btnBarRight;
+    
     //设置滚动条的大小
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.svSuper.frame = CGRectMake(0, 115, 320, self.svSuper.frame.size.height);//必须重写位置，否则，子页面的x＝0.。。
@@ -43,6 +59,36 @@
     [self.svSuper addSubview:self.jobsCtrl.view];
     
     [self.svSuper setContentSize:CGSizeMake(640, self.svSuper.frame.size.height)];//这一行必须放到后面。。否则不滑动
+}
+
+- (void) btnShareClick:(UIButton*) sender{
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    //构造分享内容
+    NSString *subSiteUrl = [userDefault objectForKey:@"subSiteUrl"];
+    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n正在齐鲁人才网网上招聘，一定有适合你的职位，真心推荐哦？\n http://%@/personal/jv/companyDetail?cpmainID=%@\n",self.navigationItem.title, subSiteUrl,self.cpMainID]
+                                       defaultContent:@"默认分享内容，没内容时显示"
+                                                image:[ShareSDK imageWithPath:imagePath]
+                                                title:@"分享APP"
+                                                  url:@"http://www.51rc.com"
+                                          description:@""
+                                            mediaType:SSPublishContentMediaTypeNews];
+    [ShareSDK showShareActionSheet:nil
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions: nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    NSLog(@"分享成功");
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
+                                }
+                            }];
 }
 
 - (void)didReceiveMemoryWarning
