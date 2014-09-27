@@ -71,13 +71,13 @@
     
     //设置底部功能栏
     //self.view.frame = CGRectMake(0, 0, 320, HEIGHT-170);
-    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-170);
-    self.viewBottom.frame = CGRectMake(0, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height+20, 320, self.viewBottom.frame.size.height);
+    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-152);
+    self.viewBottom.frame = CGRectMake(-1, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 322, self.viewBottom.frame.size.height);
     self.viewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.viewBottom.layer.borderWidth = 0.5;
+    self.viewBottom.layer.borderWidth = 1;
     self.btnDelete.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     self.btnDelete.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.btnDelete.layer.borderWidth = 0.5;
+    self.btnDelete.layer.borderWidth = 1;
     self.btnDelete.layer.cornerRadius = 5;
     [self.btnDelete addTarget:self action:@selector(jobDelete) forControlEvents:UIControlEventTouchUpInside];
     
@@ -224,13 +224,13 @@
     //在线按钮
     BOOL isOnline = [rowData[@"IsOnline"] boolValue];
     if (isOnline) {
-        UIButton *btnChat = [[[UIButton alloc] initWithFrame:CGRectMake(210, 5, 30, 15)] autorelease];
+        UIButton *btnChat = [[[UIButton alloc] initWithFrame:CGRectMake(200, 5, 40, 20)] autorelease];
         [btnChat setImage:[UIImage imageNamed:@"ico_joblist_online.png"] forState:UIControlStateNormal];
         [cell.contentView addSubview:btnChat];
     }
     
     //匹配度
-    UILabel *lbCvMatch = [[UILabel alloc] initWithFrame:CGRectMake(245, 15, 55, 15)];
+    UILabel *lbCvMatch = [[UILabel alloc] initWithFrame:CGRectMake(245, 10, 55, 15)];
     [lbCvMatch setText: [NSString stringWithFormat:@"匹配度%@%@", rowData[@"cvMatch"], @"%"]];
     lbCvMatch.font = [UIFont systemFontOfSize:10];
     [lbCvMatch setTextColor:[UIColor whiteColor]];
@@ -309,7 +309,7 @@
     
     //分割线
     if (indexPath.row != self.jobListData.count - 1) {
-        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 88, 320, 0.5)];
+        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
         [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
         [cell.contentView addSubview:viewSeparate];
     }
@@ -404,7 +404,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 77;
 }
 
 //打开职位页面

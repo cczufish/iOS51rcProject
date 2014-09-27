@@ -244,7 +244,7 @@
     //在线按钮
     BOOL isOnline = [rowData[@"IsOnline"] boolValue];
     if (isOnline) {
-        UIButton *btnChat = [[[UIButton alloc] initWithFrame:CGRectMake(260, 5, 30, 15)] autorelease];
+        UIButton *btnChat = [[[UIButton alloc] initWithFrame:CGRectMake(265, 5, 40, 20)] autorelease];
         [btnChat setImage:[UIImage imageNamed:@"ico_joblist_online.png"] forState:UIControlStateNormal];
         [cell.contentView addSubview:btnChat];
     }
@@ -260,9 +260,9 @@
     //已申请按钮
     NSString *isApply = rowData[@"isApply"];
     if ([isApply isEqualToString:@"1"]) {
-        UILabel *lbFavourite = [[[UILabel alloc] initWithFrame:CGRectMake(250, 28, 50, 15)] autorelease];
+        UILabel *lbFavourite = [[[UILabel alloc] initWithFrame:CGRectMake(255, 32, 50, 15)] autorelease];
         [lbFavourite setText:@"已申请"];
-        [lbFavourite setFont:fontCell];
+        [lbFavourite setFont:[UIFont systemFontOfSize:10]];
         lbFavourite.textAlignment = NSTextAlignmentCenter;
         [lbFavourite setTextColor:[UIColor whiteColor]];
         lbFavourite.layer.cornerRadius = 5;
@@ -296,7 +296,7 @@
     if (strSalary.length == 0) {
         strSalary = @"面议";
     }
-    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(200, 51, 100, 20)];
+    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(205, 51, 100, 20)];
     [lbSalary setText:strSalary];
     [lbSalary setFont:fontCell];
     [lbSalary setTextColor:[UIColor redColor]];

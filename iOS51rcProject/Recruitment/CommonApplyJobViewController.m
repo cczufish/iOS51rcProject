@@ -5,7 +5,7 @@
 #import "CommonController.h"
 #import <objc/runtime.h> 
 #import "RmInviteCpViewController.h"
-#import "JobViewController.h"
+#import "SuperJobMainViewController.h"
 #import "LoginViewController.h"
 #import "RmSearchJobForInviteViewController.h"
 #import "DictionaryPickerView.h"
@@ -269,7 +269,7 @@
     
     //是否在线
     if ([rowData[@"IsOnline"] isEqualToString:@"true"]) {
-        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(260, 5, 40, 20)];
+        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(270, 5, 40, 20)];
         [imgOnline setImage:[UIImage imageNamed:@"ico_joblist_online.png"]];
         [cell.contentView addSubview:imgOnline];
         [imgOnline release];
@@ -295,7 +295,7 @@
     [lbRefreshDate release];
     
     //右侧的邀请按钮和图片
-    UIButton *btnInvite = [[[UIButton alloc] initWithFrame:CGRectMake(255, 30, 40, 60)] autorelease];
+    UIButton *btnInvite = [[[UIButton alloc] initWithFrame:CGRectMake(265, 30, 40, 60)] autorelease];
     objc_setAssociatedObject(btnInvite, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
     [btnInvite addTarget:self action:@selector(inviteOneCp:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] autorelease];
@@ -310,13 +310,17 @@
     [cell.contentView addSubview:btnInvite];
     
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
-    [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 77)];
     [btnCheck setTitle:rowData[@"JobID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
     objc_setAssociatedObject(btnCheck, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
+    [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
+    [btnCheck addSubview:imgCheck];
+    [imgCheck release];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
     
@@ -335,23 +339,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *rowData = self.jobListData[indexPath.row];
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
-    JobViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"JobView"];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"JobID"];
-    [self.navigationController pushViewController:jobC animated:YES];
+    jobC.cpMainID = rowData[@"cpID"];
+    self.navigationItem.title = @" ";
+    jobC.navigationItem.title = rowData[@"cpName"];
+    [[CommonController getFatherController:self.view].navigationController pushViewController:jobC animated:YES];
 }
 
 - (void)rowChecked:(UIButton *)sender
 {
+    UIImageView *imgCheck = sender.subviews[0];
     RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
     if (sender.tag == 1) {
         [checkedCpArray addObject:(selectCp)];
-        [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
         [sender setTag:2];
     }
     else {
         [checkedCpArray removeObject:(selectCp)];
-        [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
         [sender setTag:1];
     }
 }

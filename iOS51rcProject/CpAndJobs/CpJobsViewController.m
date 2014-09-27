@@ -165,11 +165,9 @@
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
     //分割线
-    if (indexPath.row != self.jobListData.count - 1) {
-        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbSalary.frame.origin.y+lbSalary.frame.size.height + 5, 320, 0.5)];
-        [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
-        [cell.contentView addSubview:viewSeparate];
-    }
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbSalary.frame.origin.y+lbSalary.frame.size.height + 6, 320, 1)];
+    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [cell.contentView addSubview:viewSeparate];
 
     return cell;
 }
@@ -192,7 +190,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 50;
 }
 
 - (void)footerRereshing{

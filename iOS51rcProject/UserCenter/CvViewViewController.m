@@ -166,6 +166,7 @@
 
 - (void)getCvSpecaility
 {
+    [self.navigationItem setTitle:self.cvData[0][@"Name"]];
     [self.lbSpeciality setText:self.cvData[0][@"Speciality"]];
     //计算工作能力文本的高度
     CGSize labelSize = [CommonController CalculateFrame:self.cvData[0][@"Speciality"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(270, 3000)];

@@ -43,8 +43,8 @@
     self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置底部功能栏
-    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-160);
-    self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 320, self.viewBottom.frame.size.height);
+    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-155);
+    self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height-1, 320, self.viewBottom.frame.size.height+1);
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
@@ -273,12 +273,16 @@
     [lbSalary release];
     
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
-    [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 77)];
     [btnCheck setTitle:rowData[@"JobID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
+    [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
+    [btnCheck addSubview:imgCheck];
+    [imgCheck release];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
     
@@ -309,16 +313,17 @@
 
 - (void)rowChecked:(UIButton *)sender
 {
+    UIImageView *imgCheck = sender.subviews[0];
     if (sender.tag == 1) {
         if (![self.arrCheckJobID containsObject:sender.titleLabel.text]) {
             [self.arrCheckJobID addObject:sender.titleLabel.text];
         }
-        [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
         [sender setTag:2];
     }
     else {
         [self.arrCheckJobID removeObject:sender.titleLabel.text];
-        [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
         [sender setTag:1];
     }
     NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);

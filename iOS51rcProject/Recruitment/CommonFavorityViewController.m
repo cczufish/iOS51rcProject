@@ -5,7 +5,7 @@
 #import "CommonController.h"
 #import <objc/runtime.h>
 #import "RmInviteCpViewController.h"
-#import "JobViewController.h"
+#import "SuperJobMainViewController.h"
 #import "LoginViewController.h"
 @interface CommonFavorityViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,CustomPopupDelegate>
 {
@@ -208,18 +208,22 @@
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
-    [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 77)];
     [btnCheck setTitle:rowData[@"ID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
     objc_setAssociatedObject(btnCheck, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
+    [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
+    [btnCheck addSubview:imgCheck];
+    [imgCheck release];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 90, 320, 1)];
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 89, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
@@ -233,23 +237,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *rowData = self.jobListData[indexPath.row];
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
-    JobViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"JobView"];
-    jobC.JobID = rowData[@"ID"];
-    [self.navigationController pushViewController:jobC animated:YES];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
+    jobC.JobID = rowData[@"JobID"];
+    jobC.cpMainID = rowData[@"cpID"];
+    self.navigationItem.title = @" ";
+    jobC.navigationItem.title = rowData[@"cpName"];
+    [[CommonController getFatherController:self.view].navigationController pushViewController:jobC animated:YES];
 }
 
 - (void)rowChecked:(UIButton *)sender
 {
+    UIImageView *imgCheck = sender.subviews[0];
     RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
     if (sender.tag == 1) {
         [checkedCpArray addObject:(selectCp)];
-        [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
         [sender setTag:2];
     }
     else {
         [checkedCpArray removeObject:(selectCp)];
-        [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
         [sender setTag:1];
     }
 }
