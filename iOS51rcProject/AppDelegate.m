@@ -19,17 +19,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //误删，用于切换用户欢迎界面
-//    UIImageView *imgFirs = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 568)];
-//    imgFirs.image = [UIImage imageNamed:@"Default@2x.png"];
-//    [self.window addSubview:imgFirs];
-//    [self.window bringSubviewToFront:imgFirs];
-//    [UIView animateWithDuration:5.0 animations:^{
-//        [imgFirs setAlpha:0];
-//    } completion:^(BOOL finished) {
-//        [imgFirs removeFromSuperview];
-//    }];
-
     //shareSDK初始化
     [ShareSDK registerApp:@"2fb76b87ccc8"];
     //添加新浪微博应用 注册网址 http://open.weibo.com
@@ -185,9 +174,9 @@
         int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];        
         if (returnCode == BPushErrorCode_Success) {
             // 在内存中备份，以便短时间内进入可以看到这些值，而不需要重新bind
-//            self.appId = appid;
-//            self.channelId = channelid;
-//            self.userId = userid;
+            // self.appId = appid;
+            // self.channelId = channelid;
+            // self.userId = userid;
         }
     } else if ([BPushRequestMethod_Unbind isEqualToString:method]) {
         int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
@@ -201,20 +190,13 @@
 //收到推送
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //NSLog(@"Receive Notify: %@", [userInfo JSONString]);
-    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    //NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
     if (application.applicationState == UIApplicationStateActive) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Did receive a Remote Notification"
-                                                            message:[NSString stringWithFormat:@"The application received this remote notification while it was running:\n%@", alert]
-                                                           delegate:self
-                                                  cancelButtonTitle:@"OK"
-                                                  otherButtonTitles:nil];
-        [alertView show];
     }
     [application setApplicationIconBadgeNumber:0];
     
     [BPush handleNotification:userInfo];
 }
-
 
 -(void)setAnimation:(UIImageView *)nowView
 {
