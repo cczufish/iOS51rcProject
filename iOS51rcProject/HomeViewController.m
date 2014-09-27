@@ -161,7 +161,7 @@
             [self.userDefaults setValue:requestData[0][@"ID"] forKey:@"subSiteId"];
             [self.userDefaults setValue:requestData[0][@"SubSiteName"] forKey:@"subSiteName"];
             [self.userDefaults setValue:requestData[0][@"SubSIteCity"] forKey:@"subSiteCity"];
-            [self.userDefaults setValue:requestData[0][@"SubSiteUrl"] forKey:@"subSiteUrl"];
+            [self.userDefaults setValue:[NSString stringWithFormat:@"http://%@",requestData[0][@"SubSiteUrl"]] forKey:@"subSiteUrl"];
             [self.userDefaults synchronize];
         }
     }

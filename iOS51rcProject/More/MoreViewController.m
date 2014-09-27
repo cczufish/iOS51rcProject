@@ -124,7 +124,9 @@
             NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
             NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
             //构造分享内容
-            id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"我正在使用%@手机客户端找工作，随时随地，方便实用！你也来试试...http://m.qlrc.com\n来自：%@",[userDefault objectForKey:@"subSiteName"],[userDefault objectForKey:@"subSiteName"]]
+            NSString *strMobileUrl = [userDefault objectForKey:@"subSiteUrl"];
+            strMobileUrl = [strMobileUrl stringByReplacingOccurrencesOfString:@"www" withString:@"m"];
+            id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"我正在使用%@手机客户端找工作，随时随地，方便实用！你也来试试...%@\n来自：%@",[userDefault objectForKey:@"subSiteName"],strMobileUrl,[userDefault objectForKey:@"subSiteName"]]
                                                defaultContent:@"默认分享内容，没内容时显示"
                                                         image:[ShareSDK imageWithPath:imagePath]
                                                         title:@"分享APP"
