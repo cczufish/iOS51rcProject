@@ -62,7 +62,7 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     //构造分享内容
     NSString *subSiteUrl = [userDefault objectForKey:@"subSiteUrl"];
-    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n最新政府招考信息新鲜出炉，你准备好了吗？http://%@/news/govnews?id=%@&type=2\n",self.strTitle, subSiteUrl,strNewsID]
+    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n最新政府招考信息新鲜出炉，你准备好了吗？http://%@/personal/news/govnews?id=%@&type=2\n",self.strTitle, subSiteUrl,strNewsID]
                                        defaultContent:@"默认分享内容，没内容时显示"
                                                 image:[ShareSDK imageWithPath:imagePath]
                                                 title:@"分享APP"
