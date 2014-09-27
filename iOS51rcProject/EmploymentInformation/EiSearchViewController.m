@@ -34,11 +34,10 @@
     self.navigationItem.titleView = button;
     //返回按钮
     UIButton *leftBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
-    [leftBtn addTarget:self action:@selector(btnBackClick:) forControlEvents:UIControlEventTouchUpInside];
+    [leftBtn addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
     UILabel *lbLeft = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
     lbLeft.text = @"返回";
     lbLeft.font = [UIFont systemFontOfSize:13];
-    //lbLeft.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     lbLeft.textColor = [UIColor whiteColor];
     [leftBtn addSubview:lbLeft];
     UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] initWithCustomView:leftBtn] autorelease];
@@ -53,7 +52,7 @@
     self.txtKeyWord.layer.borderColor = [UIColor lightGrayColor].CGColor;
 }
 
-- (void) btnBackClick:(UIButton*) sender{
+- (void) btnShareClick:(UIButton*) sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)btn1Click:(id)sender {

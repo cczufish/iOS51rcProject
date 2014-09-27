@@ -2,6 +2,7 @@
 #import "NetWebServiceRequest.h"
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
+#import <ShareSDK/ShareSDK.h>
 
 @interface GRItemDetailsViewController ()<NetWebServiceRequestDelegate, UIScrollViewAccessibilityDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -32,16 +33,21 @@
     [button setTitle: @"政府招考详情" forState: UIControlStateNormal];
     [button sizeToFit];
     self.navigationItem.titleView = button;
-    //返回按钮
-    UIButton *leftBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
-    [leftBtn addTarget:self action:@selector(btnBackClick:) forControlEvents:UIControlEventTouchUpInside];
-    UILabel *lbLeft = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
-    lbLeft.text = @"政府招考";
-    lbLeft.font = [UIFont systemFontOfSize:13];
-    lbLeft.textColor = [UIColor whiteColor];
-    [leftBtn addSubview:lbLeft];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem=backButton;
+    
+    //分享按钮
+    UIButton *btnRight = [[[UIButton alloc] initWithFrame:CGRectMake(260, 0, 30, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    //添加左侧竖线
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.5, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    view.layer.backgroundColor = [UIColor whiteColor].CGColor;
+    [btnRight addSubview:view];
+    //添加分享图片
+    [btnRight addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, (self.navigationController.navigationBar.frame.size.height-20)/2, 20, 20)] autorelease];
+    UIImage *imgShared = [[UIImage imageNamed:@"btn_cpmain_share.png"] autorelease];
+    imageView.image = imgShared;
+    [btnRight addSubview:imageView];
+    UIBarButtonItem *btnBarRight = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
+    self.navigationItem.rightBarButtonItem=btnBarRight;
     
     //获取数据
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -54,9 +60,38 @@
     [self.loading startAnimating];
 }
 
-- (void) btnBackClick:(UIButton*) sender{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void) btnShareClick:(UIButton*) sender{
+    NSString *imagePath = [[NSBundle mainBundle] pathForResource:@"ShareSDK"  ofType:@"jpg"];
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    //构造分享内容
+    NSString *subSiteUrl = [userDefault objectForKey:@"subSiteUrl"];
+    //NSString *subSiteUrl =
+    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n最新政府招考信息新鲜出炉，你准备好了吗？http://%@/news/govnews?id=%@&type=2\n",self.strTitle, subSiteUrl, strNewsID]
+                                       defaultContent:@"默认分享内容，没内容时显示"
+                                                image:[ShareSDK imageWithPath:imagePath]
+                                                title:@"分享APP"
+                                                  url:@"http://www.51rc.com"
+                                          description:@""
+                                            mediaType:SSPublishContentMediaTypeNews];
+    
+    [ShareSDK showShareActionSheet:nil
+                         shareList:nil
+                           content:publishContent
+                     statusBarTips:YES
+                       authOptions:nil
+                      shareOptions: nil
+                            result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
+                                if (state == SSResponseStateSuccess)
+                                {
+                                    NSLog(@"分享成功");
+                                }
+                                else if (state == SSResponseStateFail)
+                                {
+                                    NSLog(@"分享失败,错误码:%d,错误描述:%@", [error errorCode], [error errorDescription]);
+                                }
+                            }];
 }
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 }
@@ -73,12 +108,12 @@
     NSDictionary *dicCpMain = requestData[0];
     UIView *tmpView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 300)] autorelease];
     //标题
-    NSString *strTitle = dicCpMain[@"title"];
-    CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(310, 200)];
+    self.strTitle = dicCpMain[@"title"];
+    CGSize labelSize = [CommonController CalculateFrame:self.strTitle fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(310, 200)];
     UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, labelSize.width, 40)] autorelease];
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
-    [lbTitle setText:strTitle];
+    [lbTitle setText:self.strTitle];
     [tmpView addSubview:lbTitle];
     
     //标签
@@ -154,6 +189,7 @@
     [strNewsID release];
     //修复错误添加：scrollViewDidScroll:]: message sent to deallocated instance；原因是scrollView释放时，scrollView滑动的动画还未结束，会调用scrollViewDidScroll:(UIScrollView *)sender方法，这时sender也就是UIScrollView已被释放，所以会报错
     _newsScroll.delegate = nil;
+    [_strTitle release];
     [_newsScroll release];
     [_loading release];
     [_runningRequest release];
