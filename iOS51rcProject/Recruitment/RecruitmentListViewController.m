@@ -60,7 +60,7 @@
     myRmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     myRmBtn.layer.cornerRadius = 5;
     myRmBtn.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
-    myRmBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    myRmBtn.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     myRmBtn.layer.borderWidth = 0.3;
     [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
     //我的招聘会
@@ -75,15 +75,15 @@
     //添加检索边框
     self.btnDateSet.layer.masksToBounds = YES;
     self.btnDateSet.layer.borderWidth = 1.0;
-    self.btnDateSet.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnDateSet.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     
     self.btnProvinceSel.layer.masksToBounds = YES;
     self.btnProvinceSel.layer.borderWidth = 1.0;
-    self.btnProvinceSel.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnProvinceSel.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     
     self.btnPlaceSel.layer.masksToBounds = YES;
     self.btnPlaceSel.layer.borderWidth = 1.0;
-    self.btnPlaceSel.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnPlaceSel.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     
     [self.btnDateSet addTarget:self action:@selector(showDateSelect) forControlEvents:UIControlEventTouchUpInside];
     [self.btnProvinceSel addTarget:self action:@selector(showRegionSelect) forControlEvents:UIControlEventTouchUpInside];
@@ -220,7 +220,7 @@
     [lbAddress release];
 
     UILabel *lbSeparator = [[UILabel alloc] initWithFrame:CGRectMake(0, 119, 320, 1)];
-    lbSeparator.backgroundColor = [UIColor grayColor];
+    lbSeparator.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbSeparator)];
     [lbSeparator release];
 

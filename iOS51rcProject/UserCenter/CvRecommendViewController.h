@@ -30,5 +30,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *tvList1;
 @property (retain, nonatomic) IBOutlet UITableView *tvList2;
 @property (retain, nonatomic) IBOutlet UITableView *tvList3;
+@property (retain, nonatomic) IBOutlet UIButton *btnModifyCv;
+@property (retain, nonatomic) IBOutlet UIView *viewModifyCv;
 
 @end

@@ -71,7 +71,7 @@
     //设置底部功能栏
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
-    self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     [self.btnFavorite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
     //加载等待动画
@@ -89,16 +89,16 @@
     //添加检索边框
     self.btnRegionFilter.layer.masksToBounds = YES;
     self.btnRegionFilter.layer.borderWidth = 1.0;
-    self.btnRegionFilter.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnRegionFilter.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.btnJobTypeFilter.layer.masksToBounds = YES;
     self.btnJobTypeFilter.layer.borderWidth = 1.0;
-    self.btnJobTypeFilter.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnJobTypeFilter.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.btnSalaryFilter.layer.masksToBounds = YES;
     self.btnSalaryFilter.layer.borderWidth = 1.0;
-    self.btnSalaryFilter.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnSalaryFilter.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.btnOtherFilter.layer.masksToBounds = YES;
     self.btnOtherFilter.layer.borderWidth = 1.0;
-    self.btnOtherFilter.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnOtherFilter.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     
     //搜索条件赋值
     self.jobType = @"";
@@ -330,7 +330,7 @@
     
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     [viewSeparate release];
     return cell;

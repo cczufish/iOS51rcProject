@@ -73,8 +73,18 @@
     [dicParam release];
 }
 
-- (void)getRecommendList:(NSString *)cvId
+- (void)getRecommendList:(NSDictionary *)cvData
 {
+    NSString *cvId = cvData[@"ID"];
+    if ([cvData[@"Valid"] isEqualToString:@"0"]) {
+        CGRect frameModifyCv = self.viewModifyCv.frame;
+        frameModifyCv.origin.x = self.scrollContent.contentOffset.x;
+        [self.btnModifyCv setTag:[cvId intValue]];
+        [self.viewModifyCv setFrame:frameModifyCv];
+        [self.viewModifyCv setHidden:false];
+        return;
+    }
+    [self.viewModifyCv setHidden:true];
     [loadView startAnimating];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
@@ -186,7 +196,7 @@
                 }
             }
             self.tableNumber = 1;
-            [self getRecommendList:requestData[0][@"ID"]];
+            [self getRecommendList:requestData[0]];
         }
     }
     else if (request.tag == 2) {
@@ -250,7 +260,7 @@
     } completion:^(BOOL finished) {
         if (!self.jobListData2) {
             self.tableNumber = 2;
-            [self getRecommendList:self.cvListData[1][@"ID"]];
+            [self getRecommendList:self.cvListData[1]];
         }
     }];
 }
@@ -264,7 +274,7 @@
     } completion:^(BOOL finished) {
         if (!self.jobListData3) {
             self.tableNumber = 3;
-            [self getRecommendList:self.cvListData[2][@"ID"]];
+            [self getRecommendList:self.cvListData[2]];
         }
     }];
 }
@@ -591,6 +601,8 @@
     [_tvList1 release];
     [_tvList2 release];
     [_tvList3 release];
+    [_btnModifyCv release];
+    [_viewModifyCv release];
     [super dealloc];
 }
 @end

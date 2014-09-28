@@ -33,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationItem setTitle:@"简历更新"];
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     self.txtMobile.text = self.mobile;
     self.viewMobile.layer.cornerRadius = 5;

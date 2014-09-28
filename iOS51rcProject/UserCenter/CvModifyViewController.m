@@ -48,6 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationItem setTitle:@"简历修改"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     //加载等待动画

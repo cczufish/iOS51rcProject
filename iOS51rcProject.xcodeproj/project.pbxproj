@@ -3025,11 +3025,6 @@
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/UI",
-					/Users/lucifer/Downloads/ShareSDK/Connection,
-					/Users/lucifer/Downloads/ShareSDK/Core,
-					/Users/lucifer/Downloads/ShareSDK/Extend/QQConnectSDK,
-					/Users/lucifer/Downloads/ShareSDK,
-					/Users/lucifer/Downloads/ShareSDK/UI,
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3049,9 +3044,6 @@
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/SinaWeiboSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/TencentWeiboSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/WeChatSDK",
-					/Users/lucifer/Downloads/ShareSDK/Extend/SinaWeiboSDK,
-					/Users/lucifer/Downloads/ShareSDK/Extend/TencentWeiboSDK,
-					/Users/lucifer/Downloads/ShareSDK/Extend/WeChatSDK,
 					"$(PROJECT_DIR)/iOS51rcProject/Class/LibBPush",
 				);
 				ONLY_ACTIVE_ARCH = NO;
@@ -3077,11 +3069,6 @@
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/UI",
-					/Users/lucifer/Downloads/ShareSDK/Connection,
-					/Users/lucifer/Downloads/ShareSDK/Core,
-					/Users/lucifer/Downloads/ShareSDK/Extend/QQConnectSDK,
-					/Users/lucifer/Downloads/ShareSDK,
-					/Users/lucifer/Downloads/ShareSDK/UI,
 				);
 				GCC_INPUT_FILETYPE = automatic;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3101,9 +3088,6 @@
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/SinaWeiboSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/TencentWeiboSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/WeChatSDK",
-					/Users/lucifer/Downloads/ShareSDK/Extend/SinaWeiboSDK,
-					/Users/lucifer/Downloads/ShareSDK/Extend/TencentWeiboSDK,
-					/Users/lucifer/Downloads/ShareSDK/Extend/WeChatSDK,
 					"$(PROJECT_DIR)/iOS51rcProject/Class/LibBPush",
 				);
 				OTHER_LDFLAGS = "-ObjC";
