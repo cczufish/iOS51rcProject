@@ -486,7 +486,7 @@
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JVa-5i-F8q">
-                                        <rect key="frame" x="177" y="7" width="57" height="36"/>
+                                        <rect key="frame" x="177" y="7" width="84" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal">
@@ -513,7 +513,7 @@
                     <connections>
                         <outlet property="ViewBottom" destination="CUZ-kV-IGR" id="nh1-eZ-yBP"/>
                         <outlet property="btnApply" destination="AKM-sw-JED" id="fkM-Rd-2HG"/>
-                        <outlet property="btnFavourite" destination="JVa-5i-F8q" id="Ebv-TE-SkD"/>
+                        <outlet property="btnFavourite" destination="JVa-5i-F8q" id="RC8-0l-VJt"/>
                         <outlet property="tvCpJobList" destination="sWO-cX-SEX" id="5vn-wZ-mVf"/>
                     </connections>
                 </viewController>
