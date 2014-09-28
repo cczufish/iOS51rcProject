@@ -94,8 +94,7 @@
 {
     FindPsdStep1ViewController *findPsd1View =[self.storyboard instantiateViewControllerWithIdentifier: @"findPsd1View"];
     [self.navigationController pushViewController:findPsd1View animated:YES];
-    findPsd1View.navigationItem.title = @"重置密码";
-    self.navigationItem.title = @"";
+    findPsd1View.navigationItem.title = @"重置密码";   
 }
 
 - (void) gotoHome

@@ -215,13 +215,11 @@
         UIStoryboard *jm = [UIStoryboard storyboardWithName:@"JobApplication" bundle:nil];
         JmMainViewController *jmMainCtrl = [jm instantiateViewControllerWithIdentifier:@"JmMainView"];
         jmMainCtrl.navigationItem.title = @"职位申请";
-        self.navigationItem.title = @" ";
         [self.navigationController pushViewController:jmMainCtrl animated:true];
     }else{
         UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
         [self.navigationController pushViewController:loginCtrl animated:YES];
-        self.navigationItem.title = @" ";
     }
 }
 
@@ -230,14 +228,12 @@
     if ([CommonController isLogin]) {
         UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
         CpInviteViewController *CpInviteViewCtrl = [userCenter instantiateViewControllerWithIdentifier:@"CpInviteView"];
-        CpInviteViewCtrl.navigationItem.title = @"企业邀约";
-        self.navigationItem.title = @" ";
+        CpInviteViewCtrl.navigationItem.title = @"企业邀约";       ;
         [self.navigationController pushViewController:CpInviteViewCtrl animated:true];
     }else{
         UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
-        [self.navigationController pushViewController:loginCtrl animated:YES];
-        self.navigationItem.title = @" ";
+        [self.navigationController pushViewController:loginCtrl animated:YES];        
     }
 }
 

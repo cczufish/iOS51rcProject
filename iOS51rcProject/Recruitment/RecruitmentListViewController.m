@@ -116,8 +116,7 @@
      if ([userDefaults objectForKey:@"UserID"]) {
          MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
          myRmCtrl.navigationItem.title = @"我的招聘会";
-         [self.navigationController pushViewController:myRmCtrl animated:YES];
-         self.navigationItem.title = @" ";
+         [self.navigationController pushViewController:myRmCtrl animated:YES];        
      }else{
          UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
          LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];

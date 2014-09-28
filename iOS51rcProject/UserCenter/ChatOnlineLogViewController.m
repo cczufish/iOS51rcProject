@@ -90,7 +90,6 @@
     cpMainCtrl.cpMainID = self.cpMainID;    
     [self.navigationController pushViewController:cpMainCtrl animated:true];
     cpMainCtrl.navigationItem.title = self.cpName;
-    self.navigationItem.title = @"";
 }
 
 //获取聊天记录

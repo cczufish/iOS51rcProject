@@ -218,8 +218,7 @@
 - (IBAction)btnInviteCp:(id)sender {
     UIViewController *pCtrl = [CommonController getFatherController:self.view];
     RmSearchJobForInviteViewController *inviteViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmSearchJobForInviteView"];
-    [pCtrl.navigationController pushViewController:inviteViewCtrl animated:true];
-    pCtrl.navigationItem.title = @" ";
+    [pCtrl.navigationController pushViewController:inviteViewCtrl animated:true];   
     inviteViewCtrl.navigationItem.title = @"邀请企业参会";
 }
 

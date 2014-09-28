@@ -471,8 +471,7 @@
         rmInviteCpViewCtrl.strRmID = self.rmID;
         rmInviteCpViewCtrl.selectRmCps = checkedCpArray;
         [checkedCpArray retain];
-        [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
-        self.navigationItem.title = @" ";
+        [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];        
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];

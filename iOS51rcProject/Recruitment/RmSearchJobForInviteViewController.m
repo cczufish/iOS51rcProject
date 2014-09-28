@@ -141,7 +141,6 @@
     jobList.strBeginTime = self.strBeginTime;
     jobList.rmID = self.rmID;
     [self.navigationController pushViewController:jobList animated:true];
-    self.navigationItem.title = @" ";
     jobList.navigationItem.title = @"邀请企业参会";
 }
 
@@ -154,7 +153,6 @@
     rmInviteCpViewCtrl.strPlace = self.strPlace;
     rmInviteCpViewCtrl.strRmID = self.rmID;
     rmInviteCpViewCtrl.selectRmCps = checkedCps;
-    self.navigationItem.title = @" ";
     [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
 
@@ -167,8 +165,7 @@
     rmInviteCpViewCtrl.strAddress = self.strAddress;
     rmInviteCpViewCtrl.strPlace = self.strPlace;
     rmInviteCpViewCtrl.strRmID = self.rmID;
-    rmInviteCpViewCtrl.selectRmCps = checkedCps;
-    self.navigationItem.title = @" ";
+    rmInviteCpViewCtrl.selectRmCps = checkedCps;    
     [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
 

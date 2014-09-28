@@ -469,8 +469,7 @@
     }else{
         UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
         LoginViewController *loginCtrl = [login instantiateViewControllerWithIdentifier:@"LoginView"];
-        [self.navigationController pushViewController:loginCtrl animated:YES];
-        self.navigationItem.title = @" ";
+        [self.navigationController pushViewController:loginCtrl animated:YES];       
     }
 }
 

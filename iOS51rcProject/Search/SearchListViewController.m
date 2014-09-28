@@ -347,8 +347,7 @@
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
-    jobC.cpMainID = rowData[@"cpMainID"];
-    self.navigationItem.title = @" ";
+    jobC.cpMainID = rowData[@"cpMainID"];    
     jobC.navigationItem.title = rowData[@"cpName"];
     [self.navigationController pushViewController:jobC animated:YES];
 }

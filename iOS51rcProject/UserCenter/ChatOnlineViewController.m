@@ -137,8 +137,7 @@
     logCtrl.caName = rowData[@"caName"];
     logCtrl.cpMainID = rowData[@"cpMainID"];
     logCtrl.isOnline = rowData[@"OnlineStatus"];
-    logCtrl.navigationItem.title = @"在线沟通";
-    self.navigationItem.title = @" ";
+    logCtrl.navigationItem.title = @"在线沟通";    
     [self.navigationController pushViewController:logCtrl animated:YES];
 }
 
