@@ -252,7 +252,9 @@
     NSString *issueEnd = rowData[@"IssueEND"];
     NSDate *dtIssueEnd = [CommonController dateFromString:issueEnd];
     NSDate * now = [NSDate date];
+    BOOL canBeDelete = false;
     if ([now laterDate:dtIssueEnd] == now ) {
+        canBeDelete = true;
         UIImageView *imgEnd = [[[UIImageView alloc] initWithFrame:CGRectMake(290, 0, 30, 30)]autorelease];
         imgEnd.image = [UIImage imageNamed:@"ico_expire.png"];
         [cell.contentView addSubview:imgEnd];
@@ -296,13 +298,17 @@
         }else{
             lbReply.text = @"已查看未答复";
         }
-       //只有符合要求和不符合要求的职位可以删除，为查看的职位不可以删除
+       //只有符合要求和不符合要求的职位可以删除，为查看的职位不可以删除.或者已经过期的也可以删除
     }else if(reply == 1){
+        canBeDelete = true;
         lbReply.text = @"符合要求";
-        [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
     }
     else if(reply == 2){
+        canBeDelete = true;
         lbReply.text = @"不符合要求";
+    }
+    //删除
+    if (canBeDelete == true) {
         [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
     }
     [btnCheck release];
