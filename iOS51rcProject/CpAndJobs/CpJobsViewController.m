@@ -95,9 +95,11 @@
     }else if (request.tag == 4) { //重新申请职位成功
         [pCtrl.view makeToast:@"重新申请简历成功"];
         [self.arrCheckJobID removeAllObjects];
+        [self.tvCpJobList reloadData];
     }else if (request.tag == 5) {
         [pCtrl.view makeToast:@"收藏职位成功"];
         [self.arrCheckJobID removeAllObjects];
+        [self.tvCpJobList reloadData];
     }
     
     //结束等待动画
@@ -243,7 +245,8 @@
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位
         if (self.arrCheckJobID.count == 0) {
-            [self.view makeToast:@"您还没有选择职位"];
+            UIViewController *pCtrl = [CommonController getFatherController:self.view];
+            [pCtrl.view makeToast:@"您还没有选择职位"];
             return;
         }
         //连接数据库，读取有效简历
@@ -265,13 +268,15 @@
     }
 }
 
+
 - (void)jobFavorite
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位
         if (self.arrCheckJobID.count == 0) {
-            [self.view makeToast:@"您还没有选择职位"];
+            UIViewController *pCtrl = [CommonController getFatherController:self.view];
+            [pCtrl.view makeToast:@"您还没有选择职位"];
             return;
         }
         //连接数据库，读取有效简历

@@ -316,6 +316,7 @@
 		99BDC5F519A5F4A900B2BDB1 /* radioUnChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 99BDC5F319A5F4A900B2BDB1 /* radioUnChecked.png */; };
 		99BEE43D19ADAEDE0090C9E1 /* MyRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */; };
 		99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */; };
+		99C1E9FF19D7CFA200ACC555 /* ico_member_set.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */; };
 		99C539C119C962A600E6165A /* ico_salary_rank1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B719C962A600E6165A /* ico_salary_rank1.png */; };
 		99C539C219C962A600E6165A /* ico_salary_rank2.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B819C962A600E6165A /* ico_salary_rank2.png */; };
 		99C539C319C962A600E6165A /* ico_salary_rank3.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B919C962A600E6165A /* ico_salary_rank3.png */; };
@@ -997,6 +998,7 @@
 		99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecruitmentViewController.m; path = Recruitment/MyRecruitmentViewController.m; sourceTree = "<group>"; };
 		99BEE44219ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmReceivedInvitationViewController.h; path = Recruitment/MyRmReceivedInvitationViewController.h; sourceTree = "<group>"; };
 		99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmReceivedInvitationViewController.m; path = Recruitment/MyRmReceivedInvitationViewController.m; sourceTree = "<group>"; };
+		99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_set.png; sourceTree = "<group>"; };
 		99C539B719C962A600E6165A /* ico_salary_rank1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank1.png; sourceTree = "<group>"; };
 		99C539B819C962A600E6165A /* ico_salary_rank2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank2.png; sourceTree = "<group>"; };
 		99C539B919C962A600E6165A /* ico_salary_rank3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank3.png; sourceTree = "<group>"; };
@@ -2147,6 +2149,7 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */,
 				9923827E19D560BA003CFF62 /* btn_cpmain_share.png */,
 				9923827A19D4F039003CFF62 /* ico_login_name.png */,
 				9923827B19D4F039003CFF62 /* ico_login_pwd.png */,
@@ -2647,6 +2650,7 @@
 				9922970A19B95FF7008E8646 /* ico_onlinechat_offline.png in Resources */,
 				995C471219D258A0004F1A37 /* menu-back.png in Resources */,
 				994C507319C0335600E27017 /* ico_time_notice.png in Resources */,
+				99C1E9FF19D7CFA200ACC555 /* ico_member_set.png in Resources */,
 				9905132319C2EF2E00B9C096 /* Login.storyboard in Resources */,
 				99AF5B8919C1317E00BE73F2 /* ico_member_jobrecommend.png in Resources */,
 				9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */,

@@ -177,7 +177,7 @@
     
     //我邀请的企业(右侧的小方块)
     NSString *myRmCpCount = rowData[@"myInvitCpNum"] ;
-    UIButton *btnMyRmCp = [[UIButton alloc] initWithFrame:CGRectMake(237, 58, 75, 40)];
+    UIButton *btnMyRmCp = [[UIButton alloc] initWithFrame:CGRectMake(237, lbBegin.frame.origin.y + 10, 75, 40)];
     UILabel *lbMyRmCp = [[UILabel alloc] initWithFrame:CGRectMake(7, 25, 60, 10)];
     lbMyRmCp.text = @"我邀请的企业";
     lbMyRmCp.font = [UIFont systemFontOfSize:10];

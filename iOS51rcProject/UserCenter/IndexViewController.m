@@ -41,9 +41,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+<<<<<<< HEAD
     [self.navigationItem setTitle:@"会员中心"];
+=======
+    self.navigationItem.title = @"会员中心";
+>>>>>>> FETCH_HEAD
     self.btnPhotoCancel.layer.cornerRadius = 5;
     self.userDefaults = [NSUserDefaults standardUserDefaults];
+    //设置按钮
+    UIButton *btnRight = [[[UIButton alloc] initWithFrame:CGRectMake(260, 0, 30, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    //添加左侧竖线
+    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.75, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+    view.layer.shadowOffset = CGSizeMake(0, 3);
+    view.layer.shadowOpacity = 1;
+    view.layer.shadowRadius = 10.0;
+    view.layer.backgroundColor = [UIColor whiteColor].CGColor;
+    [btnRight addSubview:view];
+    //添加设置图片
+    [btnRight addTarget:self action:@selector(btnSettingClick:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(14, (self.navigationController.navigationBar.frame.size.height-25)/2 + 5, 15, 15)] autorelease];
+    UIImage *imgShared = [[UIImage imageNamed:@"ico_member_set.png"] autorelease];
+    imageView.image = imgShared;
+    [btnRight addSubview:imageView];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
+    self.navigationItem.rightBarButtonItem=backButton;
+    
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     self.viewWait = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
@@ -59,6 +82,9 @@
     self.btnMobileModify.layer.cornerRadius = 5;
 }
 
+- (void) btnSettingClick:(UIButton*) sender{
+
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
