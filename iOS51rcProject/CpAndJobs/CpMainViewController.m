@@ -104,7 +104,7 @@
     self.lbAddress.textColor = [UIColor grayColor];
     NSString *strRegion = dicCpMain[@"RegionName"];
     NSString *strAddressDetails = [NSString stringWithFormat:@"%@%@", strRegion, dicCpMain[@"Address"]];
-    labelSize = [CommonController CalculateFrame:strAddressDetails fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
+    labelSize = [CommonController CalculateFrame:strAddressDetails fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(220, 500)];
     self.lbAddressValue.frame = CGRectMake(80, self.lbAddress.frame.origin.y + 5, labelSize.width, labelSize.height);
     self.lbAddressValue.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbAddressValue.numberOfLines = 0;
