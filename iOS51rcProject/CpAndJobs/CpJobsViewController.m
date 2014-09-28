@@ -158,8 +158,10 @@
     [cell.contentView addSubview:(lbSalary)];
     [lbSalary release];
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, 20, 20)];
-    [btnCheck setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, 30, 50)];
+    UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
+    imgCheck.image = [UIImage imageNamed: @"chk_default.png"];
+    [btnCheck addSubview:imgCheck];
     [btnCheck setTitle:rowData[@"ID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
@@ -181,7 +183,6 @@
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
     jobC.cpMainID = rowData[@"cpMainID"];
-    //self.navigationItem.title = @" ";    
     UIViewController *pCtrl = [CommonController getFatherController:self.view];
     jobC.navigationItem.title = pCtrl.navigationItem.title;
     [pCtrl.navigationController pushViewController:jobC animated:YES];
@@ -207,12 +208,16 @@
         if (![self.arrCheckJobID containsObject:sender.titleLabel.text]) {
             [self.arrCheckJobID addObject:sender.titleLabel.text];
         }
-        [sender setImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
+        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
+        imgCheck.image = [UIImage imageNamed: @"chk_check.png"];
+        [sender addSubview:imgCheck];
         [sender setTag:2];
     }
     else {
         [self.arrCheckJobID removeObject:sender.titleLabel.text];
-        [sender setImage:[UIImage imageNamed:@"chk_default.png"] forState:UIControlStateNormal];
+        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
+        imgCheck.image = [UIImage imageNamed: @"chk_default.png"];
+        [sender addSubview:imgCheck];
         [sender setTag:1];
     }
     NSLog(@"%@",[self.arrCheckJobID componentsJoinedByString:@","]);
