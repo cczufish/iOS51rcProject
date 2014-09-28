@@ -46,7 +46,7 @@
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     self.txtMobile.text = self.mobile;
-    secondSend = 10;
+    secondSend = 180;
     //设置为数字键盘
     [self.txtMobile setKeyboardType:UIKeyboardTypeNumberPad];
     [self.txtVerify setKeyboardType:UIKeyboardTypeNumberPad];
@@ -144,7 +144,7 @@
         [self.btnSendSms setEnabled:true];
         [self.btnSendSms setTitle:@"重新认证" forState:UIControlStateNormal];
         [timer invalidate];
-        secondSend = 10;
+        secondSend = 180;
         return;
     }
     [self.btnSendSms setTitle:[NSString stringWithFormat:@"%d秒后重试",secondSend] forState:UIControlStateDisabled];
