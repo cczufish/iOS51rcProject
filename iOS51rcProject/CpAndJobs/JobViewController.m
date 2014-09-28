@@ -350,11 +350,13 @@
     
     //坐标
     if ([dicJob[@"lng"] length] > 0) {
-        UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(85+labelSize.width, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 5, 16, 21)];
-        [btnLngLat setBackgroundImage:[UIImage imageNamed:@"ico_cpinfo_cpaddress.png"] forState:UIControlStateNormal];
+        UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(80, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 5, 280, 21)];
+        UIImageView *lngLatImg = [[[UIImageView alloc]initWithFrame:CGRectMake(labelSize.width + 5, 0, 16, 21)] autorelease];
+        lngLatImg.image = [UIImage imageNamed:@"ico_cpinfo_cpaddress.png"] ;
         self.lng = [dicJob[@"lng"] floatValue];
         self.lat = [dicJob[@"lat"] floatValue];
         btnLngLat.tag = (NSInteger)dicJob[@"ID"];
+        [btnLngLat addSubview:lngLatImg];
         [btnLngLat addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
         [self.subView addSubview:btnLngLat];
         [btnLngLat release];
