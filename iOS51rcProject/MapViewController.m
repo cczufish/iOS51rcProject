@@ -6,8 +6,9 @@
 //
 
 #import "MapViewController.h"
+#import "SlideNavigationController.h"
 
-@interface MapViewController () <BMKMapViewDelegate>
+@interface MapViewController () <BMKMapViewDelegate,SlideNavigationControllerDelegate>
 
 @end
 
@@ -60,6 +61,11 @@
     [newAnnotation setImage:[UIImage imageNamed:@"ico_mapsearch_pointer_red.png"]];
     newAnnotation.canShowCallout = NO;
     return newAnnotation;
+}
+
+- (BOOL)removeSlideGesture
+{
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning

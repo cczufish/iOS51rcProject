@@ -8,6 +8,17 @@
 	<string>伍亿人才</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>AppIcon.png</string>
+		<string>AppIcon@2x.png</string>
+	</array>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>CFBundleIcons~ipad</key>
+	<dict/>
 	<key>CFBundleIdentifier</key>
 	<string>com.51rc.iOS51rcProject</string>
 	<key>CFBundleInfoDictionaryVersion</key>

@@ -216,7 +216,8 @@ static const NSUInteger kDomainSection = 1;
 
 + (void)dismiss
 {
-	[[sharedDialog parentViewController] dismissModalViewControllerAnimated:YES];
+    [[sharedDialog parentViewController] dismissViewControllerAnimated:YES completion:nil];
+//	[[sharedDialog parentViewController] dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -233,7 +234,9 @@ static const NSUInteger kDomainSection = 1;
 	if (self == sharedDialog) {
 		[[self class] dismiss];
 	} else {
-		[[self parentViewController] dismissModalViewControllerAnimated:YES];
+        
+        [[self parentViewController] dismissViewControllerAnimated:YES completion:nil];
+//		[[self parentViewController] dismissModalViewControllerAnimated:YES];
 	}
 }
 
@@ -308,7 +311,6 @@ static const NSUInteger kDomainSection = 1;
 		[self setModalPresentationStyle:UIModalPresentationFormSheet];
 	}
 #endif
-
 	[[self presentingController] presentModalViewController:self animated:YES];
 }
 

@@ -41,6 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationItem setTitle:@"会员中心"];
     self.btnPhotoCancel.layer.cornerRadius = 5;
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     //加载等待动画

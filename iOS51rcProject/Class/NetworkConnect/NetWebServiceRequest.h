@@ -26,6 +26,7 @@ extern NSString* const NetWebServiceRequestErrorDomain;
 
 @property (nonatomic, assign) id<NetWebServiceRequestDelegate> delegate;
 @property (nonatomic, assign) NSInteger tag;
+@property (nonatomic, assign) UIView *delegateView;
 
 
 //+ (id)serviceRequestUrl:(NSString *)WebURL

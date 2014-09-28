@@ -2,9 +2,8 @@
 #import <QuartzCore/QuartzCore.h>
 
 @protocol SlideNavigationControllerDelegate <NSObject>
-@required
-- (int)slideMenuItem;
 @optional
+- (int)slideMenuItem;
 - (UIGestureRecognizer *)haveAnotherGesture;
 - (BOOL)removeSlideGesture;
 - (BOOL)slideNavigationControllerShouldDisplayRightMenu;

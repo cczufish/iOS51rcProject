@@ -162,8 +162,7 @@
             break;
         }
 		case 1:
-			[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
-            return;
+            vc = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"HomeView"];
 			break;
         case 2:
             vc = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"SearchView"];
@@ -198,7 +197,6 @@
 			vc = [[UIStoryboard storyboardWithName:@"More" bundle: nil] instantiateViewControllerWithIdentifier: @"MoreView"];
 			break;
         default:
-            [[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
             return;
 			break;
 	}

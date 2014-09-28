@@ -249,7 +249,7 @@
     }
     float heightViewEducation = 65;
     for (NSDictionary *dicEducation in arrayCvEducation) {
-        heightViewEducation = [self fillCvEducation:dicEducation contentHeight:heightViewEducation];
+        heightViewEducation = [self fillCvEducation:dicEducation contentHeight:heightViewEducation educationCount:arrayCvEducation.count];
     }
     //修改位置和高度
     CGRect frameViewEducation = self.viewEducation.frame;
@@ -263,6 +263,7 @@
 
 - (float)fillCvEducation:(NSDictionary *)educationData
                 contentHeight:(float)contentHeight
+          educationCount:(int)educationCount
 {
     float destinationContentHeight = contentHeight;
     //添加分割线的球形
@@ -323,12 +324,15 @@
     [self.viewEducation addSubview:btnEducationModify];
     [btnEducationModify release];
     
-    UIButton *btnEducationDelete = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight+35, 30, 30)];
-    [btnEducationDelete setImage:[UIImage imageNamed:@"ico_cvmain_del.png"] forState:UIControlStateNormal];
-    [btnEducationDelete setTag:[educationData[@"ID"] intValue]];
-    [btnEducationDelete addTarget:self action:@selector(deleteCvEducation:) forControlEvents:UIControlEventTouchUpInside];
-    [self.viewEducation addSubview:btnEducationDelete];
-    [btnEducationDelete release];
+    if (educationCount > 1) {
+        UIButton *btnEducationDelete = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight+35, 30, 30)];
+        [btnEducationDelete setImage:[UIImage imageNamed:@"ico_cvmain_del.png"] forState:UIControlStateNormal];
+        [btnEducationDelete setTag:[educationData[@"ID"] intValue]];
+        [btnEducationDelete addTarget:self action:@selector(deleteCvEducation:) forControlEvents:UIControlEventTouchUpInside];
+        [self.viewEducation addSubview:btnEducationDelete];
+        [btnEducationDelete release];
+    }
+    
     destinationContentHeight += 27;
     
     //学历

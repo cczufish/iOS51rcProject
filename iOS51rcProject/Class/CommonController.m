@@ -301,6 +301,19 @@
         return false;
 }
 
+//退出登录
++(void) logout{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue: nil forKey:@"UserID"];//PamainID
+    [userDefaults setValue:nil forKey:@"paName"];
+    //    [userDefaults setValue: nil forKey:@"UserName"];
+    //    [userDefaults setValue: nil forKey:@"PassWord"];
+    //    [userDefaults setValue: nil forKey:@"BeLogined"];
+    //    [userDefaults setBool: false forKey:@"isAutoLogin"];
+    //    [userDefaults setValue:nil forKey:@"code"];
+    [userDefaults synchronize];
+}
+
 //是否是3.5寸屏幕
 +(BOOL) is35inchScreen
 {

@@ -24,7 +24,7 @@
         _viewBack = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 640)];
         _viewBack.backgroundColor = [UIColor colorWithRed:255.f/255.f green:255.f/255.f blue:255.f/255.f alpha:1];
         self.center = _viewBack.center;
-        self.center = CGPointMake(_viewBack.center.x, _viewBack.center.y-55);
+        self.center = CGPointMake(_viewBack.center.x, _viewBack.center.y);
         [_viewBack addSubview:self];
         [target.view addSubview:_viewBack];
         [_viewBack setHidden:true];

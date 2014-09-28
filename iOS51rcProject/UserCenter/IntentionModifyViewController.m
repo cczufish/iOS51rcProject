@@ -126,7 +126,7 @@
 }
 
 - (IBAction)changeNogetiation:(UIButton *)sender {
-    if (sender.tag == 0) {
+    if (self.btnNogetiation.tag == 0) {
         self.btnNogetiation.tag = 1;
         [self.btnNogetiation setBackgroundImage:[UIImage imageNamed:@"chk_check.png"] forState:UIControlStateNormal];
     }

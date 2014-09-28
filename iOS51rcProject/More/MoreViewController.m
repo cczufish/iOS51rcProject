@@ -224,16 +224,7 @@
 //点击退出帐号，清楚UserDefault里边的数据
 - (void) confirmAndCancelPopupNext
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue: nil forKey:@"UserID"];//PamainID
-    [userDefaults setValue:nil forKey:@"paName"];
-//    [userDefaults setValue: nil forKey:@"UserName"];
-//    [userDefaults setValue: nil forKey:@"PassWord"];
-//    [userDefaults setValue: nil forKey:@"BeLogined"];
-//    [userDefaults setBool: false forKey:@"isAutoLogin"];
-//    [userDefaults setValue:nil forKey:@"code"];
-    [userDefaults synchronize];
-    
+    [CommonController logout];
     HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
     homeViewC.toastType = 1;
     //返回到首页

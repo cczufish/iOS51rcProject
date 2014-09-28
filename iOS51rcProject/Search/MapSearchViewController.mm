@@ -6,6 +6,7 @@
 #import "CustomPopup.h"
 #import "JobViewController.h"
 #import "SearchViewController.h"
+#import "Toast+UIView.h"
 
 @interface MapSearchViewController () <BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,NetWebServiceRequestDelegate,SlideNavigationControllerDelegate,CustomPopupDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -15,6 +16,7 @@
 @property float lng;
 @property float distance;
 @property int maxPageNumber;
+@property (retain, nonatomic) NSString *currentAddress;
 @property (retain, nonatomic) NSString *rsType;
 @property (nonatomic, retain) NSMutableArray *jobAnnotations;
 @property (nonatomic, retain) NSMutableArray *jobDetails;
@@ -132,6 +134,7 @@
 - (void)mapView:(BMKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     [self getVisibleMapRadius];
+    [self getAddress:[self.viewMap centerCoordinate]];
 }
 
 //根据坐标获取地理位置
@@ -152,6 +155,7 @@
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error
 {
     if (error == BMK_SEARCH_NO_ERROR) {
+        self.currentAddress = result.address;
         [self.lbLocation setText:[NSString stringWithFormat:@"当前位置：%@",result.address]];
     }
     else {
@@ -201,6 +205,7 @@
     mapSearchListC.searchLat = self.lat;
     mapSearchListC.searchLng = self.lng;
     mapSearchListC.searchDistance = self.distance;
+    mapSearchListC.searchCondition = self.currentAddress;
     [self.navigationController pushViewController:mapSearchListC animated:true];
 }
 
@@ -393,6 +398,10 @@
         [jobDetail release];
     }
     [self.lbJobCount setText:[NSString stringWithFormat:@"%d|%d",self.jobNumber,(int)self.jobAnnotations.count]];
+    if (requestData.count == 0) {
+        [self.view makeToast:@"该位置周边没有职位"];
+        [self.lbPageCount setText:[NSString stringWithFormat:@"%d/%d",1,1]];
+    }
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
@@ -462,6 +471,7 @@
 */
 
 - (void)dealloc {
+    [_currentAddress release];
     [_viewMap release];
     [_locService release];
     [_locPoint release];

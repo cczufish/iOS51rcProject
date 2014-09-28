@@ -107,7 +107,8 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     [self.cancelLock lock];
     
     _delegate = delegate;
-    
+    UIViewController *viewC = delegate;
+    _delegateView = viewC.view;
     [self.cancelLock unlock];
 }
 
@@ -161,11 +162,19 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
 {
     switch (*error) {
         case ASIRequestTimedOutErrorType:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"网络连接超时" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
             NSLog(@"网络连接超时");
             break;
+        }
         case ASIConnectionFailureErrorType:
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"网络连接失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
             NSLog(@"未连接网络");
             break;
+        }
         default:
             NSLog(@"错误代码%d",*error);
             break;

@@ -1176,7 +1176,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="oEY-Bk-mqy">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="DIe-JC-3yL">
+                        <barButtonItem key="rightBarButtonItem" id="DIe-JC-3yL">
                             <view key="customView" contentMode="scaleToFill" id="w32-Vn-bOi">
                                 <rect key="frame" x="54" y="5" width="250" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1320,7 +1320,7 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="F7p-Fg-PAu">
+                        <barButtonItem key="rightBarButtonItem" id="F7p-Fg-PAu">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Prf-3R-dFR">
                                 <rect key="frame" x="254" y="7" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

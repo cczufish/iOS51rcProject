@@ -52,7 +52,7 @@
     [super viewDidLoad];
     self.arrCheckJobID = [[[NSMutableArray alloc] init] autorelease];
     //设置导航标题(搜索条件)
-    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
+    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
     [lbTitle setFont:[UIFont systemFontOfSize:12]];
     [lbTitle setText:self.searchCondition];

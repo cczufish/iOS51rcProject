@@ -107,7 +107,7 @@
     [self.txtName resignFirstResponder];
     [self.txtPsd resignFirstResponder];
     //登录缓冲界面
-    self.loginLoading = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    self.loginLoading = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 70, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [self.loginLoading startAnimating];
 }
 

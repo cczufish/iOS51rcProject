@@ -51,11 +51,12 @@
     
     self.arrCheckJobID = [[[NSMutableArray alloc] init] autorelease];
     //设置导航标题(搜索条件)
-    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
+    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
     [lbTitle setFont:[UIFont systemFontOfSize:12]];
     [lbTitle setText:self.searchCondition];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
+    [lbTitle setTextColor:[UIColor whiteColor]];
     //    [viewTitle setBackgroundColor:[UIColor blueColor]];
     [viewTitle addSubview:lbTitle];
     //设置导航标题(搜索结果)
@@ -63,6 +64,7 @@
     [self.lbSearchResult setText:@"正在获取职位列表"];
     [self.lbSearchResult setFont:[UIFont systemFontOfSize:10]];
     [self.lbSearchResult setTextAlignment:NSTextAlignmentCenter];
+    [self.lbSearchResult setTextColor:[UIColor whiteColor]];
     [viewTitle addSubview:self.lbSearchResult];
     [self.navigationItem setTitleView:viewTitle];
     [viewTitle release];
@@ -223,7 +225,7 @@
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.jobListData[indexPath.row];
     if (indexPath.row == 1) {
-        [self.lbSearchResult setText:[NSString stringWithFormat:@"[找到%@个职位]",rowData[@"JobNumber"]]];
+        [self.lbSearchResult setText:[NSString stringWithFormat:@"周边%.1f公里 [找到%@个职位]",self.searchDistance/1000,rowData[@"JobNumber"]]];
     }
     //职位名称
     UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 20)];

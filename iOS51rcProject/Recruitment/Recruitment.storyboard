@@ -610,6 +610,16 @@
                                                     <action selector="goToMapView:" destination="sPk-Pr-ZRT" eventType="touchUpInside" id="v7P-9A-iuS"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eZt-wN-hYy">
+                                                <rect key="frame" x="76" y="175" width="225" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="goToMapView:" destination="sPk-Pr-ZRT" eventType="touchUpInside" id="9BW-FQ-bna"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </view>
                                 </subviews>

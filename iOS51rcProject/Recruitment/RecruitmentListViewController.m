@@ -53,13 +53,15 @@
     [super viewDidLoad];
     
     //右侧导航按钮
-    UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 30)];
+    UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 0, 90, 30)];
     //myRmBtn.titleLabel.text = @"我的招聘会";//这样无法赋值
     [myRmBtn setTitle: @"我的招聘会" forState: UIControlStateNormal];
     myRmBtn.titleLabel.textColor = [UIColor whiteColor];
     myRmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     myRmBtn.layer.cornerRadius = 5;
     myRmBtn.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
+    myRmBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    myRmBtn.layer.borderWidth = 0.1;
     [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
     //我的招聘会
     UIBarButtonItem *btnMyRecruitment = [[UIBarButtonItem alloc] initWithCustomView:myRmBtn];
@@ -136,12 +138,22 @@
     }
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [dicParam setObject:[userDefault objectForKey:@"UserID"] forKey:@"paMainID"];
-    [dicParam setObject:self.begindate forKey:@"strBeginDate"];
-    [dicParam setObject:self.placeid forKey:@"strPlaceID"];
-    [dicParam setObject:self.regionid forKey:@"strRegionID"];
-    [dicParam setObject:[NSString stringWithFormat:@"%d",self.page] forKey:@"page"];
-    [dicParam setObject:[userDefault objectForKey:@"code"] forKey:@"code"];
+    if ([CommonController isLogin]) {
+        [dicParam setObject:[userDefault objectForKey:@"UserID"] forKey:@"paMainID"];
+        [dicParam setObject:self.begindate forKey:@"strBeginDate"];
+        [dicParam setObject:self.placeid forKey:@"strPlaceID"];
+        [dicParam setObject:self.regionid forKey:@"strRegionID"];
+        [dicParam setObject:[NSString stringWithFormat:@"%d",self.page] forKey:@"page"];
+        [dicParam setObject:[userDefault objectForKey:@"code"] forKey:@"code"];
+    }
+    else {
+        [dicParam setObject:@"0" forKey:@"paMainID"];
+        [dicParam setObject:self.begindate forKey:@"strBeginDate"];
+        [dicParam setObject:self.placeid forKey:@"strPlaceID"];
+        [dicParam setObject:self.regionid forKey:@"strRegionID"];
+        [dicParam setObject:[NSString stringWithFormat:@"%d",self.page] forKey:@"page"];
+        [dicParam setObject:@"0" forKey:@"code"];
+    }
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetRecruitMentList" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
