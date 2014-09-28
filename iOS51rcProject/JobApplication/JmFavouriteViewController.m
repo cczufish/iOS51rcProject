@@ -339,6 +339,7 @@
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
     jobC.JobID = rowData[@"ID"];
     jobC.cpMainID = rowData[@"cpID"];
+    jobC.navigationItem.title = rowData[@"cpName"];
     UIViewController *pCtrl = [self getFatherController];
     [pCtrl.navigationController pushViewController:jobC animated:YES];
 }
