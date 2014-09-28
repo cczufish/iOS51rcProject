@@ -14,7 +14,7 @@
 #import "ChatOnlineViewController.h"
 #import "MobileCertificateViewController.h"
 #import "JmMainViewController.h"
-
+#import "AccountManagementViewController.h"
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
@@ -78,9 +78,12 @@
     self.btnMobileModify.layer.cornerRadius = 5;
 }
 
+//用户设置
 - (void) btnSettingClick:(UIButton*) sender{
-
+    AccountManagementViewController *accountCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountManagementView"];
+    [self.navigationController pushViewController:accountCtrl animated:true];
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

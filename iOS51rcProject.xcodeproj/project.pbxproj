@@ -317,6 +317,9 @@
 		99BEE43D19ADAEDE0090C9E1 /* MyRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */; };
 		99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */; };
 		99C1E9FF19D7CFA200ACC555 /* ico_member_set.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */; };
+		99C1EA3E19D7DC0600ACC555 /* AccountManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C1EA3D19D7DC0600ACC555 /* AccountManagementViewController.m */; };
+		99C1EA4119D7DC2700ACC555 /* ChangePsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C1EA4019D7DC2700ACC555 /* ChangePsdViewController.m */; };
+		99C1EA4419D7DC3F00ACC555 /* ChangeNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C1EA4319D7DC3F00ACC555 /* ChangeNameViewController.m */; };
 		99C539C119C962A600E6165A /* ico_salary_rank1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B719C962A600E6165A /* ico_salary_rank1.png */; };
 		99C539C219C962A600E6165A /* ico_salary_rank2.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B819C962A600E6165A /* ico_salary_rank2.png */; };
 		99C539C319C962A600E6165A /* ico_salary_rank3.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C539B919C962A600E6165A /* ico_salary_rank3.png */; };
@@ -999,6 +1002,12 @@
 		99BEE44219ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmReceivedInvitationViewController.h; path = Recruitment/MyRmReceivedInvitationViewController.h; sourceTree = "<group>"; };
 		99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmReceivedInvitationViewController.m; path = Recruitment/MyRmReceivedInvitationViewController.m; sourceTree = "<group>"; };
 		99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_set.png; sourceTree = "<group>"; };
+		99C1EA3C19D7DC0600ACC555 /* AccountManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManagementViewController.h; path = UserCenter/AccountManagementViewController.h; sourceTree = "<group>"; };
+		99C1EA3D19D7DC0600ACC555 /* AccountManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManagementViewController.m; path = UserCenter/AccountManagementViewController.m; sourceTree = "<group>"; };
+		99C1EA3F19D7DC2700ACC555 /* ChangePsdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangePsdViewController.h; path = UserCenter/ChangePsdViewController.h; sourceTree = "<group>"; };
+		99C1EA4019D7DC2700ACC555 /* ChangePsdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChangePsdViewController.m; path = UserCenter/ChangePsdViewController.m; sourceTree = "<group>"; };
+		99C1EA4219D7DC3F00ACC555 /* ChangeNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChangeNameViewController.h; path = UserCenter/ChangeNameViewController.h; sourceTree = "<group>"; };
+		99C1EA4319D7DC3F00ACC555 /* ChangeNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChangeNameViewController.m; path = UserCenter/ChangeNameViewController.m; sourceTree = "<group>"; };
 		99C539B719C962A600E6165A /* ico_salary_rank1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank1.png; sourceTree = "<group>"; };
 		99C539B819C962A600E6165A /* ico_salary_rank2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank2.png; sourceTree = "<group>"; };
 		99C539B919C962A600E6165A /* ico_salary_rank3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_salary_rank3.png; sourceTree = "<group>"; };
@@ -2399,6 +2408,12 @@
 				995ED5A719D0112F005CFBC0 /* CvRecommendViewController.m */,
 				998F3BD119D518840011784A /* RefreshCvViewController.h */,
 				998F3BD219D518840011784A /* RefreshCvViewController.m */,
+				99C1EA3C19D7DC0600ACC555 /* AccountManagementViewController.h */,
+				99C1EA3D19D7DC0600ACC555 /* AccountManagementViewController.m */,
+				99C1EA3F19D7DC2700ACC555 /* ChangePsdViewController.h */,
+				99C1EA4019D7DC2700ACC555 /* ChangePsdViewController.m */,
+				99C1EA4219D7DC3F00ACC555 /* ChangeNameViewController.h */,
+				99C1EA4319D7DC3F00ACC555 /* ChangeNameViewController.m */,
 			);
 			name = UserCenter;
 			sourceTree = "<group>";
@@ -2726,6 +2741,7 @@
 				998025C219A23024001A7E84 /* MJRefreshHeaderView.m in Sources */,
 				99BDC5E919A5F10D00B2BDB1 /* MLTableAlert.m in Sources */,
 				99FC0B5F19C2E26100B7EC74 /* MDRadialProgressTheme.m in Sources */,
+				99C1EA4419D7DC3F00ACC555 /* ChangeNameViewController.m in Sources */,
 				991BC86619CBFA0E0014FB80 /* ExperienceModifyViewController.m in Sources */,
 				99B9672019B4550500E93CBD /* RmSearchJobForInviteViewController.m in Sources */,
 				99A16D1D19C6B6790053C6E9 /* JmFavouriteViewController.m in Sources */,
@@ -2762,6 +2778,7 @@
 				99908A5A19A34DD300137FDE /* FMResultSet.m in Sources */,
 				99BDC5EB19A5F10D00B2BDB1 /* SVProgressHUD.m in Sources */,
 				9905134519C2F3D500B9C096 /* CpMainViewController.m in Sources */,
+				99C1EA4119D7DC2700ACC555 /* ChangePsdViewController.m in Sources */,
 				99C581D519C193C7009985C5 /* CpInviteViewController.m in Sources */,
 				9927ACCB19C82F450037E3F9 /* EFloatBox.m in Sources */,
 				99C581D819C196B7009985C5 /* InterviewNoticeViewController.m in Sources */,
@@ -2806,6 +2823,7 @@
 				999BDD4519C2E60B000A152A /* ASIDownloadCache.m in Sources */,
 				99CFD828199B5F80009A5ABA /* AppDelegate.m in Sources */,
 				999BDD2019C2E4FC000A152A /* SearchViewController.m in Sources */,
+				99C1EA3E19D7DC0600ACC555 /* AccountManagementViewController.m in Sources */,
 				99CFD824199B5F80009A5ABA /* main.mm in Sources */,
 				99938FDC19BD84F0008F986A /* CommonFavorityViewController.m in Sources */,
 				9925BEF119B80E02002DBFE0 /* DictionaryPickerView.m in Sources */,
