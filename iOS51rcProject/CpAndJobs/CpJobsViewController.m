@@ -95,9 +95,11 @@
     }else if (request.tag == 4) { //重新申请职位成功
         [pCtrl.view makeToast:@"重新申请简历成功"];
         [self.arrCheckJobID removeAllObjects];
+        [self.tvCpJobList reloadData];
     }else if (request.tag == 5) {
         [pCtrl.view makeToast:@"收藏职位成功"];
         [self.arrCheckJobID removeAllObjects];
+        [self.tvCpJobList reloadData];
     }
     
     //结束等待动画
@@ -265,6 +267,7 @@
         [self.navigationController pushViewController:loginC animated:true];
     }
 }
+
 
 - (void)jobFavorite
 {
