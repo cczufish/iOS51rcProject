@@ -135,6 +135,11 @@
     NSDate *nowDate =  [NSDate date];
     NSString *strNow = [CommonController stringFromDate:nowDate formatType:@"yyyy-MM-dd"];
     int age = [[strNow substringToIndex:4] intValue] - [[strAge substringToIndex:4] intValue];
+    if (age<100) {
+        strAge = [NSString stringWithFormat:@"/%d岁", age];
+    }else{
+        strAge = @" ";
+    }
     //学历
     NSString *strDegree = rowData[@"Degree"];
     if (strDegree == nil) {
@@ -156,9 +161,9 @@
     if (strLivePlace == nil) {
         strLivePlace = @"";
     }else{
-        strLivePlace = [NSString stringWithFormat:@"%@", strLivePlace];
+         strLivePlace = [NSString stringWithFormat:@"%@", strLivePlace];
     }
-    NSString *strPaInfo = [NSString stringWithFormat:@"%@/%d岁%@%@  %@ ", strSex, age, strDegree, strRelatedWorkYears, strLivePlace];
+    NSString *strPaInfo = [NSString stringWithFormat:@"%@%@%@%@  %@ ", strSex, strAge, strDegree, strRelatedWorkYears, strLivePlace];
     labelSize = [CommonController CalculateFrame:strPaInfo fontDemond:[UIFont systemFontOfSize:12] sizeDemand:titleSize];
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPaInfo.text = strPaInfo;

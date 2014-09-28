@@ -42,6 +42,7 @@
     secondPageLoad = false;
     thriePageLoad = false;
     
+    self.navigationItem.title = @"邀请企业参会";
     //初始化三个子View
     self.firstCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"CommonSearchJobView"];
     self.firstCtrl.view.frame = CGRectMake(0, 0, 320, HEIGHT);

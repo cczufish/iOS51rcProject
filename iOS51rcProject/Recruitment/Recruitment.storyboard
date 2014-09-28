@@ -734,7 +734,7 @@
                 <viewController storyboardIdentifier="RmInviteCpView" id="tWc-FL-GpS" customClass="RmInviteCpViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ozV-un-0Kr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4tk-ap-aYn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="509"/>
