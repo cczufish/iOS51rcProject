@@ -261,7 +261,7 @@
     NSDate *dtBeginDate = [CommonController dateFromString:strBeginDate];
     strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
-    lbInviteTime.text = [NSString stringWithFormat:@"通知时间：%@ %@",strBeginDate,strWeek];
+    lbInviteTime.text = [NSString stringWithFormat:@"通知时间：  %@ %@",strBeginDate,strWeek];
     lbInviteTime.font = [UIFont systemFontOfSize:11];
     lbInviteTime.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbInviteTime)];
