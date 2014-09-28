@@ -200,35 +200,39 @@
     [self.recommentJobsData removeAllObjects];
     self.recommentJobsData = requestData;
     //浏览过的其他职位子View
-    UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, tmpHeight, 280, requestData.count*27)] autorelease];
+    UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, tmpHeight, 280, 5*27)] autorelease];
     for (int i=0; i<requestData.count; i++) {
-        NSDictionary *rowData = requestData[i];
-        UIButton *btnOther = [[[UIButton alloc] initWithFrame:CGRectMake(0, 27*i, 280, 20)] autorelease];
-        [btnOther addTarget:self action:@selector(btnOtherJobClick:) forControlEvents:UIControlEventTouchUpInside];
-        btnOther.tag = i;
-        //职位名称
-        UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, 20)]autorelease];
-        lbTitle.textColor = [UIColor blackColor];
-        lbTitle.font = [UIFont systemFontOfSize:12];
-        lbTitle.text = rowData[@"JobName"];
-        //待遇
-        UILabel *lbSalary = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 80, 20)]autorelease];
-        lbSalary.text = [CommonController getDictionaryDesc:rowData[@"dcSalaryID"] tableName:@"dcSalary"];
-        if (lbSalary.text.length == 0) {
-            lbSalary.text = @"面议";
+        if (i<5) {//只显示前5个
+            NSDictionary *rowData = requestData[i];
+            UIButton *btnOther = [[[UIButton alloc] initWithFrame:CGRectMake(0, 27*i, 280, 20)] autorelease];
+            [btnOther addTarget:self action:@selector(btnOtherJobClick:) forControlEvents:UIControlEventTouchUpInside];
+            btnOther.tag = i;
+            //职位名称
+            UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, 20)]autorelease];
+            lbTitle.textColor = [UIColor blackColor];
+            lbTitle.font = [UIFont systemFontOfSize:12];
+            lbTitle.text = rowData[@"JobName"];
+            //待遇
+            UILabel *lbSalary = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 80, 20)]autorelease];
+            lbSalary.text = [CommonController getDictionaryDesc:rowData[@"dcSalaryID"] tableName:@"dcSalary"];
+            if (lbSalary.text.length == 0) {
+                lbSalary.text = @"面议";
+            }
+            lbSalary.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+            lbSalary.textAlignment = NSTextAlignmentRight;
+            lbSalary.font = [UIFont systemFontOfSize:12];
+            [btnOther addSubview:lbTitle];
+            [btnOther addSubview:lbSalary];
+            //分割线
+            UILabel *lbLine = [[[UILabel alloc] initWithFrame:CGRectMake(0, 24 , 280, 1)] autorelease];
+            lbLine.text = @"----------------------------------------------------------------------";
+            lbLine.textColor = [UIColor lightGrayColor];
+            [btnOther addSubview:lbLine];
+            
+            [tmpView addSubview:btnOther];
+        }else{
+            break;
         }
-        lbSalary.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
-        lbSalary.textAlignment = NSTextAlignmentRight;
-        lbSalary.font = [UIFont systemFontOfSize:12];
-        [btnOther addSubview:lbTitle];
-        [btnOther addSubview:lbSalary];
-        //分割线
-        UILabel *lbLine = [[[UILabel alloc] initWithFrame:CGRectMake(0, 24 , 280, 1)] autorelease];
-        lbLine.text = @"----------------------------------------------------------------------";
-        lbLine.textColor = [UIColor lightGrayColor];
-        [btnOther addSubview:lbLine];
-        
-        [tmpView addSubview:btnOther];
     }
     [self.subView addSubview:tmpView];
     self.subView.frame = CGRectMake(0, 0, 320, tmpView.frame.origin.y + tmpView.frame.size.height);
