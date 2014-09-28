@@ -125,7 +125,6 @@
                 [self.jobListData removeAllObjects];
                 self.jobListData = requestData;
             }
-            
             else{
                 [self.jobListData addObjectsFromArray:requestData];
             }
@@ -140,7 +139,6 @@
             UIImageView *imgCornor = self.btnTop.subviews[1];
             imgCornor.image = [UIImage imageNamed:@"11111"];//赋空值
             self.btnTop.titleLabel.text = @" ";
-
             
             UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 240, 80)]autorelease];
             UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 60)] autorelease];
@@ -176,11 +174,13 @@
                                    ,nil] autorelease];
         [arrCv addObject:defalult];
         for (int i = 0; i < requestData.count; i++) {
-            NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
+            if (![requestData[i][@"Name"] isEqualToString:@"未完成简历"]) {
+                NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
                                     requestData[i][@"ID"],@"id",
                                     requestData[i][@"Name"],@"value"
                                     ,nil] autorelease];
-            [arrCv addObject:dicCv];
+                [arrCv addObject:dicCv];
+                 }
         }
         
         self.cvList = arrCv;
