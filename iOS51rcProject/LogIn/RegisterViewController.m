@@ -13,18 +13,25 @@
 #import "GDataXMLNode.h"
 #import <UIKit/UIKit.h>
 #import "LoadingAnimationView.h"
+#import "CustomPopup.h"
+#import "LoadingAnimationView.h"
+#import "Toast+UIView.h"
+#import "CvModifyViewController.h"
 
 #define TAG_CreateResumeOrNot 1
 #define TAG_RESUME 2
 
 @interface RegisterViewController () <CreateResumeDelegate, NetWebServiceRequestDelegate>
+{
+    LoadingAnimationView *loadView;
+}
 @property (retain, nonatomic) IBOutlet UITextField *txtUserName;
 @property (retain, nonatomic) IBOutlet UITextField *txtPsd;
 @property (retain, nonatomic) IBOutlet UITextField *txtRePsd;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UIButton *btnRegister;
 @property (retain, nonatomic) IBOutlet UIView *viewRegister;
-
+@property (nonatomic, retain) CustomPopup *cPopup;
 
 @property (retain, nonatomic) LoadingAnimationView *loadingView;
 @end
@@ -43,7 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     self.viewRegister.layer.borderWidth = 1;
     self.viewRegister.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewRegister.layer.cornerRadius = 5;
@@ -92,8 +99,8 @@
         NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"Register" Params:dicParam];
         [request startAsynchronous];
         [request setDelegate:self];
+        request.tag = 1;
         self.runningRequest = request;
-        wsName = @"Register";
     }
     //缓冲界面
     self.loadingView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -113,17 +120,27 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSArray *)requestData
 {
-    if ([wsName isEqual: @"Register"])
-    {
+    if (request.tag == 1) {
         [self didReceiveRegisterData:result];        
     }
-    else if ([wsName isEqualToString:@"GetPaAddDate"])
+    else if (request.tag == 2)
     {
         [self.loadingView stopAnimating];
         [self didReceiveGetCode:result];
     }
-    
+    else if (request.tag == 3) {
+        if ([result isEqualToString:@"0"]) {
+            [self.view makeToast:@"已经创建了3份简历了"];
+            return;
+        }
+        UIViewController *pCtrl = [CommonController getFatherController:self.view];
+        UIStoryboard *userCenterStoryboard = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
+        CvModifyViewController *cvModifyC = [userCenterStoryboard instantiateViewControllerWithIdentifier:@"CvModifyView"];
+        cvModifyC.cvId = result;
+        [pCtrl.navigationController pushViewController:cvModifyC animated:true];
+    }
     [result retain];
+    
     [self.loadingView stopAnimating];
 }
 
@@ -175,10 +192,10 @@
     [dicParam setObject:paMainID forKey:@"paMainID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaAddDate" Params:dicParam];
     
+    request.tag = 2;
     [request startAsynchronous];
     [request setDelegate:self];
     self.runningRequest = request;
-    wsName = @"GetPaAddDate";
 }
 
 //当点击创建简历
@@ -186,6 +203,23 @@
 {
     [createResumeCtrl.view removeFromSuperview];
     [backGroundView removeFromSuperview];
+    
+    int cvType = 1;
+    if (hasExp) {
+        cvType = 0;
+    }
+    [loadView startAnimating];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+    [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+    [dicParam setObject:[NSString stringWithFormat:@"%d",cvType] forKey:@"type"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"CreateResume" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 3;
+    self.runningRequest = request;
+    [dicParam release];
 }
 
 -(void) didReceiveGetCode:(NSString *) result
@@ -270,6 +304,7 @@
 
 
 - (void)dealloc {
+    //[_cPopup release];
     [_txtUserName release];
     [_txtPsd release];
     [_txtRePsd release];

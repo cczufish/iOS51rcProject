@@ -13,7 +13,6 @@
 @interface RegisterViewController : UIViewController
 {
     id<GoToHomeDelegate> gotoHomeDelegate;
-    NSString *wsName;//当前调用的webservice名字
     NSString *userName;
     NSString *userID;
     NSString *password;
