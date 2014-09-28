@@ -159,6 +159,7 @@
         }
         strMsg = [strMsg stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
         strMsg = [strMsg stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+        strMsg = [strMsg stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
         UILabel *lbMsg = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, labelSize.width, labelSize.height)] autorelease];
         [lbMsg setText:strMsg];
         lbMsg.lineBreakMode = NSLineBreakByCharWrapping;
@@ -198,6 +199,7 @@
         }
         strMsg = [strMsg stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
         strMsg = [strMsg stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+        strMsg = [strMsg stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
         //最右端的坐标是320-50=270
         UILabel *lbMsg = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, labelSize.width + 10, labelSize.height)] autorelease];
         [lbMsg setText:strMsg];

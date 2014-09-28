@@ -109,6 +109,7 @@
     NSString *strMsg = rowData[@"Message"];
     strMsg = [strMsg stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
     strMsg = [strMsg stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
+    strMsg = [strMsg stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
     UILabel *lbMsg = [[[UILabel alloc] initWithFrame:CGRectMake(50, 25, 270, 20)] autorelease];
     [lbMsg setText:strMsg];
     [lbMsg setFont:fontCell];
