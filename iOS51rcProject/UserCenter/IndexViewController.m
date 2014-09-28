@@ -41,11 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< HEAD
     [self.navigationItem setTitle:@"会员中心"];
-=======
-    self.navigationItem.title = @"会员中心";
->>>>>>> FETCH_HEAD
     self.btnPhotoCancel.layer.cornerRadius = 5;
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     //设置按钮
