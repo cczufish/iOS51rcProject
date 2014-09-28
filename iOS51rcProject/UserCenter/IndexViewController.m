@@ -97,6 +97,14 @@
     {
         [self.view makeToast:@"手机号认证成功"];
     }
+    else if(self.toastType == 3)
+    {
+        [self.view makeToast:@"密码已修改成功"];
+    }
+    else if(self.toastType == 4)
+    {
+        [self.view makeToast:@"用户名已修改成功"];
+    }
     self.toastType = 0;
 }
 

@@ -6,6 +6,7 @@
 #import <UIKit/UIKit.h>
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
+#import "IndexViewController.h"
 
 @interface ChangePsdViewController () <NetWebServiceRequestDelegate>
 @property (retain, nonatomic) IBOutlet UITextField *txtOldPsd;
@@ -16,6 +17,7 @@
 @property (retain, nonatomic) LoadingAnimationView *loadingView;
 @property (retain, nonatomic) NSString *code;
 @property (retain, nonatomic) IBOutlet UIView *viewTop;
+@property (retain, nonatomic) NSString *lastPsd;
 @end
 
 @implementation ChangePsdViewController
@@ -67,6 +69,11 @@
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *oldPsd = [userDefaults objectForKey:@"PassWord"];
+    if (![oldPsd isEqualToString:self.txtOldPsd.text]) {
+        [Dialog alert:@"旧密码不正确！"];
+        return ;
+
+    }
     NSString *passWord= self.txtPsd.text;
     NSString *rePassord=self.txtRePsd.text;
     
@@ -74,7 +81,7 @@
     if (!result) {
         return;
     }
-    
+    self.lastPsd = self.txtRePsd.text;
     NSString *userID = [userDefaults objectForKey:@"UserID"];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -87,7 +94,6 @@
     [request startAsynchronous];
     [request setDelegate:self];
     self.runningRequest = request;
-
     
     //缓冲界面
     self.loadingView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -127,9 +133,14 @@
     }
     else if([result intValue] > 0)
     {
-        [CommonController logout];//清除数据
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setValue:self.lastPsd forKey:@"PassWord"];
+        
+         UIViewController *pCtrl = [CommonController getFatherController:self.view];
+        IndexViewController *indexCtrl = [pCtrl.navigationController.viewControllers objectAtIndex:pCtrl.navigationController.viewControllers.count-2];
+        indexCtrl.toastType = 3;
         //跳转上一个界面
-        UIViewController *pCtrl = [CommonController getFatherController:self.view];
+       
         [pCtrl.navigationController popViewControllerAnimated:YES];
     }
     else
@@ -169,6 +180,7 @@
 }
 
 - (void)dealloc {
+    [_lastPsd release];
     [_viewTop release];
     [_txtPsd release];
     [_txtRePsd release];
