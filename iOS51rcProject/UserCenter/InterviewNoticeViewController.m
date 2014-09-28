@@ -103,7 +103,22 @@
     }
     else if(request.tag == 2)
     {
-        [self onSearch];//加载完后重新刷新
+        //[self onSearch];//加载完后重新刷新
+        [self.recruitmentCpData removeAllObjects];
+        [self.tvReceivedInvitationList reloadData];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *code = [userDefaults objectForKey:@"code"];
+        NSString *userID = [userDefaults objectForKey:@"UserID"];
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:userID forKey:@"paMainID"];//21142013
+        [dicParam setObject:code forKey:@"code"];//152014391908
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaInterviewListByID" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 1;
+        self.runningRequest = request;
+        [dicParam release];
     }
     else if(request.tag == 3)
     {
@@ -337,7 +352,6 @@
         lbRemark.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
         [cell.contentView addSubview:(lbRemark)];
         
-        
         //判断是否已经结束，如果没有结束，则可以赴约参会
         if ([strReply isEqualToString:@"0"]) {//未回复
             //不赴约的原因文本框
@@ -365,7 +379,7 @@
             UIButton *btnAccept = [[UIButton alloc] initWithFrame:CGRectMake(50, txtViewReason.frame.origin.y + txtViewReason.frame.size.height+ 5, 90, 30)];
             btnAccept.tag = (NSInteger)rowData[@"ID"];
             objc_setAssociatedObject(btnAccept, @"message", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
-            [btnAccept addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
+            [btnAccept addTarget:self action:@selector(btnAcceptClick:) forControlEvents:UIControlEventTouchUpInside];
             btnAccept.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
             btnAccept.layer.cornerRadius = 5;
             UILabel *lbAccept = [[[UILabel alloc] initWithFrame:CGRectMake(33, 0, 99, 30)] autorelease];
@@ -378,7 +392,8 @@
             //不赴约
             UIButton *btnReject = [[UIButton alloc] initWithFrame:CGRectMake(170, txtViewReason.frame.origin.y + txtViewReason.frame.size.height + 5, 99, 30)];
             btnReject.tag = (NSInteger)rowData[@"ID"];
-            [btnReject addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
+            objc_setAssociatedObject(btnReject, @"message", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
+            [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
             btnReject.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1].CGColor;
             btnReject.layer.cornerRadius = 5;
             UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
@@ -499,8 +514,7 @@
     NSString *userName = [userDefaults objectForKey:@"UserName"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:userName forKey:@"paName"];
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
+    [dicParam setObject:[userDefaults objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
     [dicParam setObject: [NSString stringWithFormat:@"%d", sender.tag] forKey:@"cpMainID"];
     [dicParam setObject:msg forKey:@"message"];
     [dicParam setObject:userID forKey:@"id"];
