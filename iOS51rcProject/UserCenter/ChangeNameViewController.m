@@ -78,7 +78,7 @@
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     
     [dicParam setObject: userID forKey:@"paMainID"];
-    [dicParam setObject:self.txtPsd.text forKey:@"password"];
+    [dicParam setObject:self.txtPsd.text forKey:@"Password"];
     [dicParam setObject:self.txtNewUserName.text forKey:@"Username"];
     [dicParam setObject:code forKey:@"code"];
     
