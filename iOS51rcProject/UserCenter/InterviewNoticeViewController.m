@@ -14,6 +14,7 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequestGetCvList;
 @property (retain, nonatomic) IBOutlet UITableView *tvReceivedInvitationList;
 @property (retain, nonatomic) IBOutlet UILabel *lbMessage;
+@property (retain, nonatomic) NSMutableArray *arrayHeight;
 @end
 
 @implementation InterviewNoticeViewController
@@ -219,7 +220,7 @@
     NSString *issueEnd = rowData[@"IssueEND"];
     NSDate *dtIssueEnd = [CommonController dateFromString:issueEnd];
     NSDate * now = [NSDate date];
-    if ([now laterDate:dtIssueEnd] == now ) {
+    if ([now laterDate:dtIssueEnd] == now  && !isDelete) {//过期，并且为删除
         strJobName = [NSString stringWithFormat:@"（已过期）%@", strJobName];
     }
     UIFont *titleFont = [UIFont systemFontOfSize:15];
@@ -234,13 +235,17 @@
     [cell.contentView addSubview:(lbTitle)];
     [lbTitle release];
     //在线离线图标
-    UIButton *btnChat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 20, 6, 28, 15)];
-    UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 28, 15)];
-    imgOnline.image = [UIImage imageNamed:@"ico_joblist_online.png"];
-    [btnChat addSubview:imgOnline];
-    [cell.contentView addSubview:btnChat];
-    [btnChat release];
-    [imgOnline release];
+    BOOL isOnline = [rowData[@"IsOnline"] boolValue];
+    if (isOnline) {
+        UIButton *btnChat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 20, 6, 28, 15)];
+        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 28, 15)];
+        imgOnline.image = [UIImage imageNamed:@"ico_joblist_online.png"];
+        [btnChat addSubview:imgOnline];
+        [cell.contentView addSubview:btnChat];
+        [btnChat release];
+        [imgOnline release];
+    }
+    
     //公司名称
     NSString *strCpName = rowData[@"cpName"];
     labelSize = [CommonController CalculateFrame:strCpName fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
@@ -343,13 +348,16 @@
         [cell.contentView addSubview:lbPreRemark];
         
         NSString *strRemark = rowData[@"Remark"];
-        labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
-        UILabel *lbRemark = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbMobile.frame.origin.y + lbMobile.frame.size.height + 5, labelSize.width, 15)] autorelease];
+        if (strRemark == nil) {
+            strRemark = @"    ";
+        }
+        labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 500)];
+        UILabel *lbRemark = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbMobile.frame.origin.y + lbMobile.frame.size.height + 5, labelSize.width, labelSize.height)] autorelease];
         lbRemark.text = strRemark;
         lbRemark.font = [UIFont systemFontOfSize:11];
         lbRemark.lineBreakMode = NSLineBreakByCharWrapping;
         lbRemark.numberOfLines = 0;
-        lbRemark.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+        lbRemark.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbRemark)];
         
         //判断是否已经结束，如果没有结束，则可以赴约参会
@@ -394,7 +402,8 @@
             btnReject.tag = (NSInteger)rowData[@"ID"];
             objc_setAssociatedObject(btnReject, @"message", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
-            btnReject.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1].CGColor;
+            btnReject.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+            //[UIColor colorWithRed:3/255.0 green:178/255.0 blue:34/255.0 alpha:1].CGColor;
             btnReject.layer.cornerRadius = 5;
             UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
             lbReject.text = @"不赴约";
@@ -415,37 +424,40 @@
           
             UILabel *lbApply = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 40, 15)] autorelease];
             lbApply.text = strRemark;
-            lbApply.layer.cornerRadius = 3;
+            lbApply.layer.cornerRadius = 5;
             lbApply.font = [UIFont systemFontOfSize:11];
             lbApply.textColor = [UIColor whiteColor];
             lbApply.textAlignment = NSTextAlignmentCenter;
             if ([strReply isEqualToString:@"1"]) {
                 lbApply.text = @"赴约";
-                lbApply.backgroundColor = [UIColor grayColor];
+                lbApply.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1];
             }
             else{
                 lbApply.text = @"不赴约";
-                lbApply.backgroundColor = [UIColor greenColor];
+                lbApply.backgroundColor = [UIColor lightGrayColor];
                 //不赴约原因
                 UILabel *lbReason = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbApply.frame.origin.y+lbApply.frame.size.height + 5, 280, 15)] autorelease];
                 lbReason.text = [NSString stringWithFormat:@"原      因：%@", rowData[@"ReplyMessage"]];
                 lbReason.textColor = [UIColor grayColor];
-                lbReason.layer.cornerRadius = 3;
+                lbReason.layer.cornerRadius = 5;
                 lbReason.font = [UIFont systemFontOfSize:11];
                 [cell.contentView addSubview:(lbReason)];
             }
             [cell.contentView addSubview:(lbApply)];
 
-            selectRowHeight = lbApply.frame.origin.y + lbApply.frame.size.height + 23;
+            selectRowHeight = lbApply.frame.origin.y + lbApply.frame.size.height + 15;
         }
     }else{
         selectRowHeight = 70;
     }
-    //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 0.5)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
-    [cell.contentView addSubview:viewSeparate];
     
+    if (indexPath.row<self.recruitmentCpData.count-1) {
+        //分割线
+        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 0.5)];
+        [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+        [cell.contentView addSubview:viewSeparate];
+    }
+
     return cell;
 }
 
@@ -541,20 +553,22 @@
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSInteger height = 70;
     NSString *strReply = self.recruitmentCpData[indexPath.row][@"Reply"];
-    
     if (selectRowIndex == indexPath.row) {
+        NSString *strRemark = self.recruitmentCpData[indexPath.row][@"Remark"];
+        CGSize labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 500)];
+        height += labelSize.height - 15;
         //如果未结束，并且没操作
         if ([strReply isEqualToString:@"0"]) {
-            return 280;
+            height +=  210;
         }
         else {
-            return 210;
+            height +=  140;
         }
-        
-    }else {
-        return 70;
     }
+    
+    return height;
 }
 
 //开始编辑输入框的时候，软键盘出现，执行此事件
@@ -586,6 +600,7 @@
 }
 
 - (void)dealloc {
+    [_arrayHeight release];
     [_runningRequest release];
     [_runningRequestForRejectOrAccept release];
     [_runningRequestGetCvList release];
