@@ -4,7 +4,7 @@
 #import "SlideNavigationController.h"
 #import "CommonController.h"
 #import "CustomPopup.h"
-#import "JobViewController.h"
+#import "SuperJobMainViewController.h"
 #import "SearchViewController.h"
 #import "Toast+UIView.h"
 
@@ -116,7 +116,6 @@
 //点击位置时执行此方法
 - (void)mapView:(BMKMapView *)mapView didSelectAnnotationView:(BMKAnnotationView *)view
 {
-    [self.btnJobShow setTag:[view.reuseIdentifier intValue]];
     NSArray *arrJobDetail = [[[NSArray alloc] init] autorelease];
     for (NSArray *arr in self.jobDetails) {
         if ([arr[3] isEqualToString:view.reuseIdentifier]) {
@@ -236,9 +235,12 @@
 }
 
 - (IBAction)goToJob:(id)sender {
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
-    JobViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"JobView"];
-    jobC.JobID = [NSString stringWithFormat:@"%d",self.btnJobShow.tag];
+    NSArray *rowData = [self.jobDetails objectAtIndex:self.jobNumber-1];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
+    jobC.JobID = rowData[3];
+    jobC.cpMainID = rowData[4];
+    jobC.navigationItem.title = rowData[1];
     [self.navigationController pushViewController:jobC animated:YES];
 }
 
@@ -394,7 +396,7 @@
         [jobDetail appendString:@"|"];
         //刷新时间
         [jobDetail appendString:[CommonController stringFromDate:[CommonController dateFromString:rowData[@"RefreshDate"]] formatType:@"MM-dd HH:mm"]];
-        [self.jobDetails addObject:[NSArray arrayWithObjects:rowData[@"JobName"], rowData[@"cpName"], jobDetail, rowData[@"ID"], nil]];
+        [self.jobDetails addObject:[NSArray arrayWithObjects:rowData[@"JobName"], rowData[@"cpName"], jobDetail, rowData[@"ID"], rowData[@"cpMainID"], nil]];
         [jobDetail release];
     }
     [self.lbJobCount setText:[NSString stringWithFormat:@"%d|%d",self.jobNumber,(int)self.jobAnnotations.count]];

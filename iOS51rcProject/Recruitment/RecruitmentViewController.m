@@ -8,6 +8,7 @@
 #import "RmSearchJobForInviteViewController.h"
 #import "LoginViewController.h"
 #import "MapViewController.h"
+#import "CustomPopup.h"
 
 
 @interface RecruitmentViewController () <NetWebServiceRequestDelegate,UIScrollViewDelegate>
@@ -29,6 +30,9 @@
 @property (nonatomic, retain) LoadingAnimationView *loading;
 @property (retain, nonatomic) NSString *attentCpCount;
 @property (nonatomic, retain) AttendRMPopUp *cPopup;
+@property (nonatomic, retain) CustomPopup *photoPopup;
+@property (nonatomic, retain) UIPageControl *pagePhoto;
+
 @end
 
 @implementation RecruitmentViewController
@@ -47,13 +51,15 @@
     [super viewDidLoad];
     self.attentCpCount = @"0";
     //右侧导航按钮
-    UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 22)];
+    UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 0, 90, 30)];
     //myRmBtn.titleLabel.text = @"我的招聘会";//这样无法赋值
     [myRmBtn setTitle: @"我的招聘会" forState: UIControlStateNormal];
     myRmBtn.titleLabel.textColor = [UIColor whiteColor];
     myRmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     myRmBtn.layer.cornerRadius = 5;
     myRmBtn.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
+    myRmBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    myRmBtn.layer.borderWidth = 0.3;
     [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
     //我的招聘会
     UIBarButtonItem *btnMyRecruitment = [[UIBarButtonItem alloc] initWithCustomView:myRmBtn];
@@ -113,13 +119,17 @@
 {
     if (request.tag == 1) {
         [self bindRm:requestData];
-    }else if(request.tag == 2){
-        [self.loading stopAnimating];
+    }
+    else if(request.tag == 2) {
         self.cPopup = [[[AttendRMPopUp alloc] initPopup] autorelease];
         //self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
         [self.cPopup setDelegate:self];
         [self.cPopup showPopup:self.view];
     }
+    else if (request.tag == 3) {
+        [self fillPlacePhoto:requestData];
+    }
+    [self.loading stopAnimating];
 }
 
 //预约成功，打开搜索、申请、收藏界面
@@ -317,6 +327,21 @@
         fltHeight += labelSize.height;
     }
     
+    //场馆环境
+    if ([[dicRecruitment objectForKey:@"hasPhoto"] isEqualToString:@"1"]) {
+        self.recruitmentDeptId = [dicRecruitment objectForKey:@"RecruitmentDeptId"];
+        self.recruitmentPlaceId = [dicRecruitment objectForKey:@"RecruitmentPlaceId"];
+        fltHeight += 10;
+        UIButton *btnPlaceScan = [[UIButton alloc] initWithFrame:CGRectMake(20, fltHeight, 280, 40)];
+        [btnPlaceScan setBackgroundColor:[UIColor colorWithRed:40.f/255.f green:195.f/255.f blue:90.f/255.f alpha:1]];
+        [btnPlaceScan.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [btnPlaceScan setTitle:@"查看场馆环境照片" forState:UIControlStateNormal];
+        [btnPlaceScan addTarget:self action:@selector(showPlacePhoto:) forControlEvents:UIControlEventTouchUpInside];
+        btnPlaceScan.layer.cornerRadius = 5;
+        [self.scrollRecruitment addSubview:btnPlaceScan];
+        fltHeight += 40;
+    }
+    
     //招聘会详情
     if ([dicRecruitment objectForKey:@"Brief"]) {
         fltHeight += 10;
@@ -354,7 +379,48 @@
     }
     
     [self.scrollRecruitment setContentSize:CGSizeMake(320, fltHeight+20)];
-    [self.loading stopAnimating];
+}
+
+//读取场馆照片
+-(void)showPlacePhoto:(id)sender
+{
+    [self.loading startAnimating];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.recruitmentPlaceId forKey:@"placeid"];
+    [dicParam setObject:self.recruitmentDeptId forKey:@"deptid"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetRmPlacePhoto" Params:dicParam];
+    [request setDelegate:self];
+    request.tag = 3;
+    [request startAsynchronous];
+    self.runningRequest = request;
+}
+
+//显示场馆照片
+-(void)fillPlacePhoto:(NSArray *)photoList
+{
+    UIView *viewPhoto = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 200)];
+    UIScrollView *scrollPhoto = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 280, 180)];
+    [scrollPhoto setDelegate:self];
+    [scrollPhoto setContentSize:CGSizeMake(280*photoList.count, 180)];
+    scrollPhoto.pagingEnabled = true;
+    for (int i=0;i<photoList.count;i++) {
+        UIImageView *imgPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(280*i, 0, 280, 180)];
+        [imgPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Recruitment/RmPlacePhoto/%@",photoList[i][@"FileName"]]]]]];
+        [scrollPhoto addSubview:imgPhoto];
+        [imgPhoto release];
+    }
+    [viewPhoto addSubview:scrollPhoto];
+    self.pagePhoto = [[[UIPageControl alloc] initWithFrame:CGRectMake(0, 195, 100, 5)] autorelease];
+    [self.pagePhoto setCurrentPageIndicatorTintColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
+    [self.pagePhoto setPageIndicatorTintColor:[UIColor colorWithRed:190.f/255.f green:190.f/255.f blue:190.f/255.f alpha:1]];
+    self.pagePhoto.center = CGPointMake(viewPhoto.center.x, 195);
+    self.pagePhoto.numberOfPages = photoList.count;
+    self.pagePhoto.currentPage = 0;
+    [viewPhoto addSubview:self.pagePhoto];
+    self.photoPopup = [[CustomPopup alloc] popupCommon:viewPhoto buttonType:PopupButtonTypeNone];
+    [self.photoPopup showPopup:self.view];
+    [viewPhoto release];
+    [scrollPhoto release];
 }
 
 //点击我要参会
@@ -438,6 +504,12 @@
     [self.view addSubview:callWebview];
 }
 
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    int index = fabs(scrollView.contentOffset.x)/280;
+    self.pagePhoto.currentPage = index;
+}
+
 - (void)dealloc {
     [_recruitmentMobile release];
     [_recruitmentTelephone release];
@@ -461,6 +533,10 @@
     [_lng release];
     [_lat release];
     [_recruitmentName release];
+    [_recruitmentDeptId release];
+    [_recruitmentPlaceId release];
+    [_photoPopup release];
+    [_pagePhoto release];
     [super dealloc];
 }
 @end

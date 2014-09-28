@@ -61,7 +61,7 @@
     myRmBtn.layer.cornerRadius = 5;
     myRmBtn.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
     myRmBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-    myRmBtn.layer.borderWidth = 0.1;
+    myRmBtn.layer.borderWidth = 0.3;
     [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
     //我的招聘会
     UIBarButtonItem *btnMyRecruitment = [[UIBarButtonItem alloc] initWithCustomView:myRmBtn];
