@@ -81,6 +81,7 @@
 //用户设置
 - (void) btnSettingClick:(UIButton*) sender{
     AccountManagementViewController *accountCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountManagementView"];
+    accountCtrl.navigationItem.title = @"账户管理";
     [self.navigationController pushViewController:accountCtrl animated:true];
 }
 
@@ -347,7 +348,6 @@
             UIStoryboard *jm = [UIStoryboard storyboardWithName:@"JobApplication" bundle:nil];
             JmMainViewController *jmMainCtrl = [jm instantiateViewControllerWithIdentifier:@"JmMainView"];
             jmMainCtrl.navigationItem.title = @"职位申请";
-            self.navigationItem.title = @" ";
             [self.navigationController pushViewController:jmMainCtrl animated:true];
             break;
         }
@@ -356,7 +356,6 @@
             UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
             CpInviteViewController *CpInviteViewCtrl = [userCenter instantiateViewControllerWithIdentifier:@"CpInviteView"];
             CpInviteViewCtrl.navigationItem.title = @"企业邀约";
-            self.navigationItem.title = @" ";
             [self.navigationController pushViewController:CpInviteViewCtrl animated:true];
         
             break;
@@ -366,7 +365,6 @@
             UIStoryboard *userCenter = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
             ChatOnlineViewController *chatOnlieCtrl = [userCenter instantiateViewControllerWithIdentifier:@"ChatOnlineView"];
             chatOnlieCtrl.navigationItem.title = @"在线沟通";
-            self.navigationItem.title = @" ";
             [self.navigationController pushViewController:chatOnlieCtrl animated:true];
 
              break;

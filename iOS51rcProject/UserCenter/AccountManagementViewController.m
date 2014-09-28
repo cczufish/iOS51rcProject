@@ -68,10 +68,10 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if (self.scrollView.contentOffset.x > 160) {
-        [self btnFirstClick:nil];
+        [self btnSecondClick:nil];
     }
     else {
-        [self btnSecondClick:nil];
+        [self btnFirstClick:nil];
     }
 }
 
