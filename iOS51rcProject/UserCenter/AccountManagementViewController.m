@@ -31,8 +31,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;//不加这一行，滚动条会飘
     self.scrollView.delegate = self;
     //获得子View
-    self.firstView = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangeNameView"];
-    self.secondView = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePsdView"];
+    self.firstView = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePsdView"];
+    self.secondView = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangeNameView"];
     self.firstView.view.frame = CGRectMake(0, 0, 320, HEIGHT);
     self.secondView.view.frame = CGRectMake(320, 0, 320, HEIGHT);
     

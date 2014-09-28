@@ -195,10 +195,10 @@
             </objects>
             <point key="canvasLocation" x="488" y="62"/>
         </scene>
-        <!--Change Name View Controller-->
+        <!--Change Psd View Controller-->
         <scene sceneID="823-Yi-HVx">
             <objects>
-                <viewController storyboardIdentifier="ChangeNameView" id="cHA-PM-tqA" customClass="ChangeNameViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePsdView" id="cHA-PM-tqA" customClass="ChangePsdViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="spE-r1-djS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -215,11 +215,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="always" id="z3i-km-ZJs">
-                                        <rect key="frame" x="100" y="11" width="180" height="30"/>
+                                        <rect key="frame" x="105" y="11" width="180" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新密码" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Hr-LV-jlr">
                                         <rect key="frame" x="24" y="60" width="62" height="22"/>
@@ -229,7 +229,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入6-20个字符" minimumFontSize="17" clearButtonMode="always" id="w85-i6-bqa">
-                                        <rect key="frame" x="100" y="57" width="180" height="30"/>
+                                        <rect key="frame" x="105" y="57" width="180" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -243,7 +243,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="always" id="lRh-9z-YOW">
-                                        <rect key="frame" x="80" y="101" width="180" height="30"/>
+                                        <rect key="frame" x="105" y="101" width="180" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -274,9 +274,19 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnResetPsd:" destination="cHA-PM-tqA" eventType="touchUpInside" id="EkT-xj-MZT"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="btnOK" destination="Y5m-Go-3DZ" id="nKG-os-JVK"/>
+                        <outlet property="txtOldPsd" destination="z3i-km-ZJs" id="YtV-B6-oJJ"/>
+                        <outlet property="txtPsd" destination="w85-i6-bqa" id="38N-Tv-2nO"/>
+                        <outlet property="txtRePsd" destination="lRh-9z-YOW" id="IG8-oS-MoO"/>
+                        <outlet property="viewTop" destination="ppC-jp-hKv" id="hq5-Ms-3Pe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DUC-kh-oxJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1027,10 +1037,10 @@
             </objects>
             <point key="canvasLocation" x="1173" y="735"/>
         </scene>
-        <!--Change Psd View Controller-->
+        <!--Change Name View Controller-->
         <scene sceneID="KG6-j8-nYL">
             <objects>
-                <viewController storyboardIdentifier="ChangePsdView" id="FJa-jP-3eH" customClass="ChangePsdViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangeNameView" id="FJa-jP-3eH" customClass="ChangeNameViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bNR-Zi-EKE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
