@@ -374,7 +374,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="lYF-3x-JWx">
                                 <rect key="frame" x="0.0" y="117" width="320" height="451"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask"/>
                             </scrollView>
                             <view contentMode="scaleToFill" id="C1G-c3-Ndq">
                                 <rect key="frame" x="0.0" y="68" width="320" height="60"/>
@@ -474,7 +474,7 @@
                             </tableView>
                             <view contentMode="scaleToFill" id="CUZ-kV-IGR">
                                 <rect key="frame" x="0.0" y="516" width="322" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AKM-sw-JED">
                                         <rect key="frame" x="71" y="9" width="90" height="36"/>
