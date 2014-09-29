@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     self.btnSave.layer.cornerRadius = 5;
-    self.txtSpecialitity.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.txtSpecialitity.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.txtSpecialitity.layer.borderWidth = 1;
     self.txtSpecialitity.layer.cornerRadius = 5;
     self.txtSpecialitity.text = self.specialitity;

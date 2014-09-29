@@ -40,7 +40,7 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.viewEducation.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.viewEducation.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.viewEducation.layer.borderWidth = 1;
     self.viewEducation.layer.cornerRadius = 5;
     self.btnSave.layer.cornerRadius = 5;

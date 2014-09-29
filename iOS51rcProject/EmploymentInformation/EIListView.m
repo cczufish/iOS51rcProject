@@ -74,7 +74,7 @@
     NSString *strTitle = rowData[@"Title"];
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 310, 62)];
     tmpView.layer.borderWidth = 0.5;
-    tmpView.layer.borderColor = [UIColor grayColor].CGColor;
+    tmpView.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     
     UIFont *titleFont = [UIFont systemFontOfSize:13];
     CGFloat titleWidth = 300;
@@ -93,7 +93,7 @@
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+10, 200, 15)];
     lbAuthor.text = strAuthor;
     lbAuthor.font = [UIFont systemFontOfSize:12];
-    lbAuthor.textColor = [UIColor grayColor];
+    lbAuthor.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [tmpView addSubview:(lbAuthor)];
     [lbAuthor release];
 
@@ -107,7 +107,7 @@
     NSDate *dtBeginDate = [CommonController dateFromString:strDate];
     strDate = [CommonController stringFromDate:dtBeginDate formatType:@"MM-dd HH:mm"];
     lbTime.text = strDate;
-    lbTime.textColor = [UIColor grayColor];
+    lbTime.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbTime.font = [UIFont systemFontOfSize:13];
     lbTime.textAlignment = NSTextAlignmentRight;
     [tmpView addSubview:(lbTime)];
