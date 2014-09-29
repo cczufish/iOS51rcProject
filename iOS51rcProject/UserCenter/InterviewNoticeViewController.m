@@ -339,9 +339,10 @@
         [cell.contentView addSubview:(lbMobile)];
         [lbMobile release];
         //手机号后面的图标
-        UIButton *btnCall = [[[UIButton alloc] initWithFrame:CGRectMake(lbMobile.frame.origin.x + lbMobile.frame.size.width, lbMobile.frame.origin.y, 15, 15)] autorelease ];
+        UIButton *btnCall = [[[UIButton alloc] initWithFrame:CGRectMake(80, lbMobile.frame.origin.y, lbMobile.frame.size.width + 20, 15)] autorelease ];
         [btnCall addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
-        [btnCall setImage:[UIImage imageNamed:@"ico_calltelphone.png"] forState:UIControlStateNormal];
+        UIImageView *imagePhone = [[[UIImageView alloc] initWithFrame:CGRectMake(lbMobile.frame.size.width, 0, 15, 15)]autorelease];
+        imagePhone.image = [UIImage imageNamed:@"ico_calltelphone.png"];
         btnCall.tag = (NSInteger)rowData[@"ID"];
         [cell.contentView addSubview:btnCall];
       

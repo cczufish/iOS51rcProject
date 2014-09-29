@@ -9,8 +9,16 @@
 #import "SuperJobMainViewController.h"
 #import "MapViewController.h"
 #import <objc/runtime.h>
+#import "ChatOnlineLogViewController.h"
 
 @interface JobViewController ()<NetWebServiceRequestDelegate,UIScrollViewDelegate,CustomPopupDelegate>
+@property (retain, nonatomic)NSString *cpName;
+@property (retain, nonatomic)NSString *caName;
+@property (retain, nonatomic)NSString *caMainID;
+@property (retain, nonatomic)NSString *cpMainID;
+@property (retain, nonatomic)NSString *isOnline;
+@property (retain, nonatomic)NSString * cvID;
+
 @property (retain, nonatomic) IBOutlet UIScrollView *jobMainScroll;
 @property (retain, nonatomic) IBOutlet UILabel *lbJobName;
 @property (retain, nonatomic) IBOutlet UILabel *lbFereashTime;
@@ -71,6 +79,7 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
+     UIViewController *pCtrl = [CommonController getFatherController:self.view];
     //结束等待动画
     [self.loading stopAnimating];
     if (request.tag == 1) { //职位搜索
@@ -80,7 +89,7 @@
     }
     else if (request.tag == 3) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
-            [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [pCtrl.view makeToast:@"您没有有效职位，请先完善您的简历"];
         }
         else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
@@ -92,18 +101,24 @@
         [self.cPopup showJobApplyCvSelect:result view:self.view];
     }
     else if (request.tag == 5) { //重新申请职位成功
-         UIViewController *pCtrl = [CommonController getFatherController:self.view];
         [pCtrl.view makeToast:@"重新申请简历成功"];
     }
     else if (request.tag == 6) {
-        UIViewController *pCtrl = [CommonController getFatherController:self.view];
         [pCtrl.view makeToast:@"收藏职位成功"];
     }
     else if(request.tag == 9){//其他建议的职位
         [self didReceiveRecommendJob:requestData];
     }
-    
-    
+    else if(request.tag == 10){
+        if (requestData.count == 0) {
+            [pCtrl.view makeToast:@"您没有有效职位，请先完善您的简历"];
+        }
+        else {
+            self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
+            [self.cPopup setDelegate:self];
+            [self StartChat:requestData[0][@"ID"]];
+        }
+    }
 }
 
 //申请职位，插入数据库
@@ -187,7 +202,41 @@
 
 //点击留言按钮
 - (IBAction)btnChatClick:(id)sender {
-    NSLog(@"留言");
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        //连接数据库，读取有效简历
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+        [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCvListByApply" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 10;
+        self.runningRequest = request;
+        [dicParam release];
+        [self.loading startAnimating];
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
+    }
+}
+
+//进入聊天页面
+- (void)StartChat:(NSString *)cvMainID
+{
+    UIStoryboard *cCtrl = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
+    ChatOnlineLogViewController *logCtrl = [cCtrl instantiateViewControllerWithIdentifier:@"ChatOnlineLogView"];
+    logCtrl.cvMainID = cvMainID;
+    logCtrl.caMainID =self.caMainID;
+    logCtrl.cpName = self.cpName;
+    logCtrl.caName = self.caName;
+    logCtrl.cpMainID = self.cpMainID;
+    logCtrl.isOnline = self.isOnline;
+    logCtrl.navigationItem.title = @"在线沟通";
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
+    [pCtrl.navigationController pushViewController:logCtrl animated:YES];
 }
 
 - (void) getPopupValue:(NSString *)value
@@ -325,6 +374,7 @@
     
      UILabel *lbCpName = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbSalary.frame.origin.y + lbSalary.frame.size.height + 10, 280, 15) ]autorelease];
     [lbCpName setText:dicJob[@"cpName"]];
+
      lbCpName.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbCpName];
     
@@ -574,6 +624,11 @@
     
     //联系人
     NSString *strCaName = dicJob[@"caName"];
+    self.caName = dicJob[@"caName"];
+    self.caMainID = dicJob[@"caMainID"];
+    self.cpName = dicJob[@"cpName"];
+    self.cpMainID = dicJob[@"cpMainID"];
+    
     UILabel *lbCaName = [[UILabel alloc] initWithFrame:CGRectMake(32, lbLine3.frame.origin.y + lbLine3.frame.size.height + 10, 64, 15)];
     lbCaName.textColor = [UIColor grayColor];
     lbCaName.text = @"联系人：";
@@ -717,8 +772,8 @@
     [lbOther release];
     
     //在线
-    BOOL isOnline = [dicJob[@"IsOnline"] boolValue];
-    if(isOnline){
+    self.isOnline = dicJob[@"IsOnline"] ;
+    if([self.isOnline boolValue]){
         self.lbChat.text = @"交谈";
         self.imgChat.image = [UIImage imageNamed:@"ico_onlinechat_online.png"];
     }

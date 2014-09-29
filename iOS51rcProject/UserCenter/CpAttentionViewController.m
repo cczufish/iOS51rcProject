@@ -54,8 +54,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.view.frame = CGRectMake(0, 0, 320, HEIGHT-210);
-    //self.tvJobList.frame = CGRectMake(0, 40, 320, HEIGHT-250);
     self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.lbTop.layer.borderWidth = 0.5;
     self.btnTop.titleLabel.text = @"相关简历";
@@ -88,6 +86,7 @@
     //不显示列表分隔线
     self.tvJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    //先获取简历
     [self GetBasicCvList];
     selectCV = @"";
 }
