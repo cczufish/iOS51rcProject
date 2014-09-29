@@ -193,11 +193,12 @@
 
 - (void)jobFavorite
 {
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位
         if (self.arrCheckJobID.count == 0) {
-            [self.view makeToast:@"您还没有选择职位"];
+            [pCtrl.view makeToast:@"您还没有选择职位"];
             return;
         }
         //连接数据库，读取有效简历
