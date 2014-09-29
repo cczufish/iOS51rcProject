@@ -118,7 +118,7 @@
         self.lat = [dicCpMain[@"Lat"] floatValue];
         btnLngLat.tag = (NSInteger)dicCpMain[@"ID"];
         [btnLngLat addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btnLngLat];
+        [self.cpMainScroll addSubview:btnLngLat];
     }
 
     //分割线

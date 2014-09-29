@@ -215,7 +215,7 @@
 
 //点击某一行,到达企业页面
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"JobSearch" bundle:nil];
+    UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperJobMainViewController *jobCtrl = (SuperJobMainViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"SuperJobMainView"];
     jobCtrl.cpMainID = recruitmentCpData[indexPath.row][@"cpMainID"];
     jobCtrl.JobID = recruitmentCpData[indexPath.row][@"JobID"];
