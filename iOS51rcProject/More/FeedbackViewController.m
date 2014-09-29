@@ -98,6 +98,10 @@
         [self.view makeToast:@"姓名不能为空！"];
         return;
     }
+    if ([strUserName length]>6) {
+        [self.view makeToast:@"姓名不能超过6个字符！"];
+        return;
+    }
     if ([CommonController isBlankString:strPhone]) {
         [self.view makeToast:@"手机号不能为空"];
         return;
