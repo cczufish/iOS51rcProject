@@ -91,7 +91,7 @@
         //申请失败原因
         UILabel *lbContent = [[UILabel alloc] initWithFrame:CGRectMake(15, 50, 210, 20)];
         [lbContent setText:@"职位已过期或您30天内已申请过该职位"];
-        [lbContent setFont:[UIFont systemFontOfSize:12]];
+        [lbContent setFont:[UIFont systemFontOfSize:14]];
         [self.viewContent addSubview:lbContent];
         [lbContent release];
         [self popupCommon:self.viewContent buttonType:PopupButtonTypeOK];
@@ -115,9 +115,9 @@
             strApplyResult = [strApplyResult stringByAppendingFormat:@",失败%@个职位",arrResult[1]];
         }
         [lbTitle setText:strApplyResult];
-        [lbTitle setFont:[UIFont systemFontOfSize:12]];
+        [lbTitle setFont:[UIFont systemFontOfSize:14]];
         [lbTitle setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-        CGSize labelSize = [CommonController CalculateFrame:strApplyResult fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(160, 5000)];
+        CGSize labelSize = [CommonController CalculateFrame:strApplyResult fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 5000)];
         CGRect titleRect = lbTitle.frame;
         titleRect.size = labelSize;
         lbTitle.frame = titleRect;
@@ -154,7 +154,7 @@
             //添加选择简历提醒
             UILabel *lbCvTips = [[UILabel alloc] initWithFrame:CGRectMake(15, 100, 160, 20)];
             [lbCvTips setText:@"您可以重新选择应聘的简历"];
-            [lbCvTips setFont:[UIFont systemFontOfSize:12]];
+            [lbCvTips setFont:[UIFont systemFontOfSize:14]];
             [lbCvTips setTextColor:[UIColor grayColor]];
             [self.viewContent addSubview:lbCvTips];
             [lbCvTips release];
@@ -198,7 +198,7 @@
             [btnOK setBackgroundColor:[UIColor colorWithRed:248.f/255.f green:248.f/255.f blue:248.f/255.f alpha:1]];
             [btnOK setTitle:@"知道了" forState:UIControlStateNormal];
             [btnOK setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            btnOK.titleLabel.font = [UIFont systemFontOfSize:12];
+            btnOK.titleLabel.font = [UIFont systemFontOfSize:14];
             btnOK.layer.cornerRadius = 5;
             btnOK.layer.borderWidth = 1;
             btnOK.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
@@ -214,7 +214,7 @@
             [btnConfirm setBackgroundColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
             [btnConfirm setTitle:@"确定" forState:UIControlStateNormal];
             [btnConfirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            btnConfirm.titleLabel.font = [UIFont systemFontOfSize:12];
+            btnConfirm.titleLabel.font = [UIFont systemFontOfSize:14];
             btnConfirm.layer.cornerRadius = 5;
             [btnConfirm addTarget:self action:@selector(confirmAndCancelPopup) forControlEvents:UIControlEventTouchUpInside];
             [contentView addSubview:btnConfirm];
@@ -224,7 +224,7 @@
             [btnCancel setBackgroundColor:[UIColor colorWithRed:248.f/255.f green:248.f/255.f blue:248.f/255.f alpha:1]];
             [btnCancel setTitle:@"取消" forState:UIControlStateNormal];
             [btnCancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            btnCancel.titleLabel.font = [UIFont systemFontOfSize:12];
+            btnCancel.titleLabel.font = [UIFont systemFontOfSize:14];
             btnCancel.layer.cornerRadius = 5;
             btnCancel.layer.borderWidth = 1;
             btnCancel.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];

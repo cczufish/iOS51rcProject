@@ -316,7 +316,7 @@
     CGSize labelSize = [CommonController CalculateFrame:title fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
     UILabel *lbView = [[[UILabel alloc] initWithFrame:CGRectMake(15, 0, labelSize.width, 15)] autorelease];
     lbView.text =title;
-    lbView.font = [UIFont systemFontOfSize:12];
+    lbView.font = [UIFont systemFontOfSize:14];
     lbView.textColor = [UIColor grayColor];
     view.frame = CGRectMake(0, 0, 15 + labelSize.width, 15);
     [view addSubview:imgView];
@@ -385,7 +385,7 @@
     UIView *viewTitle = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)] autorelease];
     UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 5, 125, 20)] autorelease];
     [lbTitle setText:dicJob[@"cpName"]];
-    [lbTitle setFont:[UIFont systemFontOfSize:12]];
+    [lbTitle setFont:[UIFont systemFontOfSize:14]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
     [viewTitle addSubview:lbTitle];
     [self.navigationItem setTitleView:viewTitle];

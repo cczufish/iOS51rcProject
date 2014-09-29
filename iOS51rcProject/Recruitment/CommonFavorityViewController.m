@@ -50,7 +50,7 @@
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
-    [lbTitle setFont:[UIFont systemFontOfSize:12]];
+    [lbTitle setFont:[UIFont systemFontOfSize:14]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
    
     [viewTitle addSubview:lbTitle];
@@ -138,7 +138,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIFont *fontCell = [UIFont systemFontOfSize:12];
+    UIFont *fontCell = [UIFont systemFontOfSize:14];
     UIColor *colorText = [UIColor colorWithRed:120.f/255.f green:120.f/255.f blue:120.f/255.f alpha:1];
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.jobListData[indexPath.row];

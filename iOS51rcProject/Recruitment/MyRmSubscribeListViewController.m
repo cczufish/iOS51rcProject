@@ -126,17 +126,17 @@
     strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     lbBegin.text = [NSString stringWithFormat:@"举办时间：%@ %@",strBeginDate,strWeek];
-    lbBegin.font = [UIFont systemFontOfSize:12];
+    lbBegin.font = [UIFont systemFontOfSize:14];
     lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     [lbBegin release];
     
     //举办场馆
     NSString *strPlace = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]];
-    labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
+    labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
     UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPlace.text = strPlace;
-    lbPlace.font = [UIFont systemFontOfSize:12];
+    lbPlace.font = [UIFont systemFontOfSize:14];
     lbPlace.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPlace)];
     [lbPlace release];
@@ -156,21 +156,21 @@
     
     //具体地址
     NSString *strPreAddress =@"具体地址：";
-    labelSize = [CommonController CalculateFrame:strPreAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 40)];
+    labelSize = [CommonController CalculateFrame:strPreAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 40)];
     UILabel *lbPreAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPreAddress.text = strPreAddress;
-    lbPreAddress.font = [UIFont systemFontOfSize:12];
+    lbPreAddress.font = [UIFont systemFontOfSize:14];
     lbPreAddress.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPreAddress)];
     [lbPreAddress release];
     
     NSString *strAddress =rowData[@"Address"];
-    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(140, 80)];
+    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(140, 80)];
     UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(80, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbAddress.text = strAddress;
     lbAddress.numberOfLines = 0;
     lbAddress.lineBreakMode = NSLineBreakByCharWrapping;
-    lbAddress.font = [UIFont systemFontOfSize:12];
+    lbAddress.font = [UIFont systemFontOfSize:14];
     lbAddress.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbAddress)];
     [lbAddress release];

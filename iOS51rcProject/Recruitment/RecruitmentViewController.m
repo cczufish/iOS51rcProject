@@ -55,7 +55,7 @@
     //myRmBtn.titleLabel.text = @"我的招聘会";//这样无法赋值
     [myRmBtn setTitle: @"我的招聘会" forState: UIControlStateNormal];
     myRmBtn.titleLabel.textColor = [UIColor whiteColor];
-    myRmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    myRmBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     myRmBtn.layer.cornerRadius = 5;
     myRmBtn.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
     myRmBtn.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
@@ -172,7 +172,7 @@
     [self.lbRunDate setText:strTime];
     
     //举办场馆
-    CGSize placeSize = [CommonController CalculateFrame:dicRecruitment[@"PlaceName"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(2000, 20)];
+    CGSize placeSize = [CommonController CalculateFrame:dicRecruitment[@"PlaceName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(2000, 20)];
     self.strPlace = dicRecruitment[@"PlaceName"];
     [self.lbPlace setText:self.strPlace];
     CGRect placeFrame = self.lbPlace.frame;
@@ -186,7 +186,7 @@
     }
     
     
-    UIFont *font = [UIFont systemFontOfSize:12];
+    UIFont *font = [UIFont systemFontOfSize:14];
     //举办地址
     self.strAddress = dicRecruitment[@"Address"];
     labelSize = [CommonController CalculateFrame:self.strAddress fontDemond:font sizeDemand:CGSizeMake(self.lbAddress.frame.size.width, 500)];
@@ -206,13 +206,13 @@
         float fltLinkHeight = 0;
         UILabel *lbLineTop = [[UILabel alloc] init];
         [lbLineTop setText:@"------------------------------------------"];
-        [lbLineTop setFrame:CGRectMake(20, 0, 290, 2)];
+        [lbLineTop setFrame:CGRectMake(15, 0, 290, 2)];
         [viewLink addSubview:lbLineTop];
         [lbLineTop release];
         
         //添加联系人
         fltLinkHeight += 10;
-        UILabel *lbLinkMan = [[UILabel alloc] initWithFrame:CGRectMake(32, fltLinkHeight, 280, 20)];
+        UILabel *lbLinkMan = [[UILabel alloc] initWithFrame:CGRectMake(30, fltLinkHeight, 280, 20)];
         [lbLinkMan setText:[NSString stringWithFormat:@"联系人：%@",dicRecruitment[@"LinkMan"]]];
         [lbLinkMan setFont:font];
         [viewLink addSubview:lbLinkMan];
@@ -243,7 +243,7 @@
         if ([dicRecruitment objectForKey:@"Telephone"]) {
             fltLinkHeight += fltLineHeight;
             self.recruitmentTelephone = dicRecruitment[@"Telephone"];
-            UILabel *lbTelephone = [[UILabel alloc] initWithFrame:CGRectMake(20, fltLinkHeight, 280, 20)];
+            UILabel *lbTelephone = [[UILabel alloc] initWithFrame:CGRectMake(15, fltLinkHeight, 280, 20)];
             [lbTelephone setText:[NSString stringWithFormat:@"固定电话：%@",dicRecruitment[@"Telephone"]]];
             
             NSString *recruitmentTelephone = [NSString stringWithFormat:@"固定电话：%@",dicRecruitment[@"Telephone"]];
@@ -276,7 +276,7 @@
         //添加邮箱
         if ([dicRecruitment objectForKey:@"Email"]) {
             fltLinkHeight += fltLineHeight;
-            UILabel *lbEmail = [[UILabel alloc] initWithFrame:CGRectMake(20, fltLinkHeight, 280, 20)];
+            UILabel *lbEmail = [[UILabel alloc] initWithFrame:CGRectMake(17, fltLinkHeight, 280, 20)];
             [lbEmail setText:[NSString stringWithFormat:@"联系邮箱：%@",dicRecruitment[@"Email"]]];
             [lbEmail setFont:font];
             [viewLink addSubview:lbEmail];
@@ -297,7 +297,7 @@
         fltLinkHeight += fltLineHeight+2;
         UILabel *lbLineBottom = [[UILabel alloc] init];
         [lbLineBottom setText:@"------------------------------------------"];
-        [lbLineBottom setFrame:CGRectMake(20, fltLinkHeight, 290, 2)];
+        [lbLineBottom setFrame:CGRectMake(15, fltLinkHeight, 290, 2)];
         [viewLink addSubview:lbLineBottom];
         [lbLineBottom release];
         
@@ -312,7 +312,7 @@
     //乘车线路
     if ([[dicRecruitment objectForKey:@"BusLine"] length] > 0) {
         fltHeight += 10;
-        UILabel *lbBusLine = [[UILabel alloc] initWithFrame:CGRectMake(20, fltHeight, 280, 20)];
+        UILabel *lbBusLine = [[UILabel alloc] initWithFrame:CGRectMake(15, fltHeight, 280, 20)];
         //        lbBusLine.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         NSString *recruitmentBusLine = [NSString stringWithFormat:@"乘车线路：\n\n%@",dicRecruitment[@"BusLine"]];
         labelSize = [CommonController CalculateFrame:recruitmentBusLine fontDemond:font sizeDemand:CGSizeMake(lbBusLine.frame.size.width, 500)];
@@ -332,7 +332,7 @@
         self.recruitmentDeptId = [dicRecruitment objectForKey:@"RecruitmentDeptId"];
         self.recruitmentPlaceId = [dicRecruitment objectForKey:@"RecruitmentPlaceId"];
         fltHeight += 10;
-        UIButton *btnPlaceScan = [[UIButton alloc] initWithFrame:CGRectMake(20, fltHeight, 280, 40)];
+        UIButton *btnPlaceScan = [[UIButton alloc] initWithFrame:CGRectMake(15, fltHeight, 280, 40)];
         [btnPlaceScan setBackgroundColor:[UIColor colorWithRed:40.f/255.f green:195.f/255.f blue:90.f/255.f alpha:1]];
         [btnPlaceScan.titleLabel setFont:[UIFont systemFontOfSize:14]];
         [btnPlaceScan setTitle:@"查看场馆环境照片" forState:UIControlStateNormal];
@@ -345,7 +345,7 @@
     //招聘会详情
     if ([dicRecruitment objectForKey:@"Brief"]) {
         fltHeight += 10;
-        UILabel *lbBrief = [[UILabel alloc] initWithFrame:CGRectMake(20, fltHeight, 280, 20)];
+        UILabel *lbBrief = [[UILabel alloc] initWithFrame:CGRectMake(15, fltHeight, 280, 20)];
         //        lbBrief.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         NSString *recruitmentBrief = [NSString stringWithFormat:@"招聘会详情：\n\n%@",dicRecruitment[@"Brief"]];
         labelSize = [CommonController CalculateFrame:recruitmentBrief fontDemond:font sizeDemand:CGSizeMake(lbBrief.frame.size.width, 5000)];

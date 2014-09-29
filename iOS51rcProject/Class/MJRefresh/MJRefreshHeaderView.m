@@ -20,7 +20,7 @@
         // 1.创建控件
         UILabel *lastUpdateTimeLabel = [[UILabel alloc] init];
         lastUpdateTimeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        lastUpdateTimeLabel.font = [UIFont boldSystemFontOfSize:12];
+        lastUpdateTimeLabel.font = [UIFont boldSystemFontOfSize:14];
         lastUpdateTimeLabel.textColor = MJRefreshLabelTextColor;
         lastUpdateTimeLabel.backgroundColor = [UIColor clearColor];
         lastUpdateTimeLabel.textAlignment = NSTextAlignmentCenter;

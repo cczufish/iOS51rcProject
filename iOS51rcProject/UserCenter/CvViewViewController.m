@@ -129,7 +129,7 @@
         [self.lbSalary setText:arrayCvIntention[0][@"Salary"]];
     }
     
-    CGSize labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobTypeName"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(160, 300)];
+    CGSize labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobTypeName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 300)];
     [self.lbExpectJobType setText:arrayCvIntention[0][@"JobTypeName"]];
     if (labelSize.height > 20) {
         CGRect frameExpectJobType = self.lbExpectJobType.frame;
@@ -147,7 +147,7 @@
         [self.viewIntention2 setFrame:frameIntention2];
     }
     
-    labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobPlaceName"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(160, 300)];
+    labelSize = [CommonController CalculateFrame:arrayCvIntention[0][@"JobPlaceName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 300)];
     [self.lbExpectJobPlace setText:arrayCvIntention[0][@"JobPlaceName"]];
     if (labelSize.height > 20) {
         //期望职位类别多行，将下面的控件位置处理
@@ -169,7 +169,7 @@
 {
     [self.lbSpeciality setText:self.cvData[0][@"Speciality"]];
     //计算工作能力文本的高度
-    CGSize labelSize = [CommonController CalculateFrame:self.cvData[0][@"Speciality"] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(270, 3000)];
+    CGSize labelSize = [CommonController CalculateFrame:self.cvData[0][@"Speciality"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(270, 3000)];
     CGRect frameSpeciality = self.lbSpeciality.frame;
     frameSpeciality.size.height = labelSize.height;
     [self.lbSpeciality setFrame:frameSpeciality];
@@ -220,6 +220,8 @@
     //添加标题
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 40, 20)];
     [lbTitle setText:@"学习"];
+    lbTitle.layer.cornerRadius = 5;
+    lbTitle.layer.masksToBounds = YES;
     [lbTitle setTextColor:[UIColor whiteColor]];
     [lbTitle setFont:[UIFont systemFontOfSize:10]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
@@ -230,9 +232,9 @@
     UILabel *lbEduDetail = [[UILabel alloc] init];
     [lbEduDetail setText:[NSString stringWithFormat:@"%@毕业 | %@ | %@ | %@（%@）",[NSString stringWithFormat:@"%@年%@月",[educationData[@"Graduation"] substringWithRange:NSMakeRange(0, 4)],[educationData[@"Graduation"] substringWithRange:NSMakeRange(4, 2)]],educationData[@"GraduateCollage"],educationData[@"MajorName"],educationData[@"Education"],educationData[@"EduTypeName"]]];
     
-    CGSize labelSize = [CommonController CalculateFrame:lbEduDetail.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(245, 500)];
+    CGSize labelSize = [CommonController CalculateFrame:lbEduDetail.text fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(245, 500)];
     [lbEduDetail setFrame:CGRectMake(60, destinationContentHeight, 240, labelSize.height)];
-    [lbEduDetail setFont:[UIFont systemFontOfSize:12]];
+    [lbEduDetail setFont:[UIFont systemFontOfSize:14]];
     lbEduDetail.numberOfLines = 0;
     lbEduDetail.lineBreakMode = NSLineBreakByCharWrapping;
     [lbEduDetail setTextAlignment:NSTextAlignmentLeft];
@@ -241,16 +243,16 @@
     destinationContentHeight += labelSize.height+10;
     //添加学习经历
     if (educationData[@"Details"]) {
-        UILabel *lbDetailsTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 60, 15)];
+        UILabel *lbDetailsTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 65, 15)];
         [lbDetailsTitle setText:@"学习经历:"];
-        [lbDetailsTitle setFont:[UIFont systemFontOfSize:12]];
+        [lbDetailsTitle setFont:[UIFont systemFontOfSize:14]];
         [self.viewEduAndExp addSubview:lbDetailsTitle];
         [lbDetailsTitle release];
         UILabel *lbDetails = [[UILabel alloc] init];
         [lbDetails setText:educationData[@"Details"]];
-        labelSize = [CommonController CalculateFrame:lbDetails.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(240, 5000)];
-        [lbDetails setFrame:CGRectMake(70, destinationContentHeight, 240, labelSize.height)];
-        [lbDetails setFont:[UIFont systemFontOfSize:12]];
+        labelSize = [CommonController CalculateFrame:lbDetails.text fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(240, 5000)];
+        [lbDetails setFrame:CGRectMake(80, destinationContentHeight, 240, labelSize.height)];
+        [lbDetails setFont:[UIFont systemFontOfSize:14]];
         lbDetails.numberOfLines = 0;
         lbDetails.lineBreakMode = NSLineBreakByCharWrapping;
         [self.viewEduAndExp addSubview:lbDetails];
@@ -282,6 +284,8 @@
     //添加标题
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 40, 20)];
     [lbTitle setText:@"工作"];
+    lbTitle.layer.cornerRadius = 5;
+    lbTitle.layer.masksToBounds = YES;
     [lbTitle setTextColor:[UIColor whiteColor]];
     [lbTitle setFont:[UIFont systemFontOfSize:10]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
@@ -299,9 +303,9 @@
     UILabel *lbExpDetail = [[UILabel alloc] init];
     [lbExpDetail setText:[NSString stringWithFormat:@"%@-%@ | %@ | %@（%@）",[NSString stringWithFormat:@"%@年%@月",[experienceData[@"BeginDate"] substringWithRange:NSMakeRange(0, 4)],[experienceData[@"BeginDate"] substringWithRange:NSMakeRange(4, 2)]],strEndDate,experienceData[@"CompanyName"],experienceData[@"JobName"],experienceData[@"LowerNumber"]]];
     
-    CGSize labelSize = [CommonController CalculateFrame:lbExpDetail.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(245, 500)];
+    CGSize labelSize = [CommonController CalculateFrame:lbExpDetail.text fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(245, 500)];
     [lbExpDetail setFrame:CGRectMake(60, destinationContentHeight, 240, labelSize.height)];
-    [lbExpDetail setFont:[UIFont systemFontOfSize:12]];
+    [lbExpDetail setFont:[UIFont systemFontOfSize:14]];
     lbExpDetail.numberOfLines = 0;
     lbExpDetail.lineBreakMode = NSLineBreakByCharWrapping;
     [lbExpDetail setTextAlignment:NSTextAlignmentLeft];
@@ -310,15 +314,15 @@
     destinationContentHeight += labelSize.height+10;
     
     //添加企业规模
-    UILabel *lbCompanySizeTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 60, 15)];
+    UILabel *lbCompanySizeTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 65, 15)];
     [lbCompanySizeTitle setText:@"企业规模:"];
-    [lbCompanySizeTitle setFont:[UIFont systemFontOfSize:12]];
+    [lbCompanySizeTitle setFont:[UIFont systemFontOfSize:14]];
     [self.viewEduAndExp addSubview:lbCompanySizeTitle];
     [lbCompanySizeTitle release];
     UILabel *lbCompanySize = [[UILabel alloc] init];
     [lbCompanySize setText:experienceData[@"CpmpanySize"]];
-    [lbCompanySize setFrame:CGRectMake(70, destinationContentHeight, 240, 15)];
-    [lbCompanySize setFont:[UIFont systemFontOfSize:12]];
+    [lbCompanySize setFrame:CGRectMake(80, destinationContentHeight, 240, 15)];
+    [lbCompanySize setFont:[UIFont systemFontOfSize:14]];
     lbCompanySize.numberOfLines = 0;
     lbCompanySize.lineBreakMode = NSLineBreakByCharWrapping;
     [self.viewEduAndExp addSubview:lbCompanySize];
@@ -326,16 +330,16 @@
     destinationContentHeight += 30;
     
     //添加工作描述
-    UILabel *lbDescriptionTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 60, 15)];
+    UILabel *lbDescriptionTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 65, 15)];
     [lbDescriptionTitle setText:@"工作描述:"];
-    [lbDescriptionTitle setFont:[UIFont systemFontOfSize:12]];
+    [lbDescriptionTitle setFont:[UIFont systemFontOfSize:14]];
     [self.viewEduAndExp addSubview:lbDescriptionTitle];
     [lbDescriptionTitle release];
     UILabel *lbDescription = [[UILabel alloc] init];
     [lbDescription setText:experienceData[@"Description"]];
-    labelSize = [CommonController CalculateFrame:lbDescription.text fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(240, 5000)];
-    [lbDescription setFrame:CGRectMake(70, destinationContentHeight, 240, labelSize.height)];
-    [lbDescription setFont:[UIFont systemFontOfSize:12]];
+    labelSize = [CommonController CalculateFrame:lbDescription.text fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(240, 5000)];
+    [lbDescription setFrame:CGRectMake(80, destinationContentHeight, 240, labelSize.height)];
+    [lbDescription setFont:[UIFont systemFontOfSize:14]];
     lbDescription.numberOfLines = 0;
     lbDescription.lineBreakMode = NSLineBreakByCharWrapping;
     [self.viewEduAndExp addSubview:lbDescription];

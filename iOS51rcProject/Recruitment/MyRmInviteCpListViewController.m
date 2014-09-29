@@ -107,16 +107,16 @@
     UILabel *lbPreCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height+5, 60, 15)];
     lbPreCpName.text = @"应聘职位：";
     lbPreCpName.textColor = [UIColor grayColor];
-    lbPreCpName.font = [UIFont systemFontOfSize:12];
+    lbPreCpName.font = [UIFont systemFontOfSize:14];
     [cell.contentView addSubview:lbPreCpName];
     [lbPreCpName release];
     
     //应聘职位
     NSString *strAddress = rowData[@"JobName"];
-    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:titleSize];
+    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(80, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPaInfo.text = strAddress;
-    lbPaInfo.font = [UIFont systemFontOfSize:12];
+    lbPaInfo.font = [UIFont systemFontOfSize:14];
     lbPaInfo.textColor = [UIColor redColor];
     [cell.contentView addSubview:(lbPaInfo)];
     
@@ -127,10 +127,10 @@
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     strBeginDate = [NSString stringWithFormat:@"邀请时间：%@ %@",strBeginDate,strWeek];
     
-    labelSize = [CommonController CalculateFrame:strBeginDate fontDemond:[UIFont systemFontOfSize:12] sizeDemand:titleSize];
+    labelSize = [CommonController CalculateFrame:strBeginDate fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
     UILabel *lbBegin = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPaInfo.frame.origin.y+lbPaInfo.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbBegin.text = strBeginDate;
-    lbBegin.font = [UIFont systemFontOfSize:12];
+    lbBegin.font = [UIFont systemFontOfSize:14];
     lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     
@@ -144,7 +144,7 @@
     if ([strStatus isEqualToString:@"0"]) {
         lbStatus.frame = CGRectMake(260, 18, 40, 15);
         lbStatus.text = @"未答复";
-        lbStatus.font = [UIFont systemFontOfSize:12];
+        lbStatus.font = [UIFont systemFontOfSize:14];
         lbStatus.textColor = [UIColor whiteColor];
         lbStatus.textAlignment = NSTextAlignmentCenter;
         lbStatus.layer.cornerRadius = 7;
@@ -153,7 +153,7 @@
         //如果参会
         lbStatus.frame = CGRectMake(260, 18, 40, 15);
         lbStatus.text = @"参会";
-        lbStatus.font = [UIFont systemFontOfSize:12];
+        lbStatus.font = [UIFont systemFontOfSize:14];
         lbStatus.textColor = [UIColor whiteColor];
         lbStatus.textAlignment = NSTextAlignmentCenter;
         lbStatus.layer.cornerRadius = 7;
@@ -163,7 +163,7 @@
         NSString *strDeskNo = rowData[@"DeskNo"];
         lbDeskNo.text = [NSString stringWithFormat:@"展位号：%@", strDeskNo];
         lbDeskNo.textColor = [UIColor grayColor];
-        lbDeskNo.font = [UIFont systemFontOfSize:12];
+        lbDeskNo.font = [UIFont systemFontOfSize:14];
         lbDeskNo.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:lbDeskNo];
         [lbDeskNo release];
@@ -175,7 +175,7 @@
         strWeek = [CommonController getWeek:dtReplyDate];
         strReplyDate = [NSString stringWithFormat:@"答复时间：%@ %@",dtReplyDate,strWeek];
         lbReplyTime.textColor = [UIColor grayColor];
-        lbReplyTime.font = [UIFont systemFontOfSize:12];
+        lbReplyTime.font = [UIFont systemFontOfSize:14];
         lbReplyTime.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:lbReplyTime];
         [lbReplyTime release];
@@ -183,7 +183,7 @@
         //不参会
         lbStatus.frame = CGRectMake(260, 18, 40, 15);
         lbStatus.text = @"不参会";
-        lbStatus.font = [UIFont systemFontOfSize:12];
+        lbStatus.font = [UIFont systemFontOfSize:14];
         lbStatus.textColor = [UIColor whiteColor];
         lbStatus.textAlignment = NSTextAlignmentCenter;
         lbStatus.layer.cornerRadius = 7;
@@ -197,7 +197,7 @@
         strWeek = [CommonController getWeek:dtReplyDate];
         strReplyDate = [NSString stringWithFormat:@"答复时间：%@ %@",dtReplyDate,strWeek];
         lbReplyTime.textColor = [UIColor grayColor];
-        lbReplyTime.font = [UIFont systemFontOfSize:12];
+        lbReplyTime.font = [UIFont systemFontOfSize:14];
         lbReplyTime.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:lbReplyTime];
         [lbReplyTime release];

@@ -13,9 +13,9 @@
         NSString *strApplyResult = @"预约成功，请准时参会";
       
         [lbTitle setText:strApplyResult];
-        [lbTitle setFont:[UIFont systemFontOfSize:12]];
+        [lbTitle setFont:[UIFont systemFontOfSize:14]];
         [lbTitle setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-        CGSize labelSize = [CommonController CalculateFrame:strApplyResult fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(160, 5000)];
+        CGSize labelSize = [CommonController CalculateFrame:strApplyResult fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(160, 5000)];
         CGRect titleRect = lbTitle.frame;
         titleRect.size = labelSize;
         lbTitle.frame = titleRect;

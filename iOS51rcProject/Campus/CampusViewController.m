@@ -212,7 +212,7 @@
         NSString *strWeek = [CommonController getWeek:dtBeginTime];
         
         UILabel *lbBeginTime = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, 220, 20)];
-        [lbBeginTime setFont:[UIFont systemFontOfSize:12]];
+        [lbBeginTime setFont:[UIFont systemFontOfSize:14]];
         [lbBeginTime setTextColor:[UIColor grayColor]];
         [lbBeginTime setText:[NSString stringWithFormat:@"举办时间：%@-%@ %@",strBeginTime,[CommonController stringFromDate:[CommonController dateFromString:rowData[@"EndTime"]] formatType:@"HH:mm"],strWeek]];
         [cell.contentView addSubview:lbBeginTime];
@@ -220,7 +220,7 @@
         
         //举办学校
         UILabel *lbSchool = [[UILabel alloc] initWithFrame:CGRectMake(10, 55, 220, 20)];
-        [lbSchool setFont:[UIFont systemFontOfSize:12]];
+        [lbSchool setFont:[UIFont systemFontOfSize:14]];
         [lbSchool setTextColor:[UIColor grayColor]];
         [lbSchool setText:[NSString stringWithFormat:@"%@[%@]",rowData[@"RegionName"],rowData[@"SchoolName"]]];
         [cell.contentView addSubview:lbSchool];
@@ -228,7 +228,7 @@
         
         //举办地点
         UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(10, 75, 220, 20)];
-        [lbPlace setFont:[UIFont systemFontOfSize:12]];
+        [lbPlace setFont:[UIFont systemFontOfSize:14]];
         [lbPlace setTextColor:[UIColor grayColor]];
         [lbPlace setText:[NSString stringWithFormat:@"%@",rowData[@"Address"]]];
         [cell.contentView addSubview:lbPlace];
@@ -259,7 +259,7 @@
             UILabel *lbDayInterval = [[UILabel alloc] initWithFrame:CGRectMake(0, 3, 30, 20)];
             [lbDayInterval setText:strDayInterval];
             [lbDayInterval setTextColor:[UIColor whiteColor]];
-            [lbDayInterval setFont:[UIFont systemFontOfSize:12]];
+            [lbDayInterval setFont:[UIFont systemFontOfSize:14]];
             [lbDayInterval setTextAlignment:NSTextAlignmentCenter];
             [imgFlag addSubview:lbDayInterval];
             [cell.contentView addSubview:imgFlag];

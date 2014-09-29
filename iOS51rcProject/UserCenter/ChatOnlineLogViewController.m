@@ -47,12 +47,12 @@
     
     //公司名称和企业用户名称
     NSString *strTitle = [NSString stringWithFormat:@"%@  %@", self.cpName, self.caName];
-    CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(240, 500)];
+    CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(240, 500)];
     int x = (320-labelSize.width)/2;
     UIButton *btnGoToCpPage = [[[UIButton alloc] initWithFrame:CGRectMake(x, 15, labelSize.width, 20)] autorelease];
     [btnGoToCpPage addTarget:self action:@selector(gotoCpPage) forControlEvents:UIControlEventTouchUpInside];
     UILabel *lbCpName = [[[UILabel alloc]initWithFrame:CGRectMake(0, 0, labelSize.width, 15)] autorelease];
-    lbCpName.font = [UIFont systemFontOfSize:12];
+    lbCpName.font = [UIFont systemFontOfSize:14];
     lbCpName.text = strTitle;
     [btnGoToCpPage addSubview:lbCpName];
     [self.viewTop addSubview:btnGoToCpPage];

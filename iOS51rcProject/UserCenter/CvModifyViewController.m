@@ -321,6 +321,7 @@
     [btnEducationModify.titleLabel setFont:[UIFont systemFontOfSize:12]];
     [btnEducationModify.titleLabel setTextColor:[UIColor whiteColor]];
     [btnEducationModify setTag:[educationData[@"ID"] intValue]];
+    btnEducationModify.layer.cornerRadius = 5;
     [btnEducationModify addTarget:self action:@selector(switchToEducationModify:) forControlEvents:UIControlEventTouchUpInside];
     [self.viewEducation addSubview:btnEducationModify];
     [btnEducationModify release];
@@ -328,6 +329,8 @@
     if (educationCount > 1) {
         UIButton *btnEducationDelete = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight+35, 30, 30)];
         [btnEducationDelete setImage:[UIImage imageNamed:@"ico_cvmain_del.png"] forState:UIControlStateNormal];
+        btnEducationDelete.layer.cornerRadius = 5;
+        btnEducationDelete.layer.masksToBounds = YES;
         [btnEducationDelete setTag:[educationData[@"ID"] intValue]];
         [btnEducationDelete addTarget:self action:@selector(deleteCvEducation:) forControlEvents:UIControlEventTouchUpInside];
         [self.viewEducation addSubview:btnEducationDelete];
@@ -553,7 +556,8 @@
     UIButton *btnExperienceModify = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight, 30, 30)];
     [btnExperienceModify setBackgroundColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
     [btnExperienceModify setTitle:@"编辑" forState:UIControlStateNormal];
-    [btnExperienceModify.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    btnExperienceModify.layer.cornerRadius = 5;
+    [btnExperienceModify.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btnExperienceModify.titleLabel setTextColor:[UIColor whiteColor]];
     [btnExperienceModify setTag:[experienceData[@"ID"] intValue]];
     [btnExperienceModify addTarget:self action:@selector(switchToExperienceModify:) forControlEvents:UIControlEventTouchUpInside];
@@ -562,6 +566,8 @@
     
     UIButton *btnExperienceDelete = [[UIButton alloc] initWithFrame:CGRectMake(270, destinationContentHeight+35, 30, 30)];
     [btnExperienceDelete setImage:[UIImage imageNamed:@"ico_cvmain_del.png"] forState:UIControlStateNormal];
+    btnExperienceDelete.layer.cornerRadius = 5;
+    btnExperienceDelete.layer.masksToBounds = YES;
     [btnExperienceDelete setTag:[experienceData[@"ID"] intValue]];
     [btnExperienceDelete addTarget:self action:@selector(deleteCvExperience:) forControlEvents:UIControlEventTouchUpInside];
     [self.viewExperience addSubview:btnExperienceDelete];

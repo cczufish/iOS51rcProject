@@ -57,7 +57,7 @@
     //myRmBtn.titleLabel.text = @"我的招聘会";//这样无法赋值
     [myRmBtn setTitle: @"我的招聘会" forState: UIControlStateNormal];
     myRmBtn.titleLabel.textColor = [UIColor whiteColor];
-    myRmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+    myRmBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     myRmBtn.layer.cornerRadius = 5;
     myRmBtn.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
     myRmBtn.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
@@ -203,20 +203,20 @@
     strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     lbBegin.text = [NSString stringWithFormat:@"举办时间：%@ %@",strBeginDate,strWeek];
-    lbBegin.font = [UIFont systemFontOfSize:12];
+    lbBegin.font = [UIFont systemFontOfSize:14];
     [cell.contentView addSubview:(lbBegin)];
     [lbBegin release];
     
-    CGSize placeSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(2000, 15)];
+    CGSize placeSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(2000, 15)];
     UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 35), placeSize.width, 15)];
     lbPlace.text = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]];
-    lbPlace.font = [UIFont systemFontOfSize:12];
+    lbPlace.font = [UIFont systemFontOfSize:14];
     [cell.contentView addSubview:(lbPlace)];
     [lbPlace release];
     
     UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 55), titleWidth, 15)];
     lbAddress.text = [NSString stringWithFormat:@"具体地址：%@",rowData[@"Address"]];
-    lbAddress.font = [UIFont systemFontOfSize:12];
+    lbAddress.font = [UIFont systemFontOfSize:14];
     [cell.contentView addSubview:(lbAddress)];
     [lbAddress release];
 
@@ -292,7 +292,7 @@
             UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 35, 30, 45)];
             UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 40, 15)];
             lbWillRun.text = @"已预约";
-            lbWillRun.font = [UIFont systemFontOfSize:12];
+            lbWillRun.font = [UIFont systemFontOfSize:14];
             lbWillRun.textAlignment = NSTextAlignmentCenter;
             [rightButton addSubview:lbWillRun];
             [cell.contentView addSubview:rightButton];

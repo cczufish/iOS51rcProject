@@ -99,7 +99,7 @@
     NSString *strAuthor = rowData[@"Author"];
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+10, 200, 15)];
     lbAuthor.text = strAuthor;
-    lbAuthor.font = [UIFont systemFontOfSize:12];
+    lbAuthor.font = [UIFont systemFontOfSize:14];
     lbAuthor.textColor = [UIColor grayColor];
     [tmpView addSubview:(lbAuthor)];
     [lbAuthor release];
@@ -135,7 +135,7 @@
         strContent = [strContent stringByReplacingOccurrencesOfString:@"style=\"text-indent:2em\">" withString:@""];
         UILabel *lbContent = [[[UILabel alloc] initWithFrame:CGRectMake(70, 52, 230, 57)] autorelease];
         lbContent.text = strContent;
-        lbContent.font = [UIFont systemFontOfSize:12];
+        lbContent.font = [UIFont systemFontOfSize:14];
         lbContent.lineBreakMode = NSLineBreakByCharWrapping;
         lbContent.numberOfLines = 0;
         [tmpView addSubview:lbContent];

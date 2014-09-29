@@ -70,7 +70,7 @@
     self.viewTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewTop.layer.borderWidth = 1;
     self.btnTop.titleLabel.text = @"相关简历";
-    self.btnTop.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.btnTop.titleLabel.font = [UIFont systemFontOfSize:14];
     self.btnTop.layer.borderWidth = 0.5;
     self.btnTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     
@@ -83,7 +83,7 @@
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
-    [lbTitle setFont:[UIFont systemFontOfSize:12]];
+    [lbTitle setFont:[UIFont systemFontOfSize:14]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
     [viewTitle addSubview:lbTitle];
     //设置导航标题(搜索结果)
@@ -243,7 +243,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIFont *fontCell = [UIFont systemFontOfSize:12];
+    UIFont *fontCell = [UIFont systemFontOfSize:14];
     UIColor *colorText = [UIColor colorWithRed:120.f/255.f green:120.f/255.f blue:120.f/255.f alpha:1];
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.jobListData[indexPath.row];
@@ -289,7 +289,7 @@
     addDate = [NSString stringWithFormat:@"申请时间：%@", addDate];
     [lbRefreshDate setText:addDate];
     [lbRefreshDate setTextColor:colorText];
-    lbRefreshDate.font = [UIFont systemFontOfSize:12];
+    lbRefreshDate.font = [UIFont systemFontOfSize:14];
     [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
@@ -303,7 +303,7 @@
     [btnInvite addSubview:imgInvite];
     
     UILabel *lbInvite = [[[UILabel alloc] initWithFrame:CGRectMake(10, 22, 40, 20)] autorelease];
-    lbInvite.font = [UIFont systemFontOfSize:12];
+    lbInvite.font = [UIFont systemFontOfSize:14];
     lbInvite.text = @"邀请";
     lbInvite.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     [btnInvite addSubview:lbInvite];

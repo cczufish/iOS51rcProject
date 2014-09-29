@@ -57,7 +57,7 @@
     self.lbTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.lbTop.layer.borderWidth = 0.5;
     self.btnTop.titleLabel.text = @"相关简历";
-    self.btnTop.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.btnTop.titleLabel.font = [UIFont systemFontOfSize:14];
     self.btnTop.layer.borderWidth = 0.5;
     self.btnTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     
@@ -71,7 +71,7 @@
     //设置导航标题(搜索条件)
     UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
-    [lbTitle setFont:[UIFont systemFontOfSize:12]];
+    [lbTitle setFont:[UIFont systemFontOfSize:14]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
     //[viewTitle setBackgroundColor:[UIColor blueColor]];
     [viewTitle addSubview:lbTitle];
@@ -227,7 +227,7 @@
     //查看简历
     UILabel *lbResume = [[UILabel alloc] initWithFrame:CGRectMake(20, lbAddress.frame.origin.y+lbAddress.frame.size.height, 280, 20)];
     [lbResume setText:[NSString stringWithFormat:@"查看简历：%@",rowData[@"cvName"]]];
-    lbResume.font = [UIFont systemFontOfSize:12];
+    lbResume.font = [UIFont systemFontOfSize:14];
     [lbResume setTextColor:colorText];
     [cell.contentView addSubview:lbResume];
     [lbResume release];
@@ -236,7 +236,7 @@
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(20,  lbResume.frame.origin.y+lbResume.frame.size.height, 200, 20)];
     NSString *strDate = [NSString stringWithFormat:@"查看时间：%@", [CommonController stringFromDate:[CommonController dateFromString:rowData[@"adddate"]] formatType:@"MM-dd HH:mm"]];
     [lbRefreshDate setText:strDate];
-    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:14]];
     [lbRefreshDate setTextColor:colorText];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];

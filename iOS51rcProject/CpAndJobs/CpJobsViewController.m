@@ -115,7 +115,7 @@
     NSDictionary *rowData = self.jobListData[indexPath.row];
     //职位名称
     NSString *strJobName = rowData[@"Name"];
-    UIFont *titleFont = [UIFont systemFontOfSize:12];
+    UIFont *titleFont = [UIFont systemFontOfSize:14];
     CGSize labelSize = [CommonController CalculateFrame:strJobName fontDemond:titleFont sizeDemand:titleSize];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 200, labelSize.height)];
     lbTitle.text = strJobName;
@@ -131,7 +131,7 @@
     UILabel *lbeRfreshDate = [[UILabel alloc] initWithFrame:CGRectMake(220, lbTitle.frame.origin.y, 80, labelSize.height)];
     lbeRfreshDate.text = strefreshDate;
     lbeRfreshDate.textAlignment = NSTextAlignmentRight;
-    lbeRfreshDate.font = [UIFont systemFontOfSize:12];
+    lbeRfreshDate.font = [UIFont systemFontOfSize:14];
     lbeRfreshDate.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbeRfreshDate)];
     [lbeRfreshDate release];
@@ -143,7 +143,7 @@
     NSString *strInfo = [NSString stringWithFormat:@"%@|%@", strAge, strDegree];
     UILabel *lbInfo = [[UILabel alloc] initWithFrame:CGRectMake(40, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 200, labelSize.height)];
     lbInfo.text = strInfo;
-    lbInfo.font = [UIFont systemFontOfSize:12];
+    lbInfo.font = [UIFont systemFontOfSize:14];
     lbInfo.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbInfo)];
     [lbInfo release];
@@ -151,7 +151,7 @@
     NSString *strdcSalaryID = rowData[@"dcSalaryID"];
     UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(220, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 80, labelSize.height)];
     lbSalary.text = [CommonController getDictionaryDesc:strdcSalaryID tableName:@"dcSalary"];
-    lbSalary.font = [UIFont systemFontOfSize:12];
+    lbSalary.font = [UIFont systemFontOfSize:14];
     lbSalary.textAlignment = NSTextAlignmentRight;
     lbSalary.textColor = [UIColor redColor];
     [cell.contentView addSubview:(lbSalary)];

@@ -108,7 +108,7 @@
     NSString *strAuthor = rowData[@"Author"];
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 200, 15)];
     lbAuthor.text = strAuthor;
-    lbAuthor.font = [UIFont systemFontOfSize:12];
+    lbAuthor.font = [UIFont systemFontOfSize:14];
     lbAuthor.textColor = [UIColor grayColor];
     [tmpView addSubview:(lbAuthor)];
     [lbAuthor release];
@@ -120,7 +120,7 @@
     strDate = [CommonController stringFromDate:dtBeginDate formatType:@"MM-dd HH:mm"];
     lbTime.text = strDate;
     lbTime.textColor = [UIColor grayColor];
-    lbTime.font = [UIFont systemFontOfSize:12];
+    lbTime.font = [UIFont systemFontOfSize:14];
     lbTime.textAlignment = NSTextAlignmentRight;
     [tmpView addSubview:(lbTime)];
     [lbTime release];

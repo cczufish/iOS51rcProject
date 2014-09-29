@@ -57,7 +57,7 @@
     self.lbTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.lbTop.layer.borderWidth = 0.5;
     self.btnTop.titleLabel.text = @"相关简历";
-    self.btnTop.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.btnTop.titleLabel.font = [UIFont systemFontOfSize:14];
     self.btnTop.layer.borderWidth = 0.5;
     self.btnTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     
@@ -243,7 +243,7 @@
     //公司名称
     UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(40, lbJobName.frame.origin.y+lbJobName.frame.size.height + 5, 280, 20)];
     [lbAddress setText:rowData[@"cpName"]];
-    lbAddress.font = [UIFont systemFontOfSize:12];
+    lbAddress.font = [UIFont systemFontOfSize:14];
     [lbAddress setTextColor:[UIColor blackColor]];
     [cell.contentView addSubview:lbAddress];
     [lbAddress release];
@@ -264,7 +264,7 @@
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 200, 20)];
     NSString *strDate = [NSString stringWithFormat:@"申请时间：%@", [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"]];
     [lbRefreshDate setText:strDate];
-    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:14]];
     [lbRefreshDate setTextColor:colorText];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
@@ -284,7 +284,7 @@
     //查看状态
     UILabel *lbReply = [[UILabel alloc] initWithFrame:CGRectMake(220,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 80, 20)];
     [lbReply setText:strDate];
-    [lbReply setFont:[UIFont systemFontOfSize:12]];
+    [lbReply setFont:[UIFont systemFontOfSize:14]];
     [lbReply setTextColor:[UIColor grayColor]];
     lbReply.textAlignment = NSTextAlignmentRight;
      [cell.contentView addSubview:lbReply];

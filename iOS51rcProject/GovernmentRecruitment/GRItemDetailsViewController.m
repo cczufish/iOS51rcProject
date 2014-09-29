@@ -153,7 +153,7 @@
     
     //正文
     NSString *strContent =[CommonController FilterHtml: dicCpMain[@"Content"]];
-    labelSize = [CommonController CalculateFrame:strContent fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(300, 5000)];
+    labelSize = [CommonController CalculateFrame:strContent fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(300, 5000)];
     y = lbLine.frame.origin.y + lbLine.frame.size.height + 5;
     UILabel *lbContent = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, labelSize.width, labelSize.height)] autorelease];
     lbContent.lineBreakMode = NSLineBreakByCharWrapping;

@@ -432,7 +432,7 @@
             return 0;
             break;
     }
-    UIFont *fontCell = [UIFont systemFontOfSize:12];
+    UIFont *fontCell = [UIFont systemFontOfSize:14];
     UIColor *colorText = [UIColor colorWithRed:120.f/255.f green:120.f/255.f blue:120.f/255.f alpha:1];
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     //职位名称

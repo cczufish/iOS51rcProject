@@ -234,7 +234,7 @@
     [lbSeparate release];
     //添加姓名公开
     UIButton *btnNameHidden = [[UIButton alloc] initWithFrame:CGRectMake(fltContentX+40, 170, 100, 27)];
-    [btnNameHidden.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [btnNameHidden.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btnNameHidden addTarget:self action:@selector(changeNameHidden:) forControlEvents:UIControlEventTouchUpInside];
     if ([dicCvInfo[@"IsNameHidden"] isEqualToString:@"false"]) {
         [btnNameHidden setTitle:@"姓名已公开" forState:UIControlStateNormal];
@@ -253,7 +253,7 @@
     
     //添加简历公开
     UIButton *btnCvHidden = [[UIButton alloc] initWithFrame:CGRectMake(fltContentX+180, 170, 100, 27)];
-    [btnCvHidden.titleLabel setFont:[UIFont systemFontOfSize:12]];
+    [btnCvHidden.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btnCvHidden addTarget:self action:@selector(changeCvHidden:) forControlEvents:UIControlEventTouchUpInside];
     if ([dicCvInfo[@"IscvHidden"] isEqualToString:@"false"]) {
         [btnCvHidden setTitle:@"简历已公开" forState:UIControlStateNormal];

@@ -164,10 +164,10 @@
          strLivePlace = [NSString stringWithFormat:@"%@", strLivePlace];
     }
     NSString *strPaInfo = [NSString stringWithFormat:@"%@%@%@%@  %@ ", strSex, strAge, strDegree, strRelatedWorkYears, strLivePlace];
-    labelSize = [CommonController CalculateFrame:strPaInfo fontDemond:[UIFont systemFontOfSize:12] sizeDemand:titleSize];
+    labelSize = [CommonController CalculateFrame:strPaInfo fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPaInfo.text = strPaInfo;
-    lbPaInfo.font = [UIFont systemFontOfSize:12];
+    lbPaInfo.font = [UIFont systemFontOfSize:14];
     lbPaInfo.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPaInfo)];
     //参会时间
@@ -177,10 +177,10 @@
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     strBeginDate = [NSString stringWithFormat:@"参会时间：%@ %@",strBeginDate,strWeek];
     
-    labelSize = [CommonController CalculateFrame:strBeginDate fontDemond:[UIFont systemFontOfSize:12] sizeDemand:titleSize];
+    labelSize = [CommonController CalculateFrame:strBeginDate fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
     UILabel *lbBegin = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPaInfo.frame.origin.y+lbPaInfo.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbBegin.text = strBeginDate;
-    lbBegin.font = [UIFont systemFontOfSize:12];
+    lbBegin.font = [UIFont systemFontOfSize:14];
     lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     

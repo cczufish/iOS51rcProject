@@ -107,7 +107,7 @@
             [imgDelete release];
             
             UILabel *lbDelTitle = [[UILabel alloc] initWithFrame:CGRectMake(45, 5, 180, 30)];
-            [lbDelTitle setFont:[UIFont systemFontOfSize:12]];
+            [lbDelTitle setFont:[UIFont systemFontOfSize:14]];
             [lbDelTitle setText:@"清空历史搜索记录"];
             [cell.contentView addSubview:lbDelTitle];
             [lbDelTitle release];
@@ -116,13 +116,13 @@
         rowData = self.historyListData[indexPath.row];
     }
     UILabel *lbKeyword = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 200, 30)];
-    [lbKeyword setFont:[UIFont systemFontOfSize:12]];
+    [lbKeyword setFont:[UIFont systemFontOfSize:14]];
     [lbKeyword setText:rowData[@"KeyWord"]];
     [cell.contentView addSubview:lbKeyword];
     [lbKeyword release];
     
     UILabel *lbCount = [[UILabel alloc] initWithFrame:CGRectMake(225, 5, 90, 30)];
-    [lbCount setFont:[UIFont systemFontOfSize:12]];
+    [lbCount setFont:[UIFont systemFontOfSize:14]];
     [lbCount setTextAlignment:NSTextAlignmentRight];
     [lbCount setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
     [lbCount setText:[NSString stringWithFormat:@"%@个职位",rowData[@"SearchResult"]]];

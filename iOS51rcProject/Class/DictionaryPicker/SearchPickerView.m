@@ -627,7 +627,7 @@
     for (UIView *viewChild in self.scrollMulti.subviews) {
         [viewChild removeFromSuperview];
     }
-    UIFont *scrollFont = [UIFont systemFontOfSize:12];
+    UIFont *scrollFont = [UIFont systemFontOfSize:14];
     float fltMultiWidth = 0;
     for (int i=0; i<self.arrSelectValue.count; i++) {
         CGSize labelSize = [CommonController CalculateFrame:self.arrSelectName[i] fontDemond:scrollFont sizeDemand:CGSizeMake(5000, 22)];

@@ -146,7 +146,7 @@
     UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     title.text = [NSString stringWithFormat:@"%@%@平均工资为：%@元",self.lbRegionSelect.text, jobTypeName, tmpData[@"AvgSalary"] ];
-    title.font = [UIFont systemFontOfSize:12];
+    title.font = [UIFont systemFontOfSize:14];
     [self.viewAvg addSubview:title];
     //3行还是两行（如果选择省以下的的是三条数据）
     int viewHeight = 160;
@@ -261,7 +261,7 @@
     UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     title.text = [NSString stringWithFormat:@"  %@%@招聘待遇分布",self.lbRegionSelect.text, jobTypeName];
-    title.font = [UIFont systemFontOfSize:12];
+    title.font = [UIFont systemFontOfSize:14];
     [self.viewDistribution addSubview:title];
 
     //======================工作经验的柱状图======================
@@ -374,7 +374,7 @@
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     NSString *regionName = [CommonController getDictionaryDesc:[self.regionSelect substringToIndex:2] tableName:@"dcRegion"];
     title.text = [NSString stringWithFormat:@"  %@地区薪酬排行",regionName];
-    title.font = [UIFont systemFontOfSize:12];
+    title.font = [UIFont systemFontOfSize:14];
     [self.viewRank addSubview:title];
     for (int i=0; i<requestData.count; i++) {
         NSDictionary *tmpData = requestData[i];

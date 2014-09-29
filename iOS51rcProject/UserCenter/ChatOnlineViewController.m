@@ -77,7 +77,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIFont *fontCell = [UIFont systemFontOfSize:12];
+    UIFont *fontCell = [UIFont systemFontOfSize:14];
     UIColor *colorText = [UIColor colorWithRed:120.f/255.f green:120.f/255.f blue:120.f/255.f alpha:1];
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.chatOnlineListData[indexPath.row];
@@ -99,7 +99,7 @@
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(lbCompanyName.frame.origin.x + lbCompanyName.frame.size.width, lbCompanyName.frame.origin.y, 80, 15)];
     NSString *strDate = [CommonController stringFromDate:[CommonController dateFromString:rowData[@"SendDate"]] formatType:@"MM-dd HH:mm"];
     [lbRefreshDate setText:strDate];
-    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:14]];
     [lbRefreshDate setTextColor:colorText];
     [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
     [cell.contentView addSubview:lbRefreshDate];
