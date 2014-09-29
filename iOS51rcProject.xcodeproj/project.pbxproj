@@ -96,6 +96,8 @@
 		9936980B19C7D4020060BDD1 /* ico_cvmain_jobintention.png in Resources */ = {isa = PBXBuildFile; fileRef = 9936980419C7D4020060BDD1 /* ico_cvmain_jobintention.png */; };
 		9936980C19C7D4020060BDD1 /* ico_cvmain_padata.png in Resources */ = {isa = PBXBuildFile; fileRef = 9936980519C7D4020060BDD1 /* ico_cvmain_padata.png */; };
 		9936980D19C7D4020060BDD1 /* ico_cvmain_specially.png in Resources */ = {isa = PBXBuildFile; fileRef = 9936980619C7D4020060BDD1 /* ico_cvmain_specially.png */; };
+		9941B67F19D902060007040A /* ico_multisel_del_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941B67D19D902060007040A /* ico_multisel_del_highlight.png */; };
+		9941B68019D902060007040A /* ico_multisel_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 9941B67E19D902060007040A /* ico_multisel_del.png */; };
 		9942F37F19B94E4400191C74 /* ico_map_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37C19B94E4300191C74 /* ico_map_back.png */; };
 		9942F38019B94E4400191C74 /* ico_mapsearch_pointer_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */; };
 		9942F38119B94E4400191C74 /* ico_mapsearch_pointer_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */; };
@@ -614,6 +616,8 @@
 		9936980419C7D4020060BDD1 /* ico_cvmain_jobintention.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvmain_jobintention.png; sourceTree = "<group>"; };
 		9936980519C7D4020060BDD1 /* ico_cvmain_padata.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvmain_padata.png; sourceTree = "<group>"; };
 		9936980619C7D4020060BDD1 /* ico_cvmain_specially.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_cvmain_specially.png; sourceTree = "<group>"; };
+		9941B67D19D902060007040A /* ico_multisel_del_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_multisel_del_highlight.png; sourceTree = "<group>"; };
+		9941B67E19D902060007040A /* ico_multisel_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_multisel_del.png; sourceTree = "<group>"; };
 		9942F37C19B94E4300191C74 /* ico_map_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_map_back.png; sourceTree = "<group>"; };
 		9942F37D19B94E4300191C74 /* ico_mapsearch_pointer_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_pointer_blue.png; sourceTree = "<group>"; };
 		9942F37E19B94E4300191C74 /* ico_mapsearch_pointer_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mapsearch_pointer_red.png; sourceTree = "<group>"; };
@@ -2156,6 +2160,8 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9941B67D19D902060007040A /* ico_multisel_del_highlight.png */,
+				9941B67E19D902060007040A /* ico_multisel_del.png */,
 				99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */,
 				9923827E19D560BA003CFF62 /* btn_cpmain_share.png */,
 				9923827A19D4F039003CFF62 /* ico_login_name.png */,
@@ -2517,6 +2523,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9941B67F19D902060007040A /* ico_multisel_del_highlight.png in Resources */,
 				99BDC5F419A5F4A900B2BDB1 /* radioChecked.png in Resources */,
 				995575BD19AC582600B73E4A /* ico_cp_hasLincence.png in Resources */,
 				99F51F4419AEB30300C81A9B /* chk_default.png in Resources */,
@@ -2549,6 +2556,7 @@
 				99CFD830199B5F80009A5ABA /* Images.xcassets in Resources */,
 				9994AF3A19D144BF008068AD /* ico_fuli_baoxian.png in Resources */,
 				99B350B8199CB1F100CAEC71 /* index640x1136.png in Resources */,
+				9941B68019D902060007040A /* ico_multisel_del.png in Resources */,
 				9994AF4719D144BF008068AD /* ico_fuli_sushe.png in Resources */,
 				9994AF4619D144BF008068AD /* ico_fuli_shuangxiu.png in Resources */,
 				9942F38119B94E4400191C74 /* ico_mapsearch_pointer_red.png in Resources */,

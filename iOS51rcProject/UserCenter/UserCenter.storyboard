@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="QNE-Zz-bsU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="QNE-Zz-bsU">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -752,7 +752,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" id="GmE-NY-kAL">
+                                    <view hidden="YES" contentMode="scaleToFill" id="GmE-NY-kAL" customClass="UIButton">
                                         <rect key="frame" x="0.0" y="110" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
@@ -761,33 +761,31 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲，您的简历还不完整，拥有一份完整的简历，我们会为您推荐合适的职位" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x9v-bP-J11">
-                                                <rect key="frame" x="65" y="20" width="240" height="30"/>
+                                                <rect key="frame" x="63" y="20" width="240" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cba-f8-mzf">
-                                                <rect key="frame" x="65" y="58" width="235" height="30"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点我完善简历" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bia-GT-ayh">
+                                                <rect key="frame" x="63" y="54" width="85" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <state key="normal" title="完善简历">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="switchToMyCv:" destination="gIo-sv-3Ym" eventType="touchUpInside" id="dr2-2y-7JI"/>
-                                                </connections>
-                                            </button>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="switchToModifyCv:" destination="gIo-sv-3Ym" eventType="touchUpInside" id="mKf-60-7Li"/>
+                                        </connections>
                                     </view>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="gIo-sv-3Ym" id="USS-Q0-STP"/>
                                 </connections>
                             </scrollView>
-                            <view hidden="YES" contentMode="scaleToFill" id="Z6H-uL-Uai">
+                            <view hidden="YES" contentMode="scaleToFill" id="Z6H-uL-Uai" customClass="UIButton">
                                 <rect key="frame" x="0.0" y="220" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -796,26 +794,23 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲，您还没有简历，HR关注不到您，建议您立即创建一份简历" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7AQ-oS-735">
-                                        <rect key="frame" x="65" y="20" width="240" height="30"/>
+                                        <rect key="frame" x="65" y="25" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yN0-vA-ymk">
-                                        <rect key="frame" x="65" y="58" width="235" height="30"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点我创建简历" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wyg-pS-dvZ">
+                                        <rect key="frame" x="65" y="54" width="88" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="创建简历">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="switchToMyCv:" destination="gIo-sv-3Ym" eventType="touchUpInside" id="sPZ-7g-lhm"/>
-                                        </connections>
-                                    </button>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="1" green="0.35294117650000001" blue="0.1529411765" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="switchToMyCv:" destination="gIo-sv-3Ym" eventType="touchUpInside" id="jl7-Uy-9j7"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -824,12 +819,12 @@
                         <outlet property="btnApply1" destination="2EG-43-HTt" id="v5S-bS-c7k"/>
                         <outlet property="btnApply2" destination="l4Z-X7-HbA" id="d9r-Fb-f4j"/>
                         <outlet property="btnApply3" destination="OV9-tp-LJH" id="l1g-hN-ql4"/>
-                        <outlet property="btnCreate" destination="yN0-vA-ymk" id="jlZ-Gr-MAq"/>
+                        <outlet property="btnCreate" destination="Z6H-uL-Uai" id="pOy-jL-rPy"/>
                         <outlet property="btnCv1" destination="FXA-mm-lAr" id="vVM-Y2-ivk"/>
                         <outlet property="btnCv2" destination="B3p-rM-bBc" id="Lss-aC-tkl"/>
                         <outlet property="btnCv3" destination="p5l-1U-WGH" id="uIM-AW-xqa"/>
                         <outlet property="btnFavorite" destination="1OB-i8-0cA" id="bV0-eI-nvl"/>
-                        <outlet property="btnModifyCv" destination="cba-f8-mzf" id="jGg-Pc-hLC"/>
+                        <outlet property="btnModifyCv" destination="GmE-NY-kAL" id="W9i-gl-E0M"/>
                         <outlet property="lbCv1" destination="Y7c-Sv-2eM" id="jxV-n3-d3p"/>
                         <outlet property="lbCv2" destination="uVY-nh-auW" id="Meh-F0-AgG"/>
                         <outlet property="lbCv3" destination="Uje-61-yjO" id="jmd-Wl-XlF"/>
@@ -842,8 +837,6 @@
                         <outlet property="viewJobList1" destination="4Yp-St-NZ8" id="7Ff-Yf-eaY"/>
                         <outlet property="viewJobList2" destination="ren-f7-m2b" id="Lcl-nG-tH6"/>
                         <outlet property="viewJobList3" destination="HJC-QX-6BR" id="aK5-4J-Qfu"/>
-                        <outlet property="viewModifyCv" destination="GmE-NY-kAL" id="ae5-hu-gxR"/>
-                        <outlet property="viewNoResume" destination="Z6H-uL-Uai" id="tdt-at-viL"/>
                         <outlet property="viewOperate" destination="qzO-QQ-jLZ" id="CcA-zq-KS3"/>
                     </connections>
                 </viewController>

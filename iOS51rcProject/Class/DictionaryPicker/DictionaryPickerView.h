@@ -37,6 +37,10 @@ typedef enum {
 @property (retain, nonatomic) IBOutlet UIView *viewOneTop;
 @property (retain, nonatomic) IBOutlet UIView *viewMultiBottom;
 @property (retain, nonatomic) IBOutlet UILabel *lbMulti;
+@property (retain, nonatomic) IBOutlet UIButton *btnMultiCancel;
+@property (retain, nonatomic) IBOutlet UIButton *btnMultiConfirm;
+@property (retain, nonatomic) IBOutlet UIButton *btnMultiAdd;
+
 @property (nonatomic) DictionaryPickerType pickerType;
 @property (nonatomic) DictionaryPickerMode pickerMode;
 @property (nonatomic) DictionaryPickerInclude pickerInclude;

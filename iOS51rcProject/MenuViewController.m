@@ -66,7 +66,7 @@
                 ivTitle.frame = CGRectMake(35, 3, 40, 40);
             }
             else {
-                lbTitle.text = @"点击登陆";
+                lbTitle.text = @"点击登录";
                 [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_head.png"]];
                 ivTitle.frame = CGRectMake(35, 3, 40, 40);
             }

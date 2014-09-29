@@ -25,7 +25,6 @@ typedef enum {
 @interface SearchPickerView : UIView <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (assign, nonatomic) id <SearchPickerDelegate> delegate;
-@property (retain, nonatomic) IBOutlet UIButton *btnMultiClear;
 @property (strong, nonatomic) IBOutlet UIPickerView *pickerDictionary;
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollMulti;
 @property (retain, nonatomic) IBOutlet UIButton *btnMultiAdd;

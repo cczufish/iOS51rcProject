@@ -73,8 +73,8 @@
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     
-    [self.lbRegionSelect setText:@"山东省"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [self.lbRegionSelect setText:[userDefault objectForKey:@"subSiteCity"]];
     self.regionSelect = [userDefault objectForKey:@"subSiteId"];
     self.jobTypeSelect = @"0";
     jobTypeName = @"职工";
@@ -480,7 +480,7 @@
 //地区选择
 -(void)showRegionSelect:(UIButton *)sender {
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.self.regionSelect defaultName:@"山东省"] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.regionSelect defaultName:self.lbRegionSelect.text] autorelease];
     [self.DictionaryPicker setTag:1];
     [self.DictionaryPicker showInView:self.view];
 }

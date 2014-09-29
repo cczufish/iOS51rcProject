@@ -104,6 +104,7 @@
     self.placeid = @"";
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     self.regionid = [userDefault objectForKey:@"subSiteId"];
+    self.lbProvince.text = [userDefault objectForKey:@"subSiteCity"];
     [self onSearch];
     
     //场馆初始化
@@ -454,7 +455,7 @@
 
 -(void)showRegionSelect {
     [self cancelDicPicker];
-    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.regionid defaultName:@"山东省"] autorelease];
+    self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithCustom:DictionaryPickerWithRegionL2 pickerMode:DictionaryPickerModeOne pickerInclude:DictionaryPickerIncludeParent delegate:self defaultValue:self.regionid defaultName:self.lbProvince.text] autorelease];
 
     self.DictionaryPicker.tag = 1;
     [self.DictionaryPicker showInView:self.view];

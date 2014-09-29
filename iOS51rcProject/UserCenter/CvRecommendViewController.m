@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "CustomPopup.h"
 #import "SuperJobMainViewController.h"
+#import "CvModifyViewController.h"
 
 @interface CvRecommendViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,CustomPopupDelegate>
 {
@@ -77,14 +78,14 @@
 {
     NSString *cvId = cvData[@"ID"];
     if ([cvData[@"Valid"] isEqualToString:@"0"]) {
-        CGRect frameModifyCv = self.viewModifyCv.frame;
+        CGRect frameModifyCv = self.btnModifyCv.frame;
         frameModifyCv.origin.x = self.scrollContent.contentOffset.x;
         [self.btnModifyCv setTag:[cvId intValue]];
-        [self.viewModifyCv setFrame:frameModifyCv];
-        [self.viewModifyCv setHidden:false];
+        [self.btnModifyCv setFrame:frameModifyCv];
+        [self.btnModifyCv setHidden:false];
         return;
     }
-    [self.viewModifyCv setHidden:true];
+    [self.btnModifyCv setHidden:true];
     [loadView startAnimating];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:[self.userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
@@ -108,7 +109,7 @@
         if (requestData.count == 0) { //没有简历
             [self.viewCvList setHidden:true];
             [self.viewOperate setHidden:true];
-            [self.viewNoResume setHidden:false];
+            [self.btnCreate setHidden:false];
         }
         else { //有简历
             for (int i=0; i<requestData.count; i++) {
@@ -147,7 +148,6 @@
                             [self.lbCv3 removeFromSuperview];
                             [self.btnCv3 removeFromSuperview];
                             [self.viewJobList3 removeFromSuperview];
-                            
                             //更改按钮宽度
                             CGRect frameLabelCv1 = self.lbCv1.frame;
                             frameLabelCv1.size.width = 160;
@@ -159,10 +159,12 @@
                             
                             CGRect frameLabelCv2 = self.lbCv2.frame;
                             frameLabelCv2.size.width = 160;
+                            frameLabelCv2.origin.x = 160;
                             [self.lbCv2 setFrame:frameLabelCv2];
                             
                             CGRect frameButtonCv2 = self.btnCv2.frame;
                             frameButtonCv2.size.width = 160;
+                            frameButtonCv2.origin.x = 160;
                             [self.btnCv2 setFrame:frameButtonCv2];
                             
                             CGRect frameLabelSwitch = self.lbSwitch.frame;
@@ -240,19 +242,22 @@
 
 - (IBAction)switchToCv1:(UIButton *)sender {
     [self.scrollContent setContentOffset:CGPointMake(0, 0) animated:true];
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         [self.lbCv2 setTextColor:[UIColor blackColor]];
         [self.lbCv3 setTextColor:[UIColor blackColor]];
         [self.lbCv1 setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
         [self.lbSwitch setFrame:CGRectMake((320/self.cvListData.count)*0, self.lbSwitch.frame.origin.y, self.lbSwitch.frame.size.width, self.lbSwitch.frame.size.height)];
     } completion:^(BOOL finished) {
-        
+        if (!self.jobListData1) {
+            self.tableNumber = 1;
+            [self getRecommendList:self.cvListData[0]];
+        }
     }];
 }
 
 - (IBAction)switchToCv2:(UIButton *)sender {
     [self.scrollContent setContentOffset:CGPointMake(320, 0) animated:true];
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         [self.lbCv1 setTextColor:[UIColor blackColor]];
         [self.lbCv3 setTextColor:[UIColor blackColor]];
         [self.lbCv2 setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
@@ -266,7 +271,7 @@
 }
 - (IBAction)switchToCv3:(UIButton *)sender {
     [self.scrollContent setContentOffset:CGPointMake(640, 0) animated:true];
-    [UIView animateWithDuration:0.2 animations:^{
+    [UIView animateWithDuration:0.4 animations:^{
         [self.lbCv1 setTextColor:[UIColor blackColor]];
         [self.lbCv2 setTextColor:[UIColor blackColor]];
         [self.lbCv3 setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
@@ -339,6 +344,12 @@
 - (IBAction)switchToMyCv:(id)sender {
     UIViewController *viewC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyCvView"];
     [self.navigationController pushViewController:viewC animated:true];
+}
+
+- (IBAction)switchToModifyCv:(UIButton *)sender {
+    CvModifyViewController *cvModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"CvModifyView"];
+    cvModifyC.cvId = [NSString stringWithFormat:@"%d",sender.tag];
+    [self.navigationController pushViewController:cvModifyC animated:true];
 }
 
 - (void) getPopupValue:(NSString *)value
@@ -593,7 +604,6 @@
     [_btnFavorite release];
     [_viewOperate release];
     [_btnCreate release];
-    [_viewNoResume release];
     [_viewJobList1 release];
     [_viewJobList2 release];
     [_viewJobList3 release];
@@ -602,7 +612,6 @@
     [_tvList2 release];
     [_tvList3 release];
     [_btnModifyCv release];
-    [_viewModifyCv release];
     [super dealloc];
 }
 @end

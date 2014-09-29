@@ -22,7 +22,6 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnFavorite;
 @property (retain, nonatomic) IBOutlet UIView *viewOperate;
 @property (retain, nonatomic) IBOutlet UIButton *btnCreate;
-@property (retain, nonatomic) IBOutlet UIView *viewNoResume;
 @property (retain, nonatomic) IBOutlet UIView *viewJobList1;
 @property (retain, nonatomic) IBOutlet UIView *viewJobList2;
 @property (retain, nonatomic) IBOutlet UIView *viewJobList3;
@@ -31,6 +30,5 @@
 @property (retain, nonatomic) IBOutlet UITableView *tvList2;
 @property (retain, nonatomic) IBOutlet UITableView *tvList3;
 @property (retain, nonatomic) IBOutlet UIButton *btnModifyCv;
-@property (retain, nonatomic) IBOutlet UIView *viewModifyCv;
 
 @end

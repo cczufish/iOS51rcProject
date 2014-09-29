@@ -52,8 +52,8 @@
     [self.btnJobTypeSelect addTarget:self action:@selector(showJobTypeSelect:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnIndustrySelect addTarget:self action:@selector(showIndustrySelect:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.lbRegionSelect setText:@"山东省"];
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [self.lbRegionSelect setText:[userDefault objectForKey:@"subSiteCity"]];
     self.regionSelect = [userDefault objectForKey:@"subSiteId"];
 }
 
@@ -81,6 +81,7 @@
 
 -(void)showSearchHistory
 {
+    [self.viewHistory removeFromSuperview];
     FMResultSet *searchHistory = [CommonController querySql:@"SELECT * FROM paSearchHistory ORDER BY AddDate DESC"];
     if ([searchHistory next]) {
         searchHistory = [CommonController querySql:@"SELECT * FROM paSearchHistory ORDER BY AddDate DESC LIMIT 0,10"];

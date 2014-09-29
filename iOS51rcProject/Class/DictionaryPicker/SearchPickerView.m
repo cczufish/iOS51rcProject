@@ -148,7 +148,6 @@
         [self.btnMultiSave addTarget:self action:@selector(saveMultiPicker) forControlEvents:UIControlEventTouchUpInside];
         
         [self.btnMultiAdd addTarget:self action:@selector(addPickerSelect) forControlEvents:UIControlEventTouchUpInside];
-        [self.btnMultiClear addTarget:self action:@selector(removeAllMultiSelect) forControlEvents:UIControlEventTouchUpInside];
         self.pickerType = SearchPickerWithOther;
         [arrDictionaryL1 addObject:[[[NSDictionary alloc] initWithObjectsAndKeys:
                                      @"1",@"id",
@@ -349,6 +348,10 @@
 
 - (void)showInView:(UIView *)view
 {
+    self.btnMultiCancel.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
+    self.btnMultiCancel.layer.borderWidth = 1;
+    self.btnMultiCancel.layer.cornerRadius = 5;
+    self.btnMultiAdd.layer.cornerRadius = 5;
     self.frame = CGRectMake(0, view.frame.size.height, self.frame.size.width, self.frame.size.height);
     [view addSubview:self];
     
@@ -629,20 +632,21 @@
     for (int i=0; i<self.arrSelectValue.count; i++) {
         CGSize labelSize = [CommonController CalculateFrame:self.arrSelectName[i] fontDemond:scrollFont sizeDemand:CGSizeMake(5000, 22)];
         
-        UIButton *btnMultiSelect = [[UIButton alloc] initWithFrame:CGRectMake(fltMultiWidth, 0, labelSize.width+15, 22)];
+        UIButton *btnMultiSelect = [[UIButton alloc] initWithFrame:CGRectMake(fltMultiWidth, 0, labelSize.width+10, 22)];
         [btnMultiSelect setBackgroundColor:[UIColor colorWithRed:208.f/255.f green:208.f/255.f blue:208.f/255.f alpha:1]];
         
-        UIImageView *imgMultiSelect = [[UIImageView alloc] initWithFrame:CGRectMake(3, 5, 10, 10)];
-        [imgMultiSelect setImage:[UIImage imageNamed:@"check.png"]];
+        UIImageView *imgMultiSelect = [[UIImageView alloc] initWithFrame:CGRectMake(labelSize.width+2, 0, 13, 13)];
+        [imgMultiSelect setImage:[UIImage imageNamed:@"ico_multisel_del.png"]];
         [btnMultiSelect addSubview:imgMultiSelect];
         [imgMultiSelect release];
-//        btnMultiSelect.tag = [self.arrSelectValue[i] intValue];
         [btnMultiSelect setTitle:self.arrSelectValue[i] forState:UIControlStateNormal];
         [btnMultiSelect setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
         [btnMultiSelect addTarget:self action:@selector(removeMultiSelect:) forControlEvents:UIControlEventTouchUpInside];
+        [btnMultiSelect addTarget:self action:@selector(hightLightMultiSelect:) forControlEvents:UIControlEventTouchDown];
+        btnMultiSelect.layer.cornerRadius = 5;
         [self.scrollMulti addSubview:btnMultiSelect];
         
-        UILabel *lbMultiSelect = [[UILabel alloc] initWithFrame:CGRectMake(13, 0, labelSize.width, 22)];
+        UILabel *lbMultiSelect = [[UILabel alloc] initWithFrame:CGRectMake(3, 0, labelSize.width, 22)];
         [lbMultiSelect setFont:scrollFont];
         [lbMultiSelect setText:self.arrSelectName[i]];
         [btnMultiSelect addSubview:lbMultiSelect];
@@ -668,12 +672,10 @@
     [self setupScollMulti];
 }
 
-- (void)removeAllMultiSelect
+- (void)hightLightMultiSelect:(UIButton *)sender
 {
-    [self.arrSelectValue removeAllObjects];
-    [self.arrSelectName removeAllObjects];
-    [self.pickerDictionary reloadAllComponents];
-    [self setupScollMulti];
+    UIImageView *imgDel = sender.subviews[0];
+    [imgDel setImage:[UIImage imageNamed:@"ico_multisel_del_highlight.png"]];
 }
 
 - (BOOL)isMunicipality:(NSString *)regionId //是否是直辖市
