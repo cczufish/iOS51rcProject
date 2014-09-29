@@ -393,7 +393,7 @@
             //赴约参会
             UIButton *btnAccept = [[UIButton alloc] initWithFrame:CGRectMake(50, txtViewReason.frame.origin.y + txtViewReason.frame.size.height+ 5, 90, 30)];
             btnAccept.tag = (NSInteger)rowData[@"ID"];
-            objc_setAssociatedObject(btnAccept, @"message", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
+            objc_setAssociatedObject(btnAccept, @"AcceptReason", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnAccept addTarget:self action:@selector(btnAcceptClick:) forControlEvents:UIControlEventTouchUpInside];
             btnAccept.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
             btnAccept.layer.cornerRadius = 5;
@@ -407,7 +407,7 @@
             //不赴约
             UIButton *btnReject = [[UIButton alloc] initWithFrame:CGRectMake(170, txtViewReason.frame.origin.y + txtViewReason.frame.size.height + 5, 99, 30)];
             btnReject.tag = (NSInteger)rowData[@"ID"];
-            objc_setAssociatedObject(btnReject, @"message", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
+            objc_setAssociatedObject(btnReject, @"RejectlbReason", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
             btnReject.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
             //[UIColor colorWithRed:3/255.0 green:178/255.0 blue:34/255.0 alpha:1].CGColor;
@@ -501,7 +501,7 @@
 
 //点击赴约
 -(void)btnAcceptClick:(UIButton *) sender{
-    NSString *msg = objc_getAssociatedObject(sender, @"message");
+    NSString *msg = objc_getAssociatedObject(sender, @"AcceptReason");
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
@@ -526,7 +526,7 @@
 
 //点击不赴约
 -(void)btnRejectClick:(UIButton *) sender{
-    NSString *msg = objc_getAssociatedObject(sender, @"message");
+    NSString *msg = objc_getAssociatedObject(sender, @"RejectReason");
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];

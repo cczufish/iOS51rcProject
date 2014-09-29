@@ -142,7 +142,7 @@
     
     //选择图标（没有过期）
     if (!expired) {
-        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 22, 30, 45)];
+        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 22, 40, 45)];
         leftButton.tag = [rowData[@"cpMainID"] integerValue];
         UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(7, 15, 15, 15)] autorelease];
         imgCheck.tag = isBooked;
@@ -275,10 +275,10 @@
     UIImageView *imgView = [sender subviews][0];
     int tmpTag = imgView.tag;
     if (tmpTag == 1) {//如果是已经预约
-        imgView.image = [UIImage imageNamed:@"unChecked.png"];
+        imgView.image = [UIImage imageNamed:@"chk_default.png"];
         [self.checkedCpArray removeObject:(selectCp)];
     }else{
-        imgView.image = [UIImage imageNamed:@"checked.png"];
+        imgView.image = [UIImage imageNamed:@"chk_check.png"];
         [self.checkedCpArray addObject: selectCp];
     }
     imgView.tag = !imgView.tag;
