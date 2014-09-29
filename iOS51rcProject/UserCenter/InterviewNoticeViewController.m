@@ -408,10 +408,9 @@
             //不赴约
             UIButton *btnReject = [[UIButton alloc] initWithFrame:CGRectMake(170, txtViewReason.frame.origin.y + txtViewReason.frame.size.height + 5, 99, 30)];
             btnReject.tag = (NSInteger)rowData[@"ID"];
-            objc_setAssociatedObject(btnReject, @"RejectlbReason", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
+            objc_setAssociatedObject(btnReject, @"RejectReason", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
             btnReject.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
-            //[UIColor colorWithRed:3/255.0 green:178/255.0 blue:34/255.0 alpha:1].CGColor;
             btnReject.layer.cornerRadius = 5;
             UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
             lbReject.text = @"不赴约";
@@ -439,6 +438,7 @@
             if ([strReply isEqualToString:@"1"]) {
                 lbApply.text = @"赴约";
                 lbApply.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1];
+                selectRowHeight = lbApply.frame.origin.y + lbApply.frame.size.height + 15;
             }
             else{
                 lbApply.text = @"不赴约";
@@ -450,10 +450,11 @@
                 lbReason.layer.cornerRadius = 5;
                 lbReason.font = [UIFont systemFontOfSize:11];
                 [cell.contentView addSubview:(lbReason)];
+                selectRowHeight = lbReason.frame.origin.y + lbReason.frame.size.height + 5;
             }
             [cell.contentView addSubview:(lbApply)];
 
-            selectRowHeight = lbApply.frame.origin.y + lbApply.frame.size.height + 15;
+            
         }
     }else{
         selectRowHeight = 70;
@@ -502,6 +503,7 @@
 
 //点击赴约
 -(void)btnAcceptClick:(UIButton *) sender{
+    
     NSString *msg = objc_getAssociatedObject(sender, @"AcceptReason");
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
@@ -574,6 +576,10 @@
         else {
             height +=  140;
         }
+        //如果有未结束原因
+        NSString *replyMessage = self.recruitmentCpData [indexPath.row][@"ReplyMessage"];
+        labelSize = [CommonController CalculateFrame:replyMessage fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 500)];
+        height += labelSize.height - 15;
     }
     
     return height;
