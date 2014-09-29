@@ -61,6 +61,7 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     if (request.tag == 1) {
         if (requestData.count>0) {
             [self.recruitmentCpData removeAllObjects];
@@ -122,11 +123,10 @@
             request.tag = 1;
             self.runningRequest = request;
             [dicParam release];
-            [self.view makeToast:@"回复成功"];
+            [pCtrl.view makeToast:@"回复成功"];
         }
         else{
-            //UIViewController *pCtrl = [CommonController getFatherController:self.view];
-            [self.view makeToast:@"回复失败"];
+            [pCtrl.view makeToast:@"回复失败"];
         }
     }
     else if(request.tag == 3)
