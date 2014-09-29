@@ -342,8 +342,13 @@
     [self.jobMainScroll setContentSize:CGSizeMake(320, scrolHeight) ];
     self.ViewBottom.frame = CGRectMake(0, HEIGHT - 170, 320, 50);
     self.jobMainScroll.frame = CGRectMake(0, 0, 320, HEIGHT - 170);
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    //登录的才获取匹配度
+    if ([userDefaults objectForKey:@"UserID"]) {
     //获取基本简历
     [self GetBasicCvList];
+    }
 }
 
 //点击其他企业
