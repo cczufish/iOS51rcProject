@@ -12,6 +12,9 @@
 #import "ChatOnlineLogViewController.h"
 
 @interface JobViewController ()<NetWebServiceRequestDelegate,UIScrollViewDelegate,CustomPopupDelegate>
+{
+    BOOL forChat;
+}
 @property (retain, nonatomic)NSString *cpName;
 @property (retain, nonatomic)NSString *caName;
 @property (retain, nonatomic)NSString *caMainID;
@@ -94,6 +97,7 @@
         else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
             [self.cPopup setDelegate:self];
+            forChat = false;
             [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
         }
     }
@@ -114,9 +118,10 @@
             [pCtrl.view makeToast:@"您没有有效职位，请先完善您的简历"];
         }
         else {
+            forChat = true;
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
             [self.cPopup setDelegate:self];
-            [self StartChat:requestData[0][@"ID"]];
+            [self insertJobApply:requestData[0][@"ID"] isFirst:YES];
         }
     }
 }
@@ -125,24 +130,38 @@
 - (void)insertJobApply:(NSString *)cvMainID
                isFirst:(BOOL)isFirst
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:self.JobID forKey:@"JobID"];
-    [dicParam setObject:cvMainID forKey:@"cvMainID"];
-    [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
-    [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertJobApply" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    if (isFirst) {
-        request.tag = 4;
+    if (!forChat) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:self.JobID forKey:@"JobID"];
+        [dicParam setObject:cvMainID forKey:@"cvMainID"];
+        [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
+        [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"InsertJobApply" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        if (isFirst) {
+            request.tag = 4;
+        }
+        else {
+            request.tag = 5;
+        }
+        self.runningRequest = request;
+        [dicParam release];
+    }else{//进入聊天页面
+        UIStoryboard *cCtrl = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
+        ChatOnlineLogViewController *logCtrl = [cCtrl instantiateViewControllerWithIdentifier:@"ChatOnlineLogView"];
+        logCtrl.cvMainID = cvMainID;
+        logCtrl.caMainID =self.caMainID;
+        logCtrl.cpName = self.cpName;
+        logCtrl.caName = self.caName;
+        logCtrl.cpMainID = self.cpMainID;
+        logCtrl.isOnline = self.isOnline;
+        logCtrl.navigationItem.title = @"在线沟通";
+        UIViewController *pCtrl = [CommonController getFatherController:self.view];
+        [pCtrl.navigationController pushViewController:logCtrl animated:YES];
     }
-    else {
-        request.tag = 5;
-    }
-    self.runningRequest = request;
-    [dicParam release];
-}
+  }
 
 //点击申请职位按钮
 - (IBAction)btnJobApply:(id)sender {
@@ -221,22 +240,6 @@
         LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
         [self.navigationController pushViewController:loginC animated:true];
     }
-}
-
-//进入聊天页面
-- (void)StartChat:(NSString *)cvMainID
-{
-    UIStoryboard *cCtrl = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
-    ChatOnlineLogViewController *logCtrl = [cCtrl instantiateViewControllerWithIdentifier:@"ChatOnlineLogView"];
-    logCtrl.cvMainID = cvMainID;
-    logCtrl.caMainID =self.caMainID;
-    logCtrl.cpName = self.cpName;
-    logCtrl.caName = self.caName;
-    logCtrl.cpMainID = self.cpMainID;
-    logCtrl.isOnline = self.isOnline;
-    logCtrl.navigationItem.title = @"在线沟通";
-    UIViewController *pCtrl = [CommonController getFatherController:self.view];
-    [pCtrl.navigationController pushViewController:logCtrl animated:YES];
 }
 
 - (void) getPopupValue:(NSString *)value

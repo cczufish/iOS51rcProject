@@ -34,6 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.chatOnlineID = @"0";
     //代理(隐藏键盘)
     self.textSend.delegate = self;
     //顶部view边框
@@ -77,7 +78,7 @@
     self.tvChatOnlineLogList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //获取数据
     [self getChatOnlineLog];
-    
+ 
     //实例化timer，每隔7s刷新一下数据库
     connectionTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(getChatOnlineLog) userInfo:nil repeats:NO];
     [[NSRunLoop currentRunLoop]addTimer:connectionTimer forMode:NSDefaultRunLoopMode];
