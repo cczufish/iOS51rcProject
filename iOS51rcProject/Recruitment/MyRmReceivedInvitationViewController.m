@@ -159,10 +159,10 @@
     [lbStatus release];
     //公司名称
     NSString *strCpName = rowData[@"companyName"];
-    labelSize = [CommonController CalculateFrame:strCpName fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+    labelSize = [CommonController CalculateFrame:strCpName fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
     UILabel *lbCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y + lbTitle.frame.size.height + 5, labelSize.width, 15)];
     lbCpName.text = strCpName;
-    lbCpName.font = [UIFont systemFontOfSize:11];
+    lbCpName.font = [UIFont systemFontOfSize:12];
     lbCpName.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbCpName)];
     [lbCpName release];
@@ -173,7 +173,7 @@
     strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     lbInviteTime.text = [NSString stringWithFormat:@"邀请时间：%@ %@",strBeginDate,strWeek];
-    lbInviteTime.font = [UIFont systemFontOfSize:11];
+    lbInviteTime.font = [UIFont systemFontOfSize:12];
     lbInviteTime.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbInviteTime)];
     [lbInviteTime release];
@@ -185,10 +185,10 @@
     [lbLine1 release];
     //招聘会名称
     NSString *strRmName = rowData[@"RecruitmentName"];
-    labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+    labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
     UILabel *lbRmName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbInviteTime.frame.origin.y + 23, labelSize.width, 15)];
     lbRmName.text = strRmName;
-    lbRmName.font = [UIFont systemFontOfSize:11];
+    lbRmName.font = [UIFont systemFontOfSize:12];
     lbRmName.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbRmName)];
     [lbRmName release];
@@ -202,16 +202,16 @@
         strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
         NSString *strWeek = [CommonController getWeek:dtBeginDate];
         lbBeginTime.text = [NSString stringWithFormat:@"举办时间：%@ %@",strBeginDate,strWeek];
-        lbBeginTime.font = [UIFont systemFontOfSize:11];
+        lbBeginTime.font = [UIFont systemFontOfSize:12];
         lbBeginTime.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbBeginTime)];
         [lbBeginTime release];
         //举办场馆
         NSString *strPlace = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]];
-        labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+        labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBeginTime.frame.origin.y + lbBeginTime.frame.size.height + 5, labelSize.width, 15)];
         lbPlace.text = strPlace;
-        lbPlace.font = [UIFont systemFontOfSize:11];
+        lbPlace.font = [UIFont systemFontOfSize:12];
         lbPlace.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbPlace)];
         [lbPlace release];
@@ -234,25 +234,25 @@
             strDeskNo = @"";
         }
         lbDeskNo.text = [NSString stringWithFormat:@"展 位号：%@",strDeskNo];
-        lbDeskNo.font = [UIFont systemFontOfSize:11];
+        lbDeskNo.font = [UIFont systemFontOfSize:12];
         lbDeskNo.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbDeskNo)];
         [lbDeskNo release];
         //具体地址
         NSString *strAddress = [NSString stringWithFormat:@"具体地址：%@",rowData[@"Address"]];
-        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbDeskNo.frame.origin.y + lbDeskNo.frame.size.height + 5, labelSize.width, 15)];
         lbAddress.text = strPlace;
-        lbAddress.font = [UIFont systemFontOfSize:11];
+        lbAddress.font = [UIFont systemFontOfSize:12];
         lbAddress.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbAddress)];
         [lbAddress release];
         //携带材料
         NSString *strXdcl = [NSString stringWithFormat:@"携带材料：%@",rowData[@"Address"]];
-        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbXdcl = [[UILabel alloc] initWithFrame:CGRectMake(20, lbAddress.frame.origin.y + lbAddress.frame.size.height + 5, labelSize.width, 15)];
         lbXdcl.text = strXdcl;
-        lbXdcl.font = [UIFont systemFontOfSize:11];
+        lbXdcl.font = [UIFont systemFontOfSize:12];
         lbXdcl.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbXdcl)];
         [lbXdcl release];
@@ -264,19 +264,19 @@
         [lbLine2 release];
         //参会人
         NSString *strLinkman = [NSString stringWithFormat:@"参会人：%@",rowData[@"linkman"]];
-        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbLinkman = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine2.frame.origin.y + lbLine2.frame.size.height + 5, labelSize.width, 15)];
         lbLinkman.text = strLinkman;
-        lbLinkman.font = [UIFont systemFontOfSize:11];
+        lbLinkman.font = [UIFont systemFontOfSize:12];
         lbLinkman.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbLinkman)];
         [lbLinkman release];
         //手机号
         self.strMobile = rowData[@"Mobile"];
-        labelSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"手机号：%@",self.strMobile] fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(200, 15)];
+        labelSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"手机号：%@",self.strMobile] fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbMobile = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, labelSize.width, 15)];
         lbMobile.text = [NSString stringWithFormat:@"手机号：%@",self.strMobile];
-        lbMobile.font = [UIFont systemFontOfSize:11];
+        lbMobile.font = [UIFont systemFontOfSize:12];
         lbMobile.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbMobile)];
         [lbMobile release];

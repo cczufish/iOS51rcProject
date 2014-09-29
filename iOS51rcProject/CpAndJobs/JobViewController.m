@@ -313,7 +313,7 @@
     //图片+label
     UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 13, 13)] autorelease];
     imgView.image = [UIImage imageNamed:icoName];
-    CGSize labelSize = [CommonController CalculateFrame:title fontDemond:[UIFont systemFontOfSize:11] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
+    CGSize labelSize = [CommonController CalculateFrame:title fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
     UILabel *lbView = [[[UILabel alloc] initWithFrame:CGRectMake(15, 0, labelSize.width, 15)] autorelease];
     lbView.text =title;
     lbView.font = [UIFont systemFontOfSize:10];

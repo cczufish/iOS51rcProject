@@ -99,7 +99,7 @@
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(lbCompanyName.frame.origin.x + lbCompanyName.frame.size.width, lbCompanyName.frame.origin.y, 80, 15)];
     NSString *strDate = [CommonController stringFromDate:[CommonController dateFromString:rowData[@"SendDate"]] formatType:@"MM-dd HH:mm"];
     [lbRefreshDate setText:strDate];
-    [lbRefreshDate setFont:[UIFont systemFontOfSize:11]];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
     [lbRefreshDate setTextColor:colorText];
     [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
     [cell.contentView addSubview:lbRefreshDate];

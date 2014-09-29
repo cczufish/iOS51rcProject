@@ -227,7 +227,7 @@
     //查看简历
     UILabel *lbResume = [[UILabel alloc] initWithFrame:CGRectMake(20, lbAddress.frame.origin.y+lbAddress.frame.size.height, 280, 20)];
     [lbResume setText:[NSString stringWithFormat:@"查看简历：%@",rowData[@"cvName"]]];
-    lbResume.font = [UIFont systemFontOfSize:11];
+    lbResume.font = [UIFont systemFontOfSize:12];
     [lbResume setTextColor:colorText];
     [cell.contentView addSubview:lbResume];
     [lbResume release];
@@ -236,7 +236,7 @@
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(20,  lbResume.frame.origin.y+lbResume.frame.size.height, 200, 20)];
     NSString *strDate = [NSString stringWithFormat:@"查看时间：%@", [CommonController stringFromDate:[CommonController dateFromString:rowData[@"adddate"]] formatType:@"MM-dd HH:mm"]];
     [lbRefreshDate setText:strDate];
-    [lbRefreshDate setFont:[UIFont systemFontOfSize:11]];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
     [lbRefreshDate setTextColor:colorText];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
