@@ -163,7 +163,7 @@
     [lbCvName release];
     
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(fltContentX+190, 20, 100, 20)];
-    [lbRefreshDate setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+    [lbRefreshDate setTextColor:[UIColor grayColor]];
     [lbRefreshDate setFont:[UIFont systemFontOfSize:10]];
     [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
     [lbRefreshDate setText:[NSString stringWithFormat:@"更新日期:%@",[CommonController stringFromDateString:dicCvInfo[@"RefreshDate"] formatType:@"yyyy-MM-dd"]]];

@@ -139,7 +139,7 @@
         UILabel *lbTips = [[UILabel alloc] initWithFrame:CGRectMake(75, 25+labelSize.height, 160, 30)];
         [lbTips setText:@"平均申请15个职位可以换来一次面试机会"];
         [lbTips setFont:[UIFont systemFontOfSize:10]];
-        [lbTips setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+        [lbTips setTextColor:[UIColor grayColor]];
         lbTips.lineBreakMode = NSLineBreakByCharWrapping;
         lbTips.numberOfLines = 0;
         [self.viewContent addSubview:lbTips];
@@ -155,7 +155,7 @@
             UILabel *lbCvTips = [[UILabel alloc] initWithFrame:CGRectMake(15, 100, 160, 20)];
             [lbCvTips setText:@"您可以重新选择应聘的简历"];
             [lbCvTips setFont:[UIFont systemFontOfSize:12]];
-            [lbCvTips setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+            [lbCvTips setTextColor:[UIColor grayColor]];
             [self.viewContent addSubview:lbCvTips];
             [lbCvTips release];
             [self popupCommon:self.viewContent buttonType:PopupButtonTypeNone];

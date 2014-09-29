@@ -183,7 +183,7 @@
         }
         lbRange.textAlignment = NSTextAlignmentCenter;
         lbRange.font = [UIFont systemFontOfSize:8];
-        lbRange.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbRange.textColor = [UIColor grayColor];
         [self.viewAvg addSubview:lbRange];
     }
     
@@ -193,7 +193,7 @@
     UILabel *lb1 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
     lb1.text = [NSString stringWithFormat:@"%@%@平均月薪", self.lbRegionSelect.text, jobTypeName];
     lb1.font = [UIFont systemFontOfSize:10];
-    lb1.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lb1.textColor = [UIColor grayColor];
     UILabel *lb1Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, selfSalary/10000.0*250, 10)];
     lb1Color.layer.backgroundColor = [UIColor colorWithRed:28/255.f green:196/255.f blue:160/255.f alpha:1].CGColor;
     UILabel *lbMoney = [[UILabel alloc] initWithFrame:CGRectMake(lb1Color.frame.size.width, 10, 40, 10)];
@@ -220,7 +220,7 @@
     }
     
     lb2.font = [UIFont systemFontOfSize:10];
-    lb2.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lb2.textColor = [UIColor grayColor];
     UILabel *lb2Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, p1Salary/10000.0*250, 10)];
     lb2Color.layer.backgroundColor =  [UIColor colorWithRed:254/255.f green:202/255.f blue:67/255.f alpha:1].CGColor;
     UILabel *lb2Money = [[UILabel alloc] initWithFrame:CGRectMake(lb2Color.frame.size.width, 10, 40, 10)];
@@ -237,7 +237,7 @@
         UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
         lb3.text = [NSString stringWithFormat: @"全国%@平均月薪", jobTypeName];
         lb3.font = [UIFont systemFontOfSize:10];
-        lb3.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lb3.textColor = [UIColor grayColor];
         UILabel *lb3Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, p2Salary/10000.0*250, 10)];
         lb3Color.layer.backgroundColor =  [UIColor colorWithRed:254/255.f green:202/255.f blue:67/255.f alpha:1].CGColor;
         UILabel *lb3Money = [[UILabel alloc] initWithFrame:CGRectMake(lb3Color.frame.size.width, 10, 40, 10)];
@@ -399,7 +399,7 @@
         UILabel *lbLine = [[[UILabel alloc] initWithFrame:CGRectMake(40, 20, 280, 5)] autorelease];
         lbLine.text = @"-------------------------------------------------------";
         lbLine.font = [UIFont systemFontOfSize:10];
-        lbLine.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbLine.textColor = [UIColor grayColor];
         [tmpView addSubview:lbLine];
         
         [self.viewRank addSubview:tmpView];

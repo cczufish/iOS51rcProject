@@ -285,7 +285,7 @@
     UILabel *lbReply = [[UILabel alloc] initWithFrame:CGRectMake(220,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 80, 20)];
     [lbReply setText:strDate];
     [lbReply setFont:[UIFont systemFontOfSize:12]];
-    [lbReply setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+    [lbReply setTextColor:[UIColor grayColor]];
     lbReply.textAlignment = NSTextAlignmentRight;
      [cell.contentView addSubview:lbReply];
     [lbReply release];

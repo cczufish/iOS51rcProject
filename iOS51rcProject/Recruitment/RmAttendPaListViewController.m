@@ -109,7 +109,7 @@
     //现职位这三个字的label
     UILabel *lbPreTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 50, 20)];
     lbPreTitle.text = @"[现职位]";
-    lbPreTitle.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbPreTitle.textColor = [UIColor grayColor];
     lbPreTitle.font = [UIFont systemFontOfSize:14];
     //职位名称
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(lbPreTitle.frame.origin.x+lbPreTitle.frame.size.width + 1, lbPreTitle.frame.origin.y, labelSize.width, 20)];
@@ -168,7 +168,7 @@
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPaInfo.text = strPaInfo;
     lbPaInfo.font = [UIFont systemFontOfSize:12];
-    lbPaInfo.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbPaInfo.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPaInfo)];
     //参会时间
     NSString *strBeginDate = rowData[@"BeginDate"];
@@ -181,7 +181,7 @@
     UILabel *lbBegin = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPaInfo.frame.origin.y+lbPaInfo.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbBegin.text = strBeginDate;
     lbBegin.font = [UIFont systemFontOfSize:12];
-    lbBegin.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     
     //分割线

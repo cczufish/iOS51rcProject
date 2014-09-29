@@ -6,6 +6,7 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "WelcomeViewController.h"
+#import "CommonController.h"
 #import "BPush.h"
 
 @implementation AppDelegate
@@ -19,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//    [CommonController execSql:@"delete from dcsalary where _id=1"];
     //shareSDK初始化
     [ShareSDK registerApp:@"2fb76b87ccc8"];
     //添加新浪微博应用 注册网址 http://open.weibo.com

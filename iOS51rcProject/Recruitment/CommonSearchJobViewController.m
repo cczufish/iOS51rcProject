@@ -72,7 +72,7 @@
         //添加最近搜索记录文字
         UILabel *lbHistoryTitle = [[UILabel alloc] initWithFrame:CGRectMake(21, 1, 120, 20)];
         [lbHistoryTitle setText:@"最近搜索记录"];
-        [lbHistoryTitle setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+        [lbHistoryTitle setTextColor:[UIColor grayColor]];
         [lbHistoryTitle setFont:[UIFont systemFontOfSize:16]];
         [self.viewHistory addSubview:lbHistoryTitle];
         [lbHistoryTitle release];
@@ -80,7 +80,7 @@
         UIButton *btnClearHistory = [[UIButton alloc] initWithFrame:CGRectMake(200, 0, 80, 20)];
         [btnClearHistory setTitle:@"[全部清空]" forState:UIControlStateNormal];
         [btnClearHistory.titleLabel setFont:[UIFont systemFontOfSize:16]];
-        [btnClearHistory setTitleColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] forState:UIControlStateNormal];
+        [btnClearHistory setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [btnClearHistory addTarget:self action:@selector(clearAllHistory) forControlEvents:UIControlEventTouchUpInside];
         [self.viewHistory addSubview:btnClearHistory];
         [btnClearHistory release];

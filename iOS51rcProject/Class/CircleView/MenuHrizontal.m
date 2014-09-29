@@ -40,7 +40,7 @@
         [vButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [vButton setTitleColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1] forState:UIControlStateHighlighted];;
         [vButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
-        //[vButton setTitleColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] forState:UIControlStateHighlighted];
+        //[vButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];

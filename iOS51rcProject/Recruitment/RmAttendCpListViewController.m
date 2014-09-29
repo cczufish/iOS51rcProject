@@ -181,7 +181,7 @@
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(50, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, 15)];
     lbPaInfo.text = strAddress;
     lbPaInfo.font = [UIFont systemFontOfSize:12];
-    lbPaInfo.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbPaInfo.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPaInfo)];
     
     //定展时间
@@ -195,7 +195,7 @@
     UILabel *lbBegin = [[UILabel alloc] initWithFrame:CGRectMake(50, lbPaInfo.frame.origin.y+lbPaInfo.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbBegin.text = strBeginDate;
     lbBegin.font = [UIFont systemFontOfSize:12];
-    lbBegin.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     
     //预约面试按钮
@@ -208,7 +208,7 @@
             lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, 40, 10)];
             lbWillRun.text = @"已预约";
             lbWillRun.font = [UIFont systemFontOfSize:12];
-            lbWillRun.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+            lbWillRun.textColor = [UIColor grayColor];
             lbWillRun.textAlignment = NSTextAlignmentCenter;
         }else{
             //文字

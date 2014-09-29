@@ -129,7 +129,7 @@
         UILabel *lbCpName = [[UILabel alloc]initWithFrame:CGRectMake(10, 40, 240, 20)];
         lbCpName.text = rmCp.Name;
         lbCpName.font = [UIFont systemFontOfSize:14];
-        lbCpName.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbCpName.textColor = [UIColor grayColor];
         [btnRight addSubview:lbCpName];
         [lbCpName release];
         //右箭头

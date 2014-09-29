@@ -163,7 +163,7 @@
     UILabel *lbCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y + lbTitle.frame.size.height + 5, labelSize.width, 15)];
     lbCpName.text = strCpName;
     lbCpName.font = [UIFont systemFontOfSize:12];
-    lbCpName.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbCpName.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbCpName)];
     [lbCpName release];
     //邀请时间
@@ -174,13 +174,13 @@
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     lbInviteTime.text = [NSString stringWithFormat:@"邀请时间：%@ %@",strBeginDate,strWeek];
     lbInviteTime.font = [UIFont systemFontOfSize:12];
-    lbInviteTime.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbInviteTime.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbInviteTime)];
     [lbInviteTime release];
     //分隔线
     UILabel *lbLine1 = [[UILabel alloc] initWithFrame:CGRectMake(20, lbInviteTime.frame.origin.y+lbInviteTime.frame.size.height + 5, 300, 1)];
     lbLine1.text = @"--------------------------------------------------------------------------";
-    lbLine1.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbLine1.textColor = [UIColor grayColor];
     [cell.contentView addSubview:lbLine1];
     [lbLine1 release];
     //招聘会名称
@@ -189,7 +189,7 @@
     UILabel *lbRmName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbInviteTime.frame.origin.y + 23, labelSize.width, 15)];
     lbRmName.text = strRmName;
     lbRmName.font = [UIFont systemFontOfSize:12];
-    lbRmName.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbRmName.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbRmName)];
     [lbRmName release];
 
@@ -203,7 +203,7 @@
         NSString *strWeek = [CommonController getWeek:dtBeginDate];
         lbBeginTime.text = [NSString stringWithFormat:@"举办时间：%@ %@",strBeginDate,strWeek];
         lbBeginTime.font = [UIFont systemFontOfSize:12];
-        lbBeginTime.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbBeginTime.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbBeginTime)];
         [lbBeginTime release];
         //举办场馆
@@ -212,7 +212,7 @@
         UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBeginTime.frame.origin.y + lbBeginTime.frame.size.height + 5, labelSize.width, 15)];
         lbPlace.text = strPlace;
         lbPlace.font = [UIFont systemFontOfSize:12];
-        lbPlace.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbPlace.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbPlace)];
         [lbPlace release];
         //坐标
@@ -235,7 +235,7 @@
         }
         lbDeskNo.text = [NSString stringWithFormat:@"展 位号：%@",strDeskNo];
         lbDeskNo.font = [UIFont systemFontOfSize:12];
-        lbDeskNo.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbDeskNo.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbDeskNo)];
         [lbDeskNo release];
         //具体地址
@@ -244,7 +244,7 @@
         UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbDeskNo.frame.origin.y + lbDeskNo.frame.size.height + 5, labelSize.width, 15)];
         lbAddress.text = strPlace;
         lbAddress.font = [UIFont systemFontOfSize:12];
-        lbAddress.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbAddress.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbAddress)];
         [lbAddress release];
         //携带材料
@@ -253,13 +253,13 @@
         UILabel *lbXdcl = [[UILabel alloc] initWithFrame:CGRectMake(20, lbAddress.frame.origin.y + lbAddress.frame.size.height + 5, labelSize.width, 15)];
         lbXdcl.text = strXdcl;
         lbXdcl.font = [UIFont systemFontOfSize:12];
-        lbXdcl.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbXdcl.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbXdcl)];
         [lbXdcl release];
         //分隔线2
         UILabel *lbLine2 = [[UILabel alloc] initWithFrame:CGRectMake(20, lbXdcl.frame.origin.y+lbXdcl.frame.size.height + 5, 300, 1)];
         lbLine2.text = @"--------------------------------------------------------------------------";
-        lbLine2.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbLine2.textColor = [UIColor grayColor];
         [cell.contentView addSubview:lbLine2];
         [lbLine2 release];
         //参会人
@@ -268,7 +268,7 @@
         UILabel *lbLinkman = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine2.frame.origin.y + lbLine2.frame.size.height + 5, labelSize.width, 15)];
         lbLinkman.text = strLinkman;
         lbLinkman.font = [UIFont systemFontOfSize:12];
-        lbLinkman.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbLinkman.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbLinkman)];
         [lbLinkman release];
         //手机号
@@ -277,7 +277,7 @@
         UILabel *lbMobile = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, labelSize.width, 15)];
         lbMobile.text = [NSString stringWithFormat:@"手机号：%@",self.strMobile];
         lbMobile.font = [UIFont systemFontOfSize:12];
-        lbMobile.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+        lbMobile.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbMobile)];
         [lbMobile release];
         //手机号后面的图标

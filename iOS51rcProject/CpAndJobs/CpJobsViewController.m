@@ -132,7 +132,7 @@
     lbeRfreshDate.text = strefreshDate;
     lbeRfreshDate.textAlignment = NSTextAlignmentRight;
     lbeRfreshDate.font = [UIFont systemFontOfSize:12];
-    lbeRfreshDate.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbeRfreshDate.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbeRfreshDate)];
     [lbeRfreshDate release];
     //地区
@@ -144,7 +144,7 @@
     UILabel *lbInfo = [[UILabel alloc] initWithFrame:CGRectMake(40, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 200, labelSize.height)];
     lbInfo.text = strInfo;
     lbInfo.font = [UIFont systemFontOfSize:12];
-    lbInfo.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbInfo.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbInfo)];
     [lbInfo release];
     //工资

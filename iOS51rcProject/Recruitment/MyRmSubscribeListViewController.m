@@ -127,7 +127,7 @@
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     lbBegin.text = [NSString stringWithFormat:@"举办时间：%@ %@",strBeginDate,strWeek];
     lbBegin.font = [UIFont systemFontOfSize:12];
-    lbBegin.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     [lbBegin release];
     
@@ -137,7 +137,7 @@
     UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPlace.text = strPlace;
     lbPlace.font = [UIFont systemFontOfSize:12];
-    lbPlace.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbPlace.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPlace)];
     [lbPlace release];
     
@@ -160,7 +160,7 @@
     UILabel *lbPreAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPreAddress.text = strPreAddress;
     lbPreAddress.font = [UIFont systemFontOfSize:12];
-    lbPreAddress.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbPreAddress.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPreAddress)];
     [lbPreAddress release];
     
@@ -171,7 +171,7 @@
     lbAddress.numberOfLines = 0;
     lbAddress.lineBreakMode = NSLineBreakByCharWrapping;
     lbAddress.font = [UIFont systemFontOfSize:12];
-    lbAddress.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbAddress.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbAddress)];
     [lbAddress release];
     

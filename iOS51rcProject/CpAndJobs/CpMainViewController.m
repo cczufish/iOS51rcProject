@@ -92,16 +92,16 @@
     //公司名称后边的图标
     self.imgCpType.frame = CGRectMake(self.lbCpName.frame.origin.x + self.lbCpName.frame.size.width + 1, self.lbCpName.frame.origin.y+1, 18, 15);
     //所属行业
-    self.lbIndustry.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    self.lbIndustry.textColor = [UIColor grayColor];
     self.lbIndustryValue.text = dicCpMain[@"Industry"];
     //公司性质
-    self.lbCompanyKind.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    self.lbCompanyKind.textColor = [UIColor grayColor];
     self.lbCompanyKindValue.text = dicCpMain[@"CompanyKind"];
     //公司规模
-    self.lbCompanySize.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    self.lbCompanySize.textColor = [UIColor grayColor];
     [self.lbCompanySizeValue setText:dicCpMain[@"CompanySize"]];
     //详细地址
-    self.lbAddress.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    self.lbAddress.textColor = [UIColor grayColor];
     NSString *strRegion = dicCpMain[@"RegionName"];
     NSString *strAddressDetails = [NSString stringWithFormat:@"%@%@", strRegion, dicCpMain[@"Address"]];
     labelSize = [CommonController CalculateFrame:strAddressDetails fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(220, 500)];
@@ -125,7 +125,7 @@
     CGFloat y = self.lbAddressValue.frame.origin.y + self.lbAddressValue.frame.size.height - 23;
     self.lbLine.frame = CGRectMake(8, y + 34, 304, 0.5);
     //公司介绍------hight = 166
-    self.lbBrief.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    self.lbBrief.textColor = [UIColor grayColor];
     self.lbBrief.frame = CGRectMake(20, self.lbLine.frame.origin.y + self.lbLine.frame.size.height, 200, 40);
     NSString *strResponsibility = [CommonController FilterHtml: dicCpMain[@"Brief"]];
     labelSize = [CommonController CalculateFrame:strResponsibility fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];

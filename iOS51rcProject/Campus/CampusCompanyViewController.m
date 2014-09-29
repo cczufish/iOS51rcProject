@@ -271,7 +271,7 @@
         //添加分割线
         UILabel *lbSeparate = [[UILabel alloc] initWithFrame:CGRectMake(5, employBeforeHeight+22, 300, 1)];
         [lbSeparate setText:@"-----------------------------------------------------------------------------------------"];
-        [lbSeparate setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+        [lbSeparate setTextColor:[UIColor grayColor]];
         [self.viewEmployBefore addSubview:lbSeparate];
         [lbSeparate release];
         employBeforeHeight+=30;
@@ -317,7 +317,7 @@
     
     UILabel *lbBeginTime = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, 220, 20)];
     [lbBeginTime setFont:[UIFont systemFontOfSize:12]];
-    [lbBeginTime setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+    [lbBeginTime setTextColor:[UIColor grayColor]];
     [lbBeginTime setText:[NSString stringWithFormat:@"举办时间：%@-%@ %@",strBeginTime,[CommonController stringFromDate:[CommonController dateFromString:rowData[@"EndTime"]] formatType:@"HH:mm"],strWeek]];
     [cell.contentView addSubview:lbBeginTime];
     [lbBeginTime release];
@@ -325,7 +325,7 @@
     //举办学校
     UILabel *lbSchool = [[UILabel alloc] initWithFrame:CGRectMake(10, 55, 220, 20)];
     [lbSchool setFont:[UIFont systemFontOfSize:12]];
-    [lbSchool setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+    [lbSchool setTextColor:[UIColor grayColor]];
     [lbSchool setText:[NSString stringWithFormat:@"%@[%@]",rowData[@"RegionName"],rowData[@"SchoolName"]]];
     [cell.contentView addSubview:lbSchool];
     [lbSchool release];
@@ -333,7 +333,7 @@
     //举办地点
     UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(10, 75, 220, 20)];
     [lbPlace setFont:[UIFont systemFontOfSize:12]];
-    [lbPlace setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+    [lbPlace setTextColor:[UIColor grayColor]];
     [lbPlace setText:[NSString stringWithFormat:@"%@",rowData[@"Address"]]];
     [cell.contentView addSubview:lbPlace];
     [lbPlace release];

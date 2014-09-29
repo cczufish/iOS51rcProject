@@ -109,7 +109,7 @@
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 200, 15)];
     lbAuthor.text = strAuthor;
     lbAuthor.font = [UIFont systemFontOfSize:12];
-    lbAuthor.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbAuthor.textColor = [UIColor grayColor];
     [tmpView addSubview:(lbAuthor)];
     [lbAuthor release];
     
@@ -119,7 +119,7 @@
     NSDate *dtBeginDate = [CommonController dateFromString:strDate];
     strDate = [CommonController stringFromDate:dtBeginDate formatType:@"MM-dd HH:mm"];
     lbTime.text = strDate;
-    lbTime.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbTime.textColor = [UIColor grayColor];
     lbTime.font = [UIFont systemFontOfSize:12];
     lbTime.textAlignment = NSTextAlignmentRight;
     [tmpView addSubview:(lbTime)];

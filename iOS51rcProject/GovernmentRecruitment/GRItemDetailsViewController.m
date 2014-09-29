@@ -161,7 +161,7 @@
     lbAuthor.text = [NSString stringWithFormat:@"来源：%@", dicCpMain[@"author"]];
     lbAuthor.textAlignment = NSTextAlignmentRight;
     lbAuthor.font = [UIFont systemFontOfSize:13];
-    lbAuthor.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+    lbAuthor.textColor = [UIColor grayColor];
     [tmpView addSubview:lbAuthor];
     
     //加到滚动窗口上
