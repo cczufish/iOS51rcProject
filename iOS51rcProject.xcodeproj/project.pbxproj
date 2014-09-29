@@ -287,6 +287,7 @@
 		99B4694319B2F80B0034505D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B4694219B2F80B0034505D /* OpenGLES.framework */; };
 		99B4694519B2F8630034505D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B4694419B2F8630034505D /* Security.framework */; };
 		99B4ED8C19AB0458004C9068 /* JobDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B4ED8B19AB0458004C9068 /* JobDetailsController.m */; };
+		99B6424019D8EC7900F4BC16 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B6423E19D8EC7900F4BC16 /* Default@2x.png */; };
 		99B7FF8319B353C700BD1345 /* RmCpJobListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */; };
 		99B9671D19B443D000E93CBD /* RmCpMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9671C19B443D000E93CBD /* RmCpMain.m */; };
 		99B9672019B4550500E93CBD /* RmSearchJobForInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */; };
@@ -944,6 +945,8 @@
 		99B4694419B2F8630034505D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		99B4ED8A19AB0458004C9068 /* JobDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobDetailsController.h; sourceTree = "<group>"; };
 		99B4ED8B19AB0458004C9068 /* JobDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobDetailsController.m; sourceTree = "<group>"; };
+		99B6423E19D8EC7900F4BC16 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		99B6423F19D8EC7900F4BC16 /* Default@12x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@12x.png"; sourceTree = "<group>"; };
 		99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmCpJobListViewController.h; path = Recruitment/RmCpJobListViewController.h; sourceTree = "<group>"; };
 		99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmCpJobListViewController.m; path = Recruitment/RmCpJobListViewController.m; sourceTree = "<group>"; };
 		99B7FF8419B3660900BD1345 /* SelectJobDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SelectJobDelegate.h; path = Recruitment/Delegate/SelectJobDelegate.h; sourceTree = "<group>"; };
@@ -2362,6 +2365,8 @@
 		99E35B2119D7B91B0087941A /* logo */ = {
 			isa = PBXGroup;
 			children = (
+				99B6423E19D8EC7900F4BC16 /* Default@2x.png */,
+				99B6423F19D8EC7900F4BC16 /* Default@12x.png */,
 				99E35B2219D7B9310087941A /* AppIcon.png */,
 				99E35B2319D7B9310087941A /* AppIcon@2x.png */,
 			);
@@ -2538,6 +2543,7 @@
 				9942F44819B987D900191C74 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				99C539CA19C962A600E6165A /* ico_salary_rank10.png in Resources */,
 				995575BA19AC56A800B73E4A /* ico_coordinate_blue.png in Resources */,
+				99B6424019D8EC7900F4BC16 /* Default@2x.png in Resources */,
 				992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */,
 				99B3D18119D40D4F00AEF1D9 /* btn_keywords_del.png in Resources */,
 				99CFD830199B5F80009A5ABA /* Images.xcassets in Resources */,
