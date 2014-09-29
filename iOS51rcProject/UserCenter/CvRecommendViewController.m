@@ -445,6 +445,8 @@
     //匹配度
     UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(270, 5, 45, 20)];
     [lbMatch setText:[NSString stringWithFormat:@"匹配度%@%%",rowData[@"matchPercent"]]];
+    lbMatch.layer.cornerRadius = 5;
+    lbMatch.layer.masksToBounds = YES;
     [lbMatch setTextAlignment:NSTextAlignmentCenter];
     [lbMatch setTextColor:[UIColor whiteColor]];
     [lbMatch setFont:[UIFont systemFontOfSize:8]];

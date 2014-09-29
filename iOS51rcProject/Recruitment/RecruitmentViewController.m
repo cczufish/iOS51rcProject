@@ -222,7 +222,7 @@
         if ([dicRecruitment objectForKey:@"Mobile"]) {
             fltLinkHeight += fltLineHeight;
             self.recruitmentMobile = dicRecruitment[@"Mobile"];
-            UILabel *lbMobile = [[UILabel alloc] initWithFrame:CGRectMake(32, fltLinkHeight, 280, 20)];
+            UILabel *lbMobile = [[UILabel alloc] initWithFrame:CGRectMake(30, fltLinkHeight, 280, 20)];
             NSString *recruitmentMobile = [NSString stringWithFormat:@"手机号：%@",dicRecruitment[@"Mobile"]];
             labelSize = [CommonController CalculateFrame:recruitmentMobile fontDemond:font sizeDemand:CGSizeMake(lbMobile.frame.size.width, 20)];
             [lbMobile setText:recruitmentMobile];
