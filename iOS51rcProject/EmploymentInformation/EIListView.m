@@ -47,7 +47,7 @@
     self.newsType = newsType;
     if (page == 1) {
         [self.eiListData removeAllObjects];
-        [self.newsTableView reloadData];
+        //[self.newsTableView reloadData];
     }
     
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -72,7 +72,7 @@
     
     //显示标题
     NSString *strTitle = rowData[@"Title"];
-    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 310, 55)];
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 310, 62)];
     tmpView.layer.borderWidth = 0.5;
     tmpView.layer.borderColor = [UIColor grayColor].CGColor;
     
@@ -90,7 +90,7 @@
 
     //来源
     NSString *strAuthor = rowData[@"Author"];
-    UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 200, 15)];
+    UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+10, 200, 15)];
     lbAuthor.text = strAuthor;
     lbAuthor.font = [UIFont systemFontOfSize:12];
     lbAuthor.textColor = [UIColor grayColor];
@@ -103,7 +103,7 @@
     else
         strDate = rowData[@"RefreshDate"];
     
-    UILabel *lbTime = [[UILabel alloc] initWithFrame:CGRectMake(220, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 80, 15)];
+    UILabel *lbTime = [[UILabel alloc] initWithFrame:CGRectMake(220, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+10, 80, 15)];
     NSDate *dtBeginDate = [CommonController dateFromString:strDate];
     strDate = [CommonController stringFromDate:dtBeginDate formatType:@"MM-dd HH:mm"];
     lbTime.text = strDate;
@@ -195,7 +195,7 @@
     {
         return 125;
     }else{
-         return 58;
+         return 65;
     }   
 }
 
