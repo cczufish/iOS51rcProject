@@ -29,7 +29,8 @@
     [self.newsTableView addFooterWithTarget:self action:@selector(footerRereshing)];
     //不显示列表分隔线
     self.newsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    self.layer.backgroundColor = [UIColor colorWithRed:240.f/255.f green:240.f/255.f blue:240.f/255.f alpha:1].CGColor;
+    self.newsTableView.layer.backgroundColor = [UIColor colorWithRed:240.f/255.f green:240.f/255.f blue:240.f/255.f alpha:1].CGColor;
     page = 1;
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     regionid = [userDefault objectForKey:@"subSiteId"];
@@ -81,7 +82,7 @@
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 310, 62)];
     tmpView.layer.borderWidth = 0.5;
     tmpView.layer.borderColor = [UIColor colorWithRed:220.f/255.f green:220.f/255.f blue:220.f/255.f alpha:1].CGColor;
-    tmpView.layer.backgroundColor = [UIColor colorWithRed:240.f/255.f green:240.f/255.f blue:240.f/255.f alpha:1].CGColor;
+    tmpView.layer.backgroundColor = [UIColor whiteColor].CGColor;
     
     UIFont *titleFont = [UIFont systemFontOfSize:13];
     CGFloat titleWidth = 300;
@@ -143,6 +144,7 @@
     }
     [cell.contentView addSubview:tmpView];
     [tmpView autorelease];
+   
     return cell;
 }
 

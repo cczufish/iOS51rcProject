@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.title = @"更多";
     [self.tvMore setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
