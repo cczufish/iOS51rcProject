@@ -182,7 +182,6 @@
 		99908A5919A34DD300137FDE /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5319A34DD300137FDE /* FMDatabaseQueue.m */; };
 		99908A5A19A34DD300137FDE /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5519A34DD300137FDE /* FMResultSet.m */; };
 		99908A5C19A37D2000137FDE /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */; };
-		99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */; };
 		99938FD119BC2D55008F986A /* EiSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD019BC2D55008F986A /* EiSearchViewController.m */; };
 		99938FD319BCAFFB008F986A /* Recruitment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99938FD219BCAFFB008F986A /* Recruitment.storyboard */; };
 		99938FD619BD4051008F986A /* AttendRMPopUp.m in Sources */ = {isa = PBXBuildFile; fileRef = 99938FD519BD4051008F986A /* AttendRMPopUp.m */; };
@@ -796,8 +795,6 @@
 		99908A5419A34DD300137FDE /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		99908A5519A34DD300137FDE /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		99908A5B19A37D2000137FDE /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		99938FCC19BA179F008F986A /* EIKeyWordSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIKeyWordSearchViewController.h; sourceTree = "<group>"; };
-		99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIKeyWordSearchViewController.m; sourceTree = "<group>"; };
 		99938FCF19BC2D55008F986A /* EiSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EiSearchViewController.h; sourceTree = "<group>"; };
 		99938FD019BC2D55008F986A /* EiSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EiSearchViewController.m; sourceTree = "<group>"; };
 		99938FD219BCAFFB008F986A /* Recruitment.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Recruitment.storyboard; path = Recruitment/Recruitment.storyboard; sourceTree = "<group>"; };
@@ -1961,8 +1958,6 @@
 				99B9823019B4C52100D5D77D /* EIItemDetailsViewController.m */,
 				999B5B0C19B996FB0067B3E7 /* EIListView.h */,
 				999B5B0D19B996FB0067B3E7 /* EIListView.m */,
-				99938FCC19BA179F008F986A /* EIKeyWordSearchViewController.h */,
-				99938FCD19BA179F008F986A /* EIKeyWordSearchViewController.m */,
 				99938FCF19BC2D55008F986A /* EiSearchViewController.h */,
 				99938FD019BC2D55008F986A /* EiSearchViewController.m */,
 			);
@@ -2876,7 +2871,6 @@
 				99A16D2019C6B6990053C6E9 /* JmJobScanViewController.m in Sources */,
 				99BD6FF419B5AFDF00514807 /* EGORefreshTableHeaderView.m in Sources */,
 				99A16D1A19C6B6600053C6E9 /* JmJobApplyViewController.m in Sources */,
-				99938FCE19BA179F008F986A /* EIKeyWordSearchViewController.m in Sources */,
 				990512FB19C27F4400B9C096 /* NewsHelpViewController.m in Sources */,
 				99BD6FF519B5AFDF00514807 /* ScrollPageView.m in Sources */,
 				99A16D1719C6B6460053C6E9 /* JmMainViewController.m in Sources */,

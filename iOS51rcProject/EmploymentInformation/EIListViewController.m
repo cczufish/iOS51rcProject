@@ -26,23 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //右侧导航按钮
-    UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    [button setTitle: @"就业资讯" forState: UIControlStateNormal];
-    [button sizeToFit];
-    self.navigationItem.titleView = button;
-    //返回按钮
-    UIButton *leftBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
-    [leftBtn addTarget:self action:@selector(btnBackClick:) forControlEvents:UIControlEventTouchUpInside];
-    UILabel *lbLeft = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
-    lbLeft.text = @"返回";
-    lbLeft.font = [UIFont systemFontOfSize:13];
-    //lbLeft.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
-    lbLeft.textColor = [UIColor whiteColor];
-    [leftBtn addSubview:lbLeft];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem=backButton;
-    
+    self.navigationItem.title = @"就业资讯";
     self.eiListData = [[NSMutableArray alloc] init];
     placeData = [[NSMutableArray alloc] init];
     

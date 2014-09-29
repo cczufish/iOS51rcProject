@@ -27,22 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    [button setTitle: @"就业资讯" forState: UIControlStateNormal];
-    [button sizeToFit];
-    self.navigationItem.titleView = button;
-    //返回按钮
-    UIButton *leftBtn = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
-    [leftBtn addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
-    UILabel *lbLeft = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 60, 40)] autorelease];
-    lbLeft.text = @"返回";
-    lbLeft.font = [UIFont systemFontOfSize:13];
-    lbLeft.textColor = [UIColor whiteColor];
-    [leftBtn addSubview:lbLeft];
-    UIBarButtonItem *backButton = [[[UIBarButtonItem alloc] initWithCustomView:leftBtn] autorelease];
-    self.navigationItem.leftBarButtonItem=backButton;
-    
+    self.navigationItem.title = @"就业资讯";
     //搜索按钮样式
     self.btnSearch.layer.cornerRadius = 0;
     self.btnSearch.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
