@@ -129,7 +129,7 @@
         UILabel *lbCpName = [[UILabel alloc]initWithFrame:CGRectMake(10, 40, 240, 20)];
         lbCpName.text = rmCp.Name;
         lbCpName.font = [UIFont systemFontOfSize:14];
-        lbCpName.textColor = [UIColor grayColor];
+        lbCpName.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         [btnRight addSubview:lbCpName];
         [lbCpName release];
         //右箭头
@@ -142,7 +142,7 @@
         //分隔线
         UILabel *lbLine = [[UILabel alloc] initWithFrame:CGRectMake(0, 70*i+69.5, 280, 0.5)];
         lbLine.layer.borderWidth = 0;
-        lbLine.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+        lbLine.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
         [self.cpListView addSubview:lbLine];
         [lbLine release];
         

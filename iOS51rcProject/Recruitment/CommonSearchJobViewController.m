@@ -72,7 +72,7 @@
         //添加最近搜索记录文字
         UILabel *lbHistoryTitle = [[UILabel alloc] initWithFrame:CGRectMake(21, 1, 120, 20)];
         [lbHistoryTitle setText:@"最近搜索记录"];
-        [lbHistoryTitle setTextColor:[UIColor lightGrayColor]];
+        [lbHistoryTitle setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         [lbHistoryTitle setFont:[UIFont systemFontOfSize:16]];
         [self.viewHistory addSubview:lbHistoryTitle];
         [lbHistoryTitle release];
@@ -80,7 +80,7 @@
         UIButton *btnClearHistory = [[UIButton alloc] initWithFrame:CGRectMake(200, 0, 80, 20)];
         [btnClearHistory setTitle:@"[全部清空]" forState:UIControlStateNormal];
         [btnClearHistory.titleLabel setFont:[UIFont systemFontOfSize:16]];
-        [btnClearHistory setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [btnClearHistory setTitleColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] forState:UIControlStateNormal];
         [btnClearHistory addTarget:self action:@selector(clearAllHistory) forControlEvents:UIControlEventTouchUpInside];
         [self.viewHistory addSubview:btnClearHistory];
         [btnClearHistory release];
@@ -110,7 +110,7 @@
             
             //添加分割线
             UILabel *lbSeperate = [[UILabel alloc] initWithFrame:CGRectMake(0, lableSize.height+29.5, 280, 0.5)];
-            [lbSeperate setBackgroundColor:[UIColor lightGrayColor]];
+            [lbSeperate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
             [btnHistoryLog addSubview:lbSeperate];
             [lbSeperate release];
             
@@ -122,7 +122,7 @@
             fltHistoryLogHeight += lableSize.height+30;
         }
         viewHistoryLog.layer.cornerRadius = 5;
-        viewHistoryLog.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        viewHistoryLog.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
         viewHistoryLog.layer.borderWidth = 0.5;
         //重新定高
         CGRect frameHistoryLog = viewHistoryLog.frame;

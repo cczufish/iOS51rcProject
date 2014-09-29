@@ -54,12 +54,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.lbTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.lbTop.layer.borderWidth = 0.5;
     self.btnTop.titleLabel.text = @"相关简历";
     self.btnTop.titleLabel.font = [UIFont systemFontOfSize:12];
     self.btnTop.layer.borderWidth = 0.5;
-    self.btnTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.btnTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     
     [self.btnTop addTarget:self action:@selector(selectCV:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imgCornor = [[[UIImageView alloc] initWithFrame:CGRectMake(65, 20, 10, 10)] autorelease];
@@ -243,7 +243,7 @@
     
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 90, 320, 0.5)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
 }

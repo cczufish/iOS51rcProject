@@ -110,7 +110,7 @@
     [imgArrow release];
     
     UILabel *lbSeparate = [[UILabel alloc] initWithFrame:CGRectMake(0, 59, 320, 0.5)];
-    [lbSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [lbSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:lbSeparate];
     [lbSeparate release];
     return cell;

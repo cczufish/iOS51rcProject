@@ -36,7 +36,7 @@
 {
     [super viewDidLoad];
     self.arrayTxtView = [[NSMutableArray alloc] init];//临时存放
-    self.lbMessage.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    self.lbMessage.layer.borderColor=[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.lbMessage.layer.borderWidth = 0.5;
     selectRowIndex = 0;
     selectRowHeight = 110;//选择行的高度
@@ -214,7 +214,7 @@
     if ([strReply isEqualToString:@"0"]) {
         lbLeft.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1].CGColor;
     }else{
-        lbLeft.layer.backgroundColor = [UIColor grayColor].CGColor;
+        lbLeft.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     }
     
     [cell.contentView addSubview:lbLeft];
@@ -260,7 +260,7 @@
     UILabel *lbCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y + lbTitle.frame.size.height + 5, labelSize.width, 15)];
     lbCpName.text = strCpName;
     lbCpName.font = [UIFont systemFontOfSize:12];
-    lbCpName.textColor = [UIColor grayColor];
+    lbCpName.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbCpName)];
     [lbCpName release];
     //通知时间
@@ -271,7 +271,7 @@
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     lbInviteTime.text = [NSString stringWithFormat:@"通知时间：  %@ %@",strBeginDate,strWeek];
     lbInviteTime.font = [UIFont systemFontOfSize:12];
-    lbInviteTime.textColor = [UIColor grayColor];
+    lbInviteTime.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbInviteTime)];
     [lbInviteTime release];
     
@@ -281,7 +281,7 @@
         UILabel *lbPreViewTime = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbInviteTime.frame.origin.y + lbInviteTime.frame.size.height + 5, 60, 15)] autorelease];
         lbPreViewTime.text = @"面试时间：";
         lbPreViewTime.font  = [UIFont systemFontOfSize:12];
-        lbPreViewTime.textColor = [UIColor grayColor];
+        lbPreViewTime.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         [cell.contentView addSubview:(lbPreViewTime)];
         
         UILabel *lbInterviewTime = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbInviteTime.frame.origin.y + lbInviteTime.frame.size.height + 5, titleWidth, 15)] autorelease];
@@ -298,7 +298,7 @@
         UILabel *lbPrePlace = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbInterviewTime.frame.origin.y + lbInterviewTime.frame.size.height + 5, 60, 15)] autorelease];
         lbPrePlace.text = @"面试地点：";
         lbPrePlace.font  = [UIFont systemFontOfSize:12];
-        lbPrePlace.textColor = [UIColor grayColor];
+        lbPrePlace.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         [cell.contentView addSubview:(lbPrePlace)];
         
         NSString *strPlace = rowData[@"InterViewPlace"];
@@ -314,7 +314,7 @@
         UILabel *lbPreLinkMan = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, 60, 15)] autorelease];
         lbPreLinkMan.text = @"联 系 人：";
         lbPreLinkMan.font  = [UIFont systemFontOfSize:12];
-        lbPreLinkMan.textColor = [UIColor grayColor];
+        lbPreLinkMan.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         [cell.contentView addSubview:lbPreLinkMan];
         
         NSString *strLinkman = rowData[@"LinkMan"];
@@ -329,7 +329,7 @@
         UILabel *lbPreMobile = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, 60, 15)] autorelease];
         lbPreMobile.text = @"联系电话：";
         lbPreMobile.font  = [UIFont systemFontOfSize:12];
-        lbPreMobile.textColor = [UIColor grayColor];
+        lbPreMobile.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         [cell.contentView addSubview:lbPreMobile];
         self.strPhone = rowData[@"Telephone"];
         labelSize = [CommonController CalculateFrame:self.strPhone fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
@@ -351,7 +351,7 @@
         UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbMobile.frame.origin.y + lbMobile.frame.size.height + 5, 60, 15)] autorelease];
         lbPreRemark.text = @"备     注：";
         lbPreRemark.font  = [UIFont systemFontOfSize:12];
-        lbPreRemark.textColor = [UIColor grayColor];
+        lbPreRemark.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         lbPreRemark.lineBreakMode = NSLineBreakByCharWrapping;
         lbPreRemark.numberOfLines = 0;
         [cell.contentView addSubview:lbPreRemark];
@@ -366,7 +366,7 @@
         lbRemark.font = [UIFont systemFontOfSize:12];
         lbRemark.lineBreakMode = NSLineBreakByCharWrapping;
         lbRemark.numberOfLines = 0;
-        lbRemark.textColor = [UIColor grayColor];
+        lbRemark.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         [cell.contentView addSubview:(lbRemark)];
         
         //判断是否已经结束，如果没有结束，则可以赴约参会
@@ -374,7 +374,7 @@
             //不赴约的原因文本框
             UITextView *txtViewReason = [[[UITextView alloc] initWithFrame:CGRectMake(20, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 280, 50)] autorelease];
             [cell.contentView addSubview:txtViewReason];
-            txtViewReason.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            txtViewReason.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
             txtViewReason.layer.borderWidth = 1;
             txtViewReason.font = [UIFont systemFontOfSize:12];
             txtViewReason.delegate = self;
@@ -418,7 +418,7 @@
             btnReject.tag = (NSInteger)rowData[@"ID"];
             objc_setAssociatedObject(btnReject, @"RejectReason", [NSString stringWithFormat:@"%d", indexPath.row], OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
-            btnReject.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+            btnReject.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
             btnReject.layer.cornerRadius = 5;
             UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
             lbReject.text = @"不赴约";
@@ -441,7 +441,7 @@
             UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 60, 15)] autorelease];
             lbPreRemark.text = @"回复状态：";
             lbPreRemark.font  = [UIFont systemFontOfSize:12];
-            lbPreRemark.textColor = [UIColor grayColor];
+            lbPreRemark.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
             [cell.contentView addSubview:lbPreRemark];
           
             UILabel *lbApply = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 40, 15)] autorelease];
@@ -457,11 +457,11 @@
             }
             else{
                 lbApply.text = @"不赴约";
-                lbApply.backgroundColor = [UIColor lightGrayColor];
+                lbApply.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
                 //不赴约原因
                 UILabel *lbReason = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbApply.frame.origin.y+lbApply.frame.size.height + 5, 280, 15)] autorelease];
                 lbReason.text = [NSString stringWithFormat:@"原      因：%@", rowData[@"ReplyMessage"]];
-                lbReason.textColor = [UIColor grayColor];
+                lbReason.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
                 lbReason.layer.cornerRadius = 5;
                 lbReason.font = [UIFont systemFontOfSize:12];
                 [cell.contentView addSubview:(lbReason)];
@@ -478,7 +478,7 @@
     if (indexPath.row<self.recruitmentCpData.count-1) {
         //分割线
         UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 0.5)];
-        [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+        [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         [cell.contentView addSubview:viewSeparate];
     }
 

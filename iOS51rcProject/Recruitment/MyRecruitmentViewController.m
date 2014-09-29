@@ -35,7 +35,7 @@
     //上方横线
     self.lbBgLeft.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
     self.lbBackLine.frame = CGRectMake(self.lbBackLine.frame.origin.x, self.lbBackLine.frame.origin.y, 320, 0.5);
-    self.lbBackLine.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    self.lbBackLine.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.btnInvitation.titleLabel.textColor = [UIColor blackColor];
    
     //获得子View

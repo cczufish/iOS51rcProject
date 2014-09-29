@@ -46,7 +46,7 @@
     self.distance = 5000;
     [self.viewMap setHidden:true];
     //设置职位显示框的边框
-    self.viewJobShow.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewJobShow.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.viewJobShow.layer.borderWidth = 1;
     self.viewJobShow.layer.cornerRadius = 5;
     if (![[CommonController GetCurrentNet] isEqualToString:@"wifi"]) {

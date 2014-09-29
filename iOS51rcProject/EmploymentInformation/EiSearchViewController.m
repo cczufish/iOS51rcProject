@@ -45,11 +45,11 @@
     
     //搜索按钮样式
     self.btnSearch.layer.cornerRadius = 0;
-    self.btnSearch.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.btnSearch.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    self.btnSearch.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.btnSearch.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     //文本框样式
     self.txtKeyWord.layer.cornerRadius = 1;
-    self.txtKeyWord.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.txtKeyWord.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
 }
 
 - (void) btnShareClick:(UIButton*) sender{

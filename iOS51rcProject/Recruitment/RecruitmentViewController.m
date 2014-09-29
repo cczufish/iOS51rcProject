@@ -58,7 +58,7 @@
     myRmBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     myRmBtn.layer.cornerRadius = 5;
     myRmBtn.layer.backgroundColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
-    myRmBtn.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    myRmBtn.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     myRmBtn.layer.borderWidth = 0.3;
     [myRmBtn addTarget:self action:@selector(btnMyRecruitmentClick:) forControlEvents:UIControlEventTouchUpInside];
     //我的招聘会
@@ -70,11 +70,11 @@
     NSLog(@"%@",self.recruitmentID);
     self.btnRmCp.layer.masksToBounds = YES;
     self.btnRmCp.layer.borderWidth = 1.0;
-    self.btnRmCp.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnRmCp.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     
     self.btnRmPa.layer.masksToBounds = YES;
     self.btnRmPa.layer.borderWidth = 1.0;
-    self.btnRmPa.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnRmPa.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.recruitmentID forKey:@"ID"];
@@ -313,7 +313,7 @@
     if ([[dicRecruitment objectForKey:@"BusLine"] length] > 0) {
         fltHeight += 10;
         UILabel *lbBusLine = [[UILabel alloc] initWithFrame:CGRectMake(20, fltHeight, 280, 20)];
-        //        lbBusLine.backgroundColor = [UIColor grayColor];
+        //        lbBusLine.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         NSString *recruitmentBusLine = [NSString stringWithFormat:@"乘车线路：\n\n%@",dicRecruitment[@"BusLine"]];
         labelSize = [CommonController CalculateFrame:recruitmentBusLine fontDemond:font sizeDemand:CGSizeMake(lbBusLine.frame.size.width, 500)];
         [lbBusLine setFrame:CGRectMake(lbBusLine.frame.origin.x, lbBusLine.frame.origin.y, lbBusLine.frame.size.width, labelSize.height)];
@@ -346,7 +346,7 @@
     if ([dicRecruitment objectForKey:@"Brief"]) {
         fltHeight += 10;
         UILabel *lbBrief = [[UILabel alloc] initWithFrame:CGRectMake(20, fltHeight, 280, 20)];
-        //        lbBrief.backgroundColor = [UIColor grayColor];
+        //        lbBrief.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         NSString *recruitmentBrief = [NSString stringWithFormat:@"招聘会详情：\n\n%@",dicRecruitment[@"Brief"]];
         labelSize = [CommonController CalculateFrame:recruitmentBrief fontDemond:font sizeDemand:CGSizeMake(lbBrief.frame.size.width, 5000)];
         [lbBrief setFrame:CGRectMake(lbBrief.frame.origin.x, lbBrief.frame.origin.y, lbBrief.frame.size.width, labelSize.height)];

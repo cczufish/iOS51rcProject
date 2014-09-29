@@ -66,7 +66,7 @@
     //设置底部功能栏
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
-    self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -224,7 +224,7 @@
     
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 89, 320, 1)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
 }

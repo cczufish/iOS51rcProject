@@ -99,9 +99,15 @@
 
 - (void) gotoHome
 {
-    HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-    homeViewC.toastType = 2;
-    [self.navigationController popViewControllerAnimated:YES];
+    UIView *viewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    if ([viewC isKindOfClass:[HomeViewController class]]) {
+        HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+        homeViewC.toastType = 2;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning

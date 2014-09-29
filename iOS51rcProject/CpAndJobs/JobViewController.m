@@ -92,7 +92,7 @@
     }
     else if (request.tag == 3) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
-            [pCtrl.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [pCtrl.view makeToast:@"您没有有效简历，请先完善您的简历"];
         }
         else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
@@ -105,17 +105,17 @@
         [self.cPopup showJobApplyCvSelect:result view:self.view];
     }
     else if (request.tag == 5) { //重新申请职位成功
-        [pCtrl.view makeToast:@"重新申请简历成功"];
+        [pCtrl.view makeToast:@"简历更换成功"];
     }
     else if (request.tag == 6) {
-        [pCtrl.view makeToast:@"收藏职位成功"];
+        [pCtrl.view makeToast:@"收藏成功"];
     }
     else if(request.tag == 9){//其他建议的职位
         [self didReceiveRecommendJob:requestData];
     }
     else if(request.tag == 10){
         if (requestData.count == 0) {
-            [pCtrl.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [pCtrl.view makeToast:@"您没有有效简历，请先完善您的简历"];
         }
         else {
             forChat = true;
@@ -278,7 +278,7 @@
             //分割线
             UILabel *lbLine = [[[UILabel alloc] initWithFrame:CGRectMake(0, 24 , 280, 1)] autorelease];
             lbLine.text = @"----------------------------------------------------------------------";
-            lbLine.textColor = [UIColor lightGrayColor];
+            lbLine.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
             [btnOther addSubview:lbLine];
             
             [tmpView addSubview:btnOther];
@@ -317,7 +317,7 @@
     UILabel *lbView = [[[UILabel alloc] initWithFrame:CGRectMake(15, 0, labelSize.width, 15)] autorelease];
     lbView.text =title;
     lbView.font = [UIFont systemFontOfSize:10];
-    lbView.textColor = [UIColor grayColor];
+    lbView.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     view.frame = CGRectMake(0, 0, 15 + labelSize.width, 15);
     [view addSubview:imgView];
     [view addSubview:lbView];
@@ -335,14 +335,14 @@
     self.lbJobName.numberOfLines = 0;
     [self.lbJobName setText:jobName];
     //刷新时间
-    self.lbFereashTime.textColor = [UIColor grayColor];
+    self.lbFereashTime.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     self.lbFereashTime.frame = CGRectMake(20, self.lbJobName.frame.origin.y + self.lbJobName.frame.size.height + 10, 280, 15);
     NSDate *refreshDate = [CommonController dateFromString:dicJob[@"RefreshDate"]];
     NSString *strRefreshDate = [CommonController stringFromDate:refreshDate formatType:@"MM-dd HH:mm"];
     [self.lbFereashTime setText:[NSString stringWithFormat:@"刷新时间：%@", strRefreshDate]];
     //第一条横线
     UILabel *lbLine1 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.lbFereashTime.frame.origin.y + self.lbFereashTime.frame.size.height + 10,320, 1)];
-    lbLine1.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    lbLine1.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     [self.subView addSubview:lbLine1];
     [lbLine1 release];
 
@@ -371,7 +371,7 @@
     NSString *strPreCpName =@"公司名称：";
     UILabel *lbPreCpName = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbSalary.frame.origin.y + lbSalary.frame.size.height + 10, 280, 15) ]autorelease];
     lbPreCpName.text = strPreCpName;
-    lbPreCpName.textColor = [UIColor grayColor];
+    lbPreCpName.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbPreCpName.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbPreCpName];
     
@@ -394,7 +394,7 @@
     NSString *strPreJobRegion =@"工作地点：";
     UILabel *lbJobRegion = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 10, 280, 15) ]autorelease];
     lbJobRegion.text = strPreJobRegion;
-    lbJobRegion.textColor = [UIColor grayColor];
+    lbJobRegion.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbJobRegion.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbJobRegion];
     
@@ -442,7 +442,7 @@
     //招聘条件
     UILabel *lbJobRequest = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 10, 280, 15) ]autorelease];
     [self.subView addSubview:lbJobRequest];
-    lbJobRequest.textColor = [UIColor grayColor];
+    lbJobRequest.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbJobRequest.text = @"招聘条件：";
     lbJobRequest.font = [UIFont systemFontOfSize:12];
     
@@ -579,13 +579,13 @@
     //第二个分割线
     y = fuliMainView.frame.origin.y + fuliMainView.frame.size.height + 10;
     UILabel *lbLine2 = [[UILabel alloc] initWithFrame:CGRectMake(0, y,320, 1)];
-    lbLine2.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    lbLine2.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     [self.subView addSubview:lbLine2];
     [lbLine2 release];
     
     //岗位职责
     UILabel *lbResponsibility = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine2.frame.origin.y + lbLine2.frame.size.height + 10, 200, 15)];
-    lbResponsibility.textColor = [UIColor grayColor];
+    lbResponsibility.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbResponsibility.text = @"岗位职责：";
     lbResponsibility.font = [UIFont systemFontOfSize:12];
     
@@ -603,7 +603,7 @@
     
     //岗位要求
     UILabel *lbDemand = [[UILabel alloc] initWithFrame:CGRectMake(20, lbResponsibilityInput.frame.origin.y+lbResponsibilityInput.frame.size.height + 15, 200, 15)];
-    lbDemand.textColor = [UIColor grayColor];
+    lbDemand.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbDemand.text = @"岗位要求：";
     lbDemand.font = [UIFont systemFontOfSize:12];
     NSString *strDemand = dicJob[@"Demand"];
@@ -621,7 +621,7 @@
     //第三个分割线
     y = lbDemandInput.frame.origin.y + lbDemandInput.frame.size.height + 10;
     UILabel *lbLine3 = [[UILabel alloc] initWithFrame:CGRectMake(0, y, 320, 1)];
-    lbLine3.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    lbLine3.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     [self.subView addSubview:lbLine3];
     [lbLine3 release];
     
@@ -633,7 +633,7 @@
     self.cpMainID = dicJob[@"cpMainID"];
     
     UILabel *lbCaName = [[UILabel alloc] initWithFrame:CGRectMake(32, lbLine3.frame.origin.y + lbLine3.frame.size.height + 10, 64, 15)];
-    lbCaName.textColor = [UIColor grayColor];
+    lbCaName.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbCaName.text = @"联系人：";
     lbCaName.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbCaName];
@@ -650,7 +650,7 @@
     UILabel *lbCaTitle = [[UILabel alloc] initWithFrame:CGRectMake(44, lbCaNameValue.frame.origin.y+lbCaNameValue.frame.size.height + 10, 64, 15)];
     UILabel *lbCaTitleValue = [[UILabel alloc] initWithFrame:CGRectMake(76, lbCaNameValue.frame.origin.y+lbCaNameValue.frame.size.height + 10, 200, 15)];
     if ([dicJob[@"caTitle"] length] > 0) {
-        lbCaTitle.textColor = [UIColor grayColor];
+        lbCaTitle.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         lbCaTitle.text = @"职务：";
         lbCaTitle.font = [UIFont systemFontOfSize:12];
         [self.subView addSubview:lbCaTitle];
@@ -673,7 +673,7 @@
     UILabel *lbDept = [[UILabel alloc]initWithFrame:CGRectMake(20, lbCaTitle.frame.origin.y+lbCaTitle.frame.size.height + 10, 64, 15)];
     UILabel *lbDeptValue = [[UILabel alloc] initWithFrame:CGRectMake(76, lbCaTitleValue.frame.origin.y+lbCaTitleValue.frame.size.height + 10 , 200, 15)];
     if ([dicJob[@"caDept"] length] > 0) {
-        lbDept.textColor = [UIColor grayColor];
+        lbDept.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         lbDept.text = @"所在部门：";
         lbDept.font = [UIFont systemFontOfSize:12];
         [self.subView addSubview:lbDept];
@@ -693,7 +693,7 @@
     
     //联系电话
     UILabel *lbCaTel = [[UILabel alloc] initWithFrame:CGRectMake(20, lbDept.frame.origin.y+lbDept.frame.size.height  + 10, 64, 15)];
-    lbCaTel.textColor = [UIColor grayColor];
+    lbCaTel.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbCaTel.text = @"联系电话：";
     lbCaTel.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbCaTel];
@@ -760,7 +760,7 @@
         y = lbCaTel.frame.origin.y + lbCaTel.frame.size.height + 10;
     }
     UILabel *lbLine4 = [[UILabel alloc] initWithFrame:CGRectMake(0, y, 320, 1)];
-    lbLine4.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    lbLine4.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     [self.subView addSubview:lbLine4];
     [lbLine4 release];
 
@@ -768,7 +768,7 @@
     NSString *strOther = @"浏览了该职位的还查看了以下职位：";
     labelSize = [CommonController CalculateFrame:strOther fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
     UILabel *lbOther = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine4.frame.origin.y+lbLine4.frame.size.height + 10, labelSize.width, 15)];
-    lbOther.textColor = [UIColor grayColor];
+    lbOther.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     lbOther.text = strOther;
     lbOther.font = [UIFont systemFontOfSize:12];
     [self.subView addSubview:lbOther];

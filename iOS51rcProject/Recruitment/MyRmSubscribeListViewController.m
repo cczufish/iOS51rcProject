@@ -33,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.viewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewBottom.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewBottom.layer.borderWidth = 0.5;
     self.viewBottom.frame = CGRectMake(0, self.view.frame.size.height - self.viewBottom.frame.size.height - 109, 320, self.viewBottom.frame.size.height);
     self.btnInviteCp.layer.cornerRadius = 5;
@@ -127,7 +127,7 @@
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     lbBegin.text = [NSString stringWithFormat:@"举办时间：%@ %@",strBeginDate,strWeek];
     lbBegin.font = [UIFont systemFontOfSize:12];
-    lbBegin.textColor = [UIColor grayColor];
+    lbBegin.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbBegin)];
     [lbBegin release];
     
@@ -137,7 +137,7 @@
     UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPlace.text = strPlace;
     lbPlace.font = [UIFont systemFontOfSize:12];
-    lbPlace.textColor = [UIColor grayColor];
+    lbPlace.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbPlace)];
     [lbPlace release];
     
@@ -160,7 +160,7 @@
     UILabel *lbPreAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPreAddress.text = strPreAddress;
     lbPreAddress.font = [UIFont systemFontOfSize:12];
-    lbPreAddress.textColor = [UIColor grayColor];
+    lbPreAddress.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbPreAddress)];
     [lbPreAddress release];
     
@@ -171,7 +171,7 @@
     lbAddress.numberOfLines = 0;
     lbAddress.lineBreakMode = NSLineBreakByCharWrapping;
     lbAddress.font = [UIFont systemFontOfSize:12];
-    lbAddress.textColor = [UIColor grayColor];
+    lbAddress.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbAddress)];
     [lbAddress release];
     
@@ -194,7 +194,7 @@
     //我邀请的企业按钮
     btnMyRmCp.tag = (NSInteger)rowData[@"paMainID"];
     btnMyRmCp.layer.borderWidth = 0.5;
-    btnMyRmCp.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    btnMyRmCp.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     if (![myRmCpCount isEqualToString:@"0"]) {//大于0才可以点击
         [btnMyRmCp addTarget:self action:@selector(joinRecruitment:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -205,7 +205,7 @@
     [lbMyRmCpCount release];
     
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbAddress.frame.origin.y+lbAddress.frame.size.height + 5, 320, 0.5)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
 }

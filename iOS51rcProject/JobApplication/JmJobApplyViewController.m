@@ -54,12 +54,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad]; 
-    self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.lbTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.lbTop.layer.borderWidth = 0.5;
     self.btnTop.titleLabel.text = @"相关简历";
     self.btnTop.titleLabel.font = [UIFont systemFontOfSize:12];
     self.btnTop.layer.borderWidth = 0.5;
-    self.btnTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.btnTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     
     [self.btnTop addTarget:self action:@selector(selectCV:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imgCornor = [[[UIImageView alloc] initWithFrame:CGRectMake(65, 20, 10, 10)] autorelease];
@@ -73,10 +73,10 @@
     //self.view.frame = CGRectMake(0, 0, 320, HEIGHT-170);
     self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-152);
     self.viewBottom.frame = CGRectMake(-1, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 322, self.viewBottom.frame.size.height);
-    self.viewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewBottom.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewBottom.layer.borderWidth = 1;
-    self.btnDelete.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
-    self.btnDelete.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.btnDelete.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.btnDelete.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.btnDelete.layer.borderWidth = 1;
     self.btnDelete.layer.cornerRadius = 5;
     [self.btnDelete addTarget:self action:@selector(jobDelete) forControlEvents:UIControlEventTouchUpInside];
@@ -285,7 +285,7 @@
     UILabel *lbReply = [[UILabel alloc] initWithFrame:CGRectMake(220,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 80, 20)];
     [lbReply setText:strDate];
     [lbReply setFont:[UIFont systemFontOfSize:12]];
-    [lbReply setTextColor:[UIColor lightGrayColor]];
+    [lbReply setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     lbReply.textAlignment = NSTextAlignmentRight;
      [cell.contentView addSubview:lbReply];
     [lbReply release];
@@ -316,7 +316,7 @@
     //分割线
     if (indexPath.row != self.jobListData.count - 1) {
         UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
-        [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+        [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         [cell.contentView addSubview:viewSeparate];
     }
     return cell;

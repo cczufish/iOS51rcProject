@@ -163,7 +163,7 @@
     [lbCvName release];
     
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(fltContentX+190, 20, 100, 20)];
-    [lbRefreshDate setTextColor:[UIColor grayColor]];
+    [lbRefreshDate setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [lbRefreshDate setFont:[UIFont systemFontOfSize:10]];
     [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
     [lbRefreshDate setText:[NSString stringWithFormat:@"更新日期:%@",[CommonController stringFromDateString:dicCvInfo[@"RefreshDate"] formatType:@"yyyy-MM-dd"]]];
@@ -229,7 +229,7 @@
     
     //添加分割线
     UILabel *lbSeparate = [[UILabel alloc] initWithFrame:CGRectMake(fltContentX+30, 155, 260, 0.5)];
-    [lbSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [lbSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [self.scrollCv addSubview:lbSeparate];
     [lbSeparate release];
     //添加姓名公开

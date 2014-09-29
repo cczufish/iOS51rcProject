@@ -72,7 +72,7 @@
     //设置底部功能栏
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
-    self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     [self.btnFavorite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
     //加载等待动画
@@ -90,16 +90,16 @@
     //添加检索边框
     self.btnWelfareFilter.layer.masksToBounds = YES;
     self.btnWelfareFilter.layer.borderWidth = 1.0;
-    self.btnWelfareFilter.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnWelfareFilter.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.btnJobTypeFilter.layer.masksToBounds = YES;
     self.btnJobTypeFilter.layer.borderWidth = 1.0;
-    self.btnJobTypeFilter.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnJobTypeFilter.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.btnSalaryFilter.layer.masksToBounds = YES;
     self.btnSalaryFilter.layer.borderWidth = 1.0;
-    self.btnSalaryFilter.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnSalaryFilter.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.btnOtherFilter.layer.masksToBounds = YES;
     self.btnOtherFilter.layer.borderWidth = 1.0;
-    self.btnOtherFilter.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.btnOtherFilter.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     
     //搜索条件赋值
     self.jobType = @"";
@@ -170,7 +170,7 @@
     }
     else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
-            [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [self.view makeToast:@"您没有有效简历，请先完善您的简历"];
         }
         else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
@@ -182,10 +182,10 @@
         [self.cPopup showJobApplyCvSelect:result view:self.view];
     }
     else if (request.tag == 4) { //重新申请职位成功
-        [self.view makeToast:@"重新申请简历成功"];
+        [self.view makeToast:@"简历更换成功"];
     }
     else if (request.tag == 5) {
-        [self.view makeToast:@"收藏职位成功"];
+        [self.view makeToast:@"收藏成功"];
     }
     //结束等待动画
     [loadView stopAnimating];
@@ -299,7 +299,7 @@
     
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     [viewSeparate release];
     return cell;

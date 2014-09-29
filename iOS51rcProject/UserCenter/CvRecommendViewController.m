@@ -221,7 +221,7 @@
     }
     else if (request.tag == 3) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
-            [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [self.view makeToast:@"您没有有效简历，请先完善您的简历"];
         }
         else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
@@ -233,10 +233,10 @@
         [self.cPopup showJobApplyCvSelect:result view:self.view];
     }
     else if (request.tag == 5) { //重新申请职位成功
-        [self.view makeToast:@"重新申请简历成功"];
+        [self.view makeToast:@"简历更换成功"];
     }
     else if (request.tag == 6) {
-        [self.view makeToast:@"收藏职位成功"];
+        [self.view makeToast:@"收藏成功"];
     }
 }
 
@@ -515,7 +515,7 @@
     
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     [viewSeparate release];
     return cell;

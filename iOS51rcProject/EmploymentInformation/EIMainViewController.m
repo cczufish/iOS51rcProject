@@ -29,7 +29,7 @@
     UIImageView *imgSearch =  [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     imgSearch.image = [UIImage imageNamed:@"ico_jobnews_search.png"];
     [myRmBtn addSubview:imgSearch];
-    myRmBtn.layer.borderColor=[UIColor lightGrayColor].CGColor;
+    myRmBtn.layer.borderColor=[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     //myRmBtn.layer.borderWidth = 1;
     UIBarButtonItem *btnMyRecruitment = [[UIBarButtonItem alloc] initWithCustomView:myRmBtn];
     self.navigationItem.rightBarButtonItem=btnMyRecruitment;

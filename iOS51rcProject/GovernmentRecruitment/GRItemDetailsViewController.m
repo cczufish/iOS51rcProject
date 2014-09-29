@@ -140,7 +140,7 @@
     //横线
     y = lbViewCount.frame.origin.y+lbViewCount.frame.size.height + 2;
     UILabel *lbLine = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 310, 0.5)] autorelease];
-    lbLine.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+    lbLine.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     lbLine.layer.borderWidth = 0;
     [tmpView addSubview:lbLine];
     
@@ -161,7 +161,7 @@
     lbAuthor.text = [NSString stringWithFormat:@"来源：%@", dicCpMain[@"author"]];
     lbAuthor.textAlignment = NSTextAlignmentRight;
     lbAuthor.font = [UIFont systemFontOfSize:13];
-    lbAuthor.textColor = [UIColor grayColor];
+    lbAuthor.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [tmpView addSubview:lbAuthor];
     
     //加到滚动窗口上

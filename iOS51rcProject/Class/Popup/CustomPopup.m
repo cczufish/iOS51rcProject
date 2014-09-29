@@ -139,7 +139,7 @@
         UILabel *lbTips = [[UILabel alloc] initWithFrame:CGRectMake(75, 25+labelSize.height, 160, 30)];
         [lbTips setText:@"平均申请15个职位可以换来一次面试机会"];
         [lbTips setFont:[UIFont systemFontOfSize:10]];
-        [lbTips setTextColor:[UIColor lightGrayColor]];
+        [lbTips setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         lbTips.lineBreakMode = NSLineBreakByCharWrapping;
         lbTips.numberOfLines = 0;
         [self.viewContent addSubview:lbTips];
@@ -148,14 +148,14 @@
         if (subviewsCount > 0) {
             //添加分割线
             UILabel *lbSeperate = [[UILabel alloc] initWithFrame:CGRectMake(10, 90, 220, 1)];
-            [lbSeperate setBackgroundColor:[UIColor lightGrayColor]];
+            [lbSeperate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
             [self.viewContent addSubview:lbSeperate];
             [lbSeperate release];
             //添加选择简历提醒
             UILabel *lbCvTips = [[UILabel alloc] initWithFrame:CGRectMake(15, 100, 160, 20)];
             [lbCvTips setText:@"您可以重新选择应聘的简历"];
             [lbCvTips setFont:[UIFont systemFontOfSize:12]];
-            [lbCvTips setTextColor:[UIColor lightGrayColor]];
+            [lbCvTips setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
             [self.viewContent addSubview:lbCvTips];
             [lbCvTips release];
             [self popupCommon:self.viewContent buttonType:PopupButtonTypeNone];
@@ -201,7 +201,7 @@
             btnOK.titleLabel.font = [UIFont systemFontOfSize:12];
             btnOK.layer.cornerRadius = 5;
             btnOK.layer.borderWidth = 1;
-            btnOK.layer.borderColor = [[UIColor grayColor] CGColor];
+            btnOK.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
             [btnOK addTarget:self action:@selector(closePopup) forControlEvents:UIControlEventTouchUpInside];
             CGRect innerFrame = contentView.frame;
             innerFrame.size.height = innerFrame.size.height+50;
@@ -227,7 +227,7 @@
             btnCancel.titleLabel.font = [UIFont systemFontOfSize:12];
             btnCancel.layer.cornerRadius = 5;
             btnCancel.layer.borderWidth = 1;
-            btnCancel.layer.borderColor = [[UIColor grayColor] CGColor];
+            btnCancel.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
             [btnCancel addTarget:self action:@selector(closePopup) forControlEvents:UIControlEventTouchUpInside];
             [contentView addSubview:btnCancel];
             [btnCancel release];

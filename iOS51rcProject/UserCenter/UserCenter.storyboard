@@ -3779,7 +3779,7 @@
                                                 <rect key="frame" x="113" y="20" width="148" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.68430656934306555" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.56470588235294117" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BEL-Po-FD5">

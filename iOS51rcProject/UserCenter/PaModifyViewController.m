@@ -40,7 +40,7 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.viewPa.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.viewPa.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.viewPa.layer.borderWidth = 1;
     self.viewPa.layer.cornerRadius = 5;
     self.btnSave.layer.cornerRadius = 5;
@@ -102,6 +102,7 @@
 - (void)netRequestFinishedFromCvInfo:(NetWebServiceRequest *)request
                           xmlContent:(GDataXMLDocument *)xmlContent;
 {
+    [loadView stopAnimating];
     NSDictionary *paData = [self getArrayFromXml:xmlContent tableName:@"paData"][0];
     if (!paData[@"LivePlace"]) {
         return;
@@ -123,7 +124,7 @@
     else {
         [self.segGender setSelectedSegmentIndex:1];
     }
-    [loadView stopAnimating];
+    
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request

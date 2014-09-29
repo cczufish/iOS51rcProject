@@ -191,7 +191,7 @@
     }
     else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
-            [self.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [self.view makeToast:@"您没有有效简历，请先完善您的简历"];
         }
         else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
@@ -203,10 +203,10 @@
         [self.cPopup showJobApplyCvSelect:result view:self.view];
     }
     else if (request.tag == 4) { //重新申请职位成功
-        [self.view makeToast:@"重新申请简历成功"];
+        [self.view makeToast:@"简历更换成功"];
     }
     else if (request.tag == 5) {
-        [self.view makeToast:@"收藏职位成功"];
+        [self.view makeToast:@"收藏成功"];
     }
     //结束等待动画
     [loadView stopAnimating];

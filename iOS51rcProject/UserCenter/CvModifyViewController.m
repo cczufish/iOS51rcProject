@@ -57,17 +57,17 @@
     
     //添加边框
     self.btnCvName.layer.cornerRadius = 5;
-    self.btnCvName.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.btnCvName.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.btnCvName.layer.borderWidth = 1;
-    self.viewPaInfo.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewPaInfo.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.viewPaInfo.layer.borderWidth = 0.5;
-    self.viewJobIntention.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewJobIntention.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.viewJobIntention.layer.borderWidth = 0.5;
-    self.viewSpeciality.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewSpeciality.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.viewSpeciality.layer.borderWidth = 0.5;
-    self.viewEducation.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewEducation.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.viewEducation.layer.borderWidth = 0.5;
-    self.viewExperience.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewExperience.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.viewExperience.layer.borderWidth = 0.5;
     self.btnPhotoCancel.layer.cornerRadius = 5;
     self.btnConfirmOK.layer.cornerRadius = 5;

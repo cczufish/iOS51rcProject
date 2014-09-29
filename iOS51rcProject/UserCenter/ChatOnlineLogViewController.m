@@ -40,7 +40,7 @@
     //顶部view边框
     self.viewTop.frame = CGRectMake(0, 60, 320, 40);
     self.viewTop.layer.backgroundColor = [UIColor colorWithRed:244.f/255.f green:244.f/255.f blue:244.f/255.f alpha:1].CGColor;
-    self.viewTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewTop.layer.borderWidth = 0.5;
     //中间table的大小
     self.tvChatOnlineLogList.frame = CGRectMake(self.viewTop.frame.origin.x, self.viewTop.frame.origin.y+self.viewTop.frame.size.height, 320, self.view.frame.size.height - self.viewTop.frame.size.height - self.viewBottom.frame.size.height - 60);

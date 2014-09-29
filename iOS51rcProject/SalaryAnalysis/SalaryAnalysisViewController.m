@@ -142,7 +142,7 @@
     }
     NSDictionary *tmpData = resultData[0];
     self.viewAvg.layer.borderWidth = 0.5;
-    self.viewAvg.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewAvg.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     title.text = [NSString stringWithFormat:@"%@%@平均工资为：%@元",self.lbRegionSelect.text, jobTypeName, tmpData[@"AvgSalary"] ];
@@ -162,7 +162,7 @@
     
     //一条横线，x轴
     UILabel *lbX = [[[UILabel alloc] initWithFrame:CGRectMake(0, self.viewAvg.frame.size.height - 20, 300, 0.5)] autorelease];
-    lbX.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    lbX.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     lbX.layer.borderWidth = 0.5;
     [self.viewAvg addSubview:lbX];
     //6个纵线
@@ -170,7 +170,7 @@
     for (int i=0; i<6; i++) {
         //纵线
         UILabel *lbTmp = [[[UILabel alloc] initWithFrame:CGRectMake(25+i*50, lbX.frame.origin.y-height, 0.5, height)] autorelease];
-        lbTmp.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
+        lbTmp.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
         [self.viewAvg addSubview:lbTmp];
         
         //单位
@@ -183,7 +183,7 @@
         }
         lbRange.textAlignment = NSTextAlignmentCenter;
         lbRange.font = [UIFont systemFontOfSize:8];
-        lbRange.textColor = [UIColor grayColor];
+        lbRange.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         [self.viewAvg addSubview:lbRange];
     }
     
@@ -193,7 +193,7 @@
     UILabel *lb1 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
     lb1.text = [NSString stringWithFormat:@"%@%@平均月薪", self.lbRegionSelect.text, jobTypeName];
     lb1.font = [UIFont systemFontOfSize:10];
-    lb1.textColor = [UIColor grayColor];
+    lb1.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     UILabel *lb1Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, selfSalary/10000.0*250, 10)];
     lb1Color.layer.backgroundColor = [UIColor colorWithRed:28/255.f green:196/255.f blue:160/255.f alpha:1].CGColor;
     UILabel *lbMoney = [[UILabel alloc] initWithFrame:CGRectMake(lb1Color.frame.size.width, 10, 40, 10)];
@@ -220,7 +220,7 @@
     }
     
     lb2.font = [UIFont systemFontOfSize:10];
-    lb2.textColor = [UIColor grayColor];
+    lb2.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     UILabel *lb2Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, p1Salary/10000.0*250, 10)];
     lb2Color.layer.backgroundColor =  [UIColor colorWithRed:254/255.f green:202/255.f blue:67/255.f alpha:1].CGColor;
     UILabel *lb2Money = [[UILabel alloc] initWithFrame:CGRectMake(lb2Color.frame.size.width, 10, 40, 10)];
@@ -237,7 +237,7 @@
         UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
         lb3.text = [NSString stringWithFormat: @"全国%@平均月薪", jobTypeName];
         lb3.font = [UIFont systemFontOfSize:10];
-        lb3.textColor = [UIColor grayColor];
+        lb3.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         UILabel *lb3Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, p2Salary/10000.0*250, 10)];
         lb3Color.layer.backgroundColor =  [UIColor colorWithRed:254/255.f green:202/255.f blue:67/255.f alpha:1].CGColor;
         UILabel *lb3Money = [[UILabel alloc] initWithFrame:CGRectMake(lb3Color.frame.size.width, 10, 40, 10)];
@@ -362,7 +362,7 @@
     //重新计算View大小
     self.viewDistribution.frame = CGRectMake(10, self.viewAvg.frame.origin.y+self.viewAvg.frame.size.height + 15, 300, lbTime.frame.size.height + lbTime.frame.origin.y + 10);
     self.viewDistribution.layer.borderWidth = 0.5;
-    self.viewDistribution.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewDistribution.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
 }
 
 //生成工资排行的列表
@@ -399,7 +399,7 @@
         UILabel *lbLine = [[[UILabel alloc] initWithFrame:CGRectMake(40, 20, 280, 5)] autorelease];
         lbLine.text = @"-------------------------------------------------------";
         lbLine.font = [UIFont systemFontOfSize:10];
-        lbLine.textColor = [UIColor lightGrayColor];
+        lbLine.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
         [tmpView addSubview:lbLine];
         
         [self.viewRank addSubview:tmpView];
@@ -407,7 +407,7 @@
     
     self.viewRank.frame = CGRectMake(10, self.viewDistribution.frame.origin.y + self.viewDistribution.frame.size.height + 20, 300, 20+requestData.count * 20 + 20);
     self.viewRank.layer.borderWidth = 0.5;
-    self.viewRank.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewRank.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     [self.svMain setContentSize:CGSizeMake(320, self.viewRank.frame.origin.y+self.viewRank.frame.size.height)];
 }
 #pragma -mark- EColumnChartDataSource

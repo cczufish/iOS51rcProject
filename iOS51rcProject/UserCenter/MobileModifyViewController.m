@@ -38,7 +38,7 @@
     //添加边框
     self.viewMobile.layer.cornerRadius = 5;
     self.viewMobile.layer.borderWidth = 1;
-    self.viewMobile.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewMobile.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     self.btnModify.layer.cornerRadius = 5;
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];

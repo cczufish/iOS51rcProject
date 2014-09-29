@@ -40,7 +40,7 @@
     //设置样式
     self.btnOK.layer.cornerRadius = 5;
     self.viewTop.layer.borderWidth = 0.5;
-    self.viewTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.viewTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewTop.layer.cornerRadius = 5;
    
     self.txtPsd.layer.borderWidth = 1;

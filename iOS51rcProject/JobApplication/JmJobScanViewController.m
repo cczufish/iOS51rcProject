@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     self.lbTop.layer.borderWidth = 0.5;
-    self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.lbTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置底部功能栏
@@ -46,7 +46,7 @@
     self.btnApply.layer.cornerRadius = 5;
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     self.viewBottom.layer.borderWidth = 1.0;
-    self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     
     
     [self.btnFavourity addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
@@ -133,7 +133,7 @@
     }
     else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
-            [pCtrl.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [pCtrl.view makeToast:@"您没有有效简历，请先完善您的简历"];
         }
         else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
@@ -145,7 +145,7 @@
         [self.cPopup showJobApplyCvSelect:result view:pCtrl.view];
     }
     else if (request.tag == 4) { //重新申请职位成功
-        [pCtrl.view makeToast:@"申请简历成功"];
+        [pCtrl.view makeToast:@"申请成功"];
         //更新视图，删除全局对象内改数据，并重新绑定
         for (int i = 0; i<self.jobListData.count; i++) {
             NSDictionary *rowData = self.jobListData[i];
@@ -321,7 +321,7 @@
     //分割线
     if (indexPath.row != self.jobListData.count - 1) {
         UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 0.5)];
-        [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+        [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         [cell.contentView addSubview:viewSeparate];
     }
    

@@ -37,7 +37,7 @@
         UILabel *lbTips = [[UILabel alloc] initWithFrame:CGRectMake(75, 25+labelSize.height, 160, 30)];
         [lbTips setText:@"您现在可以邀请感兴趣的企业参会进行现场面谈"];
         [lbTips setFont:[UIFont systemFontOfSize:10]];
-        [lbTips setTextColor:[UIColor lightGrayColor]];
+        [lbTips setTextColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         lbTips.lineBreakMode = NSLineBreakByCharWrapping;
         lbTips.numberOfLines = 0;
         [self.viewContent addSubview:lbTips];

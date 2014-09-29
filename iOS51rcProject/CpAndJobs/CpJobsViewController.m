@@ -42,7 +42,7 @@
     self.ViewBottom.frame = CGRectMake(0, HEIGHT - 170, 320, 55);
     self.tvCpJobList.frame = CGRectMake(0, 0, 320, HEIGHT - 170);
     //设置边框
-    self.ViewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.ViewBottom.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.ViewBottom.layer.borderWidth = 0.5;
     //不显示列表分隔线
     self.tvCpJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -82,7 +82,7 @@
         [self.tvCpJobList reloadData];
     }else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
-            [pCtrl.view makeToast:@"您没有有效职位，请先完善您的简历"];
+            [pCtrl.view makeToast:@"您没有有效简历，请先完善您的简历"];
             [self.arrCheckJobID removeAllObjects];
         }else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
@@ -93,11 +93,11 @@
         [self.cPopup showJobApplyCvSelect:result view:[CommonController getFatherController:self.view].view];
         [self.arrCheckJobID removeAllObjects];
     }else if (request.tag == 4) { //重新申请职位成功
-        [pCtrl.view makeToast:@"重新申请简历成功"];
+        [pCtrl.view makeToast:@"简历更换成功"];
         [self.arrCheckJobID removeAllObjects];
         [self.tvCpJobList reloadData];
     }else if (request.tag == 5) {
-        [pCtrl.view makeToast:@"收藏职位成功"];
+        [pCtrl.view makeToast:@"收藏成功"];
         [self.arrCheckJobID removeAllObjects];
         [self.tvCpJobList reloadData];
     }
@@ -132,7 +132,7 @@
     lbeRfreshDate.text = strefreshDate;
     lbeRfreshDate.textAlignment = NSTextAlignmentRight;
     lbeRfreshDate.font = [UIFont systemFontOfSize:12];
-    lbeRfreshDate.textColor = [UIColor grayColor];
+    lbeRfreshDate.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbeRfreshDate)];
     [lbeRfreshDate release];
     //地区
@@ -144,7 +144,7 @@
     UILabel *lbInfo = [[UILabel alloc] initWithFrame:CGRectMake(40, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 200, labelSize.height)];
     lbInfo.text = strInfo;
     lbInfo.font = [UIFont systemFontOfSize:12];
-    lbInfo.textColor = [UIColor grayColor];
+    lbInfo.textColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     [cell.contentView addSubview:(lbInfo)];
     [lbInfo release];
     //工资
@@ -169,7 +169,7 @@
     [btnCheck addSubview:imgCheck];
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbSalary.frame.origin.y+lbSalary.frame.size.height + 6, 320, 1)];
-    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
 
     return cell;
