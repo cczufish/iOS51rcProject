@@ -130,7 +130,7 @@
                                                defaultContent:@"默认分享内容，没内容时显示"
                                                         image:[ShareSDK imageWithPath:imagePath]
                                                         title:@"分享APP"
-                                                          url:@"http://www.51rc.com"
+                                                          url:@"http://m.qlrc.com"
                                                   description:@""
                                                     mediaType:SSPublishContentMediaTypeNews];
             

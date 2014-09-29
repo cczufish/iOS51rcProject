@@ -21,42 +21,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 //    [CommonController execSql:@"delete from dcsalary where _id=1"];
-    //shareSDK初始化
-    [ShareSDK registerApp:@"2fb76b87ccc8"];
-    //添加新浪微博应用 注册网址 http://open.weibo.com
-    [ShareSDK connectSinaWeiboWithAppKey:@"3201194191"
-                               appSecret:@"0334252914651e8f76bad63337b3b78f"
-                             redirectUri:@"http://appgo.cn"];
-    //当使用新浪微博客户端分享的时候需要按照下面的方法来初始化新浪的平台
-    [ShareSDK  connectSinaWeiboWithAppKey:@"568898243"
-                                appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
-                              redirectUri:@"http://www.sharesdk.cn"
-                              weiboSDKCls:[WeiboSDK class]];
-    
-    //添加腾讯微博应用 注册网址 http://dev.t.qq.com
-    [ShareSDK connectTencentWeiboWithAppKey:@"801542718"
-                                  appSecret:@"4b77146e2165df1b5d0f8312ee8757f3"
-                                redirectUri:@"http://www.51rc.com"
-                                   wbApiCls:[WeiboApi class]];
-    
-    //添加QQ空间应用  注册网址  http://connect.qq.com/intro/login/
-    [ShareSDK connectQZoneWithAppKey:@"100371282"
-                           appSecret:@"aed9b0303e3ed1e27bae87c33761161d"
-                   qqApiInterfaceCls:[QQApiInterface class]
-                     tencentOAuthCls:[TencentOAuth class]];
-    
-    //添加QQ应用  注册网址  http://mobile.qq.com/api/
-    [ShareSDK connectQQWithQZoneAppKey:@"100371282"
-                     qqApiInterfaceCls:[QQApiInterface class]
-                       tencentOAuthCls:[TencentOAuth class]];
-    
-    //添加微信应用 注册网址 http://open.weixin.qq.com
-    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885"
-                           wechatCls:[WXApi class]];
-    
-    //连接邮件 短信
-    [ShareSDK connectMail];
-    [ShareSDK connectSMS];
     
     //百度地图初始化
     _mapManager = [[BMKMapManager alloc] init];
@@ -140,6 +104,44 @@
     }
     [userDefaults setBool:YES forKey:@"firstToHome"];
     [userDefaults synchronize];
+    
+    NSString *redirectUri = [userDefaults objectForKey:@"subSiteUrl"];
+    redirectUri = [redirectUri stringByReplacingOccurrencesOfString:@"www" withString:@"m"];
+    //shareSDK初始化
+    [ShareSDK registerApp:@"2fb76b87ccc8"];
+//    //添加新浪微博应用 注册网址 http://open.weibo.com
+//    [ShareSDK connectSinaWeiboWithAppKey:@"447347256"
+//                               appSecret:@"b9ecb3915e3e9cfc333dafbb74e9d336"
+//                             redirectUri:redirectUri];
+//    
+//    //当使用新浪微博客户端分享的时候需要按照下面的方法来初始化新浪的平台
+//    [ShareSDK  connectSinaWeiboWithAppKey:@"447347256"
+//                                appSecret:@"b9ecb3915e3e9cfc333dafbb74e9d336"
+//                              redirectUri:redirectUri
+//                              weiboSDKCls:[WeiboSDK class]];
+    
+    [ShareSDK connectTencentWeiboWithAppKey:@"801542718"
+                                  appSecret:@"4b77146e2165df1b5d0f8312ee8757f3"
+                                redirectUri:redirectUri
+                                   wbApiCls:[WeiboApi class]];
+    
+//    [ShareSDK connectQZoneWithAppKey:@"801542718"
+//                           appSecret:@"4b77146e2165df1b5d0f8312ee8757f3"
+//                   qqApiInterfaceCls:[QQApiInterface class]
+//                     tencentOAuthCls:[TencentOAuth class]];
+
+    [ShareSDK connectQQWithQZoneAppKey:@"801542718"
+                     qqApiInterfaceCls:[QQApiInterface class]
+                       tencentOAuthCls:[TencentOAuth class]];
+    
+    [ShareSDK connectWeChatWithAppId:@"wx06c592bc41506c42"
+                           wechatCls:[WXApi class]];
+    [ShareSDK importWeChatClass:[WXApi class]];
+    
+    //连接邮件 短信
+    [ShareSDK connectMail];
+    [ShareSDK connectSMS];
+    
 	[self.window makeKeyAndVisible];
     return YES;
 }
@@ -217,6 +219,23 @@
      ];
     
     
+}
+
+- (BOOL)application:(UIApplication *)application  handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url
+                        wxDelegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:self];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

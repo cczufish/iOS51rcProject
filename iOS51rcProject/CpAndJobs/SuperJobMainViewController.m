@@ -87,8 +87,8 @@
     id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n正在齐鲁人才网网上招聘，一定有适合你的职位，真心推荐哦？\n http://%@/personal/jv/companyDetail?cpmainID=%@\n",self.navigationItem.title, subSiteUrl,self.cpMainID]
                                        defaultContent:@"默认分享内容，没内容时显示"
                                                 image:[ShareSDK imageWithPath:imagePath]
-                                                title:@"分享APP"
-                                                  url:@"http://www.51rc.com"
+                                                title:@"推荐职位：%@..................."
+                                                  url:@"......................"
                                           description:@""
                                             mediaType:SSPublishContentMediaTypeNews];
     [ShareSDK showShareActionSheet:nil
