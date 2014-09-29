@@ -81,19 +81,19 @@
             
             UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 220, 20)] autorelease];
             lb1.text = @"亲，您没有面试通知记录,申请的";
-            lb1.font = [UIFont systemFontOfSize:14];
+            lb1.font = [UIFont systemFontOfSize:13];
             lb1.textAlignment = NSTextAlignmentCenter;
             [viewHsaNoCv addSubview:lb1];
             
             UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 30, 300, 20)] autorelease];
             lb2.text = @"职位越多，收到的面试通知就会越多。";
-            lb2.font = [UIFont systemFontOfSize:14];
+            lb2.font = [UIFont systemFontOfSize:13];
             lb2.textAlignment = NSTextAlignmentLeft;
             [viewHsaNoCv addSubview:lb2];
             
             UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 20)] autorelease];
             lb3.text = @"现在就去申请职位吧。";
-            lb3.font = [UIFont systemFontOfSize:14];
+            lb3.font = [UIFont systemFontOfSize:13];
             lb3.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
             lb3.textAlignment = NSTextAlignmentCenter;
             [viewHsaNoCv addSubview:lb3];
@@ -161,19 +161,19 @@
             
             UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 220, 20)] autorelease];
             lb1.text = @"亲，您没有完整的简历";
-            lb1.font = [UIFont systemFontOfSize:14];
+            lb1.font = [UIFont systemFontOfSize:13];
             lb1.textAlignment = NSTextAlignmentCenter;
             [viewHsaNoCv addSubview:lb1];
             
             UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 30, 150, 20)] autorelease];
             lb2.text = @"HR关注不到您，建议您";
-            lb2.font = [UIFont systemFontOfSize:14];
+            lb2.font = [UIFont systemFontOfSize:13];
             lb2.textAlignment = NSTextAlignmentLeft;
             [viewHsaNoCv addSubview:lb2];
             
             UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(lb2.frame.origin.x + lb2.frame.size.width - 5, 30, 140, 20)] autorelease];
             lb3.text = @"立即完善简历";
-            lb3.font = [UIFont systemFontOfSize:14];
+            lb3.font = [UIFont systemFontOfSize:13];
             lb3.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
             lb3.textAlignment = NSTextAlignmentLeft;
             [viewHsaNoCv addSubview:lb3];
@@ -259,7 +259,7 @@
     labelSize = [CommonController CalculateFrame:strCpName fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
     UILabel *lbCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y + lbTitle.frame.size.height + 5, labelSize.width, 15)];
     lbCpName.text = strCpName;
-    lbCpName.font = [UIFont systemFontOfSize:14];
+    lbCpName.font = [UIFont systemFontOfSize:12];
     lbCpName.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbCpName)];
     [lbCpName release];
@@ -269,8 +269,8 @@
     NSDate *dtBeginDate = [CommonController dateFromString:strBeginDate];
     strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
-    lbInviteTime.text = [NSString stringWithFormat:@"通知时间：  %@ %@",strBeginDate,strWeek];
-    lbInviteTime.font = [UIFont systemFontOfSize:14];
+    lbInviteTime.text = [NSString stringWithFormat:@"通知时间：%@ %@",strBeginDate,strWeek];
+    lbInviteTime.font = [UIFont systemFontOfSize:12];
     lbInviteTime.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbInviteTime)];
     [lbInviteTime release];
@@ -280,7 +280,7 @@
         //面试时间
         UILabel *lbPreViewTime = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbInviteTime.frame.origin.y + lbInviteTime.frame.size.height + 5, 60, 15)] autorelease];
         lbPreViewTime.text = @"面试时间：";
-        lbPreViewTime.font  = [UIFont systemFontOfSize:14];
+        lbPreViewTime.font  = [UIFont systemFontOfSize:12];
         lbPreViewTime.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbPreViewTime)];
         
@@ -289,7 +289,7 @@
         //NSDate *dtViewDate = [CommonController dateFromString:strInterviewTime];
         //strBeginDate = [CommonController stringFromDate:dtViewDate formatType:@"yyyy-MM-dd HH:mm"];
         lbInterviewTime.text = [NSString stringWithFormat:@"%@",strInterviewTime];
-        lbInterviewTime.font = [UIFont systemFontOfSize:14];
+        lbInterviewTime.font = [UIFont systemFontOfSize:12];
         lbInterviewTime.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
         
         [cell.contentView addSubview:(lbInterviewTime)];
@@ -297,15 +297,15 @@
         //面试地点
         UILabel *lbPrePlace = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbInterviewTime.frame.origin.y + lbInterviewTime.frame.size.height + 5, 60, 15)] autorelease];
         lbPrePlace.text = @"面试地点：";
-        lbPrePlace.font  = [UIFont systemFontOfSize:14];
+        lbPrePlace.font  = [UIFont systemFontOfSize:12];
         lbPrePlace.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbPrePlace)];
         
         NSString *strPlace = rowData[@"InterViewPlace"];
-        labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
+        labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(80, lbInterviewTime.frame.origin.y + lbInterviewTime.frame.size.height + 5, labelSize.width, 15)];
         lbPlace.text = strPlace;
-        lbPlace.font = [UIFont systemFontOfSize:14];
+        lbPlace.font = [UIFont systemFontOfSize:12];
         lbPlace.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
         [cell.contentView addSubview:(lbPlace)];
         [lbPlace release];
@@ -313,44 +313,47 @@
         //联系人
         UILabel *lbPreLinkMan = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, 60, 15)] autorelease];
         lbPreLinkMan.text = @"联 系 人：";
-        lbPreLinkMan.font  = [UIFont systemFontOfSize:14];
+        lbPreLinkMan.font  = [UIFont systemFontOfSize:12];
         lbPreLinkMan.textColor = [UIColor grayColor];
         [cell.contentView addSubview:lbPreLinkMan];
         
         NSString *strLinkman = rowData[@"LinkMan"];
-        labelSize = [CommonController CalculateFrame:strLinkman fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
+        labelSize = [CommonController CalculateFrame:strLinkman fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
         UILabel *lbLinkman = [[UILabel alloc] initWithFrame:CGRectMake(80, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, 15)];
         lbLinkman.text = strLinkman;
-        lbLinkman.font = [UIFont systemFontOfSize:14];
+        lbLinkman.font = [UIFont systemFontOfSize:12];
         lbLinkman.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
         [cell.contentView addSubview:(lbLinkman)];
         [lbLinkman release];
-        //手机号
+        
+        //手机号Button
+        UIButton *btnCall = [[[UIButton alloc] initWithFrame:CGRectMake(80,  lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, 260, 15)] autorelease ];
+        [btnCall addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
+        //联系电话四个字
         UILabel *lbPreMobile = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, 60, 15)] autorelease];
         lbPreMobile.text = @"联系电话：";
-        lbPreMobile.font  = [UIFont systemFontOfSize:14];
+        lbPreMobile.font  = [UIFont systemFontOfSize:12];
         lbPreMobile.textColor = [UIColor grayColor];
         [cell.contentView addSubview:lbPreMobile];
+        //联系电话具体值
         self.strPhone = rowData[@"Telephone"];
-        labelSize = [CommonController CalculateFrame:self.strPhone fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
-        UILabel *lbMobile = [[UILabel alloc] initWithFrame:CGRectMake(80, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, labelSize.width, 15)];
+        labelSize = [CommonController CalculateFrame:self.strPhone fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
+        UILabel *lbMobile = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelSize.width, 15)] autorelease];
         lbMobile.text = self.strPhone;
-        lbMobile.font = [UIFont systemFontOfSize:14];
+        lbMobile.font = [UIFont systemFontOfSize:12];
         lbMobile.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
-        [cell.contentView addSubview:(lbMobile)];
-        [lbMobile release];
-        //手机号后面的图标
-        UIButton *btnCall = [[[UIButton alloc] initWithFrame:CGRectMake(80, lbMobile.frame.origin.y, lbMobile.frame.size.width + 20, 15)] autorelease ];
-        [btnCall addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
-        UIImageView *imagePhone = [[[UIImageView alloc] initWithFrame:CGRectMake(lbMobile.frame.size.width, 0, 15, 15)]autorelease];
+        [btnCall addSubview:lbMobile];
+        //手机号图片
+        UIImageView *imagePhone = [[[UIImageView alloc] initWithFrame:CGRectMake(lbMobile.frame.size.width + 5, 0, 15, 15)]autorelease];
         imagePhone.image = [UIImage imageNamed:@"ico_calltelphone.png"];
+        [btnCall addSubview:imagePhone];
         btnCall.tag = (NSInteger)rowData[@"ID"];
         [cell.contentView addSubview:btnCall];
       
         //备注
-        UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbMobile.frame.origin.y + lbMobile.frame.size.height + 5, 60, 15)] autorelease];
+        UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, btnCall.frame.origin.y + btnCall.frame.size.height + 5, 60, 15)] autorelease];
         lbPreRemark.text = @"备     注：";
-        lbPreRemark.font  = [UIFont systemFontOfSize:14];
+        lbPreRemark.font  = [UIFont systemFontOfSize:12];
         lbPreRemark.textColor = [UIColor grayColor];
         lbPreRemark.lineBreakMode = NSLineBreakByCharWrapping;
         lbPreRemark.numberOfLines = 0;
@@ -360,10 +363,10 @@
         if (strRemark == nil) {
             strRemark = @"    ";
         }
-        labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 500)];
-        UILabel *lbRemark = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbMobile.frame.origin.y + lbMobile.frame.size.height + 5, labelSize.width, labelSize.height)] autorelease];
+        labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 500)];
+        UILabel *lbRemark = [[[UILabel alloc] initWithFrame:CGRectMake(80, btnCall.frame.origin.y + btnCall.frame.size.height + 5, labelSize.width, labelSize.height)] autorelease];
         lbRemark.text = strRemark;
-        lbRemark.font = [UIFont systemFontOfSize:14];
+        lbRemark.font = [UIFont systemFontOfSize:12];
         lbRemark.lineBreakMode = NSLineBreakByCharWrapping;
         lbRemark.numberOfLines = 0;
         lbRemark.textColor = [UIColor grayColor];
@@ -376,7 +379,7 @@
             [cell.contentView addSubview:txtViewReason];
             txtViewReason.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
             txtViewReason.layer.borderWidth = 1;
-            txtViewReason.font = [UIFont systemFontOfSize:14];
+            txtViewReason.font = [UIFont systemFontOfSize:12];
             txtViewReason.delegate = self;
             
             //添加到临时的变量内
@@ -409,7 +412,7 @@
             UILabel *lbAccept = [[[UILabel alloc] initWithFrame:CGRectMake(33, 0, 99, 30)] autorelease];
             lbAccept.text = @"赴约";
             lbAccept.textColor = [UIColor whiteColor];
-            lbAccept.font = [UIFont systemFontOfSize:14];
+            lbAccept.font = [UIFont systemFontOfSize:12];
             [btnAccept addSubview:lbAccept];
             [cell.contentView addSubview:btnAccept];
             [btnAccept release];
@@ -423,7 +426,7 @@
             UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
             lbReject.text = @"不赴约";
             lbReject.textColor = [UIColor whiteColor];
-            lbReject.font = [UIFont systemFontOfSize:14];
+            lbReject.font = [UIFont systemFontOfSize:12];
             [btnReject addSubview:lbReject];
             [cell.contentView addSubview:btnReject];
             [btnReject release];
@@ -440,14 +443,15 @@
             //不赴约状态
             UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 60, 15)] autorelease];
             lbPreRemark.text = @"回复状态：";
-            lbPreRemark.font  = [UIFont systemFontOfSize:14];
+            lbPreRemark.font  = [UIFont systemFontOfSize:12];
             lbPreRemark.textColor = [UIColor grayColor];
             [cell.contentView addSubview:lbPreRemark];
           
             UILabel *lbApply = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 40, 15)] autorelease];
             lbApply.text = strRemark;
             lbApply.layer.cornerRadius = 5;
-            lbApply.font = [UIFont systemFontOfSize:14];
+            lbApply.layer.masksToBounds = YES;
+            lbApply.font = [UIFont systemFontOfSize:12];
             lbApply.textColor = [UIColor whiteColor];
             lbApply.textAlignment = NSTextAlignmentCenter;
             if ([strReply isEqualToString:@"1"]) {
@@ -457,13 +461,13 @@
             }
             else{
                 lbApply.text = @"不赴约";
-                lbApply.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
+                lbApply.backgroundColor = [UIColor colorWithRed:170.f/255.f green:170.f/255.f blue:170.f/255.f alpha:1];
                 //不赴约原因
                 UILabel *lbReason = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbApply.frame.origin.y+lbApply.frame.size.height + 5, 280, 15)] autorelease];
                 lbReason.text = [NSString stringWithFormat:@"原      因：%@", rowData[@"ReplyMessage"]];
                 lbReason.textColor = [UIColor grayColor];
                 lbReason.layer.cornerRadius = 5;
-                lbReason.font = [UIFont systemFontOfSize:14];
+                lbReason.font = [UIFont systemFontOfSize:12];
                 [cell.contentView addSubview:(lbReason)];
                 selectRowHeight = lbReason.frame.origin.y + lbReason.frame.size.height + 5;
             }
@@ -593,7 +597,7 @@
     NSString *strReply = self.recruitmentCpData[indexPath.row][@"Reply"];
     if (selectRowIndex == indexPath.row) {
         NSString *strRemark = self.recruitmentCpData[indexPath.row][@"Remark"];
-        CGSize labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 500)];
+        CGSize labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 500)];
         height += labelSize.height - 15;
         //如果未结束，并且没操作
         if ([strReply isEqualToString:@"0"]) {
@@ -604,7 +608,7 @@
         }
         //如果有未结束原因
         NSString *replyMessage = self.recruitmentCpData [indexPath.row][@"ReplyMessage"];
-        labelSize = [CommonController CalculateFrame:replyMessage fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 500)];
+        labelSize = [CommonController CalculateFrame:replyMessage fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 500)];
         height += labelSize.height - 15;
     }
     
