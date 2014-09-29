@@ -45,7 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    secondSend = 10;
+    secondSend = 160;
     
     UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
     [button setTitle: @"重置密码" forState: UIControlStateNormal];
