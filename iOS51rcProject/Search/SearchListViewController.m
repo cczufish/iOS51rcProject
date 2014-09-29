@@ -241,7 +241,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIFont *fontCell = [UIFont systemFontOfSize:12];
+    UIFont *fontCell = [UIFont systemFontOfSize:14];
     UIColor *colorText = [UIColor colorWithRed:120.f/255.f green:120.f/255.f blue:120.f/255.f alpha:1];
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.jobListData[indexPath.row];
@@ -259,7 +259,7 @@
     //职位名称
     UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 20)];
     [lbJobName setText:rowData[@"JobName"]];
-    [lbJobName setFont:[UIFont systemFontOfSize:14]];
+    [lbJobName setFont:[UIFont systemFontOfSize:16]];
     [cell.contentView addSubview:lbJobName];
     [lbJobName release];
     

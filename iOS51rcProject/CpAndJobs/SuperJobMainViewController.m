@@ -84,11 +84,12 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     //构造分享内容
     NSString *subSiteUrl = [userDefault objectForKey:@"subSiteUrl"];
-    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n正在齐鲁人才网网上招聘，一定有适合你的职位，真心推荐哦？\n http://%@/personal/jv/companyDetail?cpmainID=%@\n",self.navigationItem.title, subSiteUrl,self.cpMainID]
+    subSiteUrl = [subSiteUrl stringByReplacingOccurrencesOfString:@"www" withString:@"m"];
+    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n正在%@网上招聘，一定有适合你的职位，真心推荐哦？\n%@/personal/jv/companyDetail?cpmainID=%@\n",self.navigationItem.title, [userDefault objectForKey:@"subSiteName"], subSiteUrl,self.cpMainID]
                                        defaultContent:@"默认分享内容，没内容时显示"
                                                 image:[ShareSDK imageWithPath:imagePath]
-                                                title:@"推荐职位：%@..................."
-                                                  url:@"......................"
+                                                title:@"给你推荐个工作"
+                                                  url:[NSString stringWithFormat:@"http://%@/personal/jv/companyDetail?cpmainID=%@\n", subSiteUrl,self.cpMainID]
                                           description:@""
                                             mediaType:SSPublishContentMediaTypeNews];
     [ShareSDK showShareActionSheet:nil

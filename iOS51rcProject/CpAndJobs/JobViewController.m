@@ -262,7 +262,7 @@
             //职位名称
             UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 180, 20)]autorelease];
             lbTitle.textColor = [UIColor blackColor];
-            lbTitle.font = [UIFont systemFontOfSize:12];
+            lbTitle.font = [UIFont systemFontOfSize:14];
             lbTitle.text = rowData[@"JobName"];
             //待遇
             UILabel *lbSalary = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 80, 20)]autorelease];
@@ -272,7 +272,7 @@
             }
             lbSalary.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
             lbSalary.textAlignment = NSTextAlignmentRight;
-            lbSalary.font = [UIFont systemFontOfSize:12];
+            lbSalary.font = [UIFont systemFontOfSize:14];
             [btnOther addSubview:lbTitle];
             [btnOther addSubview:lbSalary];
             //分割线
@@ -313,10 +313,10 @@
     //图片+label
     UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(1, 1, 13, 13)] autorelease];
     imgView.image = [UIImage imageNamed:icoName];
-    CGSize labelSize = [CommonController CalculateFrame:title fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
+    CGSize labelSize = [CommonController CalculateFrame:title fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
     UILabel *lbView = [[[UILabel alloc] initWithFrame:CGRectMake(15, 0, labelSize.width, 15)] autorelease];
     lbView.text =title;
-    lbView.font = [UIFont systemFontOfSize:10];
+    lbView.font = [UIFont systemFontOfSize:12];
     lbView.textColor = [UIColor grayColor];
     view.frame = CGRectMake(0, 0, 15 + labelSize.width, 15);
     [view addSubview:imgView];
@@ -372,20 +372,20 @@
     UILabel *lbPreCpName = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbSalary.frame.origin.y + lbSalary.frame.size.height + 10, 280, 15) ]autorelease];
     lbPreCpName.text = strPreCpName;
     lbPreCpName.textColor = [UIColor grayColor];
-    lbPreCpName.font = [UIFont systemFontOfSize:12];
+    lbPreCpName.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbPreCpName];
     
-     UILabel *lbCpName = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbSalary.frame.origin.y + lbSalary.frame.size.height + 10, 280, 15) ]autorelease];
+     UILabel *lbCpName = [[[UILabel alloc] initWithFrame:CGRectMake(85, lbSalary.frame.origin.y + lbSalary.frame.size.height + 10, 280, 15) ]autorelease];
     [lbCpName setText:dicJob[@"cpName"]];
 
-     lbCpName.font = [UIFont systemFontOfSize:12];
+     lbCpName.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbCpName];
     
     //＝＝＝＝＝＝＝＝＝＝＝＝设置当前View标题＝＝＝＝＝＝＝＝＝＝＝
     UIView *viewTitle = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)] autorelease];
     UILabel *lbTitle = [[[UILabel alloc] initWithFrame:CGRectMake(0, 5, 125, 20)] autorelease];
     [lbTitle setText:dicJob[@"cpName"]];
-    [lbTitle setFont:[UIFont systemFontOfSize:10]];
+    [lbTitle setFont:[UIFont systemFontOfSize:12]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
     [viewTitle addSubview:lbTitle];
     [self.navigationItem setTitleView:viewTitle];
@@ -395,19 +395,19 @@
     UILabel *lbJobRegion = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 10, 280, 15) ]autorelease];
     lbJobRegion.text = strPreJobRegion;
     lbJobRegion.textColor = [UIColor grayColor];
-    lbJobRegion.font = [UIFont systemFontOfSize:12];
+    lbJobRegion.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbJobRegion];
     
     NSString *strJobRegion = dicJob[@"JobRegion"];
-     UILabel *lbWorkPlace = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 10, 280, 15) ]autorelease];
-    labelSize = [CommonController CalculateFrame:strJobRegion fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(lbWorkPlace.frame.size.width, 500)];
+     UILabel *lbWorkPlace = [[[UILabel alloc] initWithFrame:CGRectMake(85, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 10, 280, 15) ]autorelease];
+    labelSize = [CommonController CalculateFrame:strJobRegion fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(lbWorkPlace.frame.size.width, 500)];
     [lbWorkPlace setText:strJobRegion];
-    lbWorkPlace.font = [UIFont systemFontOfSize:12];
+    lbWorkPlace.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbWorkPlace];
     
     //坐标
     if ([dicJob[@"lng"] length] > 0) {
-        UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(80, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 5, 280, 21)];
+        UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(85, lbPreCpName.frame.origin.y + lbPreCpName.frame.size.height + 5, 280, 21)];
         UIImageView *lngLatImg = [[[UIImageView alloc]initWithFrame:CGRectMake(labelSize.width + 5, 0, 16, 21)] autorelease];
         lngLatImg.image = [UIImage imageNamed:@"ico_cpinfo_cpaddress.png"] ;
         self.lng = [dicJob[@"lng"] floatValue];
@@ -444,11 +444,11 @@
     [self.subView addSubview:lbJobRequest];
     lbJobRequest.textColor = [UIColor grayColor];
     lbJobRequest.text = @"招聘条件：";
-    lbJobRequest.font = [UIFont systemFontOfSize:12];
+    lbJobRequest.font = [UIFont systemFontOfSize:14];
     
-    UILabel *lbJobRequestValue = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 10, 280, 15) ]autorelease];
+    UILabel *lbJobRequestValue = [[[UILabel alloc] initWithFrame:CGRectMake(85, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 10, 280, 15) ]autorelease];
     lbJobRequestValue.text = [NSString stringWithFormat:@"%@|%@|%@|%@|%@", num, education, strAge, experience, employType];
-    lbJobRequestValue.font = [UIFont systemFontOfSize:12];
+    lbJobRequestValue.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbJobRequestValue];
     
     //===========================福利小图标=============================
@@ -587,14 +587,14 @@
     UILabel *lbResponsibility = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine2.frame.origin.y + lbLine2.frame.size.height + 10, 200, 15)];
     lbResponsibility.textColor = [UIColor grayColor];
     lbResponsibility.text = @"岗位职责：";
-    lbResponsibility.font = [UIFont systemFontOfSize:12];
+    lbResponsibility.font = [UIFont systemFontOfSize:14];
     
     NSString *strResponsibility = dicJob[@"Responsibility"];
-    labelSize = [CommonController CalculateFrame:strResponsibility fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
+    labelSize = [CommonController CalculateFrame:strResponsibility fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
     UILabel *lbResponsibilityInput = [[UILabel alloc] initWithFrame:CGRectMake(20, lbResponsibility.frame.origin.y + lbResponsibility.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbResponsibilityInput.lineBreakMode = NSLineBreakByCharWrapping;
     lbResponsibilityInput.numberOfLines = 0;
-    lbResponsibilityInput.font = [UIFont systemFontOfSize:12];
+    lbResponsibilityInput.font = [UIFont systemFontOfSize:14];
     lbResponsibilityInput.text = strResponsibility;
     [self.subView addSubview:lbResponsibilityInput];
     [self.subView addSubview:lbResponsibility];
@@ -605,14 +605,14 @@
     UILabel *lbDemand = [[UILabel alloc] initWithFrame:CGRectMake(20, lbResponsibilityInput.frame.origin.y+lbResponsibilityInput.frame.size.height + 15, 200, 15)];
     lbDemand.textColor = [UIColor grayColor];
     lbDemand.text = @"岗位要求：";
-    lbDemand.font = [UIFont systemFontOfSize:12];
+    lbDemand.font = [UIFont systemFontOfSize:14];
     NSString *strDemand = dicJob[@"Demand"];
-    labelSize = [CommonController CalculateFrame:strDemand fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
+    labelSize = [CommonController CalculateFrame:strDemand fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
     UILabel *lbDemandInput = [[UILabel alloc] initWithFrame:CGRectMake(20, lbDemand.frame.origin.y+lbDemand.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbDemandInput.lineBreakMode = NSLineBreakByCharWrapping;
     lbDemandInput.numberOfLines = 0;
     lbDemandInput.text = strDemand;
-    lbDemandInput.font = [UIFont systemFontOfSize:12];
+    lbDemandInput.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbDemand];
     [self.subView addSubview:lbDemandInput];
     [lbDemand release];
@@ -635,34 +635,34 @@
     UILabel *lbCaName = [[UILabel alloc] initWithFrame:CGRectMake(32, lbLine3.frame.origin.y + lbLine3.frame.size.height + 10, 64, 15)];
     lbCaName.textColor = [UIColor grayColor];
     lbCaName.text = @"联系人：";
-    lbCaName.font = [UIFont systemFontOfSize:12];
+    lbCaName.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbCaName];
     [lbCaName release];
     
-    UILabel *lbCaNameValue = [[UILabel alloc]initWithFrame:CGRectMake(76, lbLine3.frame.origin.y + lbLine3.frame.size.height + 10, 200, 15)];
+    UILabel *lbCaNameValue = [[UILabel alloc]initWithFrame:CGRectMake(85, lbLine3.frame.origin.y + lbLine3.frame.size.height + 10, 200, 15)];
     lbCaNameValue.text = strCaName;
-    lbCaNameValue.font = [UIFont systemFontOfSize:12];
+    lbCaNameValue.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbCaNameValue];
     [lbCaNameValue release];
     
     //职务
     NSString *strCaTitle = dicJob[@"caTitle"];
     UILabel *lbCaTitle = [[UILabel alloc] initWithFrame:CGRectMake(44, lbCaNameValue.frame.origin.y+lbCaNameValue.frame.size.height + 10, 64, 15)];
-    UILabel *lbCaTitleValue = [[UILabel alloc] initWithFrame:CGRectMake(76, lbCaNameValue.frame.origin.y+lbCaNameValue.frame.size.height + 10, 200, 15)];
+    UILabel *lbCaTitleValue = [[UILabel alloc] initWithFrame:CGRectMake(85, lbCaNameValue.frame.origin.y+lbCaNameValue.frame.size.height + 10, 200, 15)];
     if ([dicJob[@"caTitle"] length] > 0) {
         lbCaTitle.textColor = [UIColor grayColor];
         lbCaTitle.text = @"职务：";
-        lbCaTitle.font = [UIFont systemFontOfSize:12];
+        lbCaTitle.font = [UIFont systemFontOfSize:14];
         [self.subView addSubview:lbCaTitle];
         
         lbCaTitleValue.text = strCaTitle;
-        lbCaTitleValue.font = [UIFont systemFontOfSize:12];
+        lbCaTitleValue.font = [UIFont systemFontOfSize:14];
         [self.subView addSubview:lbCaTitleValue];
     }
     else {
         [lbCaTitle setFrame:CGRectMake(44, lbCaNameValue.frame.origin.y+lbCaNameValue.frame.size.height, 1, 1)];
         [self.subView addSubview:lbCaTitle];
-        [lbCaTitleValue setFrame:CGRectMake(76, lbCaNameValue.frame.origin.y+lbCaNameValue.frame.size.height, 1, 1)];
+        [lbCaTitleValue setFrame:CGRectMake(85, lbCaNameValue.frame.origin.y+lbCaNameValue.frame.size.height, 1, 1)];
         [self.subView addSubview:lbCaTitleValue];
     }
     [lbCaTitle release];
@@ -670,42 +670,42 @@
     
     //所在部门
     NSString *strCaDept = dicJob[@"caDept"];
-    UILabel *lbDept = [[UILabel alloc]initWithFrame:CGRectMake(20, lbCaTitle.frame.origin.y+lbCaTitle.frame.size.height + 10, 64, 15)];
-    UILabel *lbDeptValue = [[UILabel alloc] initWithFrame:CGRectMake(76, lbCaTitleValue.frame.origin.y+lbCaTitleValue.frame.size.height + 10 , 200, 15)];
+    UILabel *lbDept = [[UILabel alloc]initWithFrame:CGRectMake(16, lbCaTitle.frame.origin.y+lbCaTitle.frame.size.height + 10, 70, 15)];
+    UILabel *lbDeptValue = [[UILabel alloc] initWithFrame:CGRectMake(85, lbCaTitleValue.frame.origin.y+lbCaTitleValue.frame.size.height + 10 , 200, 15)];
     if ([dicJob[@"caDept"] length] > 0) {
         lbDept.textColor = [UIColor grayColor];
         lbDept.text = @"所在部门：";
-        lbDept.font = [UIFont systemFontOfSize:12];
+        lbDept.font = [UIFont systemFontOfSize:14];
         [self.subView addSubview:lbDept];
         
         lbDeptValue.text = strCaDept;
-        lbDeptValue.font = [UIFont systemFontOfSize:12];
+        lbDeptValue.font = [UIFont systemFontOfSize:14];
         [self.subView addSubview:lbDeptValue];
     }
     else {
         [lbDept setFrame:CGRectMake(44, lbCaTitle.frame.origin.y+lbCaTitle.frame.size.height, 1, 1)];
         [self.subView addSubview:lbDept];
-        [lbDeptValue setFrame:CGRectMake(76, lbCaTitleValue.frame.origin.y+lbCaTitleValue.frame.size.height, 1, 1)];
+        [lbDeptValue setFrame:CGRectMake(85, lbCaTitleValue.frame.origin.y+lbCaTitleValue.frame.size.height, 1, 1)];
         [self.subView addSubview:lbDeptValue];
     }
     [lbDept release];
     [lbDeptValue release];
     
     //联系电话
-    UILabel *lbCaTel = [[UILabel alloc] initWithFrame:CGRectMake(20, lbDept.frame.origin.y+lbDept.frame.size.height  + 10, 64, 15)];
+    UILabel *lbCaTel = [[UILabel alloc] initWithFrame:CGRectMake(16, lbDept.frame.origin.y+lbDept.frame.size.height  + 10, 70, 15)];
     lbCaTel.textColor = [UIColor grayColor];
     lbCaTel.text = @"联系电话：";
-    lbCaTel.font = [UIFont systemFontOfSize:12];
+    lbCaTel.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbCaTel];
     [lbCaTel release];
     
     NSString *strCaTel = dicJob[@"caTel"];
     if (strCaTel.length > 0) {
         //固定电话
-        labelSize = [CommonController CalculateFrame:strCaTel fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
-        UILabel *lbCaTelValue = [[UILabel alloc]initWithFrame: CGRectMake(76, lbDept.frame.origin.y+lbDept.frame.size.height + 10, labelSize.width, 15)];
+        labelSize = [CommonController CalculateFrame:strCaTel fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
+        UILabel *lbCaTelValue = [[UILabel alloc]initWithFrame: CGRectMake(85, lbDept.frame.origin.y+lbDept.frame.size.height + 10, labelSize.width, 15)];
         lbCaTelValue.text = strCaTel;
-        lbCaTelValue.font = [UIFont systemFontOfSize:12];
+        lbCaTelValue.font = [UIFont systemFontOfSize:14];
         [self.subView addSubview:lbCaTelValue];
         [lbCaTelValue release];
         
@@ -734,10 +734,10 @@
             y = lbDept.frame.origin.y+lbDept.frame.size.height + 10;
         }
         //手机号
-        labelSize = [CommonController CalculateFrame:strCaMobile fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
-        UILabel *lbCaMobileValue = [[UILabel alloc]initWithFrame: CGRectMake(76, y, labelSize.width, 15)];
+        labelSize = [CommonController CalculateFrame:strCaMobile fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
+        UILabel *lbCaMobileValue = [[UILabel alloc]initWithFrame: CGRectMake(85, y, labelSize.width, 15)];
         lbCaMobileValue.text = strCaMobile;
-        lbCaMobileValue.font = [UIFont systemFontOfSize:12];
+        lbCaMobileValue.font = [UIFont systemFontOfSize:14];
         [self.subView addSubview:lbCaMobileValue];
         [lbCaMobileValue release];
         
@@ -766,11 +766,11 @@
 
     //浏览了该职位的还查看了
     NSString *strOther = @"浏览了该职位的还查看了以下职位：";
-    labelSize = [CommonController CalculateFrame:strOther fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
+    labelSize = [CommonController CalculateFrame:strOther fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
     UILabel *lbOther = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine4.frame.origin.y+lbLine4.frame.size.height + 10, labelSize.width, 15)];
     lbOther.textColor = [UIColor grayColor];
     lbOther.text = strOther;
-    lbOther.font = [UIFont systemFontOfSize:12];
+    lbOther.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbOther];
     [lbOther release];
     

@@ -92,11 +92,8 @@
     tmpView.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     //显示标题
     NSString *strTitle = rowData[@"Title"];
-    UIFont *titleFont = [UIFont systemFontOfSize:13];
-    CGFloat titleWidth = 300;
-    CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
-    CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:titleFont sizeDemand:titleSize];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, labelSize.width, labelSize.height)];
+    UIFont *titleFont = [UIFont systemFontOfSize:14];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 280, 17)];
     lbTitle.text = strTitle;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
@@ -106,7 +103,7 @@
     //来源
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 200, 15)];
     lbAuthor.text = rowData[@"Author"];
-    lbAuthor.font = [UIFont systemFontOfSize:12];
+    lbAuthor.font = [UIFont systemFontOfSize:13];
     lbAuthor.textColor = [UIColor grayColor];
     [tmpView addSubview:(lbAuthor)];
     [lbAuthor release];
@@ -117,7 +114,7 @@
     strDate = [CommonController stringFromDate:dtBeginDate formatType:@"MM-dd HH:mm"];
     lbTime.text = strDate;
     lbTime.textColor = [UIColor grayColor];
-    lbTime.font = [UIFont systemFontOfSize:12];
+    lbTime.font = [UIFont systemFontOfSize:13];
     lbTime.textAlignment = NSTextAlignmentRight;
     [tmpView addSubview:(lbTime)];
     [lbTime release];

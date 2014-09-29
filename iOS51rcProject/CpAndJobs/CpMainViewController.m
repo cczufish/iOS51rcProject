@@ -84,7 +84,7 @@
     NSDictionary *dicCpMain = requestData[0];
     //公司名称
     NSString *cpName = dicCpMain[@"Name"];
-    CGSize labelSize = [CommonController CalculateFrame:cpName fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(self.lbCpName.frame.size.width, 500)];
+    CGSize labelSize = [CommonController CalculateFrame:cpName fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbCpName.frame.size.width, 500)];
     self.lbCpName.frame = CGRectMake(self.lbCpName.frame.origin.x, self.lbCpName.frame.origin.y, labelSize.width, labelSize.height);
     self.lbCpName.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbCpName.numberOfLines = 0;
@@ -104,8 +104,8 @@
     self.lbAddress.textColor = [UIColor grayColor];
     NSString *strRegion = dicCpMain[@"RegionName"];
     NSString *strAddressDetails = [NSString stringWithFormat:@"%@%@", strRegion, dicCpMain[@"Address"]];
-    labelSize = [CommonController CalculateFrame:strAddressDetails fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(220, 500)];
-    self.lbAddressValue.frame = CGRectMake(80, self.lbAddress.frame.origin.y + 5, labelSize.width, labelSize.height);
+    labelSize = [CommonController CalculateFrame:strAddressDetails fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(220, 500)];
+    self.lbAddressValue.frame = CGRectMake(90, self.lbAddress.frame.origin.y + 5, labelSize.width, labelSize.height);
     self.lbAddressValue.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbAddressValue.numberOfLines = 0;
     self.lbAddressValue.text = strAddressDetails;
@@ -128,7 +128,7 @@
     self.lbBrief.textColor = [UIColor grayColor];
     self.lbBrief.frame = CGRectMake(20, self.lbLine.frame.origin.y + self.lbLine.frame.size.height, 200, 40);
     NSString *strResponsibility = [CommonController FilterHtml: dicCpMain[@"Brief"]];
-    labelSize = [CommonController CalculateFrame:strResponsibility fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(280, 500)];
+    labelSize = [CommonController CalculateFrame:strResponsibility fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
     self.lbBriefValue.frame = CGRectMake(20, self.lbBrief.frame.origin.y + self.lbBrief.frame.size.height - 5, labelSize.width, labelSize.height);
     self.lbBriefValue.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbBriefValue.numberOfLines = 0;
