@@ -78,9 +78,10 @@
     
     //显示标题
     NSString *strTitle = rowData[@"Title"];
-    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 310, 62)];
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 310, 62)];
     tmpView.layer.borderWidth = 0.5;
-    tmpView.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    tmpView.layer.borderColor = [UIColor colorWithRed:220.f/255.f green:220.f/255.f blue:220.f/255.f alpha:1].CGColor;
+    tmpView.layer.backgroundColor = [UIColor colorWithRed:240.f/255.f green:240.f/255.f blue:240.f/255.f alpha:1].CGColor;
     
     UIFont *titleFont = [UIFont systemFontOfSize:13];
     CGFloat titleWidth = 300;
@@ -199,9 +200,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([self.newsType  isEqual: @"0"])
     {
-        return 125;
+        return 130;
     }else{
-         return 65;
+         return 70;
     }   
 }
 
