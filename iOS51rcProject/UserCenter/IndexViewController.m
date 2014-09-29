@@ -46,6 +46,12 @@
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     //设置按钮
     UIButton *btnRight = [[[UIButton alloc] initWithFrame:CGRectMake(260, 0, 30, self.navigationController.navigationBar.frame.size.height)] autorelease];
+    UIView *view1 = [[[UIView alloc] initWithFrame:CGRectMake(1, 5, 1, self.navigationController.navigationBar.frame.size.height-10)] autorelease];
+    view1.layer.backgroundColor =  [UIColor colorWithRed:255.f/255.f green:255.f/255.f blue:255.f/255.f alpha:.5].CGColor;
+    [btnRight addSubview:view1];
+    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(0, 5, 1, self.navigationController.navigationBar.frame.size.height-10)] autorelease];
+    view2.layer.backgroundColor = [UIColor colorWithRed:0/255.f green:0/255.f blue:0/255.f alpha:.5].CGColor;
+    [btnRight addSubview:view2];
     //添加设置图片
     [btnRight addTarget:self action:@selector(btnSettingClick:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(14, (self.navigationController.navigationBar.frame.size.height-25)/2 + 5, 15, 15)] autorelease];

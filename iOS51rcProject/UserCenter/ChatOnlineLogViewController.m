@@ -380,6 +380,11 @@
     return YES;
 }
 
+//隐藏键盘
+-(IBAction)textFiledReturnEditing:(id)sender {
+    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+}
+
 //输入框编辑完成以后，将视图恢复到原始状态
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
