@@ -142,9 +142,9 @@
     
     //选择图标（没有过期）
     if (!expired) {
-        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 22, 40, 45)];
+        UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 0, 60, 85)];
         leftButton.tag = [rowData[@"cpMainID"] integerValue];
-        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(7, 15, 15, 15)] autorelease];
+        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(7, 35, 15, 15)] autorelease];
         imgCheck.tag = isBooked;
         if (isBooked == 1) {
             //已经预约

@@ -11,11 +11,11 @@
 
 @interface InterviewNoticeViewController ()<NetWebServiceRequestDelegate, UITextViewDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
-@property (nonatomic, retain) NetWebServiceRequest *runningRequestForRejectOrAccept;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequestGetCvList;
 @property (retain, nonatomic) IBOutlet UITableView *tvReceivedInvitationList;
 @property (retain, nonatomic) IBOutlet UILabel *lbMessage;
 @property (retain, nonatomic) NSMutableArray *arrayHeight;
+@property (retain, nonatomic) NSMutableArray *arrayTxtView;
 @end
 
 @implementation InterviewNoticeViewController
@@ -35,6 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.arrayTxtView = [[NSMutableArray alloc] init];//临时存放
     self.lbMessage.layer.borderColor=[UIColor lightGrayColor].CGColor;
     self.lbMessage.layer.borderWidth = 0.5;
     selectRowIndex = 0;
@@ -378,6 +379,13 @@
             txtViewReason.font = [UIFont systemFontOfSize:12];
             txtViewReason.delegate = self;
             
+            //添加到临时的变量内
+            NSDictionary *dicTxtView = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                        [NSString stringWithFormat:@"%d",indexPath.row],@"id",
+                                        txtViewReason,@"value"
+                                        ,nil] autorelease];
+            [self.arrayTxtView addObject:dicTxtView];
+            
             //为TextView设置键盘隐藏
             UIToolbar * topView = [[[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 30)] autorelease];
             [topView setBarStyle:UIBarStyleBlack];
@@ -394,7 +402,7 @@
             //赴约参会
             UIButton *btnAccept = [[UIButton alloc] initWithFrame:CGRectMake(50, txtViewReason.frame.origin.y + txtViewReason.frame.size.height+ 5, 90, 30)];
             btnAccept.tag = (NSInteger)rowData[@"ID"];
-            objc_setAssociatedObject(btnAccept, @"AcceptReason", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
+            objc_setAssociatedObject(btnAccept, @"AcceptReason", [NSString stringWithFormat:@"%d", indexPath.row], OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnAccept addTarget:self action:@selector(btnAcceptClick:) forControlEvents:UIControlEventTouchUpInside];
             btnAccept.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
             btnAccept.layer.cornerRadius = 5;
@@ -408,7 +416,7 @@
             //不赴约
             UIButton *btnReject = [[UIButton alloc] initWithFrame:CGRectMake(170, txtViewReason.frame.origin.y + txtViewReason.frame.size.height + 5, 99, 30)];
             btnReject.tag = (NSInteger)rowData[@"ID"];
-            objc_setAssociatedObject(btnReject, @"RejectReason", txtViewReason.text, OBJC_ASSOCIATION_COPY_NONATOMIC);
+            objc_setAssociatedObject(btnReject, @"RejectReason", [NSString stringWithFormat:@"%d", indexPath.row], OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
             btnReject.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
             btnReject.layer.cornerRadius = 5;
@@ -422,6 +430,13 @@
             selectRowHeight = btnReject.frame.origin.y + btnReject.frame.size.height + 15;
         }
         else {
+            //添加到临时的变量内
+            NSDictionary *dicTxtView = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                                         [NSString stringWithFormat:@"%d",indexPath.row],@"id",
+                                         @"",@"value"
+                                         ,nil] autorelease];
+            [self.arrayTxtView addObject:dicTxtView];
+            
             //不赴约状态
             UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 60, 15)] autorelease];
             lbPreRemark.text = @"回复状态：";
@@ -503,19 +518,23 @@
 
 //点击赴约
 -(void)btnAcceptClick:(UIButton *) sender{
-    
-    NSString *msg = objc_getAssociatedObject(sender, @"AcceptReason");
+    NSInteger index = [objc_getAssociatedObject(sender, @"AcceptReason") integerValue];
+    NSDictionary *dicTxtView = self.arrayTxtView[index];
+    UITextView *tmpView = (UITextView *) dicTxtView[@"value"];
+    NSString *msg = tmpView.text;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
     NSString *userName = [userDefaults objectForKey:@"UserName"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    NSDictionary *tmpDic = self.recruitmentCpData[index];
+     NSString *strCpID =tmpDic[@"cpID"];
+    
     [dicParam setObject:userName forKey:@"paName"];
-    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
-    [dicParam setObject: [NSString stringWithFormat:@"%d", sender.tag] forKey:@"cpMainID"];
+    [dicParam setObject:[userDefaults objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
+    [dicParam setObject: strCpID forKey:@"cpMainID"];
     [dicParam setObject:msg forKey:@"message"];
-    [dicParam setObject:userID forKey:@"id"];
+    [dicParam setObject:[NSString stringWithFormat:@"%d", sender.tag] forKey:@"id"];
     [dicParam setObject:@"1" forKey:@"reply"];
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
@@ -523,23 +542,30 @@
     [request setDelegate:self];
     [request startAsynchronous];
     request.tag = 2;
-    self.runningRequestForRejectOrAccept = request;
+    self.runningRequest = request;
     [dicParam release];
 }
 
 //点击不赴约
 -(void)btnRejectClick:(UIButton *) sender{
-    NSString *msg = objc_getAssociatedObject(sender, @"RejectReason");
+    NSInteger index = [objc_getAssociatedObject(sender, @"RejectReason") integerValue];
+    NSDictionary *dicTxtView = self.arrayTxtView[index];
+    UITextView *tmpView = (UITextView *) dicTxtView[@"value"];
+    NSString *msg = tmpView.text;
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
     NSString *userName = [userDefaults objectForKey:@"UserName"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    
+    NSDictionary *tmpDic = self.recruitmentCpData[index];
+    NSString *strCpID =tmpDic[@"cpID"];
     [dicParam setObject:userName forKey:@"paName"];
     [dicParam setObject:[userDefaults objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
-    [dicParam setObject: [NSString stringWithFormat:@"%d", sender.tag] forKey:@"cpMainID"];
+    [dicParam setObject: strCpID forKey:@"cpMainID"];
     [dicParam setObject:msg forKey:@"message"];
-    [dicParam setObject:userID forKey:@"id"];
+    [dicParam setObject:[NSString stringWithFormat:@"%d", sender.tag] forKey:@"id"];
     [dicParam setObject:@"2" forKey:@"reply"];
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
@@ -547,7 +573,7 @@
     [request setDelegate:self];
     [request startAsynchronous];
     request.tag = 2;
-    self.runningRequestForRejectOrAccept = request;
+    self.runningRequest = request;
     [dicParam release];
 }
 
@@ -616,7 +642,6 @@
 - (void)dealloc {
     [_arrayHeight release];
     [_runningRequest release];
-    [_runningRequestForRejectOrAccept release];
     [_runningRequestGetCvList release];
     [_strPhone release];
     [_recruitmentCpData release];

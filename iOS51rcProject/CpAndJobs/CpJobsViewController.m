@@ -151,23 +151,22 @@
     NSString *strdcSalaryID = rowData[@"dcSalaryID"];
     UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(220, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 80, labelSize.height)];
     lbSalary.text = [CommonController getDictionaryDesc:strdcSalaryID tableName:@"dcSalary"];
-    //[CommonController GetSalary:strdcSalaryID];
     lbSalary.font = [UIFont systemFontOfSize:12];
     lbSalary.textAlignment = NSTextAlignmentRight;
     lbSalary.textColor = [UIColor redColor];
     [cell.contentView addSubview:(lbSalary)];
     [lbSalary release];
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, 30, 50)];
-    UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
-    imgCheck.image = [UIImage imageNamed: @"chk_default.png"];
-    [btnCheck addSubview:imgCheck];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, 100, 50)];
     [btnCheck setTitle:rowData[@"ID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
+    UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
+    imgCheck.image = [UIImage imageNamed: @"chk_default.png"];
+    [btnCheck addSubview:imgCheck];
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbSalary.frame.origin.y+lbSalary.frame.size.height + 6, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
