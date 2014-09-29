@@ -33,6 +33,7 @@
 @property (retain, nonatomic) IBOutlet UIView *ViewBottom;
 @property (retain, nonatomic) IBOutlet UILabel *lbChat;
 @property (retain, nonatomic) IBOutlet UIImageView *imgChat;
+@property (retain, nonatomic) NSString *defaultCvID;
 @end
 
 @implementation JobViewController
@@ -60,6 +61,20 @@
     self.jobMainScroll.delegate = self;
  }
 
+//获取匹配度
+-(void) GetMatchByJobCv{
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:self.JobID forKey:@"JobID"];
+    [dicParam setObject:self.defaultCvID forKey:@"CvMainID"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetMatchByJobCv" Params:dicParam];
+    request.tag = 8;
+    [request setDelegate:self];
+    [request startAsynchronous];
+    self.runningRequest = request;
+    self.loading = [[[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self] autorelease];
+    [dicParam release];
+}
+
 -(void) onSearch{
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.JobID forKey:@"JobID"];
@@ -71,6 +86,24 @@
     self.loading = [[[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self] autorelease];
     [dicParam release];
     [self.loading startAnimating];
+}
+
+//获得简历列表
+-(void) GetBasicCvList{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
+    
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetBasicCvListByPaMainID" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 7;
+    self.runningRequest = request;
+    [dicParam release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,6 +142,21 @@
     }
     else if (request.tag == 6) {
         [pCtrl.view makeToast:@"收藏成功"];
+    }
+    else if(request.tag == 7){
+        for (int i = 0; i < requestData.count; i++) {
+            if (![requestData[i][@"Name"] isEqualToString:@"未完成简历"]) {
+                //设置一个默认的cv
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setValue:requestData[i][@"ID"] forKey:@"DefaultCv"];
+                self.defaultCvID = requestData[i][@"ID"];
+                [self GetMatchByJobCv];
+                break;
+            }
+        }
+    }
+    else if(request.tag == 8) {//生成匹配度
+        [self CreateJobMatch:result];
     }
     else if(request.tag == 9){//其他建议的职位
         [self didReceiveRecommendJob:requestData];
@@ -294,6 +342,8 @@
     [self.jobMainScroll setContentSize:CGSizeMake(320, scrolHeight) ];
     self.ViewBottom.frame = CGRectMake(0, HEIGHT - 170, 320, 50);
     self.jobMainScroll.frame = CGRectMake(0, 0, 320, HEIGHT - 170);
+    //获取基本简历
+    [self GetBasicCvList];
 }
 
 //点击其他企业
@@ -323,6 +373,22 @@
     [view addSubview:lbView];
 }
 
+//生成匹配度
+-(void) CreateJobMatch:(NSString *)strMatch{
+    //匹配度
+    if (strMatch != nil) {
+        UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(260, self.lbJobName.frame.origin.y+5, 45, 20)];
+        lbMatch.layer.cornerRadius = 5;
+        [lbMatch setText:[NSString stringWithFormat:@"匹配度%@%%",strMatch]];
+        [lbMatch setTextAlignment:NSTextAlignmentCenter];
+        [lbMatch setTextColor:[UIColor whiteColor]];
+        [lbMatch setFont:[UIFont systemFontOfSize:8]];
+        [lbMatch setBackgroundColor:[UIColor colorWithRed:14.f/255.f green:170.f/255.f blue:32.f/255.f alpha:1]];
+        [self.subView addSubview:lbMatch];
+        [lbMatch release];
+    }
+}
+
 //绑定职位信息
 -(void) didReceiveJobMain:(NSArray *) requestData
 {
@@ -345,20 +411,6 @@
     lbLine1.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     [self.subView addSubview:lbLine1];
     [lbLine1 release];
-
-    //匹配度
-    NSString *strMatch = dicJob[@"matchPercent"];
-    if (strMatch != nil) {
-        UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(270, self.lbJobName.frame.origin.y+5, 45, 20)];
-        lbMatch.layer.cornerRadius = 5;
-        [lbMatch setText:[NSString stringWithFormat:@"匹配度%@%%",strMatch]];
-        [lbMatch setTextAlignment:NSTextAlignmentCenter];
-        [lbMatch setTextColor:[UIColor whiteColor]];
-        [lbMatch setFont:[UIFont systemFontOfSize:8]];
-        [lbMatch setBackgroundColor:[UIColor colorWithRed:14.f/255.f green:170.f/255.f blue:32.f/255.f alpha:1]];
-        [self.subView addSubview:lbMatch];
-        [lbMatch release];
-    }
 
     //待遇
     NSString *strSalary = dicJob[@"Salary"];
