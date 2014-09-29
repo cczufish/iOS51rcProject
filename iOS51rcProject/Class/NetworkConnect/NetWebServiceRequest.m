@@ -107,8 +107,6 @@ NSString* const NetWebServiceRequestErrorDomain = @"NetWebServiceRequestErrorDom
     [self.cancelLock lock];
     
     _delegate = delegate;
-    UIViewController *viewC = delegate;
-    _delegateView = viewC.view;
     [self.cancelLock unlock];
 }
 
