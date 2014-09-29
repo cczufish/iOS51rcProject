@@ -378,6 +378,7 @@
     //匹配度
     if (strMatch != nil) {
         UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(260, self.lbJobName.frame.origin.y+5, 45, 20)];
+        lbMatch.layer.masksToBounds = YES;
         lbMatch.layer.cornerRadius = 5;
         [lbMatch setText:[NSString stringWithFormat:@"匹配度%@%%",strMatch]];
         [lbMatch setTextAlignment:NSTextAlignmentCenter];
