@@ -56,6 +56,7 @@
     [self.scrollView addSubview:self.thirdCtrl.view];
     
     //代理
+    self.scrollView.delegate = self;
     self.firstCtrl.searchDelegate = self;
     self.sccondCtrl.inviteFromApplyViewDelegate = self;
     self.thirdCtrl.InviteJobsFromFavorityViewDelegate = self;
