@@ -36,6 +36,7 @@
 @property (nonatomic, retain) SearchPickerView *searchPicker;
 @property (nonatomic, retain) DictionaryPickerView *dictionaryPicker;
 @property (nonatomic, retain) CustomPopup *cPopup;
+
 @end
 
 @implementation RMSearchJobListViewController
@@ -439,6 +440,16 @@
     [self onSearch];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.toastType == 1) {
+        [self.view makeToast:@"邀请成功！"];
+    }
+
+    self.toastType = 0;
+}
+
 - (void)pickerDidChangeStatus:(DictionaryPickerView *)picker
                 selectedValue:(NSString *)selectedValue
                  selectedName:(NSString *)selectedName
@@ -463,10 +474,18 @@
     self.searchPicker = nil;
 }
 
+//邀请参会
 - (void)jobApply
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
+        //判断是否有选中的职位
+        if (checkedCpArray.count == 0) {
+            UIViewController *pCtrl = [CommonController getFatherController:self.view];
+            [pCtrl.view makeToast:@"您还没有选择职位"];
+            return;
+        }
+
         RmInviteCpViewController *rmInviteCpViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
         rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
         rmInviteCpViewCtrl.strAddress = self.strAddress;
@@ -488,17 +507,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 - (void)dealloc {
     [_btnRegionFilter release];

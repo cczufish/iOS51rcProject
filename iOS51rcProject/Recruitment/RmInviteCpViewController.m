@@ -4,6 +4,7 @@
 #import "Toast+UIView.h"
 #import "NetWebServiceRequest.h"
 #import "RmCpJobListViewController.h"
+#import "RMSearchJobListViewController.h"
 
 //邀请企业参会
 @interface RmInviteCpViewController () <NetWebServiceRequestDelegate, DictionaryPickerDelegate,DatePickerDelegate>
@@ -190,6 +191,11 @@
             [self.view makeToast:@"网络连接错误！"];
         }else if ([result isEqual:@"1"]){
             [self.view makeToast:@"邀请成功！"];
+            //UIViewController *pCtrl = [CommonController getFatherController:self.view];
+            RMSearchJobListViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+            listCtrl.toastType = 1;
+            //跳转上一个界面
+            [self.navigationController popViewControllerAnimated:YES];
         }else {
             [self.view makeToast:@"未知错误！"];
         }

@@ -6,6 +6,7 @@
 {
     NSMutableArray *checkedCpArray;
 }
+@property int toastType;
 @property (retain, nonatomic) IBOutlet UIButton *btnRegionFilter;
 @property (retain, nonatomic) IBOutlet UILabel *lbRegionFilter;
 @property (retain, nonatomic) IBOutlet UIButton *btnJobTypeFilter;

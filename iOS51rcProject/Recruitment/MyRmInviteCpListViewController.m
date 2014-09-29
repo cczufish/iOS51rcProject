@@ -26,13 +26,11 @@
 
 - (void)viewDidLoad
 {
-    UIButton *button = [UIButton buttonWithType: UIButtonTypeRoundedRect];
-    [button setTitle: @"我的招聘会" forState: UIControlStateNormal];
-    [button sizeToFit];
-    self.navigationItem.titleView = button;
-       
+    self.navigationItem.title = @"我邀请的企业";
+    //不显示列表分隔线
+    self.tvRecruitmentCpList.separatorStyle = UITableViewCellSeparatorStyleNone;
     [super viewDidLoad];
-    //self.rmID = @"95935";
+   
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [self onSearch];

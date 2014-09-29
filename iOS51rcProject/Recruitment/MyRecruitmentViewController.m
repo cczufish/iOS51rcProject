@@ -106,10 +106,10 @@
 }
 
 //从我的预约页面到我邀请的企业页面
--(void) GoToMyInvitedCpView:(NSString *) paMainID
+-(void) GoToMyInvitedCpView:(NSString *) rmID
 {
-    MyRmInviteCpListViewController *rmViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmInviteCpListView"];
-    [self.navigationController pushViewController:rmViewCtrl animated:true];
+    //MyRmInviteCpListViewController *rmViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmInviteCpListView"];
+    //[self.navigationController pushViewController:rmViewCtrl animated:true];
 }
 
 - (void)didReceiveMemoryWarning

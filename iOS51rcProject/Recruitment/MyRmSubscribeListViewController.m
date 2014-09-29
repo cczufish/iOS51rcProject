@@ -7,6 +7,7 @@
 #import "RmInviteCpViewController.h"
 #import "RmSearchJobForInviteViewController.h"
 #import "MapViewController.h"
+#import "MyRmInviteCpListViewController.h"
 
 //我的预约
 @interface MyRmSubscribeListViewController ()<NetWebServiceRequestDelegate>
@@ -192,11 +193,11 @@
     lbMyRmCpCount.textAlignment = NSTextAlignmentCenter;
     [btnMyRmCp addSubview:lbMyRmCpCount];
     //我邀请的企业按钮
-    btnMyRmCp.tag = (NSInteger)rowData[@"paMainID"];
+    btnMyRmCp.tag = (NSInteger)rowData[@"id"];
     btnMyRmCp.layer.borderWidth = 0.5;
     btnMyRmCp.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     if (![myRmCpCount isEqualToString:@"0"]) {//大于0才可以点击
-        [btnMyRmCp addTarget:self action:@selector(joinRecruitment:) forControlEvents:UIControlEventTouchUpInside];
+        [btnMyRmCp addTarget:self action:@selector(myInvitedCp:) forControlEvents:UIControlEventTouchUpInside];
     }
     [cell.contentView addSubview:btnMyRmCp];
     
@@ -233,10 +234,12 @@
     [superJobC.navigationController pushViewController:mapC animated:true];
 }
 
-//点击我参会的企业
--(void)joinRecruitment:(UIButton *) sender{
-    NSLog(@"%d", sender.tag);
-    [gotoMyInvitedCpViewDelegate GoToMyInvitedCpView:[@(sender.tag) stringValue]];
+//点击我邀请的企业
+-(void)myInvitedCp:(UIButton *) sender{
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
+    MyRmInviteCpListViewController *rmViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRmInviteCpListView"];
+    rmViewCtrl.rmID = [NSString stringWithFormat:@"%d", sender.tag];
+    [pCtrl.navigationController pushViewController:rmViewCtrl animated:true];   
 }
 
 //点击某一行,到达企业页面--调用代理
