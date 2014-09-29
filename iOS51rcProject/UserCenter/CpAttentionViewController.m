@@ -93,31 +93,68 @@
 
 - (void)onSearch
 {
-    if (self.pageNumber == 1) {
-        [self.jobListData removeAllObjects];
-        [self.tvJobList reloadData];
-        //开始等待动画
-        [loadView startAnimating];
+    if ([selectCV isEqualToString:@""]) {
+        //没有面试通知记录
+        self.lbTop.text = @" ";
+        self.lbTop.layer.borderColor = [UIColor whiteColor].CGColor;
+        self.btnTop.layer.borderWidth = 0;
+        UIImageView *imgCornor = self.btnTop.subviews[1];
+        imgCornor.image = [UIImage imageNamed:@"11111"];//赋空值
+        self.btnTop.titleLabel.text = @" ";
+        
+        UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 240, 80)]autorelease];
+        UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 60)] autorelease];
+        img.image = [UIImage imageNamed:@"pic_noinfo.png"];
+        [viewHsaNoCv addSubview:img];
+        
+        UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 220, 20)] autorelease];
+        lb1.text = @"亲，没有谁在关注我的记录,建议您";
+        lb1.font = [UIFont systemFontOfSize:14];
+        lb1.textAlignment = NSTextAlignmentCenter;
+        [viewHsaNoCv addSubview:lb1];
+        
+        UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 30, 210, 20)] autorelease];
+        lb2.text = @"去我们的简历库看看，";
+        lb2.font = [UIFont systemFontOfSize:14];
+        lb2.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+        lb2.textAlignment = NSTextAlignmentCenter;
+        [viewHsaNoCv addSubview:lb2];
+        UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 20)] autorelease];
+        lb3.text = @"会发现不一样的惊喜";
+        lb3.font = [UIFont systemFontOfSize:14];
+        lb3.textAlignment = NSTextAlignmentCenter;
+        [viewHsaNoCv addSubview:lb3];
+        
+        [self.view addSubview:viewHsaNoCv];
+    }else{
+        if (self.pageNumber == 1) {
+            [self.jobListData removeAllObjects];
+            [self.tvJobList reloadData];
+            //开始等待动画
+            [loadView startAnimating];
+        }
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSString *code = [userDefaults objectForKey:@"code"];
+        NSString *userID = [userDefaults objectForKey:@"UserID"];
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:userID forKey:@"paMainID"];//21142013
+        [dicParam setObject:code forKey:@"code"];//152014391908
+        [dicParam setObject:selectCV forKey:@"cvMainID"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCvViewLog" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 1;
+        self.runningRequest = request;
+        [dicParam release];
     }
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSString *code = [userDefaults objectForKey:@"code"];
-    NSString *userID = [userDefaults objectForKey:@"UserID"];
-    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:userID forKey:@"paMainID"];//21142013
-    [dicParam setObject:code forKey:@"code"];//152014391908
-    [dicParam setObject:selectCV forKey:@"cvMainID"];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetCvViewLog" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    request.tag = 1;
-    self.runningRequest = request;
-    [dicParam release];
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
+    //结束等待动画
+    [loadView stopAnimating];
     if (request.tag == 1) { //职位搜索
         if (requestData.count>0) {
             if(self.pageNumber == 1){
@@ -184,9 +221,6 @@
         
         self.cvList = arrCv;
     }
-
-    //结束等待动画
-    [loadView stopAnimating];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
