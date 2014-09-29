@@ -46,14 +46,6 @@
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     //设置按钮
     UIButton *btnRight = [[[UIButton alloc] initWithFrame:CGRectMake(260, 0, 30, self.navigationController.navigationBar.frame.size.height)] autorelease];
-    //添加左侧竖线
-    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.75, self.navigationController.navigationBar.frame.size.height)] autorelease];
-    view.layer.shadowColor = [UIColor blackColor].CGColor;
-    view.layer.shadowOffset = CGSizeMake(0, 3);
-    view.layer.shadowOpacity = 1;
-    view.layer.shadowRadius = 10.0;
-    view.layer.backgroundColor = [UIColor whiteColor].CGColor;
-    [btnRight addSubview:view];
     //添加设置图片
     [btnRight addTarget:self action:@selector(btnSettingClick:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(14, (self.navigationController.navigationBar.frame.size.height-25)/2 + 5, 15, 15)] autorelease];

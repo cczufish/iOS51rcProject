@@ -7,6 +7,7 @@
 #import <objc/runtime.h>
 #import "RmCpMain.h"
 #import "MapViewController.h"
+#import "Toast+UIView.h"
 
 @interface InterviewNoticeViewController ()<NetWebServiceRequestDelegate, UITextViewDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -96,7 +97,6 @@
             [viewHsaNoCv addSubview:lb3];
             
             [self.view addSubview:viewHsaNoCv];
-
         }
         
         //结束等待动画
@@ -104,22 +104,29 @@
     }
     else if(request.tag == 2)
     {
-        //[self onSearch];//加载完后重新刷新
-        [self.recruitmentCpData removeAllObjects];
-        [self.tvReceivedInvitationList reloadData];
-        
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSString *code = [userDefaults objectForKey:@"code"];
-        NSString *userID = [userDefaults objectForKey:@"UserID"];
-        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-        [dicParam setObject:userID forKey:@"paMainID"];//21142013
-        [dicParam setObject:code forKey:@"code"];//152014391908
-        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaInterviewListByID" Params:dicParam];
-        [request setDelegate:self];
-        [request startAsynchronous];
-        request.tag = 1;
-        self.runningRequest = request;
-        [dicParam release];
+        if ([result isEqualToString:@"1"]) {
+            //[self onSearch];//加载完后重新刷新
+            [self.recruitmentCpData removeAllObjects];
+            [self.tvReceivedInvitationList reloadData];
+            
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            NSString *code = [userDefaults objectForKey:@"code"];
+            NSString *userID = [userDefaults objectForKey:@"UserID"];
+            NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+            [dicParam setObject:userID forKey:@"paMainID"];//21142013
+            [dicParam setObject:code forKey:@"code"];//152014391908
+            NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaInterviewListByID" Params:dicParam];
+            [request setDelegate:self];
+            [request startAsynchronous];
+            request.tag = 1;
+            self.runningRequest = request;
+            [dicParam release];
+            [self.view makeToast:@"回复成功"];
+        }
+        else{
+            //UIViewController *pCtrl = [CommonController getFatherController:self.view];
+            [self.view makeToast:@"回复失败"];
+        }
     }
     else if(request.tag == 3)
     {

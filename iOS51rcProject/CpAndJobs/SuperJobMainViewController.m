@@ -43,10 +43,6 @@
     
     //分享按钮
     UIButton *btnRight = [[[UIButton alloc] initWithFrame:CGRectMake(260, 0, 30, self.navigationController.navigationBar.frame.size.height)] autorelease];
-    //添加左侧竖线
-    UIView *view = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.5, self.navigationController.navigationBar.frame.size.height)] autorelease];
-    view.layer.backgroundColor = [UIColor whiteColor].CGColor;
-    [btnRight addSubview:view];
     //添加分享图片
     [btnRight addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, (self.navigationController.navigationBar.frame.size.height-20)/2, 20, 20)] autorelease];
