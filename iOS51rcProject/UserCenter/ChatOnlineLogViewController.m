@@ -80,7 +80,7 @@
     [self getChatOnlineLog];
  
     //实例化timer，每隔7s刷新一下数据库
-    connectionTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(getChatOnlineLog) userInfo:nil repeats:NO];
+    connectionTimer=[NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(getChatOnlineLog) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop]addTimer:connectionTimer forMode:NSDefaultRunLoopMode];
 }
 
@@ -255,6 +255,9 @@
 - (IBAction)btnSendClick:(id)sender {
     [self textFieldShouldReturn:self.textSend];
     NSString *strMsg = self.textSend.text;
+    if (self.chatOnlineID == nil) {
+        self.chatOnlineID = @"0";
+    }
     //注：调用的参数中枚举值必须使用具体的string，如 "<clientType>IOS</clientType>"，而不是"<clientType>1</clientType>"
     NSString *soapMessage = [NSString stringWithFormat:
 							 @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
