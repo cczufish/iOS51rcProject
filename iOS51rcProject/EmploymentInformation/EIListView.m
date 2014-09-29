@@ -49,6 +49,7 @@
         [self.eiListData removeAllObjects];
         [self.newsTableView reloadData];
     }
+    
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:regionid forKey:@"dcRegionID"];
     [dicParam setObject:[NSString stringWithFormat:@"%d",page] forKey:@"pageNum"];
@@ -75,7 +76,7 @@
     tmpView.layer.borderWidth = 0.5;
     tmpView.layer.borderColor = [UIColor grayColor].CGColor;
     
-    UIFont *titleFont = [UIFont systemFontOfSize:12];
+    UIFont *titleFont = [UIFont systemFontOfSize:13];
     CGFloat titleWidth = 300;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:titleFont sizeDemand:titleSize];
@@ -91,7 +92,7 @@
     NSString *strAuthor = rowData[@"Author"];
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 200, 15)];
     lbAuthor.text = strAuthor;
-    lbAuthor.font = [UIFont systemFontOfSize:11];
+    lbAuthor.font = [UIFont systemFontOfSize:12];
     lbAuthor.textColor = [UIColor grayColor];
     [tmpView addSubview:(lbAuthor)];
     [lbAuthor release];
@@ -107,7 +108,7 @@
     strDate = [CommonController stringFromDate:dtBeginDate formatType:@"MM-dd HH:mm"];
     lbTime.text = strDate;
     lbTime.textColor = [UIColor grayColor];
-    lbTime.font = [UIFont systemFontOfSize:11];
+    lbTime.font = [UIFont systemFontOfSize:13];
     lbTime.textAlignment = NSTextAlignmentRight;
     [tmpView addSubview:(lbTime)];
     [lbTime release];
@@ -216,6 +217,7 @@
         else{
             [self.eiListData addObjectsFromArray:requestData];
         }
+        
         [self.newsTableView reloadData];
         [self.newsTableView footerEndRefreshing];
         

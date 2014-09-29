@@ -102,8 +102,8 @@
     UIView *tmpView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 300)];
     //标题
     self.strTitle  = dicCpMain[@"title"];
-    CGSize labelSize = [CommonController CalculateFrame:self.strTitle fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(310, 200)];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, labelSize.width, 40)];
+    CGSize labelSize = [CommonController CalculateFrame:self.strTitle fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(310, 200)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, labelSize.width, 70)];
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
     [lbTitle setText:self.strTitle];
@@ -114,7 +114,7 @@
     int y = lbTitle.frame.origin.y + lbTitle.frame.size.height + 5;
     UILabel *lbTag = [[UILabel alloc] initWithFrame:CGRectMake(10, y, 300, 15)];
     lbTag.text = strTag;
-    lbTag.font = [UIFont systemFontOfSize:12];
+    lbTag.font = [UIFont systemFontOfSize:14];
     [tmpView addSubview:lbTag];
     
     //发布日期
@@ -125,7 +125,7 @@
     y = lbTag.frame.origin.y + lbTag.frame.size.height + 5;
     UILabel *lbDate = [[UILabel alloc] initWithFrame:CGRectMake(10, y, 300, 15)];
     lbDate.text = strDate;
-    lbDate.font = [UIFont systemFontOfSize:12];
+    lbDate.font = [UIFont systemFontOfSize:14];
     [tmpView addSubview:lbDate];
     
     //阅读数
@@ -133,7 +133,7 @@
     y = lbDate.frame.origin.y + lbDate.frame.size.height + 5;
     UILabel *lbViewCount = [[UILabel alloc] initWithFrame:CGRectMake(10, y, 300, 15)];
     lbViewCount.text = strViewCount;
-    lbViewCount.font = [UIFont systemFontOfSize:12];
+    lbViewCount.font = [UIFont systemFontOfSize:14];
     [tmpView addSubview:lbViewCount];
     
     //横线
@@ -145,13 +145,13 @@
     
     //正文
     NSString *strContent =[CommonController FilterHtml: dicCpMain[@"Content"]];
-    labelSize = [CommonController CalculateFrame:strContent fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(300, 5000)];
+    labelSize = [CommonController CalculateFrame:strContent fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(300, 5000)];
     y = lbLine.frame.origin.y + lbLine.frame.size.height + 5;
     UILabel *lbContent = [[UILabel alloc] initWithFrame:CGRectMake(10, y, labelSize.width, labelSize.height)];
     lbContent.lineBreakMode = NSLineBreakByCharWrapping;
     lbContent.numberOfLines = 0;
     lbContent.text = strContent;
-    lbContent.font = [UIFont systemFontOfSize:12];
+    lbContent.font = [UIFont systemFontOfSize:14];
     [tmpView addSubview:lbContent];
     
     //来源
@@ -159,7 +159,7 @@
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(100, y, 200, 15)];
     lbAuthor.text = [NSString stringWithFormat:@"来源：%@", dicCpMain[@"author"]];
     lbAuthor.textAlignment = NSTextAlignmentRight;
-    lbAuthor.font = [UIFont systemFontOfSize:11];
+    lbAuthor.font = [UIFont systemFontOfSize:13];
     lbAuthor.textColor = [UIColor grayColor];
     [tmpView addSubview:lbAuthor];
     
