@@ -89,6 +89,8 @@
     else if (self.toastType == 2)
     {
         [self.view makeToast:@"手机号认证成功"];
+        //修改为已认证
+        [self.btnMobileCer setTitle:@"已认证" forState:UIControlStateNormal];
     }
     else if(self.toastType == 3)
     {
