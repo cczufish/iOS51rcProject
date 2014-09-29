@@ -51,7 +51,7 @@
 #pragma mark 添加包含的子View
 -(void)setContentOfTables:(NSInteger)aNumerOfTables{
     for (int i = 0; i < aNumerOfTables; i++) {
-        EIListView *eiListView = [[EIListView alloc] initWithFrame:CGRectMake(320 * i, 0, 320, self.frame.size.height)];
+        EIListView *eiListView = [[EIListView alloc] initWithFrame:CGRectMake(320 * i, 0, 320, self.frame.size.height - 60)];
         eiListView.goToEIItemDetailsViewDelegate = self;
         [_scrollView addSubview:eiListView];
         [_contentItems addObject:eiListView];
