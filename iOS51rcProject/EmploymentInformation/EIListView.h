@@ -11,7 +11,6 @@
     NSMutableArray *placeData;
     NSInteger page;
     NSString *regionid;
-    //LoadingAnimationView *loadView;
     id<GoToEIItemDetailsViewDelegate> goToEIItemDetailsViewDelegate;
 }
 
@@ -20,7 +19,7 @@
 @property (retain, nonatomic) NSString *newsType;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) id<GoToEIItemDetailsViewDelegate> goToEIItemDetailsViewDelegate;
-//- (void)reloadTableViewDataSource;
+@property NSInteger currntPageCount;//当前页面的个数
 #pragma mark 强制列表刷新
 -(void)forceToFreshData:(NSString *) newsType;
 

@@ -7,6 +7,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.currntPageCount = 20;
         if (_newsTableView == nil) {
             _newsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
             _newsTableView.delegate = self;
@@ -44,23 +45,28 @@
 #pragma mark 其他辅助功能
 #pragma mark 强制列表刷新
 -(void)forceToFreshData:(NSString *) newsType{
-    self.newsType = newsType;
-    if (page == 1) {
-        [self.eiListData removeAllObjects];
-        //[self.newsTableView reloadData];
+    if (self.currntPageCount<20) {
+        [self.newsTableView footerEndRefreshing];
+    }else
+    {
+        self.newsType = newsType;
+        if (page == 1) {
+            [self.eiListData removeAllObjects];
+            [self.newsTableView reloadData];
+        }
+        
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:regionid forKey:@"dcRegionID"];
+        [dicParam setObject:[NSString stringWithFormat:@"%d",page] forKey:@"pageNum"];
+        [dicParam setObject:@"20" forKey:@"pageSize"];
+        [dicParam setObject:self.newsType forKey:@"newsType"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetNewsListByNewsType" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 1;
+        self.runningRequest = request;
+        [dicParam release];
     }
-    
-    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:regionid forKey:@"dcRegionID"];
-    [dicParam setObject:[NSString stringWithFormat:@"%d",page] forKey:@"pageNum"];
-    [dicParam setObject:@"20" forKey:@"pageSize"];
-    [dicParam setObject:self.newsType forKey:@"newsType"];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetNewsListByNewsType" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    request.tag = 1;
-    self.runningRequest = request;
-    [dicParam release];
 }
 
 //绑定数据
@@ -210,6 +216,7 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) {
+        self.currntPageCount = requestData.count;//当前个数
         if(page == 1){
             [self.eiListData removeAllObjects];
             self.eiListData = requestData;
