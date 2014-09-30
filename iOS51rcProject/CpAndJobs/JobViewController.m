@@ -371,7 +371,7 @@
     CGSize labelSize = [CommonController CalculateFrame:title fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
     UILabel *lbView = [[[UILabel alloc] initWithFrame:CGRectMake(15, 0, labelSize.width, 15)] autorelease];
     lbView.text =title;
-    lbView.font = [UIFont systemFontOfSize:14];
+    lbView.font = [UIFont systemFontOfSize:13];
     lbView.textColor = [UIColor grayColor];
     view.frame = CGRectMake(0, 0, 15 + labelSize.width, 15);
     [view addSubview:imgView];
@@ -526,68 +526,68 @@
                     [self CreateFuliView:tmpView icoName:@"ico_fuli_gongjijin.png" title:@"公积金"];
                     [fuliArray addObject:tmpView];
                     break;
-                case 3:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_jiangjin.png" title:@"奖金提成"];
-                    [fuliArray addObject:tmpView];
-                    break;
                 case 4:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_qqj.png" title:@"全勤奖"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 5:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_jrfl.png" title:@"节日福利"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 6:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_baoxian.png" title:@"双薪"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 7:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_eighthour.png" title:@"八小时工作制"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 8:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_nianjia.png" title:@"带薪年假"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 9                    :
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_peixun.png" title:@"公费培训"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 10                    :
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_lvyou.png" title:@"公费旅游"];
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_nzj.png" title:@"年终奖"];
                     [fuliArray addObject:tmpView];
                     break;
                 case 11:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_tijian.png" title:@"健康体检"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 12:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_txbt.png" title:@"通讯补贴"];
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_jrfl.png" title:@"节日福利"];
                     [fuliArray addObject:tmpView];
                     break;
                 case 13:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_sushe.png" title:@"提供住宿"];
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_jiangjin.png" title:@"奖金提成"];
                     [fuliArray addObject:tmpView];
                     break;
                 case 14:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_canbu.png" title:@"餐补/工作餐"];
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_qqj.png" title:@"全勤奖"];
                     [fuliArray addObject:tmpView];
                     break;
-                case 15:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_zfbt.png" title:@"住房补贴"];
+//                case 6:
+//                    [self CreateFuliView:tmpView icoName:@"ico_fuli_baoxian.png" title:@"双薪"];
+//                    [fuliArray addObject:tmpView];
+//                    break;
+                case 9:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_eighthour.png" title:@"八小时工作制"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 5:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_nianjia.png" title:@"带薪年假"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 12                    :
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_peixun.png" title:@"公费培训"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 6                    :
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_lvyou.png" title:@"公费旅游"];
                     [fuliArray addObject:tmpView];
                     break;
                 case 16:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_jtbt.png" title:@"交通补贴"];
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_tijian.png" title:@"健康体检"];
                     [fuliArray addObject:tmpView];
                     break;
-                case 17 :
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_banche.png" title:@"班车接送"];
+                case 17:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_txbt.png" title:@"通讯补贴"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 10:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_sushe.png" title:@"提供住宿"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 7:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_canbu.png" title:@"餐补/工作餐"];
                     [fuliArray addObject:tmpView];
                     break;
                 case 18:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_baoxian.png" title:@"保险"];
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_zfbt.png" title:@"住房补贴"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 8:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_jtbt.png" title:@"交通补贴"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 15 :
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_banche.png" title:@"班车接送"];
                     [fuliArray addObject:tmpView];
                     break;
                 default:
