@@ -102,7 +102,7 @@
     [cell.contentView addSubview:(lbTitle)];
     
     //应聘职位前面的label
-    UILabel *lbPreCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height+5, 60, 15)];
+    UILabel *lbPreCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height+5, 70, 15)];
     lbPreCpName.text = @"应聘职位：";
     lbPreCpName.textColor = [UIColor grayColor];
     lbPreCpName.font = [UIFont systemFontOfSize:14];
@@ -112,10 +112,10 @@
     //应聘职位
     NSString *strAddress = rowData[@"JobName"];
     labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
-    UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(80, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
+    UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(90, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPaInfo.text = strAddress;
     lbPaInfo.font = [UIFont systemFontOfSize:14];
-    lbPaInfo.textColor = [UIColor redColor];
+    lbPaInfo.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     [cell.contentView addSubview:(lbPaInfo)];
     
     //邀请时间
@@ -132,24 +132,23 @@
     lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     
-    //参会按钮
+    //参会label
     NSString *strStatus = rowData[@"Status"];
-   
-    UILabel *lbStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, 40, 15)];;//参会状态
+    UILabel *lbStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, 40, 15)];//参会状态
     //UILabel *lbWillRun;
     UIImageView *imgWillRun = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     //如果未答复，没有图片，只显示“已预约”三个字
     if ([strStatus isEqualToString:@"0"]) {
-        lbStatus.frame = CGRectMake(260, 18, 40, 15);
+        lbStatus.frame = CGRectMake(250, 18, 50, 15);
         lbStatus.text = @"未答复";
         lbStatus.font = [UIFont systemFontOfSize:14];
         lbStatus.textColor = [UIColor whiteColor];
         lbStatus.textAlignment = NSTextAlignmentCenter;
         lbStatus.layer.cornerRadius = 7;
-        lbStatus.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+        lbStatus.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     }else if ([strStatus isEqualToString:@"1"]) {
         //如果参会
-        lbStatus.frame = CGRectMake(260, 18, 40, 15);
+        lbStatus.frame = CGRectMake(250, 18, 50, 15);
         lbStatus.text = @"参会";
         lbStatus.font = [UIFont systemFontOfSize:14];
         lbStatus.textColor = [UIColor whiteColor];
@@ -179,7 +178,7 @@
         [lbReplyTime release];
     }else{
         //不参会
-        lbStatus.frame = CGRectMake(260, 18, 40, 15);
+        lbStatus.frame = CGRectMake(250, 18, 50, 15);
         lbStatus.text = @"不参会";
         lbStatus.font = [UIFont systemFontOfSize:14];
         lbStatus.textColor = [UIColor whiteColor];
@@ -231,7 +230,17 @@
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
+    NSDictionary *tmpData = recruitmentCpData[indexPath.row];
+    NSString *strCpName = tmpData[@"companyName"];
+    UIFont *titleFont = [UIFont systemFontOfSize:14];
+    CGFloat titleWidth = 220;
+    CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
+    CGSize labelSize = [CommonController CalculateFrame:strCpName fontDemond:titleFont sizeDemand:titleSize];
+    if (labelSize.height > 30) {
+        return 100;
+    }else{
+         return 80;
+    }
 }
 
 
