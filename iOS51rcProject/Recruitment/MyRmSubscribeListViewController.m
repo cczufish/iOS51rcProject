@@ -204,7 +204,7 @@
     lbMyRmCpCount.textAlignment = NSTextAlignmentCenter;
     [btnMyRmCp addSubview:lbMyRmCpCount];
     //我邀请的企业按钮
-    btnMyRmCp.tag = (NSInteger)rowData[@"id"];
+    btnMyRmCp.tag = [rowData[@"id"] intValue];
     btnMyRmCp.layer.borderWidth = 0.5;
     btnMyRmCp.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     if (![myRmCpCount isEqualToString:@"0"]) {//大于0才可以点击
