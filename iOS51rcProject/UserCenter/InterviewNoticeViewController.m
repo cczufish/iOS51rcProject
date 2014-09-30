@@ -302,7 +302,7 @@
         [cell.contentView addSubview:(lbPrePlace)];
         
         NSString *strPlace = rowData[@"InterViewPlace"];
-        labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 15)];
+        labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(240, 15)];
         UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(80, lbInterviewTime.frame.origin.y + lbInterviewTime.frame.size.height + 5, labelSize.width, 15)];
         lbPlace.text = strPlace;
         lbPlace.font = [UIFont systemFontOfSize:12];
@@ -352,7 +352,7 @@
       
         //备注
         UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, btnCall.frame.origin.y + btnCall.frame.size.height + 5, 60, 15)] autorelease];
-        lbPreRemark.text = @"备     注：";
+        lbPreRemark.text = @"备      注：";
         lbPreRemark.font  = [UIFont systemFontOfSize:12];
         lbPreRemark.textColor = [UIColor grayColor];
         lbPreRemark.lineBreakMode = NSLineBreakByCharWrapping;
@@ -369,7 +369,7 @@
         lbRemark.font = [UIFont systemFontOfSize:12];
         lbRemark.lineBreakMode = NSLineBreakByCharWrapping;
         lbRemark.numberOfLines = 0;
-        lbRemark.textColor = [UIColor grayColor];
+        lbRemark.textColor = [UIColor blackColor];
         [cell.contentView addSubview:(lbRemark)];
         
         //判断是否已经结束，如果没有结束，则可以赴约参会
