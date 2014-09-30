@@ -261,7 +261,7 @@
     cpMain.JobName = rowData[@"JobName"];
     
     //职位名称
-    UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 20)];
+    UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 220, 20)];
     [lbJobName setText:rowData[@"JobName"]];
     [lbJobName setFont:[UIFont systemFontOfSize:14]];
     [cell.contentView addSubview:lbJobName];
@@ -269,14 +269,14 @@
     
     //是否在线
     if ([rowData[@"IsOnline"] isEqualToString:@"true"]) {
-        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(275, 5, 30, 15)];
+        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(275, 3, 40, 20)];
         [imgOnline setImage:[UIImage imageNamed:@"ico_joblist_online.png"]];
         [cell.contentView addSubview:imgOnline];
         [imgOnline release];
     }
     
     //公司名称
-    UILabel *lbCompanyName = [[UILabel alloc] initWithFrame:CGRectMake(40, 28, 200, 20)];
+    UILabel *lbCompanyName = [[UILabel alloc] initWithFrame:CGRectMake(40, 28, 220, 20)];
     [lbCompanyName setText:rowData[@"cpName"]];
     [lbCompanyName setFont:fontCell];
     [lbCompanyName setTextColor:colorText];
@@ -284,12 +284,12 @@
     [lbCompanyName release];
     
     //刷新时间
-    UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 48, 160, 20)];
+    UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 50, 220, 20)];
     NSString *addDate = [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"];
     addDate = [NSString stringWithFormat:@"申请时间：%@", addDate];
     [lbRefreshDate setText:addDate];
     [lbRefreshDate setTextColor:colorText];
-    lbRefreshDate.font = [UIFont systemFontOfSize:12];
+    lbRefreshDate.font = [UIFont systemFontOfSize:14];
     [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
@@ -298,12 +298,12 @@
     UIButton *btnInvite = [[[UIButton alloc] initWithFrame:CGRectMake(265, 30, 40, 60)] autorelease];
     objc_setAssociatedObject(btnInvite, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
     [btnInvite addTarget:self action:@selector(inviteOneCp:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(15, 0, 20, 20)] autorelease];
+    UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(15, 0, 25, 25)] autorelease];
     imgInvite.image = [UIImage imageNamed:@"ico_rm_head.png"];
     [btnInvite addSubview:imgInvite];
     
-    UILabel *lbInvite = [[[UILabel alloc] initWithFrame:CGRectMake(10, 22, 40, 20)] autorelease];
-    lbInvite.font = [UIFont systemFontOfSize:14];
+    UILabel *lbInvite = [[[UILabel alloc] initWithFrame:CGRectMake(16, 27, 30, 12)] autorelease];
+    lbInvite.font = [UIFont systemFontOfSize:12];
     lbInvite.text = @"邀请";
     lbInvite.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     [btnInvite addSubview:lbInvite];
