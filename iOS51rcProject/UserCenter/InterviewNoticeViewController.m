@@ -16,6 +16,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *lbMessage;
 @property (retain, nonatomic) NSMutableArray *arrayHeight;
 @property (retain, nonatomic) NSMutableArray *arrayTxtView;
+@property int intReplyedCpID;
 @end
 
 @implementation InterviewNoticeViewController
@@ -373,7 +374,9 @@
         [cell.contentView addSubview:(lbRemark)];
         
         //判断是否已经结束，如果没有结束，则可以赴约参会
-        if ([strReply isEqualToString:@"0"]) {//未回复
+        if ([strReply isEqualToString:@"0"]) {//未回复,需要赴约
+             self.intReplyedCpID = [rowData[@"ID"] intValue];//要回复的招聘会ID
+            
             //不赴约的原因文本框
             UITextView *txtViewReason = [[[UITextView alloc] initWithFrame:CGRectMake(20, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 280, 50)] autorelease];
             [cell.contentView addSubview:txtViewReason];
@@ -420,6 +423,7 @@
             //不赴约
             UIButton *btnReject = [[UIButton alloc] initWithFrame:CGRectMake(170, txtViewReason.frame.origin.y + txtViewReason.frame.size.height + 5, 99, 30)];
             btnReject.tag = (NSInteger)rowData[@"ID"];
+           
             objc_setAssociatedObject(btnReject, @"RejectReason", [NSString stringWithFormat:@"%d", indexPath.row], OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
             btnReject.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
@@ -525,16 +529,17 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
-    NSString *userName = [userDefaults objectForKey:@"UserName"];
+    //NSString *userName = [userDefaults objectForKey:@"UserName"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     NSDictionary *tmpDic = self.recruitmentCpData[index];
      NSString *strCpID =tmpDic[@"cpID"];
     
-    [dicParam setObject:userName forKey:@"paName"];
-    [dicParam setObject:[userDefaults objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
+    [dicParam setObject:@"" forKey:@"paName"];
+    [dicParam setObject:@"" forKey:@"dcRegionId"];
     [dicParam setObject: strCpID forKey:@"cpMainID"];
     [dicParam setObject:msg forKey:@"message"];
-    [dicParam setObject:[NSString stringWithFormat:@"%d", sender.tag] forKey:@"id"];
+    int rmID =  self.intReplyedCpID;
+    [dicParam setObject:[NSString stringWithFormat:@"%d", rmID] forKey:@"id"];
     [dicParam setObject:@"1" forKey:@"reply"];
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
@@ -563,16 +568,17 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
-    NSString *userName = [userDefaults objectForKey:@"UserName"];
+    //NSString *userName = [userDefaults objectForKey:@"UserName"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     
     NSDictionary *tmpDic = self.recruitmentCpData[index];
     NSString *strCpID =tmpDic[@"cpID"];
-    [dicParam setObject:userName forKey:@"paName"];
-    [dicParam setObject:[userDefaults objectForKey:@"subSiteId"] forKey:@"dcRegionId"];
+    [dicParam setObject:@"" forKey:@"paName"];
+    [dicParam setObject:@"" forKey:@"dcRegionId"];
     [dicParam setObject: strCpID forKey:@"cpMainID"];
     [dicParam setObject:msg forKey:@"message"];
-    [dicParam setObject:[NSString stringWithFormat:@"%d", sender.tag] forKey:@"id"];
+    int rmID =  self.intReplyedCpID;
+    [dicParam setObject:[NSString stringWithFormat:@"%d", rmID] forKey:@"id"];
     [dicParam setObject:@"2" forKey:@"reply"];
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
