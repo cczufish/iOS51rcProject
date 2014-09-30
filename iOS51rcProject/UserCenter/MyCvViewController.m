@@ -171,8 +171,8 @@
     [lbRefreshDate release];
     
     //头像处理
-    UIImageView *imgPhoto = [[UIImageView alloc] initWithFrame:CGRectMake(fltContentX+35, 60, 64, 80)];
-    [imgPhoto setImage:[UIImage imageNamed:@"pic_pahead_default.png"]];
+    UIButton *btnPhoto = [[UIButton alloc] initWithFrame:CGRectMake(fltContentX+35, 60, 64, 80)];
+    [btnPhoto setImage:[UIImage imageNamed:@"pic_pahead_default.png"] forState:UIControlStateNormal];
     if (dicCvInfo[@"PhotoProcess"])
     {
         if (![dicCvInfo[@"HasPhoto"] isEqualToString:@"2"]) {
@@ -182,11 +182,13 @@
             }
             path = [NSString stringWithFormat:@"L%@",path];
             path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,dicCvInfo[@"PhotoProcess"]];
-            [imgPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]]];
+            [btnPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]] forState:UIControlStateNormal];
         }
     }
-    [self.scrollCv addSubview:imgPhoto];
-    [imgPhoto release];
+    btnPhoto.tag = [dicCvInfo[@"ID"] intValue];
+    [btnPhoto addTarget:self action:@selector(swichToCvModify:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollCv addSubview:btnPhoto];
+    [btnPhoto release];
     
     //显示简历完整度
     MDRadialProgressTheme *themeCvLevel = [[MDRadialProgressTheme alloc] init];

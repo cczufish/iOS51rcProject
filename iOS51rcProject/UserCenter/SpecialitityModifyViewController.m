@@ -78,6 +78,10 @@
     return YES;
 }
 
+- (IBAction)backgroundTap:(id)sender {
+    [self.txtSpecialitity resignFirstResponder];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
