@@ -104,27 +104,33 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) {
-        NSDictionary *tmpData = requestData[0];
-        //获取工资排名的数据
-        NSMutableDictionary *dicParam2 = [[NSMutableDictionary alloc] init];
-        //如果自己有Parement2，说明自己是地级市，查工资排名的regionid要用parement1的id
-        if (tmpData[@"Parent2"] != nil) {
-            NSString *pID = [tmpData[@"dcRegionID"] substringToIndex:2];
-            [dicParam2 setObject:pID forKey:@"regionID"];
+        if (requestData.count > 0) {
+            NSDictionary *tmpData = requestData[0];
+            //获取工资排名的数据
+            NSMutableDictionary *dicParam2 = [[NSMutableDictionary alloc] init];
+            //如果自己有Parement2，说明自己是地级市，查工资排名的regionid要用parement1的id
+            if (tmpData[@"Parent2"] != nil) {
+                NSString *pID = [tmpData[@"dcRegionID"] substringToIndex:2];
+                [dicParam2 setObject:pID forKey:@"regionID"];
+            }else{
+                [dicParam2 setObject:self.regionSelect forKey:@"regionID"];
+            }
+            
+            NetWebServiceRequest *request2 = [NetWebServiceRequest serviceRequestUrl:@"GetCitySalaryRankByReginID" Params:dicParam2];
+            [request2 setDelegate:self];
+            [request2 startAsynchronous];
+            request2.tag = 2;
+            self.runningReqestForGetRank = request2;
+            [dicParam2 release];
+            
+            //绑定第一批数据
+            [self GenerateViewAvg: requestData];
+            [self GenerateExperienceAndEducationAnalysis:requestData];
         }else{
-            [dicParam2 setObject:self.regionSelect forKey:@"regionID"];
+            [loadView stopAnimating];
+            [self.view makeToast:@"该搜索条件下没有查询到相关数据，请换个条件继续查询！"];
         }
         
-        NetWebServiceRequest *request2 = [NetWebServiceRequest serviceRequestUrl:@"GetCitySalaryRankByReginID" Params:dicParam2];
-        [request2 setDelegate:self];
-        [request2 startAsynchronous];
-        request2.tag = 2;
-        self.runningReqestForGetRank = request2;
-        [dicParam2 release];
-
-        //绑定第一批数据
-        [self GenerateViewAvg: requestData];
-        [self GenerateExperienceAndEducationAnalysis:requestData];
     }
     else if(request.tag == 2){
         [self GenerageSalaryRankForRegion:requestData];
