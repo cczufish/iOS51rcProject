@@ -55,6 +55,12 @@
     NSArray *titleViews = self.viewTitle.subviews;
     UIButton *btnSubSite = titleViews[0];
     [btnSubSite setTitle:[self.userDefaults objectForKey:@"subSiteName"] forState:UIControlStateNormal];
+    if ([[self.userDefaults objectForKey:@"subSiteName"] length] > 5) {
+        [btnSubSite.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    }
+    else {
+        [btnSubSite.titleLabel setFont:[UIFont systemFontOfSize:17]];
+    }
     UIView *btnSearch = titleViews[1];
     btnSearch.layer.cornerRadius = 5;
     [self getSQL];
@@ -157,6 +163,12 @@
             NSArray *titleViews = self.viewTitle.subviews;
             UIButton *btnSubSite = titleViews[0];
             [btnSubSite setTitle:requestData[0][@"SubSiteName"] forState:UIControlStateNormal];
+            if ([requestData[0][@"SubSiteName"] length] > 5) {
+                [btnSubSite.titleLabel setFont:[UIFont systemFontOfSize:15]];
+            }
+            else {
+                [btnSubSite.titleLabel setFont:[UIFont systemFontOfSize:17]];
+            }
             [self.view makeToast:[NSString stringWithFormat:@"已切换到%@",requestData[0][@"SubSiteName"]]];
             [self.userDefaults setValue:requestData[0][@"ID"] forKey:@"subSiteId"];
             [self.userDefaults setValue:requestData[0][@"SubSiteName"] forKey:@"subSiteName"];

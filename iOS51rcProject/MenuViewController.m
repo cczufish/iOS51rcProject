@@ -63,58 +63,58 @@
                 [lbUserName release];
                 
                 [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_head.png"]];
-                ivTitle.frame = CGRectMake(35, 3, 40, 40);
+                ivTitle.frame = CGRectMake(35, 7, 35, 35);
             }
             else {
                 lbTitle.text = @"点击登录";
                 [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_head.png"]];
-                ivTitle.frame = CGRectMake(35, 3, 40, 40);
+                ivTitle.frame = CGRectMake(35, 7, 35, 35);
             }
             break;
         case 1:
             lbTitle.text = @"首页";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_index.png"]];
-            ivTitle.frame = CGRectMake(45, 10, 25, 25);
+            ivTitle.frame = CGRectMake(45, 12, 21, 21);
             break;
         case 2:
             lbTitle.text = @"职位搜索";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_search.png"]];
-            ivTitle.frame = CGRectMake(45, 10, 25, 25);
+            ivTitle.frame = CGRectMake(45, 12, 21, 21);
             break;
         case 3:
             lbTitle.text = @"会员中心";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_mebercenter.png"]];
-            ivTitle.frame = CGRectMake(45, 10, 25, 25);
+            ivTitle.frame = CGRectMake(45, 12, 21, 21);
             break;
         case 4:
             lbTitle.text = @"查工资";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_salary.png"]];
-            ivTitle.frame = CGRectMake(45, 10, 25, 25);
+            ivTitle.frame = CGRectMake(45, 12, 21, 21);
             break;
         case 5:
             lbTitle.text = @"招聘会";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_rm.png"]];
-            ivTitle.frame = CGRectMake(45, 10, 25, 25);
+            ivTitle.frame = CGRectMake(45, 12, 21, 21);
             break;
         case 6:
             lbTitle.text = @"政府招考";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_govnews.png"]];
-            ivTitle.frame = CGRectMake(45, 10, 25, 25);
+            ivTitle.frame = CGRectMake(45, 12, 21, 21);
             break;
         case 7:
             lbTitle.text = @"校园招聘";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_campus.png"]];
-            ivTitle.frame = CGRectMake(45, 14, 25, 21);
+            ivTitle.frame = CGRectMake(43, 14, 25, 21);
             break;
         case 8:
             lbTitle.text = @"就业资讯";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_jobnews.png"]];
-            ivTitle.frame = CGRectMake(45, 12, 25, 23);
+            ivTitle.frame = CGRectMake(45, 14, 20, 18);
             break;
         case 9:
             lbTitle.text = @"更多";
             [ivTitle setImage:[UIImage imageNamed:@"ico_leftmenu_more.png"]];
-            ivTitle.frame = CGRectMake(45, 14, 25, 18);
+            ivTitle.frame = CGRectMake(45, 15, 20, 15);
             break;
         default:
             break;

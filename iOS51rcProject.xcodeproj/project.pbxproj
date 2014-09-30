@@ -405,6 +405,7 @@
 		99FC0B6D19C2E36900B7EC74 /* IndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0B6819C2E36900B7EC74 /* IndexViewController.m */; };
 		99FC0B6E19C2E36900B7EC74 /* MobileCertificateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0B6A19C2E36900B7EC74 /* MobileCertificateViewController.m */; };
 		99FC0B6F19C2E36900B7EC74 /* MobileModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99FC0B6C19C2E36900B7EC74 /* MobileModifyViewController.m */; };
+		99FED14819DA33F700C69D44 /* ico_subsite_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 99FED14719DA33F700C69D44 /* ico_subsite_down.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1111,6 +1112,7 @@
 		99FC0B6A19C2E36900B7EC74 /* MobileCertificateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobileCertificateViewController.m; path = UserCenter/MobileCertificateViewController.m; sourceTree = "<group>"; };
 		99FC0B6B19C2E36900B7EC74 /* MobileModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MobileModifyViewController.h; path = UserCenter/MobileModifyViewController.h; sourceTree = "<group>"; };
 		99FC0B6C19C2E36900B7EC74 /* MobileModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MobileModifyViewController.m; path = UserCenter/MobileModifyViewController.m; sourceTree = "<group>"; };
+		99FED14719DA33F700C69D44 /* ico_subsite_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_subsite_down.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2155,6 +2157,7 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99FED14719DA33F700C69D44 /* ico_subsite_down.png */,
 				9941B67D19D902060007040A /* ico_multisel_del_highlight.png */,
 				9941B67E19D902060007040A /* ico_multisel_del.png */,
 				99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */,
@@ -2653,6 +2656,7 @@
 				9925BE8B19B807F4002DBFE0 /* ico_mapsearch_joblist.png in Resources */,
 				99CFD88E199B60D8009A5ABA /* loginRenRen.png in Resources */,
 				9994AF3E19D144BF008068AD /* ico_fuli_jiangjin.png in Resources */,
+				99FED14819DA33F700C69D44 /* ico_subsite_down.png in Resources */,
 				99F51F5319AF296A00C81A9B /* radio_unsel.png in Resources */,
 				99CFD84D199B6082009A5ABA /* Home.storyboard in Resources */,
 				99CFD881199B60D8009A5ABA /* ico_leftmenu_salary.png in Resources */,

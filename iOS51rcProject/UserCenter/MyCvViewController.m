@@ -355,13 +355,13 @@
     
     //更改按钮
     if (sender.tag == 0) {
-        [sender setTitle:@"简历已公开" forState:UIControlStateNormal];
+        [sender setTitle:@"姓名已公开" forState:UIControlStateNormal];
         [sender setBackgroundImage:[UIImage imageNamed:@"ico_setting_on.png"] forState:UIControlStateNormal];
         [sender setContentEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 20)];
         sender.tag = 1;
     }
     else {
-        [sender setTitle:@"简历已隐藏" forState:UIControlStateNormal];
+        [sender setTitle:@"姓名已隐藏" forState:UIControlStateNormal];
         [sender setBackgroundImage:[UIImage imageNamed:@"ico_setting_off.png"] forState:UIControlStateNormal];
         [sender setContentEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
         sender.tag = 0;
