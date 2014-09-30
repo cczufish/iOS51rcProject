@@ -207,8 +207,7 @@
     [cell.contentView addSubview:(lbBegin)];
     [lbBegin release];
     
-    CGSize placeSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(2000, 15)];
-    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 35), placeSize.width, 15)];
+    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 35), titleWidth , 15)];
     lbPlace.text = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]];
     lbPlace.font = [UIFont systemFontOfSize:14];
     [cell.contentView addSubview:(lbPlace)];
@@ -292,7 +291,7 @@
             UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 35, 30, 45)];
             UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, 40, 15)];
             lbWillRun.text = @"已预约";
-            lbWillRun.font = [UIFont systemFontOfSize:14];
+            lbWillRun.font = [UIFont systemFontOfSize:12];
             lbWillRun.textAlignment = NSTextAlignmentCenter;
             [rightButton addSubview:lbWillRun];
             [cell.contentView addSubview:rightButton];

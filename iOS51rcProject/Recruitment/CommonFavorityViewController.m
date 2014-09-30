@@ -202,7 +202,7 @@
     NSString *strTime = [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"];
     strTime = [NSString stringWithFormat:@"收藏时间%@：", strTime];
     [lbRefreshDate setText:strTime];
-    [lbRefreshDate setFont:fontCell];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
     [lbRefreshDate setTextColor:colorText];
     [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
     [cell.contentView addSubview:lbRefreshDate];

@@ -5,6 +5,7 @@
 #import "FindPsdStep1ViewController.h"
 #import "FindPsdStep3ViewController.h"
 #import "HomeViewController.h"
+#import "SlideNavigationController.h"
 
 
 @interface LoginViewController ()<UIScrollViewDelegate>
@@ -101,9 +102,10 @@
 {
     UIView *viewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
     if ([viewC isKindOfClass:[HomeViewController class]]) {
-        HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+//        HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+        HomeViewController *homeViewC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"HomeView"];
         homeViewC.toastType = 2;
-        [self.navigationController popViewControllerAnimated:YES];
+        [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:homeViewC withCompletion:nil];
     }
     else {
         [self.navigationController popViewControllerAnimated:YES];

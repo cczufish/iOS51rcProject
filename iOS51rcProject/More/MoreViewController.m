@@ -226,10 +226,9 @@
 - (void) confirmAndCancelPopupNext
 {
     [CommonController logout];
-    HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    HomeViewController *homeViewC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"HomeView"];
     homeViewC.toastType = 1;
-    //返回到首页
-    [self.navigationController popToRootViewControllerAnimated:true];
+    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:homeViewC withCompletion:nil];
 }
 
 - (int)slideMenuItem

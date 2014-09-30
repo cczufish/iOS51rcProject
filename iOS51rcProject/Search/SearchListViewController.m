@@ -283,7 +283,7 @@
     //刷新时间
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(240, 28, 75, 20)];
     [lbRefreshDate setText:[CommonController stringFromDate:[CommonController dateFromString:rowData[@"RefreshDate"]] formatType:@"MM-dd HH:mm"]];
-    [lbRefreshDate setFont:fontCell];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
     [lbRefreshDate setTextColor:colorText];
     [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
     [cell.contentView addSubview:lbRefreshDate];

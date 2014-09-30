@@ -15,6 +15,7 @@
 #import "MobileCertificateViewController.h"
 #import "JmMainViewController.h"
 #import "AccountManagementViewController.h"
+#import "MobileModifyViewController.h"
 
 @interface IndexViewController ()<UITableViewDataSource,UITableViewDelegate,SlideNavigationControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate,NetWebServiceRequestDelegate>
 {
@@ -256,6 +257,12 @@
         [self.navigationController pushViewController:mobileCerC animated:true];
         
     }
+}
+
+- (IBAction)switchToMobileModify:(id)sender {
+    MobileModifyViewController *mobileModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"MobileModifyView"];
+    mobileModifyC.mobile = self.lbMobile.text;
+    [self.navigationController pushViewController:mobileModifyC animated:true];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

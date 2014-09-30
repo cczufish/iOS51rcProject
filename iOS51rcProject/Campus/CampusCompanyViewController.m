@@ -315,7 +315,7 @@
     strBeginTime = [CommonController stringFromDate:dtBeginTime formatType:@"MM-dd HH:mm"];
     NSString *strWeek = [CommonController getWeek:dtBeginTime];
     
-    UILabel *lbBeginTime = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, 220, 20)];
+    UILabel *lbBeginTime = [[UILabel alloc] initWithFrame:CGRectMake(10, 35, 240, 20)];
     [lbBeginTime setFont:[UIFont systemFontOfSize:14]];
     [lbBeginTime setTextColor:[UIColor grayColor]];
     [lbBeginTime setText:[NSString stringWithFormat:@"举办时间：%@-%@ %@",strBeginTime,[CommonController stringFromDate:[CommonController dateFromString:rowData[@"EndTime"]] formatType:@"HH:mm"],strWeek]];

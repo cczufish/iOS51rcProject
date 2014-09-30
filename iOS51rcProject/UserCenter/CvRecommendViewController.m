@@ -443,7 +443,7 @@
     [lbJobName release];
     
     //匹配度
-    UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(270, 5, 45, 20)];
+    UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(270, 7, 45, 16)];
     [lbMatch setText:[NSString stringWithFormat:@"匹配度%@%%",rowData[@"matchPercent"]]];
     lbMatch.layer.cornerRadius = 5;
     lbMatch.layer.masksToBounds = YES;
@@ -456,7 +456,7 @@
     
     //是否在线
     if ([rowData[@"IsOnline"] isEqualToString:@"true"]) {
-        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(225, 5, 40, 20)];
+        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(225, 3, 40, 20)];
         [imgOnline setImage:[UIImage imageNamed:@"ico_joblist_online.png"]];
         [cell.contentView addSubview:imgOnline];
         [imgOnline release];
@@ -473,7 +473,7 @@
     //刷新时间
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(240, 28, 75, 20)];
     [lbRefreshDate setText:[CommonController stringFromDate:[CommonController dateFromString:rowData[@"RefreshDate"]] formatType:@"MM-dd HH:mm"]];
-    [lbRefreshDate setFont:fontCell];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
     [lbRefreshDate setTextColor:colorText];
     [lbRefreshDate setTextAlignment:NSTextAlignmentRight];
     [cell.contentView addSubview:lbRefreshDate];

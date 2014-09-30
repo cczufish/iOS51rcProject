@@ -241,7 +241,7 @@
     [lbCvMatch release];
     
     //公司名称
-    UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(40, lbJobName.frame.origin.y+lbJobName.frame.size.height + 5, 280, 20)];
+    UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(40, lbJobName.frame.origin.y+lbJobName.frame.size.height, 280, 20)];
     [lbAddress setText:rowData[@"cpName"]];
     lbAddress.font = [UIFont systemFontOfSize:14];
     [lbAddress setTextColor:[UIColor blackColor]];
@@ -284,7 +284,7 @@
     //查看状态
     UILabel *lbReply = [[UILabel alloc] initWithFrame:CGRectMake(220,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 80, 20)];
     [lbReply setText:strDate];
-    [lbReply setFont:[UIFont systemFontOfSize:14]];
+    [lbReply setFont:[UIFont systemFontOfSize:12]];
     [lbReply setTextColor:[UIColor grayColor]];
     lbReply.textAlignment = NSTextAlignmentRight;
      [cell.contentView addSubview:lbReply];

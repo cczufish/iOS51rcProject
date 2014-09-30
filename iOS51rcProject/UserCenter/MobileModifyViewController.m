@@ -44,6 +44,7 @@
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //设置为数字键盘
     [self.txtMobile setKeyboardType:UIKeyboardTypeNumberPad];
+    [self.txtMobile setText:self.mobile];
 }
 
 - (IBAction)modifyMobile:(id)sender {
@@ -103,6 +104,7 @@
 */
 
 - (void)dealloc {
+    [_mobile release];
     [_viewMobile release];
     [_txtMobile release];
     [_btnModify release];

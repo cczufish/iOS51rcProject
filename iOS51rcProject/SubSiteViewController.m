@@ -75,6 +75,8 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:rowData[@"ID"] forKey:@"subSiteId"];
     [userDefaults setValue:rowData[@"SubSiteName"] forKey:@"subSiteName"];
+    [userDefaults setValue:rowData[@"SubSIteCity"] forKey:@"subSiteCity"];
+    [userDefaults setValue:rowData[@"SubSiteUrl"] forKey:@"subSiteUrl"];
     [userDefaults synchronize];
     [self.navigationController popViewControllerAnimated:true];
 }

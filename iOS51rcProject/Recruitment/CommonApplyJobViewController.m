@@ -289,7 +289,7 @@
     addDate = [NSString stringWithFormat:@"申请时间：%@", addDate];
     [lbRefreshDate setText:addDate];
     [lbRefreshDate setTextColor:colorText];
-    lbRefreshDate.font = [UIFont systemFontOfSize:14];
+    lbRefreshDate.font = [UIFont systemFontOfSize:12];
     [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
