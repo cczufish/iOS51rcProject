@@ -122,7 +122,7 @@
     NSString *strdcSalaryID = rowData[@"dcSalaryID"];
     UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(220, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 80, labelSize.height)];
     lbSalary.text = [CommonController getDictionaryDesc:strdcSalaryID tableName:@"dcSalary"];
-    if ([strdcSalaryID isEqualToString:@"99"]) {
+    if ([strdcSalaryID isEqualToString:@"100"]) {
         lbSalary.text = @"面议";
     }
     //[CommonController GetSalary:strdcSalaryID];

@@ -113,7 +113,7 @@
     CGFloat titleWidth = 290;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strRecruitmentName fontDemond:titleFont sizeDemand:titleSize];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, labelSize.width, labelSize.height)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, labelSize.width, labelSize.height)];
     lbTitle.text = strRecruitmentName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
@@ -122,7 +122,7 @@
     [lbTitle release];
     
     //显示举办时间 举办场馆 具体地址
-    UILabel *lbBegin = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 15), titleWidth, 15)];
+    UILabel *lbBegin = [[UILabel alloc] initWithFrame:CGRectMake(15, (labelSize.height + 15), titleWidth, 15)];
     NSString *strBeginDate = rowData[@"BeginDate"];
     NSDate *dtBeginDate = [CommonController dateFromString:strBeginDate];
     strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
@@ -134,9 +134,8 @@
     [lbBegin release];
     
     //举办场馆
-    NSString *strPrePlace =@"具体地址：";
-    labelSize = [CommonController CalculateFrame:strPrePlace fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 40)];
-    UILabel *lbPrePlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, labelSize.width, labelSize.height)];
+    NSString *strPrePlace = @"举办场馆：";
+    UILabel *lbPrePlace = [[UILabel alloc] initWithFrame:CGRectMake(15, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, 70, 17)];
     lbPrePlace.text = strPrePlace;
     lbPrePlace.font = [UIFont systemFontOfSize:14];
     lbPrePlace.textColor = [UIColor grayColor];
@@ -145,7 +144,7 @@
     //具体场馆地址
     NSString *strPlace = rowData[@"PlaceName"];
     labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(140, 400)];
-    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(80, lbPrePlace.frame.origin.y, labelSize.width, labelSize.height)];
+    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(85, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, MIN(labelSize.width, 133), 17)];
     lbPlace.text = strPlace;
     lbPlace.numberOfLines = 0;
     lbPlace.lineBreakMode = NSLineBreakByCharWrapping;
@@ -156,7 +155,7 @@
     
     //坐标
     UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(lbPlace.frame.origin.x + lbPlace.frame.size.width, lbPlace.frame.origin.y, 15, 15)];
-    UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 1, 13, 17)];
+    UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(3, 0, 13, 17)];
     imgLngLat.image = [UIImage imageNamed:@"ico_cpinfo_cpaddress.png"];
     [btnLngLat addSubview:imgLngLat];
     btnLngLat.tag = indexPath.row;
@@ -166,18 +165,17 @@
     [imgLngLat release];
     
     //具体地址
-    NSString *strPreAddress =@"具体地址：";
-    labelSize = [CommonController CalculateFrame:strPreAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 40)];
-    UILabel *lbPreAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
+    NSString *strPreAddress = @"具体地址：";
+    UILabel *lbPreAddress = [[UILabel alloc] initWithFrame:CGRectMake(15, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, 70, 17)];
     lbPreAddress.text = strPreAddress;
     lbPreAddress.font = [UIFont systemFontOfSize:14];
     lbPreAddress.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPreAddress)];
     [lbPreAddress release];
     
-    NSString *strAddress =rowData[@"Address"];
+    NSString *strAddress = rowData[@"Address"];
     labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(140, 80)];
-    UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(80, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
+    UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(84, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbAddress.text = strAddress;
     lbAddress.numberOfLines = 0;
     lbAddress.lineBreakMode = NSLineBreakByCharWrapping;
@@ -188,7 +186,7 @@
     
     //我邀请的企业(右侧的小方块)
     NSString *myRmCpCount = rowData[@"myInvitCpNum"] ;
-    UIButton *btnMyRmCp = [[UIButton alloc] initWithFrame:CGRectMake(235, lbBegin.frame.origin.y + 15, 80, 40)];
+    UIButton *btnMyRmCp = [[UIButton alloc] initWithFrame:CGRectMake(237, lbBegin.frame.origin.y + 15, 76, 40)];
     UILabel *lbMyRmCp = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, 80, 10)];
     lbMyRmCp.text = @"我邀请的企业";
     lbMyRmCp.font = [UIFont systemFontOfSize:11];
@@ -196,9 +194,9 @@
     lbMyRmCp.textAlignment = NSTextAlignmentCenter;
     [btnMyRmCp addSubview:lbMyRmCp];
     //我邀请的企业个数
-    UILabel *lbMyRmCpCount = [[UILabel alloc] initWithFrame:CGRectMake(17, 9, 40, 10)];
+    UILabel *lbMyRmCpCount = [[UILabel alloc] initWithFrame:CGRectMake(17, 7, 40, 10)];
     lbMyRmCpCount.text = myRmCpCount;
-    lbMyRmCpCount.font = [UIFont systemFontOfSize:10];
+    lbMyRmCpCount.font = [UIFont systemFontOfSize:12];
     lbMyRmCpCount.textColor = [UIColor redColor];
     lbMyRmCpCount.textAlignment = NSTextAlignmentCenter;
     [btnMyRmCp addSubview:lbMyRmCpCount];
