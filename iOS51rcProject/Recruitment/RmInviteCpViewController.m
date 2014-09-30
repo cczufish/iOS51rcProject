@@ -5,6 +5,7 @@
 #import "NetWebServiceRequest.h"
 #import "RmCpJobListViewController.h"
 #import "RMSearchJobListViewController.h"
+#import "RmSearchJobForInviteViewController.h"
 
 //邀请企业参会
 @interface RmInviteCpViewController () <NetWebServiceRequestDelegate, DictionaryPickerDelegate,DatePickerDelegate>
@@ -194,10 +195,14 @@
             //UIViewController *pCtrl = [CommonController getFatherController:self.view];
             UIViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
             if ([listCtrl isKindOfClass:[RMSearchJobListViewController class]]) {
-                <#statements#>
+                RMSearchJobListViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                listCtrl.toastType = 1;
             }
-            RMSearchJobListViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-            listCtrl.toastType = 1;
+            else if ([listCtrl isKindOfClass:[RmSearchJobForInviteViewController class]]) {
+                RmSearchJobForInviteViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                listCtrl.toastType = 1;
+            }
+
             //跳转上一个界面
             [self.navigationController popViewControllerAnimated:YES];
         }else {

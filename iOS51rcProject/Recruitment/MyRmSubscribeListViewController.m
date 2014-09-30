@@ -15,6 +15,7 @@
 @property (retain, nonatomic) IBOutlet UITableView *tvRecruitmentCpList;
 @property (retain, nonatomic) IBOutlet UIView *viewBottom;
 @property (retain, nonatomic) IBOutlet UIButton *btnInviteCp;
+@property (retain, nonatomic) NSMutableArray *recruitmentCpData;
 
 @end
 
@@ -46,7 +47,7 @@
 }
 - (void)onSearch
 {
-    [recruitmentCpData removeAllObjects];
+    [self.recruitmentCpData removeAllObjects];
     [self.tvRecruitmentCpList reloadData];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -69,11 +70,11 @@
       finishedInfoToResult:(NSString *)result responseData:(NSMutableArray *)requestData
 {
     if (requestData.count>0) {
-        [recruitmentCpData removeAllObjects];
-        recruitmentCpData = requestData;
-        [recruitmentCpData retain];
+        [self.recruitmentCpData removeAllObjects];
+        self.recruitmentCpData = requestData;
+        [self.recruitmentCpData retain];
         
-        if (recruitmentCpData.count>0) {
+        if (self.recruitmentCpData.count>0) {
             [self.tvRecruitmentCpList reloadData];
             [self.tvRecruitmentCpList footerEndRefreshing];
         }
@@ -105,7 +106,7 @@
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"cpList"] autorelease];
     
-    NSDictionary *rowData = recruitmentCpData[indexPath.row];
+    NSDictionary *rowData = self.recruitmentCpData[indexPath.row];
     //显示标题
     NSString *strRecruitmentName = rowData[@"RecruitmentName"];
     UIFont *titleFont = [UIFont systemFontOfSize:15];
@@ -155,12 +156,10 @@
     
     //坐标
     UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(lbPlace.frame.origin.x + lbPlace.frame.size.width, lbPlace.frame.origin.y, 15, 15)];
-    self.lng = rowData[@"lng"];
-    self.lat = rowData[@"lat"];
-    UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 1, 13, 15)];
+    UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 1, 13, 17)];
     imgLngLat.image = [UIImage imageNamed:@"ico_cpinfo_cpaddress.png"];
     [btnLngLat addSubview:imgLngLat];
-    btnLngLat.tag = (NSInteger)rowData[@"ID"];
+    btnLngLat.tag = indexPath.row;
     [btnLngLat addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btnLngLat];
     [btnLngLat release];
@@ -224,7 +223,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [recruitmentCpData count];
+    return [self.recruitmentCpData count];
 }
 
 //邀请企业参会
@@ -237,12 +236,12 @@
 
 //点击坐标
 -(void)btnLngLatClick:(UIButton *) sender{
-    NSLog(@"%d, %@, %@", sender.tag, self.lat, self.lng);
+    NSDictionary *rowData = self.recruitmentCpData[sender.tag];
     MapViewController *mapC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"MapView"];
-    mapC.lat = [self.lat floatValue];
-    mapC.lng = [self.lng floatValue];
+    mapC.lat = [rowData[@"lat"] floatValue];
+    mapC.lng = [rowData[@"lng"] floatValue];
+    [mapC.navigationItem setTitle:rowData[@"PlaceName"]];
     UIViewController *superJobC = [CommonController getFatherController:self.view];
-    [mapC.navigationItem setTitle:superJobC.navigationItem.title];
     [superJobC.navigationController pushViewController:mapC animated:true];
 }
 
@@ -256,27 +255,27 @@
 
 //点击某一行,到达企业页面--调用代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [gotoRmViewDelegate gotoRmView:recruitmentCpData[indexPath.row][@"id"]];
+    [gotoRmViewDelegate gotoRmView:self.recruitmentCpData[indexPath.row][@"id"]];
 }
 
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *strRecruitmentName = recruitmentCpData[indexPath.row][@"RecruitmentName"];
+    NSString *strRecruitmentName = self.recruitmentCpData[indexPath.row][@"RecruitmentName"];
     CGSize titleSize = CGSizeMake(290, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strRecruitmentName fontDemond:[UIFont systemFontOfSize:15] sizeDemand:titleSize];
     NSInteger height = 108;
     if (labelSize.height>30) {//标题换行了
         height +=20;
     }
-    NSString *strAddress =recruitmentCpData[indexPath.row][@"Address"];
+    NSString *strAddress = self.recruitmentCpData[indexPath.row][@"Address"];
     labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(140, 400)];
     if (labelSize.height>30)
     {
         height +=labelSize.height - 15;
     }
     
-    NSString *strPlace = recruitmentCpData[indexPath.row][@"PlaceName"];
+    NSString *strPlace = self.recruitmentCpData[indexPath.row][@"PlaceName"];
     labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(140, 400)];
     if (labelSize.height>30)
     {
@@ -296,7 +295,7 @@
 - (void)dealloc {
     [loadView release];
     [_tvRecruitmentCpList release];
-    [recruitmentCpData release];
+    [self.recruitmentCpData release];
     [_btnInviteCp release];
     [_viewBottom release];
     [super dealloc];

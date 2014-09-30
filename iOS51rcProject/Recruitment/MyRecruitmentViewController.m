@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationItem setTitle:@"我的招聘会"];
     firstPageLoad = false;
     secondPageLoad = false;
     //上方横线
