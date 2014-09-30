@@ -269,7 +269,7 @@
     
     //是否在线
     if ([rowData[@"IsOnline"] isEqualToString:@"true"]) {
-        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(270, 5, 40, 20)];
+        UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(275, 5, 30, 15)];
         [imgOnline setImage:[UIImage imageNamed:@"ico_joblist_online.png"]];
         [cell.contentView addSubview:imgOnline];
         [imgOnline release];
@@ -298,7 +298,7 @@
     UIButton *btnInvite = [[[UIButton alloc] initWithFrame:CGRectMake(265, 30, 40, 60)] autorelease];
     objc_setAssociatedObject(btnInvite, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
     [btnInvite addTarget:self action:@selector(inviteOneCp:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 20, 20)] autorelease];
+    UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(15, 0, 20, 20)] autorelease];
     imgInvite.image = [UIImage imageNamed:@"ico_rm_head.png"];
     [btnInvite addSubview:imgInvite];
     
