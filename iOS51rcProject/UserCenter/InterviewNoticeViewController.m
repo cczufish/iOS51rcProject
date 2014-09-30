@@ -381,8 +381,9 @@
             txtViewReason.layer.borderWidth = 1;
             txtViewReason.font = [UIFont systemFontOfSize:12];
             txtViewReason.delegate = self;
-            
-            //添加到临时的变量内
+            txtViewReason.text = @"如果不能赴约参加面试，请说明理由";
+            //把文本框添加到临时的变量内，用于传参
+            self.arrayTxtView = [[NSMutableArray alloc] init];//临时存放
             NSDictionary *dicTxtView = [[[NSDictionary alloc] initWithObjectsAndKeys:
                                         [NSString stringWithFormat:@"%d",indexPath.row],@"id",
                                         txtViewReason,@"value"
@@ -433,13 +434,6 @@
             selectRowHeight = btnReject.frame.origin.y + btnReject.frame.size.height + 15;
         }
         else {
-            //添加到临时的变量内
-            NSDictionary *dicTxtView = [[[NSDictionary alloc] initWithObjectsAndKeys:
-                                         [NSString stringWithFormat:@"%d",indexPath.row],@"id",
-                                         @"",@"value"
-                                         ,nil] autorelease];
-            [self.arrayTxtView addObject:dicTxtView];
-            
             //不赴约状态
             UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 60, 15)] autorelease];
             lbPreRemark.text = @"回复状态：";
@@ -522,9 +516,11 @@
 
 //点击赴约
 -(void)btnAcceptClick:(UIButton *) sender{
+    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     NSInteger index = [objc_getAssociatedObject(sender, @"AcceptReason") integerValue];
-    NSDictionary *dicTxtView = self.arrayTxtView[index];
+    NSDictionary *dicTxtView = self.arrayTxtView[0];
     UITextView *tmpView = (UITextView *) dicTxtView[@"value"];
+    [tmpView resignFirstResponder];//隐藏键盘
     NSString *msg = tmpView.text;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
@@ -552,9 +548,16 @@
 
 //点击不赴约
 -(void)btnRejectClick:(UIButton *) sender{
+    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     NSInteger index = [objc_getAssociatedObject(sender, @"RejectReason") integerValue];
-    NSDictionary *dicTxtView = self.arrayTxtView[index];
+    NSDictionary *dicTxtView = self.arrayTxtView[0];
     UITextView *tmpView = (UITextView *) dicTxtView[@"value"];
+    [tmpView resignFirstResponder];//隐藏键盘
+    if ([tmpView.text isEqualToString:@""] || [tmpView.text isEqualToString:@"如果不能赴约参加面试，请说明理由"]) {
+        tmpView.layer.borderColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1].CGColor;
+        tmpView.layer.borderWidth = 1;
+        return;
+    }
     NSString *msg = tmpView.text;
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -618,6 +621,9 @@
 //开始编辑输入框的时候，软键盘出现，执行此事件
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
+    if ([textView.text isEqualToString:@"如果不能赴约参加面试，请说明理由"]) {
+        textView.text = @"";
+    }
     CGRect frame = textView.frame;
     int offset = frame.origin.y - (self.view.frame.size.height - 216.0);//键盘高度216
     NSTimeInterval animationDuration = 0.30f;
@@ -634,6 +640,9 @@
 //输入框编辑完成以后，将视图恢复到原始状态
 -(void)textViewDidEndEditing:(UITextView *)textView
 {
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"如果不能赴约参加面试，请说明理由";
+    }
     self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
