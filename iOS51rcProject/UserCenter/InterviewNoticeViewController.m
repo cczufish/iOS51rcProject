@@ -349,6 +349,12 @@
         imagePhone.image = [UIImage imageNamed:@"ico_calltelphone.png"];
         [btnCall addSubview:imagePhone];
         btnCall.tag = (NSInteger)rowData[@"ID"];
+        //拨打两个字
+        UILabel *lbCall = [[[UILabel alloc]initWithFrame:CGRectMake(imagePhone.frame.origin.x + imagePhone.frame.size.width, 0, 40, 15)] autorelease];
+        lbCall.text = @"拨打";
+        lbCall.font  = [UIFont systemFontOfSize:12];
+        lbCall.textColor = [UIColor blackColor];
+        [btnCall addSubview:lbCall];
         [cell.contentView addSubview:btnCall];
       
         //备注

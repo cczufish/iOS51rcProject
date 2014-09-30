@@ -29,6 +29,7 @@
 @property (retain, nonatomic) NetWebServiceRequest *runningRequestJoinRm;
 @property (nonatomic, retain) LoadingAnimationView *loading;
 @property (retain, nonatomic) NSString *attentCpCount;
+@property (retain, nonatomic) NSString *attentPaCount;
 @property (nonatomic, retain) AttendRMPopUp *cPopup;
 @property (nonatomic, retain) CustomPopup *photoPopup;
 @property (nonatomic, retain) UIPageControl *pagePhoto;
@@ -50,6 +51,7 @@
 {
     [super viewDidLoad];
     self.attentCpCount = @"0";
+    self.attentPaCount = @"0";
     //右侧导航按钮
     UIButton *myRmBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 0, 90, 30)];
     //myRmBtn.titleLabel.text = @"我的招聘会";//这样无法赋值
@@ -101,17 +103,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
@@ -475,9 +466,11 @@
 
 //点击参会个人
 - (IBAction)btnRmPaClick:(id)sender {
-    RmAttendPaListViewController *paListCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmPaListView"];
-    paListCtrl.rmID = self.recruitmentID;
-    [self.navigationController pushViewController:paListCtrl animated:YES];
+    if ([self.attentPaCount intValue]>0) {
+        RmAttendPaListViewController *paListCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmPaListView"];
+        paListCtrl.rmID = self.recruitmentID;
+        [self.navigationController pushViewController:paListCtrl animated:YES];
+    }    
 }
 
 - (IBAction)goToMapView:(id)sender {
