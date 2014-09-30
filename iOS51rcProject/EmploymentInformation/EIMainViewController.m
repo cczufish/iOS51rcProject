@@ -2,7 +2,7 @@
 #import "SlideNavigationController.h"
 #import "EIItemDetailsViewController.h"
 #import "EiSearchViewController.h"
-#define MENUHEIHT 40
+#define MENUHEIHT 60
 
 @interface EIMainViewController ()<SlideNavigationControllerDelegate>
 
