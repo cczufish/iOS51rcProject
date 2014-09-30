@@ -170,11 +170,13 @@
                                    ,nil] autorelease];
         [arrCv addObject:defalult];
         for (int i = 0; i < requestData.count; i++) {
-            NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
+             if (![requestData[i][@"Name"] isEqualToString:@"未完成简历"]) {
+                 NSDictionary *dicCv = [[[NSDictionary alloc] initWithObjectsAndKeys:
                                     requestData[i][@"ID"],@"id",
                                     requestData[i][@"Name"],@"value"
                                     ,nil] autorelease];
-            [arrCv addObject:dicCv];
+                 [arrCv addObject:dicCv];
+             }
         }
         
         self.cvList = arrCv;
