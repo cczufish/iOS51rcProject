@@ -309,6 +309,10 @@
         canBeDelete = true;
         lbReply.text = @"不符合要求";
     }
+    else if(reply == 3){
+        canBeDelete = true;
+        lbReply.text = @"以后联系";
+    }
     //删除
     if (canBeDelete == true) {
         [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
