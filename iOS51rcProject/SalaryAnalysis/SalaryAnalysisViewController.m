@@ -99,6 +99,13 @@
     [dicParam release];
 }
 
+
+//失败
+- (void)netRequestFailed:(NetWebServiceRequest *)request didRequestError:(int *)error
+{
+    [loadView stopAnimating];
+    [self.view makeToast:@"该搜索条件下没有查询到相关数据，请换个条件继续查询！"];
+}
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
