@@ -120,7 +120,12 @@
     [cell.contentView addSubview:lbLeft];
     [lbLeft release];
     //职位标题
-    NSString *strJobName = rowData[@"JobName"];
+    NSString *strJobName;
+    if (isPassed) {
+        strJobName = [NSString stringWithFormat:@"（已过期）%@", rowData[@"JobName"]];
+    }else{
+        strJobName = rowData[@"JobName"];
+    }
     UIFont *titleFont = [UIFont systemFontOfSize:15];
     CGFloat titleWidth = 235;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
@@ -146,15 +151,15 @@
     lbStatus.textColor = [UIColor whiteColor];
     lbStatus.font = [UIFont systemFontOfSize:14];
     lbStatus.textAlignment = NSTextAlignmentCenter;
-    if (!isPassed) {
+    //if (!isPassed) {
         if ([strStatus isEqualToString:@"1"]) {//参会
             lbStatus.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
             lbStatus.text = @"参会";
-        }else{
+        }else if([strStatus isEqualToString:@"2"]){
             lbStatus.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
             lbStatus.text = @"不参会";
         }
-    }
+    //}
     [cell.contentView addSubview:lbStatus];
     [lbStatus release];
     //公司名称
