@@ -11,6 +11,7 @@
     NSString *selectCV;
 }
 
+@property int toastType;
 @property (retain, nonatomic) IBOutlet UITableView *tvJobList;
 @property (retain, nonatomic) IBOutlet UIButton *btnApply;
 @property (retain, nonatomic) IBOutlet UIView *viewBottom;

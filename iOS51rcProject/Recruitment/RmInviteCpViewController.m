@@ -117,7 +117,7 @@
         RmCpMain *rmCp = rmCpInfos[i];
          UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 70*i, 280, 60)];
         [btnRight addTarget:self action:@selector(showJobSelect:) forControlEvents:UIControlEventTouchUpInside];
-        btnRight.tag = [rmCp.ID integerValue];
+        btnRight.tag = i;
         //JobName
         CGSize titleSize = CGSizeMake(240, 20.0f);
         CGSize labelSize = [CommonController CalculateFrame:rmCp.JobName fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
@@ -192,6 +192,10 @@
         }else if ([result isEqual:@"1"]){
             [self.view makeToast:@"邀请成功！"];
             //UIViewController *pCtrl = [CommonController getFatherController:self.view];
+            UIViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+            if ([listCtrl isKindOfClass:[RMSearchJobListViewController class]]) {
+                <#statements#>
+            }
             RMSearchJobListViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
             listCtrl.toastType = 1;
             //跳转上一个界面
@@ -217,10 +221,11 @@
 //点击转到职位选择页面
 -(void)showJobSelect:(UIButton*)sender{
     RmCpJobListViewController *jobListCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmCpJobListView"];
-    jobListCtrl.cpMainID = [NSString stringWithFormat:@"%d", sender.tag];
-    jobListCtrl.delegate = self;
-    //[self.navigationController pushViewController:jobListCtrl animated:YES];
-    [self presentViewController:jobListCtrl animated:YES completion:nil];
+    RmCpMain *rmCp = self.selectRmCps[sender.tag];
+    jobListCtrl.cpMainID = rmCp.ID;
+    [jobListCtrl.navigationItem setTitle:rmCp.Name];
+    [self.navigationController pushViewController:jobListCtrl animated:YES];
+//    [self presentViewController:jobListCtrl animated:YES completion:nil];
 }
 
 //代理职位列表选择操作

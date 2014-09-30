@@ -141,7 +141,7 @@
                  selectedName:(NSString *)selectedName
 {
     if (selectedValue.length == 0) {
-        [self.view makeToast:@"此项未必选项"];
+        [self.view makeToast:@"此项为必选项"];
         return;
     }
     switch (picker.tag) {

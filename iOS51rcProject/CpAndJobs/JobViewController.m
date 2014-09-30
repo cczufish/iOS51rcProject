@@ -605,24 +605,27 @@
     if (fuliArray.count == 0) {
         fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y-10, 300, 0)];
     }
-    else if (fuliArray.count <= 4) {
+    else if (fuliArray.count <= 3) {
         fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 20)];
     }
-    else if(fuliArray.count > 4 && fuliArray.count <= 8){
+    else if(fuliArray.count > 3 && fuliArray.count <= 6){
         fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 40)];
     }
-    else if(fuliArray.count > 8 && fuliArray.count <= 12){
+    else if(fuliArray.count > 6 && fuliArray.count <= 9){
         fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 60)];
     }
-    else{
+    else if(fuliArray.count > 9 && fuliArray.count <= 12){
         fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 80)];
+    }
+    else{
+        fuliMainView = [[UIView alloc] initWithFrame:CGRectMake(20, y, 300, 100)];
     }
     //遍历所有的福利图标
     for (int i=0; i<fuliArray.count; i++) {
         UIView *tmpView = fuliArray[i];
         //如果是每一行的第一个图标
-        if (i == 0 || i==4 || i==8 || i==12|| i==16) {
-            tmpView.frame = CGRectMake(0, (i/4)*20, tmpView.frame.size.width, 15);
+        if (i == 0 || i==3 || i==6 || i==9|| i==12|| i==15) {
+            tmpView.frame = CGRectMake(0, (i/3)*20, tmpView.frame.size.width, 15);
         }else{
             //找到上一个图标
             UIView *beforeView = fuliArray[i-1];

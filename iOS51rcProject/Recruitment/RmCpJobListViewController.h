@@ -7,7 +7,6 @@
 //某一个公司的职位列表页面
 @interface RmCpJobListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
-    NSMutableArray *JobListData;
     LoadingAnimationView *loadView;
     id<SelectJobDelegate> delegate;
 }

@@ -132,7 +132,7 @@
         frameHistory.size.height = fltHistoryLogHeight+30;
         [self.viewHistory setFrame:frameHistory];
         //scrollview定高
-        [self.scrollSearch setContentSize:CGSizeMake(320, 300+self.viewHistory.frame.size.height)];
+        [self.scrollSearch setContentSize:CGSizeMake(320, 400+self.viewHistory.frame.size.height)];
         
         [self.viewHistory addSubview:viewHistoryLog];
         [viewHistoryLog release];

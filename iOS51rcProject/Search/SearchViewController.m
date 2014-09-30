@@ -7,7 +7,7 @@
 #import "MapSearchViewController.h"
 #import "CommonController.h"
 
-@interface SearchViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate,UIGestureRecognizerDelegate>
+@interface SearchViewController () <DictionaryPickerDelegate,SlideNavigationControllerDelegate,UIGestureRecognizerDelegate,UITextFieldDelegate>
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @property (retain, nonatomic) NSString *regionSelect;
 @property (retain, nonatomic) NSString *jobTypeSelect;
@@ -20,6 +20,7 @@
 
 -(void)cancelDicPicker
 {
+    [self.txtKeyWord resignFirstResponder];
     [self.DictionaryPicker cancelPicker];
     self.DictionaryPicker.delegate = nil;
     self.DictionaryPicker = nil;
@@ -73,6 +74,17 @@
                          [mapSearchC.navigationItem setTitle:@"地图搜索"];
                          [self.navigationController pushViewController:mapSearchC animated:false];
                      }];
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self cancelDicPicker];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:true];
+    return YES;
 }
 
 - (IBAction)switchToMapSearch:(id)sender {

@@ -4,6 +4,7 @@
 
 @interface RmCpJobListViewController ()<NetWebServiceRequestDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
+@property (nonatomic, retain) NSMutableArray *jobListData;
 @property (retain, nonatomic) IBOutlet UITableView *tvCpJobList;
 
 @end
@@ -48,7 +49,7 @@
 }
 - (void)onSearch
 {
-    [JobListData removeAllObjects];
+    [self.jobListData removeAllObjects];
     [self.tvCpJobList reloadData];
     
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
@@ -66,8 +67,8 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
-    [JobListData removeAllObjects];
-    JobListData = requestData;
+    [self.jobListData removeAllObjects];
+    self.jobListData = requestData;
     
     [self.tvCpJobList reloadData];
     //[self.tvCpJobList footerEndRefreshing];
@@ -82,7 +83,7 @@
     
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"paList"] autorelease];
-    NSDictionary *rowData = JobListData[indexPath.row];
+    NSDictionary *rowData = self.jobListData[indexPath.row];
     //职位名称
     NSString *strJobName = rowData[@"Name"];
     UIFont *titleFont = [UIFont systemFontOfSize:14];
@@ -121,6 +122,9 @@
     NSString *strdcSalaryID = rowData[@"dcSalaryID"];
     UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(220, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 80, labelSize.height)];
     lbSalary.text = [CommonController getDictionaryDesc:strdcSalaryID tableName:@"dcSalary"];
+    if ([strdcSalaryID isEqualToString:@"99"]) {
+        lbSalary.text = @"面议";
+    }
     //[CommonController GetSalary:strdcSalaryID];
     lbSalary.font = [UIFont systemFontOfSize:14];
     lbSalary.textAlignment = NSTextAlignmentRight;
@@ -133,10 +137,10 @@
 
 //点击某一行,选择一个职位
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //NSArray *arr = JobListData[indexPath.row];
-    NSString *cpMainID = JobListData[indexPath.row][@"cpMainID"] ;
-    NSString *jobID = JobListData[indexPath.row][@"ID"];
-    NSString *name = JobListData[indexPath.row][@"Name"];
+    //NSArray *arr = jobListData[indexPath.row];
+    NSString *cpMainID = self.jobListData[indexPath.row][@"cpMainID"] ;
+    NSString *jobID = self.jobListData[indexPath.row][@"ID"];
+    NSString *name = self.jobListData[indexPath.row][@"Name"];
     [cpMainID retain];
     [jobID retain];
     [name retain];
@@ -146,7 +150,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [JobListData count];
+    return [self.jobListData count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -160,6 +164,7 @@
 
 
 - (void)dealloc {
+    [_jobListData release];
     [_tvCpJobList release];
     [super dealloc];
 }
