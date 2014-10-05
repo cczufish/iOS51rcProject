@@ -129,6 +129,10 @@
 
 -(void)pageTurn:(UIPageControl*)aPageControl
 {
+    CGRect frame = pageScroll.frame;
+    frame.origin.x = frame.size.width * aPageControl.currentPage;
+    frame.origin.y = 0;
+    [pageScroll scrollRectToVisible:frame animated:YES];
 }
 
 - (void)viewDidUnload
