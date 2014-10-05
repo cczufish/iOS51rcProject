@@ -44,7 +44,7 @@
     
     //设置滚动条的大小
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.svSuper.frame = CGRectMake(0, 115, 320, self.svSuper.frame.size.height);//必须重写位置，否则，子页面的x＝0.。。
+    self.svSuper.frame = CGRectMake(0, 117, 320, self.svSuper.frame.size.height);//必须重写位置，否则，子页面的x＝0.。。
     
     self.svSuper.delegate = self;
     [self.svSuper setScrollEnabled:YES];
@@ -107,7 +107,6 @@
             [self.lbCpTopTitle setTextColor:[UIColor blackColor]];
             [self.lbJobListTopTitle setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
             [self.lbTopBg setFrame:CGRectMake(160, self.lbTopBg.frame.origin.y, self.lbTopBg.frame.size.width, self.lbTopBg.frame.size.height)];
-            //[self.view addSubview:self.lbTopBg];
         } completion:^(BOOL finished) {
             if (isJobListLoadFinished == false) {
                 [self.jobsCtrl onSearch];
@@ -120,8 +119,7 @@
             [self.lbJobListTopTitle setTextColor:[UIColor blackColor]];
             [self.lbCpTopTitle setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
             [self.lbTopBg setFrame:CGRectMake(0, self.lbTopBg.frame.origin.y, self.lbTopBg.frame.size.width, self.lbTopBg.frame.size.height)];
-            //[self.view addSubview:self.lbTopBg];
-        }];
+                  }];
     }
 }
 - (IBAction)swithToCpInfo:(id)sender {
@@ -130,7 +128,6 @@
         [self.lbJobListTopTitle setTextColor:[UIColor blackColor]];
         [self.lbCpTopTitle setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
         [self.lbTopBg setFrame:CGRectMake(0, self.lbTopBg.frame.origin.y, self.lbTopBg.frame.size.width, self.lbTopBg.frame.size.height)];
-        //[self.view addSubview:self.lbTopBg];
     }];
 }
 - (IBAction)switchToJobList:(id)sender {
@@ -138,8 +135,7 @@
     [UIView animateWithDuration:0.2 animations:^{
         [self.lbCpTopTitle setTextColor:[UIColor blackColor]];
         [self.lbJobListTopTitle setTextColor:[UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1]];
-        [self.lbTopBg setFrame:CGRectMake(160, self.lbTopBg.frame.origin.y, self.lbTopBg.frame.size.width, self.lbTopBg.frame.size.height)];
-        //[self.view addSubview:self.lbTopBg];
+        [self.lbTopBg setFrame:CGRectMake(160, self.lbTopBg.frame.origin.y, self.lbTopBg.frame.size.width, self.lbTopBg.frame.size.height)];      
     } completion:^(BOOL finished) {
         if (isJobListLoadFinished == false) {
             [self.jobsCtrl onSearch];

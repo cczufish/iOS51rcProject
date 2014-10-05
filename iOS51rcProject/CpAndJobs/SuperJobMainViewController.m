@@ -72,7 +72,6 @@
     [self.scrollView addSubview:self.thirdCtrl.view];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    //self.scrollView.frame =  CGRectMake(0, 0, 320, HEIGHT);
     [self.scrollView setContentSize:CGSizeMake(960, self.scrollView.frame.size.height)];
     
     //默认加载第一个
