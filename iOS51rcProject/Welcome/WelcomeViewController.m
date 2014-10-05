@@ -28,7 +28,7 @@
     [super viewDidLoad];
     
     //滚动页面
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor clearColor];
     pageScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, HEIGHT)];
     pageScroll.contentSize = CGSizeMake(4*320, HEIGHT);
     pageScroll.pagingEnabled = YES;
