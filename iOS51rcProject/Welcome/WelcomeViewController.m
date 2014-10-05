@@ -1,5 +1,4 @@
 #import "WelcomeViewController.h"
-#import "WelcomeUIImage.h"
 #import "MenuViewController.h"
 
 @interface WelcomeViewController ()
@@ -10,12 +9,7 @@
 
 
 #define HEIGHT [[UIScreen mainScreen] bounds].size.height
-#define SAWTOOTH_COUNT 10
-#define SAWTOOTH_WIDTH_FACTOR 20 
 
-//@synthesize indexView;
-@synthesize left = _left;
-@synthesize right = _right;
 @synthesize pageScroll;
 @synthesize pageControl;
 @synthesize gotoMainViewBtn;
@@ -32,8 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    //滚动页面
+    self.view.backgroundColor = [UIColor blackColor];
     pageScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, HEIGHT)];
     pageScroll.contentSize = CGSizeMake(4*320, HEIGHT);
     pageScroll.pagingEnabled = YES;
@@ -51,14 +46,12 @@
     imageView4.frame = CGRectMake(3*320, 0, 320, HEIGHT);
     //添加图片
     if (HEIGHT == 568) {
-        //self.indexView.image = [UIImage imageNamed:@"index640x1136.png"];
         imageView1.image = [UIImage imageNamed:@"welcom2-320x1136.png"];
         imageView2.image = [UIImage imageNamed:@"welcom3-320x1136.png"];
         imageView3.image = [UIImage imageNamed:@"welcom4-320x1136.png"];
         imageView4.image = [UIImage imageNamed:@"welcom5-320x1136.png"];
     }
     else{
-        //self.indexView.image = [UIImage imageNamed:@"index640x960.png"];
         imageView1.image = [UIImage imageNamed:@"welcom2-320x960.png"];
         imageView2.image = [UIImage imageNamed:@"welcom3-320x960.png"];
         imageView3.image = [UIImage imageNamed:@"welcom4-320x960.png"];
@@ -93,15 +86,16 @@
     
     [self.view addSubview:pageScroll];
     
+    //切换页面的小点
     pageControl = [[UIPageControl alloc] init];
-    pageControl.frame = CGRectMake(141,364,50,50);
+    pageControl.frame = CGRectMake(110,404,100,50);
     [pageControl setNumberOfPages:4];
     pageControl.currentPage = 0;
-    [pageControl setHidden:true];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.pageIndicatorTintColor   = [UIColor grayColor];
     [pageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:pageControl];
 }
-
 
 -(void)animationDidStop:(NSString *)animationID finished:(NSNumber*)finished context:(void*)context
 {
@@ -111,6 +105,7 @@
     }
 }
 
+//点击登录进入首页
 -(void)gotoMainView:(id)sender
 {
     [UIView animateWithDuration:0.5 animations:^{
@@ -120,20 +115,17 @@
     }];
 }
 
-
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGPoint offset = scrollView.contentOffset;
     pageControl.currentPage = offset.x/320 ;
 }
 
-
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGPoint offset = scrollView.contentOffset;
     pageControl.currentPage = offset.x / 320;
 }
-
 
 -(void)pageTurn:(UIPageControl*)aPageControl
 {

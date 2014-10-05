@@ -20,7 +20,6 @@
 		9905132619C2EF2E00B9C096 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905131F19C2EF2E00B9C096 /* RegisterViewController.m */; };
 		9905132B19C2EF8200B9C096 /* RecruitmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905132819C2EF8200B9C096 /* RecruitmentListViewController.m */; };
 		9905132C19C2EF8200B9C096 /* RecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905132A19C2EF8200B9C096 /* RecruitmentViewController.m */; };
-		9905133119C2F29E00B9C096 /* WelcomeUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905132E19C2F29E00B9C096 /* WelcomeUIImage.m */; };
 		9905133219C2F29E00B9C096 /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905133019C2F29E00B9C096 /* WelcomeViewController.m */; };
 		9905134319C2F3D500B9C096 /* CpAndJob.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9905133419C2F3D500B9C096 /* CpAndJob.storyboard */; };
 		9905134419C2F3D500B9C096 /* CpJobsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9905133619C2F3D500B9C096 /* CpJobsViewController.m */; };
@@ -443,8 +442,6 @@
 		9905132819C2EF8200B9C096 /* RecruitmentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecruitmentListViewController.m; path = Recruitment/RecruitmentListViewController.m; sourceTree = "<group>"; };
 		9905132919C2EF8200B9C096 /* RecruitmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecruitmentViewController.h; path = Recruitment/RecruitmentViewController.h; sourceTree = "<group>"; };
 		9905132A19C2EF8200B9C096 /* RecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecruitmentViewController.m; path = Recruitment/RecruitmentViewController.m; sourceTree = "<group>"; };
-		9905132D19C2F29E00B9C096 /* WelcomeUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeUIImage.h; path = Welcome/WelcomeUIImage.h; sourceTree = "<group>"; };
-		9905132E19C2F29E00B9C096 /* WelcomeUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeUIImage.m; path = Welcome/WelcomeUIImage.m; sourceTree = "<group>"; };
 		9905132F19C2F29E00B9C096 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = Welcome/WelcomeViewController.h; sourceTree = "<group>"; };
 		9905133019C2F29E00B9C096 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = Welcome/WelcomeViewController.m; sourceTree = "<group>"; };
 		9905133319C2F3A200B9C096 /* GoToHomeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GoToHomeDelegate.h; path = LogIn/GoToHomeDelegate.h; sourceTree = "<group>"; };
@@ -1891,8 +1888,6 @@
 		99AF855E19A188D700524B66 /* WelCome */ = {
 			isa = PBXGroup;
 			children = (
-				9905132D19C2F29E00B9C096 /* WelcomeUIImage.h */,
-				9905132E19C2F29E00B9C096 /* WelcomeUIImage.m */,
 				9905132F19C2F29E00B9C096 /* WelcomeViewController.h */,
 				9905133019C2F29E00B9C096 /* WelcomeViewController.m */,
 			);
@@ -2821,7 +2816,6 @@
 				999F367319CABF2C007856F6 /* IntentionModifyViewController.m in Sources */,
 				9927ACC919C82F450037E3F9 /* EColumnChartLabel.m in Sources */,
 				99FC0B5E19C2E26100B7EC74 /* MDRadialProgressLabel.m in Sources */,
-				9905133119C2F29E00B9C096 /* WelcomeUIImage.m in Sources */,
 				99C581DE19C19756009985C5 /* CpAttentionViewController.m in Sources */,
 				9925BEF619B80E02002DBFE0 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
 				999BDD4D19C2E60B000A152A /* SoapXmlParseHelper.m in Sources */,

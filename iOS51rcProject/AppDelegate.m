@@ -84,7 +84,7 @@
     //获得是否是第一次登录
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSInteger logCount = [userDefaults integerForKey:@"loginCount"];
-    if (logCount == 0) {
+    if (logCount != 0) {
         WelcomeViewController * startView = [[WelcomeViewController alloc] init];
         [self.window.rootViewController.view addSubview:startView.view];    }
     else{
