@@ -155,6 +155,7 @@
     [self.lbRmPa setText:dicRecruitment[@"paAttentNum"]];
     [self.lbRmCp setText:dicRecruitment[@"cpAttentNum"]];
     self.attentCpCount = dicRecruitment[@"cpAttentNum"];
+    self.attentPaCount = dicRecruitment[@"paAttentNum"];
     
     //举办日期
     self.dtBeginTime = [CommonController dateFromString:dicRecruitment[@"BeginDate"]];

@@ -177,10 +177,10 @@
    
     //所在地
     NSString *strAddress = rowData[@"Address"];
-    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
+    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:13] sizeDemand:titleSize];
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(50, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, 15)];
     lbPaInfo.text = strAddress;
-    lbPaInfo.font = [UIFont systemFontOfSize:14];
+    lbPaInfo.font = [UIFont systemFontOfSize:13];
     lbPaInfo.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbPaInfo)];
     
@@ -191,10 +191,10 @@
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     strBeginDate = [NSString stringWithFormat:@"定展时间：%@ %@",strBeginDate,strWeek];
     
-    labelSize = [CommonController CalculateFrame:strBeginDate fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
+    labelSize = [CommonController CalculateFrame:strBeginDate fontDemond:[UIFont systemFontOfSize:13] sizeDemand:titleSize];
     UILabel *lbBegin = [[UILabel alloc] initWithFrame:CGRectMake(50, lbPaInfo.frame.origin.y+lbPaInfo.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbBegin.text = strBeginDate;
-    lbBegin.font = [UIFont systemFontOfSize:14];
+    lbBegin.font = [UIFont systemFontOfSize:13];
     lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     
