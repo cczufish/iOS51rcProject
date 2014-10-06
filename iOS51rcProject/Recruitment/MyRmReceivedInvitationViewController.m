@@ -5,6 +5,7 @@
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
 #import "MapViewController.h"
+#import "SuperJobMainViewController.h"
 
 //收到的邀请
 @interface MyRmReceivedInvitationViewController ()<NetWebServiceRequestDelegate>
@@ -109,19 +110,19 @@
     //操作状态
     NSString *strStatus = rowData[@"Status"];
     
-    //标题左侧的红线(已经处理则显示灰色)
+    //标题左侧的红线(已经处理则显示灰色),0是未处理
     UILabel *lbLeft = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 5, 20)];
-    if (![strStatus isEqualToString:@"0"]) {
+    if ([strStatus isEqualToString:@"0"]) {
         lbLeft.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1].CGColor;
     }else{
-        lbLeft.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+        lbLeft.layer.backgroundColor = [UIColor grayColor].CGColor;
     }
     
     [cell.contentView addSubview:lbLeft];
     [lbLeft release];
     //职位标题
     NSString *strJobName;
-    if (isPassed) {
+    if (isPassed && [strStatus isEqualToString:@"0"]) {//过期，并且未处理，则显示已过期
         strJobName = [NSString stringWithFormat:@"（已过期）%@", rowData[@"JobName"]];
     }else{
         strJobName = rowData[@"JobName"];
@@ -130,12 +131,17 @@
     CGFloat titleWidth = 235;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strJobName fontDemond:titleFont sizeDemand:titleSize];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, labelSize.width, labelSize.height)];
+    UIButton *btnTitle = [[UIButton alloc] initWithFrame:CGRectMake(20, 5, labelSize.width, labelSize.height)];
+    [btnTitle addTarget:self action:@selector(btnJobClick:) forControlEvents:UIControlEventTouchUpInside];
+    btnTitle.tag = indexPath.row;
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
     lbTitle.text = strJobName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
     lbTitle.font = titleFont;
-    [cell.contentView addSubview:(lbTitle)];
+    
+    [btnTitle addSubview:lbTitle];
+    [cell.contentView addSubview:(btnTitle)];
     [lbTitle release];
     //在线离线图标
     UIButton *btnChat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 20, 6, 28, 15)];
@@ -149,14 +155,14 @@
     UILabel *lbStatus = [[UILabel alloc] initWithFrame:CGRectMake(260, 6, 50, 18)];
     lbStatus.layer.cornerRadius = 7;
     lbStatus.textColor = [UIColor whiteColor];
-    lbStatus.font = [UIFont systemFontOfSize:14];
+    lbStatus.font = [UIFont systemFontOfSize:13];
     lbStatus.textAlignment = NSTextAlignmentCenter;
     //if (!isPassed) {
         if ([strStatus isEqualToString:@"1"]) {//参会
             lbStatus.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
             lbStatus.text = @"参会";
         }else if([strStatus isEqualToString:@"2"]){
-            lbStatus.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+            lbStatus.layer.backgroundColor = [UIColor grayColor].CGColor;
             lbStatus.text = @"不参会";
         }
     //}
@@ -164,10 +170,12 @@
     [lbStatus release];
     //公司名称
     NSString *strCpName = rowData[@"companyName"];
-    labelSize = [CommonController CalculateFrame:strCpName fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
-    UILabel *lbCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y + lbTitle.frame.size.height + 5, labelSize.width, 15)];
+    labelSize = [CommonController CalculateFrame:strCpName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+    UILabel *lbCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y + lbTitle.frame.size.height + 10, labelSize.width, 15)];
+    lbCpName.numberOfLines = 0;
+    lbCpName.lineBreakMode = NSLineBreakByCharWrapping;
     lbCpName.text = strCpName;
-    lbCpName.font = [UIFont systemFontOfSize:14];
+    lbCpName.font = [UIFont systemFontOfSize:13];
     lbCpName.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbCpName)];
     [lbCpName release];
@@ -178,7 +186,7 @@
     strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     lbInviteTime.text = [NSString stringWithFormat:@"邀请时间：%@ %@",strBeginDate,strWeek];
-    lbInviteTime.font = [UIFont systemFontOfSize:14];
+    lbInviteTime.font = [UIFont systemFontOfSize:13];
     lbInviteTime.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbInviteTime)];
     [lbInviteTime release];
@@ -190,13 +198,14 @@
     [lbLine1 release];
     //招聘会名称
     NSString *strRmName = rowData[@"RecruitmentName"];
-    labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
-    UILabel *lbRmName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbInviteTime.frame.origin.y + 23, labelSize.width, 15)];
+    labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+    UILabel *lbRmName = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLine1.frame.origin.y + lbLine1.frame.size.height + 5, labelSize.width, labelSize.height)] autorelease];
     lbRmName.text = strRmName;
-    lbRmName.font = [UIFont systemFontOfSize:14];
+    lbRmName.numberOfLines = 0;
+    lbRmName.lineBreakMode = NSLineBreakByCharWrapping;
+    lbRmName.font = [UIFont systemFontOfSize:13];
     lbRmName.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbRmName)];
-    [lbRmName release];
 
     //当前选择行，显示详细信息
     if (selectRowIndex == indexPath.row) {
@@ -207,27 +216,29 @@
         strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
         NSString *strWeek = [CommonController getWeek:dtBeginDate];
         lbBeginTime.text = [NSString stringWithFormat:@"举办时间：%@ %@",strBeginDate,strWeek];
-        lbBeginTime.font = [UIFont systemFontOfSize:14];
+        lbBeginTime.font = [UIFont systemFontOfSize:13];
         lbBeginTime.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbBeginTime)];
         [lbBeginTime release];
         //举办场馆
         NSString *strPlace = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]];
-        labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
-        UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBeginTime.frame.origin.y + lbBeginTime.frame.size.height + 5, labelSize.width, 15)];
+        labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+        UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBeginTime.frame.origin.y + lbBeginTime.frame.size.height + 5, labelSize.width, labelSize.height)];
         lbPlace.text = strPlace;
-        lbPlace.font = [UIFont systemFontOfSize:14];
+        lbPlace.numberOfLines = 0;
+        lbPlace.lineBreakMode = NSLineBreakByCharWrapping;
+        lbPlace.font = [UIFont systemFontOfSize:13];
         lbPlace.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbPlace)];
         [lbPlace release];
         //坐标
-        UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(20 + lbPlace.frame.size.width, lbPlace.frame.origin.y, 15, 15)];
+        UIButton *btnLngLat = [[UIButton alloc] initWithFrame:CGRectMake(20 + lbPlace.frame.size.width, lbPlace.frame.origin.y, 12, 15)];
         self.lng = rowData[@"lng"];
         self.lat = rowData[@"lat"];
-        UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
-        imgLngLat.image = [UIImage imageNamed:@"ico_coordinate_red.png"];
+        UIImageView *imgLngLat = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 12, 15)];
+        imgLngLat.image = [UIImage imageNamed:@"ico_cpinfo_cpaddress.png"];
         [btnLngLat addSubview:imgLngLat];
-        btnLngLat.tag = (NSInteger)rowData[@"ID"];
+        btnLngLat.tag = indexPath.row;
         [btnLngLat addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:btnLngLat];
         [btnLngLat release];
@@ -238,26 +249,40 @@
         if (strDeskNo == nil) {
             strDeskNo = @"";
         }
-        lbDeskNo.text = [NSString stringWithFormat:@"展 位号：%@",strDeskNo];
-        lbDeskNo.font = [UIFont systemFontOfSize:14];
+        lbDeskNo.text = [NSString stringWithFormat:@"展 位 号：%@",strDeskNo];
+        lbDeskNo.font = [UIFont systemFontOfSize:13];
         lbDeskNo.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbDeskNo)];
         [lbDeskNo release];
         //具体地址
-        NSString *strAddress = [NSString stringWithFormat:@"具体地址：%@",rowData[@"Address"]];
-        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
-        UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, lbDeskNo.frame.origin.y + lbDeskNo.frame.size.height + 5, labelSize.width, 15)];
-        lbAddress.text = strPlace;
-        lbAddress.font = [UIFont systemFontOfSize:14];
+        UILabel *lbPreAddress =  [[[UILabel alloc] initWithFrame:CGRectMake(20, lbDeskNo.frame.origin.y + lbDeskNo.frame.size.height + 5, 70, 15)] autorelease];
+        lbPreAddress.text = @"具体地址：";
+        lbPreAddress.font = [UIFont systemFontOfSize:13];
+        lbPreAddress.textColor = [UIColor grayColor];
+        [cell.contentView addSubview:lbPreAddress];
+        NSString *strAddress = rowData[@"Address"];
+        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+        UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(85, lbDeskNo.frame.origin.y + lbDeskNo.frame.size.height + 5, labelSize.width, labelSize.height)];
+        lbAddress.text = strAddress;
+        lbAddress.numberOfLines = 0;
+        lbAddress.lineBreakMode = NSLineBreakByCharWrapping;
+        lbAddress.font = [UIFont systemFontOfSize:13];
         lbAddress.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbAddress)];
         [lbAddress release];
         //携带材料
-        NSString *strXdcl = [NSString stringWithFormat:@"携带材料：%@",rowData[@"Address"]];
-        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
-        UILabel *lbXdcl = [[UILabel alloc] initWithFrame:CGRectMake(20, lbAddress.frame.origin.y + lbAddress.frame.size.height + 5, labelSize.width, 15)];
+        UILabel *lbPreXdcl = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbAddress.frame.origin.y + lbAddress.frame.size.height + 5,  70, 15)] autorelease];
+        lbPreXdcl.text = @"携带材料：";
+        lbPreXdcl.font = [UIFont systemFontOfSize:13];
+        lbPreXdcl.textColor = [UIColor grayColor];
+        [cell.contentView addSubview:lbPreXdcl];
+        NSString *strXdcl = rowData[@"xdcl"];
+        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+        UILabel *lbXdcl = [[UILabel alloc] initWithFrame:CGRectMake(85, lbPreXdcl.frame.origin.y, labelSize.width, labelSize.height)];
         lbXdcl.text = strXdcl;
-        lbXdcl.font = [UIFont systemFontOfSize:14];
+        lbXdcl.lineBreakMode = NSLineBreakByCharWrapping;
+        lbXdcl.numberOfLines = 0;
+        lbXdcl.font = [UIFont systemFontOfSize:13];
         lbXdcl.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbXdcl)];
         [lbXdcl release];
@@ -268,29 +293,34 @@
         [cell.contentView addSubview:lbLine2];
         [lbLine2 release];
         //参会人
-        NSString *strLinkman = [NSString stringWithFormat:@"参会人：%@",rowData[@"linkman"]];
-        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
-        UILabel *lbLinkman = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine2.frame.origin.y + lbLine2.frame.size.height + 5, labelSize.width, 15)];
+        NSString *strLinkman = [NSString stringWithFormat:@"参 会 人：%@",rowData[@"linkman"]];
+        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+        UILabel *lbLinkman = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine2.frame.origin.y + lbLine2.frame.size.height + 5, labelSize.width, labelSize.height)];
         lbLinkman.text = strLinkman;
-        lbLinkman.font = [UIFont systemFontOfSize:14];
+        lbLinkman.numberOfLines = 0;
+        lbLinkman.lineBreakMode = NSLineBreakByCharWrapping;
+        lbLinkman.font = [UIFont systemFontOfSize:13];
         lbLinkman.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbLinkman)];
         [lbLinkman release];
         //手机号
         self.strMobile = rowData[@"Mobile"];
-        labelSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"手机号：%@",self.strMobile] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 15)];
-        UILabel *lbMobile = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, labelSize.width, 15)];
-        lbMobile.text = [NSString stringWithFormat:@"手机号：%@",self.strMobile];
-        lbMobile.font = [UIFont systemFontOfSize:14];
+         NSString *tmpMobile = [NSString stringWithFormat:@"手 机 号：%@", self.strMobile];
+        labelSize = [CommonController CalculateFrame:tmpMobile fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+        UILabel *lbMobile = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLinkman.frame.origin.y + lbLinkman.frame.size.height + 5, labelSize.width, labelSize.height)] autorelease];
+        lbMobile.text = tmpMobile;
+        lbMobile.numberOfLines = 0;
+        lbMobile.lineBreakMode = NSLineBreakByCharWrapping;
+        lbMobile.font = [UIFont systemFontOfSize:13];
         lbMobile.textColor = [UIColor grayColor];
         [cell.contentView addSubview:(lbMobile)];
-        [lbMobile release];
         //手机号后面的图标
-        UIButton *btnCallMobile = [[[UIButton alloc] initWithFrame:CGRectMake(lbMobile.frame.origin.x+lbMobile.frame.size.width+5, lbMobile.frame.origin.y+2, 15, 15)] autorelease];
+        UIButton *btnCallMobile = [[[UIButton alloc] initWithFrame:CGRectMake(lbMobile.frame.origin.x+lbMobile.frame.size.width+5, lbMobile.frame.origin.y, 15, 15)] autorelease];
         [btnCallMobile setImage:[UIImage imageNamed:@"ico_calltelphone.png"] forState:UIControlStateNormal];
         btnCallMobile.tag = (NSInteger)rowData[@"ID"];
         [cell.contentView addSubview:btnCallMobile];
         [btnCallMobile addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
+        
         //判断是否已经结束，如果没有结束，则可以赴约参会
         if (!isPassed && [strStatus isEqualToString:@"0"]) {
             //赴约参会
@@ -302,7 +332,7 @@
             UILabel *lbAccept = [[[UILabel alloc] initWithFrame:CGRectMake(33, 0, 99, 30)] autorelease];
             lbAccept.text = @"赴约";
             lbAccept.textColor = [UIColor whiteColor];
-            lbAccept.font = [UIFont systemFontOfSize:14];
+            lbAccept.font = [UIFont systemFontOfSize:13];
             [btnAccept addSubview:lbAccept];
             [cell.contentView addSubview:btnAccept];
             [btnAccept release];
@@ -315,7 +345,7 @@
             UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
             lbReject.text = @"不赴约";
             lbReject.textColor = [UIColor whiteColor];
-            lbReject.font = [UIFont systemFontOfSize:14];
+            lbReject.font = [UIFont systemFontOfSize:13];
             [btnReject addSubview:lbReject];
             [cell.contentView addSubview:btnReject];
             [btnReject release];
@@ -328,7 +358,7 @@
         selectRowHeight = 100;
     }
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 5, 320, 0.5)];
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 1, 320, 0.5)];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     
@@ -357,13 +387,15 @@
 
 //点击坐标
 -(void)btnLngLatClick:(UIButton *) sender{
-    NSLog(@"%d", sender.tag);
+    NSDictionary *rowData = recruitmentCpData[sender.tag];
     MapViewController *mapC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"MapView"];
-    mapC.lat = [self.lat floatValue];
-    mapC.lng = [self.lng floatValue];
+    mapC.lat = [rowData[@"lat"] floatValue];
+    mapC.lng = [rowData[@"lng"] floatValue];
+    [mapC.navigationItem setTitle:rowData[@"PlaceName"]];
     UIViewController *superJobC = [CommonController getFatherController:self.view];
-    [mapC.navigationItem setTitle:superJobC.navigationItem.title];
-    [superJobC.navigationController pushViewController:mapC animated:true];
+    if (mapC.lat != 0 && mapC.lng != 0) {
+         [superJobC.navigationController pushViewController:mapC animated:true];
+    }
 }
 
 //点击参会
@@ -374,6 +406,17 @@
 //点击不参会
 -(void)btnRejectClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
+}
+
+//点击职位
+-(void)btnJobClick:(UIButton *) sender{
+    NSDictionary *rowData = recruitmentCpData[sender.tag];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
+    SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
+    jobC.JobID = rowData[@"JobID"];
+    jobC.cpMainID = rowData[@"cpMainID"];
+    jobC.navigationItem.title = rowData[@"companyName"];
+    [[CommonController getFatherController:self.view].navigationController pushViewController:jobC animated:YES];
 }
 
 //点击我参会的企业
@@ -407,14 +450,14 @@
     if (selectRowIndex == indexPath.row) {
         //如果未结束，并且没操作
         if (!isPassed&&[strStatus isEqualToString:@"0"]) {
-            return 280;
+            return 285;
         }
         else {
-             return 245;
+             return 250;
         }
        
     }else {
-        return 95;
+        return 100;
     }
 }
 
