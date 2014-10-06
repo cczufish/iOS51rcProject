@@ -71,8 +71,8 @@
     
     //设置底部功能栏
     //self.view.frame = CGRectMake(0, 0, 320, HEIGHT-170);
-    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-152);
-    self.viewBottom.frame = CGRectMake(-1, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 322, self.viewBottom.frame.size.height);
+    self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-148);
+    self.viewBottom.frame = CGRectMake(0, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 320, self.viewBottom.frame.size.height);
     self.viewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.viewBottom.layer.borderWidth = 1;
     self.btnDelete.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
