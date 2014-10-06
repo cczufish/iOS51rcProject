@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
     self.arrayTxtView = [[NSMutableArray alloc] init];//临时存放
-    self.lbMessage.layer.borderColor=[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.lbMessage.layer.borderColor=[UIColor lightGrayColor].CGColor;
     self.lbMessage.layer.borderWidth = 0.5;
     selectRowIndex = 0;
     selectRowHeight = 110;//选择行的高度
@@ -215,7 +215,7 @@
     if ([strReply isEqualToString:@"0"]) {
         lbLeft.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1].CGColor;
     }else{
-        lbLeft.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+        lbLeft.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
     }
     
     [cell.contentView addSubview:lbLeft];
