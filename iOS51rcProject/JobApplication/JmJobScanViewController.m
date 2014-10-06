@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     self.lbTop.layer.borderWidth = 0.5;
-    self.lbTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置底部功能栏
@@ -46,8 +46,7 @@
     self.btnApply.layer.cornerRadius = 5;
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     self.viewBottom.layer.borderWidth = 1.0;
-    self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
-    
+    self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     
     [self.btnFavourity addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
     //加载等待动画

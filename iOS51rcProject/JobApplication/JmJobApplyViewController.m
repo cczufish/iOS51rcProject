@@ -54,7 +54,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad]; 
-    self.lbTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.lbTop.layer.borderWidth = 0.5;
     self.btnTop.titleLabel.text = @"相关简历";
     self.btnTop.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -73,7 +73,7 @@
     //self.view.frame = CGRectMake(0, 0, 320, HEIGHT-170);
     self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-152);
     self.viewBottom.frame = CGRectMake(-1, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height, 322, self.viewBottom.frame.size.height);
-    self.viewBottom.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.viewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.viewBottom.layer.borderWidth = 1;
     self.btnDelete.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.btnDelete.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;

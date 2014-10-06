@@ -37,7 +37,7 @@
     [super viewDidLoad];
     
     self.lbTop.layer.borderWidth = 0.5;
-    self.lbTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置底部功能栏
@@ -49,7 +49,7 @@
     self.btnDelete.layer.borderWidth = 0.5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.btnDelete.layer.cornerRadius = 5;
-    self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
+    self.viewBottom.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     [self.btnDelete addTarget:self action:@selector(jobDelete) forControlEvents:UIControlEventTouchUpInside];
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -332,12 +332,13 @@
     return 77;
 }
 
+//点击某一行
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *rowData = self.jobListData[indexPath.row];
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperJobMainViewController *jobC = [storyBoard instantiateViewControllerWithIdentifier:@"SuperJobMainView"];
-    jobC.JobID = rowData[@"ID"];
+    jobC.JobID = rowData[@"JobID"];
     jobC.cpMainID = rowData[@"cpID"];
     jobC.navigationItem.title = rowData[@"cpName"];
     UIViewController *pCtrl = [self getFatherController];
