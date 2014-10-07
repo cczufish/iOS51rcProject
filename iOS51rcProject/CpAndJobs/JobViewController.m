@@ -426,7 +426,7 @@
         return;
     }
 
-     //以下是职位没有过期的情况
+    //以下是职位没有过期的情况
     //职位名称
     NSString *jobName = dicJob[@"Name"];
     CGSize labelSize = [CommonController CalculateFrame:jobName fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];

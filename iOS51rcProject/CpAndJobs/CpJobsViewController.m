@@ -39,7 +39,7 @@
     self.ViewBottom.frame = CGRectMake(0, HEIGHT - 170, 320, 55);//底部
     //self.tvCpJobList.frame = CGRectMake(0, 0, 320, HEIGHT - 170);//设置了autosize，不用设置该句
     //设置边框
-    self.ViewBottom.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.ViewBottom.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.ViewBottom.layer.borderWidth = 0.5;
     //不显示列表分隔线
     self.tvCpJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
