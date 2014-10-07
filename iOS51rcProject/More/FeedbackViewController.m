@@ -42,7 +42,8 @@
 //初始化控件
 -(void) initControl{
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    self.txtEmail.text = [userDefaults objectForKey:@"UserID"];
+    
+    self.txtName.text = [userDefaults objectForKey:@"paName"];
     self.txtEmail.text = [userDefaults objectForKey:@"UserName"];
 
     self.UserInfoView.layer.cornerRadius = 5;
