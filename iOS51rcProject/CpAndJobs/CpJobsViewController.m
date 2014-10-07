@@ -125,10 +125,10 @@
     NSString *strefreshDate = rowData[@"RefreshDate"];
     NSDate *dtefreshDate = [CommonController dateFromString:strefreshDate];
     strefreshDate = [CommonController stringFromDate:dtefreshDate formatType:@"MM-dd HH:mm"];
-    UILabel *lbeRfreshDate = [[UILabel alloc] initWithFrame:CGRectMake(220, lbTitle.frame.origin.y, 80, labelSize.height)];
+    UILabel *lbeRfreshDate = [[UILabel alloc] initWithFrame:CGRectMake(230, lbTitle.frame.origin.y, 80, labelSize.height)];
     lbeRfreshDate.text = strefreshDate;
     lbeRfreshDate.textAlignment = NSTextAlignmentRight;
-    lbeRfreshDate.font = [UIFont systemFontOfSize:14];
+    lbeRfreshDate.font = [UIFont systemFontOfSize:13];
     lbeRfreshDate.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbeRfreshDate)];
     [lbeRfreshDate release];
@@ -146,9 +146,9 @@
     [lbInfo release];
     //工资
     NSString *strdcSalaryID = rowData[@"dcSalaryID"];
-    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(220, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 80, labelSize.height)];
+    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(230, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 80, labelSize.height)];
     lbSalary.text = [CommonController getDictionaryDesc:strdcSalaryID tableName:@"dcSalary"];
-    lbSalary.font = [UIFont systemFontOfSize:14];
+    lbSalary.font = [UIFont systemFontOfSize:13];
     lbSalary.textAlignment = NSTextAlignmentRight;
     lbSalary.textColor = [UIColor redColor];
     [cell.contentView addSubview:(lbSalary)];
