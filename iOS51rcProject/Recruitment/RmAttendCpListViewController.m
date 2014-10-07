@@ -211,7 +211,7 @@
             //没有图片，只显示“已预约”三个字
             lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, 40, 10)];
             lbWillRun.text = @"已预约";
-            lbWillRun.font = [UIFont systemFontOfSize:14];
+            lbWillRun.font = [UIFont systemFontOfSize:13];
             lbWillRun.textColor = [UIColor grayColor];
             lbWillRun.textAlignment = NSTextAlignmentCenter;
         }else{
@@ -225,6 +225,7 @@
             imgWillRun.image = [UIImage imageNamed:@"ico_rm_group.png"];
             [rightButton addSubview:imgWillRun];
             //没有预约才可以点击
+            objc_setAssociatedObject(rightButton, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             [rightButton addTarget:self action:@selector(bookinginterview:) forControlEvents:UIControlEventTouchUpInside];
         }
         
@@ -232,7 +233,6 @@
         rightButton.tag = [rowData[@"cpMainID"] integerValue];
         [cell.contentView addSubview:rightButton];
     }
-    
     
     //分割线
     UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y+lbBegin.frame.size.height + 5, 325, 1)] autorelease];
@@ -268,7 +268,16 @@
 
 //点击我要参会--进入邀请企业参会页面（预约一个）
 -(void) bookinginterview:(UIButton *)sender{
+    RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
+    NSMutableArray *checkedCp = [[NSMutableArray alloc] init];
+    [checkedCp addObject:selectCp];
     RmInviteCpViewController *rmInviteCpViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+    rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
+    rmInviteCpViewCtrl.strAddress = self.strAddress;
+    rmInviteCpViewCtrl.strPlace = self.strPlace;
+    rmInviteCpViewCtrl.strRmID = self.rmID;
+    rmInviteCpViewCtrl.selectRmCps = checkedCp;
+    [self.checkedCpArray retain];
     [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
 
