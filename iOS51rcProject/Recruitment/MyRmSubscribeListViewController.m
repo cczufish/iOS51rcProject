@@ -203,7 +203,7 @@
     //我邀请的企业按钮
     btnMyRmCp.tag = [rowData[@"id"] intValue];
     btnMyRmCp.layer.borderWidth = 0.5;
-    btnMyRmCp.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    btnMyRmCp.layer.borderColor = [UIColor lightGrayColor].CGColor;
     if (![myRmCpCount isEqualToString:@"0"]) {//大于0才可以点击
         [btnMyRmCp addTarget:self action:@selector(myInvitedCp:) forControlEvents:UIControlEventTouchUpInside];
     }
