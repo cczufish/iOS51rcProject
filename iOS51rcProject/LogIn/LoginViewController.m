@@ -15,6 +15,7 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain, nonatomic) IBOutlet UILabel *lbFirst;
 @property (retain, nonatomic) IBOutlet UILabel *lbSecond;
+@property (retain, nonatomic) IBOutlet UILabel *lbLongLine;
 @end
 
 @implementation LoginViewController
@@ -37,6 +38,7 @@
 {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;//不加这一行，滚动条会飘
+    self.lbLongLine.frame = CGRectMake(self.lbLongLine.frame.origin.x, self.lbLongLine.frame.origin.y, 320, 0.5) ;
     self.scrollView.delegate = self;
     self.navigationItem.title = @"登录";   
     //获得子View
@@ -49,7 +51,7 @@
     self.loginDetailsView.gotoHomeDelegate = self;;
     self.registerView.gotoHomeDelegate = self;
     
-    //把两个个子View加到Scrollview中
+    //把两个子View加到Scrollview中
     [self.scrollView addSubview:self.loginDetailsView.view];
     [self.scrollView addSubview:self.registerView.view];
     [self.scrollView setContentSize:CGSizeMake(640, self.scrollView.frame.size.height)];//这一行必须放到后面。。否则不滑动
@@ -126,6 +128,7 @@
     [_btnRegister release];
     [_lbFirst release];
     [_lbSecond release];
+    [_lbLongLine release];
     [super dealloc];
 }
 @end
