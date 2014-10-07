@@ -185,7 +185,7 @@
     [cell.contentView addSubview:(lbBegin)];
     
     //分割线
-    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y+lbBegin.frame.size.height + 5, 320, 0.5)] autorelease];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y+lbBegin.frame.size.height + 5, 320, 1)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
 

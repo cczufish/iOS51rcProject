@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UITableView *tvRecruitmentCpList;
 @property (retain, nonatomic) IBOutlet UIButton *btnInvite;
+@property (retain, nonatomic) IBOutlet UIView *viewBottom;
 
 @end
 
@@ -45,6 +46,9 @@
         expired = true;
     }
     self.navigationItem.title = @"参会企业";
+    self.btnInvite.layer.cornerRadius = 5;
+    self.viewBottom.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.viewBottom.layer.borderWidth = 1;
     //选择的企业
     self.checkedCpArray = [[NSMutableArray alloc] init];
     page = 1;
@@ -231,7 +235,7 @@
     
     
     //分割线
-    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y+lbBegin.frame.size.height + 5, 325, 0.5)] autorelease];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y+lbBegin.frame.size.height + 5, 325, 1)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     [lbTitle release];
@@ -313,6 +317,7 @@
     [_recruitmentCpData release];
     [_tvRecruitmentCpList release];
     [_btnInvite release];
+    [_viewBottom release];
     [super dealloc];
 }
 @end
