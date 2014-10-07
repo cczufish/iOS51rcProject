@@ -91,12 +91,12 @@
         [self.arrCheckJobID removeAllObjects];
     }else if (request.tag == 4) { //重新申请职位成功
         [pCtrl.view makeToast:@"简历更换成功"];
-        [self.arrCheckJobID removeAllObjects];
-        [self.tvCpJobList reloadData];
+        //[self.arrCheckJobID removeAllObjects];
+        //[self.tvCpJobList reloadData];//不清空选择框
     }else if (request.tag == 5) {
         [pCtrl.view makeToast:@"收藏成功"];
-        [self.arrCheckJobID removeAllObjects];
-        [self.tvCpJobList reloadData];
+        //[self.arrCheckJobID removeAllObjects];
+        //[self.tvCpJobList reloadData];//不清空选择框
     }
     
     //结束等待动画
