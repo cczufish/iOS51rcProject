@@ -7,7 +7,7 @@
 #import "FMDatabase.h"
 #import "CommonController.h"
 
-@interface CommonSearchJobViewController ()<DictionaryPickerDelegate>
+@interface CommonSearchJobViewController ()<DictionaryPickerDelegate, UITextFieldDelegate>
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @property (retain, nonatomic) NSString *regionSelect;
 @property (retain, nonatomic) NSString *jobTypeSelect;
@@ -34,6 +34,22 @@
 //搜索代理
 -(void) gotoJobSearchResultListView{
     
+}
+
+//点击空白隐藏键盘
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.txtKeyWord resignFirstResponder];
+}
+
+//当用户按下return键或者按回车键，keyboard消失
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (IBAction)TextField_DidEndOnExit:(id)sender {
+    [self.txtKeyWord resignFirstResponder];
 }
 
 - (void)viewDidLoad

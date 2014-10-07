@@ -20,4 +20,5 @@
 @property (retain, nonatomic) UIView *viewHistory;
 @property (retain, nonatomic) id<GoJobSearchResultListViewDelegate>searchDelegate;
 
+- (IBAction)TextField_DidEndOnExit:(id)sender;
 @end
