@@ -83,7 +83,7 @@
     
     NSDictionary *rowData = recruitmentCpData[indexPath.row];
     //审核图标
-    UIImageView *imgShen = [[UIImageView alloc] initWithFrame:CGRectMake(20, 16, 14, 14)];
+    UIImageView *imgShen = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 14, 14)];
     imgShen.image = [UIImage imageNamed:@"ico_shen.png"];
     [cell.contentView addSubview:imgShen];
     [imgShen release];
@@ -94,7 +94,7 @@
     CGFloat titleWidth = 220;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strCpName fontDemond:titleFont sizeDemand:titleSize];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 15, labelSize.width, labelSize.height)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(35, 10, labelSize.width, labelSize.height)];
     lbTitle.text = strCpName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
@@ -105,16 +105,16 @@
     UILabel *lbPreCpName = [[UILabel alloc] initWithFrame:CGRectMake(20, lbTitle.frame.origin.y+lbTitle.frame.size.height+5, 70, 15)];
     lbPreCpName.text = @"应聘职位：";
     lbPreCpName.textColor = [UIColor grayColor];
-    lbPreCpName.font = [UIFont systemFontOfSize:14];
+    lbPreCpName.font = [UIFont systemFontOfSize:13];
     [cell.contentView addSubview:lbPreCpName];
     [lbPreCpName release];
     
     //应聘职位
     NSString *strAddress = rowData[@"JobName"];
-    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
+    labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:13] sizeDemand:titleSize];
     UILabel *lbPaInfo = [[UILabel alloc] initWithFrame:CGRectMake(90, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbPaInfo.text = strAddress;
-    lbPaInfo.font = [UIFont systemFontOfSize:14];
+    lbPaInfo.font = [UIFont systemFontOfSize:13];
     lbPaInfo.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     [cell.contentView addSubview:(lbPaInfo)];
     
@@ -125,10 +125,10 @@
     NSString *strWeek = [CommonController getWeek:dtBeginDate];
     strBeginDate = [NSString stringWithFormat:@"邀请时间：%@ %@",strBeginDate,strWeek];
     
-    labelSize = [CommonController CalculateFrame:strBeginDate fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
+    labelSize = [CommonController CalculateFrame:strBeginDate fontDemond:[UIFont systemFontOfSize:13] sizeDemand:titleSize];
     UILabel *lbBegin = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPaInfo.frame.origin.y+lbPaInfo.frame.size.height + 5, labelSize.width, labelSize.height)];
     lbBegin.text = strBeginDate;
-    lbBegin.font = [UIFont systemFontOfSize:14];
+    lbBegin.font = [UIFont systemFontOfSize:13];
     lbBegin.textColor = [UIColor grayColor];
     [cell.contentView addSubview:(lbBegin)];
     
@@ -141,7 +141,7 @@
     if ([strStatus isEqualToString:@"0"]) {
         lbStatus.frame = CGRectMake(250, 18, 50, 15);
         lbStatus.text = @"未答复";
-        lbStatus.font = [UIFont systemFontOfSize:14];
+        lbStatus.font = [UIFont systemFontOfSize:13];
         lbStatus.textColor = [UIColor whiteColor];
         lbStatus.textAlignment = NSTextAlignmentCenter;
         lbStatus.layer.cornerRadius = 7;
@@ -150,7 +150,7 @@
         //如果参会
         lbStatus.frame = CGRectMake(250, 18, 50, 15);
         lbStatus.text = @"参会";
-        lbStatus.font = [UIFont systemFontOfSize:14];
+        lbStatus.font = [UIFont systemFontOfSize:13];
         lbStatus.textColor = [UIColor whiteColor];
         lbStatus.textAlignment = NSTextAlignmentCenter;
         lbStatus.layer.cornerRadius = 7;
@@ -160,7 +160,7 @@
         NSString *strDeskNo = rowData[@"DeskNo"];
         lbDeskNo.text = [NSString stringWithFormat:@"展位号：%@", strDeskNo];
         lbDeskNo.textColor = [UIColor grayColor];
-        lbDeskNo.font = [UIFont systemFontOfSize:14];
+        lbDeskNo.font = [UIFont systemFontOfSize:13];
         lbDeskNo.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:lbDeskNo];
         [lbDeskNo release];
@@ -172,7 +172,7 @@
         strWeek = [CommonController getWeek:dtReplyDate];
         strReplyDate = [NSString stringWithFormat:@"答复时间：%@ %@",dtReplyDate,strWeek];
         lbReplyTime.textColor = [UIColor grayColor];
-        lbReplyTime.font = [UIFont systemFontOfSize:14];
+        lbReplyTime.font = [UIFont systemFontOfSize:13];
         lbReplyTime.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:lbReplyTime];
         [lbReplyTime release];
@@ -180,7 +180,7 @@
         //不参会
         lbStatus.frame = CGRectMake(250, 18, 50, 15);
         lbStatus.text = @"不参会";
-        lbStatus.font = [UIFont systemFontOfSize:14];
+        lbStatus.font = [UIFont systemFontOfSize:13];
         lbStatus.textColor = [UIColor whiteColor];
         lbStatus.textAlignment = NSTextAlignmentCenter;
         lbStatus.layer.cornerRadius = 7;
@@ -194,7 +194,7 @@
         strWeek = [CommonController getWeek:dtReplyDate];
         strReplyDate = [NSString stringWithFormat:@"答复时间：%@ %@",dtReplyDate,strWeek];
         lbReplyTime.textColor = [UIColor grayColor];
-        lbReplyTime.font = [UIFont systemFontOfSize:14];
+        lbReplyTime.font = [UIFont systemFontOfSize:13];
         lbReplyTime.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:lbReplyTime];
         [lbReplyTime release];
@@ -207,6 +207,13 @@
     [lbTitle release];
     [lbPaInfo release];
     [lbBegin release];
+    
+    //分割线
+    if (indexPath.row != recruitmentCpData.count - 1) {
+        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y + lbBegin.frame.size.height + 8, 320, 1)];
+        [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
+        [cell.contentView addSubview:viewSeparate];
+    }
     return cell;
 }
 
