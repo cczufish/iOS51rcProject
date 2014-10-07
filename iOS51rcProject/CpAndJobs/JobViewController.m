@@ -414,7 +414,7 @@
         img.image = [UIImage imageNamed:@"pic_noinfo.png"];
         [viewIssueEnded addSubview:img];
         
-        UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(40, 10, 220, 20)] autorelease];
+        UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(40, 20, 220, 20)] autorelease];
         lb1.text = @"抱歉，该职位已经过期。";
         lb1.font = [UIFont systemFontOfSize:14];
         lb1.textAlignment = NSTextAlignmentCenter;
