@@ -8,7 +8,7 @@
 #import "GRItemDetailsViewController.h"
 
 @interface GRListViewController ()<NetWebServiceRequestDelegate,SlideNavigationControllerDelegate>
-@property (retain, nonatomic) IBOutlet UITableView *tvGRList;
+@property (retain, nonatomic) IBOutlet UICollectionView *tvGRList;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @end
 
@@ -26,6 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithRed:250.f/255.f green:250.f/255.f blue:250.f/255.f alpha:1];
+    self.tvGRList.backgroundColor = [UIColor colorWithRed:250.f/255.f green:250.f/255.f blue:250.f/255.f alpha:1];
     [self.navigationItem setTitle:@"政府招考"];
     
     self.gRListData = [[NSMutableArray alloc] init];
@@ -38,8 +40,6 @@
     
     //添加上拉加载更多
     [self.tvGRList addFooterWithTarget:self action:@selector(footerRereshing)];
-    //不显示列表分隔线
-    self.tvGRList.separatorStyle = UITableViewCellSeparatorStyleNone;
    
     page = 1;
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
@@ -80,77 +80,76 @@
     [super didReceiveMemoryWarning];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    UITableViewCell *cell =
-    [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"rmList"] autorelease];
-    
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"grList" forIndexPath:indexPath];
+    //清除以前的
+    for (UIView*view in cell.contentView.subviews) {
+        if (view) {
+            [view removeFromSuperview];
+        }
+    }
     NSDictionary *rowData = self.gRListData[indexPath.row];
-    
-    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 310, 55)];
-    tmpView.layer.borderWidth = 0.5;
-    tmpView.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+   
+    cell.layer.borderWidth = 1;
+    cell.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    cell.backgroundColor = [UIColor whiteColor];//与背景颜色区分开
+    //点击
+    UIButton *buttonTitle = [[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 300, 55)] autorelease];
+    [buttonTitle setTag:[rowData[@"ID"] intValue]];
+    [buttonTitle addTarget:self action:@selector(btnGrItemClick:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:buttonTitle];
     //显示标题
     NSString *strTitle = rowData[@"Title"];
-    UIFont *titleFont = [UIFont systemFontOfSize:14];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 280, 17)];
+    UIFont *titleFont = [UIFont systemFontOfSize:13];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 290, 17)];
     lbTitle.text = strTitle;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
     lbTitle.font = titleFont;
-    [tmpView addSubview:(lbTitle)];
+    [cell.contentView addSubview:(lbTitle)];
     [lbTitle release];
     //来源
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 200, 15)];
     lbAuthor.text = rowData[@"Author"];
-    lbAuthor.font = [UIFont systemFontOfSize:13];
+    lbAuthor.font = [UIFont systemFontOfSize:12];
     lbAuthor.textColor = [UIColor grayColor];
-    [tmpView addSubview:(lbAuthor)];
+    [cell.contentView addSubview:(lbAuthor)];
     [lbAuthor release];
     //显示举办时间
-    UILabel *lbTime = [[UILabel alloc] initWithFrame:CGRectMake(220, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 80, 15)];
+    UILabel *lbTime = [[UILabel alloc] initWithFrame:CGRectMake(200, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 80, 15)];
     NSString *strDate = rowData[@"RefreshDate"];
     NSDate *dtBeginDate = [CommonController dateFromString:strDate];
     strDate = [CommonController stringFromDate:dtBeginDate formatType:@"MM-dd HH:mm"];
     lbTime.text = strDate;
     lbTime.textColor = [UIColor grayColor];
-    lbTime.font = [UIFont systemFontOfSize:13];
+    lbTime.font = [UIFont systemFontOfSize:12];
     lbTime.textAlignment = NSTextAlignmentRight;
-    [tmpView addSubview:(lbTime)];
+    [cell.contentView addSubview:(lbTime)];
     [lbTime release];
     //New图片
     NSDate *today = [NSDate date];
     NSString *strToday = [CommonController stringFromDate:today formatType:@"yyyy-MM-dd"];
-    //today =[ CommonController dateFromString:strToday];
     NSString *tmpDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd"];
-    //NSDate *dtEarly = [today earlierDate:dtBeginDate];
-    //if ([dtEarly isEqualToDate:today]) {
     if ([strToday isEqualToString:tmpDate]) {
         UIImageView *imgNew = [[UIImageView alloc] initWithFrame:CGRectMake(280, 0, 30, 30)];
         imgNew.image = [UIImage imageNamed:@"ico_jobnews_searchresult.png"];
-        [tmpView addSubview:imgNew];
+        [cell.contentView addSubview:imgNew];
         [imgNew release];
     }
     
-    [cell.contentView addSubview:tmpView];
-    [tmpView autorelease];
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+- (void)btnGrItemClick:(UIButton *)sender
+{
     GRItemDetailsViewController *detailCtrl = (GRItemDetailsViewController*)[self.storyboard
-                                                                      instantiateViewControllerWithIdentifier: @"GRItemDetailsView"];
-    detailCtrl.strNewsID = self.gRListData[indexPath.row][@"ID"];
+                                                                          instantiateViewControllerWithIdentifier: @"GRItemDetailsView"];
+    detailCtrl.strNewsID = [NSString stringWithFormat:@"%d",sender.tag];
     [self.navigationController pushViewController:detailCtrl animated:true];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [self.gRListData count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 58;
 }
 
 - (void)footerRereshing{
@@ -180,13 +179,10 @@
 }
 
 - (void)dealloc {
-//    //[placeData release];
-//    //[loadView release];
     [_tvGRList release];
     [_runningRequest release];
     [super dealloc];
 }
-
 
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu

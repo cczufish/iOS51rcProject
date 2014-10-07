@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "LoadingAnimationView.h"
 
-@interface GRListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
+@interface GRListViewController : UIViewController <UICollectionViewDataSource,UICollectionViewDelegate>
 {
     NSInteger page;    
     NSString *regionid;    
