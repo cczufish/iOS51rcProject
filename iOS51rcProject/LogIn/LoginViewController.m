@@ -98,11 +98,11 @@
     findPsd1View.navigationItem.title = @"重置密码";   
 }
 
+//返回到登录之前的页面
 - (void) gotoHome
 {
     UIView *viewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-    if ([viewC isKindOfClass:[HomeViewController class]]) {
-//        HomeViewController *homeViewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    if ([viewC isKindOfClass:[HomeViewController class]] || [viewC isKindOfClass:[FindPsdStep3ViewController class]]) {
         HomeViewController *homeViewC = [[UIStoryboard storyboardWithName:@"Home" bundle: nil] instantiateViewControllerWithIdentifier: @"HomeView"];
         homeViewC.toastType = 2;
         [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:homeViewC withCompletion:nil];
