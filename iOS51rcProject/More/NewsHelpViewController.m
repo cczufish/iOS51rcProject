@@ -31,16 +31,16 @@
     imageView4.frame = CGRectMake(3*320, 0, 320, HEIGHT);
     //添加图片
     if (HEIGHT == 568) {
-        imageView1.image = [UIImage imageNamed:@"welcom2-320x1136.png"];
-        imageView2.image = [UIImage imageNamed:@"welcom3-320x1136.png"];
-        imageView3.image = [UIImage imageNamed:@"welcom4-320x1136.png"];
-        imageView4.image = [UIImage imageNamed:@"welcom5-320x1136.png"];
+        imageView1.image = [UIImage imageNamed:@"welcome2_large.png"];
+        imageView2.image = [UIImage imageNamed:@"welcome3_large.png"];
+        imageView3.image = [UIImage imageNamed:@"welcome4_large.png"];
+        imageView4.image = [UIImage imageNamed:@"welcome5_large.png"];
     }
     else{
-        imageView1.image = [UIImage imageNamed:@"welcom2-320x960.png"];
-        imageView2.image = [UIImage imageNamed:@"welcom3-320x960.png"];
-        imageView3.image = [UIImage imageNamed:@"welcom4-320x960.png"];
-        imageView4.image = [UIImage imageNamed:@"welcom5-320x960.png"];
+        imageView1.image = [UIImage imageNamed:@"welcome2_small.png"];
+        imageView2.image = [UIImage imageNamed:@"welcome3_small.png"];
+        imageView3.image = [UIImage imageNamed:@"welcome4_small.png"];
+        imageView4.image = [UIImage imageNamed:@"welcome5_small.png"];
     }
     
     //创建最后一个点击按钮

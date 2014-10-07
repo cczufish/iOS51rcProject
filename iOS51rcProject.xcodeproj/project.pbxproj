@@ -266,8 +266,6 @@
 		99AF5B8C19C1317E00BE73F2 /* ico_member_mycv.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B8419C1317E00BE73F2 /* ico_member_mycv.png */; };
 		99B350B7199CB1F100CAEC71 /* index640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350AD199CB1F100CAEC71 /* index640x960.png */; };
 		99B350B8199CB1F100CAEC71 /* index640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350AE199CB1F100CAEC71 /* index640x1136.png */; };
-		99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */; };
-		99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */; };
 		99B3D17F19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B3D17E19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m */; };
 		99B3D18119D40D4F00AEF1D9 /* btn_keywords_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B3D18019D40D4F00AEF1D9 /* btn_keywords_del.png */; };
 		99B3D18319D414C800AEF1D9 /* ico_hiskeywords_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B3D18219D414C800AEF1D9 /* ico_hiskeywords_del.png */; };
@@ -923,8 +921,6 @@
 		99AF5B8419C1317E00BE73F2 /* ico_member_mycv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_mycv.png; sourceTree = "<group>"; };
 		99B350AD199CB1F100CAEC71 /* index640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = index640x960.png; sourceTree = "<group>"; };
 		99B350AE199CB1F100CAEC71 /* index640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = index640x1136.png; sourceTree = "<group>"; };
-		99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x960.png"; sourceTree = "<group>"; };
-		99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x1136.png"; sourceTree = "<group>"; };
 		99B3D17D19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchByKeyWorkViewController.h; path = Search/SearchByKeyWorkViewController.h; sourceTree = "<group>"; };
 		99B3D17E19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchByKeyWorkViewController.m; path = Search/SearchByKeyWorkViewController.m; sourceTree = "<group>"; };
 		99B3D18019D40D4F00AEF1D9 /* btn_keywords_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_keywords_del.png; sourceTree = "<group>"; };
@@ -2294,8 +2290,6 @@
 				991125A219A4D24F00C98173 /* ico_expire.png */,
 				9945C30C19A1AB370027E931 /* ico_rm_group.png */,
 				9945C30A19A1A4890027E931 /* ico_clock.png */,
-				99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */,
-				99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */,
 				99B350AD199CB1F100CAEC71 /* index640x960.png */,
 				99B350AE199CB1F100CAEC71 /* index640x1136.png */,
 				99CFD850199B60D8009A5ABA /* bg_leftmenu.png */,
@@ -2535,7 +2529,6 @@
 				992A5B4719BE94D80042F2EB /* ico_rm_head.png in Resources */,
 				99E76D6419BE8724004DD65F /* bg_lasttime_red.png in Resources */,
 				99CFD87B199B60D8009A5ABA /* ico_leftmenu_head.png in Resources */,
-				99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */,
 				99AF5B8719C1317E00BE73F2 /* ico_member_cpinvite.png in Resources */,
 				99C539C119C962A600E6165A /* ico_salary_rank1.png in Resources */,
 				99512F6019A5C64800E56EF4 /* ico_calltelphone.png in Resources */,
@@ -2598,7 +2591,6 @@
 				99CFD884199B60D8009A5ABA /* ico_main_membercenter.png in Resources */,
 				99CFD891199B60D8009A5ABA /* main_pic_govnews.png in Resources */,
 				99EF851319E3F83900EB2CFA /* welcome2_large.png in Resources */,
-				99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */,
 				9942F39719B95C2100191C74 /* ico_mainmore_opinion.png in Resources */,
 				9994AF3919D144BF008068AD /* ico_fuli_banche.png in Resources */,
 				9927AC5F19C7E37F0037E3F9 /* SalaryAnalysis.storyboard in Resources */,
