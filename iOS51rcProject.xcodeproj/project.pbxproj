@@ -266,12 +266,6 @@
 		99AF5B8C19C1317E00BE73F2 /* ico_member_mycv.png in Resources */ = {isa = PBXBuildFile; fileRef = 99AF5B8419C1317E00BE73F2 /* ico_member_mycv.png */; };
 		99B350B7199CB1F100CAEC71 /* index640x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350AD199CB1F100CAEC71 /* index640x960.png */; };
 		99B350B8199CB1F100CAEC71 /* index640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350AE199CB1F100CAEC71 /* index640x1136.png */; };
-		99B350BB199CB1F100CAEC71 /* welcom2-320x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350B1199CB1F100CAEC71 /* welcom2-320x960.png */; };
-		99B350BC199CB1F100CAEC71 /* welcom2-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350B2199CB1F100CAEC71 /* welcom2-320x1136.png */; };
-		99B350BD199CB1F100CAEC71 /* welcom3-320x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350B3199CB1F100CAEC71 /* welcom3-320x960.png */; };
-		99B350BE199CB1F100CAEC71 /* welcom3-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350B4199CB1F100CAEC71 /* welcom3-320x1136.png */; };
-		99B350BF199CB1F100CAEC71 /* welcom4-320x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350B5199CB1F100CAEC71 /* welcom4-320x960.png */; };
-		99B350C0199CB1F100CAEC71 /* welcom4-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350B6199CB1F100CAEC71 /* welcom4-320x1136.png */; };
 		99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */; };
 		99B350CA199CB43A00CAEC71 /* welcom5-320x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */; };
 		99B3D17F19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B3D17E19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m */; };
@@ -387,6 +381,14 @@
 		99E35B2519D7B9310087941A /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E35B2319D7B9310087941A /* AppIcon@2x.png */; };
 		99E76D6319BE8724004DD65F /* bg_lasttiem_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E76D6119BE8724004DD65F /* bg_lasttiem_green.png */; };
 		99E76D6419BE8724004DD65F /* bg_lasttime_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E76D6219BE8724004DD65F /* bg_lasttime_red.png */; };
+		99EF851319E3F83900EB2CFA /* welcome2_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF850B19E3F83900EB2CFA /* welcome2_large.png */; };
+		99EF851419E3F83900EB2CFA /* welcome2_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF850C19E3F83900EB2CFA /* welcome2_small.png */; };
+		99EF851519E3F83900EB2CFA /* welcome3_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF850D19E3F83900EB2CFA /* welcome3_large.png */; };
+		99EF851619E3F83900EB2CFA /* welcome3_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF850E19E3F83900EB2CFA /* welcome3_small.png */; };
+		99EF851719E3F83900EB2CFA /* welcome4_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF850F19E3F83900EB2CFA /* welcome4_large.png */; };
+		99EF851819E3F83900EB2CFA /* welcome4_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF851019E3F83900EB2CFA /* welcome4_small.png */; };
+		99EF851919E3F83900EB2CFA /* welcome5_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF851119E3F83900EB2CFA /* welcome5_large.png */; };
+		99EF851A19E3F83900EB2CFA /* welcome5_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF851219E3F83900EB2CFA /* welcome5_small.png */; };
 		99F3F84519B007C100B5AB88 /* ico_shen.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F3F84419B007C100B5AB88 /* ico_shen.png */; };
 		99F3F84819B00CEB00B5AB88 /* ico_jobapply_no.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F3F84619B00CEB00B5AB88 /* ico_jobapply_no.png */; };
 		99F3F84919B00CEB00B5AB88 /* ico_jobright.png in Resources */ = {isa = PBXBuildFile; fileRef = 99F3F84719B00CEB00B5AB88 /* ico_jobright.png */; };
@@ -921,12 +923,6 @@
 		99AF5B8419C1317E00BE73F2 /* ico_member_mycv.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_mycv.png; sourceTree = "<group>"; };
 		99B350AD199CB1F100CAEC71 /* index640x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = index640x960.png; sourceTree = "<group>"; };
 		99B350AE199CB1F100CAEC71 /* index640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = index640x1136.png; sourceTree = "<group>"; };
-		99B350B1199CB1F100CAEC71 /* welcom2-320x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom2-320x960.png"; sourceTree = "<group>"; };
-		99B350B2199CB1F100CAEC71 /* welcom2-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom2-320x1136.png"; sourceTree = "<group>"; };
-		99B350B3199CB1F100CAEC71 /* welcom3-320x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom3-320x960.png"; sourceTree = "<group>"; };
-		99B350B4199CB1F100CAEC71 /* welcom3-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom3-320x1136.png"; sourceTree = "<group>"; };
-		99B350B5199CB1F100CAEC71 /* welcom4-320x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom4-320x960.png"; sourceTree = "<group>"; };
-		99B350B6199CB1F100CAEC71 /* welcom4-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom4-320x1136.png"; sourceTree = "<group>"; };
 		99B350C7199CB43A00CAEC71 /* welcom5-320x960.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x960.png"; sourceTree = "<group>"; };
 		99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "welcom5-320x1136.png"; sourceTree = "<group>"; };
 		99B3D17D19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchByKeyWorkViewController.h; path = Search/SearchByKeyWorkViewController.h; sourceTree = "<group>"; };
@@ -1083,6 +1079,14 @@
 		99E35B2319D7B9310087941A /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2x.png"; sourceTree = "<group>"; };
 		99E76D6119BE8724004DD65F /* bg_lasttiem_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_lasttiem_green.png; sourceTree = "<group>"; };
 		99E76D6219BE8724004DD65F /* bg_lasttime_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_lasttime_red.png; sourceTree = "<group>"; };
+		99EF850B19E3F83900EB2CFA /* welcome2_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome2_large.png; sourceTree = "<group>"; };
+		99EF850C19E3F83900EB2CFA /* welcome2_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome2_small.png; sourceTree = "<group>"; };
+		99EF850D19E3F83900EB2CFA /* welcome3_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome3_large.png; sourceTree = "<group>"; };
+		99EF850E19E3F83900EB2CFA /* welcome3_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome3_small.png; sourceTree = "<group>"; };
+		99EF850F19E3F83900EB2CFA /* welcome4_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome4_large.png; sourceTree = "<group>"; };
+		99EF851019E3F83900EB2CFA /* welcome4_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome4_small.png; sourceTree = "<group>"; };
+		99EF851119E3F83900EB2CFA /* welcome5_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome5_large.png; sourceTree = "<group>"; };
+		99EF851219E3F83900EB2CFA /* welcome5_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome5_small.png; sourceTree = "<group>"; };
 		99F3F84419B007C100B5AB88 /* ico_shen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_shen.png; sourceTree = "<group>"; };
 		99F3F84619B00CEB00B5AB88 /* ico_jobapply_no.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_jobapply_no.png; sourceTree = "<group>"; };
 		99F3F84719B00CEB00B5AB88 /* ico_jobright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_jobright.png; sourceTree = "<group>"; };
@@ -2152,6 +2156,14 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99EF850B19E3F83900EB2CFA /* welcome2_large.png */,
+				99EF850C19E3F83900EB2CFA /* welcome2_small.png */,
+				99EF850D19E3F83900EB2CFA /* welcome3_large.png */,
+				99EF850E19E3F83900EB2CFA /* welcome3_small.png */,
+				99EF850F19E3F83900EB2CFA /* welcome4_large.png */,
+				99EF851019E3F83900EB2CFA /* welcome4_small.png */,
+				99EF851119E3F83900EB2CFA /* welcome5_large.png */,
+				99EF851219E3F83900EB2CFA /* welcome5_small.png */,
 				99FED14719DA33F700C69D44 /* ico_subsite_down.png */,
 				9941B67D19D902060007040A /* ico_multisel_del_highlight.png */,
 				9941B67E19D902060007040A /* ico_multisel_del.png */,
@@ -2286,12 +2298,6 @@
 				99B350C8199CB43A00CAEC71 /* welcom5-320x1136.png */,
 				99B350AD199CB1F100CAEC71 /* index640x960.png */,
 				99B350AE199CB1F100CAEC71 /* index640x1136.png */,
-				99B350B1199CB1F100CAEC71 /* welcom2-320x960.png */,
-				99B350B2199CB1F100CAEC71 /* welcom2-320x1136.png */,
-				99B350B3199CB1F100CAEC71 /* welcom3-320x960.png */,
-				99B350B4199CB1F100CAEC71 /* welcom3-320x1136.png */,
-				99B350B5199CB1F100CAEC71 /* welcom4-320x960.png */,
-				99B350B6199CB1F100CAEC71 /* welcom4-320x1136.png */,
 				99CFD850199B60D8009A5ABA /* bg_leftmenu.png */,
 				99CFD851199B60D8009A5ABA /* btn_leftmenu.png */,
 				99CFD853199B60D8009A5ABA /* color-orange.png */,
@@ -2518,6 +2524,7 @@
 			files = (
 				9941B67F19D902060007040A /* ico_multisel_del_highlight.png in Resources */,
 				99BDC5F419A5F4A900B2BDB1 /* radioChecked.png in Resources */,
+				99EF851A19E3F83900EB2CFA /* welcome5_small.png in Resources */,
 				995575BD19AC582600B73E4A /* ico_cp_hasLincence.png in Resources */,
 				99F51F4419AEB30300C81A9B /* chk_default.png in Resources */,
 				99BDC5F519A5F4A900B2BDB1 /* radioUnChecked.png in Resources */,
@@ -2547,6 +2554,7 @@
 				992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */,
 				99B3D18119D40D4F00AEF1D9 /* btn_keywords_del.png in Resources */,
 				99CFD830199B5F80009A5ABA /* Images.xcassets in Resources */,
+				99EF851519E3F83900EB2CFA /* welcome3_large.png in Resources */,
 				9994AF3A19D144BF008068AD /* ico_fuli_baoxian.png in Resources */,
 				99B350B8199CB1F100CAEC71 /* index640x1136.png in Resources */,
 				9941B68019D902060007040A /* ico_multisel_del.png in Resources */,
@@ -2570,7 +2578,6 @@
 				99CFD822199B5F80009A5ABA /* InfoPlist.strings in Resources */,
 				9905135019C2F45B00B9C096 /* CreateResumeAlertViewController.xib in Resources */,
 				9922970B19B95FF7008E8646 /* ico_onlinechat_online.png in Resources */,
-				99B350C0199CB1F100CAEC71 /* welcom4-320x1136.png in Resources */,
 				9994AF4019D144BF008068AD /* ico_fuli_jtbt.png in Resources */,
 				9923827C19D4F039003CFF62 /* ico_login_name.png in Resources */,
 				99CFD87D199B60D8009A5ABA /* ico_leftmenu_jobnews.png in Resources */,
@@ -2579,18 +2586,18 @@
 				9936980919C7D4020060BDD1 /* ico_cvmain_exp.png in Resources */,
 				99E35B2519D7B9310087941A /* AppIcon@2x.png in Resources */,
 				99CFD879199B60D8009A5ABA /* ico_leftmenu_campus.png in Resources */,
+				99EF851619E3F83900EB2CFA /* welcome3_small.png in Resources */,
 				9994AF3F19D144BF008068AD /* ico_fuli_jrfl.png in Resources */,
 				9994AF4519D144BF008068AD /* ico_fuli_qqj.png in Resources */,
 				999BDD4F19C2E6F2000A152A /* UserCenter.storyboard in Resources */,
 				9994AF3C19D144BF008068AD /* ico_fuli_eighthour.png in Resources */,
 				99F51F4319AEB30300C81A9B /* chk_check.png in Resources */,
 				99AF5B8B19C1317E00BE73F2 /* ico_member_moblecer.png in Resources */,
-				99B350BF199CB1F100CAEC71 /* welcom4-320x960.png in Resources */,
 				9901836119AC58F900CA1CB2 /* ico_joblist_online.png in Resources */,
-				99B350BE199CB1F100CAEC71 /* welcom3-320x1136.png in Resources */,
 				99C539C719C962A600E6165A /* ico_salary_rank7.png in Resources */,
 				99CFD884199B60D8009A5ABA /* ico_main_membercenter.png in Resources */,
 				99CFD891199B60D8009A5ABA /* main_pic_govnews.png in Resources */,
+				99EF851319E3F83900EB2CFA /* welcome2_large.png in Resources */,
 				99B350C9199CB43A00CAEC71 /* welcom5-320x960.png in Resources */,
 				9942F39719B95C2100191C74 /* ico_mainmore_opinion.png in Resources */,
 				9994AF3919D144BF008068AD /* ico_fuli_banche.png in Resources */,
@@ -2606,11 +2613,9 @@
 				9942F39919B95C2100191C74 /* ico_mainmore_share.png in Resources */,
 				99F51F4519AEB30300C81A9B /* chk_unable.png in Resources */,
 				99908A4A19A34D7300137FDE /* dictionary.db in Resources */,
-				99B350BD199CB1F100CAEC71 /* welcom3-320x960.png in Resources */,
 				9994AF4919D144BF008068AD /* ico_fuli_txbt.png in Resources */,
 				99CFD883199B60D8009A5ABA /* ico_main_jobapply.png in Resources */,
 				9942F44E19B987D900191C74 /* ShareSDKFlatShareViewUI.bundle in Resources */,
-				99B350BC199CB1F100CAEC71 /* welcom2-320x1136.png in Resources */,
 				9925BE8E19B807F4002DBFE0 /* ico_mapsearch_pre_unable.png in Resources */,
 				9925BE8D19B807F4002DBFE0 /* ico_mapsearch_next.png in Resources */,
 				9945C30B19A1A4890027E931 /* ico_clock.png in Resources */,
@@ -2689,7 +2694,6 @@
 				9936980719C7D4020060BDD1 /* ico_cvmain_del.png in Resources */,
 				99CFD896199B60D8009A5ABA /* renren.png in Resources */,
 				99CFD880199B60D8009A5ABA /* ico_leftmenu_rm.png in Resources */,
-				99B350BB199CB1F100CAEC71 /* welcom2-320x960.png in Resources */,
 				99CFD899199B60D8009A5ABA /* weibo.png in Resources */,
 				99CFD88C199B60D8009A5ABA /* loading.gif in Resources */,
 				99C539C219C962A600E6165A /* ico_salary_rank2.png in Resources */,
@@ -2702,6 +2706,9 @@
 				9936980D19C7D4020060BDD1 /* ico_cvmain_specially.png in Resources */,
 				9994AF2419D10C01008068AD /* ico_top.png in Resources */,
 				9936980A19C7D4020060BDD1 /* ico_cvmain_group.png in Resources */,
+				99EF851919E3F83900EB2CFA /* welcome5_large.png in Resources */,
+				99EF851819E3F83900EB2CFA /* welcome4_small.png in Resources */,
+				99EF851419E3F83900EB2CFA /* welcome2_small.png in Resources */,
 				99CFD888199B60D8009A5ABA /* ico_main_rm.png in Resources */,
 				9942F39519B95C2100191C74 /* ico_mainmore_help.png in Resources */,
 				999BDD5819C2E89C000A152A /* ico_cvlist_del.png in Resources */,
@@ -2720,6 +2727,7 @@
 				9942F44419B987D900191C74 /* Resource.bundle in Resources */,
 				9925BEFC19B80E02002DBFE0 /* menu-button@2x.png in Resources */,
 				999B5B0519B980510067B3E7 /* ico_EI_Background.png in Resources */,
+				99EF851719E3F83900EB2CFA /* welcome4_large.png in Resources */,
 				99AF5B7C19C1292900BE73F2 /* pic_pahead_default.png in Resources */,
 				999BDD5C19C2E89C000A152A /* ico_cvlist_preview.png in Resources */,
 			);
