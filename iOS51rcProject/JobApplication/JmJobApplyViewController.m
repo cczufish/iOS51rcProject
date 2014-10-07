@@ -115,12 +115,17 @@
     [dicParam release];
 }
 
+- (void)footerRereshing{
+    self.pageNumber++;
+    [self onSearch];
+}
+
 - (void)netRequestFinished:(NetWebServiceRequest *)request
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) { //职位搜索
-        if (requestData.count>0) {
+        if (requestData.count>0 || (requestData.count == 0 && self.pageNumber > 1)) {
             if(self.pageNumber == 1){
                 [self.jobListData removeAllObjects];
                 self.jobListData = requestData;
@@ -245,8 +250,8 @@
     //公司名称
     UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(40, lbJobName.frame.origin.y+lbJobName.frame.size.height, 280, 20)];
     [lbAddress setText:rowData[@"cpName"]];
-    lbAddress.font = [UIFont systemFontOfSize:14];
-    [lbAddress setTextColor:[UIColor blackColor]];
+    lbAddress.font = [UIFont systemFontOfSize:13];
+    [lbAddress setTextColor:[UIColor grayColor]];
     [cell.contentView addSubview:lbAddress];
     [lbAddress release];
     
@@ -266,7 +271,7 @@
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40,  lbAddress.frame.origin.y+lbAddress.frame.size.height, 200, 20)];
     NSString *strDate = [NSString stringWithFormat:@"申请时间：%@", [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"]];
     [lbRefreshDate setText:strDate];
-    [lbRefreshDate setFont:[UIFont systemFontOfSize:14]];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:13]];
     [lbRefreshDate setTextColor:colorText];
     [cell.contentView addSubview:lbRefreshDate];
     [lbRefreshDate release];
@@ -318,6 +323,9 @@
         [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
     }
     [btnCheck release];
+    
+    //添加上拉加载更多
+    [self.tvJobList addFooterWithTarget:self action:@selector(footerRereshing)];
     
     //分割线
     if (indexPath.row != self.jobListData.count - 1) {

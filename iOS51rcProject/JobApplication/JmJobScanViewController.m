@@ -91,7 +91,7 @@
 {
     UIViewController *pCtrl = [CommonController getFatherController:self.view];
     if (request.tag == 1) { //职位搜索
-        if (requestData.count>0) {
+         if (requestData.count>0 || (requestData.count == 0 && self.pageNumber > 1)) {
             if(self.pageNumber == 1){
                 [self.jobListData removeAllObjects];
                 self.jobListData = requestData;
@@ -317,9 +317,11 @@
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
     
+    //添加上拉加载更多
+    [self.tvJobList addFooterWithTarget:self action:@selector(footerRereshing)];
     //分割线
     if (indexPath.row != self.jobListData.count - 1) {
-        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 0.5)];
+        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
         [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         [cell.contentView addSubview:viewSeparate];
     }
