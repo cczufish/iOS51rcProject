@@ -345,6 +345,11 @@
     }
 }
 
+//点击空白隐藏键盘
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.textSend resignFirstResponder];
+}
+
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
     namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 }
