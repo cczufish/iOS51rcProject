@@ -58,7 +58,7 @@
     self.lbTop.layer.borderWidth = 0.5;
     self.btnTop.titleLabel.text = @"相关简历";
     self.btnTop.titleLabel.font = [UIFont systemFontOfSize:14];
-    self.btnTop.layer.borderWidth = 0.5;
+    self.btnTop.layer.borderWidth = 1;
     self.btnTop.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     
     [self.btnTop addTarget:self action:@selector(selectCV:) forControlEvents:UIControlEventTouchUpInside];

@@ -399,6 +399,34 @@
 -(void) didReceiveJobMain:(NSArray *) requestData
 {
     NSDictionary *dicJob = requestData[0];
+    //是否已经结束
+    NSDate *issueDate = [CommonController dateFromString:dicJob[@"IssueEnd"]];
+    NSDate * now = [NSDate date];
+    if ([now laterDate:issueDate] == now) {//如果过期
+        //清除所有的子view
+        for(UIView *view in [self.view subviews])
+        {
+            [view removeFromSuperview];
+        }
+        
+        UIView *viewIssueEnded = [[[UIView alloc] initWithFrame:CGRectMake(40, 150, 240, 80)]autorelease];
+        UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(20, 0, 40, 60)] autorelease];
+        img.image = [UIImage imageNamed:@"pic_noinfo.png"];
+        [viewIssueEnded addSubview:img];
+        
+        UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(40, 10, 220, 20)] autorelease];
+        lb1.text = @"抱歉，该职位已经过期。";
+        lb1.font = [UIFont systemFontOfSize:14];
+        lb1.textAlignment = NSTextAlignmentCenter;
+        [viewIssueEnded addSubview:lb1];
+        
+        [self.view addSubview:viewIssueEnded];
+        //结束等待动画
+        [self.loading stopAnimating];
+        return;
+    }
+
+     //以下是职位没有过期的情况
     //职位名称
     NSString *jobName = dicJob[@"Name"];
     CGSize labelSize = [CommonController CalculateFrame:jobName fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbJobName.frame.size.width, 500)];
@@ -406,6 +434,7 @@
     self.lbJobName.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbJobName.numberOfLines = 0;
     [self.lbJobName setText:jobName];
+   
     //刷新时间
     self.lbFereashTime.textColor = [UIColor grayColor];
     self.lbFereashTime.frame = CGRectMake(20, self.lbJobName.frame.origin.y + self.lbJobName.frame.size.height + 10, 280, 15);
@@ -530,8 +559,36 @@
                     [self CreateFuliView:tmpView icoName:@"ico_fuli_nzj.png" title:@"年终奖"];
                     [fuliArray addObject:tmpView];
                     break;
+                case 5:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_nianjia.png" title:@"带薪年假"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 6                    :
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_lvyou.png" title:@"公费旅游"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 7:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_canbu.png" title:@"餐补/工作餐"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 8:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_jtbt.png" title:@"交通补贴"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 9:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_eighthour.png" title:@"八小时工作制"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 10:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_sushe.png" title:@"提供住宿"];
+                    [fuliArray addObject:tmpView];
+                    break;
                 case 11:
                     [self CreateFuliView:tmpView icoName:@"ico_fuli_jrfl.png" title:@"节日福利"];
+                    [fuliArray addObject:tmpView];
+                    break;
+                case 12                    :
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_peixun.png" title:@"公费培训"];
                     [fuliArray addObject:tmpView];
                     break;
                 case 13:
@@ -542,24 +599,8 @@
                     [self CreateFuliView:tmpView icoName:@"ico_fuli_qqj.png" title:@"全勤奖"];
                     [fuliArray addObject:tmpView];
                     break;
-//                case 6:
-//                    [self CreateFuliView:tmpView icoName:@"ico_fuli_baoxian.png" title:@"双薪"];
-//                    [fuliArray addObject:tmpView];
-//                    break;
-                case 9:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_eighthour.png" title:@"八小时工作制"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 5:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_nianjia.png" title:@"带薪年假"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 12                    :
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_peixun.png" title:@"公费培训"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 6                    :
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_lvyou.png" title:@"公费旅游"];
+                case 15 :
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_banche.png" title:@"班车接送"];
                     [fuliArray addObject:tmpView];
                     break;
                 case 16:
@@ -570,34 +611,15 @@
                     [self CreateFuliView:tmpView icoName:@"ico_fuli_txbt.png" title:@"通讯补贴"];
                     [fuliArray addObject:tmpView];
                     break;
-                case 10:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_sushe.png" title:@"提供住宿"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 7:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_canbu.png" title:@"餐补/工作餐"];
-                    [fuliArray addObject:tmpView];
-                    break;
                 case 18:
                     [self CreateFuliView:tmpView icoName:@"ico_fuli_zfbt.png" title:@"住房补贴"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 8:
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_jtbt.png" title:@"交通补贴"];
-                    [fuliArray addObject:tmpView];
-                    break;
-                case 15 :
-                    [self CreateFuliView:tmpView icoName:@"ico_fuli_banche.png" title:@"班车接送"];
                     [fuliArray addObject:tmpView];
                     break;
                 default:
                     break;
             }
-            
         }
-        //[dicParam setObject:fuli forKey:tmpStr];
     }
-   
     
     //四个一组
     int y = lbJobRequestValue.frame.origin.y + lbJobRequestValue.frame.size.height + 10;

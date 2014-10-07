@@ -46,6 +46,7 @@
     self.btnApply.layer.cornerRadius = 5;
      [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     self.btnDelete.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.btnDelete.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     self.btnDelete.layer.borderWidth = 0.5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.btnDelete.layer.cornerRadius = 5;
