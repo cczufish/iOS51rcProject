@@ -382,13 +382,13 @@
 -(void) CreateJobMatch:(NSString *)strMatch{
     //匹配度
     if (strMatch != nil) {
-        UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(260, self.lbJobName.frame.origin.y, 45, 20)];
+        UILabel *lbMatch = [[UILabel alloc] initWithFrame:CGRectMake(250, self.lbJobName.frame.origin.y, 60, 20)];
         lbMatch.layer.masksToBounds = YES;
         lbMatch.layer.cornerRadius = 5;
         [lbMatch setText:[NSString stringWithFormat:@"匹配度%@%%",strMatch]];
         [lbMatch setTextAlignment:NSTextAlignmentCenter];
         [lbMatch setTextColor:[UIColor whiteColor]];
-        [lbMatch setFont:[UIFont systemFontOfSize:8]];
+        [lbMatch setFont:[UIFont systemFontOfSize:10]];
         [lbMatch setBackgroundColor:[UIColor colorWithRed:14.f/255.f green:170.f/255.f blue:32.f/255.f alpha:1]];
         [self.subView addSubview:lbMatch];
         [lbMatch release];
@@ -450,7 +450,7 @@
     //待遇
     NSString *strSalary = dicJob[@"Salary"];
     UILabel *lbSalary = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLine1.frame.origin.y + lbLine1.frame.size.height+5, 280, 20) ]autorelease];
-    lbSalary.text = strSalary;
+    lbSalary.text = [NSString stringWithFormat:@"%@/月", strSalary];
     lbSalary.textColor = [UIColor redColor];
     [self.subView addSubview:lbSalary];
     
