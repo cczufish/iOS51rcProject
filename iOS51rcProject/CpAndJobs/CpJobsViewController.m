@@ -80,7 +80,7 @@
     }else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {
             [pCtrl.view makeToast:@"您没有有效简历，请先完善您的简历"];
-            [self.arrCheckJobID removeAllObjects];
+            //[self.arrCheckJobID removeAllObjects];
         }else {
             self.cPopup = [[[CustomPopup alloc] popupCvSelect:requestData] autorelease];
             [self.cPopup setDelegate:self];
@@ -88,7 +88,7 @@
         }
     }else if (request.tag == 3) { //默认投递完之后，显示弹层
         [self.cPopup showJobApplyCvSelect:result view:[CommonController getFatherController:self.view].view];
-        [self.arrCheckJobID removeAllObjects];
+        //[self.arrCheckJobID removeAllObjects];
     }else if (request.tag == 4) { //重新申请职位成功
         [pCtrl.view makeToast:@"简历更换成功"];
         //[self.arrCheckJobID removeAllObjects];
