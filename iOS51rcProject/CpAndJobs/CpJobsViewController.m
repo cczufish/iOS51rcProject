@@ -116,8 +116,8 @@
     CGSize labelSize = [CommonController CalculateFrame:strJobName fontDemond:titleFont sizeDemand:titleSize];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 10, 200, labelSize.height)];
     lbTitle.text = strJobName;
-    lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
-    lbTitle.numberOfLines = 0;
+    //lbTitle.lineBreakMode = NSLineBreakByCharWrapping;//加上之后不显示。。。	
+    //lbTitle.numberOfLines = 0;
     lbTitle.font = titleFont;
     [cell.contentView addSubview:(lbTitle)];
     [lbTitle release];
