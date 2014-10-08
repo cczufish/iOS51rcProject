@@ -154,7 +154,7 @@
         [subview removeFromSuperview];
     }
     NSDictionary *tmpData = resultData[0];
-    self.viewAvg.layer.borderWidth = 0.5;
+    self.viewAvg.layer.borderWidth = 1;
     self.viewAvg.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     UILabel *title = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 20)] autorelease];
     title.layer.backgroundColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
@@ -174,15 +174,15 @@
     }
     
     //一条横线，x轴
-    UILabel *lbX = [[[UILabel alloc] initWithFrame:CGRectMake(0, self.viewAvg.frame.size.height - 20, 300, 0.5)] autorelease];
+    UILabel *lbX = [[[UILabel alloc] initWithFrame:CGRectMake(0, self.viewAvg.frame.size.height - 20, 300, 1)] autorelease];
     lbX.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
-    lbX.layer.borderWidth = 0.5;
+    lbX.layer.borderWidth = 1;
     [self.viewAvg addSubview:lbX];
     //6个纵线
     int height = self.viewAvg.frame.size.height - title.frame.size.height - 30;//view的高度-标题的高度-下方余出的高度
     for (int i=0; i<6; i++) {
         //纵线
-        UILabel *lbTmp = [[[UILabel alloc] initWithFrame:CGRectMake(25+i*50, lbX.frame.origin.y-height, 0.5, height)] autorelease];
+        UILabel *lbTmp = [[[UILabel alloc] initWithFrame:CGRectMake(25+i*50, lbX.frame.origin.y-height, 1, height)] autorelease];
         lbTmp.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
         [self.viewAvg addSubview:lbTmp];
         
@@ -374,7 +374,7 @@
     
     //重新计算View大小
     self.viewDistribution.frame = CGRectMake(10, self.viewAvg.frame.origin.y+self.viewAvg.frame.size.height + 15, 300, lbTime.frame.size.height + lbTime.frame.origin.y + 10);
-    self.viewDistribution.layer.borderWidth = 0.5;
+    self.viewDistribution.layer.borderWidth = 1;
     self.viewDistribution.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
 }
 
@@ -419,7 +419,7 @@
     }
     
     self.viewRank.frame = CGRectMake(10, self.viewDistribution.frame.origin.y + self.viewDistribution.frame.size.height + 20, 300, 20+requestData.count * 20 + 20);
-    self.viewRank.layer.borderWidth = 0.5;
+    self.viewRank.layer.borderWidth = 1;
     self.viewRank.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     [self.svMain setContentSize:CGSizeMake(320, self.viewRank.frame.origin.y+self.viewRank.frame.size.height)];
 }
