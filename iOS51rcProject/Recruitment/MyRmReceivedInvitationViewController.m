@@ -398,12 +398,12 @@
     }
 }
 
-//点击参会
+//点击赴约
 -(void)btnAcceptClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
 }
 
-//点击不参会
+//点击不赴约
 -(void)btnRejectClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
 }

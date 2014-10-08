@@ -67,11 +67,12 @@
     [backButton release];
     //上一个页面传入的值
     self.lbTime.text = self.strBeginTime;
-    self.lbAddress.text = self.strAddress;
+   
     self.lbPlace.text = self.strPlace;
     //默认参数
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     regionID = [userDefault objectForKey:@"subSiteId"];
+     self.lbAddress.text = [userDefault objectForKey:@"subSiteCity"];
     beginDate = self.strBeginTime;
     if (self.strAddressID == nil) {
         self.strAddressID = [userDefault objectForKey:@"subSiteId"];
