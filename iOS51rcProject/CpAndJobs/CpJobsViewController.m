@@ -147,21 +147,26 @@
     //工资
     NSString *strdcSalaryID = rowData[@"dcSalaryID"];
     UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(230, lbTitle.frame.origin.y+lbTitle.frame.size.height + 5, 80, labelSize.height)];
-    lbSalary.text = [CommonController getDictionaryDesc:strdcSalaryID tableName:@"dcSalary"];
+    if ([strdcSalaryID isEqualToString:@"100"]) {
+        lbSalary.text = @"面议";
+    }else{
+        lbSalary.text = [CommonController getDictionaryDesc:strdcSalaryID tableName:@"dcSalary"];
+    }
+    
     lbSalary.font = [UIFont systemFontOfSize:13];
     lbSalary.textAlignment = NSTextAlignmentRight;
     lbSalary.textColor = [UIColor redColor];
     [cell.contentView addSubview:(lbSalary)];
     [lbSalary release];
     //复选框
-    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(10, 15, 100, 50)];
+    UIButton *btnCheck = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 60)];
     [btnCheck setTitle:rowData[@"ID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
-    UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
+    UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 18, 20, 20)] autorelease];
     imgCheck.image = [UIImage imageNamed: @"chk_default.png"];
     [btnCheck addSubview:imgCheck];
     //分割线
@@ -204,14 +209,14 @@
         if (![self.arrCheckJobID containsObject:sender.titleLabel.text]) {
             [self.arrCheckJobID addObject:sender.titleLabel.text];
         }
-        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
+        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 18, 20, 20)] autorelease];
         imgCheck.image = [UIImage imageNamed: @"chk_check.png"];
         [sender addSubview:imgCheck];
         [sender setTag:2];
     }
     else {
         [self.arrCheckJobID removeObject:sender.titleLabel.text];
-        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)] autorelease];
+        UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 18, 20, 20)] autorelease];
         imgCheck.image = [UIImage imageNamed: @"chk_default.png"];
         [sender addSubview:imgCheck];
         [sender setTag:1];
