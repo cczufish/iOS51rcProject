@@ -58,7 +58,7 @@
     [self.viewTop addSubview:btnGoToCpPage];
     
     //小图标
-    UIImageView *imgOnline = [[[UIImageView alloc] initWithFrame:CGRectMake(btnGoToCpPage.frame.origin.x - 10, 15, 10, 12)] autorelease];
+    UIImageView *imgOnline = [[[UIImageView alloc] initWithFrame:CGRectMake(btnGoToCpPage.frame.origin.x - 14, 13, 14, 16)] autorelease];
     if ([self.isOnline isEqualToString:@"1"]) {
         imgOnline.image = [UIImage imageNamed:@"ico_onlinechat_online.png"];
     }else{
@@ -151,7 +151,7 @@
         viewMsg.layer.backgroundColor = [UIColor colorWithRed:143.f/255.f green:202.f/255.f blue:221.f/255.f alpha:1].CGColor;
         //消息内容
         NSString *strMsg = rowData[@"Message"];
-        CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:10] sizeDemand:CGSizeMake(250, 500)];
+        CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(250, 500)];
         if (labelSize.width<80) {
             labelSize.width = 80;
         }
@@ -162,7 +162,7 @@
         [lbMsg setText:strMsg];
         lbMsg.lineBreakMode = NSLineBreakByCharWrapping;
         lbMsg.numberOfLines = 0;
-        [lbMsg setFont:[UIFont systemFontOfSize:10]];
+        [lbMsg setFont:[UIFont systemFontOfSize:12]];
         lbMsg.textColor = [UIColor whiteColor];
         [lbMsg setTextAlignment:NSTextAlignmentLeft];
         [viewMsg addSubview:lbMsg];
@@ -170,7 +170,7 @@
         UILabel *lbRefreshDate = [[[UILabel alloc] initWithFrame:CGRectMake(lbMsg.frame.origin.x, lbMsg.frame.origin.y + lbMsg.frame.size.height + 5, 80, 15)] autorelease];
         NSString *strDate = [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"];
         [lbRefreshDate setText:strDate];
-        [lbRefreshDate setFont:[UIFont systemFontOfSize:10]];
+        [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
         [lbRefreshDate setTextColor:[UIColor whiteColor]];
         [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
         [viewMsg addSubview:lbRefreshDate];
@@ -191,7 +191,7 @@
         viewMsg.layer.cornerRadius = 5;
         //消息内容
         NSString *strMsg = rowData[@"Message"];
-        CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:10] sizeDemand:CGSizeMake(240, 500)];
+        CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(240, 500)];
         if (labelSize.width<80) {
             labelSize.width = 80;
         }
@@ -201,7 +201,7 @@
         //最右端的坐标是320-50=270
         UILabel *lbMsg = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, labelSize.width + 10, labelSize.height)] autorelease];
         [lbMsg setText:strMsg];
-        [lbMsg setFont:[UIFont systemFontOfSize:10]];
+        [lbMsg setFont:[UIFont systemFontOfSize:12]];
         lbMsg.lineBreakMode = NSLineBreakByCharWrapping;
         lbMsg.numberOfLines = 0;
         lbMsg.textColor = [UIColor whiteColor];
@@ -211,7 +211,7 @@
         UILabel *lbRefreshDate = [[[UILabel alloc] initWithFrame:CGRectMake(lbMsg.frame.origin.x, lbMsg.frame.origin.y + lbMsg.frame.size.height + 5, 80, 15)] autorelease];
         NSString *strDate = [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"];
         [lbRefreshDate setText:strDate];
-        [lbRefreshDate setFont:[UIFont systemFontOfSize:10]];
+        [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
         [lbRefreshDate setTextColor:[UIColor whiteColor]];
         [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
         [viewMsg addSubview:lbRefreshDate];
@@ -233,7 +233,7 @@
 {
     NSDictionary *tmpDic = self.chatOnlineLogData[indexPath.row];
     NSString *strMsg = tmpDic[@"Message"];
-     CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:10] sizeDemand:CGSizeMake(250, 500)];
+     CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(250, 500)];
     if (labelSize.height>20) {
         return 42+ labelSize.height;
     }else{
