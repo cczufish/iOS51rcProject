@@ -88,7 +88,7 @@
     
     //切换页面的小点
     pageControl = [[UIPageControl alloc] init];
-    pageControl.frame = CGRectMake(110,404,100,50);
+    pageControl.frame = CGRectMake(110,474,100,50);
     [pageControl setNumberOfPages:4];
     pageControl.currentPage = 0;
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];

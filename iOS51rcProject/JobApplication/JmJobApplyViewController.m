@@ -318,6 +318,10 @@
         canBeDelete = true;
         lbReply.text = @"以后联系";
     }
+    else{
+        canBeDelete = true;
+        lbReply.text = @"系统回复";
+    }
     //删除
     if (canBeDelete == true) {
         [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
