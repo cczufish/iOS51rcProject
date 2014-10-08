@@ -32,17 +32,12 @@
     
 }
 
--(void) btnMyRecruitmentClick:(UIBarButtonItem *)sender
-{
-    //MyRecruitmentViewController *myRmCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"MyRecruitmentView"];
-    //[self.navigationController pushViewController:myRmCtrl animated:YES];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (void)onSearch
 {
     [self.jobListData removeAllObjects];
@@ -121,7 +116,7 @@
     if ([strdcSalaryID isEqualToString:@"100"]) {
         lbSalary.text = @"面议";
     }
-    //[CommonController GetSalary:strdcSalaryID];
+    
     lbSalary.font = [UIFont systemFontOfSize:14];
     lbSalary.textAlignment = NSTextAlignmentRight;
     lbSalary.textColor = [UIColor redColor];
@@ -133,7 +128,6 @@
 
 //点击某一行,选择一个职位
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //NSArray *arr = jobListData[indexPath.row];
     NSString *cpMainID = self.jobListData[indexPath.row][@"cpMainID"] ;
     NSString *jobID = self.jobListData[indexPath.row][@"ID"];
     NSString *name = self.jobListData[indexPath.row][@"Name"];
@@ -141,7 +135,8 @@
     [jobID retain];
     [name retain];
     [delegate SetJob:cpMainID jobID:jobID JobName:name];
-    [self dismissViewControllerAnimated:YES completion:nil];    
+    [self.navigationController popViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
