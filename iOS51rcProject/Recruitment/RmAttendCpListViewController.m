@@ -204,7 +204,7 @@
     
     //预约面试按钮
     if (!expired) {
-        UIButton *rightButton = [[[UIButton alloc] initWithFrame:CGRectMake(270, 22, 30, 45)] autorelease];
+        UIButton *rightButton = [[[UIButton alloc] initWithFrame:CGRectMake(270, 22, 50, 70)] autorelease];
         UILabel *lbWillRun;
         UIImageView *imgWillRun = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
         if (isBooked == 1) {
