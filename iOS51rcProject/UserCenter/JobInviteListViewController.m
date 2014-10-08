@@ -272,7 +272,7 @@
     if (strSalary.length == 0) {
         strSalary = @"面议";
     }
-    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(240, 51, 75, 20)];
+    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(230, 51, 75, 20)];
     [lbSalary setText:strSalary];
     [lbSalary setFont:fontCell];
     [lbSalary setTextColor:[UIColor redColor]];
