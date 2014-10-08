@@ -30,6 +30,7 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *svCpList;//全局的滚动条
 @property (retain, nonatomic) IBOutlet UIButton *btnApply;
 
+@property int returnType;
 @end
 
 @implementation RmInviteCpViewController
@@ -385,8 +386,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 - (void)dealloc {
     [_runningRequestGetJobs release];

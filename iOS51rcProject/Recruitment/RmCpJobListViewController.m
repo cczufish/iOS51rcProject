@@ -134,9 +134,9 @@
     [cpMainID retain];
     [jobID retain];
     [name retain];
-    [delegate SetJob:cpMainID jobID:jobID JobName:name];
-    [self.navigationController popViewControllerAnimated:YES];
-    //[self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:true];
+    [delegate SetJob:cpMainID jobID:jobID JobName:name];    
+    //[self dismissViewControllerAnimated:YES  completion:^(void){}];
 }
 
 
@@ -147,12 +147,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 60;
 }
-
-//- (void)footerRereshing{
-//    page++;
-//    [self onSearch];
-//}
-
 
 - (void)dealloc {
     [_jobListData release];
