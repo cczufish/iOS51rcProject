@@ -792,10 +792,9 @@
         [self.subView addSubview:lbCaTelValue];
         [lbCaTelValue release];
         
-        //联系电话后的图片
-        UIButton *btnTel = [[UIButton alloc] initWithFrame:CGRectMake(lbCaTelValue.frame.origin.x + lbCaTelValue.frame.size.width+5, lbCaTelValue.frame.origin.y, 15, 15)];
-        [btnTel setBackgroundImage:[UIImage imageNamed:@"ico_calltelphone.png"] forState:UIControlStateNormal];
-        [btnTel addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
+        //联系电话后
+        UIButton *btnTel = [[UIButton alloc] initWithFrame:CGRectMake(85, lbCaTelValue.frame.origin.y, 240, 15)];
+       [btnTel addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
         strCaTel = [strCaTel substringToIndex:[strCaTel rangeOfString:@" "].location];
         NSRange rangeTel = [strCaTel rangeOfString:@"转"];
         if (rangeTel.length > 0) {
@@ -804,6 +803,13 @@
         strCaTel = [strCaTel stringByReplacingOccurrencesOfString:@"-" withString:@""];
         [btnTel setTitle:strCaTel forState:UIControlStateNormal];
         [btnTel setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        
+        //图片
+        //labelSize = [CommonController CalculateFrame:strCaTel fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
+        UIImageView *imgTmp = [[[UIImageView alloc]initWithFrame:CGRectMake(labelSize.width + 3, 0, 15, 15)] autorelease];
+        imgTmp.image = [UIImage imageNamed:@"ico_calltelphone.png"];
+        [btnTel addSubview:imgTmp];
+
         [self.subView addSubview:btnTel];
         [btnTel release];
     }
@@ -825,12 +831,18 @@
         [lbCaMobileValue release];
         
         //联系电话后的图片
-        UIButton *btnMobile = [[UIButton alloc] initWithFrame:CGRectMake(lbCaMobileValue.frame.origin.x + lbCaMobileValue.frame.size.width+5, lbCaMobileValue.frame.origin.y, 15, 15)];
-        [btnMobile setBackgroundImage:[UIImage imageNamed:@"ico_calltelphone.png"] forState:UIControlStateNormal];
+        UIButton *btnMobile = [[UIButton alloc] initWithFrame:CGRectMake(85, lbCaMobileValue.frame.origin.y, 240, 15)];
         [btnMobile addTarget:self action:@selector(call:) forControlEvents:UIControlEventTouchUpInside];
         strCaMobile = [strCaMobile substringToIndex:[strCaMobile rangeOfString:@" "].location];
         [btnMobile setTitle:strCaMobile forState:UIControlStateNormal];
         [btnMobile setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+        
+        //图片
+        //labelSize = [CommonController CalculateFrame:strCaTel fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
+        UIImageView *imgTmp = [[[UIImageView alloc]initWithFrame:CGRectMake(labelSize.width + 3, 0, 15, 15)] autorelease];
+        imgTmp.image = [UIImage imageNamed:@"ico_calltelphone.png"];
+        [btnMobile addSubview:imgTmp];
+
         [self.subView addSubview:btnMobile];
         [btnMobile release];
     }
