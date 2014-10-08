@@ -6,6 +6,7 @@
 #import "CommonController.h"
 #import "MapViewController.h"
 #import "SuperJobMainViewController.h"
+#import "RecruitmentViewController.h"
 
 //收到的邀请
 @interface MyRmReceivedInvitationViewController ()<NetWebServiceRequestDelegate>
@@ -111,7 +112,7 @@
     NSString *strStatus = rowData[@"Status"];
     
     //标题左侧的红线(已经处理则显示灰色),0是未处理
-    UILabel *lbLeft = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 5, 20)];
+    UILabel *lbLeft = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 5, 20)];
     if ([strStatus isEqualToString:@"0"]) {
         lbLeft.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1].CGColor;
     }else{
@@ -134,7 +135,7 @@
     UIButton *btnTitle = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, labelSize.height + 15)];
     [btnTitle addTarget:self action:@selector(btnJobClick:) forControlEvents:UIControlEventTouchUpInside];
     btnTitle.tag = indexPath.row;
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, labelSize.width, labelSize.height)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, labelSize.width, labelSize.height)];
     lbTitle.text = strJobName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
@@ -198,19 +199,25 @@
     [lbLine1 release];
     //招聘会名称
     NSString *strRmName = rowData[@"RecruitmentName"];
+    //按钮
     labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
-    UILabel *lbRmName = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLine1.frame.origin.y + lbLine1.frame.size.height + 5, labelSize.width, labelSize.height)] autorelease];
+    UIButton *btnRM = [[[UIButton alloc] initWithFrame:CGRectMake(0, lbLine1.frame.origin.y + lbLine1.frame.size.height + 5, 320, 15)] autorelease];
+    [btnRM addTarget:self action:@selector(btnRMClick:) forControlEvents:UIControlEventTouchUpInside];
+     btnRM.tag = indexPath.row;
+    //文字
+    UILabel *lbRmName = [[[UILabel alloc] initWithFrame:CGRectMake(20, 0, labelSize.width, labelSize.height)] autorelease];
     lbRmName.text = strRmName;
     lbRmName.numberOfLines = 0;
     lbRmName.lineBreakMode = NSLineBreakByCharWrapping;
     lbRmName.font = [UIFont systemFontOfSize:13];
     lbRmName.textColor = [UIColor grayColor];
-    [cell.contentView addSubview:(lbRmName)];
+    [btnRM addSubview:lbRmName];
+    [cell.contentView addSubview:(btnRM)];
 
     //当前选择行，显示详细信息
     if (selectRowIndex == indexPath.row) {
         //举办时间
-        UILabel *lbBeginTime = [[UILabel alloc] initWithFrame:CGRectMake(20, lbRmName.frame.origin.y + lbRmName.frame.size.height + 5, titleWidth, 15)];
+        UILabel *lbBeginTime = [[UILabel alloc] initWithFrame:CGRectMake(20, btnRM.frame.origin.y + btnRM.frame.size.height + 5, titleWidth, 15)];
         NSString *strBeginDate = rowData[@"BeginDate"];
         dtBeginDate = [CommonController dateFromString:strBeginDate];
         strBeginDate = [CommonController stringFromDate:dtBeginDate formatType:@"yyyy-MM-dd HH:mm"];
@@ -419,6 +426,16 @@
     [[CommonController getFatherController:self.view].navigationController pushViewController:jobC animated:YES];
 }
 
+//点击招聘会
+-(void)btnRMClick:(UIButton *) sender{
+    NSDictionary *rowData = recruitmentCpData[sender.tag];
+    RecruitmentViewController *detailC = (RecruitmentViewController*)[self.storyboard
+                                                                      instantiateViewControllerWithIdentifier: @"RecruitmentView"];
+    detailC.recruitmentID = rowData[@"RecruitmentID"];
+    [[CommonController getFatherController:self.view].navigationController pushViewController:detailC animated:YES];
+    //[self.navigationController pushViewController:detailC animated:true];
+}
+
 //点击我参会的企业
 -(void)joinRecruitment:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
@@ -450,7 +467,7 @@
     if (selectRowIndex == indexPath.row) {
         //如果未结束，并且没操作
         if (!isPassed&&[strStatus isEqualToString:@"0"]) {
-            return 285;
+            return 293;
         }
         else {
              return 250;
