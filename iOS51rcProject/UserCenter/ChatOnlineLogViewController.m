@@ -95,9 +95,6 @@
 
 //获取聊天记录
 -(void) getChatOnlineLog{
-    //开始等待动画
-    //[loadView startAnimating];
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
@@ -125,12 +122,8 @@
         //重新加载列表
         [self.tvChatOnlineLogList reloadData];
         //滚动到最下方
-        [self.tvChatOnlineLogList scrollRectToVisible:CGRectMake(0, self.tvChatOnlineLogList.contentSize.height-self.view.frame.size.height, 320, self.view.frame.size.height) animated:NO];
-        
+        [self.tvChatOnlineLogList scrollRectToVisible:CGRectMake(0, self.tvChatOnlineLogList.contentSize.height-1, 320, self.view.frame.size.height) animated:NO];
     }
-    
-    //结束等待动画
-    //[loadView stopAnimating];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
