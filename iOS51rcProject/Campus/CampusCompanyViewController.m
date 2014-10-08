@@ -251,7 +251,6 @@
     }
     CGRect frameEmployBefore = self.viewEmployBefore.frame;
     frameEmployBefore.origin.y = self.scrollEmploy.contentSize.height+10;
-    [self.viewEmployBefore setFrame:frameEmployBefore];
     float employBeforeHeight = 40;
     for (NSDictionary *dicEmploy in self.employListData) {
         if ([self.employData[0][@"ID"] isEqualToString:dicEmploy[@"ID"]]) {
@@ -260,7 +259,7 @@
         //添加往期简章
         UIButton *buttonTitle = [[UIButton alloc] initWithFrame:CGRectMake(5, employBeforeHeight, 280, 20)];
         [buttonTitle setTitle:dicEmploy[@"Title"] forState:UIControlStateNormal];
-        [buttonTitle setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [buttonTitle setTitleColor:[UIColor colorWithRed:10.f/255.f green:68.f/255.f blue:156.f/255.f alpha:1] forState:UIControlStateNormal];
         [buttonTitle.titleLabel setFont:[UIFont systemFontOfSize:13]];
         [buttonTitle setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
         [self.viewEmployBefore addSubview:buttonTitle];
@@ -276,6 +275,8 @@
         [lbSeparate release];
         employBeforeHeight+=30;
     }
+    frameEmployBefore.size.height = employBeforeHeight;
+    [self.viewEmployBefore setFrame:frameEmployBefore];
     [self.scrollEmploy setContentSize:CGSizeMake(self.scrollEmploy.contentSize.width, self.scrollEmploy.contentSize.height+employBeforeHeight+30)];
     [self.scrollEmploy setContentOffset:CGPointMake(self.scrollEmploy.contentOffset.x, 0) animated:true];
 }

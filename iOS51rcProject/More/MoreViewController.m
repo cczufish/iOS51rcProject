@@ -60,47 +60,51 @@
         case 0:
             strTitle = @"应用分享";
             strIcon = @"ico_mainmore_share.png";
-            iconWidth = 30;
-            iconLeft = 30;
+            iconWidth = 20;
+            iconLeft = 28;
             break;
         case 1:
             strTitle = @"新手帮助";
             strIcon = @"ico_mainmore_help.png";
-            iconWidth = 25;
+            iconWidth = 17;
             iconLeft = 30;
             break;
         case 2:
             strTitle = @"意见反馈";
             strIcon = @"ico_mainmore_opinion.png";
-            iconWidth = 30;
+            iconWidth = 20;
             iconLeft = 30;
             break;
         case 3:
             strTitle = @"关于我们";
             strIcon = @"ico_mainmore_about.png";
-            iconWidth = 30;
+            iconWidth = 20;
             iconLeft = 30;
             break;
         case 4:
             strTitle = @"退出账号";
             strIcon = @"ico_mainmore_logout.png";
-            iconWidth = 30;
+            iconWidth = 20;
             iconLeft = 30;
             break;
         default:
             strTitle = @"";
             strIcon = @"";
-            iconWidth = 30;
+            iconWidth = 20;
             iconLeft = 30;
             break;
     }
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"more"] autorelease];
-    UIImageView *imgIcon = [[UIImageView alloc] initWithFrame:CGRectMake(iconLeft, 15, iconWidth, 30)];
+    CGRect iconFrame = CGRectMake(iconLeft, 20, iconWidth, 20);
+    if (indexPath.row == 1) {
+        iconFrame.size.height = 22;
+    }
+    UIImageView *imgIcon = [[UIImageView alloc] initWithFrame:iconFrame];
     [imgIcon setImage:[UIImage imageNamed:strIcon]];
     [cell.contentView addSubview:imgIcon];
     [imgIcon release];
     
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(70, 15, 200, 30)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(65, 15, 200, 30)];
     [lbTitle setText:strTitle];
     [cell.contentView addSubview:lbTitle];
     [lbTitle release];
