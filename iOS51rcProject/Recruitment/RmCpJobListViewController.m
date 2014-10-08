@@ -1,6 +1,8 @@
 #import "RmCpJobListViewController.h"
 #import "NetWebServiceRequest.h"
 #import "CommonController.h"
+#import "RmCpMain.h"
+#import "RmInviteCpViewController.h"
 
 @interface RmCpJobListViewController ()<NetWebServiceRequestDelegate>
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
@@ -134,8 +136,17 @@
     [cpMainID retain];
     [jobID retain];
     [name retain];
+    RmCpMain *tmpCp = [[RmCpMain alloc]init];
+    tmpCp.CpID = cpMainID;
+    tmpCp.jobID = jobID;
+    tmpCp.Name = name;
+    [tmpCp retain];
+    
+    RmInviteCpViewController *viewC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    viewC.returnedCp = tmpCp;
+    viewC.returnType = 1;
     [self.navigationController popViewControllerAnimated:true];
-    [delegate SetJob:cpMainID jobID:jobID JobName:name];    
+    //[delegate SetJob:cpMainID jobID:jobID JobName:name];
     //[self dismissViewControllerAnimated:YES  completion:^(void){}];
 }
 

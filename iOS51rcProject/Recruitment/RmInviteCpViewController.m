@@ -30,7 +30,7 @@
 @property (retain, nonatomic) IBOutlet UIScrollView *svCpList;//全局的滚动条
 @property (retain, nonatomic) IBOutlet UIButton *btnApply;
 
-@property int returnType;
+
 @end
 
 @implementation RmInviteCpViewController
@@ -233,6 +233,28 @@
     [jobListCtrl.navigationItem setTitle:rmCp.Name];
     [self.navigationController pushViewController:jobListCtrl animated:YES];
 //    [self presentViewController:jobListCtrl animated:YES completion:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.returnType == 1) {
+        for (int i=0; i<self.selectRmCps.count; i++) {
+            RmCpMain *tmpCp = self.selectRmCps[i];
+            //如果是修改的该企业
+            if ([tmpCp.ID isEqualToString:self.returnedCp.CpID]) {
+                tmpCp.jobID = self.returnedCp.jobID;
+                tmpCp.JobName = self.returnedCp.Name;
+            }
+        }
+        //重新绑定
+        NSArray *views = [self.cpListView subviews];
+        for(UIView* childView in views)
+        {
+            [childView removeFromSuperview];
+        }   
+        [self reloadJobs:self.selectRmCps];
+    }
 }
 
 //代理职位列表选择操作
