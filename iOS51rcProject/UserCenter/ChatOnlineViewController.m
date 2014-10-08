@@ -3,6 +3,7 @@
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
 #import "ChatOnlineLogViewController.h"
+#import "JSBadgeView.h"
 
 @interface ChatOnlineViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -34,6 +35,10 @@
     //不显示列表分隔线
     self.tvChatOnlineList.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self onSearch];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    //[self onSearch];
 }
 
 - (void)onSearch
@@ -86,6 +91,13 @@
     UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 40, 40)]autorelease];
     imgView.image = [UIImage imageNamed:@"ico_onlinechat_cphead_online.png"];
     [cell.contentView addSubview:imgView];
+    
+    //未读数目
+    NSString *strNoViewedNum = rowData[@"NoViewedNum"];
+    if (![strNoViewedNum isEqualToString:@"0"]) {
+        JSBadgeView *badgeView = [[JSBadgeView alloc] initWithParentView:imgView alignment:JSBadgeViewAlignmentTopRight];
+        badgeView.badgeText = [NSString stringWithFormat:@"%@", strNoViewedNum];
+    }
     
     //公司名称
     UILabel *lbCompanyName = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, 180, 15)];

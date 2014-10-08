@@ -308,6 +308,7 @@
 		99BDC5F519A5F4A900B2BDB1 /* radioUnChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 99BDC5F319A5F4A900B2BDB1 /* radioUnChecked.png */; };
 		99BEE43D19ADAEDE0090C9E1 /* MyRecruitmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */; };
 		99BEE44419ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */; };
+		99C0E11E19E4D707003147A9 /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C0E11D19E4D707003147A9 /* JSBadgeView.m */; };
 		99C1E9FF19D7CFA200ACC555 /* ico_member_set.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */; };
 		99C1EA3E19D7DC0600ACC555 /* AccountManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C1EA3D19D7DC0600ACC555 /* AccountManagementViewController.m */; };
 		99C1EA4119D7DC2700ACC555 /* ChangePsdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C1EA4019D7DC2700ACC555 /* ChangePsdViewController.m */; };
@@ -992,6 +993,8 @@
 		99BEE43C19ADAEDE0090C9E1 /* MyRecruitmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRecruitmentViewController.m; path = Recruitment/MyRecruitmentViewController.m; sourceTree = "<group>"; };
 		99BEE44219ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRmReceivedInvitationViewController.h; path = Recruitment/MyRmReceivedInvitationViewController.h; sourceTree = "<group>"; };
 		99BEE44319ADBE6E0090C9E1 /* MyRmReceivedInvitationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyRmReceivedInvitationViewController.m; path = Recruitment/MyRmReceivedInvitationViewController.m; sourceTree = "<group>"; };
+		99C0E11C19E4D707003147A9 /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
+		99C0E11D19E4D707003147A9 /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
 		99C1E9FE19D7CFA200ACC555 /* ico_member_set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_member_set.png; sourceTree = "<group>"; };
 		99C1EA3C19D7DC0600ACC555 /* AccountManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountManagementViewController.h; path = UserCenter/AccountManagementViewController.h; sourceTree = "<group>"; };
 		99C1EA3D19D7DC0600ACC555 /* AccountManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountManagementViewController.m; path = UserCenter/AccountManagementViewController.m; sourceTree = "<group>"; };
@@ -2028,6 +2031,15 @@
 			name = Recruitment;
 			sourceTree = "<group>";
 		};
+		99C0E11B19E4D707003147A9 /* JSBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				99C0E11C19E4D707003147A9 /* JSBadgeView.h */,
+				99C0E11D19E4D707003147A9 /* JSBadgeView.m */,
+			);
+			path = JSBadgeView;
+			sourceTree = "<group>";
+		};
 		99CFD80B199B5F80009A5ABA = {
 			isa = PBXGroup;
 			children = (
@@ -2334,6 +2346,7 @@
 		99CFD89A199B6196009A5ABA /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				99C0E11B19E4D707003147A9 /* JSBadgeView */,
 				996C558A19D26ECF00F72FFC /* LibBPush */,
 				991BC86019CBDE4A0014FB80 /* touchScroll */,
 				9927ACAD19C82F450037E3F9 /* EChart */,
@@ -2876,6 +2889,7 @@
 				99938FD919BD84C1008F986A /* CommonApplyJobViewController.m in Sources */,
 				996C559F19D26ECF00F72FFC /* JSONKit.m in Sources */,
 				99FC0B6D19C2E36900B7EC74 /* IndexViewController.m in Sources */,
+				99C0E11E19E4D707003147A9 /* JSBadgeView.m in Sources */,
 				999BDD4319C2E60B000A152A /* ASIDataCompressor.m in Sources */,
 				99A0673319CA769C00F095DF /* DatePickerView.m in Sources */,
 				9905132B19C2EF8200B9C096 /* RecruitmentListViewController.m in Sources */,
