@@ -221,7 +221,7 @@
     NSDictionary *rowData = self.jobListData[indexPath.row];
     
     //职位名称
-    UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 200, 20)];
+    UILabel *lbJobName = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 160, 20)];
     [lbJobName setText:rowData[@"JobName"]];
     lbJobName.font = [UIFont systemFontOfSize:14];
     [lbJobName setTextColor:[UIColor blackColor]];
