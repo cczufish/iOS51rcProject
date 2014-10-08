@@ -55,12 +55,12 @@
     [btnRight addSubview:view2];
     //添加设置图片
     [btnRight addTarget:self action:@selector(btnSettingClick:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(14, (self.navigationController.navigationBar.frame.size.height-25)/2 + 5, 15, 15)] autorelease];
-    UIImage *imgShared = [[UIImage imageNamed:@"ico_member_set.png"] autorelease];
-    imageView.image = imgShared;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(14, (self.navigationController.navigationBar.frame.size.height-25)/2 + 5, 15, 15)];
+    imageView.image = [UIImage imageNamed:@"ico_member_set.png"];
     [btnRight addSubview:imageView];
+    [imageView release];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
-    self.navigationItem.rightBarButtonItem=backButton;
+    self.navigationItem.rightBarButtonItem = backButton;
     
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];

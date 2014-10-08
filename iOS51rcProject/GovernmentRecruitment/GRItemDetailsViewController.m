@@ -46,11 +46,10 @@
     //添加分享图片
     [btnRight addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, (self.navigationController.navigationBar.frame.size.height-20)/2, 20, 20)] autorelease];
-    UIImage *imgShared = [[UIImage imageNamed:@"btn_cpmain_share.png"] autorelease];
-    imageView.image = imgShared;
+    imageView.image = [UIImage imageNamed:@"btn_cpmain_share.png"];
     [btnRight addSubview:imageView];
     UIBarButtonItem *btnBarRight = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
-    self.navigationItem.rightBarButtonItem=btnBarRight;
+    self.navigationItem.rightBarButtonItem = btnBarRight;
     
     //获取数据
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];

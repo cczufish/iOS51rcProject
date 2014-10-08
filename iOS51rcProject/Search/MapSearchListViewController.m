@@ -167,6 +167,12 @@
         [self.tvJobList footerEndRefreshing];
         //重新加载列表
         [self.tvJobList reloadData];
+        if (requestData.count == 0) {
+            [loadView showNoListTips];
+        }
+        else {
+            [loadView hideNoListTips];
+        }
     }
     else if (request.tag == 2) { //获取可投递的简历，默认投递第一份简历
         if (requestData.count == 0) {

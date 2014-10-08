@@ -10,13 +10,15 @@ typedef enum _LoadingAnimationViewStyle {
 } LoadingAnimationViewStyle;
 
 @interface LoadingAnimationView : UIImageView {
-	
 	NSMutableArray *_gifs;
 }
 
 @property(nonatomic, retain) NSMutableArray *gifs;
 @property(nonatomic, retain) UIView *viewBack;
+@property(nonatomic, retain) UIView *viewNoListTips;
 - (id)initWithFrame:(CGRect)frame loadingAnimationViewStyle:(LoadingAnimationViewStyle)style
              target:(UIViewController *)target;
 
+- (void) showNoListTips;
+- (void) hideNoListTips;
 @end
