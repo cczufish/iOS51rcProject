@@ -124,6 +124,9 @@
         self.chatOnlineLogData = requestData;
         //重新加载列表
         [self.tvChatOnlineLogList reloadData];
+        //滚动到最下方
+        [self.tvChatOnlineLogList scrollRectToVisible:CGRectMake(0, self.tvChatOnlineLogList.contentSize.height-self.view.frame.size.height, 320, self.view.frame.size.height) animated:NO];
+        
     }
     
     //结束等待动画
@@ -227,12 +230,9 @@
             tmpHeight = viewMsg.frame.size.height;
         }
     }
+
+    //NSLog(@"%d",indexPath.row);
     
-    //如果是最后一行，则滚动到最下方
-    if (indexPath.row == self.chatOnlineLogData.count - 1) {
-//        [self.tvChatOnlineLogList scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[self.chatOnlineLogData count]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-    [self.tvChatOnlineLogList scrollRectToVisible:CGRectMake(0, self.tvChatOnlineLogList.contentSize.height-self.view.frame.size.height, 320, self.view.frame.size.height) animated:NO];
-    }
     return cell;
 }
 
