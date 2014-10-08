@@ -312,25 +312,6 @@
     self.strBeginTime = @"";
 }
 
-//-(void)saveDate:(NSDate *)selectDate{
-//    NSString *strSelDate = [CommonController stringFromDate:selectDate formatType:@"MM-dd"];
-//    self.lbTime.text = strSelDate;
-//    beginDate = [CommonController stringFromDate:selectDate formatType:@"yyyy-MM-dd"];
-//    [beginDate retain];
-//    [pickDate removeDatePicker];
-//}
-//
-////重置时间
-//-(void)resetDate{
-//    self.lbTime.text = @"日期";
-//    beginDate = @"";
-//    //page = 1;
-//    //[self onSearch];
-//    [pickDate removeDatePicker];
-//    //开始等待动画
-//    //[loadView startAnimating];
-//}
-
 //地区选择
 -(void)showRegionSelect {
     [self cancelDicPicker];
@@ -399,23 +380,13 @@
     [_DictionaryPicker release];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc {
     [_runningRequestGetJobs release];
