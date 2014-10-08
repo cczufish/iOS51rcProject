@@ -533,8 +533,13 @@
     lbJobRequest.text = @"招聘条件：";
     lbJobRequest.font = [UIFont systemFontOfSize:14];
     
-    UILabel *lbJobRequestValue = [[[UILabel alloc] initWithFrame:CGRectMake(85, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 10, 280, 15) ]autorelease];
-    lbJobRequestValue.text = [NSString stringWithFormat:@"%@|%@|%@|%@|%@", num, education, strAge, experience, employType];
+     NSString *strJobRequestValue = [NSString stringWithFormat:@"%@|%@|%@|%@|%@", num, education, strAge, experience, employType];
+     CGSize titleSize = CGSizeMake(230, 5000.0f);
+    labelSize = [CommonController CalculateFrame:strJobRequestValue fontDemond:[UIFont systemFontOfSize:14] sizeDemand:titleSize];
+    UILabel *lbJobRequestValue = [[[UILabel alloc] initWithFrame:CGRectMake(85, lbWorkPlace.frame.origin.y + lbWorkPlace.frame.size.height + 10, labelSize.width, labelSize.height) ]autorelease];
+    lbJobRequestValue.lineBreakMode = NSLineBreakByCharWrapping;
+    lbJobRequestValue.numberOfLines = 0;
+    lbJobRequestValue.text = strJobRequestValue;
     lbJobRequestValue.font = [UIFont systemFontOfSize:14];
     [self.subView addSubview:lbJobRequestValue];
     
