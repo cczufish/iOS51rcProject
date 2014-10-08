@@ -152,6 +152,7 @@
     logCtrl.isOnline = rowData[@"OnlineStatus"];
     logCtrl.navigationItem.title = @"在线沟通";    
     [self.navigationController pushViewController:logCtrl animated:YES];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 

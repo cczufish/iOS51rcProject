@@ -187,6 +187,7 @@
     UIViewController *pCtrl = [CommonController getFatherController:self.view];
     jobC.navigationItem.title = pCtrl.navigationItem.title;
     [pCtrl.navigationController pushViewController:jobC animated:YES];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -383,7 +383,7 @@
         default:
             break;
     }
-
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu

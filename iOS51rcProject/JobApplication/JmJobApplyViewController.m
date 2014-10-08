@@ -438,6 +438,7 @@
     jobCtrl.navigationItem.title = rowData[@"cpName"];
     UIViewController *superView = [CommonController getFatherController:self.view];
     [superView.navigationController pushViewController:jobCtrl animated:YES];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 - (void)didReceiveMemoryWarning

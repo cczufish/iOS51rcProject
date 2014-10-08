@@ -254,6 +254,7 @@
 //点击某一行,到达企业页面--调用代理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [gotoRmViewDelegate gotoRmView:self.recruitmentCpData[indexPath.row][@"id"]];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 

@@ -134,6 +134,7 @@
                                                                              instantiateViewControllerWithIdentifier: @"EIItemDetailsView"];
     detailCtrl.strNewsID = self.eiListData[indexPath.row][@"Id"];
     [self.navigationController pushViewController:detailCtrl animated:true];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

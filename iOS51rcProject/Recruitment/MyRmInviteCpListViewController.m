@@ -224,6 +224,7 @@
     jobCtrl.cpMainID = recruitmentCpData[indexPath.row][@"cpMainID"];
     jobCtrl.JobID = recruitmentCpData[indexPath.row][@"JobID"];
     [self.navigationController pushViewController:jobCtrl animated:true];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 //点击我要参会

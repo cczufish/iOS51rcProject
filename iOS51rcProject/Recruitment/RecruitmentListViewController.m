@@ -314,6 +314,7 @@
                                                                       instantiateViewControllerWithIdentifier: @"RecruitmentView"];
     detailC.recruitmentID = self.recruitmentData[indexPath.row][@"ID"];
     [self.navigationController pushViewController:detailC animated:true];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 

@@ -193,6 +193,7 @@
         newsID = self.eiListData[indexPath.row][@"ID"] ;
     }
     [goToEIItemDetailsViewDelegate GoToEIItemDetailsView:newsID];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

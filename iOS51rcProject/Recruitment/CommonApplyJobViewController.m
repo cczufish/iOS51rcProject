@@ -345,6 +345,7 @@
     jobC.cpMainID = rowData[@"cpID"];    
     jobC.navigationItem.title = rowData[@"cpName"];
     [[CommonController getFatherController:self.view].navigationController pushViewController:jobC animated:YES];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 - (void)rowChecked:(UIButton *)sender

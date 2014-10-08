@@ -249,9 +249,10 @@
     UIStoryboard *jobSearchStoryboard = [UIStoryboard storyboardWithName:@"CpAndJob" bundle:nil];
     SuperCpViewController *cpMainCtrl = (SuperCpViewController*)[jobSearchStoryboard instantiateViewControllerWithIdentifier: @"SuperCpView"];
     cpMainCtrl.cpMainID = self.recruitmentCpData[indexPath.row][@"cpMainID"];
-    [self.navigationController pushViewController:cpMainCtrl animated:true];
     cpMainCtrl.navigationItem.title = self.recruitmentCpData[indexPath.row][@"Name"];
+    [self.navigationController pushViewController:cpMainCtrl animated:true];
     self.navigationItem.title = @"参会企业";
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 //点击下方预约面试(批量预约)

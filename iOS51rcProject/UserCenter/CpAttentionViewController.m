@@ -263,6 +263,7 @@
     cpCtrl.navigationItem.title = rowData[@"cpName"];
     UIViewController *superView = [CommonController getFatherController:self.view];
     [superView.navigationController pushViewController:cpCtrl animated:YES];
+    [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
 - (void)didReceiveMemoryWarning
