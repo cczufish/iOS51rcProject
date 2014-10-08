@@ -7,6 +7,7 @@
 #import "MapViewController.h"
 #import "SuperJobMainViewController.h"
 #import "RecruitmentViewController.h"
+#import "Toast+UIView.h"
 
 //收到的邀请
 @interface MyRmReceivedInvitationViewController ()<NetWebServiceRequestDelegate>
@@ -62,30 +63,40 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
-    if (requestData.count>0) {
-        [recruitmentCpData removeAllObjects];
-        recruitmentCpData = requestData;
-        
-        [recruitmentCpData retain];
-        [self.tvReceivedInvitationList reloadData];
-        [self.tvReceivedInvitationList footerEndRefreshing];
-    }else{
-        //记录
-        UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 240, 80)]autorelease];
-        UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 60)] autorelease];
-        img.image = [UIImage imageNamed:@"pic_noinfo.png"];
-        [viewHsaNoCv addSubview:img];
-        
-        NSString *strMsg = @"亲，您没有收到邀请记录，建议您线报名参加招聘会，主动邀请企业参会.";
-        CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(220, 500)];
-        UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, labelSize.width, labelSize.height)] autorelease];
-        lb1.text = strMsg;
-        lb1.numberOfLines = 0;
-        lb1.font = [UIFont systemFontOfSize:14];
-        lb1.textAlignment = NSTextAlignmentLeft;
-        [viewHsaNoCv addSubview:lb1];       
-        
-        [self.view addSubview:viewHsaNoCv];
+    if (request.tag == 1) {
+        if (requestData.count>0) {
+            [recruitmentCpData removeAllObjects];
+            recruitmentCpData = requestData;
+            
+            [recruitmentCpData retain];
+            [self.tvReceivedInvitationList reloadData];
+            [self.tvReceivedInvitationList footerEndRefreshing];
+        }else{
+            //记录
+            UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 240, 80)]autorelease];
+            UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 60)] autorelease];
+            img.image = [UIImage imageNamed:@"pic_noinfo.png"];
+            [viewHsaNoCv addSubview:img];
+            
+            NSString *strMsg = @"亲，您没有收到邀请记录，建议您线报名参加招聘会，主动邀请企业参会.";
+            CGSize labelSize = [CommonController CalculateFrame:strMsg fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(220, 500)];
+            UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, labelSize.width, labelSize.height)] autorelease];
+            lb1.text = strMsg;
+            lb1.numberOfLines = 0;
+            lb1.font = [UIFont systemFontOfSize:14];
+            lb1.textAlignment = NSTextAlignmentLeft;
+            [viewHsaNoCv addSubview:lb1];
+            
+            [self.view addSubview:viewHsaNoCv];
+        }
+    }else if(request.tag == 2){
+        UIViewController *pCtrl = [CommonController getFatherController:self.view];
+        if (requestData.count > 0) {
+            [pCtrl.view makeToast:@"答复成功"];
+            [self onSearch];
+        }else{
+            [pCtrl.view makeToast:@"答复失败"];
+        }
     }
     
     //结束等待动画
@@ -145,7 +156,7 @@
     [cell.contentView addSubview:(btnTitle)];
     [lbTitle release];
     //在线离线图标
-    UIButton *btnChat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 20, 6, 28, 15)];
+    UIButton *btnChat = [[UIButton alloc] initWithFrame:CGRectMake(labelSize.width + 20, 10, 28, 15)];
     UIImageView *imgOnline = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 28, 15)];
     imgOnline.image = [UIImage imageNamed:@"ico_joblist_online.png"];
     [btnChat addSubview:imgOnline];
@@ -332,8 +343,8 @@
         if (!isPassed && [strStatus isEqualToString:@"0"]) {
             //赴约参会
             UIButton *btnAccept = [[UIButton alloc] initWithFrame:CGRectMake(50, lbMobile.frame.origin.y + 30, 90, 30)];
-            btnAccept.tag = (NSInteger)rowData[@"ID"];
-            [btnAccept addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
+            btnAccept.tag = indexPath.row;
+            [btnAccept addTarget:self action:@selector(btnAcceptClick:) forControlEvents:UIControlEventTouchUpInside];
             btnAccept.layer.backgroundColor = [UIColor colorWithRed:3/255.0 green:187/255.0 blue:34/255.0 alpha:1].CGColor;
             btnAccept.layer.cornerRadius = 5;
             UILabel *lbAccept = [[[UILabel alloc] initWithFrame:CGRectMake(33, 0, 99, 30)] autorelease];
@@ -345,8 +356,8 @@
             [btnAccept release];
             //不赴约
             UIButton *btnReject = [[UIButton alloc] initWithFrame:CGRectMake(170, lbMobile.frame.origin.y + 30, 99, 30)];
-            btnReject.tag = (NSInteger)rowData[@"ID"];
-            [btnReject addTarget:self action:@selector(btnLngLatClick:) forControlEvents:UIControlEventTouchUpInside];
+            btnReject.tag = indexPath.row;
+            [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
             btnReject.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:49/255.0 alpha:1].CGColor;
             btnReject.layer.cornerRadius = 5;
             UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
@@ -365,7 +376,7 @@
         selectRowHeight = 100;
     }
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 1, 320, 0.5)];
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 1, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     
@@ -408,11 +419,43 @@
 //点击赴约
 -(void)btnAcceptClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
+    NSString *rmID = recruitmentCpData[sender.tag][@"RecruitmentID"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    [dicParam setObject:rmID forKey:@"id"];
+    [dicParam setObject:@"1" forKey:@"flag"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"UpdatePaReplyForCpInvitation" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequest = request;
+    [dicParam release];
+
 }
 
 //点击不赴约
 -(void)btnRejectClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
+    NSString *rmID = recruitmentCpData[sender.tag][@"RecruitmentID"];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [userDefaults objectForKey:@"code"];
+    NSString *userID = [userDefaults objectForKey:@"UserID"];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:userID forKey:@"paMainID"];
+    [dicParam setObject:code forKey:@"code"];
+    [dicParam setObject:rmID forKey:@"id"];
+    [dicParam setObject:@"2" forKey:@"flag"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"UpdatePaReplyForCpInvitation" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 2;
+    self.runningRequest = request;
+    [dicParam release];
+
 }
 
 //点击职位
