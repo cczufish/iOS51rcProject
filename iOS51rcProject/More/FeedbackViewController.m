@@ -1,6 +1,6 @@
 #import "FeedbackViewController.h"
 
-@interface FeedbackViewController ()<NetWebServiceRequestDelegate>{
+@interface FeedbackViewController ()<NetWebServiceRequestDelegate, UITextFieldDelegate>{
     
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *svContent;
@@ -45,6 +45,7 @@
     
     self.txtName.text = [userDefaults objectForKey:@"paName"];
     self.txtEmail.text = [userDefaults objectForKey:@"UserName"];
+    self.txtPhone.text =  [userDefaults objectForKey:@"Mobile"];
 
     self.UserInfoView.layer.cornerRadius = 5;
     self.UserInfoView.layer.borderWidth = 1;
@@ -83,6 +84,15 @@
     [self.txtInput setInputAccessoryView:topView];
 }
 
+//点击空白隐藏键盘
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [self.txtInput resignFirstResponder];
+    [self.txtPhone resignFirstResponder];
+    [self.txtEmail resignFirstResponder];
+    [self.txtName resignFirstResponder];
+}
+
+//点击输入完成隐藏键盘
 -(IBAction)dismissKeyBoard
 {
     [self.txtInput resignFirstResponder];

@@ -143,6 +143,7 @@
         [userDefaults setBool:isAutoLogin forKey:@"isAutoLogin"];
         [userDefaults setValue:code forKey:@"code"];
         [userDefaults setValue:requestData[0][@"Name"] forKey:@"paName"];
+        [userDefaults setValue:requestData[0][@"Mobile"] forKey:@"Mobile"];
         [self.loginLoading stopAnimating];
         [NSThread sleepForTimeInterval:1];
         [self.view makeToast:@"登录成功"];
