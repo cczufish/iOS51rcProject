@@ -41,7 +41,7 @@
     view1.layer.backgroundColor =  [UIColor colorWithRed:255.f/255.f green:255.f/255.f blue:255.f/255.f alpha:.5].CGColor;
     [btnRight addSubview:view1];
     UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(0, 5, 1, self.navigationController.navigationBar.frame.size.height-10)] autorelease];
-    view2.layer.backgroundColor = [UIColor colorWithRed:0/255.f green:0/255.f blue:0/255.f alpha:.5].CGColor;
+    view2.layer.backgroundColor = [UIColor colorWithRed:0/255.f green:0/255.f blue:0/255.f alpha:.3].CGColor;
     [btnRight addSubview:view2];
     //添加分享图片
     [btnRight addTarget:self action:@selector(btnShareClick:) forControlEvents:UIControlEventTouchUpInside];
