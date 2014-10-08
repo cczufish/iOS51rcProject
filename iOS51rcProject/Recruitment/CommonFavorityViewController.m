@@ -200,9 +200,9 @@
     //刷新时间
     UILabel *lbRefreshDate = [[UILabel alloc] initWithFrame:CGRectMake(40, 68, 160, 20)];
     NSString *strTime = [CommonController stringFromDate:[CommonController dateFromString:rowData[@"AddDate"]] formatType:@"MM-dd HH:mm"];
-    strTime = [NSString stringWithFormat:@"收藏时间%@：", strTime];
+    strTime = [NSString stringWithFormat:@"收藏时间：%@", strTime];
     [lbRefreshDate setText:strTime];
-    [lbRefreshDate setFont:[UIFont systemFontOfSize:12]];
+    [lbRefreshDate setFont:[UIFont systemFontOfSize:14]];
     [lbRefreshDate setTextColor:colorText];
     [lbRefreshDate setTextAlignment:NSTextAlignmentLeft];
     [cell.contentView addSubview:lbRefreshDate];
