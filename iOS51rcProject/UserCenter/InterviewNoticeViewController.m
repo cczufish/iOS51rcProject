@@ -609,11 +609,17 @@
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSInteger height = 70;
+    CGSize labelSize;
     NSString *strReply = self.recruitmentCpData[indexPath.row][@"Reply"];
     if (selectRowIndex == indexPath.row) {
         NSString *strRemark = self.recruitmentCpData[indexPath.row][@"Remark"];
-        CGSize labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 500)];
-        height += labelSize.height - 15;
+        if (strRemark == nil) {//如果备注为空
+            height += 10;
+        }else{
+            labelSize = [CommonController CalculateFrame:strRemark fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 500)];
+            height += labelSize.height - 15;
+        }
+       
         //如果未结束，并且没操作
         if ([strReply isEqualToString:@"0"]) {
             height +=  210;
