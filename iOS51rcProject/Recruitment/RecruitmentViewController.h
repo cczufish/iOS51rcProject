@@ -17,7 +17,7 @@
 @property (retain,nonatomic) NSDate *dtBeginTime;
 @property (retain,nonatomic) NSString *lng;
 @property (retain,nonatomic) NSString *lat;
-@property (retain,nonatomic) NSString *recruitmentName;
+@property (retain,nonatomic) NSString *recruitmentPlace;
 @property (retain,nonatomic) NSString *recruitmentPlaceId;
 @property (retain,nonatomic) NSString *recruitmentDeptId;
 

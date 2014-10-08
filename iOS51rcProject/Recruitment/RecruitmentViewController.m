@@ -139,7 +139,7 @@
     NSDictionary *dicRecruitment = requestData[0];
     self.lng = dicRecruitment[@"Lng"];
     self.lat = dicRecruitment[@"Lat"];
-    self.recruitmentName = dicRecruitment[@"RecruitmentName"];
+    self.recruitmentPlace = dicRecruitment[@"PlaceName"];
     //招聘会名称
     NSString *recruitmentTitle = dicRecruitment[@"RecruitmentName"];
     CGSize labelSize = [CommonController CalculateFrame:recruitmentTitle fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(self.lbRmTitle.frame.size.width, 500)];
@@ -478,7 +478,7 @@
     MapViewController *mapViewC = [[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateViewControllerWithIdentifier:@"MapView"];
     mapViewC.lat = [self.lat floatValue];
     mapViewC.lng = [self.lng floatValue];
-    [mapViewC.navigationItem setTitle:self.recruitmentName];
+    [mapViewC.navigationItem setTitle:self.recruitmentPlace];
     [self.navigationController pushViewController:mapViewC animated:true];
 }
 
@@ -525,7 +525,7 @@
     [_btnMapView release];
     [_lng release];
     [_lat release];
-    [_recruitmentName release];
+    [_recruitmentPlace release];
     [_recruitmentDeptId release];
     [_recruitmentPlaceId release];
     [_photoPopup release];

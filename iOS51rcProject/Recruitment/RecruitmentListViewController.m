@@ -207,11 +207,18 @@
     [cell.contentView addSubview:(lbBegin)];
     [lbBegin release];
     
-    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 35), titleWidth , 15)];
+    CGSize placeSize = [CommonController CalculateFrame:[NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(3000, 15)];
+    
+    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 35),  MIN(placeSize.width, titleWidth-20) , 15)];
     lbPlace.text = [NSString stringWithFormat:@"举办场馆：%@",rowData[@"PlaceName"]];
     lbPlace.font = [UIFont systemFontOfSize:14];
     [cell.contentView addSubview:(lbPlace)];
     [lbPlace release];
+    
+    UIImageView *imgPlace = [[UIImageView alloc] initWithFrame:CGRectMake((lbPlace.frame.origin.x + lbPlace.frame.size.width + 2), (labelSize.height + 35), 12, 15)];
+    [imgPlace setImage:[UIImage imageNamed:@"ico_cpinfo_cpaddress.png"]];
+    [cell.contentView addSubview:(imgPlace)];
+    [imgPlace release];
     
     UILabel *lbAddress = [[UILabel alloc] initWithFrame:CGRectMake(20, (labelSize.height + 55), titleWidth, 15)];
     lbAddress.text = [NSString stringWithFormat:@"具体地址：%@",rowData[@"Address"]];
