@@ -67,7 +67,7 @@
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
-    [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnApply addTarget:self action:@selector(jobInviteAll) forControlEvents:UIControlEventTouchUpInside];
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //添加上拉加载更多
@@ -261,11 +261,16 @@
     }
 }
 
-- (void)jobApply
+- (void)jobInviteAll
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
-         [InviteJobsFromFavorityViewDelegate InviteJobsFromFavorityView:checkedCpArray];
+        if (checkedCpArray.count>0) {
+            [InviteJobsFromFavorityViewDelegate InviteJobsFromFavorityView:checkedCpArray];
+        }else{
+             UIViewController *pCtrl = [CommonController getFatherController:self.view];
+            [pCtrl.view makeToast:@"至少选择一个职位申请"];
+        }
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];

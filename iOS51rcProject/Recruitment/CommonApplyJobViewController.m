@@ -366,11 +366,11 @@
 //邀请一个企业
 -(void) inviteOneCp:(UIButton*)sender{
     RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
+    NSMutableArray *tmpCheckArray = [[NSMutableArray alloc] init];
+    [tmpCheckArray addObject:selectCp];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
-        [checkedCpArray removeAllObjects];
-        [checkedCpArray addObject:selectCp];
-        [inviteFromApplyViewDelegate InviteJobsFromApplyView:checkedCpArray];
+        [inviteFromApplyViewDelegate InviteJobsFromApplyView:tmpCheckArray];
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
@@ -383,8 +383,13 @@
 - (void)jobApply
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if ([userDefaults objectForKey:@"UserID"]) {          
-        [inviteFromApplyViewDelegate InviteJobsFromApplyView:checkedCpArray];        
+    if ([userDefaults objectForKey:@"UserID"]) {
+        if (checkedCpArray.count > 0) {
+             [inviteFromApplyViewDelegate InviteJobsFromApplyView:checkedCpArray];
+        }else{
+            UIViewController *pCtrl = [CommonController getFatherController:self.view];
+            [pCtrl.view makeToast:@"至少选择一个职位申请"];
+        }
     }
     else {
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
@@ -396,20 +401,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-}
-
-
-//得到父View
-- (UIViewController *)getFatherController
-{
-    for (UIView* next = [self.view superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    
-    return nil;
 }
 
 - (void)dealloc {
