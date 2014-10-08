@@ -300,11 +300,22 @@
     [self.recommentJobsData removeAllObjects];
     self.recommentJobsData = requestData;
     //浏览过的其他职位子View
-    UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, tmpHeight, 280, 5*27)] autorelease];
+    UIView *tmpView = [[[UIView alloc] initWithFrame:CGRectMake(30, tmpHeight, 280, 5*27 + 20)] autorelease];
+    if (requestData.count>0) {
+        //浏览了该职位的还查看了
+        NSString *strOther = @"浏览了该职位的还查看了以下职位：";
+        CGSize labelSize = [CommonController CalculateFrame:strOther fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
+        UILabel *lbOther = [[UILabel alloc] initWithFrame:CGRectMake(-10, 5, labelSize.width, 15)];
+        lbOther.textColor = [UIColor grayColor];
+        lbOther.text = strOther;
+        lbOther.font = [UIFont systemFontOfSize:14];
+        [tmpView addSubview:lbOther];
+        [lbOther release];
+    }
     for (int i=0; i<requestData.count; i++) {
         if (i<5) {//只显示前5个
             NSDictionary *rowData = requestData[i];
-            UIButton *btnOther = [[[UIButton alloc] initWithFrame:CGRectMake(0, 27*i, 280, 20)] autorelease];
+            UIButton *btnOther = [[[UIButton alloc] initWithFrame:CGRectMake(0, 27*i + 25, 280, 20)] autorelease];
             [btnOther addTarget:self action:@selector(btnOtherJobClick:) forControlEvents:UIControlEventTouchUpInside];
             btnOther.tag = i;
             //职位名称
@@ -867,16 +878,6 @@
     lbLine4.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     [self.subView addSubview:lbLine4];
     [lbLine4 release];
-
-    //浏览了该职位的还查看了
-    NSString *strOther = @"浏览了该职位的还查看了以下职位：";
-    labelSize = [CommonController CalculateFrame:strOther fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(280, 500)];
-    UILabel *lbOther = [[UILabel alloc] initWithFrame:CGRectMake(20, lbLine4.frame.origin.y+lbLine4.frame.size.height + 10, labelSize.width, 15)];
-    lbOther.textColor = [UIColor grayColor];
-    lbOther.text = strOther;
-    lbOther.font = [UIFont systemFontOfSize:14];
-    [self.subView addSubview:lbOther];
-    [lbOther release];
     
     //在线
     self.isOnline = dicJob[@"IsOnline"] ;
@@ -889,7 +890,7 @@
     //[self.jobMainScroll addSubview:self.subView];
     
     //===================其他职位----调用Webservice=======================
-    tmpHeight = lbOther.frame.origin.y + lbOther.frame.size.height + 10;
+    tmpHeight = lbLine4.frame.origin.y + lbLine4.frame.size.height + 10;
     [self callOthers];
 }
 
