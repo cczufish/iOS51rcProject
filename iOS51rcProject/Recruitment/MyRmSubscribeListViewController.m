@@ -113,7 +113,7 @@
     CGFloat titleWidth = 290;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strRecruitmentName fontDemond:titleFont sizeDemand:titleSize];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, labelSize.width, labelSize.height)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, labelSize.width, labelSize.height)];
     lbTitle.text = strRecruitmentName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
@@ -214,7 +214,7 @@
     [lbMyRmCpCount release];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbAddress.frame.origin.y+lbAddress.frame.size.height + 15, 320, 1)];
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbAddress.frame.origin.y+lbAddress.frame.size.height + 2, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
@@ -259,27 +259,20 @@
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+     NSInteger height = 12;
     NSString *strRecruitmentName = self.recruitmentCpData[indexPath.row][@"RecruitmentName"];
     CGSize titleSize = CGSizeMake(290, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strRecruitmentName fontDemond:[UIFont systemFontOfSize:15] sizeDemand:titleSize];
-    NSInteger height = 108;
-    if (labelSize.height>30) {//标题换行了
-        height +=20;
-    }
+    height +=labelSize.height + 5;
+    //举办时间＝15+5
+    height += 20;
     NSString *strAddress = self.recruitmentCpData[indexPath.row][@"Address"];
     labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(140, 400)];
-    if (labelSize.height>30)
-    {
-        height +=labelSize.height - 15;
-    }
+    height +=labelSize.height + 5;
     
     NSString *strPlace = self.recruitmentCpData[indexPath.row][@"PlaceName"];
     labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(140, 400)];
-    if (labelSize.height>30)
-    {
-        height +=labelSize.height - 15;
-    }
-    
+    height +=labelSize.height + 5;
     
     return height;
 }
