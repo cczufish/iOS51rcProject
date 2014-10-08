@@ -164,7 +164,7 @@
     [btnChat release];
     [imgOnline release];
     //右侧的参会不参会标记
-    UILabel *lbStatus = [[UILabel alloc] initWithFrame:CGRectMake(260, 6, 50, 18)];
+    UILabel *lbStatus = [[UILabel alloc] initWithFrame:CGRectMake(260, 10, 50, 18)];
     lbStatus.layer.cornerRadius = 7;
     lbStatus.textColor = [UIColor whiteColor];
     lbStatus.font = [UIFont systemFontOfSize:13];
@@ -510,7 +510,7 @@
     if (selectRowIndex == indexPath.row) {
         //如果未结束，并且没操作
         if (!isPassed&&[strStatus isEqualToString:@"0"]) {
-            return 293;
+            return 290;
         }
         else {
              return 250;
