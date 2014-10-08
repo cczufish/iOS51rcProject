@@ -555,6 +555,10 @@
                     [self CreateFuliView:tmpView icoName:@"ico_fuli_gongjijin.png" title:@"公积金"];
                     [fuliArray addObject:tmpView];
                     break;
+                case 3:
+                    [self CreateFuliView:tmpView icoName:@"ico_fuli_shuangxiu.png" title:@"双休"];
+                    [fuliArray addObject:tmpView];
+                    break;
                 case 4:
                     [self CreateFuliView:tmpView icoName:@"ico_fuli_nzj.png" title:@"年终奖"];
                     [fuliArray addObject:tmpView];
