@@ -144,7 +144,7 @@
     //具体场馆地址
     NSString *strPlace = rowData[@"PlaceName"];
     labelSize = [CommonController CalculateFrame:strPlace fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(140, 400)];
-    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(85, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, MIN(labelSize.width, 133), 17)];
+    UILabel *lbPlace = [[UILabel alloc] initWithFrame:CGRectMake(85, lbBegin.frame.origin.y + lbBegin.frame.size.height + 5, MIN(labelSize.width, 133), labelSize.height)];
     lbPlace.text = strPlace;
     lbPlace.numberOfLines = 0;
     lbPlace.lineBreakMode = NSLineBreakByCharWrapping;
@@ -184,9 +184,9 @@
     [cell.contentView addSubview:(lbAddress)];
     [lbAddress release];
     
-    //我邀请的企业(右侧的小方块)
+    //我邀请的企业(右侧的小方块),最下方与具体地址平行
     NSString *myRmCpCount = rowData[@"myInvitCpNum"] ;
-    UIButton *btnMyRmCp = [[UIButton alloc] initWithFrame:CGRectMake(237, lbBegin.frame.origin.y + 15, 76, 40)];
+    UIButton *btnMyRmCp = [[UIButton alloc] initWithFrame:CGRectMake(237, lbAddress.frame.origin.y + lbAddress.frame.size.height - 45, 76, 40)];
     UILabel *lbMyRmCp = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, 80, 10)];
     lbMyRmCp.text = @"我邀请的企业";
     lbMyRmCp.font = [UIFont systemFontOfSize:11];
