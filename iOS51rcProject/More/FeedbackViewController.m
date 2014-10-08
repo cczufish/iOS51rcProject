@@ -1,6 +1,6 @@
 #import "FeedbackViewController.h"
 
-@interface FeedbackViewController ()<NetWebServiceRequestDelegate, UITextFieldDelegate>{
+@interface FeedbackViewController ()<NetWebServiceRequestDelegate, UITextFieldDelegate, UIScrollViewDelegate>{
     
 }
 @property (retain, nonatomic) IBOutlet UIScrollView *svContent;
@@ -35,6 +35,7 @@
     self.txtName.delegate = self;
     self.txtPhone.delegate = self;
     self.txtEmail.delegate = self;
+    self.svContent.delegate = self;
     
     [self initControl];
 }
@@ -85,11 +86,10 @@
 }
 
 //点击空白隐藏键盘
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+- (BOOL)touchesShouldBegin:(NSSet *)touches withEvent:(UIEvent *)event inContentView:(UIView *)view
+{
     [self.txtInput resignFirstResponder];
-    [self.txtPhone resignFirstResponder];
-    [self.txtEmail resignFirstResponder];
-    [self.txtName resignFirstResponder];
+    return true;
 }
 
 //点击输入完成隐藏键盘
