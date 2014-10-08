@@ -59,7 +59,7 @@
     
     //小图标
     UIImageView *imgOnline = [[[UIImageView alloc] initWithFrame:CGRectMake(btnGoToCpPage.frame.origin.x - 14, 13, 14, 16)] autorelease];
-    if ([self.isOnline isEqualToString:@"1"]) {
+    if ([self.isOnline isEqualToString:@"1"] || [self.isOnline isEqualToString:@"true"]) {
         imgOnline.image = [UIImage imageNamed:@"ico_onlinechat_online.png"];
     }else{
         imgOnline.image = [UIImage imageNamed:@"ico_onlinechat_offline.png"];

@@ -432,7 +432,7 @@
            
             objc_setAssociatedObject(btnReject, @"RejectReason", [NSString stringWithFormat:@"%d", indexPath.row], OBJC_ASSOCIATION_COPY_NONATOMIC);
             [btnReject addTarget:self action:@selector(btnRejectClick:) forControlEvents:UIControlEventTouchUpInside];
-            btnReject.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+            btnReject.layer.backgroundColor = [UIColor lightGrayColor].CGColor;
             btnReject.layer.cornerRadius = 5;
             UILabel *lbReject = [[[UILabel alloc] initWithFrame:CGRectMake(30, 0, 99, 30)] autorelease];
             lbReject.text = @"不赴约";
