@@ -135,7 +135,7 @@
         }
     }
     else if (request.tag == 4) { //默认投递完之后，显示弹层
-        [self.cPopup showJobApplyCvSelect:result view:self.view];
+        [self.cPopup showJobApplyCvSelect:result view:pCtrl.view];
     }
     else if (request.tag == 5) { //重新申请职位成功
         [pCtrl.view makeToast:@"简历更换成功"];
