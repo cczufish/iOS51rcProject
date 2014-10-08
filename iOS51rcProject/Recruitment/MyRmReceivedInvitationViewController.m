@@ -131,10 +131,10 @@
     CGFloat titleWidth = 235;
     CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
     CGSize labelSize = [CommonController CalculateFrame:strJobName fontDemond:titleFont sizeDemand:titleSize];
-    UIButton *btnTitle = [[UIButton alloc] initWithFrame:CGRectMake(20, 5, labelSize.width, labelSize.height)];
+    UIButton *btnTitle = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, labelSize.height + 15)];
     [btnTitle addTarget:self action:@selector(btnJobClick:) forControlEvents:UIControlEventTouchUpInside];
     btnTitle.tag = indexPath.row;
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, labelSize.width, labelSize.height)];
     lbTitle.text = strJobName;
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
     lbTitle.numberOfLines = 0;
