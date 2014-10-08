@@ -176,6 +176,15 @@
     [self.navigationController popViewControllerAnimated:true];
 }
 
+//限制输入字符个数
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    int MAX_CHARS = 6;
+//    NSMutableString *newtxt = [NSMutableString stringWithString:textField.text];
+//    [newtxt replaceCharactersInRange:range withString:string];
+//    return ([newtxt length] <= MAX_CHARS);
+//}
+
 //隐藏键盘
 -(IBAction)textFiledReturnEditing:(id)sender {
     [sender resignFirstResponder];
