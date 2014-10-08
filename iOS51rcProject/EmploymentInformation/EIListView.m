@@ -76,7 +76,7 @@
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"rmList"] autorelease];
     //数据
     NSDictionary *rowData = self.eiListData[indexPath.row];
-    
+    cell.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     //显示标题
     NSString *strTitle = rowData[@"Title"];
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 310, 62)];

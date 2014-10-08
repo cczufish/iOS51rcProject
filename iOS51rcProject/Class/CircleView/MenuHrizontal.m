@@ -45,7 +45,7 @@
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
         //添加下方黑线背景
-        UILabel *lbBg = [[[UILabel alloc] initWithFrame:CGRectMake(0, vButton.frame.size.height - 2.5, vButtonWidth, 0.5)] autorelease];
+        UILabel *lbBg = [[[UILabel alloc] initWithFrame:CGRectMake(0, vButton.frame.size.height - 2, vButtonWidth, 1)] autorelease];
         lbBg.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
         [vButton addSubview:lbBg];
         [mScrollView addSubview:vButton];
