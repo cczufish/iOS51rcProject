@@ -79,6 +79,8 @@
     cell.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     //显示标题
     NSString *strTitle = rowData[@"Title"];
+    strTitle = [strTitle stringByReplacingOccurrencesOfString:@"（图）" withString:@""];
+
     UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 8, 310, 56)];
     tmpView.layer.borderWidth = 0.5;
     tmpView.layer.borderColor = [UIColor colorWithRed:220.f/255.f green:220.f/255.f blue:220.f/255.f alpha:1].CGColor;

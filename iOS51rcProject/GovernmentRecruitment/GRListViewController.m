@@ -100,6 +100,7 @@
     [cell.contentView addSubview:buttonTitle];
     //显示标题
     NSString *strTitle = rowData[@"Title"];
+    strTitle = [strTitle stringByReplacingOccurrencesOfString:@"（图）" withString:@""];
     UIFont *titleFont = [UIFont systemFontOfSize:13];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 290, 17)];
     lbTitle.text = strTitle;
