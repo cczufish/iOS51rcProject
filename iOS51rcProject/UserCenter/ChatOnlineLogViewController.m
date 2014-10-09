@@ -3,6 +3,7 @@
 #import "LoadingAnimationView.h"
 #import "CommonController.h"
 #import "SuperCpViewController.h"
+#import  "Toast+UIView.h"
 
 @interface ChatOnlineLogViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate, NSXMLParserDelegate, UITextFieldDelegate>
 {
@@ -248,8 +249,15 @@
 
 //点击消息发送
 - (IBAction)btnSendClick:(id)sender {
-    [self textFieldShouldReturn:self.textSend];
     NSString *strMsg = self.textSend.text;
+    if ([strMsg isEqualToString:@""]) {
+        [self.view makeToast:@"发送内容不能为空"];
+        return;
+    }
+    
+    [self textFieldShouldReturn:self.textSend];
+    self.textSend.text = @"";
+    
     if (self.chatOnlineID == nil) {
         self.chatOnlineID = @"0";
     }
