@@ -10,6 +10,7 @@
 #import "CustomPopup.h"
 #import "JobViewController.h"
 #import "SuperJobMainViewController.h"
+#import <objc/runtime.h>
 
 @interface JobInviteListViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,SearchPickerDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
@@ -42,6 +43,7 @@
     self.lbTop.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
+    self.arrWillBeDeletedID = [[NSMutableArray alloc] init];
     //设置底部功能栏
     self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-self.viewBottom.frame.size.height-155);
     self.viewBottom.frame = CGRectMake(self.view.frame.origin.x, self.tvJobList.frame.origin.y+self.tvJobList.frame.size.height-1, 320, self.viewBottom.frame.size.height+1);
@@ -156,8 +158,14 @@
         [pCtrl.view makeToast:@"收藏成功"];
     }
     else if (request.tag == 6) {
-        [pCtrl.view makeToast:@"删除成功"];
-        [self onSearch];
+        //if (requestData.count > 0) {
+            [pCtrl.view makeToast:@"删除成功"];
+            [self.arrWillBeDeletedID removeAllObjects];//清空数据
+            [self.arrCheckJobID removeAllObjects];
+            [self onSearch];
+        //}else{
+        //    [pCtrl.view makeToast:@"删除失败"];
+        //}
     }
     //结束等待动画
     [loadView stopAnimating];
@@ -285,6 +293,7 @@
     [btnCheck setTitle:rowData[@"JobID"] forState:UIControlStateNormal];
     [btnCheck setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
     [btnCheck setTag:1];
+     objc_setAssociatedObject(btnCheck, "favID", rowData[@"ID"], OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象,删除用
     [btnCheck addTarget:self action:@selector(rowChecked:) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
@@ -322,16 +331,23 @@
 
 - (void)rowChecked:(UIButton *)sender
 {
+     NSString *favID = objc_getAssociatedObject(sender, "favID");
     UIImageView *imgCheck = sender.subviews[0];
     if (sender.tag == 1) {
         if (![self.arrCheckJobID containsObject:sender.titleLabel.text]) {
             [self.arrCheckJobID addObject:sender.titleLabel.text];
+        }
+        if (![self.arrWillBeDeletedID containsObject:favID]) {
+            [self.arrWillBeDeletedID addObject:favID];
         }
         [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
         [sender setTag:2];
     }
     else {
         [self.arrCheckJobID removeObject:sender.titleLabel.text];
+        if ([self.arrWillBeDeletedID containsObject:favID]) {
+            [self.arrWillBeDeletedID removeObject:favID];
+        }
         [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
         [sender setTag:1];
     }
@@ -405,7 +421,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位
-        if (self.arrCheckJobID.count == 0) {
+        if (self.arrWillBeDeletedID.count == 0) {
             [pCtrl.view makeToast:@"您还没有选择职位"];
             return;
         }
@@ -455,7 +471,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:[userDefaults objectForKey:@"UserID"] forKey:@"paMainID"];
-    [dicParam setObject:[self.arrCheckJobID componentsJoinedByString:@","] forKey:@"jobID"];
+    [dicParam setObject:[self.arrWillBeDeletedID componentsJoinedByString:@","] forKey:@"JobId"];
     [dicParam setObject:[userDefaults objectForKey:@"code"] forKey:@"code"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"DeleteJobInvitation" Params:dicParam];
     [request setDelegate:self];

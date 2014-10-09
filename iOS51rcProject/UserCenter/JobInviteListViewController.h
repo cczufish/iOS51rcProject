@@ -7,6 +7,7 @@
 @property (retain, nonatomic) IBOutlet UIView *viewBottom;
 @property (retain, nonatomic) IBOutlet UIButton *btnDelete;
 @property (retain,nonatomic) NSMutableArray* arrCheckJobID;
+@property (retain,nonatomic) NSMutableArray* arrWillBeDeletedID;
 
 - (void)onSearch;
 @end
