@@ -267,15 +267,19 @@
 
 //点击下方预约面试(批量预约)
 - (IBAction)btnBookAll:(id)sender {
-    RmInviteCpViewController *rmInviteCpViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
-    rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
-    rmInviteCpViewCtrl.strAddress = self.strAddress;
-    rmInviteCpViewCtrl.strPlace = self.strPlace;
-    rmInviteCpViewCtrl.strRmID = self.rmID;
-    rmInviteCpViewCtrl.strCity = self.strCity;
-    rmInviteCpViewCtrl.selectRmCps = self.checkedCpArray;
-    [self.checkedCpArray retain];
-    [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
+    if (self.checkedCpArray.count > 0) {
+        RmInviteCpViewController *rmInviteCpViewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"RmInviteCpView"];
+        rmInviteCpViewCtrl.strBeginTime = self.strBeginTime;
+        rmInviteCpViewCtrl.strAddress = self.strAddress;
+        rmInviteCpViewCtrl.strPlace = self.strPlace;
+        rmInviteCpViewCtrl.strRmID = self.rmID;
+        rmInviteCpViewCtrl.strCity = self.strCity;
+        rmInviteCpViewCtrl.selectRmCps = self.checkedCpArray;
+        [self.checkedCpArray retain];
+        [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
+    }else{
+        [self.view makeToast:@"您还没有选择职位"];        
+    }
 }
 
 //点击我要参会--进入邀请企业参会页面（预约一个）
