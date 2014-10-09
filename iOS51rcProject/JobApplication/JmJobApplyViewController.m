@@ -162,9 +162,9 @@
             [self.jobListData removeAllObjects];
             //没有面试通知记录
             self.lbTop.text = @" ";
-            UIImageView *imgCornor = self.btnTop.subviews[1];
-            imgCornor.image = [UIImage imageNamed:@"11111"];//赋空值
-            self.btnTop.titleLabel.text = @" ";
+            //UIImageView *imgCornor = self.btnTop.subviews[1];
+            //imgCornor.image = [UIImage imageNamed:@"11111"];//赋空值
+            //self.btnTop.titleLabel.text = @" ";
             
             UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 240, 80)]autorelease];
             viewHsaNoCv.tag = 1;//清除用
