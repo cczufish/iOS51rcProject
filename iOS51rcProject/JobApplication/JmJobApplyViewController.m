@@ -13,12 +13,12 @@
 @interface JmJobApplyViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
     LoadingAnimationView *loadView;
-    NSString *selectCV;
 }
 @property (nonatomic, retain) NSMutableArray *cvList;
 @property (nonatomic, retain) NSMutableArray *jobListData;
 @property int pageNumber;
 @property (nonatomic, retain) NSString *isOnline;
+@property (retain, nonatomic) NSString *selectCV;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) NetWebServiceRequest *runningRequestGetCvList;
 @property (nonatomic, retain) CustomPopup *cPopup;
@@ -27,6 +27,7 @@
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
 @property (retain, nonatomic) IBOutlet UIView *viewBottom;
 @property (retain, nonatomic) IBOutlet UIButton *btnDelete;
+@property BOOL boolChangeCv;
 @end
 
 @implementation JmJobApplyViewController
@@ -87,7 +88,7 @@
     self.tvJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self GetBasicCvList];
-    selectCV = @"";
+    self.selectCV = @"";
 }
 
 - (void)onSearch
@@ -106,7 +107,7 @@
     [dicParam setObject:code forKey:@"code"];//152014391908
     [dicParam setObject:@"20" forKey:@"pageSize"];
     [dicParam setObject:[NSString stringWithFormat:@"%d",self.pageNumber] forKey:@"pageNum"];
-    [dicParam setObject:selectCV forKey:@"cvMainID"];//21142013
+    [dicParam setObject:self.selectCV forKey:@"cvMainID"];//21142013
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetExJobApply" Params:dicParam];
     [request setDelegate:self];
     [request startAsynchronous];
@@ -116,8 +117,10 @@
 }
 
 - (void)footerRereshing{
-    self.pageNumber++;
-    [self onSearch];
+    if (self.jobListData.count>0) {
+        self.pageNumber++;
+        [self onSearch];
+    }     
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
@@ -125,28 +128,44 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) { //职位搜索
+        //清空所有子view
+        for(UIView *view in [self.view subviews])
+        {
+            //只清除友好提示
+            if (view.tag == 1) {
+                [view removeFromSuperview];
+            }
+        }
+        
+        self.lbTop.text = @"申请职位的记录保存6个月";
         if (requestData.count>0 || (requestData.count == 0 && self.pageNumber > 1)) {
+            //如果切换了简历，则清空joblistdata
+            if (self.boolChangeCv == true) {
+                [self.jobListData removeAllObjects];
+                self.boolChangeCv = false;
+            }
+            
             if(self.pageNumber == 1){
                 [self.jobListData removeAllObjects];
                 self.jobListData = requestData;
             }
-            
             else{
                 [self.jobListData addObjectsFromArray:requestData];
             }
+            
             [self.tvJobList footerEndRefreshing];
             //重新加载列表
             [self.tvJobList reloadData];
         }else{
+            [self.jobListData removeAllObjects];
             //没有面试通知记录
             self.lbTop.text = @" ";
-            self.lbTop.layer.borderColor = [UIColor whiteColor].CGColor;
-            self.btnTop.layer.borderWidth = 0;
             UIImageView *imgCornor = self.btnTop.subviews[1];
             imgCornor.image = [UIImage imageNamed:@"11111"];//赋空值
             self.btnTop.titleLabel.text = @" ";
             
             UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(20, 100, 240, 80)]autorelease];
+            viewHsaNoCv.tag = 1;//清除用
             UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(20, 0, 40, 60)] autorelease];
             img.image = [UIImage imageNamed:@"pic_noinfo.png"];
             [viewHsaNoCv addSubview:img];
@@ -390,7 +409,6 @@
     }
 }
 
-
 //点击确定删除
 - (void) confirmAndCancelPopupNext
 {
@@ -490,12 +508,13 @@
 {
     switch (picker.tag) {
         case 1:
+            self.boolChangeCv = true;
             if ([selectedValue isEqualToString:@"0"]) {
                 [self.btnTop setTitle:@"相关简历" forState:UIControlStateNormal];
-                selectCV = @"";
+                self.selectCV = @"";
             }else{
                 [self.btnTop setTitle:selectedName forState:UIControlStateNormal];
-                selectCV = selectedValue;
+                self.selectCV = selectedValue;
             }
             
             [self onSearch];
