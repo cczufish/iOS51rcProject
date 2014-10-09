@@ -206,7 +206,7 @@
     {
         return 130;
     }else{
-         return 67;
+         return 65;
     }   
 }
 
