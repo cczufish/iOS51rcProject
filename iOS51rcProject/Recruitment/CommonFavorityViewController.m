@@ -222,6 +222,21 @@
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];
     
+    //右侧的邀请按钮和图片
+    UIButton *btnInvite = [[[UIButton alloc] initWithFrame:CGRectMake(265, 30, 40, 60)] autorelease];
+    objc_setAssociatedObject(btnInvite, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
+    [btnInvite addTarget:self action:@selector(inviteOneCp:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(15, 0, 25, 25)] autorelease];
+    imgInvite.image = [UIImage imageNamed:@"ico_rm_head.png"];
+    [btnInvite addSubview:imgInvite];
+    
+    UILabel *lbInvite = [[[UILabel alloc] initWithFrame:CGRectMake(16, 27, 30, 12)] autorelease];
+    lbInvite.font = [UIFont systemFontOfSize:12];
+    lbInvite.text = @"邀请";
+    lbInvite.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+    [btnInvite addSubview:lbInvite];
+    [cell.contentView addSubview:btnInvite];
+    
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 89, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
@@ -259,6 +274,23 @@
         [checkedCpArray removeObject:(selectCp)];
         [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
         [sender setTag:1];
+    }
+}
+
+
+//邀请一个企业
+-(void) inviteOneCp:(UIButton*)sender{
+    RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
+    NSMutableArray *tmpCheckArray = [[NSMutableArray alloc] init];
+    [tmpCheckArray addObject:selectCp];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"UserID"]) {
+        [InviteJobsFromFavorityViewDelegate InviteJobsFromFavorityView:tmpCheckArray];
+    }
+    else {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Login" bundle: nil];
+        LoginViewController *loginC = [mainStoryboard instantiateViewControllerWithIdentifier:@"LoginView"];
+        [self.navigationController pushViewController:loginC animated:true];
     }
 }
 

@@ -481,7 +481,6 @@
     request.tag = 2;
     self.runningRequest = request;
     [dicParam release];
-
 }
 
 //点击不赴约
