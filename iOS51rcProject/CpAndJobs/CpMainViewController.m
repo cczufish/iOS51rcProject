@@ -105,19 +105,23 @@
     NSString *strRegion = dicCpMain[@"RegionName"];
     NSString *strAddressDetails = [NSString stringWithFormat:@"%@%@", strRegion, dicCpMain[@"Address"]];
     labelSize = [CommonController CalculateFrame:strAddressDetails fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 500)];
+    //地址按钮可点击
+    UIButton *btnLngLat = [[[UIButton alloc] initWithFrame:CGRectMake(90, self.lbAddress.frame.origin.y, labelSize.width + 20, labelSize.height)]autorelease];
+    btnLngLat.tag = (NSInteger)dicCpMain[@"ID"];
+    [btnLngLat addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cpMainScroll addSubview:btnLngLat];
+    //地址文字
     self.lbAddressValue.frame = CGRectMake(90, self.lbAddress.frame.origin.y + 5, labelSize.width, labelSize.height);
     self.lbAddressValue.lineBreakMode = NSLineBreakByCharWrapping;
     self.lbAddressValue.numberOfLines = 0;
     self.lbAddressValue.text = strAddressDetails;
     //坐标
     if (dicCpMain[@"Lng"] != nil) {
-        UIButton *btnLngLat = [[[UIButton alloc] initWithFrame:CGRectMake(self.lbAddressValue.frame.origin.x + self.lbAddressValue.frame.size.width, self.lbAddress.frame.origin.y, 13, 15)]autorelease];
-        [btnLngLat setBackgroundImage:[UIImage imageNamed:@"ico_cpinfo_cpaddress.png"] forState:UIControlStateNormal];
+        UIImageView *imgLngLat = [[[UIImageView alloc] initWithFrame:CGRectMake(self.lbAddressValue.frame.origin.x + self.lbAddressValue.frame.size.width, self.lbAddress.frame.origin.y, 13, 15)]autorelease];
+        imgLngLat.image = [UIImage imageNamed:@"ico_cpinfo_cpaddress.png"];
+        [self.cpMainScroll addSubview:imgLngLat];
         self.lng = [dicCpMain[@"Lng"] floatValue];
         self.lat = [dicCpMain[@"Lat"] floatValue];
-        btnLngLat.tag = (NSInteger)dicCpMain[@"ID"];
-        [btnLngLat addTarget:self action:@selector(showMap:) forControlEvents:UIControlEventTouchUpInside];
-        [self.cpMainScroll addSubview:btnLngLat];
     }
 
     //分割线
