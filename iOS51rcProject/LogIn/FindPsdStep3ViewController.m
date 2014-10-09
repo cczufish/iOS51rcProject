@@ -183,29 +183,27 @@
 - (BOOL)checkInput:(NSString *)userName Password:(NSString*) passWord RePassword:(NSString*) rePsd
 {
     BOOL result = true;
-    
     if(userName==nil||[userName isEqualToString:@""]){
         //提示输入信息
         [Dialog alert:@"请输入邮箱"];
-        result = false;
+        return false;
     }
-    if(passWord==nil
+    else if(passWord==nil
        ||[passWord isEqualToString:@""]){
         
         [Dialog alert:@"请输入密码"];
         result = false;
     }
-    if([self.userName length]>50){
+    else if([self.userName length]>50){
         
         [Dialog alert:@"邮箱长度不能超过50位"];
         result = false;
     }
-    
-    if (![CommonController checkEmail:self.userName]) {
+    else if (![CommonController checkEmail:self.userName]) {
         [Dialog alert:@"邮箱格式不正确"];
         result = false;
     }
-    if(![rePsd isEqualToString:passWord]){
+    else if(![rePsd isEqualToString:passWord]){
         if(rePsd==nil||[rePsd length]==0){
             [Dialog alert:@"重复密码不能为空"];
             result = false;
@@ -214,13 +212,12 @@
             result = false;
         }
     }
-    
-    if([passWord length]<6|| [passWord length]>20){
+    else if([passWord length]<6|| [passWord length]>20){
         [Dialog alert:@"密码长度为6-20！"];
         result = false;
     }
     
-    if (![CommonController checkPassword:passWord]) {
+    else if (![CommonController checkPassword:passWord]) {
         [Dialog alert:@"密码只能使用字母、数字、横线、下划线、点"];
         result = false;
     }
