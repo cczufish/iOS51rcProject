@@ -91,12 +91,12 @@
         }
     }else if(request.tag == 2){
         UIViewController *pCtrl = [CommonController getFatherController:self.view];
-        if (requestData.count > 0) {
+        //if (requestData.count > 0) {
             [pCtrl.view makeToast:@"答复成功"];
             [self onSearch];
-        }else{
-            [pCtrl.view makeToast:@"答复失败"];
-        }
+        //}else{
+        //    [pCtrl.view makeToast:@"答复失败"];
+        //}
     }
     
     //结束等待动画
@@ -416,7 +416,11 @@
             selectRowHeight = btnReject.frame.origin.y + btnReject.frame.size.height + 10;
         }
         else{//如果是选择的当前行，但是已经操作过（即没有赴约不赴约按钮）
-            selectRowHeight = lbMobile.frame.origin.y + lbMobile.frame.size.height + 10;
+            if (self.strMobile == nil) {
+                selectRowHeight = lbPreMobile.frame.origin.y + lbPreMobile.frame.size.height + 10;
+            }else{
+                selectRowHeight = lbMobile.frame.origin.y + lbMobile.frame.size.height + 10;
+            }
         }
     }else{//如果不是选择当前行
         //招聘会名称位置的高度
@@ -466,14 +470,14 @@
 //点击赴约
 -(void)btnAcceptClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
-    NSString *rmID = recruitmentCpData[sender.tag][@"RecruitmentID"];
+    NSString *tmpID = recruitmentCpData[sender.tag][@"id"];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
-    [dicParam setObject:rmID forKey:@"id"];
+    [dicParam setObject:tmpID forKey:@"id"];
     [dicParam setObject:@"1" forKey:@"flag"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"UpdatePaReplyForCpInvitation" Params:dicParam];
     [request setDelegate:self];
@@ -486,14 +490,14 @@
 //点击不赴约
 -(void)btnRejectClick:(UIButton *) sender{
     NSLog(@"%d", sender.tag);
-    NSString *rmID = recruitmentCpData[sender.tag][@"RecruitmentID"];
+    NSString *tmpID = recruitmentCpData[sender.tag][@"id"];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
-    [dicParam setObject:rmID forKey:@"id"];
+    [dicParam setObject:tmpID forKey:@"id"];
     [dicParam setObject:@"2" forKey:@"flag"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"UpdatePaReplyForCpInvitation" Params:dicParam];
     [request setDelegate:self];
@@ -501,7 +505,6 @@
     request.tag = 2;
     self.runningRequest = request;
     [dicParam release];
-
 }
 
 //点击职位
