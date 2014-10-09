@@ -228,14 +228,14 @@
     [btnCheck release];
     
     //右侧的邀请按钮和图片
-    UIButton *btnInvite = [[[UIButton alloc] initWithFrame:CGRectMake(265, 30, 40, 60)] autorelease];
+    UIButton *btnInvite = [[[UIButton alloc] initWithFrame:CGRectMake(260, 10, 50, 80)] autorelease];
     objc_setAssociatedObject(btnInvite, "rmCpMain", cpMain, OBJC_ASSOCIATION_RETAIN_NONATOMIC);//传递对象
     [btnInvite addTarget:self action:@selector(inviteOneCp:) forControlEvents:UIControlEventTouchUpInside];
-    UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(15, 0, 25, 25)] autorelease];
+    UIImageView *imgInvite = [[[UIImageView alloc] initWithFrame:CGRectMake(25, 30, 25, 25)] autorelease];
     imgInvite.image = [UIImage imageNamed:@"ico_rm_head.png"];
     [btnInvite addSubview:imgInvite];
     
-    UILabel *lbInvite = [[[UILabel alloc] initWithFrame:CGRectMake(16, 27, 30, 12)] autorelease];
+    UILabel *lbInvite = [[[UILabel alloc] initWithFrame:CGRectMake(26, 57, 30, 12)] autorelease];
     lbInvite.font = [UIFont systemFontOfSize:12];
     lbInvite.text = @"邀请";
     lbInvite.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
