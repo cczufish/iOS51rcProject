@@ -217,7 +217,7 @@
     //招聘会名称
     NSString *strRmName = rowData[@"RecruitmentName"];
     //招聘会名称按钮
-    labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(300, 500)];
+    labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
     UIButton *btnRM = [[[UIButton alloc] initWithFrame:CGRectMake(0, lbLine1.frame.origin.y + lbLine1.frame.size.height + 5, 320, 15)] autorelease];
     [btnRM addTarget:self action:@selector(btnRMClick:) forControlEvents:UIControlEventTouchUpInside];
      btnRM.tag = indexPath.row;
@@ -322,7 +322,7 @@
         lbPreXdcl.textColor = [UIColor grayColor];
         [cell.contentView addSubview:lbPreXdcl];
         NSString *strXdcl = rowData[@"xdcl"];
-        labelSize = [CommonController CalculateFrame:strAddress fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+        labelSize = [CommonController CalculateFrame:strXdcl fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(220, 500)];
         UILabel *lbXdcl = [[UILabel alloc] initWithFrame:CGRectMake(85, lbPreXdcl.frame.origin.y, labelSize.width, labelSize.height)];
         lbXdcl.text = strXdcl;
         lbXdcl.lineBreakMode = NSLineBreakByCharWrapping;
@@ -332,14 +332,19 @@
         [cell.contentView addSubview:(lbXdcl)];
         [lbXdcl release];
         //分隔线2
-        UILabel *lbLine2 = [[UILabel alloc] initWithFrame:CGRectMake(20, lbXdcl.frame.origin.y+lbXdcl.frame.size.height + 5, 300, 1)];
+        UILabel *lbLine2;
+        if (strXdcl == nil) {
+            lbLine2 = [[UILabel alloc] initWithFrame:CGRectMake(20, lbPreXdcl.frame.origin.y+lbPreXdcl.frame.size.height + 5, 300, 1)];
+        }else{
+            lbLine2 = [[UILabel alloc] initWithFrame:CGRectMake(20, lbXdcl.frame.origin.y+lbXdcl.frame.size.height + 5, 300, 1)];
+        }
         lbLine2.text = @"--------------------------------------------------------------------------";
         lbLine2.textColor = [UIColor grayColor];
         [cell.contentView addSubview:lbLine2];
         [lbLine2 release];
         //参会人
         NSString *strLinkman = rowData[@"linkman"];
-        UILabel *lbPreLinkman = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLine2.frame.origin.y + lbLine2.frame.size.height + 5, 65, labelSize.height)] autorelease];
+        UILabel *lbPreLinkman = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbLine2.frame.origin.y + lbLine2.frame.size.height + 5, 65, 15)] autorelease];
         lbPreLinkman.text = @"参会人：";
         lbPreLinkman.textAlignment = NSTextAlignmentRight;
         lbPreLinkman.font = [UIFont systemFontOfSize:13];
@@ -538,6 +543,7 @@
 
 //每一行的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    int height = 90;//职位名称，公司名称，邀请时间，第一个横线的高度。
     NSString *strStatus = recruitmentCpData[indexPath.row][@"Status"];
     BOOL isPassed = false;
     NSString *strEndDate = recruitmentCpData[indexPath.row][@"EndDate"];
@@ -552,21 +558,31 @@
     //招聘会名称是否换行
     NSString *strRmName = recruitmentCpData[indexPath.row][@"RecruitmentName"];
     //招聘呼名称的高度
-    CGSize labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+    CGSize labelSizeRmName = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
     
     //如果选择了当前行
     if (selectRowIndex == indexPath.row) {
+        //携带材料
+        NSString *strXdcl = recruitmentCpData[indexPath.row][@"xdcl"];
+        CGSize labelSizeXdcl = [CommonController CalculateFrame:strXdcl fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(220, 500)];
+        if (strXdcl != nil) {
+            height += labelSizeXdcl.height;
+        }else{
+            height += 15;
+        }
         //如果未结束，并且没操作
         if (!isPassed&&[strStatus isEqualToString:@"0"]) {
-            return 290 + 10;
+            height += 195;
         }
         else {
-             return 250 + 10;
+             height += 150;
         }
        
     }else {
-        return 85 + labelSize.height + 10;
+        height += labelSizeRmName.height ;
     }
+    
+    return height;
 }
 
 - (void)didReceiveMemoryWarning
