@@ -36,7 +36,7 @@
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //不显示列表分隔线
-    //self.tvReceivedInvitationList.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tvReceivedInvitationList.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)onSearch
@@ -420,12 +420,12 @@
         }
     }else{//如果不是选择当前行
         //招聘会名称位置的高度
-        selectRowHeight = lbRmName.frame.origin.x + lbRmName.frame.size.height + 5;
+        selectRowHeight = btnRM.frame.origin.y + btnRM.frame.size.height + 8;
     }
     //分割线
-//    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 1, 320, 0.5)];
-//    [viewSeparate setBackgroundColor:[UIColor redColor]];
-//    [cell.contentView addSubview:viewSeparate];
+    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 0.5)];
+    [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
+    [cell.contentView addSubview:viewSeparate];
     
     return cell;
 }

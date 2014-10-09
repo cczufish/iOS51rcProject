@@ -83,7 +83,7 @@
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="rmList" id="zHH-A2-IBr">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zHH-A2-IBr" id="oOP-jz-JAF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
@@ -104,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TbH-yY-zXE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="-565"/>
+            <point key="canvasLocation" x="1222" y="-559"/>
         </scene>
         <!--My Rm Invite Cp List View Controller-->
         <scene sceneID="LGN-wy-ZJv">
@@ -142,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XKP-dP-ERT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1230" y="-185"/>
+            <point key="canvasLocation" x="841" y="117"/>
         </scene>
         <!--Common Favority View Controller-->
         <scene sceneID="b5o-YG-34S">
@@ -876,7 +876,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sih-Ux-XWc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2061" y="-553"/>
+            <point key="canvasLocation" x="1233" y="131"/>
         </scene>
         <!--Common Search Job View Controller-->
         <scene sceneID="ULp-Sz-5Fn">
