@@ -283,6 +283,7 @@
         lbPreViewTime.text = @"面试时间：";
         lbPreViewTime.font  = [UIFont systemFontOfSize:12];
         lbPreViewTime.textColor = [UIColor grayColor];
+        lbPreViewTime.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:(lbPreViewTime)];
         
         UILabel *lbInterviewTime = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbInviteTime.frame.origin.y + lbInviteTime.frame.size.height + 5, titleWidth, 15)] autorelease];
@@ -313,9 +314,10 @@
 
         //联系人
         UILabel *lbPreLinkMan = [[[UILabel alloc]initWithFrame:CGRectMake(20, lbPlace.frame.origin.y + lbPlace.frame.size.height + 5, 60, 15)] autorelease];
-        lbPreLinkMan.text = @"联 系 人：";
+        lbPreLinkMan.text = @"联系人：";
         lbPreLinkMan.font  = [UIFont systemFontOfSize:12];
         lbPreLinkMan.textColor = [UIColor grayColor];
+        lbPreLinkMan.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:lbPreLinkMan];
         
         NSString *strLinkman = rowData[@"LinkMan"];
@@ -359,11 +361,12 @@
       
         //备注
         UILabel *lbPreRemark = [[[UILabel alloc]initWithFrame:CGRectMake(20, btnCall.frame.origin.y + btnCall.frame.size.height + 5, 60, 15)] autorelease];
-        lbPreRemark.text = @"备      注：";
+        lbPreRemark.text = @"备注：";
         lbPreRemark.font  = [UIFont systemFontOfSize:12];
         lbPreRemark.textColor = [UIColor grayColor];
         lbPreRemark.lineBreakMode = NSLineBreakByCharWrapping;
         lbPreRemark.numberOfLines = 0;
+        lbPreRemark.textAlignment = NSTextAlignmentRight;
         [cell.contentView addSubview:lbPreRemark];
         
         NSString *strRemark = rowData[@"Remark"];
@@ -449,6 +452,7 @@
             lbPreRemark.text = @"回复状态：";
             lbPreRemark.font  = [UIFont systemFontOfSize:12];
             lbPreRemark.textColor = [UIColor grayColor];
+            lbPreRemark.textAlignment = NSTextAlignmentRight;
             [cell.contentView addSubview:lbPreRemark];
           
             UILabel *lbApply = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbRemark.frame.origin.y + lbRemark.frame.size.height + 5, 40, 15)] autorelease];
@@ -467,9 +471,16 @@
                 lbApply.text = @"不赴约";
                 lbApply.backgroundColor = [UIColor colorWithRed:170.f/255.f green:170.f/255.f blue:170.f/255.f alpha:1];
                 //不赴约原因
-                UILabel *lbReason = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbApply.frame.origin.y+lbApply.frame.size.height + 5, 280, 15)] autorelease];
-                lbReason.text = [NSString stringWithFormat:@"原      因：%@", rowData[@"ReplyMessage"]];
-                lbReason.textColor = [UIColor grayColor];
+                UILabel *lbPreReason = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbApply.frame.origin.y+lbApply.frame.size.height + 5, 60, 15)] autorelease];
+                lbPreReason.text = @"原      因：";
+                lbPreReason.textAlignment = NSTextAlignmentRight;
+                lbPreReason.textColor = [UIColor grayColor];
+                lbPreReason.font = [UIFont systemFontOfSize:12];
+                [cell.contentView addSubview:(lbPreReason)];
+                
+                UILabel *lbReason = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbApply.frame.origin.y+lbApply.frame.size.height + 5, 210, 15)] autorelease];
+                lbReason.text = rowData[@"ReplyMessage"];
+                lbReason.textColor = [UIColor blackColor];
                 lbReason.layer.cornerRadius = 5;
                 lbReason.font = [UIFont systemFontOfSize:12];
                 [cell.contentView addSubview:(lbReason)];
