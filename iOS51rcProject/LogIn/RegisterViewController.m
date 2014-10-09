@@ -252,7 +252,7 @@
             backGroundView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
             backGroundView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
             [self.view addSubview:backGroundView];
-            createResumeCtrl.view.frame = CGRectMake(20, 60, 280, 180);
+            createResumeCtrl.view.frame = CGRectMake(35, 60, 250, 180);
             [self.view addSubview:createResumeCtrl.view];
         }
     }

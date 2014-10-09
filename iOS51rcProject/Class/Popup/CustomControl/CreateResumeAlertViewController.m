@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.layer.cornerRadius = 5;
     self.btnOK.layer.cornerRadius = 5;
     //[self createHasExpBtnGroupWithImage];
     // Do any additional setup after loading the view from its nib.
@@ -44,6 +45,7 @@
     self.imgHasNoExp.image = [UIImage imageNamed:@"radioUnChecked.png"];
     hasExp = true;
 }
+
 //点击没有工作经验
 - (IBAction)btnHasNoExpClick:(id)sender {
     self.imgHasNoExp.image = [UIImage imageNamed:@"radioChecked.png"];
