@@ -167,7 +167,7 @@
         [self.tvJobList footerEndRefreshing];
         //重新加载列表
         [self.tvJobList reloadData];
-        if (requestData.count == 0) {
+        if (self.jobListData.count == 0) {
             [loadView showNoListTips];
         }
         else {

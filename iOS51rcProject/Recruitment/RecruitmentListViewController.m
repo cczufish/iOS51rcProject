@@ -374,6 +374,12 @@
         else{
             [self.recruitmentData addObjectsFromArray:requestData];
         }
+        if (self.recruitmentData.count == 0) {
+            [loadView showNoListTips];
+        }
+        else {
+            [loadView hideNoListTips];
+        }
         [self.tvRecruitmentList reloadData];
         [self.tvRecruitmentList footerEndRefreshing];
     }else if(request.tag == 2){

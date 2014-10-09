@@ -167,6 +167,12 @@
         [self.tvEIList reloadData];
         [self.tvEIList footerEndRefreshing];
         
+        if (requestData.count == 0) {
+            [loadView showNoListTips];
+        }
+        else {
+            [loadView hideNoListTips];
+        }
         //结束等待动画
         [loadView stopAnimating];
     }

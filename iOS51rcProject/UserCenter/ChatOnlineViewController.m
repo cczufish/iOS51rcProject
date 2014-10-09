@@ -67,6 +67,12 @@
     if (request.tag == 1) {
         [self.chatOnlineListData removeAllObjects];
         self.chatOnlineListData = requestData;
+        if (requestData.count == 0) {
+            [loadView showNoListTips];
+        }
+        else {
+            [loadView hideNoListTips];
+        }
         //重新加载列表
         [self.tvChatOnlineList reloadData];
     }

@@ -59,7 +59,7 @@
     }
     //创建最后一个点击按钮
     self.gotoMainViewBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.gotoMainViewBtn.frame = CGRectMake(3*320+110, HEIGHT-100, 100, 80);//在第四个页面上
+    self.gotoMainViewBtn.frame = CGRectMake(3*320+60, HEIGHT-100, 200, 80);//在第四个页面上
     [self.gotoMainViewBtn setTitle:@"" forState:UIControlStateNormal];
     [self.gotoMainViewBtn addTarget:self action:@selector(gotoMainView:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -88,7 +88,7 @@
     
     //切换页面的小点
     pageControl = [[UIPageControl alloc] init];
-    pageControl.frame = CGRectMake(110,474,100,50);
+    pageControl.frame = CGRectMake(110,500,100,50);
     [pageControl setNumberOfPages:4];
     pageControl.currentPage = 0;
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
@@ -125,6 +125,12 @@
 {
     CGPoint offset = scrollView.contentOffset;
     pageControl.currentPage = offset.x / 320;
+    if (pageControl.currentPage == 3) {
+        [pageControl setHidden:true];
+    }
+    else {
+        [pageControl setHidden:false];
+    }
 }
 
 -(void)pageTurn:(UIPageControl*)aPageControl

@@ -104,6 +104,7 @@
 {
     [loadView stopAnimating];
     NSDictionary *paData = [self getArrayFromXml:xmlContent tableName:@"paData"][0];
+    [self.lbEmail setText:paData[@"Email"]];
     if (!paData[@"LivePlace"]) {
         return;
     }
@@ -115,7 +116,6 @@
     [self.btnGrowPlace setTitle:paData[@"GrowRegion"] forState:UIControlStateNormal];
     [self.btnGrowPlace setTag:[paData[@"GrowPlace"] intValue]];
     [self.txtMobile setText:paData[@"Mobile"]];
-    [self.lbEmail setText:paData[@"Email"]];
     [self.btnBirth setTitle:[NSString stringWithFormat:@"%@年%@月",[paData[@"BirthDay"] substringWithRange:NSMakeRange(0, 4)],[paData[@"BirthDay"] substringWithRange:NSMakeRange(4, 2)]] forState:UIControlStateNormal];
     [self.btnBirth setTag:[paData[@"BirthDay"] intValue]];
     if ([paData[@"Gender"] isEqualToString:@"false"]) {

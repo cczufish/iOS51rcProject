@@ -145,7 +145,8 @@
 
 - (void)getPaBasic
 {
-    if (!self.paData[0][@"BirthDay"]) {
+    [self.lbEmail setText:self.paData[0][@"Email"]];
+    if (!self.paData[0][@"LivePlace"]) {
         return;
     }
     [self.lbPaName setText:self.paData[0][@"Name"]];
@@ -153,7 +154,6 @@
     [self.lbAccountPlace setText:self.paData[0][@"AccountRegion"]];
     [self.lbGrowPlace setText:self.paData[0][@"GrowRegion"]];
     [self.lbMobile setText:self.paData[0][@"Mobile"]];
-    [self.lbEmail setText:self.paData[0][@"Email"]];
     [self.lbBirth setText:[NSString stringWithFormat:@"%@年%@月",[self.paData[0][@"BirthDay"] substringWithRange:NSMakeRange(0, 4)],[self.paData[0][@"BirthDay"] substringWithRange:NSMakeRange(4, 2)]]];
     if ([self.paData[0][@"Gender"] isEqualToString:@"false"]) {
         [self.lbGender setText:@"男"];
