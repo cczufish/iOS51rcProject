@@ -317,7 +317,6 @@
     [[tableView cellForRowAtIndexPath:indexPath] setSelected:false];
 }
 
-
 //点击我要参会
 -(void) joinRecruitment:(UIButton *)sender{
     if ([CommonController isLogin]) {
@@ -378,6 +377,8 @@
         [self.tvRecruitmentList reloadData];
         [self.tvRecruitmentList footerEndRefreshing];
     }else if(request.tag == 2){
+        //刷新页面
+        [self onSearch];
         self.cPopup = [[[AttendRMPopUp alloc] initPopup] autorelease];
         [self.cPopup setDelegate:self];
         [self.cPopup showPopup:self.view];
@@ -396,7 +397,6 @@
     //结束等待动画
     [loadView stopAnimating];
 }
-
 
 //预约成功，打开搜索、申请、收藏界面
 -(void) attendRM{
