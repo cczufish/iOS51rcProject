@@ -108,6 +108,7 @@
     UIView *tmpView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 300)];
     //标题
     self.strTitle  = dicCpMain[@"title"];
+    self.strTitle = [self.strTitle stringByReplacingOccurrencesOfString:@"（图）" withString:@""];
     CGSize labelSize = [CommonController CalculateFrame:self.strTitle fontDemond:[UIFont systemFontOfSize:16] sizeDemand:CGSizeMake(310, 200)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, labelSize.width, 70)];
     lbTitle.lineBreakMode = NSLineBreakByCharWrapping;

@@ -161,10 +161,13 @@
     title.text = [NSString stringWithFormat:@"%@%@平均工资为：%@元",self.lbRegionSelect.text, jobTypeName, tmpData[@"AvgSalary"] ];
     title.font = [UIFont systemFontOfSize:14];
     [self.viewAvg addSubview:title];
+    
+    //先画出坐标系
     //3行还是两行（如果选择省以下的的是三条数据）
     int viewHeight = 160;
     int selfSalary =  [tmpData[@"AvgSalary"] integerValue];
     int p1Salary = [tmpData[@"Parent1"] integerValue];//上一级
+    
     self.viewAvg.frame = CGRectMake(10, self.viewTop.frame.origin.y + self.viewTop.frame.size.height, 300, viewHeight);
     int p2Salary = 0;//全国级
     if (tmpData[@"Parent2"] != nil) {
