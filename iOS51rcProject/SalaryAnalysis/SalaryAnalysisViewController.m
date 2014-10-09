@@ -148,7 +148,7 @@
     //[loadView stopAnimating];
 }
 
-//平均工资的View
+//平均工资的View，横向柱状图
 -(void) GenerateViewAvg:(NSMutableArray *) resultData{
     for (UIView * subview in [self.viewAvg subviews]) {
         [subview removeFromSuperview];
@@ -204,24 +204,36 @@
     }
     
     //横柱子--avgView是从小10开始，左右两个空隙是25
-    //自己的平均工资
-    UIView *view1 = [[[UIView alloc] initWithFrame:CGRectMake(25, 50, selfSalary/10000.0*250, 40 )] autorelease];
+    //1. 自己的平均工资
+    //上方的提示问题
     UILabel *lb1 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
     lb1.text = [NSString stringWithFormat:@"%@%@平均月薪", self.lbRegionSelect.text, jobTypeName];
     lb1.font = [UIFont systemFontOfSize:10];
     lb1.textColor = [UIColor grayColor];
-    UILabel *lb1Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, selfSalary/10000.0*250, 10)];
-    lb1Color.layer.backgroundColor = [UIColor colorWithRed:28/255.f green:196/255.f blue:160/255.f alpha:1].CGColor;
+    //横向的条
+    UILabel *lb1Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 250, 10)];
+    //具体钱数
     UILabel *lbMoney = [[UILabel alloc] initWithFrame:CGRectMake(lb1Color.frame.size.width, 10, 40, 10)];
-    lbMoney.text = [NSString stringWithFormat:@"￥%d", selfSalary];
+    
+    UIView *view1 = view1 = [[[UIView alloc] initWithFrame:CGRectMake(25, 50, selfSalary/10000.0*250, 40 )] autorelease];
+    if (selfSalary>10000) {//最多显示1万
+        lbMoney.text = @">10000";
+        lb1Color.frame = CGRectMake(0, 10, 250, 10);
+    }else{
+        lb1Color.frame = CGRectMake(0, 10, selfSalary/10000.0*250, 10);
+        lbMoney.text = [NSString stringWithFormat:@"￥%d", selfSalary];
+    }
+    lbMoney.frame = CGRectMake(lb1Color.frame.size.width, 10, 40, 10);//重新定位
+    lb1Color.layer.backgroundColor = [UIColor colorWithRed:28/255.f green:196/255.f blue:160/255.f alpha:1].CGColor;
+    
     lbMoney.font = [UIFont systemFontOfSize:10];
     [view1 addSubview:lb1];
     [view1 addSubview:lb1Color];
     [view1 addSubview:lbMoney];
     [self.viewAvg addSubview:view1];
     
-    //第一层上级的平均工资
-    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(25, 90, p1Salary/10000.0*250, 40 )] autorelease];
+    //2. 第一层上级的平均工资
+    //上方的问题
     UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
     if (p2Salary == 0) {
         if ([jobTypeName isEqualToString:@"所有职位"]) {
@@ -237,10 +249,20 @@
     
     lb2.font = [UIFont systemFontOfSize:10];
     lb2.textColor = [UIColor grayColor];
-    UILabel *lb2Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, p1Salary/10000.0*250, 10)];
-    lb2Color.layer.backgroundColor =  [UIColor colorWithRed:254/255.f green:202/255.f blue:67/255.f alpha:1].CGColor;
+    //横向的条
+    UILabel *lb2Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 250, 10)];;
     UILabel *lb2Money = [[UILabel alloc] initWithFrame:CGRectMake(lb2Color.frame.size.width, 10, 40, 10)];
-    lb2Money.text = [NSString stringWithFormat:@"￥%d", p1Salary];
+    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(25, 90, p1Salary/10000.0*250, 40 )] autorelease];;
+    if (p1Salary>10000) {//最多显示1万
+        lb2Color.frame = CGRectMake(0, 10, 250, 10);
+        lb2Money.text = @">10000";
+    }else{
+        lb2Color.frame = CGRectMake(0, 10, p1Salary/10000.0*250, 10);
+        lb2Money.text = [NSString stringWithFormat:@"￥%d", p1Salary];
+    }
+    lb2Money.frame = CGRectMake(lb2Color.frame.size.width, 10, 40, 10);//重新定位
+    lb2Color.layer.backgroundColor =  [UIColor colorWithRed:254/255.f green:202/255.f blue:67/255.f alpha:1].CGColor;
+    
     lb2Money.font = [UIFont systemFontOfSize:10];
     [view2 addSubview:lb2];
     [view2 addSubview:lb2Color];
@@ -249,15 +271,24 @@
     
     //全国平均
     if (p2Salary != 0) {
-        UIView *view3 = [[[UIView alloc] initWithFrame:CGRectMake(25, 130, p2Salary/10000.0*250, 40 )] autorelease];
+        UIView * view3 = [[[UIView alloc] initWithFrame:CGRectMake(25, 130, p2Salary/10000.0*250, 40 )] autorelease];
+        //提示文字
         UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
         lb3.text = [NSString stringWithFormat: @"全国%@平均月薪", jobTypeName];
         lb3.font = [UIFont systemFontOfSize:10];
         lb3.textColor = [UIColor grayColor];
-        UILabel *lb3Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, p2Salary/10000.0*250, 10)];
-        lb3Color.layer.backgroundColor =  [UIColor colorWithRed:254/255.f green:202/255.f blue:67/255.f alpha:1].CGColor;
+        //横向条
+        UILabel *lb3Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 250, 10)];
         UILabel *lb3Money = [[UILabel alloc] initWithFrame:CGRectMake(lb3Color.frame.size.width, 10, 40, 10)];
-        lb3Money.text = [NSString stringWithFormat:@"￥%d", p2Salary];
+        if (p2Salary>10000) {//最多显示1万
+            lb3Color.frame = CGRectMake(0, 10, 250, 10);
+            lb3Money.text = @">10000";
+        }else{
+            lb3Color.frame = CGRectMake(0, 10, p2Salary/10000.0*250, 10);
+            lb3Money.text = [NSString stringWithFormat:@"￥%d", p2Salary];
+        }
+        lb3Money.frame = CGRectMake(lb3Color.frame.size.width, 10, 40, 10);//重新定位
+        lb3Color.layer.backgroundColor =  [UIColor colorWithRed:254/255.f green:202/255.f blue:67/255.f alpha:1].CGColor;
         lb3Money.font = [UIFont systemFontOfSize:10];
         [view3 addSubview:lb3];
         [view3 addSubview:lb3Color];
@@ -286,6 +317,9 @@
     for (int i = 4; i >= 0; i--)
     {
         int value = [tmpData[[NSString stringWithFormat:@"ExperienceSalary%d", i]] intValue];
+        if (value>10000) {//最多只显示到10000
+            value = 10000;
+        }
         NSString *strExpName = @" ";
         switch (i) {
             case 0:
@@ -327,6 +361,9 @@
     for (int i = 8; i >= 4; i--)
     {
         int value = [tmpData[[NSString stringWithFormat:@"EducationSalary%d", i]] intValue];
+        if (value>10000) {//最多只显示到10000
+            value = 10000;
+        }
         NSString *strEduName = @" ";
         switch (i) {
             case 4:
