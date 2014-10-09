@@ -274,15 +274,15 @@
     }
     else if (runStatus == 3){
         if (!rowData[@"orderTime"]) {
-            UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 35, 30, 45)];
-            UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(-5, 35, 40, 10)];
+            UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(260, 15, 50, 120)];
+            UILabel *lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 55, 40, 10)];
             lbWillRun.text = @"我要参会";
             lbWillRun.font = [UIFont systemFontOfSize:10];
             lbWillRun.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:40.f/255.f alpha:1];
             lbWillRun.textAlignment = NSTextAlignmentCenter;
             [rightButton addSubview:lbWillRun];
             
-            UIImageView *imgWillRun = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+            UIImageView *imgWillRun = [[UIImageView alloc] initWithFrame:CGRectMake(5, 20, 30, 30)];
             imgWillRun.image = [UIImage imageNamed:@"ico_rm_group.png"];
             rightButton.tag = (NSInteger)rowData[@"ID"];
             [rightButton addSubview:imgWillRun];

@@ -80,6 +80,7 @@
     [super viewDidAppear:animated];
     if (self.toastType == 1) {
         [self.view makeToast:@"邀请成功！"];
+        [self onSearch];
     }
     
     self.toastType = 0;

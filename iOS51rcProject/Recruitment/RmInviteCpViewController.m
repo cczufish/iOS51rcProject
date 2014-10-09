@@ -6,6 +6,7 @@
 #import "RmCpJobListViewController.h"
 #import "RMSearchJobListViewController.h"
 #import "RmSearchJobForInviteViewController.h"
+#import "RmAttendCpListViewController.h"
 
 //邀请企业参会
 @interface RmInviteCpViewController () <NetWebServiceRequestDelegate, DictionaryPickerDelegate,DatePickerDelegate>
@@ -199,9 +200,11 @@
             if ([listCtrl isKindOfClass:[RMSearchJobListViewController class]]) {
                 RMSearchJobListViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
                 listCtrl.toastType = 1;
-            }
-            else if ([listCtrl isKindOfClass:[RmSearchJobForInviteViewController class]]) {
+            }else if ([listCtrl isKindOfClass:[RmSearchJobForInviteViewController class]]) {
                 RmSearchJobForInviteViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+                listCtrl.toastType = 1;
+            }else if([listCtrl isKindOfClass:[RmAttendCpListViewController class]]) {
+                RmAttendCpListViewController *listCtrl = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
                 listCtrl.toastType = 1;
             }
 
