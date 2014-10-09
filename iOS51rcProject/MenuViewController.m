@@ -50,6 +50,9 @@
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                 UILabel *lbPaName = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
                 lbPaName.text = [userDefaults objectForKey:@"paName"];
+                if (lbPaName.text.length == 0) {
+                    lbPaName.text = @"您好！";
+                }
                 lbPaName.font = [UIFont systemFontOfSize:14];
                 lbPaName.textColor = [UIColor whiteColor];
                 [lbTitle addSubview:lbPaName];

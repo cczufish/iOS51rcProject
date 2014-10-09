@@ -20,6 +20,8 @@
 #import "EducationModifyViewController.h"
 #import "ExperienceModifyViewController.h"
 #import "SpecialitityModifyViewController.h"
+#import "MyCvViewController.h"
+#import "SlideNavigationController.h"
 
 @interface CvModifyViewController ()<NetWebServiceRequestDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,MLImageCropDelegate>
 {
@@ -80,6 +82,11 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if (![[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2] isMemberOfClass:[MyCvViewController class]]) {
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-back.png"] style:UIBarButtonItemStyleBordered target:self action:@selector(gotoMyCv)];
+        [self.navigationItem setLeftBarButtonItem:backItem];
+        [backItem release];
+    }
     if (self.toastType > 0) {
         //获取数据
         [self getCvInfo];
@@ -105,6 +112,12 @@
         [self.view makeToast:@"工作能力保存成功"];
     }
     self.toastType = 0;
+}
+
+- (void)gotoMyCv
+{
+    MyCvViewController *myCvViewC = [self.storyboard instantiateViewControllerWithIdentifier:@"MyCvView"];
+    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:myCvViewC withSlideOutAnimation:true andCompletion:nil];
 }
 
 - (void)getCvInfo

@@ -224,6 +224,9 @@
         }
         //设置文字
         self.lbPaName.text = requestData[0][@"Name"];
+        if (self.lbPaName.text.length == 0) {
+            self.lbPaName.text = @"您好！";
+        }
         self.lbMobile.text = requestData[0][@"Mobile"];
         self.lbEmail.text = requestData[0][@"Email"];
         //设置手机认证

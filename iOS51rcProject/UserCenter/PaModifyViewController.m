@@ -132,6 +132,8 @@
               responseData:(NSArray *)requestData
 {
     [loadView stopAnimating];
+    [self.userDefaults setObject:self.txtName.text forKey:@"paName"];
+    [self.userDefaults synchronize];
     CvModifyViewController *cvModifyC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
     cvModifyC.toastType = 1;
     [self.navigationController popViewControllerAnimated:true];
