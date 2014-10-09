@@ -33,8 +33,7 @@
     self.btnApply.layer.cornerRadius = 5;   
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     [self.btnFavourite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
-    //数据加载等待控件初始化
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    
     //设置高度
     self.ViewBottom.frame = CGRectMake(0, HEIGHT - 170, 320, 55);//底部
     self.tvCpJobList.frame = CGRectMake(0, 0, 320, HEIGHT - 170);//设置了autosize，不用设置该句
@@ -63,6 +62,8 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    //数据加载等待控件初始化
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [loadView startAnimating];
 }
 
