@@ -38,6 +38,8 @@
 @property (retain, nonatomic) IBOutlet UIView *viewTop;
 @property (nonatomic, retain) CustomPopup *cPopup;
 @property (strong, nonatomic) DictionaryPickerView *DictionaryPicker;
+@property BOOL boolChangedCv;
+@property (retain, nonatomic) NSString *selectCv;
 @end
 
 @implementation CommonApplyJobViewController
@@ -108,7 +110,7 @@
     self.tvJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
     //获取简历列表
     [self GetBasicCvList];
-    selectCV = @"";
+    self.selectCv = @"";
     //[self onSearch:selectCV];//默认选择全部
 }
 
@@ -133,9 +135,9 @@
 
 //选择简历
 -(void) selectCV:(UIButton*) sender{
+    [self cancelDicPicker];
     UIImageView *imgCornor = sender.subviews[1];
     imgCornor.image = [UIImage imageNamed:@"ico_triangle_orange.png"];
-    [self cancelDicPicker];
     
     self.DictionaryPicker = [[[DictionaryPickerView alloc] initWithDictionary:self defaultArray:self.cvList defaultValue:@"0" defaultName:@"相关简历" pickerMode:DictionaryPickerModeOne] autorelease];
     self.DictionaryPicker.frame = CGRectMake(self.DictionaryPicker.frame.origin.x, self.DictionaryPicker.frame.origin.y-50, self.DictionaryPicker.frame.size.width, self.DictionaryPicker.frame.size.height);
@@ -149,17 +151,19 @@
 {
     switch (picker.tag) {
         case 1:
+            self.boolChangedCv = true;
             if (selectedValue.length == 0) {
                 [self.btnTop setTitle:@"相关简历" forState:UIControlStateNormal];
-                selectCV = @"";
+                self.selectCv = @"";
                 //[self.view makeToast:@"工作地点不能为空"];
                 return;
             }else{
                 [self.btnTop setTitle:selectedName forState:UIControlStateNormal];
-                selectCV = selectedValue;
+                self.selectCv = selectedValue;
             }
             
-            [self onSearch:selectCV];
+            //获取简历以后进行搜索
+            [self onSearch];
             break;
         default:
             break;
@@ -167,7 +171,7 @@
     [self cancelDicPicker];
 }
 
-- (void)onSearch:(NSString *)cvMainID
+- (void)onSearch
 {
     if (self.pageNumber == 1) {
         [self.jobListData removeAllObjects];
@@ -182,7 +186,7 @@
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:@"20" forKey:@"pageSize"];
     [dicParam setObject:[NSString stringWithFormat:@"%d",self.pageNumber] forKey:@"pageNum"];
-    [dicParam setObject:cvMainID forKey:@"cvMainID"];
+    [dicParam setObject:self.selectCv forKey:@"cvMainID"];
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
    
@@ -196,7 +200,7 @@
 
 - (void)footerRereshing{
     self.pageNumber++;
-    [self onSearch:selectCV];
+    [self onSearch];
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
@@ -204,6 +208,11 @@
               responseData:(NSMutableArray *)requestData
 {
     if (request.tag == 1) { //职位搜索
+        //如果是切换简历，则吧之前的都删除
+        if (self.boolChangedCv == true) {
+            [self.jobListData removeAllObjects];
+            self.boolChangedCv = false;
+        }
         if(self.pageNumber == 1){
             [self.jobListData removeAllObjects];
             self.jobListData = requestData;
@@ -234,7 +243,6 @@
     //结束等待动画
     [loadView stopAnimating];
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

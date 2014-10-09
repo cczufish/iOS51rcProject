@@ -7,8 +7,7 @@
 @interface CommonApplyJobViewController : UIViewController
 {
     NSMutableArray *checkedCpArray;
-    id<InviteJobsFromApplyViewDelegate> inviteFromApplyViewDelegate;
-    NSString *selectCV;
+    id<InviteJobsFromApplyViewDelegate> inviteFromApplyViewDelegate;   
 }
 
 @property (retain, nonatomic) IBOutlet UITableView *tvJobList;
@@ -21,5 +20,5 @@
 @property (retain,nonatomic) NSString* strAddress;
 @property (retain,nonatomic) NSString* strPlace;
 @property (retain,nonatomic) NSString* rmID;
--(void) onSearch:(NSString*) selectCv;
+-(void) onSearch;
 @end

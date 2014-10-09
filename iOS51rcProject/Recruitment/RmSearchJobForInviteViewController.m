@@ -85,7 +85,7 @@
 - (IBAction)switchToSecondView:(id)sender {
     [self.scrollView setContentOffset:CGPointMake(320, 0) animated:true];
     if (!secondPageLoad) {
-        [self.sccondCtrl onSearch:@""];
+        [self.sccondCtrl onSearch];
     }
     [UIView animateWithDuration:0.2 animations:^{
         [self.lbThird setTextColor:[UIColor blackColor]];
