@@ -53,9 +53,6 @@
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
     [self.btnFavorite addTarget:self action:@selector(jobFavorite) forControlEvents:UIControlEventTouchUpInside];
     [self.btnDelete addTarget:self action:@selector(jobDelete) forControlEvents:UIControlEventTouchUpInside];
-    //加载等待动画
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    
     //不显示列表分隔线
     self.tvJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -65,9 +62,11 @@
     if (self.pageNumber == 1) {
         [self.jobListData removeAllObjects];
         [self.tvJobList reloadData];
-        //开始等待动画
-        [loadView startAnimating];
     }
+    //加载等待动画
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    [loadView startAnimating];
+    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
