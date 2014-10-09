@@ -152,9 +152,9 @@
     }
     else if (request.tag == 4) { //重新申请职位成功
         [pCtrl.view makeToast:@"简历更换成功"];
+         [self onSearch];
     }
     else if (request.tag == 5) {
-        
         [pCtrl.view makeToast:@"收藏成功"];
     }
     else if (request.tag == 6) {
