@@ -89,9 +89,9 @@
         [self.viewContent addSubview:lbTitle];
         [lbTitle release];
         //申请失败原因
-        UILabel *lbContent = [[UILabel alloc] initWithFrame:CGRectMake(15, 50, 210, 20)];
+        UILabel *lbContent = [[UILabel alloc] initWithFrame:CGRectMake(12, 50, 223, 20)];
         [lbContent setText:@"职位已过期或您30天内已申请过该职位"];
-        [lbContent setFont:[UIFont systemFontOfSize:14]];
+        [lbContent setFont:[UIFont systemFontOfSize:13]];
         [self.viewContent addSubview:lbContent];
         [lbContent release];
         [self popupCommon:self.viewContent buttonType:PopupButtonTypeOK];
