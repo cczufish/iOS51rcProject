@@ -188,11 +188,18 @@
     if (strSalary.length == 0) {
         strSalary = @"面议";
     }
-    strSalary = [NSString stringWithFormat:@"月薪：%@", strSalary];
-    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(40, 48, 160, 20)];
+   
+    UILabel *lbPreSalary = [[[UILabel alloc] initWithFrame:CGRectMake(40, 48, 50, 20)] autorelease];
+    lbPreSalary.text = @"薪水：";
+    lbPreSalary.textAlignment = NSTextAlignmentLeft;
+    lbPreSalary.textColor = [UIColor grayColor];
+    lbPreSalary.font = [UIFont systemFontOfSize:14];
+    [cell.contentView addSubview:lbPreSalary];
+    
+    UILabel *lbSalary = [[UILabel alloc] initWithFrame:CGRectMake(90, 48, 160, 20)];
     [lbSalary setText:strSalary];
     [lbSalary setFont:fontCell];
-    [lbSalary setTextColor:[UIColor redColor]];
+    lbSalary.textColor = [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
     [lbSalary setTextAlignment:NSTextAlignmentLeft];
     [cell.contentView addSubview:lbSalary];
     [lbSalary release];
