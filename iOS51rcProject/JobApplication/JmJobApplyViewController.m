@@ -197,7 +197,7 @@
             for (int j=0; j<self.arrCheckJobID.count; j++) {
                 if ([self.arrCheckJobID[j] isEqualToString:jobID]) {
                     [self.jobListData removeObjectAtIndex:i];
-                    break;
+                    //break;
                 }
             }
         }
