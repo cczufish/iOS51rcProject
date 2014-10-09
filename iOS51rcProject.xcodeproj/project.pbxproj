@@ -3049,7 +3049,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "iOS51rcProject/iOS51rcProject-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS51rcProject/Class",
@@ -3093,7 +3093,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "iOS51rcProject/iOS51rcProject-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS51rcProject/Class",

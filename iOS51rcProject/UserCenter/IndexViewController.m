@@ -234,7 +234,9 @@
             [self.btnMobileCer setTag:1];
         }
         else {
+            [self.imgMobileCer setImage:[UIImage imageNamed:@"ico_member_mobileuncer.png"]];
             [self.imgMobileCer setFrame:CGRectMake(200, 78, 10, 16)];
+            [self.btnMobileCer setTitle:@"未认证" forState:UIControlStateNormal];
             [self.btnMobileCer setTag:0];
         }
         [self.viewProfile setHidden:false];
