@@ -102,8 +102,7 @@
     self.viewBottom.layer.borderWidth = 1.0;
     self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
     [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
-    //加载等待动画
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    
     //添加上拉加载更多
     [self.tvJobList addFooterWithTarget:self action:@selector(footerRereshing)];
     //不显示列表分隔线
@@ -176,9 +175,10 @@
     if (self.pageNumber == 1) {
         [self.jobListData removeAllObjects];
         [self.tvJobList reloadData];
-        //开始等待动画
-        [loadView startAnimating];
     }
+    //加载等待动画
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    [loadView startAnimating];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
