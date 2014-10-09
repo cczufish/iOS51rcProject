@@ -98,7 +98,7 @@
 
     //来源
     NSString *strAuthor = rowData[@"Author"];
-    UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+10, 200, 15)];
+    UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 200, 15)];
     lbAuthor.text = strAuthor;
     lbAuthor.font = [UIFont systemFontOfSize:14];
     lbAuthor.textColor = [UIColor grayColor];
@@ -111,7 +111,7 @@
     else
         strDate = rowData[@"RefreshDate"];
     
-    UILabel *lbTime = [[UILabel alloc] initWithFrame:CGRectMake(220, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+10, 80, 15)];
+    UILabel *lbTime = [[UILabel alloc] initWithFrame:CGRectMake(220, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 80, 15)];
     NSDate *dtBeginDate = [CommonController dateFromString:strDate];
     strDate = [CommonController stringFromDate:dtBeginDate formatType:@"MM-dd HH:mm"];
     lbTime.text = strDate;
