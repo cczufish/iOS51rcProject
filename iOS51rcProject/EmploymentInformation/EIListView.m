@@ -79,25 +79,26 @@
     cell.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     //显示标题
     NSString *strTitle = rowData[@"Title"];
-    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 310, 62)];
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 8, 310, 56)];
     tmpView.layer.borderWidth = 0.5;
     tmpView.layer.borderColor = [UIColor colorWithRed:220.f/255.f green:220.f/255.f blue:220.f/255.f alpha:1].CGColor;
     tmpView.layer.backgroundColor = [UIColor whiteColor].CGColor;
     
     UIFont *titleFont = [UIFont systemFontOfSize:13];
-    CGFloat titleWidth = 300;
-    CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
-    CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:titleFont sizeDemand:titleSize];
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, labelSize.width, labelSize.height)];
+    //CGFloat titleWidth = 300;
+    //CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
+    //CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:titleFont sizeDemand:titleSize];
+    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 300, 15.5)];
     lbTitle.text = strTitle;
-    lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
-    lbTitle.numberOfLines = 0;
+    //lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
+    //lbTitle.numberOfLines = 0;
     lbTitle.font = titleFont;
     [tmpView addSubview:(lbTitle)];
     [lbTitle release];
 
     //来源
     NSString *strAuthor = rowData[@"Author"];
+    strAuthor = [CommonController FilterHtml:strAuthor];//处理特殊字符
     UILabel *lbAuthor = [[UILabel alloc] initWithFrame:CGRectMake(10, (lbTitle.frame.origin.x + lbTitle.frame.size.height)+5, 200, 15)];
     lbAuthor.text = strAuthor;
     lbAuthor.font = [UIFont systemFontOfSize:14];
@@ -205,7 +206,7 @@
     {
         return 130;
     }else{
-         return 70;
+         return 67;
     }   
 }
 
