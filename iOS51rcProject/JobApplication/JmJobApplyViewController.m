@@ -9,6 +9,8 @@
 #import "SuperJobMainViewController.h"
 #import "LoginViewController.h"
 #import "Toast+UIView.h"
+#import "SearchViewController.h"
+#import "SlideNavigationController.h"
 
 @interface JmJobApplyViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
@@ -177,13 +179,17 @@
             lb1.font = [UIFont systemFontOfSize:14];
             lb1.textAlignment = NSTextAlignmentCenter;
             [viewHsaNoCv addSubview:lb1];
-            
-            UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 30, 225, 20)] autorelease];
+            //鼠标点击
+            UIButton *btn = [[[UIButton alloc] initWithFrame:CGRectMake(50, 30, 225, 20)] autorelease];
+            [btn addTarget:self action:@selector(gotoSearchPage) forControlEvents:UIControlEventTouchUpInside];
+            UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 225, 20)] autorelease];
             lb2.text = @"现在就去申请感兴趣的职位吧！";
             lb2.font = [UIFont systemFontOfSize:14];
             lb2.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
             lb2.textAlignment = NSTextAlignmentCenter;
-            [viewHsaNoCv addSubview:lb2];
+            
+            [btn addSubview:lb2];
+            [viewHsaNoCv addSubview:btn];
             
             [self.view addSubview:viewHsaNoCv];
         }
@@ -228,6 +234,12 @@
     
     //结束等待动画
     [loadView stopAnimating];
+}
+
+-(void) gotoSearchPage{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+     SearchViewController *searchCtrl = [mainStoryboard instantiateViewControllerWithIdentifier:@"SearchView"];
+    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:searchCtrl withCompletion:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
