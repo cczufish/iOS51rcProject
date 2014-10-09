@@ -262,6 +262,7 @@
     rmInviteCpViewCtrl.strAddress = self.strAddress;
     rmInviteCpViewCtrl.strPlace = self.strPlace;
     rmInviteCpViewCtrl.strRmID = self.rmID;
+    rmInviteCpViewCtrl.strCity = self.strCity;
     rmInviteCpViewCtrl.selectRmCps = self.checkedCpArray;
     [self.checkedCpArray retain];
     [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
@@ -277,6 +278,7 @@
     rmInviteCpViewCtrl.strAddress = self.strAddress;
     rmInviteCpViewCtrl.strPlace = self.strPlace;
     rmInviteCpViewCtrl.strRmID = self.rmID;
+    rmInviteCpViewCtrl.strCity = self.strCity;
     rmInviteCpViewCtrl.selectRmCps = checkedCp;
     [self.checkedCpArray retain];
     [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];

@@ -72,7 +72,7 @@
     //默认参数
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     regionID = [userDefault objectForKey:@"subSiteId"];
-     self.lbAddress.text = [userDefault objectForKey:@"subSiteCity"];
+     self.lbAddress.text = self.strCity;
     beginDate = self.strBeginTime;
     if (self.strAddressID == nil) {
         self.strAddressID = [userDefault objectForKey:@"subSiteId"];

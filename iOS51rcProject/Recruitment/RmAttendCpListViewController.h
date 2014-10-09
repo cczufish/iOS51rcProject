@@ -12,6 +12,7 @@
 @property (retain, nonatomic) NSString *strBeginTime;
 @property (retain, nonatomic) NSString *strAddress;
 @property (retain, nonatomic) NSString *strPlace;
+@property (retain, nonatomic) NSString *strCity;//招聘会所在的城市
 @property (retain, nonatomic) NSMutableArray *recruitmentCpData;
 @property (retain, nonatomic) NSMutableArray *checkedCpArray;
 @end

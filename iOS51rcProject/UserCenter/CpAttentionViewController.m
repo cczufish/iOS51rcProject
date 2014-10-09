@@ -93,7 +93,7 @@
     if (self.pageNumber == 1) {
           [self.jobListData removeAllObjects];
           [self.tvJobList reloadData];
-      }
+    }
     
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -112,6 +112,14 @@
       request.tag = 1;
       self.runningRequest = request;
       [dicParam release];
+}
+
+//失败
+- (void)netRequestFailed:(NetWebServiceRequest *)request didRequestError:(int *)error
+{
+    [loadView stopAnimating];
+    UIViewController *superView = [CommonController getFatherController:self.view];
+    [superView.view makeToast:@"获取失败"];
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request

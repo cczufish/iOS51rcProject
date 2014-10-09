@@ -166,6 +166,7 @@
     //举办场馆
     CGSize placeSize = [CommonController CalculateFrame:dicRecruitment[@"PlaceName"] fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(2000, 20)];
     self.strPlace = dicRecruitment[@"PlaceName"];
+    self.strCity = dicRecruitment[@"City"];
     [self.lbPlace setText:self.strPlace];
     CGRect placeFrame = self.lbPlace.frame;
     if (placeSize.width < placeFrame.size.width) {
@@ -456,6 +457,7 @@
             cpListCtrl.strBeginTime = strTime;
             cpListCtrl.strAddress = self.strAddress;
             cpListCtrl.strPlace = self.strPlace;
+            cpListCtrl.strCity = self.strCity;
             [self.navigationController pushViewController:cpListCtrl animated:YES];
         }
     }else{

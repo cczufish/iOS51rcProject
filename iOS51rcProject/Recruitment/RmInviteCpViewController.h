@@ -25,6 +25,7 @@
 @property (retain, nonatomic) NSString *strPlaceID;//场馆ID
 @property (retain, nonatomic) NSString *strPlace;//场馆
 @property (retain, nonatomic) NSArray  *arrJobs;//邀请的职位
+@property (retain, nonatomic) NSString *strCity;//所在城市
 @property (retain, nonatomic) NSMutableArray *selectRmCps;
 @property (retain, nonatomic) RmCpMain *returnedCp;//职位选择页面返回的职位
 @property int returnType;
