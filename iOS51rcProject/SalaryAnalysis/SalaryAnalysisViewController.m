@@ -185,7 +185,7 @@
     int height = self.viewAvg.frame.size.height - title.frame.size.height - 30;//view的高度-标题的高度-下方余出的高度
     for (int i=0; i<6; i++) {
         //纵线
-        UILabel *lbTmp = [[[UILabel alloc] initWithFrame:CGRectMake(25+i*50, lbX.frame.origin.y-height, 1, height)] autorelease];
+        UILabel *lbTmp = [[[UILabel alloc] initWithFrame:CGRectMake(15+i*50, lbX.frame.origin.y-height, 1, height)] autorelease];
         lbTmp.layer.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
         [self.viewAvg addSubview:lbTmp];
         
@@ -215,7 +215,7 @@
     //具体钱数
     UILabel *lbMoney = [[UILabel alloc] initWithFrame:CGRectMake(lb1Color.frame.size.width, 10, 40, 10)];
     
-    UIView *view1 = view1 = [[[UIView alloc] initWithFrame:CGRectMake(25, 50, selfSalary/10000.0*250, 40 )] autorelease];
+    UIView *view1 = view1 = [[[UIView alloc] initWithFrame:CGRectMake(15, 50, selfSalary/10000.0*250, 40 )] autorelease];
     if (selfSalary>10000) {//最多显示1万
         lbMoney.text = @">10000";
         lb1Color.frame = CGRectMake(0, 10, 250, 10);
@@ -252,7 +252,7 @@
     //横向的条
     UILabel *lb2Color = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 250, 10)];;
     UILabel *lb2Money = [[UILabel alloc] initWithFrame:CGRectMake(lb2Color.frame.size.width, 10, 40, 10)];
-    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(25, 90, p1Salary/10000.0*250, 40 )] autorelease];;
+    UIView *view2 = [[[UIView alloc] initWithFrame:CGRectMake(15, 90, p1Salary/10000.0*250, 40 )] autorelease];;
     if (p1Salary>10000) {//最多显示1万
         lb2Color.frame = CGRectMake(0, 10, 250, 10);
         lb2Money.text = @">10000";
@@ -271,7 +271,7 @@
     
     //全国平均
     if (p2Salary != 0) {
-        UIView * view3 = [[[UIView alloc] initWithFrame:CGRectMake(25, 130, p2Salary/10000.0*250, 40 )] autorelease];
+        UIView * view3 = [[[UIView alloc] initWithFrame:CGRectMake(15, 130, p2Salary/10000.0*250, 40 )] autorelease];
         //提示文字
         UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 10)] autorelease];
         lb3.text = [NSString stringWithFormat: @"全国%@平均月薪", jobTypeName];
