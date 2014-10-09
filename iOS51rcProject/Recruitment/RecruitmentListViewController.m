@@ -175,7 +175,7 @@
     NSDictionary *rowData = self.recruitmentData[indexPath.row];
     
     //初始化对象，用以选择时使用
-    RM *rmInfo = [[[RM alloc] init] autorelease];
+    RM *rmInfo = [[RM alloc] init];
     rmInfo.ID = rowData[@"ID"];
     rmInfo.Name = rowData[@"RecruitmentName"];
     rmInfo.Address = rowData[@"Address"];
@@ -338,7 +338,7 @@
         [loadView startAnimating];
         [dicParam release];
         //选择的招聘会
-        selectedRM = rmInfo;
+        self.selectedRM = rmInfo;
 
     }else{
         //转到登录界面
@@ -407,14 +407,15 @@
 //预约成功，打开搜索、申请、收藏界面
 -(void) attendRM{
     RmSearchJobForInviteViewController *searchView = [self.storyboard instantiateViewControllerWithIdentifier:@"RmSearchJobForInviteView"];
-    NSString *strBeginDate = selectedRM.BeginDate;
+    //[selectedRM retain];
+    NSString *strBeginDate = self.selectedRM.BeginDate;
     NSDate *tmpDtBeginDate = [CommonController dateFromString:strBeginDate];
     
     NSString *strTime = [NSString stringWithFormat:@"%@",[CommonController stringFromDate:tmpDtBeginDate formatType:@"yyyy-MM-dd HH:mm"]];
     searchView.strBeginTime = strTime;
-    searchView.strAddress = selectedRM.Address;
-    searchView.strPlace = selectedRM.Place;
-    searchView.rmID = selectedRM.ID;
+    searchView.strAddress = self.selectedRM.Address;
+    searchView.strPlace = self.selectedRM.Place;
+    searchView.rmID = self.selectedRM.ID;
     [self.navigationController pushViewController:searchView animated:YES];
 }
 

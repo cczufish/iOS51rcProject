@@ -15,4 +15,5 @@
 @property (retain, nonatomic) NSString *strCity;//招聘会所在的城市
 @property (retain, nonatomic) NSMutableArray *recruitmentCpData;
 @property (retain, nonatomic) NSMutableArray *checkedCpArray;
+@property int toastType;
 @end

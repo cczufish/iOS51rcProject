@@ -7,7 +7,6 @@
 @interface RecruitmentListViewController : UIViewController <UITableViewDataSource,UITableViewDelegate, AttendRMPopupDelegate>
 {
     LoadingAnimationView *loadView;
-    RM *selectedRM;
 }
 @property int page;
 @property (nonatomic, retain) NSMutableArray *recruitmentData;
@@ -15,4 +14,5 @@
 @property (nonatomic, retain) NSString *begindate;
 @property (nonatomic, retain) NSString *placeid;
 @property (nonatomic, retain) NSString *regionid;
+@property (nonatomic, retain) RM *selectedRM;
 @end

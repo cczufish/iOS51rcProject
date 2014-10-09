@@ -75,6 +75,16 @@
     }
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.toastType == 1) {
+        [self.view makeToast:@"邀请成功！"];
+    }
+    
+    self.toastType = 0;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
