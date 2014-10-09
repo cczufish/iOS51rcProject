@@ -217,7 +217,7 @@
     //招聘会名称
     NSString *strRmName = rowData[@"RecruitmentName"];
     //招聘会名称按钮
-    labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+    labelSize = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(300, 500)];
     UIButton *btnRM = [[[UIButton alloc] initWithFrame:CGRectMake(0, lbLine1.frame.origin.y + lbLine1.frame.size.height + 5, 320, 15)] autorelease];
     [btnRM addTarget:self action:@selector(btnRMClick:) forControlEvents:UIControlEventTouchUpInside];
      btnRM.tag = indexPath.row;
@@ -558,7 +558,7 @@
     //招聘会名称是否换行
     NSString *strRmName = recruitmentCpData[indexPath.row][@"RecruitmentName"];
     //招聘呼名称的高度
-    CGSize labelSizeRmName = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(280, 500)];
+    CGSize labelSizeRmName = [CommonController CalculateFrame:strRmName fontDemond:[UIFont systemFontOfSize:13] sizeDemand:CGSizeMake(300, 500)];
     
     //如果选择了当前行
     if (selectRowIndex == indexPath.row) {
