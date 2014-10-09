@@ -328,6 +328,7 @@
 		99C581DB19C19709009985C5 /* JobInviteListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581DA19C19709009985C5 /* JobInviteListViewController.m */; };
 		99C581DE19C19756009985C5 /* CpAttentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581DD19C19756009985C5 /* CpAttentionViewController.m */; };
 		99C581E019C1A0D6009985C5 /* RM.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581DF19C1A0D6009985C5 /* RM.m */; };
+		99CB6FD319E65D28009DDD04 /* ico_news_attach.png in Resources */ = {isa = PBXBuildFile; fileRef = 99CB6FD219E65D28009DDD04 /* ico_news_attach.png */; };
 		99CFD818199B5F80009A5ABA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD817199B5F80009A5ABA /* Foundation.framework */; };
 		99CFD81A199B5F80009A5ABA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD819199B5F80009A5ABA /* CoreGraphics.framework */; };
 		99CFD81C199B5F80009A5ABA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD81B199B5F80009A5ABA /* UIKit.framework */; };
@@ -1022,6 +1023,7 @@
 		99C581DC19C19756009985C5 /* CpAttentionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CpAttentionViewController.h; path = UserCenter/CpAttentionViewController.h; sourceTree = "<group>"; };
 		99C581DD19C19756009985C5 /* CpAttentionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CpAttentionViewController.m; path = UserCenter/CpAttentionViewController.m; sourceTree = "<group>"; };
 		99C581DF19C1A0D6009985C5 /* RM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RM.m; path = Entity/RM.m; sourceTree = "<group>"; };
+		99CB6FD219E65D28009DDD04 /* ico_news_attach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_news_attach.png; sourceTree = "<group>"; };
 		99CFD814199B5F80009A5ABA /* iOS51rcProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS51rcProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99CFD817199B5F80009A5ABA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		99CFD819199B5F80009A5ABA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -2164,6 +2166,7 @@
 		99CFD84F199B60D8009A5ABA /* images */ = {
 			isa = PBXGroup;
 			children = (
+				99CB6FD219E65D28009DDD04 /* ico_news_attach.png */,
 				99EF850B19E3F83900EB2CFA /* welcome2_large.png */,
 				99EF850C19E3F83900EB2CFA /* welcome2_small.png */,
 				99EF850D19E3F83900EB2CFA /* welcome3_large.png */,
@@ -2722,6 +2725,7 @@
 				991125B019A4EE9800C98173 /* ico_rm_cp.png in Resources */,
 				99AF5B8819C1317E00BE73F2 /* ico_member_jobapply.png in Resources */,
 				99BD6FB319B5A4F300514807 /* EmploymentInformation.storyboard in Resources */,
+				99CB6FD319E65D28009DDD04 /* ico_news_attach.png in Resources */,
 				99AF5B7B19C1292900BE73F2 /* bg_membercenter_head.png in Resources */,
 				9942F44619B987D900191C74 /* ShareSDKCoreService.framework.zip in Resources */,
 				99B4693219B2B71A0034505D /* ico_searchlog_log.png in Resources */,

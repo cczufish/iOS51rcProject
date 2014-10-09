@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    hasExp = YES;
     self.view.layer.cornerRadius = 5;
     self.btnOK.layer.cornerRadius = 5;
     //[self createHasExpBtnGroupWithImage];
@@ -43,14 +44,14 @@
 - (IBAction)btnHasExpClick:(id)sender {
     self.imgHasExp.image = [UIImage imageNamed:@"radioChecked.png"];
     self.imgHasNoExp.image = [UIImage imageNamed:@"radioUnChecked.png"];
-    hasExp = true;
+    hasExp = YES;
 }
 
 //点击没有工作经验
 - (IBAction)btnHasNoExpClick:(id)sender {
     self.imgHasNoExp.image = [UIImage imageNamed:@"radioChecked.png"];
     self.imgHasExp.image = [UIImage imageNamed:@"radioUnChecked.png"];
-    hasExp = false;
+    hasExp = NO;
 }
 
 - (void)didReceiveMemoryWarning

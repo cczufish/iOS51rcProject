@@ -113,12 +113,16 @@
             CGRect frameCreate = self.viewCreate.frame;
             frameCreate.origin.y = 100;
             [self.viewCreate setFrame:frameCreate];
+            CGRect frameCreateLabel = self.lbCvCount.frame;
             if (requestData.count > 2) {
-                [self.btnCreateCv setEnabled:false];
+                frameCreateLabel.origin.y = 7;
+                [self.btnCreateCv setHidden:true];
             }
             else {
-                [self.btnCreateCv setEnabled:true];
+                frameCreateLabel.origin.y = 58;
+                [self.btnCreateCv setHidden:false];
             }
+            [self.lbCvCount setFrame:frameCreateLabel];
             
             [self.pageControl setNumberOfPages:requestData.count];
             for (int i=0; i<requestData.count; i++)
@@ -425,9 +429,9 @@
 
 -(void) CreateResume:(BOOL) hasExp
 {
-    int cvType = 1;
+    int cvType = 2;
     if (hasExp) {
-        cvType = 0;
+        cvType = 1;
     }
     [loadView startAnimating];
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];

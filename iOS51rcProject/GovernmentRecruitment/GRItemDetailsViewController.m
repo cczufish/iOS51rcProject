@@ -8,6 +8,7 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) LoadingAnimationView *loading;
 @property (retain, nonatomic) IBOutlet UIScrollView *newsScroll;
+@property (nonatomic, retain) NSString *appendixUrl;
 @end
 
 @implementation GRItemDetailsViewController
@@ -161,9 +162,31 @@
     lbContent.font = [UIFont systemFontOfSize:14];
     [tmpView addSubview:lbContent];
 
-    //来源
+    //附件
     y = (lbContent.frame.origin.y + lbContent.frame.size.height);
-    UILabel *lbAuthor = [[[UILabel alloc] initWithFrame:CGRectMake(100, y, 200, 15)] autorelease];
+    if ([dicCpMain[@"Appendix"] length] > 0) {
+        UIButton *btnAppendix = [[UIButton alloc] initWithFrame:CGRectMake(10, y, 300, 20)];
+        UIImageView *imgAppendix = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [imgAppendix setImage:[UIImage imageNamed:@"ico_news_attach.png"]];
+        [btnAppendix addSubview:imgAppendix];
+        [imgAppendix release];
+        
+        UILabel *lbAppendix = [[UILabel alloc] initWithFrame:CGRectMake(22, 5, 278, 15)];
+        [lbAppendix setText:[NSString stringWithFormat:@"附件:%@",dicCpMain[@"AppendixName"]]];
+        [lbAppendix setTextColor:[UIColor colorWithRed:10.f/255.f green:68.f/255.f blue:156.f/255.f alpha:1]];
+        [lbAppendix setFont:[UIFont systemFontOfSize:12]];
+        [btnAppendix addSubview:lbAppendix];
+        self.appendixUrl = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/operational/newsattachment/%@",dicCpMain[@"Appendix"]];
+        [btnAppendix addTarget:self action:@selector(goToUrl) forControlEvents:UIControlEventTouchUpInside];
+        
+        [tmpView addSubview:btnAppendix];
+        [btnAppendix release];
+        
+        y += 25;
+    }
+    
+    //来源
+    UILabel *lbAuthor = [[[UILabel alloc] initWithFrame:CGRectMake(10, y, 300, 15)] autorelease];
     lbAuthor.text = [NSString stringWithFormat:@"来源：%@", dicCpMain[@"author"]];
     lbAuthor.textAlignment = NSTextAlignmentRight;
     lbAuthor.font = [UIFont systemFontOfSize:13];
@@ -178,6 +201,11 @@
     //屏幕滚动大小
     [self.newsScroll setContentSize:CGSizeMake(320, y + 10)];
     [self.loading stopAnimating];    
+}
+
+-(void)goToUrl
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.appendixUrl]];
 }
 
 - (void)didReceiveMemoryWarning

@@ -204,9 +204,9 @@
     [createResumeCtrl.view removeFromSuperview];
     [backGroundView removeFromSuperview];
     
-    int cvType = 1;
+    int cvType = 2;
     if (hasExp) {
-        cvType = 0;
+        cvType = 1;
     }
     [loadView startAnimating];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
