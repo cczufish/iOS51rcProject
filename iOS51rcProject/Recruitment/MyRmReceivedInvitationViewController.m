@@ -33,8 +33,7 @@
     [super viewDidLoad];
     selectRowIndex = 0;
     selectRowHeight = 110;//选择行的高度    
-    //数据加载等待控件初始化
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    
     //不显示列表分隔线
     self.tvReceivedInvitationList.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -56,6 +55,9 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    //数据加载等待控件初始化
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    [loadView startAnimating];
 }
 
 //成功

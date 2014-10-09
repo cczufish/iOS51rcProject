@@ -40,8 +40,6 @@
     self.viewBottom.frame = CGRectMake(0, self.view.frame.size.height - self.viewBottom.frame.size.height - 109, 320, self.viewBottom.frame.size.height);
     self.btnInviteCp.layer.cornerRadius = 5;
     self.btnInviteCp.backgroundColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
-    //数据加载等待控件初始化
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //不显示列表分隔线
     self.tvRecruitmentCpList.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
@@ -62,6 +60,8 @@
     request.tag = 1;
     self.runningRequest = request;
     [dicParam release];
+    //数据加载等待控件初始化
+    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [loadView startAnimating];
 }
 
