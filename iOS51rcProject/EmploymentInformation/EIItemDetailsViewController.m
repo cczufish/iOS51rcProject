@@ -64,11 +64,12 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     //构造分享内容
     NSString *subSiteUrl = [userDefault objectForKey:@"subSiteUrl"];
-    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n最新政府招考信息新鲜出炉，你准备好了吗？http://%@/personal/news/govnews?id=%@&type=2\n",self.strTitle, subSiteUrl,strNewsID]
+    subSiteUrl = [subSiteUrl stringByReplacingOccurrencesOfString:@"www" withString:@"m"];//替换为m站地址
+    id<ISSContent> publishContent = [ShareSDK content:[NSString stringWithFormat:@"%@\n最新政府招考信息新鲜出炉，你准备好了吗？%@/personal/news/govnews?id=%@\n",self.strTitle, subSiteUrl,strNewsID]
                                        defaultContent:@"默认分享内容，没内容时显示"
                                                 image:[ShareSDK imageWithPath:imagePath]
-                                                title:@"分享APP"
-                                                  url:@"http://www.51rc.com"
+                                                title:@"给您推荐一条政府招考信息"
+                                                  url:[NSString stringWithFormat:@"%@/personal/news/govnews?id=%@\n", subSiteUrl,strNewsID]
                                           description:@""
                                             mediaType:SSPublishContentMediaTypeNews];
     

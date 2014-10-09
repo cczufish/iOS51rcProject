@@ -93,7 +93,7 @@
                                        defaultContent:@"默认分享内容，没内容时显示"
                                                 image:[ShareSDK imageWithPath:imagePath]
                                                 title:@"给你推荐个工作"
-                                                  url:[NSString stringWithFormat:@"http://%@/personal/jv/companyDetail?cpmainID=%@\n", subSiteUrl,self.cpMainID]
+                                                  url:[NSString stringWithFormat:@"%@/personal/jv/companyDetail?cpmainID=%@\n", subSiteUrl,self.cpMainID]
                                           description:@""
                                             mediaType:SSPublishContentMediaTypeNews];
     [ShareSDK showShareActionSheet:nil
