@@ -316,6 +316,10 @@
     UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
     [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
     [btnCheck addSubview:imgCheck];
+    if ([self.arrCheckJobID containsObject:rowData[@"JobID"]]) {
+        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
+        [btnCheck setTag:2];
+    }
     [imgCheck release];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];

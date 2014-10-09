@@ -170,6 +170,10 @@
     UIImageView *imgCheck = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 18, 20, 20)] autorelease];
     imgCheck.image = [UIImage imageNamed: @"chk_default.png"];
     [btnCheck addSubview:imgCheck];
+    if ([self.arrCheckJobID containsObject:rowData[@"ID"]]) {
+        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
+        [btnCheck setTag:2];
+    }
     //分割线
     UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbSalary.frame.origin.y+lbSalary.frame.size.height + 6, 320, 1)];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
