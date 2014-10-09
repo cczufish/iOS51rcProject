@@ -878,44 +878,6 @@
             </objects>
             <point key="canvasLocation" x="2061" y="-553"/>
         </scene>
-        <!--My Rm Received Invitation View Controller-->
-        <scene sceneID="3J4-zC-Sl6">
-            <objects>
-                <viewController storyboardIdentifier="MyRmInvitationView1" id="W8A-bc-4Xx" customClass="MyRmReceivedInvitationViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FLi-dY-HRf" customClass="MyRm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tPE-Id-et1">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cpList" id="HRm-KB-rUf">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HRm-KB-rUf" id="egO-qs-e3c">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="W8A-bc-4Xx" id="92f-2y-PhQ"/>
-                                    <outlet property="delegate" destination="W8A-bc-4Xx" id="rjB-sE-gwM"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <connections>
-                        <outlet property="tvReceivedInvitationList" destination="tPE-Id-et1" id="ggw-jX-rXV"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0r3-RS-bbP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="850" y="125"/>
-        </scene>
         <!--Common Search Job View Controller-->
         <scene sceneID="ULp-Sz-5Fn">
             <objects>
