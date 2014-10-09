@@ -11,6 +11,8 @@
 #import "JobViewController.h"
 #import "SuperJobMainViewController.h"
 #import "SuperCpViewController.h"
+#import "SearchViewController.h"
+#import "SlideNavigationController.h"
 
 @interface CpAttentionViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
@@ -160,12 +162,17 @@
             lb1.textAlignment = NSTextAlignmentCenter;
             [viewHsaNoCv addSubview:lb1];
             
-            UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 30, 210, 20)] autorelease];
+            UIButton *btn = [[[UIButton alloc] initWithFrame:CGRectMake(50, 30, 210, 20)] autorelease] ;
+            [btn addTarget:self action:@selector(gotoSearchPage) forControlEvents:UIControlEventTouchUpInside];
+            
+            UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 210, 20)] autorelease];
             lb2.text = @"去我们的简历库看看，";
             lb2.font = [UIFont systemFontOfSize:14];
             lb2.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
             lb2.textAlignment = NSTextAlignmentCenter;
-            [viewHsaNoCv addSubview:lb2];
+            [btn addSubview:lb2];
+            [viewHsaNoCv addSubview:btn];
+            
             UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 50, 200, 20)] autorelease];
             lb3.text = @"会发现不一样的惊喜";
             lb3.font = [UIFont systemFontOfSize:14];
@@ -197,6 +204,12 @@
         
         self.cvList = arrCv;
     }
+}
+
+-(void) gotoSearchPage{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    SearchViewController *searchCtrl = [mainStoryboard instantiateViewControllerWithIdentifier:@"SearchView"];
+    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:searchCtrl withCompletion:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

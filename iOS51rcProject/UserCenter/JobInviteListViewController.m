@@ -11,6 +11,8 @@
 #import "JobViewController.h"
 #import "SuperJobMainViewController.h"
 #import <objc/runtime.h>
+#import "SearchViewController.h"
+#import "SlideNavigationController.h"
 
 @interface JobInviteListViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,SearchPickerDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
@@ -85,7 +87,7 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSMutableArray *)requestData
 {
-     UIViewController *pCtrl = [self getFatherController];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     if (request.tag == 1) { //职位搜索
         if (requestData.count>0) {
             if(self.pageNumber == 1){
@@ -104,34 +106,26 @@
             self.lbTop.text = @" ";
             self.lbTop.layer.borderColor = [UIColor whiteColor].CGColor;
             UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(30, 100, 240, 80)]autorelease];
-            UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 60)] autorelease];
+            UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 40, 60)] autorelease];
             img.image = [UIImage imageNamed:@"pic_noinfo.png"];
             [viewHsaNoCv addSubview:img];
             
-            UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 220, 20)] autorelease];
-            lb1.text = @"亲，您没有应聘邀请记录,";
+            UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(40, 10, 240, 20)] autorelease];
+            lb1.text = @"亲，您没有应聘邀请记录,建议您";
             lb1.font = [UIFont systemFontOfSize:14];
             lb1.textAlignment = NSTextAlignmentCenter;
             [viewHsaNoCv addSubview:lb1];
             
-            UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(35, 30, 45, 20)] autorelease];
-            lb2.text = @"建议您";
-            lb2.font = [UIFont systemFontOfSize:14];
-            lb2.textAlignment = NSTextAlignmentLeft;
-            [viewHsaNoCv addSubview:lb2];
+            UIButton *btn = [[[UIButton alloc] initWithFrame:CGRectMake(40, 30, 260, 20)] autorelease] ;
+            [btn addTarget:self action:@selector(gotoSearchPage) forControlEvents:UIControlEventTouchUpInside];
             
-            UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(lb2.frame.origin.x + lb2.frame.size.width, 30, 85, 20)] autorelease];
-            lb3.text = @"主动申请职位";
+            UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(10, 0, 230, 20)] autorelease];
+            lb3.text = @"主动申请职位，把握更多的机会。";
             lb3.font = [UIFont systemFontOfSize:14];
             lb3.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
-            lb3.textAlignment = NSTextAlignmentLeft;
-            [viewHsaNoCv addSubview:lb3];
-            
-            UILabel *lb4 = [[[UILabel alloc] initWithFrame:CGRectMake(lb3.frame.origin.x + lb3.frame.size.width, 30, 160, 20)] autorelease];
-            lb4.text = @"，把握更多的机会。";
-            lb4.font = [UIFont systemFontOfSize:14];
-            lb4.textAlignment = NSTextAlignmentLeft;
-            [viewHsaNoCv addSubview:lb4];
+            lb3.textAlignment = NSTextAlignmentCenter;
+            [btn addSubview:lb3];
+            [viewHsaNoCv addSubview:btn];
             
             [self.view addSubview:viewHsaNoCv];
         }
@@ -170,17 +164,10 @@
     [loadView stopAnimating];
 }
 
-//得到父View
-- (UIViewController *)getFatherController
-{
-    for (UIView* next = [self.view superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    
-    return nil;
+-(void) gotoSearchPage{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Home" bundle:nil];
+    SearchViewController *searchCtrl = [mainStoryboard instantiateViewControllerWithIdentifier:@"SearchView"];
+    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:searchCtrl withCompletion:nil];
 }
 
 - (void)insertJobApply:(NSString *)cvMainID
@@ -359,7 +346,7 @@
 
 - (void)jobApply
 {
-     UIViewController *pCtrl = [self getFatherController];
+     UIViewController *pCtrl = [CommonController getFatherController:self.view];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位
@@ -389,7 +376,7 @@
 //收藏职位
 - (void)jobFavorite
 {
-    UIViewController *pCtrl = [self getFatherController];
+    UIViewController *pCtrl = [CommonController getFatherController:self.view];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位
@@ -420,7 +407,7 @@
 //删除职位
 - (void)jobDelete
 {
-     UIViewController *pCtrl = [self getFatherController];
+     UIViewController *pCtrl = [CommonController getFatherController:self.view];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
         //判断是否有选中的职位
