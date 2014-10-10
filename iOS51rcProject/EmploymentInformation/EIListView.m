@@ -87,13 +87,8 @@
     tmpView.layer.backgroundColor = [UIColor whiteColor].CGColor;
     
     UIFont *titleFont = [UIFont systemFontOfSize:13];
-    //CGFloat titleWidth = 300;
-    //CGSize titleSize = CGSizeMake(titleWidth, 5000.0f);
-    //CGSize labelSize = [CommonController CalculateFrame:strTitle fontDemond:titleFont sizeDemand:titleSize];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 300, 15.5)];
     lbTitle.text = strTitle;
-    //lbTitle.lineBreakMode = NSLineBreakByCharWrapping;
-    //lbTitle.numberOfLines = 0;
     lbTitle.font = titleFont;
     [tmpView addSubview:(lbTitle)];
     [lbTitle release];

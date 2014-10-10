@@ -40,6 +40,9 @@
     //不显示列表分隔线
     self.tvEIList.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    self.view.layer.backgroundColor = [UIColor colorWithRed:240.f/255.f green:240.f/255.f blue:240.f/255.f alpha:1].CGColor;
+    self.tvEIList.layer.backgroundColor = [UIColor colorWithRed:240.f/255.f green:240.f/255.f blue:240.f/255.f alpha:1].CGColor;
+    
     page = 1;
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     regionid = [userDefault objectForKey:@"subSiteId"];
@@ -83,15 +86,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell =
     [[[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"rmList"] autorelease];
+    cell.backgroundColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1];
     
     NSDictionary *rowData = self.eiListData[indexPath.row];
     
     //显示标题
     NSString *strTitle = rowData[@"Title"];
     strTitle = [strTitle stringByReplacingOccurrencesOfString:@"（图）" withString:@""];
-    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 310, 55)];
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(5, 5, 310, 55)];
     tmpView.layer.borderWidth = 0.5;
     tmpView.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    tmpView.layer.backgroundColor = [UIColor whiteColor].CGColor;
     
     UIFont *titleFont = [UIFont systemFontOfSize:13];
     CGFloat titleWidth = 300;
@@ -143,7 +148,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 58;
+    return 65;
 }
 
 - (void)footerRereshing{
