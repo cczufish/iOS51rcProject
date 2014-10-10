@@ -197,6 +197,8 @@
 }
 
 - (void)dealloc {
+    [_loading release];
+    [_runningRequest release];
     [strNewsID release];
     [_strTitle release];
     [_newsScroll release];

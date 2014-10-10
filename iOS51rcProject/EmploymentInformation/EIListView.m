@@ -40,6 +40,8 @@
 
 -(void)dealloc{   
     [_newsTableView release];
+    [_eiListData release];
+    [_runningRequest release];
     [super dealloc];
 }
 
