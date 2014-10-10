@@ -20,7 +20,6 @@
 @property (retain, nonatomic) NSString *employId;
 @property (retain, nonatomic) NSString *companyId;
 @property int tabIndex;
-@property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @end
 
 @implementation JmMainViewController
@@ -120,7 +119,6 @@
     }];
 }
 
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if (self.scrollView.contentOffset.x > 480) {
@@ -144,9 +142,10 @@
     [_jobApplyCtrl release];
     [_jobFavoriteCtrl release];
     [_jobScanCtrl release];
+    
     [_lbUnderline release];
     [_scrollView release];
-    [_runningRequest release];
+  
     [_employId release];
     [_companyId release];
     [_lbJobApply release];

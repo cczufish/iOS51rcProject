@@ -350,13 +350,18 @@
 }
 
 - (void)dealloc {
+    [_runningRequestGetCvList release];
     [_runningRequest release];
     [_isOnline release];
     [_tvJobList release];
     [_arrCheckJobID release];
+    [_cvList release];
+    [_jobListData release];
     [_cPopup release];
     [_lbTop release];
     [_btnTop release];
+    [_DictionaryPicker release];
+    [loadView release];
     [super dealloc];
 }
 @end

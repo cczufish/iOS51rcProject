@@ -23,7 +23,6 @@
 @property (retain, nonatomic) NSString *employId;
 @property (retain, nonatomic) NSString *companyId;
 @property int tabIndex;
-@property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @end
 
 @implementation CpInviteViewController
@@ -147,11 +146,12 @@
     [_interviewNoticeCtrl release];
     [_jobInviteListCtrl release];
     [_cpAttentionCtrl release];
+    
     [_lbUnderline release];
     [_scrollView release];
-    [_runningRequest release];
     [_employId release];
     [_companyId release];
+    
     [_lbInterviewNotice release];
     [_lbJobInvite release];
     [_lbCpAttention release];
