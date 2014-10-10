@@ -21,7 +21,6 @@
 @property (retain, nonatomic) IBOutlet UIView *viewLogin;
 @end
 
-
 @implementation LoginDetailsViewController
 @synthesize gotoHomeDelegate;
 @synthesize delegate;
@@ -97,11 +96,10 @@
     [dicParam setObject:@"0" forKey:@"autoLogin"];
     
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"Login" Params:dicParam];
-    
+    request.tag = 1;
     [request startAsynchronous];
     [request setDelegate:self];
     self.runningRequest = request;
-    wsName = @"login";
     
     //隐藏键盘
     [self.txtName resignFirstResponder];
@@ -126,15 +124,15 @@
       finishedInfoToResult:(NSString *)result
               responseData:(NSArray *)requestData
 {
-    if ([wsName isEqual: @"login"]) {
+    if (request.tag == 1) {
         [result retain];
         [self didReceiveLoginData:result];
     }
-    else if ([wsName isEqual: @"GetPaAddDate"]){
+    else if (request.tag == 2){
         [result retain];
         [self didReceiveGetCodeData: result];
     }
-    else if ([wsName isEqual:@"GetPaMainInfoByID"]) {
+    else if (request.tag == 3) {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setValue:userID forKey:@"UserID"];//PamainID
         [userDefaults setValue:userName forKey:@"UserName"];
@@ -203,11 +201,11 @@
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:_userID forKey:@"paMainID"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaAddDate" Params:dicParam];
-    
+    request.tag = 2;
     [request startAsynchronous];
     [request setDelegate:self];
     self.runningRequest = request;
-    wsName = @"GetPaAddDate";
+   
 }
 
 //从webservice获取姓名
@@ -217,11 +215,10 @@
     [dicParam setObject:userID forKey:@"paMainID"];
     [dicParam setObject:code forKey:@"code"];
     NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetPaMainInfoByID" Params:dicParam];
-    
+    request.tag = 3;
     [request startAsynchronous];
     [request setDelegate:self];
     self.runningRequest = request;
-    wsName = @"GetPaMainInfoByID";
 }
 
 //隐藏键盘
@@ -230,6 +227,7 @@
 }
 
 - (void)dealloc {
+    [_runningRequest release];
     [_loginLoading release];
     [_txtName release];
     [_txtPsd release];

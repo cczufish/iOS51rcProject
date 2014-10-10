@@ -21,9 +21,7 @@
     NSString *provinceID;
     NSString *browser;
     NSString *code;
-    BOOL isAutoLogin;
-    
-    NSString *wsName;//当前调用的webservice名字
+    BOOL isAutoLogin;     
 }
 @property (assign, nonatomic) id<LoginDetailsDelegate> delegate;
 @property (assign, nonatomic) id<GoToHomeDelegate> gotoHomeDelegate;
