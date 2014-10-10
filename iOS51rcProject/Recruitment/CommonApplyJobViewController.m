@@ -337,7 +337,7 @@
     [btnCheck release];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
@@ -379,7 +379,7 @@
 //邀请一个企业
 -(void) inviteOneCp:(UIButton*)sender{
     RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
-    NSMutableArray *tmpCheckArray = [[NSMutableArray alloc] init];
+    NSMutableArray *tmpCheckArray = [[[NSMutableArray alloc] init] autorelease];
     [tmpCheckArray addObject:selectCp];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
@@ -417,6 +417,7 @@
 }
 
 - (void)dealloc {
+    [loadView release];
     [_runningRequest release];
     [_jobType release];
     [_workPlace release];
