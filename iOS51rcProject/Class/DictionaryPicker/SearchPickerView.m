@@ -508,6 +508,10 @@
                         self.selectTableName = @"dcEducation";
                         self.selectIdentify = @"b";
                         [self setCommonDictionary];
+                        [arrDictionaryL2 addObject:[[NSDictionary alloc] initWithObjectsAndKeys:
+                                                   [NSString stringWithFormat:@"%@%@",self.selectIdentify,@"99"],@"id",
+                                                   @"学历不限",@"value"
+                                                    , nil]];
                         break;
                     case 2:
                         self.selectTableName = @"Experience";

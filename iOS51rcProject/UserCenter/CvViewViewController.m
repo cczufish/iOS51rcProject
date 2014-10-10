@@ -69,6 +69,18 @@
 
 - (void)getPaBasic
 {
+    if (self.paData[0][@"PhotoProcessed"])
+    {
+        if (![self.paData[0][@"HasPhoto"] isEqualToString:@"2"]) {
+            NSString *path = [NSString stringWithFormat:@"%d",([[self.userDefaults objectForKey:@"UserID"] intValue] / 100000 + 1) * 100000];
+            for (int i=0; i<9-path.length; i++) {
+                path = [NSString stringWithFormat:@"0%@",path];
+            }
+            path = [NSString stringWithFormat:@"L%@",path];
+            path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,self.paData[0][@"PhotoProcessed"]];
+            [self.imgPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]]];
+        }
+    }
     if (!self.paData[0][@"BirthDay"]) {
         return;
     }
@@ -103,18 +115,6 @@
     }
     self.lbLoginDate.text = [CommonController stringFromDateString:self.paData[0][@"LastLoginDate"] formatType:@"yyyy-MM-dd HH:mm"];
     self.lbRefreshDate.text = [CommonController stringFromDateString:self.cvData[0][@"RefreshDate"] formatType:@"yyyy-MM-dd HH:mm"];
-    if (self.paData[0][@"PhotoProcessed"])
-    {
-        if (![self.paData[0][@"HasPhoto"] isEqualToString:@"2"]) {
-            NSString *path = [NSString stringWithFormat:@"%d",([[self.userDefaults objectForKey:@"UserID"] intValue] / 100000 + 1) * 100000];
-            for (int i=0; i<9-path.length; i++) {
-                path = [NSString stringWithFormat:@"0%@",path];
-            }
-            path = [NSString stringWithFormat:@"L%@",path];
-            path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,self.paData[0][@"PhotoProcessed"]];
-            [self.imgPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]]];
-        }
-    }
 }
 
 - (void)getJobIntention:(NSArray *)arrayCvIntention

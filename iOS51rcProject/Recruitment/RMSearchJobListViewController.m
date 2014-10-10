@@ -55,11 +55,12 @@
     [super viewDidLoad];
     checkedCpArray = [[NSMutableArray alloc] init];//选择的企业
     //设置导航标题(搜索条件)
-    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
+    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 220, 45)];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
     [lbTitle setFont:[UIFont systemFontOfSize:14]];
     [lbTitle setText:self.searchCondition];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
+    [lbTitle setTextColor:[UIColor whiteColor]];
     //    [viewTitle setBackgroundColor:[UIColor blueColor]];
     [viewTitle addSubview:lbTitle];
     //设置导航标题(搜索结果)
@@ -67,6 +68,7 @@
     [self.lbSearchResult setText:@"正在获取职位列表"];
     [self.lbSearchResult setFont:[UIFont systemFontOfSize:10]];
     [self.lbSearchResult setTextAlignment:NSTextAlignmentCenter];
+    [self.lbSearchResult setTextColor:[UIColor whiteColor]];
     [viewTitle addSubview:self.lbSearchResult];
     [self.navigationItem setTitleView:viewTitle];
     [viewTitle release];
@@ -295,10 +297,16 @@
     UIImageView *imgCheck = [[UIImageView alloc] initWithFrame:CGRectMake(10, 30, 20, 20)];
     [imgCheck setImage:[UIImage imageNamed:@"chk_default.png"]];
     [btnCheck addSubview:imgCheck];
-    if ([checkedCpArray containsObject:rowData[@"ID"]]) {
-        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
-        [btnCheck setTag:2];
+    for (RmCpMain *cpMain in checkedCpArray) {
+        if ([cpMain.ID isEqualToString:rowData[@"cpMainID"]]) {
+            [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
+            [btnCheck setTag:2];
+        }
     }
+//    if ([checkedCpArray containsObject:rowData[@"ID"]]) {
+//        [imgCheck setImage:[UIImage imageNamed:@"chk_check.png"]];
+//        [btnCheck setTag:2];
+//    }
     [imgCheck release];
     [cell.contentView addSubview:btnCheck];
     [btnCheck release];

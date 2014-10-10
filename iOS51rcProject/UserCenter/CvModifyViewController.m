@@ -146,6 +146,18 @@
 - (void)getPaBasic
 {
     [self.lbEmail setText:self.paData[0][@"Email"]];
+    if (self.paData[0][@"PhotoProcessed"])
+    {
+        if (![self.paData[0][@"HasPhoto"] isEqualToString:@"2"]) {
+            NSString *path = [NSString stringWithFormat:@"%d",([[self.userDefaults objectForKey:@"UserID"] intValue] / 100000 + 1) * 100000];
+            for (int i=0; i<9-path.length; i++) {
+                path = [NSString stringWithFormat:@"0%@",path];
+            }
+            path = [NSString stringWithFormat:@"L%@",path];
+            path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,self.paData[0][@"PhotoProcessed"]];
+            [self.btnPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]] forState:UIControlStateNormal];
+        }
+    }
     if (!self.paData[0][@"LivePlace"]) {
         return;
     }
@@ -160,18 +172,6 @@
     }
     else {
         [self.lbGender setText:@"女"];
-    }
-    if (self.paData[0][@"PhotoProcessed"])
-    {
-        if (![self.paData[0][@"HasPhoto"] isEqualToString:@"2"]) {
-            NSString *path = [NSString stringWithFormat:@"%d",([[self.userDefaults objectForKey:@"UserID"] intValue] / 100000 + 1) * 100000];
-            for (int i=0; i<9-path.length; i++) {
-                path = [NSString stringWithFormat:@"0%@",path];
-            }
-            path = [NSString stringWithFormat:@"L%@",path];
-            path = [NSString stringWithFormat:@"http://down.51rc.com/imagefolder/Photo/%@/Processed/%@",path,self.paData[0][@"PhotoProcessed"]];
-            [self.btnPhoto setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:path]]] forState:UIControlStateNormal];
-        }
     }
 }
 
@@ -1032,6 +1032,10 @@
         [self.btnSetNoExp setBackgroundImage:[UIImage imageNamed:@"radio_unsel.png"] forState:UIControlStateNormal];
         [self.btnSetNoExp setEnabled:true];
         [self.btnAddExperience setHidden:false];
+        
+        int cvScore = [[self.lbCvScore.text stringByReplacingOccurrencesOfString:@"分" withString:@""] intValue];
+        cvScore -= 15;
+        [self.lbCvScore setText:[NSString stringWithFormat:@"%d分",cvScore]];
     }
     else if (request.tag == 6) {
         [self.view makeToast:@"已修改为无工作经验"];
@@ -1040,6 +1044,9 @@
         [self.btnSetNoExp setBackgroundImage:[UIImage imageNamed:@"radio_sel.png"] forState:UIControlStateNormal];
         [self.btnSetNoExp setEnabled:false];
         [self.btnAddExperience setHidden:true];
+        int cvScore = [[self.lbCvScore.text stringByReplacingOccurrencesOfString:@"分" withString:@""] intValue];
+        cvScore += 15;
+        [self.lbCvScore setText:[NSString stringWithFormat:@"%d分",cvScore]];
     }
     [loadView stopAnimating];
 }

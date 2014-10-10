@@ -69,12 +69,31 @@
 }
 
 - (IBAction)savePaMain:(id)sender {
-    if (![CommonController isValidateMobile:self.txtMobile.text]) {
-        [self.view makeToast:@"请填写正确的手机号"];
-        return;
-    }
     if (![CommonController isChinese:self.txtName.text] || self.txtName.text.length > 6) {
         [self.view makeToast:@"请输入6字以内的中文姓名"];
+        return;
+    }
+    if (![self.segGender selectedSegmentIndex]) {
+        [self.view makeToast:@"请选择性别"];
+    }
+    if (self.btnBirth.tag == 0) {
+        [self.view makeToast:@"请选择出生年月"];
+        return;
+    }
+    if (self.btnLivePlace.tag == 0) {
+        [self.view makeToast:@"请选择现居住地"];
+        return;
+    }
+    if (self.btnAccountPlace.tag == 0) {
+        [self.view makeToast:@"请选择户口所在地"];
+        return;
+    }
+    if (self.btnGrowPlace.tag == 0) {
+        [self.view makeToast:@"请选择我成长在"];
+        return;
+    }
+    if (![CommonController isValidateMobile:self.txtMobile.text]) {
+        [self.view makeToast:@"请填写正确的手机号"];
         return;
     }
     if (![loadView isAnimating]) {

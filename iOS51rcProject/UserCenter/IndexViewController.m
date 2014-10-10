@@ -228,6 +228,16 @@
             self.lbPaName.text = @"您好！";
         }
         self.lbMobile.text = requestData[0][@"Mobile"];
+        if (self.lbMobile.text.length == 0) {
+            [self.imgMobileCer setHidden:true];
+            [self.btnMobileCer setHidden:true];
+            [self.btnMobileModify setHidden:true];
+        }
+        else {
+            [self.imgMobileCer setHidden:false];
+            [self.btnMobileCer setHidden:false];
+            [self.btnMobileModify setHidden:false];
+        }
         self.lbEmail.text = requestData[0][@"Email"];
         //设置手机认证
         if (requestData[0][@"MobileVerifyDate"]) {

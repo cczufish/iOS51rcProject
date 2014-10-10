@@ -86,8 +86,8 @@
         [self.view makeToast:@"请输入学校名称"];
         return;
     }
-    if (self.txtMajor.text.length == 0) {
-        [self.view makeToast:@"请输入专业名称"];
+    if (self.btnGraduationDate.tag == 0) {
+        [self.view makeToast:@"请选择毕业时间"];
         return;
     }
     if (self.btnDegree.tag == 0) {
@@ -98,14 +98,15 @@
         [self.view makeToast:@"请选择学历类型"];
         return;
     }
-    if (self.btnGraduationDate.tag == 0) {
-        [self.view makeToast:@"请选择毕业时间"];
-        return;
-    }
     if (self.btnMajor.tag == 0) {
         [self.view makeToast:@"请选择专业"];
         return;
     }
+    if (self.txtMajor.text.length == 0) {
+        [self.view makeToast:@"请输入专业名称"];
+        return;
+    }
+    
     if (![loadView isAnimating]) {
         [loadView startAnimating];
     }

@@ -71,6 +71,12 @@
     [self showSearchHistory];
 }
 
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    [self showSearchHistory];
+//}
+
 //显示搜索历史记录
 -(void)showSearchHistory
 {

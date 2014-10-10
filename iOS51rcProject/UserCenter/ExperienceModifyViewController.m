@@ -101,24 +101,20 @@
         [self.view makeToast:@"请输入公司名称"];
         return;
     }
-    if (self.txtJobName.text.length == 0) {
-        [self.view makeToast:@"请输入职位名称"];
-        return;
-    }
     if (self.btnIndustry.tag == 0) {
         [self.view makeToast:@"请选择行业"];
-        return;
-    }
-    if (self.btnJobType.tag == 0) {
-        [self.view makeToast:@"请选择职位类别"];
         return;
     }
     if (self.btnCompanySize.tag == 0) {
         [self.view makeToast:@"请选择公司规模"];
         return;
     }
-    if (self.btnLowerNumber.tag == 0) {
-        [self.view makeToast:@"请选择下属人数"];
+    if (self.txtJobName.text.length == 0) {
+        [self.view makeToast:@"请输入职位名称"];
+        return;
+    }
+    if (self.btnJobType.tag == 0) {
+        [self.view makeToast:@"请选择职位类别"];
         return;
     }
     if (self.btnBeginDate.tag == 0) {
@@ -127,6 +123,10 @@
     }
     if (self.btnEndDate.tag == 0) {
         [self.view makeToast:@"请选择结束时间"];
+        return;
+    }
+    if (self.btnLowerNumber.tag == 0) {
+        [self.view makeToast:@"请选择下属人数"];
         return;
     }
     if (self.btnBeginDate.tag > self.btnEndDate.tag) {

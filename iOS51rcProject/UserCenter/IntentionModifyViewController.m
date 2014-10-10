@@ -180,6 +180,22 @@
 }
 
 - (IBAction)saveIntention:(id)sender {
+    if (self.btnEmployType.tag == 0) {
+        [self.view makeToast:@"请选择期望工作性质"];
+        return;
+    }
+    if (self.btnSalary.tag == 0) {
+        [self.view makeToast:@"请选择期望月薪"];
+        return;
+    }
+    if (self.workPlaceId.length == 0) {
+        [self.view makeToast:@"请选择期望工作地点"];
+        return;
+    }
+    if (self.jobTypeId.length == 0) {
+        [self.view makeToast:@"请选择期望职位类别"];
+        return;
+    }
     if (![loadView isAnimating]) {
         [loadView startAnimating];
     }

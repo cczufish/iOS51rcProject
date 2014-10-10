@@ -1331,7 +1331,7 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲，您还没有一份简历哦，马上去创建一份简历吧，拥有一份完整的额简历，就可以申请感兴趣的职位了。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NZC-tb-S9Z">
                                         <rect key="frame" x="56" y="16" width="201" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -1370,7 +1370,7 @@
                                                 </connections>
                                             </button>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico_cvlist_modify.png" id="RD2-vE-bxY">
-                                                <rect key="frame" x="40" y="36" width="30" height="30"/>
+                                                <rect key="frame" x="42" y="38" width="26" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r5i-Sm-24X">
@@ -1514,7 +1514,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确定要删除该简历吗？" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pgk-rQ-SXw">
-                                        <rect key="frame" x="20" y="66" width="240" height="21"/>
+                                        <rect key="frame" x="10" y="66" width="260" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="highlightedColor"/>
@@ -1530,6 +1530,7 @@
                         <outlet property="btnConfirmCancel" destination="zoR-qu-Ad4" id="ysb-ox-R2P"/>
                         <outlet property="btnCreateCv" destination="42d-Bq-CwW" id="MZx-kM-fQx"/>
                         <outlet property="lbCvCount" destination="k2O-gS-RiX" id="8L1-iY-Wjq"/>
+                        <outlet property="lbDeleteInfo" destination="pgk-rQ-SXw" id="RtY-ZE-Fsp"/>
                         <outlet property="pageControl" destination="CMT-GU-ffb" id="h0g-ep-zmo"/>
                         <outlet property="scrollCv" destination="EGf-gx-Fge" id="x8C-yG-wwc"/>
                         <outlet property="viewConfirm" destination="GJ4-qU-XE4" id="DGz-w5-08q"/>

@@ -18,6 +18,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *btnConfirmCancel;
 @property (retain, nonatomic) IBOutlet UIButton *btnConfirm;
 @property (retain, nonatomic) IBOutlet UIView *viewConfirm;
+@property (retain, nonatomic) IBOutlet UILabel *lbDeleteInfo;
 @property int toastType;
 
 @end

@@ -174,7 +174,6 @@
 		998025C419A23024001A7E84 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 998025BB19A23024001A7E84 /* UIScrollView+MJRefresh.m */; };
 		998025C519A23024001A7E84 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 998025BD19A23024001A7E84 /* UIView+Extension.m */; };
 		998F3BD319D518840011784A /* RefreshCvViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998F3BD219D518840011784A /* RefreshCvViewController.m */; };
-		99908A4A19A34D7300137FDE /* dictionary.db in Resources */ = {isa = PBXBuildFile; fileRef = 99908A4919A34D7300137FDE /* dictionary.db */; };
 		99908A5619A34DD300137FDE /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A4D19A34DD300137FDE /* FMDatabase.m */; };
 		99908A5719A34DD300137FDE /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A4F19A34DD300137FDE /* FMDatabaseAdditions.m */; };
 		99908A5819A34DD300137FDE /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 99908A5119A34DD300137FDE /* FMDatabasePool.m */; };
@@ -329,6 +328,7 @@
 		99C581DE19C19756009985C5 /* CpAttentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581DD19C19756009985C5 /* CpAttentionViewController.m */; };
 		99C581E019C1A0D6009985C5 /* RM.m in Sources */ = {isa = PBXBuildFile; fileRef = 99C581DF19C1A0D6009985C5 /* RM.m */; };
 		99CB6FD319E65D28009DDD04 /* ico_news_attach.png in Resources */ = {isa = PBXBuildFile; fileRef = 99CB6FD219E65D28009DDD04 /* ico_news_attach.png */; };
+		99CEAA9719E81046002A492A /* dictionary.db in Resources */ = {isa = PBXBuildFile; fileRef = 99CEAA9619E81045002A492A /* dictionary.db */; };
 		99CFD818199B5F80009A5ABA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD817199B5F80009A5ABA /* Foundation.framework */; };
 		99CFD81A199B5F80009A5ABA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD819199B5F80009A5ABA /* CoreGraphics.framework */; };
 		99CFD81C199B5F80009A5ABA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CFD81B199B5F80009A5ABA /* UIKit.framework */; };
@@ -783,7 +783,6 @@
 		998025BD19A23024001A7E84 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		998F3BD119D518840011784A /* RefreshCvViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RefreshCvViewController.h; path = UserCenter/RefreshCvViewController.h; sourceTree = "<group>"; };
 		998F3BD219D518840011784A /* RefreshCvViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RefreshCvViewController.m; path = UserCenter/RefreshCvViewController.m; sourceTree = "<group>"; };
-		99908A4919A34D7300137FDE /* dictionary.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dictionary.db; sourceTree = "<group>"; };
 		99908A4C19A34DD300137FDE /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		99908A4D19A34DD300137FDE /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		99908A4E19A34DD300137FDE /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -1024,6 +1023,7 @@
 		99C581DD19C19756009985C5 /* CpAttentionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CpAttentionViewController.m; path = UserCenter/CpAttentionViewController.m; sourceTree = "<group>"; };
 		99C581DF19C1A0D6009985C5 /* RM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RM.m; path = Entity/RM.m; sourceTree = "<group>"; };
 		99CB6FD219E65D28009DDD04 /* ico_news_attach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_news_attach.png; sourceTree = "<group>"; };
+		99CEAA9619E81045002A492A /* dictionary.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dictionary.db; sourceTree = "<group>"; };
 		99CFD814199B5F80009A5ABA /* iOS51rcProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS51rcProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99CFD817199B5F80009A5ABA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		99CFD819199B5F80009A5ABA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -2126,8 +2126,8 @@
 			isa = PBXGroup;
 			children = (
 				99CFD89A199B6196009A5ABA /* Class */,
-				99908A4919A34D7300137FDE /* dictionary.db */,
 				99CFD81F199B5F80009A5ABA /* iOS51rcProject-Info.plist */,
+				99CEAA9619E81045002A492A /* dictionary.db */,
 				99CFD820199B5F80009A5ABA /* InfoPlist.strings */,
 				99CFD823199B5F80009A5ABA /* main.mm */,
 				99CFD825199B5F80009A5ABA /* iOS51rcProject-Prefix.pch */,
@@ -2620,7 +2620,6 @@
 				99CFD875199B60D8009A5ABA /* bg_leftmenu.png in Resources */,
 				9942F39919B95C2100191C74 /* ico_mainmore_share.png in Resources */,
 				99F51F4519AEB30300C81A9B /* chk_unable.png in Resources */,
-				99908A4A19A34D7300137FDE /* dictionary.db in Resources */,
 				9994AF4919D144BF008068AD /* ico_fuli_txbt.png in Resources */,
 				99CFD883199B60D8009A5ABA /* ico_main_jobapply.png in Resources */,
 				9942F44E19B987D900191C74 /* ShareSDKFlatShareViewUI.bundle in Resources */,
@@ -2687,6 +2686,7 @@
 				9945C30D19A1AB370027E931 /* ico_rm_group.png in Resources */,
 				999B5B0419B980510067B3E7 /* ico_EI_Background_width107.png in Resources */,
 				9936980819C7D4020060BDD1 /* ico_cvmain_education.png in Resources */,
+				99CEAA9719E81046002A492A /* dictionary.db in Resources */,
 				991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */,
 				9935EFBE19BEF50000F581AC /* ico_news_hot.png in Resources */,
 				9905134319C2F3D500B9C096 /* CpAndJob.storyboard in Resources */,

@@ -467,6 +467,19 @@
 }
 
 - (IBAction)deleteCv:(id)sender {
+    for (NSDictionary *dicCvInfo in self.cvListData) {
+        if ([dicCvInfo[@"ID"] isEqualToString:self.cvId]) {
+            NSString *strDeleteInfo = [NSString stringWithFormat:@"确定要删除简历[%@]吗？",dicCvInfo[@"Name"]];
+            CGRect frameDeleteLabel = self.lbDeleteInfo.frame;
+            CGSize labelSize = [CommonController CalculateFrame:strDeleteInfo fontDemond:self.lbDeleteInfo.font sizeDemand:CGSizeMake(frameDeleteLabel.size.width, 3000)];
+            frameDeleteLabel.size.height = labelSize.height;
+            [self.lbDeleteInfo setNumberOfLines:0];
+            [self.lbDeleteInfo setLineBreakMode:NSLineBreakByCharWrapping];
+            [self.lbDeleteInfo setFrame:frameDeleteLabel];
+            [self.lbDeleteInfo setText:strDeleteInfo];
+            break;
+        }
+    }
     self.cPopup = [[[CustomPopup alloc] popupCommon:self.viewConfirm buttonType:PopupButtonTypeNone] autorelease];
     [self.cPopup setTag:2];
     [self.cPopup showPopup:self.view];
@@ -525,6 +538,7 @@
     [_btnConfirmCancel release];
     [_btnConfirm release];
     [_viewConfirm release];
+    [_lbDeleteInfo release];
     [super dealloc];
 }
 @end
