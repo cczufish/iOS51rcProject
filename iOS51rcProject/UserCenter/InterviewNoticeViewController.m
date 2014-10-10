@@ -661,13 +661,13 @@
         if ([strReply isEqualToString:@"0"]) {
             height +=  210;
         }
-        else {
+        else if([strReply isEqualToString:@"1"]){//赴约
             height +=  140;
+        }else if([strReply isEqualToString:@"2"]){//不赴约           
+            NSString *replyMessage = self.recruitmentCpData [indexPath.row][@"ReplyMessage"];
+            labelSize = [CommonController CalculateFrame:replyMessage fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 500)];
+            height += labelSize.height + 125;
         }
-        //如果有未结束原因
-        NSString *replyMessage = self.recruitmentCpData [indexPath.row][@"ReplyMessage"];
-        labelSize = [CommonController CalculateFrame:replyMessage fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(200, 500)];
-        height += labelSize.height - 15;
     }
     
     return height;
