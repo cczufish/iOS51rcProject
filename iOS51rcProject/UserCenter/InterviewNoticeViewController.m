@@ -500,10 +500,14 @@
                 lbPreReason.font = [UIFont systemFontOfSize:12];
                 [cell.contentView addSubview:(lbPreReason)];
                 
-                UILabel *lbReason = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbApply.frame.origin.y+lbApply.frame.size.height + 5, 210, 15)] autorelease];
-                lbReason.text = rowData[@"ReplyMessage"];
+                NSString *strReason = rowData[@"ReplyMessage"];
+                 labelSize = [CommonController CalculateFrame:strReason fontDemond:[UIFont systemFontOfSize:12] sizeDemand:CGSizeMake(210, 500)];
+                UILabel *lbReason = [[[UILabel alloc] initWithFrame:CGRectMake(80, lbApply.frame.origin.y+lbApply.frame.size.height + 5, 210, labelSize.height)] autorelease];
+                lbReason.text = strReason;
+                lbReason.numberOfLines = 0;
+                lbReason.lineBreakMode = NSLineBreakByCharWrapping;
                 lbReason.textColor = [UIColor blackColor];
-                lbReason.layer.cornerRadius = 5;
+               
                 lbReason.font = [UIFont systemFontOfSize:12];
                 [cell.contentView addSubview:(lbReason)];
                 selectRowHeight = lbReason.frame.origin.y + lbReason.frame.size.height + 5;
