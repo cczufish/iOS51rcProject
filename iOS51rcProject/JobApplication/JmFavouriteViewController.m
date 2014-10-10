@@ -328,7 +328,7 @@
     [self.tvJobList addFooterWithTarget:self action:@selector(footerRereshing)];
     //分割线
     if (indexPath.row != self.jobListData.count - 1) {
-        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)];
+        UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, 76, 320, 1)] autorelease];
         [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         [cell.contentView addSubview:viewSeparate];
     }
@@ -482,6 +482,7 @@
 
 
 - (void)dealloc {
+    [loadView release];
     [_runningRequest release];
     [_isOnline release];
     [_tvJobList release];
