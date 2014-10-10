@@ -521,6 +521,9 @@
     NSString *num = dicJob[@"NeedNumber"];
     //学历
     NSString *education = dicJob[@"Education"];
+    if ([education isEqualToString:@"不限"]) {
+        education = @"学历不限";
+    }
     //年龄
     NSString *minAge = dicJob[@"MinAge"];
     NSString *maxAge = dicJob[@"MaxAge"];
