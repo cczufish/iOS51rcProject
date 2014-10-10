@@ -173,6 +173,7 @@
         lbReplyTime.textColor = [UIColor grayColor];
         lbReplyTime.font = [UIFont systemFontOfSize:13];
         lbReplyTime.textAlignment = NSTextAlignmentRight;
+        lbReplyTime.text = strReplyDate;
         [cell.contentView addSubview:lbReplyTime];
         [lbReplyTime release];
     }else{
@@ -191,6 +192,7 @@
         NSDate *dtReplyDate = [CommonController dateFromString:strReplyDate];
         strWeek = [CommonController getWeek:dtReplyDate];
         strReplyDate = [NSString stringWithFormat:@"答复时间：%@ %@",dtReplyDate,strWeek];
+        lbReplyTime.text = strReplyDate;
         lbReplyTime.textColor = [UIColor grayColor];
         lbReplyTime.font = [UIFont systemFontOfSize:13];
         lbReplyTime.textAlignment = NSTextAlignmentRight;
