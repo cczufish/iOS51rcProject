@@ -101,7 +101,7 @@
     //未读数目
     NSString *strNoViewedNum = rowData[@"NoViewedNum"];
     if (![strNoViewedNum isEqualToString:@"0"]) {
-        JSBadgeView *badgeView = [[JSBadgeView alloc] initWithParentView:imgView alignment:JSBadgeViewAlignmentTopRight];
+        JSBadgeView *badgeView = [[[JSBadgeView alloc] initWithParentView:imgView alignment:JSBadgeViewAlignmentTopRight] autorelease];
         badgeView.badgeText = [NSString stringWithFormat:@"%@", strNoViewedNum];
     }
     
@@ -135,7 +135,7 @@
     [cell.contentView addSubview:lbMsg];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 55, 320, 1)];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, 55, 320, 1)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
