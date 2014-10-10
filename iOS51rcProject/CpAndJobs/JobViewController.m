@@ -932,6 +932,7 @@
 }
 
 - (void)dealloc {
+    [_runningRequest release];
     [_loading release];
     [_recommentJobsData release];
     [_lbFereashTime release];
