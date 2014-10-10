@@ -13,6 +13,7 @@
 #import "SuperCpViewController.h"
 #import "SearchViewController.h"
 #import "SlideNavigationController.h"
+#import "IndexViewController.h"
 
 @interface CpAttentionViewController ()<NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
 {
@@ -119,9 +120,44 @@
 //失败
 - (void)netRequestFailed:(NetWebServiceRequest *)request didRequestError:(int *)error
 {
+    //没有简历的提醒    
+    UIView *viewHsaNoCv = [[[UIView alloc] initWithFrame:CGRectMake(30, 100, 240, 80)]autorelease];
+    UIImageView *img = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 60)] autorelease];
+    img.image = [UIImage imageNamed:@"pic_noinfo.png"];
+    [viewHsaNoCv addSubview:img];
+    
+    UILabel *lb1 = [[[UILabel alloc]initWithFrame:CGRectMake(50, 10, 220, 20)] autorelease];
+    lb1.text = @"亲，您没有完整的简历";
+    lb1.font = [UIFont systemFontOfSize:14];
+    lb1.textAlignment = NSTextAlignmentCenter;
+    [viewHsaNoCv addSubview:lb1];
+    
+    UILabel *lb2 = [[[UILabel alloc] initWithFrame:CGRectMake(50, 30, 150, 20)] autorelease];
+    lb2.text = @"HR关注不到您，建议您";
+    lb2.font = [UIFont systemFontOfSize:14];
+    lb2.textAlignment = NSTextAlignmentLeft;
+    [viewHsaNoCv addSubview:lb2];
+    
+    UIButton *btn = [[[UIButton alloc] initWithFrame:CGRectMake(lb2.frame.origin.x + lb2.frame.size.width - 5, 30, 140, 20)] autorelease];
+    [btn addTarget:self action:@selector(gotoCvPage) forControlEvents:UIControlEventTouchUpInside];
+    
+    UILabel *lb3 = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 140, 20)] autorelease];
+    lb3.text = @"立即完善简历";
+    lb3.font = [UIFont systemFontOfSize:14];
+    lb3.textColor =  [UIColor colorWithRed:255.f/255.f green:90.f/255.f blue:39.f/255.f alpha:1];
+    lb3.textAlignment = NSTextAlignmentLeft;
+    [btn addSubview:lb3];
+    [viewHsaNoCv addSubview:btn];
+    
+    [self.view addSubview:viewHsaNoCv];
+    //结束等待动画
     [loadView stopAnimating];
-    UIViewController *superView = [CommonController getFatherController:self.view];
-    [superView.view makeToast:@"获取失败"];
+}
+
+-(void) gotoCvPage{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"UserCenter" bundle:nil];
+    IndexViewController *usIndexCtrl = [mainStoryboard instantiateViewControllerWithIdentifier:@"IndexView"];
+    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:usIndexCtrl withCompletion:nil];
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
