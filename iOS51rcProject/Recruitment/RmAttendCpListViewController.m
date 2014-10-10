@@ -220,7 +220,7 @@
         UIImageView *imgWillRun = [[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)] autorelease];
         if (isBooked == 1) {
             //没有图片，只显示“已预约”三个字
-            lbWillRun = [[UILabel alloc] initWithFrame:CGRectMake(0, 18, 40, 10)];
+            lbWillRun = [[[UILabel alloc] initWithFrame:CGRectMake(0, 18, 40, 10)] autorelease];
             lbWillRun.text = @"已预约";
             lbWillRun.font = [UIFont systemFontOfSize:13];
             lbWillRun.textColor = [UIColor grayColor];
