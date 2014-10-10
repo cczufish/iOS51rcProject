@@ -177,10 +177,7 @@
         [viewMsg addSubview:lbRefreshDate];
         //重新设置消息内容的大小
         viewMsg.frame = CGRectMake(50, 8, labelSize.width + 10, labelSize.height + 15 + 10);
-        [cell.contentView addSubview:viewMsg];
-        if (viewMsg.frame.size.height > 40) {
-            tmpHeight = viewMsg.frame.size.height;
-        }
+        [cell.contentView addSubview:viewMsg];        
     }else{
         //右侧图片
         UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(320-40-5, 8, 40, 40)]autorelease];
@@ -220,9 +217,6 @@
         //重新设置消息内容的大小
         viewMsg.frame = CGRectMake(270-labelSize.width - 20, 8, labelSize.width + 20, labelSize.height + 20 + 10);
         [cell.contentView addSubview:viewMsg];
-        if (viewMsg.frame.size.height > 40) {
-            tmpHeight = viewMsg.frame.size.height;
-        }
     }
 
     //NSLog(@"%d",indexPath.row);
