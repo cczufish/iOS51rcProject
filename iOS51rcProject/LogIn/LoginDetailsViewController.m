@@ -230,6 +230,7 @@
 }
 
 - (void)dealloc {
+    [_loginLoading release];
     [_txtName release];
     [_txtPsd release];
     [_btnLogin release];
