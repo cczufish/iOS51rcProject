@@ -184,7 +184,7 @@
     }else{
         //右侧图片
         UIImageView *imgView = [[[UIImageView alloc] initWithFrame:CGRectMake(320-40-5, 8, 40, 40)]autorelease];
-        imgView.image = [UIImage imageNamed:@"ico_onlinechat_cphead_online.png"];
+        imgView.image = [UIImage imageNamed:@"pic_pahead_default.png"];
         [cell.contentView addSubview:imgView];
         //消息内容View
         UIView *viewMsg = [[[UIView alloc] initWithFrame:CGRectMake(50, 8, 270, 60)] autorelease];
