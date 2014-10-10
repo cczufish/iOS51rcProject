@@ -12,7 +12,6 @@
 @interface FindPsdStep2ViewController ()<NetWebServiceRequestDelegate>
 {
     int secondSend;
-    LoadingAnimationView *loadView;
 }
 
 @property (retain, nonatomic) IBOutlet UITextField *txtUserName;
@@ -109,6 +108,7 @@
     [request startAsynchronous];
     [request setDelegate:self];
     self.runningRequest = request;
+    [dicParam release];
     
     //缓冲界面
     self.loadingView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -170,10 +170,10 @@
         [self.view makeToast:@"请输入有效的手机号"];
         return;
     }
-    [loadView startAnimating];
+    [self.loadingView startAnimating];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *provinceID=[defaults stringForKey:@"provinceID"];
-    provinceID = @"32";
+    //provinceID = @"32";
     
     NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
     [dicParam setObject:self.txtUserName.text forKey:@"userName"];
@@ -210,7 +210,7 @@
     if (self.btnSendSms != nil) {
         [_btnSendSms release];
     }
-    [loadView release];
+    [_loadingView release];
     [_txtUserName release];
     [_txtVerifyCode release];
     [_txtLabel release];

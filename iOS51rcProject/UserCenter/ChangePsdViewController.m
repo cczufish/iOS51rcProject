@@ -94,6 +94,7 @@
     [request startAsynchronous];
     [request setDelegate:self];
     self.runningRequest = request;
+    [dicParam release];
     
     //缓冲界面
     self.loadingView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -180,6 +181,7 @@
 }
 
 - (void)dealloc {
+    [_loadingView release];
     [_lastPsd release];
     [_viewTop release];
     [_txtPsd release];
