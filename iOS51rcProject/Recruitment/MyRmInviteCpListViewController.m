@@ -168,7 +168,6 @@
         UILabel *lbReplyTime = [[UILabel alloc] initWithFrame:CGRectMake(200, 50, 160, 15)];
         NSString *strReplyDate = rowData[@"ReplyDate"];
         NSDate *dtReplyDate = [CommonController dateFromString:strReplyDate];
-        strReplyDate = [CommonController stringFromDate:dtReplyDate formatType:@"yyyy-MM-dd HH:mm"];
         strWeek = [CommonController getWeek:dtReplyDate];
         strReplyDate = [NSString stringWithFormat:@"答复时间：%@ %@",dtReplyDate,strWeek];
         lbReplyTime.textColor = [UIColor grayColor];
@@ -190,7 +189,6 @@
         UILabel *lbReplyTime = [[UILabel alloc] initWithFrame:CGRectMake(200, 320, 160, 15)];
         NSString *strReplyDate = rowData[@"ReplyDate"];
         NSDate *dtReplyDate = [CommonController dateFromString:strReplyDate];
-        strReplyDate = [CommonController stringFromDate:dtReplyDate formatType:@"yyyy-MM-dd HH:mm"];
         strWeek = [CommonController getWeek:dtReplyDate];
         strReplyDate = [NSString stringWithFormat:@"答复时间：%@ %@",dtReplyDate,strWeek];
         lbReplyTime.textColor = [UIColor grayColor];
@@ -210,7 +208,7 @@
     
     //分割线
     if (indexPath.row != recruitmentCpData.count - 1) {
-        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y + lbBegin.frame.size.height + 8, 320, 1)];
+        UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbBegin.frame.origin.y + lbBegin.frame.size.height + 8, 320, 1)] autorelease];
         [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         [cell.contentView addSubview:viewSeparate];
     }
