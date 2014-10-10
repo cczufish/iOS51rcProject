@@ -418,7 +418,6 @@
             txtViewReason.delegate = self;
             txtViewReason.text = @"如果不能赴约参加面试，请说明理由";
             //把文本框添加到临时的变量内，用于传参
-            self.arrayTxtView = [[NSMutableArray alloc] init];//临时存放
             NSDictionary *dicTxtView = [[[NSDictionary alloc] initWithObjectsAndKeys:
                                         [NSString stringWithFormat:@"%d",indexPath.row],@"id",
                                         txtViewReason,@"value"
@@ -519,7 +518,7 @@
     
     if (indexPath.row<self.recruitmentCpData.count-1) {
         //分割线
-        UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 1)];
+        UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 1)] autorelease];
         [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
         [cell.contentView addSubview:viewSeparate];
     }
@@ -705,6 +704,7 @@
 }
 
 - (void)dealloc {
+    [_arrayTxtView release];
     [_arrayHeight release];
     [_runningRequest release];
     [_runningRequestGetCvList release];
