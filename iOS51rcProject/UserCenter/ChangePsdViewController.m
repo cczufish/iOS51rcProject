@@ -158,13 +158,13 @@
         result = false;
         
     }
-    else if ([passWord length]<6||[oldPsd length]>20) {
-        [Dialog alert:@"原密码长度在6-20位之间"];
+    else if ([passWord length]<6||[rePsd length]>20) {
+        [Dialog alert:@"新密码长度在6-20位之间"];
         result = false;
     }
     else if(![rePsd isEqualToString:passWord]){
         if(rePsd==nil||[rePsd length]==0){
-            [Dialog alert:@"重复密码不能为空"];
+            [Dialog alert:@"确认密码不能为空"];
             result = false;
         }else{
             [Dialog alert:@"两次密码输入不一致"];
