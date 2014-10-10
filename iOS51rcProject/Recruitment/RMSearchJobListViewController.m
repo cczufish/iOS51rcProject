@@ -75,7 +75,7 @@
     self.btnApply.layer.cornerRadius = 5;
     self.viewBottom.layer.borderWidth = 1.0;
     self.viewBottom.layer.borderColor = [[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1] CGColor];
-    [self.btnApply addTarget:self action:@selector(jobApply) forControlEvents:UIControlEventTouchUpInside];
+    [self.btnApply addTarget:self action:@selector(jobInvite) forControlEvents:UIControlEventTouchUpInside];
     //加载等待动画
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     //添加上拉加载更多
@@ -225,11 +225,7 @@
     cpMain.IsBooked = isBooked;
     cpMain.ID = rowData[@"cpMainID"];
     cpMain.Name = rowData[@"cpName"];
-    //cpMain.Address = rowData[@"Address"];
-    //cpMain.OrderDate = rowData[@"AddDate"];
-    //cpMain.Lat = rowData[@"Lat"];
-    //cpMain.Lng = rowData[@"Lng"];
-    cpMain.jobID = rowData[@"EnJobID"];
+    cpMain.jobID = rowData[@"ID"];
     cpMain.caMainID = rowData[@"caMainID"];
     cpMain.JobName = rowData[@"JobName"];
     
@@ -480,7 +476,7 @@
 }
 
 //邀请参会
-- (void)jobApply
+- (void)jobInvite
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {

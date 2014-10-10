@@ -226,7 +226,7 @@
     }
 }
 
-//点击退出帐号，清楚UserDefault里边的数据
+//点击退出帐号，清除UserDefault里边的数据，返回到首页
 - (void) confirmAndCancelPopupNext
 {
     [CommonController logout];
@@ -249,19 +249,7 @@
 {
     [super didReceiveMemoryWarning];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)dealloc {
     [_cPopup release];
