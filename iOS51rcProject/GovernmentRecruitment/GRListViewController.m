@@ -30,8 +30,7 @@
     self.tvGRList.backgroundColor = [UIColor colorWithRed:250.f/255.f green:250.f/255.f blue:250.f/255.f alpha:1];
     [self.navigationItem setTitle:@"政府招考"];
     
-    self.gRListData = [[NSMutableArray alloc] init];
-    self.placeData = [[NSMutableArray alloc] init];
+    self.gRListData = [[NSMutableArray alloc] init];    
    
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -180,6 +179,8 @@
 }
 
 - (void)dealloc {
+    [_gRListData release];
+    [loadView release];
     [_tvGRList release];
     [_runningRequest release];
     [super dealloc];

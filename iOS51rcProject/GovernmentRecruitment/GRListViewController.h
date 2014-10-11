@@ -8,5 +8,4 @@
     LoadingAnimationView *loadView;
 }
 @property (nonatomic, retain) NSMutableArray *gRListData;
-@property (nonatomic, retain) NSMutableArray *placeData;
 @end
