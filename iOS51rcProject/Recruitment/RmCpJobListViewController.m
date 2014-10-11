@@ -136,7 +136,7 @@
     [cpMainID retain];
     [jobID retain];
     [name retain];
-    RmCpMain *tmpCp = [[RmCpMain alloc]init];
+    RmCpMain *tmpCp = [[[RmCpMain alloc]init] autorelease];
     tmpCp.CpID = cpMainID;
     tmpCp.jobID = jobID;
     tmpCp.Name = name;
