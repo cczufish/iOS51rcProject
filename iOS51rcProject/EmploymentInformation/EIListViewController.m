@@ -28,7 +28,6 @@
     [super viewDidLoad];
     self.navigationItem.title = @"就业资讯";
     self.eiListData = [[NSMutableArray alloc] init];
-    placeData = [[NSMutableArray alloc] init];
     
     //数据加载等待控件初始化
     loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
@@ -185,7 +184,6 @@
 
 - (void)dealloc {
     [_eiListData release];
-    [placeData release];
     [loadView release];
     [_tvEIList release];
     [_runningRequest release];
