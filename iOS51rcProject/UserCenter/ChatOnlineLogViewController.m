@@ -99,18 +99,22 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *code = [userDefaults objectForKey:@"code"];
     NSString *userID = [userDefaults objectForKey:@"UserID"];
-    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
-    [dicParam setObject:userID forKey:@"paMainID"];//21142013
-    [dicParam setObject:code forKey:@"code"];//152014391908
-    [dicParam setObject:self.cvMainID forKey:@"cvMainID"];
-    [dicParam setObject:self.caMainID forKey:@"caMainID"];
-    [dicParam setObject:@"1" forKey:@"isRead"];
-    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetChatMainByCvCaID" Params:dicParam];
-    [request setDelegate:self];
-    [request startAsynchronous];
-    request.tag = 1;
-    self.runningRequest = request;
-    [dicParam release];
+    if (userID != nil) {
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:userID forKey:@"paMainID"];//21142013
+        [dicParam setObject:code forKey:@"code"];//152014391908
+        [dicParam setObject:self.cvMainID forKey:@"cvMainID"];
+        [dicParam setObject:self.caMainID forKey:@"caMainID"];
+        [dicParam setObject:@"1" forKey:@"isRead"];
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetChatMainByCvCaID" Params:dicParam];
+        [request setDelegate:self];
+        [request startAsynchronous];
+        request.tag = 1;
+        self.runningRequest = request;
+        [dicParam release];
+    }else{
+        [connectionTimer invalidate];//其他操作，帐号已经退出了。停止计时器。
+    }
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request
@@ -137,7 +141,6 @@
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.chatOnlineLogData[indexPath.row];
     
-    int tmpHeight = 40;
     int senderType = [rowData[@"SenderType"] integerValue];
     self.chatOnlineID = rowData[@"ChatOnlineID"];
     //企业发送
@@ -391,6 +394,9 @@
 }
 
 - (void)dealloc {
+    if (connectionTimer != nil) {
+        [connectionTimer invalidate];//把计时器停止
+    }    
     [_chatOnlineID release];
     [_cvMainID release];
     [_caMainID release];
