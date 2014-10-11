@@ -214,7 +214,7 @@
     [lbMyRmCpCount release];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, lbAddress.frame.origin.y+lbAddress.frame.size.height + 2, 320, 1)];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, lbAddress.frame.origin.y+lbAddress.frame.size.height + 2, 320, 1)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
@@ -287,7 +287,7 @@
 - (void)dealloc {
     [loadView release];
     [_tvRecruitmentCpList release];
-    [self.recruitmentCpData release];
+    [_recruitmentCpData release];
     [_btnInviteCp release];
     [_viewBottom release];
     [super dealloc];

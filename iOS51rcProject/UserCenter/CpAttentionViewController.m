@@ -206,7 +206,7 @@
         }
     }
     else if(request.tag == 2){
-        NSMutableArray *arrCv = [[NSMutableArray alloc] init];
+        NSMutableArray *arrCv = [[[NSMutableArray alloc] init] autorelease];
         NSDictionary *defalult = [[[NSDictionary alloc] initWithObjectsAndKeys:
                                    @"0",@"id",
                                    @"相关简历",@"value"

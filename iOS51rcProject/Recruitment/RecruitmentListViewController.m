@@ -175,7 +175,7 @@
     NSDictionary *rowData = self.recruitmentData[indexPath.row];
     
     //初始化对象，用以选择时使用
-    RM *rmInfo = [[RM alloc] init];
+    RM *rmInfo = [[[RM alloc] init] autorelease ];
     rmInfo.ID = rowData[@"ID"];
     rmInfo.Name = rowData[@"RecruitmentName"];
     rmInfo.Address = rowData[@"Address"];
