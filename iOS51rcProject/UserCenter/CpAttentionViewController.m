@@ -68,10 +68,7 @@
     UIImageView *imgCornor = [[[UIImageView alloc] initWithFrame:CGRectMake(65, 20, 10, 10)] autorelease];
     imgCornor.image = [UIImage imageNamed:@"ico_triangle.png"];
     [self.btnTop addSubview:imgCornor];
-    
     self.pageNumber = 1;
-    self.arrCheckJobID = [[NSMutableArray alloc] init];
-
     self.tvJobList.frame = CGRectMake(0, self.tvJobList.frame.origin.y, 320, HEIGHT-156);
     //不显示列表分隔线
     self.tvJobList.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -380,7 +377,6 @@
     [_runningRequest release];
     [_isOnline release];
     [_tvJobList release];
-    [_arrCheckJobID release];
     [_cvList release];
     [_jobListData release];
     [_cPopup release];
