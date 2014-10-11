@@ -72,7 +72,7 @@
     self.pageNumber = 1;
     self.arrCheckJobID = [[NSMutableArray alloc] init];
     //设置导航标题(搜索条件)
-    UIView *viewTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)];
+    UIView *viewTitle = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 125, 45)] autorelease];
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, viewTitle.frame.size.width, 20)];
     [lbTitle setFont:[UIFont systemFontOfSize:14]];
     [lbTitle setTextAlignment:NSTextAlignmentCenter];
@@ -301,7 +301,7 @@
     [lbRefreshDate release];
     
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, 90, 320, 1)];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, 90, 320, 1)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1]];
     [cell.contentView addSubview:viewSeparate];
     return cell;
