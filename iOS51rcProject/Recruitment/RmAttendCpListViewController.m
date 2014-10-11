@@ -50,7 +50,7 @@
     self.viewBottom.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewBottom.layer.borderWidth = 1;
     //选择的企业
-    self.checkedCpArray = [[NSMutableArray alloc] init];
+    self.checkedCpArray = [[[NSMutableArray alloc] init] autorelease];
     page = 1;
     pageSize = 20;
     self.tvRecruitmentCpList.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -276,7 +276,7 @@
         rmInviteCpViewCtrl.strRmID = self.rmID;
         rmInviteCpViewCtrl.strCity = self.strCity;
         rmInviteCpViewCtrl.selectRmCps = self.checkedCpArray;
-        [self.checkedCpArray retain];
+        //[self.checkedCpArray retain];
         [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
     }else{
         [self.view makeToast:@"您还没有选择职位"];        
@@ -295,7 +295,7 @@
     rmInviteCpViewCtrl.strRmID = self.rmID;
     rmInviteCpViewCtrl.strCity = self.strCity;
     rmInviteCpViewCtrl.selectRmCps = checkedCp;
-    [self.checkedCpArray retain];
+    //[self.checkedCpArray retain];
     [self.navigationController pushViewController:rmInviteCpViewCtrl animated:YES];
 }
 
