@@ -304,6 +304,7 @@
 
 
 - (void)dealloc {
+    [_loadingView release];
     //[_cPopup release];
     [_txtUserName release];
     [_txtPsd release];

@@ -254,7 +254,7 @@
         [lbBeginTime release];
         
         //举办场馆
-        UILabel *lbPrePlace = [[UILabel alloc] initWithFrame:CGRectMake(20, lbBeginTime.frame.origin.y + lbBeginTime.frame.size.height + 5, 65, labelSize.height)];
+        UILabel *lbPrePlace = [[[UILabel alloc] initWithFrame:CGRectMake(20, lbBeginTime.frame.origin.y + lbBeginTime.frame.size.height + 5, 65, labelSize.height)] autorelease];
         lbPrePlace.text = @"举办场馆：";
         lbPrePlace.font = [UIFont systemFontOfSize:13];
         lbPrePlace.textColor = [UIColor grayColor];
@@ -429,7 +429,7 @@
         selectRowHeight = btnRM.frame.origin.y + btnRM.frame.size.height + 8;
     }
     //分割线
-    UIView *viewSeparate = [[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 0.5)];
+    UIView *viewSeparate = [[[UIView alloc] initWithFrame:CGRectMake(0, selectRowHeight - 2, 320, 0.5)] autorelease];
     [viewSeparate setBackgroundColor:[UIColor lightGrayColor]];
     [cell.contentView addSubview:viewSeparate];
     

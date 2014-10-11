@@ -155,6 +155,8 @@
     [request setDelegate:self];
     [request startAsynchronous];
     self.runningRequest = request;
+    [dicParam release];
+    
     self.loading = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [self.loading startAnimating];
 

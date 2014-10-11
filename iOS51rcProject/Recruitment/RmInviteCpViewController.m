@@ -116,7 +116,7 @@
 
 //加载公司和职位
 -(void)reloadJobs:(NSArray*) rmCpInfos{
-    self.cpListView = [[UIView alloc]initWithFrame:CGRectMake(20, self.ViewRmInfo.frame.origin.y+self.ViewRmInfo.frame.size.height+20, 280, 70*rmCpInfos.count)];
+    self.cpListView = [[[UIView alloc]initWithFrame:CGRectMake(20, self.ViewRmInfo.frame.origin.y+self.ViewRmInfo.frame.size.height+20, 280, 70*rmCpInfos.count)] autorelease];
     for (int i=0; i<rmCpInfos.count; i++) {
         RmCpMain *rmCp = rmCpInfos[i];
          UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 70*i, 280, 60)];

@@ -57,7 +57,7 @@
     UIImageView *imageView = [[[UIImageView alloc] initWithFrame:CGRectMake(10, (self.navigationController.navigationBar.frame.size.height-20)/2, 20, 20)] autorelease];
     imageView.image = [UIImage imageNamed:@"btn_cpmain_share.png"];
     [btnRight addSubview:imageView];
-    UIBarButtonItem *btnBarRight = [[UIBarButtonItem alloc] initWithCustomView:btnRight];
+    UIBarButtonItem *btnBarRight = [[[UIBarButtonItem alloc] initWithCustomView:btnRight] autorelease];
     self.navigationItem.rightBarButtonItem = btnBarRight;
     
     //初始化三个子View

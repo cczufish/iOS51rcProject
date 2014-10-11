@@ -59,6 +59,8 @@
     [request setDelegate:self];
     [request startAsynchronous];
     self.runningRequest = request;
+    [dicParam release];
+    
     self.loading = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     [self.loading startAnimating];
 }
@@ -172,7 +174,7 @@
         [btnAppendix addSubview:imgAppendix];
         [imgAppendix release];
         
-        UILabel *lbAppendix = [[UILabel alloc] initWithFrame:CGRectMake(22, 5, 278, 15)];
+        UILabel *lbAppendix = [[[UILabel alloc] initWithFrame:CGRectMake(22, 5, 278, 15)] autorelease];
         [lbAppendix setText:[NSString stringWithFormat:@"附件:%@",dicCpMain[@"AppendixName"]]];
         [lbAppendix setTextColor:[UIColor colorWithRed:10.f/255.f green:68.f/255.f blue:156.f/255.f alpha:1]];
         [lbAppendix setFont:[UIFont systemFontOfSize:12]];
