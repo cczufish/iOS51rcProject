@@ -143,7 +143,7 @@
     UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"jobList"] autorelease];
     NSDictionary *rowData = self.jobListData[indexPath.row];
     
-    RmCpMain *cpMain = [[RmCpMain alloc] init];
+    RmCpMain *cpMain = [[[RmCpMain alloc] init] autorelease];
     [cpMain retain];
     
     int isBooked = 0;
@@ -151,10 +151,6 @@
     cpMain.IsBooked = isBooked;
     cpMain.ID = rowData[@"cpID"];
     cpMain.Name = rowData[@"cpName"];
-    //cpMain.Address = rowData[@"Address"];
-    //cpMain.OrderDate = rowData[@"AddDate"];
-    //cpMain.Lat = rowData[@"Lat"];
-    //cpMain.Lng = rowData[@"Lng"];
     cpMain.jobID = rowData[@"JobID"];
     cpMain.caMainID = rowData[@"caMainID"];
     cpMain.JobName = rowData[@"JobName"];
@@ -299,7 +295,7 @@
 //邀请一个企业
 -(void) inviteOneCp:(UIButton*)sender{
     RmCpMain *selectCp = (RmCpMain*)objc_getAssociatedObject(sender, "rmCpMain");
-    NSMutableArray *tmpCheckArray = [[NSMutableArray alloc] init];
+    NSMutableArray *tmpCheckArray = [[[NSMutableArray alloc] init] autorelease];
     [tmpCheckArray addObject:selectCp];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     if ([userDefaults objectForKey:@"UserID"]) {
