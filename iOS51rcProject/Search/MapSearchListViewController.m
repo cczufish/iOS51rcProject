@@ -388,9 +388,9 @@
 - (void)salaryFilter
 {
     [self cancelPicker];
-    self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defaultValue:self.salary defaultName:@""] autorelease];
-    self.dictionaryPicker.tag = 1;
-    [self.dictionaryPicker showInView:self.view];
+    self.searchPicker = [[[SearchPickerView alloc] initWithSearchSalaryFilter:self] autorelease];
+    self.searchPicker.tag = 3;
+    [self.searchPicker showInView:self.view];
 }
 
 - (void)otherFilter
@@ -446,6 +446,10 @@
             }
         }
     }
+    else if (picker.tag == 3) {
+        self.salary = selectedValue;
+        self.lbSalaryFilter.text = selectedName;
+    }
     self.pageNumber = 1;
     [self onSearch];
 }
@@ -456,8 +460,7 @@
 {
     [self cancelPicker];
     if (picker.tag == 1) {
-        self.salary = selectedValue;
-        self.lbSalaryFilter.text = selectedName;
+        
     }
     else if (picker.tag == 2)
     {

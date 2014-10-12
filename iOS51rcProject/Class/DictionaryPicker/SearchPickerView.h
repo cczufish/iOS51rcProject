@@ -3,6 +3,7 @@
 typedef enum {
     SearchPickerWithRegion,
     SearchPickerWithJobType,
+    SearchPickerWithSalary,
     SearchPickerWithOther
 } SearchPickerType;
 
@@ -51,6 +52,8 @@ typedef enum {
                      selectValue:(NSString *)selectValue
                       selectName:(NSString *)selectName
                     defaultValue:(NSString *)defaultValue;
+
+- (id)initWithSearchSalaryFilter:(id <SearchPickerDelegate>)delegate;
 
 - (id)initWithSearchOtherFilter:(id <SearchPickerDelegate>)delegate
                    defaultValue:(NSString *)defaultValue

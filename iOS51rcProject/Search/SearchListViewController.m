@@ -5,13 +5,12 @@
 #import "MJRefresh.h"
 #import "SearchPickerView.h"
 #import "Toast+UIView.h"
-#import "DictionaryPickerView.h"
 #import "LoginViewController.h"
 #import "CustomPopup.h"
 #import "JobViewController.h"
 #import "SuperJobMainViewController.h"
 
-@interface SearchListViewController () <NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,SearchPickerDelegate,DictionaryPickerDelegate,CustomPopupDelegate>
+@interface SearchListViewController () <NetWebServiceRequestDelegate,UITableViewDataSource,UITableViewDelegate,SearchPickerDelegate,CustomPopupDelegate>
 {
     LoadingAnimationView *loadView;
 }
@@ -32,7 +31,6 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (nonatomic, retain) UILabel *lbSearchResult;
 @property (nonatomic, retain) SearchPickerView *searchPicker;
-@property (nonatomic, retain) DictionaryPickerView *dictionaryPicker;
 @property (nonatomic, retain) CustomPopup *cPopup;
 @end
 
@@ -413,9 +411,9 @@
 - (void)salaryFilter
 {
     [self cancelPicker];
-    self.dictionaryPicker = [[[DictionaryPickerView alloc] initWithCommon:self pickerMode:DictionaryPickerModeOne tableName:@"dcSalary" defaultValue:self.salary defaultName:@""] autorelease];
-    self.dictionaryPicker.tag = 1;
-    [self.dictionaryPicker showInView:self.view];
+    self.searchPicker = [[[SearchPickerView alloc] initWithSearchSalaryFilter:self] autorelease];
+    self.searchPicker.tag = 4;
+    [self.searchPicker showInView:self.view];
 }
 
 - (void)otherFilter
@@ -481,16 +479,7 @@
             }
         }
     }
-    self.pageNumber = 1;
-    [self onSearch];
-}
-
-- (void)pickerDidChangeStatus:(DictionaryPickerView *)picker
-                selectedValue:(NSString *)selectedValue
-                 selectedName:(NSString *)selectedName
-{
-    [self cancelPicker];
-    if (picker.tag == 1) {
+    else if (picker.tag == 4) {
         self.salary = selectedValue;
         self.lbSalaryFilter.text = selectedName;
     }
@@ -500,10 +489,6 @@
 
 -(void)cancelPicker
 {
-    [self.dictionaryPicker cancelPicker];
-    self.dictionaryPicker.delegate = nil;
-    self.dictionaryPicker = nil;
-    
     [self.searchPicker cancelPicker];
     self.searchPicker.delegate = nil;
     self.searchPicker = nil;
@@ -635,7 +620,6 @@
     [_btnFavorite release];
     [_viewBottom release];
     [_searchPicker release];
-    [_dictionaryPicker release];
     [_arrCheckJobID release];
     [_cPopup release];
     [_btnTop release];

@@ -125,6 +125,49 @@
     return self;
 }
 
+- (id)initWithSearchSalaryFilter:(id <SearchPickerDelegate>)delegate
+{
+    self = [[[[NSBundle mainBundle] loadNibNamed:@"SearchPickerView" owner:self options:nil] objectAtIndex:0] retain];
+    if (self) {
+        self.delegate = delegate;
+        self.pickerType = SearchPickerWithSalary;
+        [self.viewOneTop setHidden:false];
+        [self.viewMultiTop setHidden:true];
+        [self.viewMultiBottom setHidden:true];
+        [self.btnCancel addTarget:self action:@selector(cancelPicker) forControlEvents:UIControlEventTouchUpInside];
+        [self.btnSave addTarget:self action:@selector(savePicker) forControlEvents:UIControlEventTouchUpInside];
+        [self connectDbAndInit];
+        self.selectTableName = @"dcSalary";
+        [arrDictionaryL1 insertObject:[[[NSDictionary alloc] initWithObjectsAndKeys:
+                                        @"",@"id",
+                                        @"全部月薪",@"value", nil] autorelease] atIndex:0];
+        [self setSalaryDictionary];
+        [arrDictionaryL1 addObject:[[[NSDictionary alloc] initWithObjectsAndKeys:
+                                        @"99",@"id",
+                                     @"面议",@"value", nil] autorelease]];
+    }
+    return self;
+}
+
+- (void)setSalaryDictionary
+{
+    FMResultSet *commonList = [db executeQuery:[NSString stringWithFormat:@"select * from %@",self.selectTableName]];
+    
+    int i = 0;
+    while ([commonList next]) {
+        if (i == 0) {
+            [self setJobTypeDictionary:[commonList stringForColumn:@"_id"]];
+        }
+        NSDictionary *dicCommon = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                   [NSString stringWithFormat:@"%@%@",self.selectIdentify,[commonList stringForColumn:@"_id"]],@"id",
+                                   [commonList stringForColumn:@"description"],@"value"
+                                   , nil];
+        [arrDictionaryL1 addObject:dicCommon];
+        [dicCommon release];
+        i++;
+    }
+}
+
 - (id)initWithSearchOtherFilter:(id <SearchPickerDelegate>)delegate
                    defaultValue:(NSString *)defaultValue
                     defaultName:(NSString *)defaultName
@@ -363,7 +406,9 @@
         return;
     }
     [self.pickerDictionary selectRow:1 inComponent:0 animated:YES];
-    [self.pickerDictionary selectRow:1 inComponent:1 animated:YES];
+    if (self.pickerType != SearchPickerWithSalary) {
+        [self.pickerDictionary selectRow:1 inComponent:1 animated:YES];
+    }
     if (self.pickerType == SearchPickerWithRegion) {
         [self.pickerDictionary selectRow:1 inComponent:2 animated:YES];
     }
@@ -393,6 +438,7 @@
             return 2;
             break;
         default:
+            return 1;
             break;
     }
 }
