@@ -277,6 +277,7 @@
 - (IBAction)switchToMobileModify:(id)sender {
     MobileModifyViewController *mobileModifyC = [self.storyboard instantiateViewControllerWithIdentifier:@"MobileModifyView"];
     mobileModifyC.mobile = self.lbMobile.text;
+    mobileModifyC.mobileCertification = self.btnMobileCer.tag;
     [self.navigationController pushViewController:mobileModifyC animated:true];
 }
 

@@ -73,8 +73,9 @@
         [self.view makeToast:@"请输入6字以内的中文姓名"];
         return;
     }
-    if (![self.segGender selectedSegmentIndex]) {
+    if ([self.segGender selectedSegmentIndex] == -1) {
         [self.view makeToast:@"请选择性别"];
+        return;
     }
     if (self.btnBirth.tag == 0) {
         [self.view makeToast:@"请选择出生年月"];
@@ -143,7 +144,9 @@
     else {
         [self.segGender setSelectedSegmentIndex:1];
     }
-    
+    if (paData[@"MobileVerifyDate"] == nil) {
+        [self.txtMobile setEnabled:false];
+    }
 }
 
 - (void)netRequestFinished:(NetWebServiceRequest *)request

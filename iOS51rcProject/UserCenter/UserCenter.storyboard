@@ -796,7 +796,7 @@
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲，您还没有简历，HR关注不到您，建议您立即创建一份简历" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7AQ-oS-735">
                                         <rect key="frame" x="65" y="25" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点我创建简历" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wyg-pS-dvZ">
@@ -1288,6 +1288,15 @@
                                     <action selector="modifyMobile:" destination="JfE-Fu-16u" eventType="touchUpInside" id="Y2n-zo-HYh"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ydN-Ih-G5U">
+                                <rect key="frame" x="20" y="238" width="280" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">您的手机号已通过认证，可以使用手机号登录。
+如果您需要更改手机号，则需要重新认证，认证通过后即可使用手机号登录</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="deviceRGB"/>
                         <connections>
@@ -1297,6 +1306,7 @@
                     <navigationItem key="navigationItem" id="1Mx-6t-sjn"/>
                     <connections>
                         <outlet property="btnModify" destination="EQJ-Pl-9mN" id="Bqd-VS-0nW"/>
+                        <outlet property="lbCeritification" destination="ydN-Ih-G5U" id="Ufx-Mw-Mi4"/>
                         <outlet property="txtMobile" destination="eKz-MI-Ya1" id="5GA-5s-Vb5"/>
                         <outlet property="viewMobile" destination="z0u-gm-sPy" id="EJ4-Tc-CvQ"/>
                     </connections>

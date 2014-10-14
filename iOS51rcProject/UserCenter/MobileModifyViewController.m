@@ -45,6 +45,10 @@
     //设置为数字键盘
     [self.txtMobile setKeyboardType:UIKeyboardTypeNumberPad];
     [self.txtMobile setText:self.mobile];
+    
+    if (self.mobileCertification == 1) {
+        [self.lbCeritification setHidden:false];
+    }
 }
 
 - (IBAction)modifyMobile:(id)sender {
@@ -110,6 +114,7 @@
     [_btnModify release];
     [_runningRequest release];
     [loadView release];
+    [_lbCeritification release];
     [super dealloc];
 }
 @end

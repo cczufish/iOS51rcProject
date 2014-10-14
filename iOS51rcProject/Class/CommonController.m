@@ -237,17 +237,10 @@
     content = [content stringByReplacingOccurrencesOfString:@"&quot;" withString:@"“"];
     content = [content stringByReplacingOccurrencesOfString:@"<br> <br>" withString:@"\n"];
     content = [content stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
-    content = [content stringByReplacingOccurrencesOfString:@"<b>" withString:@""];
-    content = [content stringByReplacingOccurrencesOfString:@"</b>" withString:@""];
-    content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
-    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@""];
-    //content = [content stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n\n"];
-    //content = [content stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n\n"];
-    //content = [content stringByReplacingOccurrencesOfString:@"<p>" withString:@"\n\n"];
-    //content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n\n"];
+    content = [content stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+    content = [content stringByReplacingOccurrencesOfString:@"<br>" withString:@"\n"];
+    content = [content stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n"];
     content = [content stringByReplacingOccurrencesOfString:@"&#8226;" withString:@"·"];
-    content = [content stringByReplacingOccurrencesOfString:@"<strong>" withString:@""];
-    content = [content stringByReplacingOccurrencesOfString:@"</strong>" withString:@""];
     NSScanner *scanner = [NSScanner scannerWithString:content];
     NSString *text = nil;
     while([scanner isAtEnd] == NO)
@@ -261,6 +254,7 @@
     }
     return content;
 }
+
 + (NSString*)GetCurrentNet
 {
     NSString* result;

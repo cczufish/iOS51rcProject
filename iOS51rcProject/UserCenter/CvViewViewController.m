@@ -242,7 +242,7 @@
     [lbEduDetail release];
     destinationContentHeight += labelSize.height+10;
     //添加学习经历
-    if (educationData[@"Details"]) {
+    if ([educationData[@"Details"] length] > 0) {
         UILabel *lbDetailsTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, destinationContentHeight, 65, 15)];
         [lbDetailsTitle setText:@"学习经历:"];
         [lbDetailsTitle setFont:[UIFont systemFontOfSize:14]];
