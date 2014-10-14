@@ -93,15 +93,27 @@
     self.imgCpType.frame = CGRectMake(self.lbCpName.frame.origin.x + self.lbCpName.frame.size.width + 1, self.lbCpName.frame.origin.y+1, 18, 15);
     //所属行业
     self.lbIndustry.textColor = [UIColor grayColor];
-    self.lbIndustryValue.text = dicCpMain[@"Industry"];
+    NSString *strIndustry = dicCpMain[@"Industry"];
+    labelSize = [CommonController CalculateFrame:strIndustry fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 500)];
+    self.lbIndustryValue.text = strIndustry;
+    self.lbIndustryValue.numberOfLines = 0;
+    self.lbIndustryValue.lineBreakMode = NSLineBreakByCharWrapping;
+    self.lbIndustryValue.frame = CGRectMake(self.lbIndustryValue.frame.origin.x, self.lbIndustryValue.frame.origin.y, labelSize.width, labelSize.height);
+    
     //公司性质
     self.lbCompanyKind.textColor = [UIColor grayColor];
+    self.lbCompanyKind.frame = CGRectMake(self.lbCompanyKind.frame.origin.x, self.lbIndustryValue.frame.origin.y  + self.lbIndustryValue.frame.size.height + 5, self.lbCompanyKind.frame.size.width, self.lbCompanyKind.frame.size.height);
     self.lbCompanyKindValue.text = dicCpMain[@"CompanyKind"];
+    self.lbCompanyKindValue.frame = CGRectMake(self.lbCompanyKindValue.frame.origin.x, self.lbIndustryValue.frame.origin.y + self.lbIndustryValue.frame.size.height+ 5, self.lbCompanyKindValue.frame.size.width, self.lbCompanyKindValue.frame.size.height);
     //公司规模
     self.lbCompanySize.textColor = [UIColor grayColor];
+    self.lbCompanySize.frame = CGRectMake(self.lbCompanySize.frame.origin.x, self.lbCompanyKindValue.frame.origin.y + self.lbCompanyKindValue.frame.size.height+ 5, self.lbCompanySize.frame.size.width, self.lbCompanySize.frame.size.height);
     [self.lbCompanySizeValue setText:dicCpMain[@"CompanySize"]];
+    self.lbCompanySizeValue.frame = CGRectMake(self.lbCompanySizeValue.frame.origin.x, self.lbCompanyKindValue.frame.origin.y+ self.lbCompanyKindValue.frame.size.height+ 5, self.lbCompanySizeValue.frame.size.width, self.lbCompanySizeValue.frame.size.height);
     //详细地址
     self.lbAddress.textColor = [UIColor grayColor];
+    self.lbAddress.frame = CGRectMake(self.lbAddress.frame.origin.x, self.lbCompanySizeValue.frame.origin.y+ self.lbCompanySizeValue.frame.size.height+ 5, self.lbAddress.frame.size.width, self.lbAddress.frame.size.height);
+    
     NSString *strRegion = dicCpMain[@"RegionName"];
     NSString *strAddressDetails = [NSString stringWithFormat:@"%@%@", strRegion, dicCpMain[@"Address"]];
     labelSize = [CommonController CalculateFrame:strAddressDetails fontDemond:[UIFont systemFontOfSize:14] sizeDemand:CGSizeMake(200, 500)];
