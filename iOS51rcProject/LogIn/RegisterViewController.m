@@ -24,6 +24,7 @@
 @interface RegisterViewController () <CreateResumeDelegate, NetWebServiceRequestDelegate>
 {
     LoadingAnimationView *loadView;
+    int secondSend;
 }
 @property (retain, nonatomic) IBOutlet UITextField *txtUserName;
 @property (retain, nonatomic) IBOutlet UITextField *txtPsd;
@@ -31,9 +32,18 @@
 @property (nonatomic, retain) NetWebServiceRequest *runningRequest;
 @property (retain, nonatomic) IBOutlet UIButton *btnRegister;
 @property (retain, nonatomic) IBOutlet UIView *viewRegister;
+@property (retain, nonatomic) IBOutlet UIView *viewEmailReg;
+@property (retain, nonatomic) IBOutlet UIView *viewMobileReg;
+@property (retain, nonatomic) IBOutlet UIButton *btnMobileReg;
+@property (retain, nonatomic) IBOutlet UIButton *btnEmailReg;
+@property (retain, nonatomic) IBOutlet UITextField *txtMobile;
+@property (retain, nonatomic) IBOutlet UITextField *txtPsdMobile;
+@property (retain, nonatomic) IBOutlet UITextField *txtRePsdMobile;
+@property (retain, nonatomic) IBOutlet UITextField *txtMobileCer;
+@property (retain, nonatomic) IBOutlet UIButton *btnMobileCer;
+@property (retain, nonatomic) IBOutlet UIView *viewMobile;
+@property (retain, nonatomic) IBOutlet UIButton *btnMobileConfirm;
 @property (nonatomic, retain) CustomPopup *cPopup;
-
-@property (retain, nonatomic) LoadingAnimationView *loadingView;
 @end
 
 @implementation RegisterViewController
@@ -50,15 +60,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
     self.viewRegister.layer.borderWidth = 1;
     self.viewRegister.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
     self.viewRegister.layer.cornerRadius = 5;
 
     self.btnRegister.layer.cornerRadius = 5;
-    createResumeCtrl =[[CreateResumeAlertViewController alloc] init];
     self.btnRegister.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
+    
+    self.viewMobile.layer.borderWidth = 1;
+    self.viewMobile.layer.borderColor = [UIColor colorWithRed:236.f/255.f green:236.f/255.f blue:236.f/255.f alpha:1].CGColor;
+    self.viewMobile.layer.cornerRadius = 5;
+    
+    self.btnMobileConfirm.layer.cornerRadius = 5;
+    self.btnMobileConfirm.layer.backgroundColor = [UIColor colorWithRed:255/255.0 green:90/255.0 blue:39/255.0 alpha:1].CGColor;
+    
+    self.btnMobileCer.layer.cornerRadius = 5;
+    self.btnMobileCer.layer.borderWidth = 1;
+    self.btnMobileCer.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    
+    createResumeCtrl =[[CreateResumeAlertViewController alloc] init];
     createResumeCtrl.delegate = self;
+    
+    secondSend = 180;
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,9 +97,8 @@
 
 - (IBAction)btnRegisterClick:(id)sender {
     //隐藏键盘
-    [self.txtPsd resignFirstResponder];
-    [self.txtRePsd resignFirstResponder];
-    [self.txtUserName resignFirstResponder];
+    [self hideKeyboard];
+    
     userName=self.txtUserName.text;
     password= self.txtPsd.text; 
     rePassword=self.txtRePsd.text;
@@ -86,8 +108,7 @@
     if (!result) {
         return;
     }
-    else{
-        
+    else {
         NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
         [dicParam setObject:userName forKey:@"email"];
         [dicParam setObject:password forKey:@"password"];
@@ -103,14 +124,101 @@
         self.runningRequest = request;
     }
     //缓冲界面
-    self.loadingView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
-    [self.loadingView startAnimating];
+    if (loadView == nil) {
+        loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    }
+    [loadView startAnimating];
+}
+
+- (IBAction)mobileRegister:(id)sender {
+    //隐藏键盘
+    [self hideKeyboard];
+    
+    userName=self.txtMobile.text;
+    password= self.txtPsdMobile.text;
+    rePassword=self.txtRePsdMobile.text;
+    
+    //检查参数
+    BOOL result = [self checkMobileInput:userName Password:password RePassword:rePassword mobileCode:self.txtMobileCer.text];
+    if (!result) {
+        return;
+    }
+    else{
+        NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+        NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+        [dicParam setObject:userName forKey:@"mobile"];
+        [dicParam setObject:self.txtMobileCer.text forKey:@"mobileCheckCode"];
+        [dicParam setObject:password forKey:@"password"];
+        [dicParam setObject:[userDefault objectForKey:@"subSiteId"] forKey:@"provinceid"];
+        [dicParam setObject:@"6" forKey:@"registermod"];
+        [dicParam setObject:@"IOS" forKey:@"ip"];
+        
+        NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"MobileRegister" Params:dicParam];
+        [request startAsynchronous];
+        [request setDelegate:self];
+        request.tag = 5;
+        self.runningRequest = request;
+    }
+    //缓冲界面
+    if (loadView == nil) {
+        loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    }
+    [loadView startAnimating];
+}
+
+- (void)hideKeyboard
+{
+    [self.txtPsd resignFirstResponder];
+    [self.txtRePsd resignFirstResponder];
+    [self.txtUserName resignFirstResponder];
+    [self.txtMobileCer resignFirstResponder];
+    [self.txtMobile resignFirstResponder];
+    [self.txtPsdMobile resignFirstResponder];
+    [self.txtRePsdMobile resignFirstResponder];
+}
+
+- (IBAction)getMobileCode:(UIButton *)sender {
+    [self hideKeyboard];
+    NSString *mobile = self.txtMobile.text;
+    if (mobile.length == 0) {
+        [Dialog alert:@"请输入手机号"];
+        return;
+    }
+    if (![CommonController isValidateMobile:mobile]) {
+        [Dialog alert:@"请输入有效的手机号"];
+        return;
+    }
+    if (loadView == nil) {
+        loadView = [[LoadingAnimationView alloc] initWithFrame:CGRectMake(140, 100, 80, 98) loadingAnimationViewStyle:LoadingAnimationViewStyleCarton target:self];
+    }
+    [loadView startAnimating];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *dicParam = [[NSMutableDictionary alloc] init];
+    [dicParam setObject:mobile forKey:@"strMobile"];
+    [dicParam setObject:@"IOS" forKey:@"strIP"];
+    [dicParam setObject:[userDefaults objectForKey:@"subSiteName"] forKey:@"subSiteName"];
+    NetWebServiceRequest *request = [NetWebServiceRequest serviceRequestUrl:@"GetMobileCheckCode" Params:dicParam];
+    [request setDelegate:self];
+    [request startAsynchronous];
+    request.tag = 4;
+    self.runningRequest = request;
+    [dicParam release];
+}
+
+- (IBAction)switchToEmailReg:(id)sender {
+    [self.viewEmailReg setHidden:false];
+    [self.viewMobileReg setHidden:true];
+}
+
+- (IBAction)switchToMobileReg:(id)sender {
+    [self.viewEmailReg setHidden:true];
+    [self.viewMobileReg setHidden:false];
 }
 
 //失败
 - (void)netRequestFailed:(NetWebServiceRequest *)request didRequestError:(int *)error
 {
-    [self.loadingView stopAnimating];
+    [loadView stopAnimating];
     [Dialog alert:@"出现意外错误"];
     return;
 }
@@ -121,11 +229,11 @@
               responseData:(NSArray *)requestData
 {
     if (request.tag == 1) {
-        [self didReceiveRegisterData:result];        
+        [self didReceiveRegisterData:result];
     }
     else if (request.tag == 2)
     {
-        [self.loadingView stopAnimating];
+        [loadView stopAnimating];
         [self didReceiveGetCode:result];
     }
     else if (request.tag == 3) {
@@ -139,9 +247,53 @@
         cvModifyC.cvId = result;
         [pCtrl.navigationController pushViewController:cvModifyC animated:true];
     }
-    [result retain];
+    else if (request.tag == 4) {
+        NSInteger intResult = [result intValue];
+        if(intResult == -1)
+        {
+            [Dialog alert:@"同一个IP一天内手机号注册超过20个"];
+        }
+        else if(intResult == -2)
+        {
+            [Dialog alert:@"该手机号60天内认证过"];
+        }
+        else if(intResult == -3)
+        {
+            [Dialog alert:@"程序异常！"];
+        }
+        else if(intResult == -4)
+        {
+            [Dialog alert:@"该手机号已经认证过"];
+        }
+        else if(intResult == 0)
+        {
+            [Dialog alert:@"当天认证次数已大于4次，无法发送验证码，请明天再试"];
+        }
+        else
+        {
+            [self.btnMobileCer setEnabled:false];
+            [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(setTimer:) userInfo:nil repeats:YES];
+        }
+    }
+    else if (request.tag == 5) {
+        [self didReceiveMobileRegisterData:result];
+    }
+//    [result retain];
     
-    [self.loadingView stopAnimating];
+    [loadView stopAnimating];
+}
+
+- (void)setTimer:(NSTimer *)timer
+{
+    if (secondSend == 0) {
+        [self.btnMobileCer setEnabled:true];
+        [self.btnMobileCer setTitle:@"重新认证" forState:UIControlStateNormal];
+        [timer invalidate];
+        secondSend = 180;
+        return;
+    }
+    [self.btnMobileCer setTitle:[NSString stringWithFormat:@"%d秒后重试",secondSend] forState:UIControlStateDisabled];
+    secondSend--;
 }
 
 -(void) didReceiveRegisterData:(NSString *) result
@@ -155,6 +307,46 @@
     else if(intResult == -2)
     {
         [Dialog alert:@"您已经使用当前的E-mail注册过一个用户，建议您不要重复注册。"];
+        return;
+    }
+    else if(intResult == -3)
+    {
+        [Dialog alert:@"用户注册失败！向保存用户信息时数据操作失败！"];
+        return;
+    }
+    else if(intResult == -4)
+    {
+        [Dialog alert:@"提交错误，请检查您的网络链接，并稍后重试……"];
+        return;
+    }
+    else if(intResult == 0)
+    {
+        [Dialog alert:@"用户名或密码错误，请重新输入！"];
+        return;
+    }
+    else if(intResult > 0)
+    {
+        userID = result;
+        [self getCode: userID];//获取code
+    }
+    else
+    {
+        [Dialog alert:@"未知错误"];
+        return;
+    }
+}
+
+-(void) didReceiveMobileRegisterData:(NSString *) result
+{
+    NSInteger intResult = [result intValue];
+    if(intResult == -1)
+    {
+        [Dialog alert:@"用户名或密码错误，请重新输入！"];
+        return ;
+    }
+    else if(intResult == -2)
+    {
+        [Dialog alert:@"验证码不正确！"];
         return;
     }
     else if(intResult == -3)
@@ -302,15 +494,71 @@
     return result;
 }
 
+- (BOOL)checkMobileInput:(NSString *)_userName Password:(NSString*) _passWord RePassword:(NSString*) rePsd mobileCode:(NSString *) _mobileCode
+{
+    if(_userName == nil||[_userName isEqualToString:@""]) {
+        //提示输入信息
+        [Dialog alert:@"请输入手机号"];
+        return false;
+    }
+    
+    if (![CommonController isValidateMobile:_userName]) {
+        [Dialog alert:@"请输入有效的手机号"];
+        return false;
+    }
+    
+    if (_mobileCode.length == 0) {
+        [Dialog alert:@"请输入验证码"];
+        return false;
+    }
+    
+    if(_passWord==nil||[_passWord isEqualToString:@""]){
+        
+        [Dialog alert:@"请输入密码"];
+        return false;
+    }
+    
+    if(![rePsd isEqualToString:_passWord]){
+        if(rePsd==nil||[rePsd length]==0){
+            [Dialog alert:@"重复密码不能为空"];
+            return false;
+        }else{
+            [Dialog alert:@"两次输入密码不一致"];
+            return false;
+        }
+    }
+    
+    if([_passWord length]<6|| [_passWord length]>20){
+        [Dialog alert:@"密码长度为6-20位！"];
+        return false;
+    }
+    
+    if (![CommonController checkPassword:_passWord]) {
+        [Dialog alert:@"密码只能使用字母、数字、横线、下划线、点"];
+        return false;
+    }
+    return true;
+}
 
 - (void)dealloc {
-    [_loadingView release];
+    [loadView release];
     //[_cPopup release];
     [_txtUserName release];
     [_txtPsd release];
     [_txtRePsd release];
     [_btnRegister release];
     [_viewRegister release];
+    [_viewEmailReg release];
+    [_viewMobileReg release];
+    [_btnMobileReg release];
+    [_btnEmailReg release];
+    [_txtMobile release];
+    [_txtPsdMobile release];
+    [_txtRePsdMobile release];
+    [_txtMobileCer release];
+    [_btnMobileCer release];
+    [_viewMobile release];
+    [_btnMobileConfirm release];
     [super dealloc];
 }
 @end
