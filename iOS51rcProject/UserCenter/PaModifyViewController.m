@@ -144,7 +144,7 @@
     else {
         [self.segGender setSelectedSegmentIndex:1];
     }
-    if (paData[@"MobileVerifyDate"] == nil) {
+    if (paData[@"MobileVerifyDate"] != nil) {
         [self.txtMobile setEnabled:false];
     }
 }

@@ -53,7 +53,6 @@
 		9925BE9019B807F4002DBFE0 /* ico_mapsearch_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 9925BE8919B807F4002DBFE0 /* ico_mapsearch_search.png */; };
 		9925BECE19B80C94002DBFE0 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9925BEC919B80C94002DBFE0 /* mapapi.bundle */; };
 		9925BECF19B80C94002DBFE0 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9925BECB19B80C94002DBFE0 /* libbaidumapapi.a */; };
-		9925BED019B80C94002DBFE0 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9925BECD19B80C94002DBFE0 /* libbaidumapapi.a */; };
 		9925BEF019B80E02002DBFE0 /* CommonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9925BED219B80E02002DBFE0 /* CommonController.m */; };
 		9925BEF119B80E02002DBFE0 /* DictionaryPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9925BED519B80E02002DBFE0 /* DictionaryPickerView.m */; };
 		9925BEF219B80E02002DBFE0 /* DictionaryPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9925BED619B80E02002DBFE0 /* DictionaryPickerView.xib */; };
@@ -547,7 +546,6 @@
 		9925BEC819B80C94002DBFE0 /* BMKVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMKVersion.h; sourceTree = "<group>"; };
 		9925BEC919B80C94002DBFE0 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		9925BECB19B80C94002DBFE0 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
-		9925BECD19B80C94002DBFE0 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		9925BED119B80E02002DBFE0 /* CommonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonController.h; sourceTree = "<group>"; };
 		9925BED219B80E02002DBFE0 /* CommonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonController.m; sourceTree = "<group>"; };
 		9925BED419B80E02002DBFE0 /* DictionaryPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryPickerView.h; sourceTree = "<group>"; };
@@ -1141,7 +1139,6 @@
 				99B4693F19B2F7E70034505D /* CoreLocation.framework in Frameworks */,
 				99908A5C19A37D2000137FDE /* libsqlite3.0.dylib in Frameworks */,
 				9942F43B19B987D900191C74 /* MailConnection.framework in Frameworks */,
-				9925BED019B80C94002DBFE0 /* libbaidumapapi.a in Frameworks */,
 				997BF0FC199DCB2B00FD0B12 /* MobileCoreServices.framework in Frameworks */,
 				9942F44019B987D900191C74 /* TencentWeiboConnection.framework in Frameworks */,
 				9942F45019B987D900191C74 /* ShareSDKShareActionSheet.framework in Frameworks */,
@@ -1209,7 +1206,6 @@
 				9925BE9219B80C93002DBFE0 /* inc */,
 				9925BEC919B80C94002DBFE0 /* mapapi.bundle */,
 				9925BECA19B80C94002DBFE0 /* Release-iphoneos */,
-				9925BECC19B80C94002DBFE0 /* Release-iphonesimulator */,
 			);
 			path = BaiduMap;
 			sourceTree = "<group>";
@@ -1281,14 +1277,6 @@
 				9925BECB19B80C94002DBFE0 /* libbaidumapapi.a */,
 			);
 			path = "Release-iphoneos";
-			sourceTree = "<group>";
-		};
-		9925BECC19B80C94002DBFE0 /* Release-iphonesimulator */ = {
-			isa = PBXGroup;
-			children = (
-				9925BECD19B80C94002DBFE0 /* libbaidumapapi.a */,
-			);
-			path = "Release-iphonesimulator";
 			sourceTree = "<group>";
 		};
 		9925BED319B80E02002DBFE0 /* DictionaryPicker */ = {
