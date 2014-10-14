@@ -267,6 +267,14 @@
 		99B3D17F19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B3D17E19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m */; };
 		99B3D18119D40D4F00AEF1D9 /* btn_keywords_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B3D18019D40D4F00AEF1D9 /* btn_keywords_del.png */; };
 		99B3D18319D414C800AEF1D9 /* ico_hiskeywords_del.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B3D18219D414C800AEF1D9 /* ico_hiskeywords_del.png */; };
+		99B4423E19ED0C6900972923 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4423A19ED0C6900972923 /* AppIcon.png */; };
+		99B4423F19ED0C6900972923 /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4423B19ED0C6900972923 /* AppIcon@2x.png */; };
+		99B4424019ED0C6900972923 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4423C19ED0C6900972923 /* Default-568h@2x.png */; };
+		99B4424119ED0C6900972923 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4423D19ED0C6900972923 /* Default@2x.png */; };
+		99B4424519ED115700972923 /* AppIcon76.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4424219ED115700972923 /* AppIcon76.png */; };
+		99B4424719ED115700972923 /* AppIcon152.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4424419ED115700972923 /* AppIcon152.png */; };
+		99B4424B19ED13C800972923 /* AppIcon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4424A19ED13C800972923 /* AppIcon120.png */; };
+		99B4424F19ED621200972923 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B4424E19ED621200972923 /* libbaidumapapi.a */; };
 		99B4693219B2B71A0034505D /* ico_searchlog_log.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693119B2B71A0034505D /* ico_searchlog_log.png */; };
 		99B4693719B2EB520034505D /* ico_mainsearch_mapsearch1.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693319B2EB520034505D /* ico_mainsearch_mapsearch1.png */; };
 		99B4693819B2EB520034505D /* ico_mainsearch_mapsearch2.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B4693419B2EB520034505D /* ico_mainsearch_mapsearch2.png */; };
@@ -277,7 +285,6 @@
 		99B4694319B2F80B0034505D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B4694219B2F80B0034505D /* OpenGLES.framework */; };
 		99B4694519B2F8630034505D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B4694419B2F8630034505D /* Security.framework */; };
 		99B4ED8C19AB0458004C9068 /* JobDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B4ED8B19AB0458004C9068 /* JobDetailsController.m */; };
-		99B6424019D8EC7900F4BC16 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99B6423E19D8EC7900F4BC16 /* Default@2x.png */; };
 		99B7FF8319B353C700BD1345 /* RmCpJobListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */; };
 		99B9671D19B443D000E93CBD /* RmCpMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9671C19B443D000E93CBD /* RmCpMain.m */; };
 		99B9672019B4550500E93CBD /* RmSearchJobForInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B9671F19B4550500E93CBD /* RmSearchJobForInviteViewController.m */; };
@@ -376,8 +383,6 @@
 		99CFD896199B60D8009A5ABA /* renren.png in Resources */ = {isa = PBXBuildFile; fileRef = 99CFD871199B60D8009A5ABA /* renren.png */; };
 		99CFD898199B60D8009A5ABA /* userName.png in Resources */ = {isa = PBXBuildFile; fileRef = 99CFD873199B60D8009A5ABA /* userName.png */; };
 		99CFD899199B60D8009A5ABA /* weibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 99CFD874199B60D8009A5ABA /* weibo.png */; };
-		99E35B2419D7B9310087941A /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E35B2219D7B9310087941A /* AppIcon.png */; };
-		99E35B2519D7B9310087941A /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E35B2319D7B9310087941A /* AppIcon@2x.png */; };
 		99E76D6319BE8724004DD65F /* bg_lasttiem_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E76D6119BE8724004DD65F /* bg_lasttiem_green.png */; };
 		99E76D6419BE8724004DD65F /* bg_lasttime_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 99E76D6219BE8724004DD65F /* bg_lasttime_red.png */; };
 		99EF851319E3F83900EB2CFA /* welcome2_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 99EF850B19E3F83900EB2CFA /* welcome2_large.png */; };
@@ -924,6 +929,14 @@
 		99B3D17E19D3FF8500AEF1D9 /* SearchByKeyWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchByKeyWorkViewController.m; path = Search/SearchByKeyWorkViewController.m; sourceTree = "<group>"; };
 		99B3D18019D40D4F00AEF1D9 /* btn_keywords_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_keywords_del.png; sourceTree = "<group>"; };
 		99B3D18219D414C800AEF1D9 /* ico_hiskeywords_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_hiskeywords_del.png; sourceTree = "<group>"; };
+		99B4423A19ED0C6900972923 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon.png; path = logo/AppIcon.png; sourceTree = "<group>"; };
+		99B4423B19ED0C6900972923 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon@2x.png"; path = "logo/AppIcon@2x.png"; sourceTree = "<group>"; };
+		99B4423C19ED0C6900972923 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "logo/Default-568h@2x.png"; sourceTree = "<group>"; };
+		99B4423D19ED0C6900972923 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "logo/Default@2x.png"; sourceTree = "<group>"; };
+		99B4424219ED115700972923 /* AppIcon76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon76.png; path = logo/AppIcon76.png; sourceTree = "<group>"; };
+		99B4424419ED115700972923 /* AppIcon152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon152.png; path = logo/AppIcon152.png; sourceTree = "<group>"; };
+		99B4424A19ED13C800972923 /* AppIcon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon120.png; path = logo/AppIcon120.png; sourceTree = "<group>"; };
+		99B4424E19ED621200972923 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
 		99B4693119B2B71A0034505D /* ico_searchlog_log.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_searchlog_log.png; sourceTree = "<group>"; };
 		99B4693319B2EB520034505D /* ico_mainsearch_mapsearch1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mainsearch_mapsearch1.png; sourceTree = "<group>"; };
 		99B4693419B2EB520034505D /* ico_mainsearch_mapsearch2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_mainsearch_mapsearch2.png; sourceTree = "<group>"; };
@@ -935,8 +948,6 @@
 		99B4694419B2F8630034505D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		99B4ED8A19AB0458004C9068 /* JobDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JobDetailsController.h; sourceTree = "<group>"; };
 		99B4ED8B19AB0458004C9068 /* JobDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JobDetailsController.m; sourceTree = "<group>"; };
-		99B6423E19D8EC7900F4BC16 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		99B6423F19D8EC7900F4BC16 /* Default@12x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@12x.png"; sourceTree = "<group>"; };
 		99B7FF8119B353C700BD1345 /* RmCpJobListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmCpJobListViewController.h; path = Recruitment/RmCpJobListViewController.h; sourceTree = "<group>"; };
 		99B7FF8219B353C700BD1345 /* RmCpJobListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RmCpJobListViewController.m; path = Recruitment/RmCpJobListViewController.m; sourceTree = "<group>"; };
 		99B7FF8419B3660900BD1345 /* SelectJobDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SelectJobDelegate.h; path = Recruitment/Delegate/SelectJobDelegate.h; sourceTree = "<group>"; };
@@ -1074,8 +1085,6 @@
 		99CFD871199B60D8009A5ABA /* renren.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = renren.png; sourceTree = "<group>"; };
 		99CFD873199B60D8009A5ABA /* userName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userName.png; sourceTree = "<group>"; };
 		99CFD874199B60D8009A5ABA /* weibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo.png; sourceTree = "<group>"; };
-		99E35B2219D7B9310087941A /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
-		99E35B2319D7B9310087941A /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2x.png"; sourceTree = "<group>"; };
 		99E76D6119BE8724004DD65F /* bg_lasttiem_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_lasttiem_green.png; sourceTree = "<group>"; };
 		99E76D6219BE8724004DD65F /* bg_lasttime_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_lasttime_red.png; sourceTree = "<group>"; };
 		99EF850B19E3F83900EB2CFA /* welcome2_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome2_large.png; sourceTree = "<group>"; };
@@ -1154,6 +1163,7 @@
 				9942F44719B987D900191C74 /* TencentOpenAPI.framework in Frameworks */,
 				9925BECF19B80C94002DBFE0 /* libbaidumapapi.a in Frameworks */,
 				99CFD81C199B5F80009A5ABA /* UIKit.framework in Frameworks */,
+				99B4424F19ED621200972923 /* libbaidumapapi.a in Frameworks */,
 				99CFD818199B5F80009A5ABA /* Foundation.framework in Frameworks */,
 				9942F44119B987D900191C74 /* WeChatConnection.framework in Frameworks */,
 			);
@@ -1206,6 +1216,7 @@
 				9925BE9219B80C93002DBFE0 /* inc */,
 				9925BEC919B80C94002DBFE0 /* mapapi.bundle */,
 				9925BECA19B80C94002DBFE0 /* Release-iphoneos */,
+				99B4424D19ED620500972923 /* Release-iphonesimulator */,
 			);
 			path = BaiduMap;
 			sourceTree = "<group>";
@@ -1909,6 +1920,14 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		99B4424D19ED620500972923 /* Release-iphonesimulator */ = {
+			isa = PBXGroup;
+			children = (
+				99B4424E19ED621200972923 /* libbaidumapapi.a */,
+			);
+			path = "Release-iphonesimulator";
+			sourceTree = "<group>";
+		};
 		99B9671919B443D000E93CBD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2368,10 +2387,13 @@
 		99E35B2119D7B91B0087941A /* logo */ = {
 			isa = PBXGroup;
 			children = (
-				99B6423E19D8EC7900F4BC16 /* Default@2x.png */,
-				99B6423F19D8EC7900F4BC16 /* Default@12x.png */,
-				99E35B2219D7B9310087941A /* AppIcon.png */,
-				99E35B2319D7B9310087941A /* AppIcon@2x.png */,
+				99B4424A19ED13C800972923 /* AppIcon120.png */,
+				99B4424219ED115700972923 /* AppIcon76.png */,
+				99B4424419ED115700972923 /* AppIcon152.png */,
+				99B4423A19ED0C6900972923 /* AppIcon.png */,
+				99B4423B19ED0C6900972923 /* AppIcon@2x.png */,
+				99B4423C19ED0C6900972923 /* Default-568h@2x.png */,
+				99B4423D19ED0C6900972923 /* Default@2x.png */,
 			);
 			name = logo;
 			sourceTree = "<group>";
@@ -2524,11 +2546,13 @@
 				99BDC5F419A5F4A900B2BDB1 /* radioChecked.png in Resources */,
 				99EF851A19E3F83900EB2CFA /* welcome5_small.png in Resources */,
 				995575BD19AC582600B73E4A /* ico_cp_hasLincence.png in Resources */,
+				99B4424519ED115700972923 /* AppIcon76.png in Resources */,
 				99F51F4419AEB30300C81A9B /* chk_default.png in Resources */,
 				99BDC5F519A5F4A900B2BDB1 /* radioUnChecked.png in Resources */,
 				99B4693819B2EB520034505D /* ico_mainsearch_mapsearch2.png in Resources */,
 				9942F44319B987D900191C74 /* ShareSDKLocalizable.strings in Resources */,
 				99B350B7199CB1F100CAEC71 /* index640x960.png in Resources */,
+				99B4423F19ED0C6900972923 /* AppIcon@2x.png in Resources */,
 				9925BF0D19B83835002DBFE0 /* ico_mapsearch_jobclose.png in Resources */,
 				992A5B4719BE94D80042F2EB /* ico_rm_head.png in Resources */,
 				99E76D6419BE8724004DD65F /* bg_lasttime_red.png in Resources */,
@@ -2547,7 +2571,6 @@
 				9942F44819B987D900191C74 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				99C539CA19C962A600E6165A /* ico_salary_rank10.png in Resources */,
 				995575BA19AC56A800B73E4A /* ico_coordinate_blue.png in Resources */,
-				99B6424019D8EC7900F4BC16 /* Default@2x.png in Resources */,
 				992A5B4A19BE982D0042F2EB /* ico_triangle_orange.png in Resources */,
 				99B3D18119D40D4F00AEF1D9 /* btn_keywords_del.png in Resources */,
 				99CFD830199B5F80009A5ABA /* Images.xcassets in Resources */,
@@ -2576,12 +2599,12 @@
 				9905135019C2F45B00B9C096 /* CreateResumeAlertViewController.xib in Resources */,
 				9922970B19B95FF7008E8646 /* ico_onlinechat_online.png in Resources */,
 				9994AF4019D144BF008068AD /* ico_fuli_jtbt.png in Resources */,
+				99B4423E19ED0C6900972923 /* AppIcon.png in Resources */,
 				9923827C19D4F039003CFF62 /* ico_login_name.png in Resources */,
 				99CFD87D199B60D8009A5ABA /* ico_leftmenu_jobnews.png in Resources */,
 				99CFD895199B60D8009A5ABA /* qq.png in Resources */,
 				9994AF4219D144BF008068AD /* ico_fuli_nianjia.png in Resources */,
 				9936980919C7D4020060BDD1 /* ico_cvmain_exp.png in Resources */,
-				99E35B2519D7B9310087941A /* AppIcon@2x.png in Resources */,
 				99CFD879199B60D8009A5ABA /* ico_leftmenu_campus.png in Resources */,
 				99EF851619E3F83900EB2CFA /* welcome3_small.png in Resources */,
 				9994AF3F19D144BF008068AD /* ico_fuli_jrfl.png in Resources */,
@@ -2594,6 +2617,7 @@
 				99C539C719C962A600E6165A /* ico_salary_rank7.png in Resources */,
 				99CFD884199B60D8009A5ABA /* ico_main_membercenter.png in Resources */,
 				99CFD891199B60D8009A5ABA /* main_pic_govnews.png in Resources */,
+				99B4424B19ED13C800972923 /* AppIcon120.png in Resources */,
 				99EF851319E3F83900EB2CFA /* welcome2_large.png in Resources */,
 				9942F39719B95C2100191C74 /* ico_mainmore_opinion.png in Resources */,
 				9994AF3919D144BF008068AD /* ico_fuli_banche.png in Resources */,
@@ -2640,7 +2664,6 @@
 				991125A319A4D24F00C98173 /* ico_expire.png in Resources */,
 				99F3F84919B00CEB00B5AB88 /* ico_jobright.png in Resources */,
 				99CFD88A199B60D8009A5ABA /* ico_main_search.png in Resources */,
-				99E35B2419D7B9310087941A /* AppIcon.png in Resources */,
 				9923827D19D4F039003CFF62 /* ico_login_pwd.png in Resources */,
 				9994AF3B19D144BF008068AD /* ico_fuli_canbu.png in Resources */,
 				999BDD5F19C2E89C000A152A /* ico_setting_on.png in Resources */,
@@ -2659,6 +2682,7 @@
 				99BD700719B5BBF400514807 /* ico_jobnews_search.png in Resources */,
 				99B4693719B2EB520034505D /* ico_mainsearch_mapsearch1.png in Resources */,
 				99F3F84519B007C100B5AB88 /* ico_shen.png in Resources */,
+				99B4424719ED115700972923 /* AppIcon152.png in Resources */,
 				99C539C319C962A600E6165A /* ico_salary_rank3.png in Resources */,
 				99CFD87A199B60D8009A5ABA /* ico_leftmenu_govnews.png in Resources */,
 				99C539C819C962A600E6165A /* ico_salary_rank8.png in Resources */,
@@ -2676,10 +2700,12 @@
 				9936980819C7D4020060BDD1 /* ico_cvmain_education.png in Resources */,
 				99CEAA9719E81046002A492A /* dictionary.db in Resources */,
 				991125AF19A4EE9800C98173 /* ico_rm_pa.png in Resources */,
+				99B4424019ED0C6900972923 /* Default-568h@2x.png in Resources */,
 				9935EFBE19BEF50000F581AC /* ico_news_hot.png in Resources */,
 				9905134319C2F3D500B9C096 /* CpAndJob.storyboard in Resources */,
 				99B4693A19B2EB520034505D /* ico_mainsearch_normalsearch2.png in Resources */,
 				99BD6FA319B5555800514807 /* gr_pic_head.png in Resources */,
+				99B4424119ED0C6900972923 /* Default@2x.png in Resources */,
 				99BD6FA719B5983100514807 /* ico_jobnews_searchresult.png in Resources */,
 				9936980B19C7D4020060BDD1 /* ico_cvmain_jobintention.png in Resources */,
 				990CCC8519A998620022B44B /* check.png in Resources */,
@@ -3023,7 +3049,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Connection",
@@ -3051,10 +3077,12 @@
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/TencentWeiboSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/WeChatSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/LibBPush",
+					"$(PROJECT_DIR)/iOS51rcProject/Class/BaiduMap/Release-iphonesimulator",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "710c3e35-f80d-441c-b404-d8409464037f";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3067,7 +3095,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Connection",
@@ -3095,9 +3123,11 @@
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/TencentWeiboSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Extend/WeChatSDK",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/LibBPush",
+					"$(PROJECT_DIR)/iOS51rcProject/Class/BaiduMap/Release-iphonesimulator",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "710c3e35-f80d-441c-b404-d8409464037f";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
