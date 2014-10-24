@@ -2512,6 +2512,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Lucifer;
 				TargetAttributes = {
+					99CFD813199B5F80009A5ABA = {
+						DevelopmentTeam = KRHBFGDGWF;
+					};
 					99CFD834199B5F80009A5ABA = {
 						TestTargetID = 99CFD813199B5F80009A5ABA;
 					};
@@ -3049,7 +3052,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Connection",
@@ -3095,7 +3098,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iOS51rcProject/Class/ShareSDK/Connection",
