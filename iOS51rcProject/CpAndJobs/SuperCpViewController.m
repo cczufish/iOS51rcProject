@@ -79,7 +79,7 @@
     [ShareSDK showShareActionSheet:nil
                          shareList:nil
                            content:publishContent
-                     statusBarTips:YES
+                     statusBarTips:NO
                        authOptions:nil
                       shareOptions: nil
                             result:^(ShareType type, SSResponseState state, id<ISSPlatformShareInfo> statusInfo, id<ICMErrorInfo> error, BOOL end) {
